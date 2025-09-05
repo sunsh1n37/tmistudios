@@ -2,284 +2,282 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redflag Radar</title>
-  <meta name="description" content="If you see any of these red flags, RUN. A fun and savage relationship radar quiz for Gen Zs who’ve had enough." />
-  <meta name="keywords" content="red flags, relationships, dating quiz, toxic behavior, Gen Z humor" />
-  <meta name="author" content="Redflag Radar" />
-  <meta property="og:title" content="Redflag Radar" />
-  <meta property="og:description" content="If you see any of these red flags, RUN. A savage Gen Z relationship radar." />
-  <meta property="og:image" content="https://yourdomain.com/preview.jpg" />
-  <meta property="og:url" content="https://yourdomain.com/redflag-radar" />
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Should I Text My Ex? 👀</title>
+  <meta name="description" content="A chaotic Gen Z‑coded quiz to answer the age‑old question: Should you text your ex? Press the button to find out."/>
+  <meta name="keywords" content="should I text my ex, ex quiz, Gen Z advice, funny breakup quiz, toxic ex test, memes about exes"/>
+  <meta name="author" content="TMI Studios" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- OG & Twitter Meta -->
+  <meta property="og:title" content="Should I Text My Ex? 👀" />
+  <meta property="og:description" content="Chaotic Gen Z‑coded quiz to decide if you should text your ex." />
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Should I Text My Ex? 👀"/>
+  <meta name="twitter:description" content="Chaotic Gen Z‑coded quiz to decide if you should text your ex."/>
+  <meta name="twitter:image" content="https://yourdomain.com/og-image.jpg"/>
+
+  <link rel="icon" href="/favicon.ico" />
+
   <style>
     body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #fff5f5, #ffe5e5);
-  color: #2d2d2d;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-  overflow-x: hidden;
-}
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #f5f0f6, #fafafa);
+      color: #222;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-h1 {
-  font-size: 3.2em;
-  color: crimson;
-  font-family: 'Impact', fantasy;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-  text-shadow: 1px 1px #ffc0cb;
-}
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
 
-.par1 {
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: black;
-  background: #fff0f5;
-  border-left: 4px solid #ff4d6d;
-  padding: 1rem 1.2rem;
-  margin: 1.5rem 0;
-  border-radius: 0.8rem;
-  box-shadow: 0 2px 8px rgba(255, 77, 109, 0.15);
-  transition: all 0.3s ease;
-  max-width: 700px;
-  text-align: center;
-  font-weight: 600;
-}
+    p.sub {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
 
-.warning {
-  background-color: #ffe0e0;
-  padding: 12px 18px;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 500;
-  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.1);
-  display: inline-block;
-  margin-bottom: 25px;
-}
+    button {
+      background: black;
+      color: white;
+      font-size: 1.1rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-bottom: 2rem;
+    }
 
-.gif-container {
-  max-width: 380px;
-  margin: 0 auto 20px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
+    .response-card {
+      max-width: 400px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
 
-.gif-container:hover {
-  transform: scale(1.015);
-}
+    .response-card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
 
-.gif-container img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
+    .response-card::before {
+      content: "💔 Spill alert! You might not be ready for this one...";
+      display: block;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #d63384;
+      margin-bottom: 1rem;
+    }
 
-.redflag {
-  font-size: 1.6em;
-  margin: 25px 0;
-  padding: 0 20px;
-  line-height: 1.4;
-  max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
-}
+    .share-buttons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-.nav {
-  margin: 30px 0 20px;
-}
+    .share-buttons a {
+      text-decoration: none;
+      color: #fff;
+      background: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
 
-.nav button {
-  font-size: 2.2em;
-  margin: 0 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: crimson;
-  transition: transform 0.2s ease;
-}
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 1rem;
+      font-size: 0.95rem;
+      color: #444;
+    }
 
-.nav button:hover {
-  transform: scale(1.2);
-}
+    .social-icons {
+      margin-bottom: 1rem;
+    }
 
-.socials {
-  margin: 40px 0 20px;
-}
+    .social-icons a {
+      margin: 0 10px;
+      color: #d63384;
+      font-weight: bold;
+      text-decoration: underline;
+    }
 
-.socials a {
-  margin: 0 12px;
-  text-decoration: none;
-  color: #d00000;
-  font-weight: bold;
-  font-size: 0.95em;
-  position: relative;
-  padding-bottom: 2px;
-}
+    .tiktok-trap {
+      background: #fef7fb;
+      border: 2px dashed #ffb3d6;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+    }
 
-.socials a::after {
-  content: '';
-  display: block;
-  height: 2px;
-  background: crimson;
-  width: 0%;
-  transition: width 0.3s;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
+    .tiktok-trap h3 {
+      font-size: 1.6rem;
+      color: #ff2d55;
+      margin-bottom: 1rem;
+    }
 
-.socials a:hover::after {
-  width: 100%;
-}
+    .tiktok-trap p {
+      font-size: 1.05rem;
+      margin: 0.3rem 0;
+    }
 
-.sister-sites {
-  margin-top: 40px;
-  font-size: 0.95em;
-  color: #444;
-}
+    .promo-card {
+      background: #fff0f7;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px dashed #ffc5e6;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-.sister-sites a {
-  color: #888;
-  margin: 0 8px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
+    .promo-card a {
+      color: #d63384;
+      font-weight: bold;
+    }
 
-.sister-sites a:hover {
-  color: crimson;
-}
-
-/* Responsive tweaks */
-@media (max-width: 500px) {
-  h1 {
-    font-size: 2.3em;
-  }
-
-  .redflag {
-    font-size: 1.2em;
-  }
-
-  .nav button {
-    font-size: 2em;
-    margin: 0 12px;
-  }
-
-  .socials a {
-    display: inline-block;
-    margin: 8px;
-  }
-  
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
+
 <body>
+  <main>
+    <header>
+      <h1>Should I Text My Ex? 👀</h1>
+      <p class="sub">Press the button to find out (if you dare)</p>
+    </header>
 
-  <h1>Redflag Radar 🚩</h1>
-  
-  <p class="par1">Built from years of delulu decisions, bare minimum boyfriends, and ‘wyd’ 2AM texts. Proceed with petty.</p>
-  
-  <div class="warning">If you spot any of these, RUN, Forrest, RUN! 🏃‍♀️💨</div>
+    <button onclick="showRandomResponse()">Get My Answer</button>
 
-  <div class="redflag" id="redflag">He replied 'lol' to your 'ily'.</div>
-  
-   <div class="gif-container">
-    <img id="gif" src="redflag1.gif" alt="Red Flag Gif" />
-  </div>
+    <section class="response-card" id="responseCard" style="display:none;">
+      <p id="responseText"></p>
+      <img id="responseMeme" src="" alt="meme">
+      <div class="share-buttons">
+        <a id="shareTwitter" target="_blank">Share on Twitter</a>
+        <a id="shareWhatsApp" target="_blank">Share on WhatsApp</a>
+      </div>
+    </section>
+  </main>
 
-  <div class="nav">
-    <button onclick="prevFlag()">⬅️</button>
-    <button onclick="nextFlag()">➡️</button>
-  </div>
+  <footer>
+    <div class="social-icons">
+      💖 Follow us: 
+      <a href="https://tiktok.com/@tmistudios" target="_blank">TikTok</a>
+      |
+      <a href="https://instagram.com/tmistudios" target="_blank">Instagram</a>
+    </div>
 
-  <div class="socials">
-    <a href="#" target="_blank">Share on IG</a>
-    <a href="#" target="_blank">Tweet It</a>
-    <a href="#" target="_blank">Send on WhatsApp</a>
-  </div>
+    <div class="tiktok-trap">
+      <h3>🔥 Spilled the tea? Now it’s your turn 🔥</h3>
+      <p>✨ Tag your friends.<br>🎯 Take the dare.<br>🧠 Expose the delulu.<br>💌 Share the chaos.</p>
+    </div>
 
-  <div class="sister-sites">
-    Sister Sites:
-    <a href="#">Glow Up Guide</a> |
-    <a href="#">Delulu Diary</a> |
-    <a href="#">Toxic Test</a>
-  </div>
+    <div class="promo-card">
+      <p>💾 <strong>Download the full game</strong> & play with the whole gang IRL<br>
+         🧃<a href="/arcade.html">More unserious fun in our arcade!</a>
+      <p>If you laughed… you owe us a follow. 🎤</p>
+    </div>
+
+    <p style="margin-top: 2rem;">
+      Made with tough love by <strong>TMI Studios™</strong>
+    </p>
+  </footer>
 
   <script>
-    const redflags = [
-     "He replies with 'k'. Just 'k'.",
-      "She says 'my ex and I are still really close'.",
-      "They say 'I don’t believe in labels'.",
-      "He won’t let you post him on IG — but follows 300 baddies.",
-      "Her phone is always on Do Not Disturb. Always.",
-      "They say 'my love language is disappearing for 3 days'.",
-      "He calls his mom 'baby'.",
-      "She always talks about her male bestie… who’s in love with her.",
-      "They ask for your location but never share theirs.",
-      "He has a podcast.",
-      "She brings her crystals but never accountability.",
-      "He says 'you’re not like the other girls' every week.",
-      "They call their ex 'crazy' — all 4 of them.",
-      "He’s emotionally available… for his gym bros.",
-      "She says 'I hate drama' but lives for chaos.",
-      "They quote Andrew Tate unironically.",
-      "He says he’s 'an alpha'.",
-      "She still has matching tattoos with her ex.",
-      "They say 'you’d be perfect if you just changed a few things'.",
-      "He’s always ‘busy’ but never too busy for the boys.",
-      "He replied 'lol' to your 'ily'.",
-      "His love language is physical touch.",
-      "They say therapy is a scam.",
-      "They say Valentine's Day is a scam.",
-      "Compares your cooking to his mom's.",
-      "Wants wife duties but no boyfriend energy.",
-      "Says women should be like their moms.",
-      "Has a secret phone.",
-      "Says he's not active on socials but views all your stories.",
-      "Took you to his place on the first date.",
-      "Makes you plan all the dates.",
-      "Texts 'your to cute'.",
-      "Wants 50/50 bills but not chores.",
-      "Hates makeup but follows baddies.",
-      "Says you're not his usual type.",
-      "Always Facetimes from his car.",
-      "You've never met his friends after 6 months.",
-      "Posts gym thirst traps.",
-      "Wears socks and sandals.",
-      "Only texts late at night.",
-      "You’ve never been to his place after 3 months.",
-      "Says labels are too much pressure.",
-      "Says monogamy is a social construct.",
-      "Doesn’t want anything serious but wants you loyal.",
-      "Starts sentences with 'girls are...' or 'girls should...'",
-      "Calls women with standards gold diggers."
+    const responses = [
+      "Girl, be serious.",
+      "Delete their number. Again.",
+      "You already know the answer. You just wanted me to say it.",
+      "Would Beyoncé text her ex? Exactly.",
+      "You miss the attention, not the person.",
+      "Remember the crying? Yeah. That.",
+      "He didn’t even like your Instagram post. Stay strong.",
+      "Ask yourself: Would he die for you? No? Then why you texting?",
+      "You said you’d never do this again. And yet, here we are.",
+      "Go touch some grass.",
+      "You don’t need closure, you need therapy.",
+      "Girl, it’s giving regression.",
+      "The streets are not calling. They’re begging you to stay gone.",
+      "You think he's changed. He hasn't.",
+      "Drink some water and journal about it.",
+      "The universe already removed them. Don’t re-invite the chaos.",
+      "You’re lonely, not in love.",
+      "Is your phone haunted? Why’s your finger hovering like that?",
+      "Send a meme to your bestie instead. It’s safer.",
+      "Even your ancestors are shaking their heads.",
+      "Your future self is begging you to log off.",
+      "Put your phone down, pick your crown up.",
+      "Would a CEO text their ex? No, they’d schedule a board meeting about it.",
+      "The only thing you should be texting is your therapist.",
+      "Sis, do you want peace or problems?",
+      "Your friends will judge you—and they should.",
+      "Don’t make me come over there.",
+      "This is your sign to block them (again).",
+      "Even Spotify is tired of your sad playlist.",
+      "Get up. We ride at dawn. Away from him.",
+      "Do you want healing or humiliation?",
+      "You don’t miss *them*. You miss the *idea* of them.",
+      "Please remember he wore toe socks unironically.",
+      "Texting him is like opening an old wound to see if it still hurts. It does.",
+      "He had the emotional intelligence of a teaspoon.",
+      "There’s a reason it’s called an ex. As in: *exit*.",
+      "Babe, he’s not the one. He’s the lesson.",
+      "If he wanted to, he would’ve. He didn’t. So don’t.",
+      "Text your future self instead. She’ll thank you.",
+      "You’re romanticizing someone who ghosted you over FIFA.",
+      "Go outside. Touch a tree. Kiss a stranger (optional).",
+      "That itch? Let it pass. Like a craving. Or an exorcism.",
+      "The red flags weren’t even aesthetic.",
+      "You think it’ll be different this time. That’s cute.",
+      "Your phone is not a time machine. Leave the past alone.",
+      "Do you really want to be crying in the club again?",
+      "You’re healing, not hallucinating. Stay strong.",
+      "He gave you crumbs and you made a whole feast. Stop.",
+      "If he texts first, block faster.",
+      "Girl, we made a whole website just to say: NO.",
+      "This ain’t love. It’s withdrawals."
     ];
 
-    let current = 0;
+    function showRandomResponse() {
+      const index = Math.floor(Math.random() * responses.length);
+      const response = responses[index];
+      const memeSrc = `exmeme${index + 1}.jpg`;
 
-    function updateContent() {
-      document.getElementById('redflag').textContent = redflags[current];
-      document.getElementById('gif').src = `redflag${current + 1}.gif`;
+      document.getElementById('responseText').innerText = response;
+      document.getElementById('responseMeme').src = memeSrc;
+      document.getElementById('responseMeme').alt = `Meme for: ${response}`;
+      document.getElementById('responseCard').style.display = 'block';
+
+      const shareText = encodeURIComponent(`"${response}" — Should I text my ex?`);
+      const shareUrl = encodeURIComponent(window.location.href);
+
+      document.getElementById("shareTwitter").href =
+        `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+
+      document.getElementById("shareWhatsApp").href =
+        `https://api.whatsapp.com/send?text=${shareText} ${shareUrl}`;
     }
-
-    function nextFlag() {
-      current = (current + 1) % redflags.length;
-      updateContent();
-    }
-
-    function prevFlag() {
-      current = (current - 1 + redflags.length) % redflags.length;
-      updateContent();
-    }
-
-    // Initialize
-    updateContent();
   </script>
-
 </body>
 </html>
