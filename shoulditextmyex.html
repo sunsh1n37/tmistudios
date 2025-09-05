@@ -262,7 +262,7 @@
     function showRandomResponse() {
       const index = Math.floor(Math.random() * responses.length);
       const response = responses[index];
-      const memeSrc = `exmeme${index + 1}.jpg`;
+      const memeSrc = `exmeme${index + 1}.jpeg`;
 
       document.getElementById('responseText').innerText = response;
       document.getElementById('responseMeme').src = memeSrc;
