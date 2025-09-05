@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redflag Radar</title>
+  <meta name="description" content="If you see any of these red flags, RUN. A fun and savage relationship radar quiz for Gen Zs who’ve had enough." />
+  <meta name="keywords" content="red flags, relationships, dating quiz, toxic behavior, Gen Z humor" />
+  <meta name="author" content="Redflag Radar" />
+  <meta property="og:title" content="Redflag Radar" />
+  <meta property="og:description" content="If you see any of these red flags, RUN. A savage Gen Z relationship radar." />
+  <meta property="og:image" content="https://yourdomain.com/preview.jpg" />
+  <meta property="og:url" content="https://yourdomain.com/redflag-radar" />
+  
+  <style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #fff5f5, #ffe5e5);
+  color: #2d2d2d;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 3.2em;
+  color: crimson;
+  font-family: 'Impact', fantasy;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px #ffc0cb;
+}
+
+.par1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: black;
+  background: #fff0f5;
+  border-left: 4px solid #ff4d6d;
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 8px rgba(255, 77, 109, 0.15);
+  transition: all 0.3s ease;
+  max-width: 700px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.warning {
+  background-color: #ffe0e0;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.1);
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+.gif-container {
+  max-width: 380px;
+  margin: 0 auto 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.gif-container:hover {
+  transform: scale(1.015);
+}
+
+.gif-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.redflag {
+  font-size: 1.6em;
+  margin: 25px 0;
+  padding: 0 20px;
+  line-height: 1.4;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav {
+  margin: 30px 0 20px;
+}
+
+.nav button {
+  font-size: 2.2em;
+  margin: 0 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: crimson;
+  transition: transform 0.2s ease;
+}
+
+.nav button:hover {
+  transform: scale(1.2);
+}
+
+.socials {
+  margin: 40px 0 20px;
+}
+
+.socials a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #d00000;
+  font-weight: bold;
+  font-size: 0.95em;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.socials a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: crimson;
+  width: 0%;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.socials a:hover::after {
+  width: 100%;
+}
+
+.sister-sites {
+  margin-top: 40px;
+  font-size: 0.95em;
+  color: #444;
+}
+
+.sister-sites a {
+  color: #888;
+  margin: 0 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.sister-sites a:hover {
+  color: crimson;
+}
+
+/* Responsive tweaks */
+@media (max-width: 500px) {
+  h1 {
+    font-size: 2.3em;
+  }
+
+  .redflag {
+    font-size: 1.2em;
+  }
+
+  .nav button {
+    font-size: 2em;
+    margin: 0 12px;
+  }
+
+  .socials a {
+    display: inline-block;
+    margin: 8px;
+  }
+  
+  </style>
+</head>
+<body>
+
+  <h1>Redflag Radar 🚩</h1>
+  
+  <p class="par1">Built from years of delulu decisions, bare minimum boyfriends, and ‘wyd’ 2AM texts. Proceed with petty.</p>
+  
+  <div class="warning">If you spot any of these, RUN, Forrest, RUN! 🏃‍♀️💨</div>
+
+  <div class="redflag" id="redflag">He replied 'lol' to your 'ily'.</div>
+  
+   <div class="gif-container">
+    <img id="gif" src="redflag1.gif" alt="Red Flag Gif" />
+  </div>
+
+  <div class="nav">
+    <button onclick="prevFlag()">⬅️</button>
+    <button onclick="nextFlag()">➡️</button>
+  </div>
+
+  <div class="socials">
+    <a href="#" target="_blank">Share on IG</a>
+    <a href="#" target="_blank">Tweet It</a>
+    <a href="#" target="_blank">Send on WhatsApp</a>
+  </div>
+
+  <div class="sister-sites">
+    Sister Sites:
+    <a href="#">Glow Up Guide</a> |
+    <a href="#">Delulu Diary</a> |
+    <a href="#">Toxic Test</a>
+  </div>
+
+  <script>
+    const redflags = [
+     "He replies with 'k'. Just 'k'.",
+      "She says 'my ex and I are still really close'.",
+      "They say 'I don’t believe in labels'.",
+      "He won’t let you post him on IG — but follows 300 baddies.",
+      "Her phone is always on Do Not Disturb. Always.",
+      "They say 'my love language is disappearing for 3 days'.",
+      "He calls his mom 'baby'.",
+      "She always talks about her male bestie… who’s in love with her.",
+      "They ask for your location but never share theirs.",
+      "He has a podcast.",
+      "She brings her crystals but never accountability.",
+      "He says 'you’re not like the other girls' every week.",
+      "They call their ex 'crazy' — all 4 of them.",
+      "He’s emotionally available… for his gym bros.",
+      "She says 'I hate drama' but lives for chaos.",
+      "They quote Andrew Tate unironically.",
+      "He says he’s 'an alpha'.",
+      "She still has matching tattoos with her ex.",
+      "They say 'you’d be perfect if you just changed a few things'.",
+      "He’s always ‘busy’ but never too busy for the boys.",
+      "He replied 'lol' to your 'ily'.",
+      "His love language is physical touch.",
+      "They say therapy is a scam.",
+      "They say Valentine's Day is a scam.",
+      "Compares your cooking to his mom's.",
+      "Wants wife duties but no boyfriend energy.",
+      "Says women should be like their moms.",
+      "Has a secret phone.",
+      "Says he's not active on socials but views all your stories.",
+      "Took you to his place on the first date.",
+      "Makes you plan all the dates.",
+      "Texts 'your to cute'.",
+      "Wants 50/50 bills but not chores.",
+      "Hates makeup but follows baddies.",
+      "Says you're not his usual type.",
+      "Always Facetimes from his car.",
+      "You've never met his friends after 6 months.",
+      "Posts gym thirst traps.",
+      "Wears socks and sandals.",
+      "Only texts late at night.",
+      "You’ve never been to his place after 3 months.",
+      "Says labels are too much pressure.",
+      "Says monogamy is a social construct.",
+      "Doesn’t want anything serious but wants you loyal.",
+      "Starts sentences with 'girls are...' or 'girls should...'",
+      "Calls women with standards gold diggers."
+    ];
+
+    let current = 0;
+
+    function updateContent() {
+      document.getElementById('redflag').textContent = redflags[current];
+      document.getElementById('gif').src = `redflag${current + 1}.gif`;
+    }
+
+    function nextFlag() {
+      current = (current + 1) % redflags.length;
+      updateContent();
+    }
+
+    function prevFlag() {
+      current = (current - 1 + redflags.length) % redflags.length;
+      updateContent();
+    }
+
+    // Initialize
+    updateContent();
+  </script>
+
+</body>
+</html>
