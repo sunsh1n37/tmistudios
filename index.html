@@ -106,8 +106,8 @@
 <!-- ROBOT ANIMATION -->
 <section class="running-robot-section my-12" style="height: 120px; overflow: hidden; position: relative;">
   <div class="robot-container" style="position: absolute; top: 10px; left: -150px; display: flex; align-items: center; transform: translateX(0); transition: transform 0.1s linear;">
-    <img src="images/robot.png" alt="Running Robot" class="robot robot-before" style="width: 80px; height: auto;" />
-    <img src="images/robot2.png" alt="Crashed Robot" class="robot robot-after" style="width: 80px; height: auto; display: none;" />
+    <img src="robot.png" alt="Running Robot" class="robot robot-before" style="width: 80px; height: auto;" />
+    <img src="robot2.png" alt="Crashed Robot" class="robot robot-after" style="width: 80px; height: auto; display: none;" />
     <div class="speech-bubble" style="background: #fff; border-radius: 15px; padding: 8px 12px; font-size: 0.8rem; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: relative; margin-left: 8px; max-width: 140px;">
       <p>On my way to<br>invent the next<br>viral experience…</p>
     </div>
@@ -148,8 +148,25 @@
 <section class="text-center px-6 py-16">
   <h2 class="text-2xl font-bold mb-4">🚀 Ready to elevate your brand?</h2>
   <p class="text-gray-300 mb-6">Let’s create something unforgettable together.</p>
-  <a href="/contactus.html" class="custom-btn">Book a free strategy call</a>
+
+  <!-- Button only -->
+  <button id="bookCTA" class="custom-btn">Book a free strategy call</button>
+
+  <!-- Hidden Modal Form -->
+  <div id="ctaModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 opacity-0 scale-95 pointer-events-none transition-all duration-300">
+    <div class="bg-[#0d0d1a] p-6 rounded-xl max-w-md w-full relative glass transform transition-transform duration-300">
+      <button id="closeModal" class="absolute top-2 right-3 text-white font-bold text-xl">&times;</button>
+      <h3 class="text-xl font-bold mb-4 text-white">Book Your Strategy Call</h3>
+      <form action="https://formspree.io/f/mgebkydy" method="POST" class="flex flex-col gap-4">
+        <input type="text" name="name" placeholder="Your Name" required class="p-2 rounded text-black">
+        <input type="email" name="email" placeholder="Your Email" required class="p-2 rounded text-black">
+        <input type="hidden" name="message" value="Booked via Home CTA">
+        <button type="submit" class="custom-btn">Submit</button>
+      </form>
+    </div>
+  </div>
 </section>
+
 
 <!-- FOOTER -->
 <footer style="background-color: black; color: #666; text-align: center; padding: 30px 20px; font-size: 14px;">
@@ -262,5 +279,30 @@
   }
   update();
 </script>
+
+<script>
+  const bookBtn = document.getElementById('bookCTA');
+  const modal = document.getElementById('ctaModal');
+  const closeModal = document.getElementById('closeModal');
+
+  function openModal() {
+    modal.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+    modal.classList.add('opacity-100', 'scale-100');
+  }
+
+  function closeModalFunc() {
+    modal.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+    modal.classList.remove('opacity-100', 'scale-100');
+  }
+
+  bookBtn.addEventListener('click', openModal);
+  closeModal.addEventListener('click', closeModalFunc);
+
+  // Close modal if clicking outside form
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModalFunc();
+  });
+</script>
+
 </body>
 </html>
