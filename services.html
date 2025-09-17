@@ -1,111 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Services | TMI Studios</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    a {
-      color: #8b5cf6;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packages | TMI Studios</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+  body {
+    background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px #8b5cf6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .glass:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #a855f7, 0 0 40px #8b5cf6;
+  }
+  a { color: #8b5cf6; text-decoration: none; transition: color 0.3s; }
+  a:hover { text-decoration: underline; }
+  ul { list-style-type: disc; margin: 0.5rem 0 1rem 1rem; color: #d8b4fe; }
+  .btn-purple {
+    display: inline-block;
+    background-color: #8b5cf6;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn-purple:hover { background-color: #a855f7; }
+</style>
 </head>
+<body class="min-h-screen flex flex-col">
 
 <!-- Navigation -->
-<nav style="background-color: #0d0d1a; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; font-family: 'Segoe UI', sans-serif;">
-  <div style="font-weight: bold; font-size: 20px;">
-    <a href="index.html" style="color: white; text-decoration: none;">TMI Studios</a>
+<nav class="bg-[#0d0d1a] text-white px-6 py-4 flex justify-between items-center">
+  <div class="font-bold text-lg">
+    <a href="index.html" class="text-white">TMI Studios</a>
   </div>
-  <div style="display: flex; gap: 16px; font-size: 14px;">
-    <a href="index.html" style="color: white; text-decoration: none;">Home</a>
-    <a href="arcade.html" style="color: white; text-decoration: none;">Arcade</a>
-    <a href="services.html" style="color: white; text-decoration: none;">Services</a>
-    <a href="contactus.html" style="color: white; text-decoration: none;">Contact</a>
+  <div class="flex gap-6 text-sm">
+    <a href="arcade.html" class="text-white">Arcade</a>
+    <a href="packages.html" class="text-white">Packages</a>
+    <a href="aboutus.html" class="text-white">About</a>
   </div>
 </nav>
 
+<!-- Header -->
+<header class="text-center p-10">
+  <h1 class="text-4xl font-bold mb-4">Let's make it official!</h1>
+  <p class="text-gray-300 max-w-xl mx-auto">
+    Lock in your package. Tell us what you’re building. We’ll do the rest.
+  </p>
+</header>
 
-
-<body class="min-h-screen flex flex-col">
-
-  <!-- Header -->
-  <header class="text-center p-10">
-    <h1 class="text-4xl font-bold mb-4">Our Services</h1>
-    <p class="text-gray-300 max-w-xl mx-auto">
-      Soft advertising, hard impact. We blend tech, humor, and culture to build digital campaigns your audience actually wants to engage with.
-    </p>
-  </header>
-
-  <!-- Services Grid -->
-  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-16 pb-16">
-    <div class="glass p-6 rounded-xl">
-      <h4 class="text-xl mb-2">🎮 Branded Games</h4>
-      <p class="text-gray-300 mb-4">We build games that sneak your brand into your audience’s thumbs — and their group chats.</p>
+<!-- Packages Sections -->
+<section class="px-6 md:px-16 pb-16">
+  <!-- Branding Packages -->
+  <h2 class="text-3xl font-semibold mb-6 text-center">🎨 Branding Packages</h2>
+  <div class="flex gap-6 overflow-x-auto py-4">
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">BASIC</h3>
+      <ul>
+        <li>Logo</li>
+        <li>Business Cards</li>
+        <li>Email Signature</li>
+      </ul>
+      <p class="font-bold mb-4">R450</p>
+      <button class="btn-purple package-select" data-package="BASIC: Logo, Business Cards, Email Signature – R450">Select</button>
     </div>
-
-    <div class="glass p-6 rounded-xl">
-      <h4 class="text-xl mb-2">🧠 Idea Lab</h4>
-      <p class="text-gray-300 mb-4">From memes to mechanics, we brainstorm fresh digital formats tailored to your brand personality.</p>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">PRO</h3>
+      <ul>
+        <li>BASIC + Letterhead</li>
+        <li>Social Media Profiles</li>
+        <li>Brand Guide</li>
+      </ul>
+      <p class="font-bold mb-4">R1150</p>
+      <button class="btn-purple package-select" data-package="PRO: Basic + Letterhead, Social Media Profiles, Brand Guide – R1150">Select</button>
     </div>
-
-    <div class="glass p-6 rounded-xl">
-      <h4 class="text-xl mb-2">📲 Web & App Builds</h4>
-      <p class="text-gray-300 mb-4">Need a viral microsite? MVP? Quiz-based funnel? We design and develop custom platforms from scratch.</p>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">PREMIUM</h3>
+      <ul>
+        <li>Full Kit +</li>
+        <li>Flyers</li>
+        <li>Pitch Deck</li>
+        <li>Editable Canva Kits</li>
+      </ul>
+      <p class="font-bold mb-4">Contact for Pricing</p>
+      <button class="btn-purple package-select" data-package="PREMIUM: Full kit + Flyers, Pitch Deck, Editable Canva Kits">Select</button>
     </div>
+  </div>
 
-    <div class="glass p-6 rounded-xl">
-      <h4 class="text-xl mb-2">📦 Originals</h4>
-      <p class="text-gray-300 mb-4">Access our growing catalog of in-house games and IPs — available to license, co-brand, or fully white-label for your own platform, site, or campaign.</p>
-      <a href="/arcade.html">See Originals →</a>
+  <!-- Web / App Packages -->
+  <h2 class="text-3xl font-semibold my-6 text-center">📲 Website / App Packages</h2>
+  <div class="flex gap-6 overflow-x-auto py-4">
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Starter Site</h3>
+      <ul>
+        <li>1 Page / Landing Page</li>
+        <li>Mobile Responsive</li>
+        <li>Contact Form</li>
+      </ul>
+      <p class="font-bold mb-4">R3500</p>
+      <button class="btn-purple package-select" data-package="Starter Site: 1 Page / Landing Page, Mobile Responsive, Contact Form – R3500">Select</button>
     </div>
-
-    <div class="glass p-6 rounded-xl">
-      <h4 class="text-xl mb-2">🔁 Viral Experiments</h4>
-      <p class="text-gray-300 mb-4">From cursed quizzes to TikTok traps, we build ideas that are just weird enough to work.</p>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Business Site</h3>
+      <ul>
+        <li>5 Page Site</li>
+        <li>Blog Setup</li>
+        <li>SEO Optimized</li>
+      </ul>
+      <p class="font-bold mb-4">R7500</p>
+      <button class="btn-purple package-select" data-package="Business Site: 5 Page Site, Blog Setup, SEO Optimized – R7500">Select</button>
     </div>
-
-    <div class="glass p-6 rounded-xl">
-      <h4 class="text-xl mb-2">📢 Soft Ad System</h4>
-      <p class="text-gray-300 mb-4">Our unique blend of content and code turns your ad into an experience — not an interruption.</p>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">E-commerce Site</h3>
+      <ul>
+        <li>Product Catalog</li>
+        <li>Cart & Checkout</li>
+        <li>Payment Integration</li>
+      </ul>
+      <p class="font-bold mb-4">R12500</p>
+      <button class="btn-purple package-select" data-package="E-commerce Site: Product Catalog, Cart & Checkout, Payment Integration – R12500">Select</button>
     </div>
-  </section>
+  </div>
 
-  <!-- CTA Section -->
-  <section class="text-center pb-24 px-6">
-    <h3 class="text-2xl font-semibold mb-4">Have a wild idea?</h3>
-    <p class="text-gray-400 mb-6">Let’s build something scroll-stopping together.</p>
-    <a href="contactus.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition">
-      Book a Build Call
-    </a>
-  </section>
+  <!-- Social Media Packages -->
+  <h2 class="text-3xl font-semibold my-6 text-center">📱 Social Media Marketing</h2>
+  <div class="flex gap-6 overflow-x-auto py-4">
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Starter</h3>
+      <ul>
+        <li>Instagram Only</li>
+        <li>5 Posts / Week</li>
+        <li>Basic Captions</li>
+      </ul>
+      <p class="font-bold mb-4">R3500 / month</p>
+      <button class="btn-purple package-select" data-package="Starter: Instagram Only, 5 Posts / Week, Basic Captions – R3500 / month">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Growth</h3>
+      <ul>
+        <li>Instagram & Facebook</li>
+        <li>10 Posts / Week</li>
+        <li>Engagement Strategy</li>
+      </ul>
+      <p class="font-bold mb-4">R5000 / month</p>
+      <button class="btn-purple package-select" data-package="Growth: Instagram & Facebook, 10 Posts / Week, Engagement Strategy – R5000 / month">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Pro</h3>
+      <ul>
+        <li>Instagram, Facebook & TikTok</li>
+        <li>Full Content Calendar</li>
+        <li>Paid Ad Campaigns</li>
+      </ul>
+      <p class="font-bold mb-4">R9500 / month</p>
+      <button class="btn-purple package-select" data-package="Pro: Instagram, Facebook & TikTok, Full Content Calendar, Paid Ad Campaigns – R9500 / month">Select</button>
+    </div>
+  </div>
 
-  <!-- Footer -->
-  <footer style="background-color: black; color: #666; text-align: center; padding: 30px 20px; font-size: 14px;">
-    Follow us:
-    <a href="https://tiktok.com/@tmi_studios" target="_blank">TikTok</a> |
-    <a href="https://instagram.com/tmi_studios" target="_blank">Instagram</a>
-    <p>&copy; 2025 TMI Studio. All rights reserved.</p>
-    <p><a href="contactus.html">Need a website / viral game? Let's build it!</a></p>
-  </footer>
+  <!-- Arcade / Games Packages -->
+  <h2 class="text-3xl font-semibold my-6 text-center">🎮 TMI Arcade</h2>
+  <div class="flex gap-6 overflow-x-auto py-4">
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Mini Game</h3>
+      <ul>
+        <li>Quiz / Party Meme Game</li>
+        <li>Branded Memes</li>
+        <li>Mobile & Desktop Friendly</li>
+      </ul>
+      <p class="font-bold mb-4">from R10,000</p>
+      <button class="btn-purple package-select" data-package="Mini Game: Quiz / Party Meme Game – from R10,000">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Standard Game</h3>
+      <ul>
+        <li>Custom Shooter Game</li>
+        <li>Multi-Level</li>
+        <li>Mini Challenges</li>
+      </ul>
+      <p class="font-bold mb-4">from R15,000</p>
+      <button class="btn-purple package-select" data-package="Standard Game: Custom Shooter Game – from R15,000">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Premium Game</h3>
+      <ul>
+        <li>Endless Runner Game</li>
+        <li>Fully Branded Experience</li>
+        <li>Advanced Mechanics & Rewards</li>
+      </ul>
+      <p class="font-bold mb-4">from R40,000</p>
+      <button class="btn-purple package-select" data-package="Premium Game: Endless Runner Game – from R40,000">Select</button>
+    </div>
+  </div>
+</section>
+
+<!-- Package & Newsletter Modal -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
+  <div style="background:#1a1a1a; padding:30px; border-radius:20px; max-width:400px; width:90%; text-align:center; position:relative;">
+    <span id="closeModal" style="position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer; color:#fff;">&times;</span>
+    <h2 id="modalTitle" style="color:#fff; margin-bottom:15px;">Complete Booking</h2>
+    <p id="modalDesc" style="color:#ccc; margin-bottom:20px;">Enter your name and email so we can contact you with next steps.</p>
+    <form id="modalForm" action="https://formspree.io/f/mgebkydy" method="POST" style="display:flex; flex-direction:column; gap:10px;">
+      <input type="text" name="name" placeholder="Your Name" required style="padding:10px; border-radius:10px; border:none;">
+      <input type="email" name="email" placeholder="Your Email" required style="padding:10px; border-radius:10px; border:none;">
+      <input type="hidden" name="Package" id="modalPackage">
+      <button type="submit" style="padding:10px; border:none; border-radius:12px; background:#8b5cf6; color:#fff; cursor:pointer;" id="modalBtn">Submit</button>
+      <p id="modalSuccess" style="color:#0f0; display:none; margin-top:10px;">Submitted successfully! 🎉</p>
+    </form>
+  </div>
+</div>
+
+<!-- Bottom CTA -->
+<section class="px-6 md:px-16 pb-10 text-center">
+  <p class="text-gray-300 mb-4 text-lg">Stay in the loop! Get notified when new packages drop, experiments launch, or viral ideas hit the lab.</p>
+  <button id="bottomSubscribeBtn" class="btn-purple">Subscribe to Our Newsletter</button>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black text-gray-600 text-center p-8 text-sm mt-auto">
+  Follow us:
+  <span>
+    <a href="https://tiktok.com/@tmi_studios" target="_blank" class="text-gray-600">TikTok</a> |
+    <a href="https://instagram.com/tmi_studios" target="_blank" class="text-gray-600">Instagram</a>
+  </span>
+  <p class="mt-2">&copy; 2025 TMI Studios. All rights reserved.</p>
+</footer>
+
+<script>
+  const modal = document.getElementById("modal");
+  const closeModal = document.getElementById("closeModal");
+  const modalPackage = document.getElementById("modalPackage");
+  const modalForm = document.getElementById("modalForm");
+  const modalSuccess = document.getElementById("modalSuccess");
+  const bottomSubscribeBtn = document.getElementById("bottomSubscribeBtn");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDesc");
+  const modalBtn = document.getElementById("modalBtn");
+
+  let lastSelectedPackage = "";
+
+  // Open modal on package button click
+  document.querySelectorAll(".package-select").forEach(btn => {
+    btn.addEventListener("click", () => {
+      lastSelectedPackage = btn.dataset.package;
+      modalPackage.value = lastSelectedPackage;
+      modalTitle.textContent = "Complete Booking";
+      modalDesc.textContent = "Enter your name and email so we can contact you with next steps.";
+      modalBtn.textContent = "Submit";
+      modal.style.display = "flex";
+    });
+  });
+
+  // Bottom Subscribe button opens modal for newsletter
+  bottomSubscribeBtn.addEventListener("click", () => {
+    modalPackage.value = ""; // no package for newsletter
+    modalTitle.textContent = "Subscribe to Our Newsletter";
+    modalDesc.textContent = "Enter your name and email to get updates about new packages and launches.";
+    modalBtn.textContent = "Subscribe";
+    modal.style.display = "flex";
+  });
+
+  // Close modal
+  closeModal.addEventListener("click", () => { modal.style.display = "none"; });
+  window.addEventListener("click", e => { if(e.target === modal) modal.style.display = "none"; });
+
+  // Handle modal form submission
+  modalForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    const formData = new FormData(modalForm);
+    fetch(modalForm.action, {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if(response.ok){
+        modalSuccess.style.display = "block";
+        modalForm.reset();
+        setTimeout(() => { modal.style.display = "none"; modalSuccess.style.display = "none"; }, 2000);
+      } else {
+        alert("Oops! There was a problem submitting the form.");
+      }
+    })
+    .catch(error => { alert("Oops! There was a problem submitting the form."); });
+  });
+</script>
 
 </body>
 </html>
