@@ -1,236 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>TMI Studios</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About TMI Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #0d0d0d;
+      color: #f3f3f3;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    nav {
+      background-color: #0d0d1a;
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 16px;
+    }
+
+    .about-section {
+      padding: 4rem 2rem;
+    }
+
+    .about-section .container {
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .about-section p,
+    .about-section ul {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+      color: #e2e2e2;
+    }
+
+    .about-section ul.fun-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .about-section ul.fun-list li {
+      margin: 0.5rem 0;
+      padding-left: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      transition: transform 0.2s ease;
+    }
+
+    .about-section ul.fun-list li:hover {
+      transform: translateX(5px) scale(1.02);
+    }
+
+    .glitch-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .glitch-title::before,
+    .glitch-title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .glitch-title::before { animation: glitchTop 2s infinite linear; color: #a855f7; }
+    .glitch-title::after { animation: glitchBottom 2s infinite linear; color: #d8b4fe; }
+
+    @keyframes glitchTop {
+      0% { clip-path: inset(0 0 90% 0); transform: translate(-2px, -2px); }
+      10% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+      100% { clip-path: inset(0 0 90% 0); transform: translate(0, 0); }
+    }
+    @keyframes glitchBottom {
+      0% { clip-path: inset(60% 0 20% 0); transform: translate(2px, 2px); }
+      10% { clip-path: inset(0 0 90% 0); transform: translate(-1px, -2px); }
+      100% { clip-path: inset(60% 0 20% 0); transform: translate(0, 0); }
+    }
+
+    .glitch-button {
+      background-color: #a855f7;
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+      display: inline-block;
+      box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+      border-radius: 12px;
+    }
+
+    .glitch-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #a855f7, 0 0 30px #d8b4fe;
+    }
+
+    .glitch-button.small {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .ad-card {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Joker_black_02.svg/1200px-Joker_black_02.svg.png');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 2rem;
+      margin: 2rem auto;
+      border-radius: 1.5rem;
+      max-width: 600px;
+      text-align: left;
+      backdrop-filter: brightness(0.4) contrast(1.2);
+      border: 2px dashed #a855f7;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+    }
+
+    .glitchy-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    footer {
+      background-color: black;
+      color: #666;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+    }
+
+    footer a { color: #666; text-decoration: none; }
+
+    @keyframes fadeInUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* MODAL STYLES */
+    #actionModal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .modal-content button {
+      padding: 0.8rem 1.5rem;
+      margin-top: 1rem;
+      border: none;
+      background-color: #a855f7;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    #modalSuccess { display:none; margin-top:1rem; color:#4ade80; font-weight:bold; }
+  </style>
 </head>
 <body>
 
-<nav style="background-color: #0d0d1a; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; font-family: 'Segoe UI', sans-serif;">
-  <div style="font-weight: bold; font-size: 20px;">
-    <a href="index.html" style="color: white; text-decoration: none;">TMI Studios</a>
-  </div>
-  <div style="display: flex; gap: 16px; font-size: 14px;">
-    <a href="index.html" style="color: white; text-decoration: none;">Home</a>
-    <a href="arcade.html" style="color: white; text-decoration: none;">Arcade</a>
-    <a href="services.html" style="color: white; text-decoration: none;">Services</a>
-    <a href="contactus.html" style="color: white; text-decoration: none;">Contact</a>
-  </div>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <div style="font-weight: bold; font-size: 20px;"><a href="index.html">TMI Studios</a></div>
+    <div style="display: flex; gap: 16px; font-size: 14px;">
+      <a href="arcade.html">Arcade</a>
+      <a href="lab.html">Lab</a>
+      <a href="packages.html">Packages</a>
+      <a href="contactus.html">Contact</a>
+    </div>
+  </nav>
 
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h1 class="glitch-title" data-text="About TMI Studios">About TMI Studios</h1>
 
+      <p><strong>🧠 Too Many Ideas?</strong> Nah, just the right amount. We build sticky, scroll-breaking digital stuff that makes people 👀 look twice and click again.</p>
 
-<section id="about" class="about-section">
-  <div class="container">
-    <h1 class="glitch-title" data-text="About TMI Studios">About TMI Studios</h1>
-    
-    <p><strong>🧠 Too Many Ideas?</strong> Nah, just the right amount. We build strange, sticky, scroll-breaking digital stuff that makes people  👀 👀 *look twice* and *click again*.</p>
+      <p>👤 Founded by <strong>Buyi Mncube</strong>, TMI Studios is a one-person lab making websites, web games, and interactive campaigns that blur the line between art, ad, and app. Based in 🌍 Durban, powered by 🍜 late-night ideas and 💡 sudden obsessions.</p>
 
-    <p>👤 Founded by <strong>Buyi Mncube</strong>, TMI Studios is a one-person lab making websites, web games, and interactive campaigns that blur the line between art, ad, and app. Based in 🌍 Durban, powered by 🍜 late-night ideas and 💡 sudden obsessions.</p>
-
-    <p>💻 We build for:</p>
-    <ul class="fun-list">
-      <li>🚀 Startups who wanna launch weird</li>
-      <li>💅 Brands who don’t do boring</li>
-      <li>🎯 Agencies that need dev magic</li>
-      <li>🧠 Clients who say "what if...?"</li>
-    </ul>
-
-    <p>🎭 Whether it’s a viral quiz, a webcomic game, or a full-blown app with personality — we specialize in soft advertising and story-led UX. We build campaigns that hit like culture drops.  Less banner, more banger.</p>
-
-    <p>🧪 In our Labs, we test experiments no brief asked for. But somehow... clients want them anyway.</p>
-
-    <div class="ad-card">
-      <h2>🃏 Soft Ads, Loud Impact</h2>
-      <p>We sneak your brand into our viral quiz game memes — the ones players screenshot, share, and send to their exes 💔. They don’t even know it’s an ad... but it is 👀.</p>
-      <ul>
-        <li>🔥 Meme-style game cards</li>
-        <li>📲 Built-in virality</li>
-        <li>💡 Perfect for bold brands</li>
+      <p>💻 We build for:</p>
+      <ul class="fun-list">
+        <li>🚀 Startups who wanna launch weird</li>
+        <li>💅 Brands who don’t do boring</li>
+        <li>🎯 Agencies that need dev magic</li>
+        <li>🧠 Clients who say "what if...?"</li>
       </ul>
-      <a href="#contact" class="glitch-button small">Let’s Make a Meme Ad 💥</a>
+
+      <div class="ad-card">
+        <h2>🃏 Soft Ads, Loud Impact</h2>
+        <p>We sneak your brand into our viral quiz game memes — the ones players screenshot, share, and send to their exes 💔. They don’t even know it’s an ad... but it is 👀.</p>
+        <ul>
+          <li>🔥 Meme-style game cards</li>
+          <li>📲 Built-in virality</li>
+          <li>💡 Perfect for bold brands</li>
+        </ul>
+        <a href="#" class="glitch-button small">🎯 Book a Meme Ad</a>
+      </div>
+
+      <div class="glitchy-cta">
+        <p>🚀 Ready to start your project? Let's talk:</p>
+        <a href="#" class="glitch-button">💬 Let's Start Your Project</a>
+      </div>
     </div>
+  </section>
 
-    <p>🌐 We don’t just build websites. We build <em>playable stories</em>, <em>interactive worlds</em>, and <em>soft-launches that go hard</em>.</p>
-
-    <div class="glitchy-cta">
-      <a href="#contact" class="glitch-button">💬 Wanna Collab?</a>
+  <!-- MODAL FORM -->
+  <div id="actionModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Subscribe / Book a Project</h2>
+      <p id="selectionRecap" style="font-weight:bold; margin-bottom:10px;"></p>
+      <form id="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="text" name="package" id="packageInput" style="display:none;" />
+        <button type="submit">Submit</button>
+      </form>
+      <p id="modalSuccess">✅ Thank you! We'll be in touch soon.</p>
     </div>
   </div>
-</section>
 
- <!-- FOOTER -->
-      <footer style="background-color: black; color: #666; text-align: center; padding: 30px 20px; font-size: 14px;">
-      Follow us:
-      <a href="https://tiktok.com/@tmi_studios" target="_blank">TikTok</a> |
-      <a href="https://instagram.com/tmi_studios" target="_blank">Instagram</a>
-    <p>&copy; 2025 TMI Studio. All rights reserved.</p>
-    <p><a href="contactus.html">Need a website / viral game? Let's build it!</a></p>
+  <!-- FOOTER -->
+  <footer>
+    Follow us:
+    <a href="https://tiktok.com/@tmi_studios" target="_blank">TikTok</a> |
+    <a href="https://instagram.com/tmi_studios" target="_blank">Instagram</a>
+    <p>&copy; 2025 TMI Studios. All rights reserved.</p>
   </footer>
 
-<style>
+  <script>
+    const modal = document.getElementById('actionModal');
+    const form = document.getElementById('form');
+    const successMsg = document.getElementById('modalSuccess');
+    const selectionRecap = document.getElementById('selectionRecap');
+    const packageInput = document.getElementById('packageInput');
 
+    function openModal(selection='') {
+      modal.style.display = 'flex';
+      successMsg.style.display = 'none';
+      form.style.display = 'block';
+      selectionRecap.textContent = selection ? `You selected: ${selection}` : '';
+      packageInput.value = selection;
+    }
 
-    
-/* GENERAL STYLES */
-.about-section {
-  padding: 4rem 2rem;
-  background: #0d0d0d;
-  color: #f3f3f3;
-  font-family: 'Orbitron', sans-serif;
-  position: relative;
-  overflow: hidden;
-}
+    function closeModal() {
+      modal.style.display = 'none';
+    }
 
-.about-section .container {
-  max-width: 800px;
-  margin: 0 auto;
-  animation: fadeInUp 1s ease-out;
-}
+    window.onclick = function(e) {
+      if(e.target == modal) modal.style.display = 'none';
+    }
 
-.about-section p, .about-section ul {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 1.4rem;
-  color: #e2e2e2;
-}
+    document.querySelectorAll('.glitch-button').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal(btn.textContent.trim());
+      });
+    });
 
-.about-section ul.fun-list {
-  list-style: none;
-  padding-left: 0;
-}
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method:'POST',
+        body:data,
+        headers:{ 'Accept':'application/json' }
+      });
+      if(response.ok){
+        form.style.display='none';
+        successMsg.style.display='block';
+        form.reset();
+      } else {
+        alert('Oops! There was a problem.');
+      }
+    });
+  </script>
 
-.about-section ul.fun-list li {
-  margin: 0.5rem 0;
-  position: relative;
-  padding-left: 1.2rem;
-  font-weight: bold;
-  color: #fff;
-  transition: transform 0.2s ease;
-}
-
-.about-section ul.fun-list li:hover {
-  transform: translateX(5px) scale(1.02);
-}
-
-/* GLITCH TITLE EFFECT */
-.glitch-title {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #fff;
-  position: relative;
-  display: inline-block;
-  margin-bottom: 2rem;
-}
-
-.ad-card {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Joker_black_02.svg/1200px-Joker_black_02.svg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #fff;
-  padding: 2rem;
-  margin: 2rem auto;
-  border-radius: 1.5rem;
-  max-width: 600px;
-  text-align: left;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  backdrop-filter: brightness(0.4) contrast(1.2);
-  position: relative;
-  overflow: hidden;
-  border: 2px dashed #ffd700;
-  animation: pulseBorder 3s infinite ease-in-out;
-}
-.glitch-button.small {
-  padding: 0.6rem 1.2rem;
-  font-size: 0.9rem;
-}
-
-@keyframes pulseBorder {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-  }
-}
-
-.glitch-title::before,
-.glitch-title::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  color: #ff00c8;
-  z-index: -1;
-}
-
-.glitch-title::before {
-  animation: glitchTop 2s infinite linear;
-  color: #00fff7;
-}
-
-.glitch-title::after {
-  animation: glitchBottom 2s infinite linear;
-  color: #ff00c8;
-}
-
-@keyframes glitchTop {
-  0% { clip-path: inset(0 0 90% 0); transform: translate(-2px, -2px); }
-  10% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
-  20% { clip-path: inset(0 0 90% 0); transform: translate(-1px, 1px); }
-  30% { clip-path: inset(30% 0 30% 0); transform: translate(2px, -1px); }
-  100% { clip-path: inset(0 0 90% 0); transform: translate(0, 0); }
-}
-
-@keyframes glitchBottom {
-  0% { clip-path: inset(60% 0 20% 0); transform: translate(2px, 2px); }
-  10% { clip-path: inset(0 0 90% 0); transform: translate(-1px, -2px); }
-  20% { clip-path: inset(70% 0 0 0); transform: translate(1px, 1px); }
-  30% { clip-path: inset(40% 0 20% 0); transform: translate(-2px, 2px); }
-  100% { clip-path: inset(60% 0 20% 0); transform: translate(0, 0); }
-}
-
-/* GLITCHY BUTTON */
-.glitch-button {
-  background-color: #00fff7;
-  color: #0d0d0d;
-  padding: 1rem 2rem;
-  border: none;
-  font-weight: 700;
-  font-size: 1.1rem;
-  cursor: pointer;
-  position: relative;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-  display: inline-block;
-  box-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
-}
-
-.glitch-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #00fff7, 0 0 30px #ff00c8;
-}
-
-
-.glitchy-cta {
-  position: center;
-}
-
-
-/* FADE UP ANIMATION */
-@keyframes fadeInUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-</style>
+</body>
+</html>
