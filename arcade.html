@@ -1,163 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>TMI Studios</title>
-<meta name="description" content="Play chaotic, unhinged, and oddly accurate quizzes & games by TMI Studios." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TMI Studios</title>
+  <meta name="description" content="Play chaotic, unhinged, and oddly accurate quizzes & games by TMI Studios." />
 
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-<style>
-  :root{--cyan:#00ffff;}
-  body{
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    color:#fff;
-    background:radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%);
-  }
-  nav a{ color:#fff; margin-right:.75rem; }
-  .hero-title{
-    font-size:3rem;
-    font-weight:700;
-    background:linear-gradient(135deg,#fff,#c0c0c0,#fff);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    text-shadow:2px 2px 5px rgba(255,255,255,.25);
-  }
-  .home-slogan{ font-size:1rem; text-shadow:0 0 8px var(--cyan); font-weight:700; margin-top:1rem; }
+  <style>
+    :root {
+      --cyan: #00ffff;
+      --purple: #a855f7;
+      --purple-hover: #d8b4fe;
+    }
 
-  /* GAME */
-  #game-container{
-    position:relative;
-    height:150px;
-    margin:2.5rem auto;
-    max-width:900px;
-    background:#111;
-    border:2px solid var(--cyan);
-    border-radius:12px;
-    overflow:visible;
-  }
-  #shooter{
-    position:absolute;
-    left:20px;
-    top:50%;
-    width:40px;
-    height:40px;
-    transform:translateY(-50%);
-    cursor:pointer;
-    user-select:none;
-    display:block;
-    z-index:1000;
-  }
-  .bullet{
-    position:absolute;
-    width:10px;
-    height:4px;
-    background:yellow;
-    border-radius:2px;
-    z-index:1001;
-  }
-  .target{
-    position:absolute;
-    width:60px;
-    height:60px;
-    top:50%;
-    left:80%;
-    transform:translate(-50%,-50%);
-    z-index:900;
-    transition:transform .25s,opacity .25s;
-  }
-  .explode{ animation:explode .45s forwards; }
-  @keyframes explode{ 0%{ transform:scale(1); opacity:1 } 100%{ transform:scale(2.8); opacity:0 } }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
+    }
 
-  /* Email trap below the game */
-  #email-trap {
-    max-width:900px;
-    margin:1rem auto 3rem;
-    background:#0b0b0b;
-    border:2px solid var(--cyan);
-    border-radius:10px;
-    padding:1rem 1.25rem;
-    color:#fff;
-    text-align:center;
-  }
-  #email-trap input[type="email"]{
-    width:60%;
-    max-width:360px;
-    padding:.5rem;
-    border-radius:6px;
-    border:none;
-    margin-right:.5rem;
-  }
-  #email-trap button{
-    background:var(--cyan);
-    color:black;
-    padding:.5rem .8rem;
-    border-radius:6px;
-    border:none;
-    font-weight:700;
-    cursor:pointer;
-  }
-  #emailFeedback{ margin-top:.5rem; min-height:1.25rem; color:#ff6666; }
-  @media (max-width:640px){
-    #email-trap input[type="email"]{ width:100%; margin-bottom:.5rem; display:block; }
-    #email-trap button{ width:100%; }
-  }
-</style>
+    a {
+      color: var(--purple);
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--purple-hover);
+    }
+
+    nav a {
+      color: #fff !important;
+      margin-right: 0.75rem;
+    }
+
+    footer a {
+      color: #888 !important;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #ccc !important;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff, #c0c0c0, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, .25);
+    }
+
+    .home-slogan {
+      font-size: 1rem;
+      text-shadow: 0 0 8px var(--cyan);
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+
+    #game-container {
+      position: relative;
+      height: 150px;
+      margin: 2.5rem auto;
+      max-width: 900px;
+      background: #111;
+      border: 2px solid var(black);
+      border-radius: 12px;
+      overflow: visible;
+    }
+
+    #shooter {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      user-select: none;
+      display: block;
+      z-index: 1000;
+    }
+
+    .bullet {
+      position: absolute;
+      width: 10px;
+      height: 4px;
+      background: yellow;
+      border-radius: 2px;
+      z-index: 1001;
+    }
+
+    .target {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      top: 50%;
+      left: 80%;
+      transform: translate(-50%, -50%);
+      z-index: 900;
+    }
+
+    .explode {
+      animation: explode .45s forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.8); opacity: 0; }
+    }
+
+    #email-trap {
+      max-width: 900px;
+      margin: 2rem auto 3rem;
+      background: #0b0b0b;
+      border: 2px dashed var(--purple);
+      border-radius: 10px;
+      padding: 1.25rem;
+      color: #fff;
+      text-align: center;
+    }
+
+    #email-trap input {
+      width: 60%;
+      max-width: 360px;
+      padding: .5rem;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: .5rem;
+    }
+
+    #email-trap button {
+      background: var(--purple);
+      color: white;
+      padding: .5rem 1rem;
+      border-radius: 6px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 640px) {
+      #email-trap input { width: 100%; }
+      #email-trap button { width: 100%; margin-top: .5rem; }
+    }
+
+    .game-card {
+      display: inline-block;
+      width: 250px;
+      margin-right: 1rem;
+      background: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(black);
+      vertical-align: top;
+      text-align: center;
+    }
+
+    .game-card button {
+      background: var(--purple);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      border: 2px dashed var(--purple);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .modal-content input {
+      display: block;
+      width: 100%;
+      margin: 1rem auto;
+      padding: .6rem;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .modal-content button {
+      background: var(--purple);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="px-6 py-4">
-  <a href="/arcade.html">Arcade</a>
-  <a href="/clients.html">Clients</a>
+  <a href="/index.html">Home</a>
+  <a href="/lab.html">Lab</a>
+  <a href="/packages.html">Packages</a>
+  <a href="/aboutus.html">About</a>
   <a href="/contactus.html">Contact</a>
-  <a href="aboutus.html">About Us</a>
 </nav>
 
 <!-- HERO -->
 <section style="text-align:center; padding:3.5rem 1rem 1rem;">
-  <h1 class="hero-title">TMI Studios</h1>
+  <img src="tmiarcade.png" alt="TMI Arcade" style="max-width:320px; margin: 0 auto;">
   <p class="home-slogan">Engage Gen Z Like Never Before — Custom Quizzes, Games & Interactive Experiences That Convert.</p>
   <div style="margin-top:1rem;">
-    <a href="/contactus.html" style="background:var(--cyan); color:black; padding:.7rem 1rem; border-radius:8px; font-weight:700;">Let's build your game plan</a>
+    <a href="/packages.html" style="background:var(--purple); color:#fff; padding:.7rem 1rem; border-radius:8px; font-weight:700;">Let’s build your viral game!</a>
   </div>
 </section>
 
 <!-- GAME -->
 <div id="game-container">
-  <img id="shooter" src="images/shooter.png" alt="Shooter">
+  <img id="shooter" src="shooter.png" alt="Shooter">
 </div>
 
-<!-- GAME TILES (HORIZONTAL SCROLL) -->
+<!-- GAME CARDS -->
 <div id="game-tiles" style="max-width:900px; margin:1.5rem auto; overflow-x:auto; white-space:nowrap; padding-bottom:0.5rem;">
-  <div style="display:inline-block; width:250px; margin-right:1rem; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid var(--cyan);">
-    <img src="images/game1.jpg" alt="Game 1" style="width:100%; display:block;">
-    <div style="padding:0.75rem; font-weight:700; font-size:1rem;">Meme Blaster</div>
+  <div class="game-card">
+    <img src="game1.jpg" alt="Game 1" style="width:100%;">
+    <div style="padding:0.75rem; font-weight:700;">Meme Blaster</div>
+    <button onclick="showModal()">Coming Soon</button>
   </div>
-  <div style="display:inline-block; width:250px; margin-right:1rem; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid var(--cyan);">
-    <img src="images/game2.jpg" alt="Game 2" style="width:100%; display:block;">
-    <div style="padding:0.75rem; font-weight:700; font-size:1rem;">Quiz Mayhem</div>
+  <div class="game-card">
+    <img src="game2.jpg" alt="Game 2" style="width:100%;">
+    <div style="padding:0.75rem; font-weight:700;">Quiz Mayhem</div>
+    <button onclick="showModal()">Coming Soon</button>
   </div>
-  <div style="display:inline-block; width:250px; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid var(--cyan);">
-    <img src="images/game3.jpg" alt="Game 3" style="width:100%; display:block;">
-    <div style="padding:0.75rem; font-weight:700; font-size:1rem;">Emoji Rush</div>
+  <div class="game-card">
+    <img src="game3.jpg" alt="Game 3" style="width:100%;">
+    <div style="padding:0.75rem; font-weight:700;">Emoji Rush</div>
+    <button onclick="showModal()">Coming Soon</button>
   </div>
 </div>
 
-
-<!-- EMAIL TRAP -->
+<!-- EMAIL SUBSCRIPTION -->
 <div id="email-trap">
   <div style="font-weight:700; font-size:1.05rem; margin-bottom:.35rem;">Get exclusive game drops</div>
   <div style="font-size:.95rem; color:#ddd; margin-bottom:.6rem;">Drop your email for new games, templates & collabs</div>
-  <div>
-    <input id="emailInput" type="email" placeholder="you@domain.com">
-    <button id="emailSubmit">Subscribe</button>
+  <input id="nameInput" type="text" placeholder="Your Name">
+  <input id="emailInput" type="email" placeholder="you@domain.com">
+  <button id="emailSubmit">Subscribe</button>
+  <div id="emailFeedback" style="margin-top:.5rem; min-height:1.25rem;"></div>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h3 style="font-weight:bold; font-size:1.2rem;">Remind Me When It's Live</h3>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="you@domain.com">
+    <button onclick="hideModal()">Submit</button>
   </div>
-  <div id="emailFeedback"></div>
 </div>
 
 <!-- FOOTER -->
@@ -169,106 +286,76 @@
 </footer>
 
 <script>
-const targetImages = [
-  "images/target1.png",
-  "images/target2.jpg",
-  "images/target3.jpg",
-  "images/target4.jpg",
-  "images/target5.jpg",
-  "images/target6.jpg",
-  "images/target7.jpg",
-  "images/target8.jpg",
-  "images/target9.jpg",
-  "images/target10.jpg"
-];
+  const modal = document.getElementById('modal');
+  function showModal() { modal.style.display = 'flex'; }
+  function hideModal() { modal.style.display = 'none'; }
 
-const container = document.getElementById('game-container');
-const shooter = document.getElementById('shooter');
-const emailTrap = document.getElementById('email-trap');
-const emailInput = document.getElementById('emailInput');
-const emailSubmit = document.getElementById('emailSubmit');
-const emailFeedback = document.getElementById('emailFeedback');
+  // Game logic
+  const targetImages = [...Array(10)].map((_, i) => `target${i + 1}.jpg`);
+  const container = document.getElementById('game-container');
+  const shooter = document.getElementById('shooter');
 
-let currentTargetIndex = 0;
-let currentTarget = null;
+  let currentTargetIndex = 0;
+  let currentTarget = null;
 
-function createTarget(src){
-  if(currentTarget) currentTarget.remove();
-  const img = document.createElement('img');
-  img.src = src;
-  img.className = 'target';
-  container.appendChild(img);
-  currentTarget = img;
-}
+  function createTarget(src) {
+    if (currentTarget) currentTarget.remove();
+    const img = document.createElement('img');
+    img.src = src;
+    img.className = 'target';
+    container.appendChild(img);
+    currentTarget = img;
+  }
 
-function spawnTarget(){
-  if(currentTargetIndex >= targetImages.length) currentTargetIndex = 0;
-  createTarget(targetImages[currentTargetIndex]);
-}
+  function spawnTarget() {
+    if (currentTargetIndex >= targetImages.length) currentTargetIndex = 0;
+    createTarget(targetImages[currentTargetIndex]);
+  }
 
-function explodeTarget(){
-  if(!currentTarget) return;
-  currentTarget.classList.add('explode');
-  setTimeout(()=>{
-    currentTarget.remove();
-    currentTarget = null;
-    currentTargetIndex++;
-    spawnTarget();
-  }, 450);
-}
+  function explodeTarget() {
+    if (!currentTarget) return;
+    currentTarget.classList.add('explode');
+    setTimeout(() => {
+      currentTarget.remove();
+      currentTarget = null;
+      currentTargetIndex++;
+      spawnTarget();
+    }, 450);
+  }
 
-function fireBullet(){
-  const bullet = document.createElement('div');
-  bullet.className = 'bullet';
-  const shooterRect = shooter.getBoundingClientRect();
-  const containerRect = container.getBoundingClientRect();
-  bullet.style.left = (shooterRect.right - containerRect.left) + 'px';
-  bullet.style.top = (shooterRect.top + shooterRect.height/2 - 2 - containerRect.top) + 'px';
-  container.appendChild(bullet);
+  function fireBullet() {
+    const bullet = document.createElement('div');
+    bullet.className = 'bullet';
+    const shooterRect = shooter.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    bullet.style.left = (shooterRect.right - containerRect.left) + 'px';
+    bullet.style.top = (shooterRect.top + shooterRect.height / 2 - 2 - containerRect.top) + 'px';
+    container.appendChild(bullet);
 
-  function move(){
-    const left = parseFloat(bullet.style.left);
-    if(left > container.clientWidth + 20){
-      bullet.remove();
-      return;
-    }
-    bullet.style.left = (left + 14) + 'px';
-    if(currentTarget){
-      const bRect = bullet.getBoundingClientRect();
-      const tRect = currentTarget.getBoundingClientRect();
-      if(bRect.right >= tRect.left && bRect.left <= tRect.right && bRect.top <= tRect.bottom && bRect.bottom >= tRect.top){
+    function move() {
+      const left = parseFloat(bullet.style.left);
+      if (left > container.clientWidth + 20) {
         bullet.remove();
-        explodeTarget();
         return;
       }
+      bullet.style.left = (left + 14) + 'px';
+      if (currentTarget) {
+        const bRect = bullet.getBoundingClientRect();
+        const tRect = currentTarget.getBoundingClientRect();
+        if (bRect.right >= tRect.left && bRect.left <= tRect.right && bRect.top <= tRect.bottom && bRect.bottom >= tRect.top) {
+          bullet.remove();
+          explodeTarget();
+          return;
+        }
+      }
+      requestAnimationFrame(move);
     }
     requestAnimationFrame(move);
   }
-  requestAnimationFrame(move);
-}
 
-container.addEventListener('click', fireBullet);
-spawnTarget();
-
-function validateEmail(email){
-  return /\S+@\S+\.\S+/.test(email);
-}
-emailSubmit.addEventListener('click', function(){
-  const val = emailInput.value.trim();
-  emailFeedback.style.color = '#ff6666';
-  emailFeedback.textContent = '';
-  if(!val || !validateEmail(val)){
-    emailFeedback.textContent = 'Please enter a valid email.';
-    return;
-  }
-  emailFeedback.style.color = '#7fffd4';
-  emailFeedback.textContent = 'Thanks for signing up!';
-  emailInput.value = '';
-  setTimeout(()=> emailFeedback.textContent = '', 1500);
-});
-emailInput.addEventListener('keydown', (e)=>{
-  if(e.key === 'Enter'){ e.preventDefault(); emailSubmit.click(); }
-});
+  container.addEventListener('click', fireBullet);
+  spawnTarget();
 </script>
+
 </body>
 </html>
