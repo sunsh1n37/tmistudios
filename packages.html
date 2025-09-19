@@ -49,8 +49,8 @@
   </div>
   <div class="flex gap-6 text-sm">
     <a href="arcade.html" class="text-white">Arcade</a>
-    <a href="packages.html" class="text-white">Packages</a>
     <a href="aboutus.html" class="text-white">About</a>
+    <a href="contactus.html" class="text-white">Contact</a>
   </div>
 </nav>
 
@@ -206,12 +206,56 @@
   </div>
 </section>
 
+<!-- Advertising Packages -->
+<h2 class="text-3xl font-semibold my-6 text-center">📢 Advertising Packages</h2>
+<div class="flex gap-6 overflow-x-auto py-4">
+  <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+    <h3 class="text-xl font-bold mb-2">Ad Starter</h3>
+    <ul>
+      <li>1 branded meme</li>
+      <li>Design & branding</li>
+      <li>1 Platform upload</li>
+    </ul>
+    <p class="font-bold mb-4">R990</p>
+    <button class="btn-purple package-select" data-package="Ad Starter: 1 branded meme, Design & branding, 1 Platform Upload – R990">Select</button>
+  </div>
+  <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+    <h3 class="text-xl font-bold mb-2">Ad Growth</h3>
+    <ul>
+      <li>Full meme campaign</li>
+      <li>Full branding</li>
+      <li>2 major social media platform ads</li>
+    </ul>
+    <p class="font-bold mb-4">R2,990</p>
+    <button class="btn-purple package-select" data-package="Ad Growth: Full meme campaign, Full branding, 2 major social media platform uploads – R2,990">Select</button>
+  </div>
+  <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+    <h3 class="text-xl font-bold mb-2">Ad Pro</h3>
+    <ul>
+      <li>Growth +</li></li>
+      <li>Viral party game / quiz placement</li>
+    </ul>
+    <p class="font-bold mb-4">R4,990</p>
+    <button class="btn-purple package-select" data-package="Ad Pro: growth +, viral partt game / quiz placement – R4,990">Select</button>
+  </div>
+  <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+    <h3 class="text-xl font-bold mb-2">Ad Max</h3>
+    <ul>
+   <li>1 Short-Form Video</li>
+      <li>Script + Voiceover</li>
+      <li>1 Platform Upload</li>
+    </ul>
+    <p class="font-bold mb-4">R7,990</p>
+    <button class="btn-purple package-select" data-package="Ad Starter: 1 Short-Form Video, Script + Voiceover, 1 Platform Upload – R7,990">Select</button>
+</div>
+</div>
+
 <!-- Package & Newsletter Modal -->
 <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
   <div style="background:#1a1a1a; padding:30px; border-radius:20px; max-width:400px; width:90%; text-align:center; position:relative;">
     <span id="closeModal" style="position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer; color:#fff;">&times;</span>
     <h2 id="modalTitle" style="color:#fff; margin-bottom:15px;">Complete Booking</h2>
-    <p id="modalDesc" style="color:#ccc; margin-bottom:20px;">Enter your name and email so we can contact you with next steps.</p>
+    <p id="modalDesc" style="color:#ccc; margin-bottom:20px;">Enter your name and email, we will contact you shortly with next steps.</p>
     <form id="modalForm" action="https://formspree.io/f/mgebkydy" method="POST" style="display:flex; flex-direction:column; gap:10px;">
       <input type="text" name="name" placeholder="Your Name" required style="padding:10px; border-radius:10px; border:none;">
       <input type="email" name="email" placeholder="Your Email" required style="padding:10px; border-radius:10px; border:none;">
@@ -257,7 +301,7 @@
       lastSelectedPackage = btn.dataset.package;
       modalPackage.value = lastSelectedPackage;
       modalTitle.textContent = "Complete Booking";
-      modalDesc.textContent = "Enter your name and email so we can contact you with next steps.";
+      modalDesc.textContent = "Enter your name and email, we will contact you shortly with next steps.";
       modalBtn.textContent = "Submit";
       modal.style.display = "flex";
     });
