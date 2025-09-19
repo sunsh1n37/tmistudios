@@ -3,11 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TMI Studios</title>
-  <meta name="description" content="Build, brand, and go viral with TMI Studios — specializing in web, design, and fun interactive experiences.">
+  <title>TMI Studios | Viral Web Design, Branding & Interactive Experiences</title>
+  <meta name="description" content="TMI Studios builds viral websites, games, and branding experiences that grab attention and engage Gen Z audiences. Based in South Africa.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Twitter Meta Tags -->
+  <meta property="og:title" content="TMI Studios | Viral Design Studio">
+  <meta property="og:description" content="Viral quizzes, stunning websites, and next-gen branding by TMI Studios.">
+  <meta property="og:image" content="https://www.tmistudios.xyz/tmihero.jpeg">
+  <meta property="og:url" content="https://www.tmistudios.xyz">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon & Canonical -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="canonical" href="https://www.tmistudios.xyz/">
+
+  <!-- Fonts & CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TMI Studios",
+    "url": "https://www.tmistudios.xyz",
+    "logo": "https://www.tmistudios.xyz/logo.jpeg",
+    "sameAs": [
+      "https://instagram.com/tmi_studios",
+      "https://tiktok.com/@tmi_studios"
+    ],
+    "description": "We build viral websites, games, and brand experiences for digital-first brands and startups."
+  }
+  </script>
 
   <style>
     body {
@@ -18,40 +49,33 @@
       overflow-x: hidden;
       position: relative;
     }
-
     .custom-link {
       color: #a855f7;
       text-decoration: none;
       transition: color 0.3s ease;
     }
-
     .custom-link:hover {
       color: #d8b4fe;
     }
-
     .footer-link {
       color: #666;
       text-decoration: none;
     }
-
     .footer-link:hover {
       text-decoration: underline;
     }
-
     .glass {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .home-slogan {
-      font-size: 1rem;
+      font-size: 1.25rem;
       color: #fff;
       text-shadow: 0 0 8px #a855f7;
       font-weight: bold;
       margin-top: 1rem;
     }
-
     .custom-btn {
       display: inline-block;
       padding: 0.75rem 1.5rem;
@@ -62,12 +86,10 @@
       border-radius: 6px;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-
     .custom-btn:hover {
       background-color: #9333ea;
       color: white;
     }
-
     #sparkleCanvas {
       position: fixed;
       top: 0;
@@ -78,6 +100,7 @@
       z-index: 0;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -88,15 +111,17 @@
   <a href="/arcade.html" class="custom-link">Arcade</a>
   <a href="/packages.html" class="custom-link">Packages</a>
   <a href="/lab.html" class="custom-link">Lab</a>
-  <a href="/aboutus.html" class="custom-link">About</a>
-  <a href="/contactus.html" class="custom-link">Contact</a>
+  <a href="/about.html" class="custom-link">About</a>
+  <a href="/contact.html" class="custom-link">Contact</a>
 </nav>
 
 <!-- HERO -->
-<section style="text-align: center; padding: 4rem 2rem;">
-  <img src="tmihero.jpeg" alt="TMI Studios Title" class="mx-auto mb-4"/>
-  <h1 class="home-slogan">Innovation that breaks feeds, not budgets.</h1>
-  <p class="text-lg md:text-xl max-w-xl text-gray-300 mx-auto mt-4">We build websites, branding, and fun interactive content that wins attention — softly.</p>
+<section class="text-center px-4 py-16">
+  <img src="tmihero.jpeg" alt="TMI Studios Hero Banner" class="mx-auto mb-4" width="800" height="400"/>
+  <h1 class="home-slogan text-3xl font-bold">TMI Studios — Innovation that breaks feeds, not budgets.</h1>
+  <p class="text-lg md:text-xl max-w-xl text-gray-300 mx-auto mt-4">
+    We build websites, branding, and fun interactive content that wins attention — softly.
+  </p>
   <div class="mt-10 flex justify-center gap-4 flex-wrap">
     <a href="/contactus.html" class="custom-btn">I want a website / app</a>
     <a href="/contactus.html" class="custom-btn">I want design / branding</a>
@@ -116,29 +141,26 @@
 
 <!-- ABOUT -->
 <section id="about" class="mt-32 px-6 text-center max-w-4xl mx-auto" data-aos="fade-up">
-  <h3 class="text-3xl mb-4">What is TMI Studios?</h3>
+  <h2 class="text-3xl mb-4 font-bold">What is TMI Studios?</h2>
   <p class="text-gray-400">We’re a dev house disguised as a meme lab. A digital shapeshifter blending code and culture. TMI Studios builds viral games, interactive tools, and sneaky-smart brand experiences — so good, your audience won’t even realize it’s an ad.</p>
 </section>
 
 <!-- SUB-STUDIO TILES -->
 <section class="grid md:grid-cols-3 gap-8 mt-24 px-6 max-w-6xl mx-auto" data-aos="fade-up">
-  <!-- Graphix -->
   <div class="glass p-6 rounded-xl text-center">
-    <img src="tmigraphix.jpeg" alt="TMI Graphix" class="mx-auto mb-2"/>
+    <img src="tmigraphix.jpeg" alt="TMI Graphix Logo and Branding Services" class="mx-auto mb-2" width="240" height="160"/>
     <p class="text-gray-300 mb-4">Business branding from logo to launch — we design logos, business cards, flyers, pitch decks & more.</p>
     <a href="/packages.html" class="custom-link">Explore Branding Packages</a>
   </div>
 
-  <!-- Web -->
   <div class="glass p-6 rounded-xl text-center">
-    <img src="tmiweb.jpeg" alt="TMI Web" class="mx-auto mb-2"/>
+    <img src="tmiweb.jpeg" alt="TMI Web Design Studio" class="mx-auto mb-2" width="240" height="160"/>
     <p class="text-gray-300 mb-4">We build sleek, fast-loading websites and custom platforms that convert — from landing pages to full e-commerce stores.</p>
-    <a href="/packages.html" class="custom-link">Explore Website / App packages</a>
+    <a href="/packages.html" class="custom-link">Explore Website / App Packages</a>
   </div>
 
-  <!-- Arcade -->
   <div class="glass p-4 rounded-xl text-center opacity-80">
-    <img src="tmiarcade.jpeg" alt="TMI Arcade" class="mx-auto mb-2"/>
+    <img src="tmiarcade.jpeg" alt="TMI Arcade Games and Viral Experiences" class="mx-auto mb-2" width="240" height="160"/>
     <p class="text-gray-500 mb-4">Gen Z-ready party games and viral quizzes that double as soft advertising. Engage your audience while secretly selling to them.</p>
     <a href="/arcade.html" class="custom-link">Enter Arcade</a>
   </div>
@@ -148,11 +170,8 @@
 <section class="text-center px-6 py-16">
   <h2 class="text-2xl font-bold mb-4">🚀 Ready to elevate your brand?</h2>
   <p class="text-gray-300 mb-6">Let’s create something unforgettable together.</p>
-
-  <!-- Button only -->
   <button id="bookCTA" class="custom-btn">Book a free strategy call</button>
 
-  <!-- Hidden Modal Form -->
   <div id="ctaModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 opacity-0 scale-95 pointer-events-none transition-all duration-300">
     <div class="bg-[#0d0d1a] p-6 rounded-xl max-w-md w-full relative glass transform transition-transform duration-300">
       <button id="closeModal" class="absolute top-2 right-3 text-white font-bold text-xl">&times;</button>
@@ -167,47 +186,43 @@
   </div>
 </section>
 
-
 <!-- FOOTER -->
-<footer style="background-color: black; color: #666; text-align: center; padding: 30px 20px; font-size: 14px;">
-  <p>Follow us:
-    <a href="https://tiktok.com/@tmi_studios" target="_blank" class="footer-link">TikTok</a> |
-    <a href="https://instagram.com/tmi_studios" target="_blank" class="footer-link">Instagram</a>
-  </p>
+<footer class="bg-black text-center text-sm text-gray-600 py-8">
+  <div class="mb-3">
+    <span class="mr-2">Follow us:</span>
+    <a href="https://tiktok.com/@tmi_studios" target="_blank" class="footer-link inline-block mx-2 text-lg">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://instagram.com/tmi_studios" target="_blank" class="footer-link inline-block mx-2 text-lg">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://facebook.com/tmistudios" target="_blank" class="footer-link inline-block mx-2 text-lg">
+      <i class="fab fa-facebook"></i>
+    </a>
+  </div>
+
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
   <p><a href="/contactus.html" class="footer-link">Need a website or viral design? Let's build it!</a></p>
   <p><a href="/arcade.html" class="footer-link">Arcade</a></p>
 </footer>
 
-<!-- AOS Animations -->
+<!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });
-</script>
+<script>AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });</script>
 
-<!-- Sparkles Script -->
 <script>
   const canvas = document.getElementById('sparkleCanvas');
   const ctx = canvas.getContext('2d');
   let width, height, sparkles = [];
-
   function resizeCanvas() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   }
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
-
   for (let i = 0; i < 100; i++) {
-    sparkles.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 1.5 + 0.5,
-      alpha: Math.random(),
-      delta: Math.random() * 0.02
-    });
+    sparkles.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 1.5 + 0.5, alpha: Math.random(), delta: Math.random() * 0.02 });
   }
-
   function draw() {
     ctx.clearRect(0, 0, width, height);
     sparkles.forEach(s => {
@@ -223,17 +238,12 @@
   draw();
 </script>
 
-<!-- Robot Animation Script -->
 <script>
   const robotContainer = document.querySelector(".robot-container");
   const robotBefore = robotContainer.querySelector(".robot-before");
   const robotAfter = robotContainer.querySelector(".robot-after");
   const bubble = robotContainer.querySelector(".speech-bubble p");
-
-  let posX = -150;
-  let speed = 2;
-  let crashed = false;
-  let stopped = false;
+  let posX = -150, speed = 2, crashed = false, stopped = false;
 
   function createExplosion() {
     const explosion = document.createElement("div");
@@ -247,12 +257,10 @@
 
   function stopAnimation() {
     stopped = true;
-    const section = document.querySelector(".running-robot-section");
-    section.innerHTML = `
+    document.querySelector(".running-robot-section").innerHTML = `
       <a href="/lab.html" class="custom-link">
         Follow our clumsy bot to see what she's cooking up in the <strong>Lab →</strong>
-      </a>
-    `;
+      </a>`;
   }
 
   function update() {
@@ -261,9 +269,7 @@
       posX += speed;
       robotContainer.style.transform = `translateX(${posX}px)`;
     }
-
     const crashPoint = window.innerWidth * 0.5;
-
     if (!crashed && robotContainer.getBoundingClientRect().left > crashPoint) {
       crashed = true;
       speed = 0;
@@ -274,7 +280,6 @@
       setTimeout(stopAnimation, 2000);
       return;
     }
-
     requestAnimationFrame(update);
   }
   update();
@@ -297,8 +302,6 @@
 
   bookBtn.addEventListener('click', openModal);
   closeModal.addEventListener('click', closeModalFunc);
-
-  // Close modal if clicking outside form
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModalFunc();
   });
