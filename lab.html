@@ -1,127 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TMI Studios | Lab</title>
-  <meta name="description" content="TMI Studios Lab – Explore our latest experiments, viral ideas, games, and creative packages. Stay ahead with cutting-edge designs and campaigns." />
-  <meta name="keywords" content="TMI Studios, creative lab, viral campaigns, branding, web design, social media marketing, games, experiments" />
-  <meta name="author" content="TMI Studios" />
-
-  <!-- Open Graph for social sharing -->
-  <meta property="og:title" content="TMI Studios Lab" />
-  <meta property="og:description" content="Explore TMI Studios' Lab: where creativity meets experimentation. Discover our viral ideas, games, and design packages." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourwebsite.com/lab.html" />
-  <meta property="og:image" content="https://yourwebsite.com/assets/lab-preview.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TMI Studios Lab" />
-  <meta name="twitter:description" content="Discover TMI Studios' Lab: viral ideas, games, and creative packages." />
-  <meta name="twitter:image" content="https://yourwebsite.com/assets/lab-preview.jpg" />
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Optional: Favicon -->
-  <link rel="icon" type="image/png" href="/assets/favicon.png" />
-</head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TMI Studios | Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Segoe UI', sans-serif; background:#0d0d1a; color:#fff; min-height:100vh; overflow-x:hidden; }
-
-  nav { background:#0d0d1a; color:#fff; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; }
-  nav a { color:#fff; text-decoration:none; margin-left:16px; font-size:14px; }
-
-  .hero { text-align:center; padding:3rem 1rem 2rem; position:relative; z-index:1; overflow:hidden; }
-  .hero img { width:300px; height:auto; margin-bottom:1rem; position:relative; z-index:2; }
-  .hero p { color:#ddd; max-width:600px; margin:20px auto; font-size:18px; line-height:1.5; position:relative; z-index:2; }
-
-  .section-title { text-align:center; font-size:24px; margin:30px 0 10px; color:#ddd; }
-  .games { display:flex; overflow-x:auto; padding:20px; gap:20px; scroll-snap-type:x mandatory; scroll-padding:20px; scroll-behavior:smooth; }
-  .games::-webkit-scrollbar { height:8px; }
-  .games::-webkit-scrollbar-track { background:#111; border-radius:10px; }
-  .games::-webkit-scrollbar-thumb { background:#444; border-radius:10px; }
-  .games::-webkit-scrollbar-thumb:hover { background:#666; }
-
-  .card { flex:0 0 260px; background:#181818; border-radius:20px; padding:20px; box-shadow:0 0 12px rgba(255,255,255,0.1); scroll-snap-align:start; transition:transform 0.3s ease; border:1px solid #333; text-align:center; }
-  .card:hover { transform:translateY(-8px); }
-  .emoji { font-size:48px; margin-bottom:10px; }
-  .card-title { font-size:20px; margin-bottom:15px; font-weight:700; color:#fff; }
-
-  .card .btn { background:none; color:#888; border:1px solid #888; padding:10px 18px; border-radius:12px; cursor:pointer; font-size:14px; text-transform:uppercase; text-decoration:none; display:inline-block; transition:all 0.3s ease; }
-  .card .btn:hover { color:#fff; border-color:#fff; }
-
-  .cta { text-align:center; margin:60px 20px 40px; }
-  .cta h2 { font-size:28px; color:#eee; margin-bottom:10px; }
-
-  #bubbles { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; overflow:hidden; }
-  .bubble { position:absolute; bottom:0; width:16px; height:16px; border-radius:50%; opacity:0.6; animation:rise 8s linear infinite; }
-  @keyframes rise { 0%{transform:translateY(0) scale(1);opacity:0.6;} 100%{transform:translateY(-500px) scale(0.8);opacity:0;} }
-
-  footer { background:#111; color:#888; text-align:center; padding:30px 20px; font-size:14px; }
-  footer a { color:#888; text-decoration:none; margin:0 4px; }
-  footer a:hover { color:#fff; }
-
-  #newsletterModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
-  #newsletterModal > div { background:#1a1a1a; padding:30px; border-radius:20px; max-width:400px; width:90%; text-align:center; position:relative; border:2px dashed #a855f7; }
-  #closeModal { position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer; color:#fff; }
-  #newsletterModal input[type=text], #newsletterModal input[type=email] { width:80%; padding:10px; border-radius:10px; border:none; margin-bottom:15px; }
-  #newsletterModal button { padding:10px 20px; border:none; border-radius:12px; background:#a855f7; color:#fff; cursor:pointer; font-weight:700; }
+  body {
+    background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px #8b5cf6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .glass:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #a855f7, 0 0 40px #8b5cf6;
+  }
+  a { color: #8b5cf6; text-decoration: none; transition: color 0.3s; }
+  a:hover { text-decoration: underline; }
+  ul { list-style-type: disc; margin: 0.5rem 0 1rem 1rem; color: #d8b4fe; }
+  .btn-purple {
+    display: inline-block;
+    background-color: #8b5cf6;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn-purple:hover { background-color: #a855f7; }
 </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 
-<nav>
-  <div style="font-weight:bold; font-size:20px;"><a href="index.html">TMI Studios</a></div>
-  <div style="display:flex;">
-    <a href="arcade.html">Arcade</a>
-    <a href="packages.html">Packages</a>
-    <a href="aboutus.html">About</a>
-    <a href="contactus.html">Contact</a>
+<!-- Navigation -->
+<nav class="bg-[#0d0d1a] text-white px-6 py-4 flex justify-between items-center">
+  <div class="font-bold text-lg">
+    <a href="index.html" class="text-white">TMI Studios</a>
+  </div>
+  <div class="flex gap-6 text-sm">
+    <a href="arcade.html" class="text-white">Arcade</a>
+    <a href="aboutus.html" class="text-white">About</a>
+    <a href="contactus.html" class="text-white">Contact</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div id="bubbles"></div>
-  <img src="tmilab.jpeg" alt="TMI Labs Hero Title" />
-  <p>TMI Lab is where ideas get playful. We experiment, create, and bring bold digital content to life—think fun campaigns, design experiments, and interactive experiences. Curiosity meets creativity here.</p>
+<!-- Header -->
+<header class="text-center p-10">
+  <h1 class="text-4xl font-bold mb-4">Welcome to the Lab</h1>
+  <p class="text-gray-300 max-w-xl mx-auto">
+    Explore experiments and discover which tools or games spark your CEO energy. Click a card to start!
+  </p>
+</header>
+
+<!-- Packages Sections -->
+<section class="px-6 md:px-16 pb-16">
+  <!-- Branding Packages -->
+  <h2 class="text-3xl font-semibold mb-6 text-center">🎨 Branding Packages</h2>
+  <div class="flex gap-6 overflow-x-auto py-4">
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">BASIC</h3>
+      <ul>
+        <li>Logo</li>
+        <li>Business Cards</li>
+        <li>Email Signature</li>
+      </ul>
+      <p class="font-bold mb-4">R450</p>
+      <button class="btn-purple package-select" data-package="BASIC: Logo, Business Cards, Email Signature – R450">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">PRO</h3>
+      <ul>
+        <li>BASIC + Letterhead</li>
+        <li>Social Media Profiles</li>
+        <li>Brand Guide</li>
+      </ul>
+      <p class="font-bold mb-4">R1150</p>
+      <button class="btn-purple package-select" data-package="PRO: Basic + Letterhead, Social Media Profiles, Brand Guide – R1150">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">PREMIUM</h3>
+      <ul>
+        <li>Full Kit +</li>
+        <li>Flyers</li>
+        <li>Pitch Deck</li>
+        <li>Editable Canva Kits</li>
+      </ul>
+      <p class="font-bold mb-4">Contact for Pricing</p>
+      <button class="btn-purple package-select" data-package="PREMIUM: Full kit + Flyers, Pitch Deck, Editable Canva Kits">Select</button>
+    </div>
+  </div>
+
+  <!-- Web / App Packages -->
+<h2 class="text-3xl font-semibold my-6 text-center">📲 Website / App Packages</h2>
+<div class="flex gap-6 overflow-x-auto py-4">
+
+  <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+    <h3 class="text-xl font-bold mb-2">Google Profile</h3>
+    <ul class="text-left list-disc list-inside mb-4">
+      <li>Profile Creation</li>
+      <li>Business Info & Hours</li>
+      <li>Logo & Photos Upload</li>
+      <li>SEO optimization</li>
+      <li>Google Services Setup</li>
+    </ul>
+    <p class="font-bold mb-2">One-Time Setup: R1,000</p>
+    <p class="font-bold mb-4">Monthly Maintenance: R500</p>
+    <button class="btn-purple package-select" data-package="Google Business Profile: One-Time Setup R1,000, Monthly Maintenance R500">Select</button>
+  </div>
+
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Starter Site</h3>
+      <ul>
+        <li>1 Page / Landing Page</li>
+        <li>Mobile Responsive</li>
+        <li>Contact Form</li>
+      </ul>
+      <p class="font-bold mb-4">R3500</p>
+      <button class="btn-purple package-select" data-package="Starter Site: 1 Page / Landing Page, Mobile Responsive, Contact Form – R3500">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Business Site</h3>
+      <ul>
+        <li>5 Page Site</li>
+        <li>Blog Setup</li>
+        <li>SEO Optimized</li>
+      </ul>
+      <p class="font-bold mb-4">R7500</p>
+      <button class="btn-purple package-select" data-package="Business Site: 5 Page Site, Blog Setup, SEO Optimized – R7500">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">E-commerce Site</h3>
+      <ul>
+        <li>Product Catalog</li>
+        <li>Cart & Checkout</li>
+        <li>Payment Integration</li>
+      </ul>
+      <p class="font-bold mb-4">R12500</p>
+      <button class="btn-purple package-select" data-package="E-commerce Site: Product Catalog, Cart & Checkout, Payment Integration – R12500">Select</button>
+    </div>
+  </div>
+
+  <!-- Social Media Packages -->
+  <h2 class="text-3xl font-semibold my-6 text-center">📱 Social Media Marketing</h2>
+  <div class="flex gap-6 overflow-x-auto py-4">
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Starter</h3>
+      <ul>
+        <li>Instagram Only</li>
+        <li>5 Posts / Week</li>
+        <li>Basic Captions</li>
+      </ul>
+      <p class="font-bold mb-4">R3500 / month</p>
+      <button class="btn-purple package-select" data-package="Starter: Instagram Only, 5 Posts / Week, Basic Captions – R3500 / month">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Growth</h3>
+      <ul>
+        <li>Instagram & Facebook</li>
+        <li>10 Posts / Week</li>
+        <li>Engagement Strategy</li>
+      </ul>
+      <p class="font-bold mb-4">R5000 / month</p>
+      <button class="btn-purple package-select" data-package="Growth: Instagram & Facebook, 10 Posts / Week, Engagement Strategy – R5000 / month">Select</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Pro</h3>
+      <ul>
+        <li>Instagram, Facebook & TikTok</li>
+        <li>Full Content Calendar</li>
+        <li>Paid Ad Campaigns</li>
+      </ul>
+      <p class="font-bold mb-4">R9500 / month</p>
+      <button class="btn-purple package-select" data-package="Pro: Instagram, Facebook & TikTok, Full Content Calendar, Paid Ad Campaigns – R9500 / month">Select</button>
+    </div>
+  </div>
+
+  <!-- Lab / Games Experiments -->
+  <h2 class="text-3xl font-semibold my-6 text-center">🧪 TMI Lab Experiments</h2>
+  <div class="flex gap-6 overflow-x-auto py-4">
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">TMI Tarot</h3>
+      <p class="mb-4 text-gray-300">Discover the CEO energy you’re manifesting. Draw a card and see what’s coming!</p>
+      <button class="btn-purple package-select" data-package="TMI Tarot: Explore your CEO energy experiment">Try</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">TMI Dare</h3>
+      <p class="mb-4 text-gray-300">Take a daring challenge and see how bold your next move could be.</p>
+      <button class="btn-purple package-select" data-package="TMI Dare: Boldness experiment">Try</button>
+    </div>
+    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
+      <h3 class="text-xl font-bold mb-2">Next Game Experiment</h3>
+      <p class="mb-4 text-gray-300">Curious which type of business you could start? This experiment will tell you!</p>
+      <button class="btn-purple package-select" data-package="Next Game Experiment: Business idea experiment">Try</button>
+    </div>
+  </div>
 </section>
 
-<h2 class="section-title">Latest Drops</h2>
-<section class="games">
-  <div class="card">
-    <div class="emoji">🚩</div>
-    <div class="card-title">Red Flag Bingo (Client Edition)</div>
-    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
+<!-- Modal -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;">
+  <div style="background:#1a1a1a; padding:30px; border-radius:20px; max-width:400px; width:90%; text-align:center; position:relative;">
+    <span id="closeModal" style="position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer; color:#fff;">&times;</span>
+    <h2 id="modalTitle" style="color:#fff; margin-bottom:15px;">Complete Booking</h2>
+    <p id="modalDesc" style="color:#ccc; margin-bottom:20px;">Enter your name and email, we will contact you shortly with next steps.</p>
+    <form id="modalForm" action="https://formspree.io/f/mgebkydy" method="POST" style="display:flex; flex-direction:column; gap:10px;">
+      <input type="text" name="name" placeholder="Your Name" required style="padding:10px; border-radius:10px; border:none;">
+      <input type="email" name="email" placeholder="Your Email" required style="padding:10px; border-radius:10px; border:none;">
+      <input type="hidden" name="Package" id="modalPackage">
+      <button type="submit" style="padding:10px; border:none; border-radius:12px; background:#8b5cf6; color:#fff; cursor:pointer;" id="modalBtn">Submit</button>
+      <p id="modalSuccess" style="color:#0f0; display:none; margin-top:10px;">Submitted successfully! 🎉</p>
+    </form>
   </div>
-  <div class="card">
-    <div class="emoji">🎯</div>
-    <div class="card-title">Vibe Check Deck</div>
-    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
-  </div>
-  <div class="card">
-    <div class="emoji">🧠</div>
-    <div class="card-title">Pitch Panic Generator</div>
-    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
-  </div>
-  <div class="card">
-    <div class="emoji">💅</div>
-    <div class="card-title">The Situationship Scorecard (Brand Edition)</div>
-    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
-  </div>
-</section>
-<div class="cta">
-  <h2>Get the weekly spark</h2>
-  <p style="color:#aaa; max-width:500px; margin:10px auto;">
-    Tiny rituals, spicy ideas, and creative prompts straight to your inbox. Fuel for founders, creators, and marketing misfits.
-  </p>
-  <!-- Add class open-modal here -->
-  <button class="btn open-modal">Subscribe</button>
 </div>
 
+<!-- Bottom CTA -->
+<section class="px-6 md:px-16 pb-10 text-center">
+  <p class="text-gray-300 mb-4 text-lg">Stay in the loop! Get notified when new packages drop, experiments launch, or viral ideas hit the lab.</p>
+  <button id="bottomSubscribeBtn" class="btn-purple">Subscribe to Our Newsletter</button>
+</section>
+
+<!-- Footer -->
 <footer class="bg-black text-center text-sm text-gray-600 py-8">
   <div class="mb-3">
     <span class="mr-2">Follow us:</span>
@@ -132,52 +240,76 @@
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>
-
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
   <p><a href="/contactus.html" class="footer-link">Need a website or viral design? Let's build it!</a></p>
   <p><a href="/arcade.html" class="footer-link">Arcade</a></p>
 </footer>
 
-<div id="newsletterModal">
-  <div>
-    <span id="closeModal">&times;</span>
-    <h2 style="color:#fff; margin-bottom:15px;">Notify Me!</h2>
-    <p style="color:#ccc; margin-bottom:20px;">Enter your name and email to be the first to know when this game drops.</p>
-    <form id="newsletterForm" action="https://formspree.io/f/yourFormID" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <br/>
-      <input type="email" name="email" placeholder="Your Email" required />
-      <br/>
-      <button type="submit">Subscribe</button>
-    </form>
-  </div>
-</div>
-
 <script>
-  // Bubble animation
-  const bubbleContainer = document.getElementById("bubbles");
-  const colors = ["#a64ca6","#8c52ff","#d980fa","#c77dff","#9d4edd"];
-  function createBubble(){
-    const bubble = document.createElement("div");
-    bubble.classList.add("bubble");
-    const size = Math.random()*20+10;
-    bubble.style.width = `${size}px`;
-    bubble.style.height = `${size}px`;
-    bubble.style.left = `${Math.random()*100}%`;
-    bubble.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-    bubble.style.animationDuration = `${Math.random()*4+6}s`;
-    bubbleContainer.appendChild(bubble);
-    setTimeout(()=>bubble.remove(),10000);
-  }
-  setInterval(createBubble,200);
+const modal = document.getElementById("modal");
+const closeModal = document.getElementById("closeModal");
+const modalPackage = document.getElementById("modalPackage");
+const modalForm = document.getElementById("modalForm");
+const modalSuccess = document.getElementById("modalSuccess");
+const bottomSubscribeBtn = document.getElementById("bottomSubscribeBtn");
+const modalTitle = document.getElementById("modalTitle");
+const modalDesc = document.getElementById("modalDesc");
+const modalBtn = document.getElementById("modalBtn");
 
-  // Modal logic
-  const modal = document.getElementById('newsletterModal');
-  document.querySelectorAll('.open-modal').forEach(btn => {
-    btn.addEventListener('click', () => { modal.style.display = 'flex'; });
+let lastSelectedPackage = "";
+
+document.querySelectorAll(".package-select").forEach(btn => {
+  btn.addEventListener("click", () => {
+    lastSelectedPackage = btn.dataset.package;
+    modalPackage.value = lastSelectedPackage;
+
+    if (lastSelectedPackage.includes("TMI Tarot") || lastSelectedPackage.includes("TMI Dare") || lastSelectedPackage.includes("Next Game Experiment")) {
+      modalTitle.textContent = "🎮 Try the Experiment!";
+      modalDesc.textContent = "Enter your name and email to start " + lastSelectedPackage.split(":")[0] + ". We'll send you results and updates!";
+      modalBtn.textContent = "Start";
+    } else {
+      modalTitle.textContent = "Complete Booking";
+      modalDesc.textContent = "Enter your name and email, we will contact you shortly with next steps.";
+      modalBtn.textContent = "Submit";
+    }
+
+    modal.style.display = "flex";
   });
-  document.getElementById('closeModal').addEventListener('click', () => { modal.style.display = 'none'; });
-  window.addEventListener('click', (e) => { if(e.target === modal) modal.style.display='none'; });
+});
+
+bottomSubscribeBtn.addEventListener("click", () => {
+  modalPackage.value = "";
+  modalTitle.textContent = "Subscribe to Our Newsletter";
+  modalDesc.textContent = "Enter your name and email to get updates about new packages and launches.";
+  modalBtn.textContent = "Subscribe";
+  modal.style.display = "flex";
+});
+
+closeModal.addEventListener("click", () => { modal.style.display = "none"; });
+window.addEventListener("click", e => { if(e.target === modal) modal.style.display = "none"; });
+
+modalForm.addEventListener("submit", function(e){
+  e.preventDefault();
+  const formData = new FormData(modalForm);
+  fetch(modalForm.action, {
+    method: "POST",
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if(response.ok){
+      modalSuccess.style.display = "block";
+      modalForm.reset();
+      setTimeout(() => { modal.style.display = "none"; modalSuccess.style.display = "none"; }, 2000);
+    } else {response.json().then(data => {
+        alert("Error submitting form: " + (data.error || "Unknown error"));
+      })
+    }
+  })
+  .catch(error => {
+    alert("Error submitting form: " + error);
+  });
+});
 </script>
 
 </body>
