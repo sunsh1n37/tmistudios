@@ -4,8 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About TMI Studios</title>
+  <meta name="description" content="Meet TMI Studios: a creative lab building weird websites, viral games, and scroll-breaking digital campaigns that don’t do boring." />
+  <meta property="og:title" content="About TMI Studios" />
+  <meta property="og:description" content="Too Many Ideas? Nah, just the right amount. We make viral digital stuff that actually sticks." />
+  <meta property="og:image" content="https://www.tmistudios.xyz/tmihero.jpeg" />
+  <meta property="og:url" content="https://www.tmistudios.xyz/aboutus.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
       margin: 0;
@@ -47,12 +54,12 @@
       color: #e2e2e2;
     }
 
-    .about-section ul.fun-list {
+    .fun-list {
       list-style: none;
       padding-left: 0;
     }
 
-    .about-section ul.fun-list li {
+    .fun-list li {
       margin: 0.5rem 0;
       padding-left: 1.2rem;
       font-weight: bold;
@@ -60,7 +67,7 @@
       transition: transform 0.2s ease;
     }
 
-    .about-section ul.fun-list li:hover {
+    .fun-list li:hover {
       transform: translateX(5px) scale(1.02);
     }
 
@@ -118,11 +125,6 @@
       box-shadow: 0 0 15px #a855f7, 0 0 30px #d8b4fe;
     }
 
-    .glitch-button.small {
-      padding: 0.6rem 1.2rem;
-      font-size: 0.9rem;
-    }
-
     .ad-card {
       background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Joker_black_02.svg/1200px-Joker_black_02.svg.png');
       background-size: cover;
@@ -151,11 +153,11 @@
       font-size: 14px;
     }
 
-    footer a { color: #666; text-decoration: none; }
+    @keyframes fadeInUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
-    @keyframes fadeInUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    /* MODAL STYLES */
     #actionModal {
       display: none;
       position: fixed;
@@ -208,6 +210,7 @@
     #modalSuccess { display:none; margin-top:1rem; color:#4ade80; font-weight:bold; }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -222,14 +225,11 @@
   </nav>
 
   <!-- ABOUT SECTION -->
-  <section id="about" class="about-section">
+  <section class="about-section">
     <div class="container">
       <h1 class="glitch-title" data-text="About TMI Studios">About TMI Studios</h1>
-
       <p><strong>🧠 Too Many Ideas?</strong> Nah, just the right amount. We build sticky, scroll-breaking digital stuff that makes people 👀 look twice and click again.</p>
-
       <p>👤 Founded by <strong>Buyi Mncube</strong>, TMI Studios is a one-person lab making websites, web games, and interactive campaigns that blur the line between art, ad, and app. Based in 🌍 Durban, powered by 🍜 late-night ideas and 💡 sudden obsessions.</p>
-
       <p>💻 We build for:</p>
       <ul class="fun-list">
         <li>🚀 Startups who wanna launch weird</li>
@@ -256,13 +256,13 @@
     </div>
   </section>
 
-  <!-- MODAL FORM -->
+  <!-- MODAL -->
   <div id="actionModal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
       <h2>Subscribe / Book a Project</h2>
       <p id="selectionRecap" style="font-weight:bold; margin-bottom:10px;"></p>
-      <form id="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="form" action="https://formspree.io/f/xyznzwdg" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <input type="text" name="package" id="packageInput" style="display:none;" />
@@ -273,13 +273,13 @@
   </div>
 
   <!-- FOOTER -->
- <footer class="bg-black text-center text-sm text-gray-600 py-8">
+  <footer class="bg-black text-center text-sm text-gray-600 py-8">
   <div class="mb-3">
     <span class="mr-2">Follow us:</span>
     <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" class="footer-link inline-block mx-2 text-lg">
       <i class="fab fa-tiktok"></i>
     </a>
-    <a href="https://whatsapp.com/channel/https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="footer-link inline-block mx-2 text-lg">
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="footer-link inline-block mx-2 text-lg">
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>
@@ -289,7 +289,7 @@
   <p><a href="/arcade.html" class="footer-link">Arcade</a></p>
 </footer>
 
-<script>
+  <script>
     const modal = document.getElementById('actionModal');
     const form = document.getElementById('form');
     const successMsg = document.getElementById('modalSuccess');
@@ -332,7 +332,7 @@
         successMsg.style.display='block';
         form.reset();
       } else {
-        alert('Oops! There was a problem.');
+        alert('Oops! There was a problem submitting your form.');
       }
     });
   </script>
