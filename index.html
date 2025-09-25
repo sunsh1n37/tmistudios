@@ -20,9 +20,7 @@
   <link rel="canonical" href="https://www.tmistudios.xyz/">
 
   <!-- Fonts & CSS -->
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
@@ -103,7 +101,6 @@
       z-index: 0;
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -135,14 +132,6 @@
     <div class="speech-bubble" style="background: #fff; border-radius: 15px; padding: 8px 12px; font-size: 0.8rem; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: relative; margin-left: 8px; max-width: 140px;">
       <p>On my way to<br>invent the next<br>viral experience…</p>
     </div>
-  </div>
-</section>
-
-<!-- CTAs BELOW ROBOT -->
-<section class="mt-8 text-center">
-  <div class="flex justify-center gap-4 flex-wrap">
-    <a href="/contactus.html" class="custom-btn">I want a website / app</a>
-    <a href="/contactus.html" class="custom-btn">I want design / branding</a>
   </div>
 </section>
 
@@ -183,33 +172,36 @@
     <div class="bg-[#0d0d1a] p-6 rounded-xl max-w-md w-full relative glass transform transition-transform duration-300">
       <button id="closeModal" class="absolute top-2 right-3 text-white font-bold text-xl">&times;</button>
       <h3 class="text-xl font-bold mb-4 text-white">Book Your Strategy Call</h3>
-      <form action="https://formspree.io/f/mgebkydy" method="POST" class="flex flex-col gap-4">
-        <input type="text" name="name" placeholder="Your Name" required class="p-2 rounded text-black">
-        <input type="email" name="email" placeholder="Your Email" required class="p-2 rounded text-black">
-        <input type="hidden" name="message" value="Booked via Home CTA">
-        <button type="submit" class="custom-btn">Submit</button>
-      </form>
+      <form id="bookingForm" action="https://formspree.io/f/manpnobz" method="POST" class="flex flex-col gap-4">
+  <input type="text" name="name" placeholder="Your Name" required class="p-2 rounded text-black">
+  <input type="email" name="email" placeholder="Your Email" required class="p-2 rounded text-black">
+  <input type="hidden" name="message" value="Booked via Home CTA">
+  <button type="submit" class="custom-btn">Submit</button>
+  <p id="bookingSuccess" style="display:none; color:lightgreen; font-weight:bold; margin-top:10px;">
+    ✅ Booking submitted. We'll be in touch with next steps shortly.
+  </p>
+</form>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-
-<footer class="bg-black text-center text-sm text-gray-600 py-8">
+<footer class="bg-black text-center text-sm text-gray-400 py-8">
   <div class="mb-3">
     <span class="mr-2">Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" class="footer-link inline-block mx-2 text-lg">
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
       <i class="fab fa-tiktok"></i>
     </a>
-    <a href="https://whatsapp.com/channel/https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="footer-link inline-block mx-2 text-lg">
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>
 
-  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html" class="footer-link">Need a website or viral design? Let's build it!</a></p>
-  <p><a href="/arcade.html" class="footer-link">Arcade</a></p>
+  <p class="text-gray-400">&copy; 2025 TMI Studios. All rights reserved.</p>
+  <p><a href="/contactus.html" class="text-gray-400 hover:text-gray-100">Need a website or viral design? Let's build it!</a></p>
+  <p><a href="/arcade.html" class="text-gray-400 hover:text-gray-100">Arcade</a></p>
 </footer>
+
 <!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });</script>
@@ -308,6 +300,32 @@
   closeModal.addEventListener('click', closeModalFunc);
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModalFunc();
+  });
+</script>
+
+<script>
+  const bookingForm = document.getElementById('bookingForm');
+  const bookingSuccess = document.getElementById('bookingSuccess');
+
+  bookingForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(bookingForm);
+    try {
+      const response = await fetch(bookingForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        bookingSuccess.style.display = 'block';
+        bookingForm.reset();
+      } else {
+        alert('Oops! Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      alert('Error submitting form. Please try again later.');
+    }
   });
 </script>
 
