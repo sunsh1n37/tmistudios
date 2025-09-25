@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Packages | TMI Studios</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-  body {
-    background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
-    color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  .glass {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 0 10px #8b5cf6;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .glass:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px #a855f7, 0 0 40px #8b5cf6;
-  }
-  a { color: #8b5cf6; text-decoration: none; transition: color 0.3s; }
-  a:hover { text-decoration: underline; }
-  ul { list-style-type: disc; margin: 0.5rem 0 1rem 1rem; color: #d8b4fe; }
-  .btn-purple {
-    display: inline-block;
-    background-color: #8b5cf6;
-    color: white;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  }
-  .btn-purple:hover { background-color: #a855f7; }
+body {
+  background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px #8b5cf6;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #a855f7, 0 0 40px #8b5cf6;
+}
+a { color: #8b5cf6; text-decoration: none; transition: color 0.3s; }
+a:hover { text-decoration: underline; }
+ul { list-style-type: disc; margin: 0.5rem 0 1rem 1rem; color: #d8b4fe; }
+.btn-purple {
+  display: inline-block;
+  background-color: #8b5cf6;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+.btn-purple:hover { background-color: #a855f7; }
+
+/* Sparkle animation for popup */
+@keyframes sparkle {
+  0% { transform: translate(0,0) scale(1); opacity: 1; }
+  50% { transform: translate(5px,-10px) scale(1.2); opacity: 0.7; }
+  100% { transform: translate(-5px,5px) scale(1); opacity: 0; }
+}
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff 0%, #a855f7 80%);
+  border-radius: 50%;
+  animation: sparkle 1.2s infinite;
+  pointer-events: none;
+}
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -64,17 +80,15 @@
 
 <!-- Package Form -->
 <section class="px-6 md:px-16 pb-16">
-  <form id="packageForm" action="https://formspree.io/f/mgebkydy" method="POST" class="max-w-3xl mx-auto glass p-8 rounded-xl flex flex-col gap-6">
+  <form id="packageForm" class="max-w-3xl mx-auto glass p-8 rounded-xl flex flex-col gap-6">
     <label class="flex flex-col">
       <span class="font-bold mb-2">Your Name</span>
       <input type="text" name="name" required class="p-2 rounded text-black">
     </label>
-
     <label class="flex flex-col">
       <span class="font-bold mb-2">Your Email</span>
       <input type="email" name="email" required class="p-2 rounded text-black">
     </label>
-
     <label class="flex flex-col">
       <span class="font-bold mb-2">Select Package Category</span>
       <select id="packageCategory" name="category" class="p-2 rounded text-black">
@@ -86,94 +100,111 @@
         <option value="Advertising">Memes & Ads</option>
       </select>
     </label>
-
-    <!-- Packages will appear here dynamically -->
     <div id="packageOptions" class="flex flex-col gap-2"></div>
-
+    <input type="hidden" name="form_type" value="package_booking">
     <button type="submit" class="btn-purple self-start">Submit</button>
   </form>
 </section>
 
-<!-- Newsletter -->
+<!-- Newsletter Form -->
 <section class="px-6 md:px-16 pb-16">
   <h2 class="text-3xl font-semibold mb-4 text-center">🗞️ TMI Newsletter</h2>
   <p class="text-gray-400 text-center mb-6">Be the first to know when new packages drop, experiments launch, or viral ideas hit the lab.</p>
 
-  <form action="https://formspree.io/f/mgebkydy" method="POST" class="max-w-2xl mx-auto glass p-8 rounded-xl flex flex-col gap-6">
+  <form id="newsletterForm" class="max-w-2xl mx-auto glass p-8 rounded-xl flex flex-col gap-6">
     <label class="flex flex-col">
       <span class="font-bold mb-2">Your Name</span>
       <input type="text" name="name" required class="p-2 rounded text-black">
     </label>
-
     <label class="flex flex-col">
       <span class="font-bold mb-2">Your Email</span>
       <input type="email" name="email" required class="p-2 rounded text-black">
     </label>
-
+    <input type="hidden" name="form_type" value="newsletter">
     <button type="submit" class="btn-purple self-start">Subscribe</button>
   </form>
 </section>
+
+<!-- Popup Modal -->
+<div id="formSuccess" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative bg-purple-900 text-white p-8 rounded-lg max-w-md text-center shadow-2xl overflow-hidden">
+    <h2 id="formTitle" class="text-2xl font-bold mb-4">✨ Success!</h2>
+    <p id="formMessage" class="text-purple-200">Thanks for reaching out. We'll be in touch shortly.</p>
+    <button onclick="document.getElementById('formSuccess').classList.add('hidden')" class="mt-6 bg-white text-purple-900 font-bold py-2 px-4 rounded hover:bg-purple-200">Close</button>
+    <!-- Sparkles -->
+    <div class="sparkle" style="top:10%; left:20%; animation-delay:0s;"></div>
+    <div class="sparkle" style="top:30%; left:80%; animation-delay:0.3s;"></div>
+    <div class="sparkle" style="top:60%; left:40%; animation-delay:0.6s;"></div>
+    <div class="sparkle" style="top:80%; left:70%; animation-delay:0.9s;"></div>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="bg-black text-center text-sm text-gray-600 py-8">
   <div class="mb-3">
     <span class="mr-2">Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" class="footer-link inline-block mx-2 text-lg">
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank" class="inline-block mx-2 text-lg">
       <i class="fab fa-tiktok"></i>
     </a>
-    <a href="https://whatsapp.com/channel/https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="footer-link inline-block mx-2 text-lg">
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block mx-2 text-lg">
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>
-
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html" class="footer-link">Need a website or viral design? Let's build it!</a></p>
-  <p><a href="/arcade.html" class="footer-link">Arcade</a></p>
+  <p><a href="/contactus.html">Need a website or viral design? Let's build it!</a></p>
+  <p><a href="/arcade.html">Arcade</a></p>
 </footer>
 
 <script>
+// Package options
 const packages = {
-  "Branding": [
-    "BASIC: Logo, Business Cards, Email Signature – R450",
-    "PRO: Basic + Letterhead, Social Media Profiles, Brand Guide – R1,150",
-    "PREMIUM: Full kit + Flyers, Pitch Deck, Editable Canva Kits – R2,500"
-  ],
-  "Web": [
-    "Starter Site: 1 page / landing page, mobile responsive, contact form – R3,500",
-    "Business Site: 5 page site, blog setup, SEO optimized – R7,500",
-    "E-commerce Site: Product catalog, cart & checkout, payment integration – R12,500"
-  ],
-  "Social": [
-    "Starter: Instagram only, 5 posts/week, basic captions – R3,500 pm",
-    "Growth: Instagram & Facebook, 10 posts/week, engagement strategy – R5,000 pm",
-    "Pro: Instagram, Facebook & TikTok, full content calendar, paid ad campaigns – R9,500 pm"
-  ],
-  "Games": [
-    "Basic: Quiz / party meme game – R10,000",
-    "Custom: Shooter game – R15,000",
-    "Pro: Endless runner game – R40,000"
-  ],
-  "Advertising": [
-    "Basic: 1 branded meme, placed in social media ad – R8,000",
-    "Pro: Full meme campaign, paid ads, branded memes – R15,000",
-    "Max: Pro + meme placed in party game / viral quiz – R25,000"
-  ]
+  "Branding": ["BASIC: Logo, Business Cards, Email Signature – R450","PRO: Basic + Letterhead, Social Media Profiles, Brand Guide – R1,150","PREMIUM: Full kit + Flyers, Pitch Deck, Editable Canva Kits – R2,500"],
+  "Web": ["Starter Site: 1 page / landing page, mobile responsive, contact form – R3,500","Business Site: 5 page site, blog setup, SEO optimized – R7,500","E-commerce Site: Product catalog, cart & checkout, payment integration – R12,500"],
+  "Social": ["Starter: Instagram only, 5 posts/week, basic captions – R3,500 pm","Growth: Instagram & Facebook, 10 posts/week, engagement strategy – R5,000 pm","Pro: Instagram, Facebook & TikTok, full content calendar, paid ad campaigns – R9,500 pm"],
+  "Games": ["Basic: Quiz / party meme game – R10,000","Custom: Shooter game – R15,000","Pro: Endless runner game – R40,000"],
+  "Advertising": ["Basic: 1 branded meme, placed in social media ad – R8,000","Pro: Full meme campaign, paid ads, branded memes – R15,000","Max: Pro + meme placed in party game / viral quiz – R25,000"]
 };
-
-const categorySelect = document.getElementById("packageCategory");
-const packageOptions = document.getElementById("packageOptions");
-
-categorySelect.addEventListener("change", () => {
-  const selected = categorySelect.value;
-  packageOptions.innerHTML = "";
+document.getElementById("packageCategory").addEventListener("change", (e) => {
+  const selected = e.target.value;
+  const container = document.getElementById("packageOptions");
+  container.innerHTML = "";
   if (selected && packages[selected]) {
     packages[selected].forEach(pkg => {
       const label = document.createElement("label");
       label.className = "flex items-center gap-2";
       label.innerHTML = `<input type="radio" name="SelectedPackage" value="${pkg}" required> ${pkg}`;
-      packageOptions.appendChild(label);
+      container.appendChild(label);
     });
   }
+});
+
+// Handle submissions
+async function handleFormSubmit(form, url, titleText, messageText){
+  const data = new FormData(form);
+  const json = JSON.stringify(Object.fromEntries(data.entries()));
+  try {
+    const res = await fetch(url,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:json
+    });
+    if(res.ok){
+      form.reset();
+      document.getElementById("formTitle").innerText = titleText;
+      document.getElementById("formMessage").innerText = messageText;
+      document.getElementById("formSuccess").classList.remove("hidden");
+    } else { alert("Something went wrong. Please try again."); }
+  } catch(err){ alert("Error: "+err.message); }
+}
+
+// Attach forms
+document.getElementById("packageForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  handleFormSubmit(e.target,"https://formspree.io/f/manpnobz","📨 Booking Submitted!","Booking submitted, we'll be in touch with next steps shortly.");
+});
+document.getElementById("newsletterForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  handleFormSubmit(e.target,"https://formspree.io/f/xyznzwdg","✅ Subscription Confirmed!","You're officially a part of the TMI cult, we love that for you, bestie 💋");
 });
 </script>
 
