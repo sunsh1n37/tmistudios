@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🚩 Red Flag Bingo | Savage Sip or Skip Game</title>
+
+<!-- Social Share Cards -->
+<meta property="og:title" content="Red Flag Bingo">
+<meta property="og:description" content="Play Red Flag Bingo with friends!">
+<meta property="og:image" content="https://via.placeholder.com/1200x630?text=Share+Card">
+<meta property="og:url" content="https://yourgame.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Red Flag Bingo">
+<meta name="twitter:description" content="Play Red Flag Bingo with friends!">
+<meta name="twitter:image" content="https://via.placeholder.com/1200x630?text=Share+Card">
+
+<style>
+/* General Styles */
+body {
+  margin:0;
+  padding:20px;
+  font-family: 'Arial', sans-serif;
+  text-align:center;
+  background-color:#0d0d0d;
+  color:#ffffff;
+  transition: background 0.3s, color 0.3s;
+}
+[data-theme="light"]{background:#f5f5f5;color:#1a1a1a;}
+.glow{text-shadow:0 0 10px #ffcc66,0 0 20px #ffcc66;}
+h1,h2{margin:10px 0;}
+button{padding:10px 20px;font-size:16px;border:none;border-radius:8px;cursor:pointer;background:#cc3333;color:#fff;transition:0.3s;}
+button:hover{background:#ff4d4d;}
+
+/* Category Tiles */
+.category-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;justify-items:center;margin-bottom:20px;}
+.category-button{width:100%;max-width:240px;background:#1a1a1a;border:2px solid #fff;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;transition:transform 0.3s, box-shadow 0.3s;}
+.category-button:hover{transform:scale(1.05);box-shadow:0 0 15px #fff;}
+.category-button img{width:100%;height:140px;object-fit:cover;display:block;}
+.category-title{padding:10px;font-weight:bold;background:#0d0d0d;color:#fff;}
+.locked{opacity:0.8;}
+.locked img{filter:grayscale(80%) brightness(0.6);}
+.locked-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:bold;font-size:18px;border-radius:12px;pointer-events:none;}
+.locked .category-title{color:#fff !important;}
+
+/* Game Screen */
+.question-tile{background:linear-gradient(145deg,#1a1a1a,#2a2a2a);border:2px solid #fff;border-radius:16px;padding:20px;margin:20px auto;max-width:600px;font-size:22px;color:#fff;box-shadow:0 0 15px rgba(255,255,255,0.2);}
+.question-meme{width:100%;max-height:200px;object-fit:cover;margin-bottom:15px;border-radius:12px;}
+.button-container{display:flex;justify-content:center;gap:20px;margin-top:15px;flex-wrap:wrap;}
+#progressContainer{width:80%;height:15px;background:#333;border-radius:8px;margin:15px auto;}
+#progressBar{height:100%;width:0%;background:#cc3333;border-radius:8px;transition:width 0.3s;}
+
+.scoreboard{margin-top:20px;}
+#badgeAwarded{font-size:20px;margin-top:10px;color:gold;}
+#badgeImage{margin-top:10px;max-width:200px;border-radius:12px;}
+#badgeImage.glow{animation:glow 1.5s infinite;}
+
+@keyframes glow{
+0%{box-shadow:0 0 5px gold;transform:scale(1);}
+50%{box-shadow:0 0 15px gold,0 0 20px orange;transform:scale(1.05);}
+100%{box-shadow:0 0 5px gold;transform:scale(1);}
+}
+
+/* Footer */
+footer{margin-top:30px;font-size:14px;color:#aaa;}
+</style>
+</head>
+<body data-theme="dark">
+
+<!-- Hero -->
+<div id="heroIntro">
+<h1 class="glow" id="heroTitle">Red Flag Bingo</h1>
+<img src="https://via.placeholder.com/300x200?text=Red+Flag+Bingo" alt="Red Flag Bingo" style="display:block;margin:20px auto;max-width:300px;height:auto;"/>
+<p>Quick, hilarious, and totally relatable – Red Flag Bingo is the game you didn’t know you needed.<br>Pick a category, then choose to Sip (I’ve done this) or Skip (I haven’t).</p>
+</div>
+
+<!-- Category Screen -->
+<div id="categoryScreen" class="category-container">
+  <div class="category-button" onclick="selectCategory('Sip or Skip')">
+    <img src="https://i.imgflip.com/7qq5sm.jpg" alt="Sip or Skip">
+    <div class="category-title">Sip or Skip</div>
+  </div>
+  <div class="category-button" onclick="selectCategory('Boundaries? Never Heard of Her')">
+    <img src="https://i.imgflip.com/7qq60x.jpg" alt="Boundaries">
+    <div class="category-title">Boundaries? Never Heard of Her</div>
+  </div>
+  <div class="category-button" onclick="selectCategory('Finance & Finesse')">
+    <img src="https://i.imgflip.com/7qq65k.jpg" alt="Finance & Finesse">
+    <div class="category-title">Finance & Finesse</div>
+  </div>
+  <a href="https://your-upgrade-link.com" target="_blank" class="category-button locked">
+    <img src="https://via.placeholder.com/400x200?text=Locked" alt="Situationships & Ghosts">
+    <div class="locked-overlay">🔒 Locked</div>
+    <div class="category-title">Situationships & Ghosts</div>
+  </a>
+  <a href="https://your-upgrade-link.com" target="_blank" class="category-button locked">
+    <img src="https://via.placeholder.com/400x200?text=Locked" alt="Delulu Diaries">
+    <div class="locked-overlay">🔒 Locked</div>
+    <div class="category-title">Delulu Diaries</div>
+  </a>
+</div>
+
+<!-- Game Screen -->
+<div id="gameScreen" style="display:none;">
+<h2 id="questionCount"></h2>
+<div class="question-tile">
+  <img id="questionMeme" class="question-meme" src="https://via.placeholder.com/400x200?text=Loading+Meme" alt="Meme" />
+  <div id="questionText"></div>
+</div>
+<div class="button-container">
+  <button onclick="handleAnswer('sip')">Sip 🍷</button>
+  <button onclick="handleAnswer('skip')">Skip 🙅‍♀️</button>
+</div>
+<div id="progressContainer"><div id="progressBar"></div></div>
+<div class="scoreboard"><p>Sips Taken: <span id="sipCount">0</span></p></div>
+</div>
+
+<!-- End Screen -->
+<div id="endScreen" style="display:none;">
+<h2>Game Over!</h2>
+<p>You took <span id="finalSipCount"></span> sips.</p>
+<p id="badgeAwarded"></p>
+<img id="badgeImage" src="" alt="Badge" />
+<button onclick="restartGame()">Play Again</button>
+<br />
+<button onclick="copyShareLink()">Share with friends 🔗</button>
+<p id="copyStatus" style="color:lime;"></p>
+</div>
+
+<!-- Footer -->
+<footer>
+<p>&copy; 2025 Red Flag Bingo. All rights reserved.</p>
+<button onclick="toggleTheme()">Toggle Dark/Light Mode</button>
+</footer>
+
+<script>
+// Variables
+let selectedCategory = '';
+let currentIndex = 0;
+let questions = [];
+let sipCount = 0;
+
+// Meme URLs
+const memeBank = {
+"Sip or Skip":["https://i.imgflip.com/7qq5sm.jpg","https://i.imgflip.com/7qq5t3.jpg","https://i.imgflip.com/7qq5xk.jpg"],
+"Boundaries? Never Heard of Her":["https://i.imgflip.com/7qq60x.jpg","https://i.imgflip.com/7qq63d.jpg","https://i.imgflip.com/7qq66o.jpg"],
+"Finance & Finesse":["https://i.imgflip.com/7qq65k.jpg","https://i.imgflip.com/7qq67x.jpg","https://i.imgflip.com/7qq69a.jpg"]
+};
+
+// Questions
+const questionBank = {
+"Sip or Skip":["Lied about your job to impress someone.","Pretended to be asleep to avoid a talk.","Gone through someone’s trash.","Used a fake name on a date.","Texted 'I miss you' without meaning it.","Checked social media obsessively.","Binged an ex’s favorite show.","Stalked someone’s dating profile.","Ghosted and unghosted someone.","Sent a risky text and regretted it.","Pretended to be busy.","Flirted inappropriately.","Ignored red flags.","Tried to impress with a fake skill.","Played dumb to avoid responsibility."],
+"Boundaries? Never Heard of Her":["Shared location after one date.","Read partner’s messages while asleep.","Let someone come over uninvited.","Cancelled plans with friends.","Apologized for setting a boundary.","Let someone borrow money.","Responded immediately even when busy.","Stayed late when you didn’t want to.","Ignored your own needs.","Skipped hobbies for partner.","Accepted bad behavior.","Compromised sleep schedule.","Allowed dictation of weekend plans.","Said yes when you wanted no.","Let someone overstep repeatedly."],
+"Finance & Finesse":["Went on a date for the free meal.","Ghosted after receiving money.","Used Netflix account for months.","Asked for airtime/money.","Faked financial status to impress.","Borrowed money and forgot to repay.","Shared bills unequally.","Haggled for personal favors.","Ignored budget responsibilities.","Overspent on gifts.","Invested in someone else’s idea.","Skipped rent/payment.","Made excuses for financial mistakes.","Bragged about money to impress.","Let someone take advantage financially."]
+};
+
+// Badges
+const badges = [
+{threshold:0,text:"A little too cautious, babe, you need to take some risks",img:"https://via.placeholder.com/200x200?text=Badge+1"},
+{threshold:5,text:"Hmm… getting bolder",img:"https://via.placeholder.com/200x200?text=Badge+2"},
+{threshold:10,text:"Carefree & spicy!",img:"https://via.placeholder.com/200x200?text=Badge+3"},
+{threshold:15,text:"You might need therapy",img:"https://via.placeholder.com/200x200?text=Badge+4"}
+];
+
+// Functions
+function selectCategory(cat){
+  selectedCategory = cat;
+  questions = [...questionBank[cat]];
+  currentIndex = 0;
+  sipCount = 0;
+  document.getElementById('heroIntro').style.display='none';
+  document.getElementById('categoryScreen').style.display='none';
+  document.getElementById('endScreen').style.display='none';
+  document.getElementById('gameScreen').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  if(currentIndex >= questions.length){
+    endGame();
+    return;
+  }
+  document.getElementById('questionCount').innerText = `Question ${currentIndex+1} of ${questions.length}`;
+  document.getElementById('questionText').innerText = questions[currentIndex];
+  const memes = memeBank[selectedCategory];
+  document.getElementById('questionMeme').src = memes[Math.floor(Math.random()*memes.length)];
+  document.getElementById('progressBar').style.width = `${(currentIndex/questions.length)*100}%`;
+  document.getElementById('sipCount').innerText = sipCount;
+}
+
+function handleAnswer(ans){
+  if(ans==='sip') sipCount++;
+  currentIndex++;
+  showQuestion();
+}
+
+function endGame(){
+  document.getElementById('gameScreen').style.display='none';
+  document.getElementById('endScreen').style.display='block';
+  document.getElementById('finalSipCount').innerText = sipCount;
+  const badge = badges.slice().reverse().find(b => sipCount >= b.threshold);
+  document.getElementById('badgeAwarded').innerText = badge.text;
+  document.getElementById('badgeImage').src = badge.img;
+  document.getElementById('badgeImage').classList.add('glow');
+}
+
+function restartGame(){
+  document.getElementById('endScreen').style.display='none';
+  document.getElementById('categoryScreen').style.display='grid';
+}
+
+function copyShareLink(){
+  navigator.clipboard.writeText(window.location.href);
+  document.getElementById('copyStatus').innerText = "Link copied!";
+}
+
+function toggleTheme(){
+  const theme = document.body.getAttribute('data-theme');
+  document.body.setAttribute('data-theme', theme==='dark'?'light':'dark');
+}
+</script>
+
+</body>
+</html>
