@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>🚩 Red Flag Bingo | Savage Sip or Skip Game</title>
 
+<!-- Open Graph Tags (Facebook & Instagram) -->
 <meta property="og:title" content="Red Flag Bingo – Sip or Skip Game by TMI Studios" />
-<meta property="og:description" content="A chaotic, savage, sip-or-skip red flag game. Are you ready to expose your inner delulu? 🍷" />
+<meta property="og:description" content="Quick, hilarious, and totally relatable – expose your inner delulu 🍷" />
 <meta property="og:image" content="https://www.tmistudios.xyz/images/redflagbingo-sharecard.png" />
 <meta property="og:url" content="https://www.tmistudios.xyz/redflagbingo.html" />
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="TMI Studios" />
+
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<!-- Social Share Cards -->
-<meta property="og:title" content="Red Flag Bingo">
-<meta property="og:description" content="Play Red Flag Bingo with friends!">
-<meta property="og:image" content="https://via.placeholder.com/1200x630?text=Share+Card">
-<meta property="og:url" content="https://yourgame.com">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Red Flag Bingo">
-<meta name="twitter:description" content="Play Red Flag Bingo with friends!">
-<meta name="twitter:image" content="https://via.placeholder.com/1200x630?text=Share+Card">
+<meta name="twitter:title" content="Red Flag Bingo – Sip or Skip Game by TMI Studios">
+<meta name="twitter:description" content="Quick, hilarious, and totally relatable – expose your inner delulu 🍷">
+<meta name="twitter:image" content="https://www.tmistudios.xyz/images/redflagbingo-sharecard.png">
+
+<!-- Fallback SEO Meta -->
+<meta name="description" content="Play Red Flag Bingo – a chaotic, savage sip-or-skip game. Pick a category, then choose Sip 🍷 or Skip 🙅‍♀️. Are you ready to expose your inner delulu?" />
+
+<!-- Stylesheets & Fonts -->
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 <style>
 /* General Styles */
-body {
-  margin:0;
-  padding:20px;
-  font-family: 'Arial', sans-serif;
-  text-align:center;
-  background-color:#0d0d0d;
-  color:#ffffff;
-  transition: background 0.3s, color 0.3s;
-}
+body { margin:0; padding:20px; font-family: 'Arial', sans-serif; text-align:center; background-color:#0d0d0d; color:#ffffff; transition: background 0.3s, color 0.3s; }
 [data-theme="light"]{background:#f5f5f5;color:#1a1a1a;}
 .glow{text-shadow:0 0 10px #ffcc66,0 0 20px #ffcc66;}
 h1,h2{margin:10px 0;}
@@ -61,168 +58,241 @@ button:hover{background:#ff4d4d;}
 #badgeImage{margin-top:10px;max-width:200px;border-radius:12px;}
 #badgeImage.glow{animation:glow 1.5s infinite;}
 
-@keyframes glow{
-0%{box-shadow:0 0 5px gold;transform:scale(1);}
-50%{box-shadow:0 0 15px gold,0 0 20px orange;transform:scale(1.05);}
-100%{box-shadow:0 0 5px gold;transform:scale(1);}
-}
+@keyframes glow{0%{box-shadow:0 0 5px gold;transform:scale(1);}50%{box-shadow:0 0 15px gold,0 0 20px orange;transform:scale(1.05);}100%{box-shadow:0 0 5px gold;transform:scale(1);}}
 
-/* Footer */
 footer{margin-top:30px;font-size:14px;color:#aaa;}
+
+/* Upgrade Modal */
+.modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(3px); animation: fadeIn 0.3s; }
+.modal-content { background: linear-gradient(145deg,#ff4d4d,#cc3333); margin: 10% auto; padding: 30px 20px; border-radius: 16px; max-width: 350px; text-align: center; color: #fff; box-shadow: 0 0 20px #ff4d4d; animation: slideUp 0.3s; position: relative; }
+.modal-content h2 { margin-bottom: 15px; font-size: 22px; text-shadow: 0 0 10px gold; }
+.modal-content p { margin-bottom: 25px; font-size: 16px; }
+.upgradeBtn, .cancelBtn { display: block; width: 80%; margin: 10px auto; padding: 12px 0; font-size: 16px; font-weight: bold; border-radius: 12px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.upgradeBtn { background: gold; color: #000; box-shadow: 0 0 15px gold; }
+.upgradeBtn:hover { transform: scale(1.05); box-shadow: 0 0 25px gold; }
+.cancelBtn { background: rgba(255,255,255,0.2); color: #fff; }
+.cancelBtn:hover { background: rgba(255,255,255,0.35); }
+.close { position: absolute; top: 8px; right: 12px; color: #fff; font-size: 24px; cursor: pointer; }
+
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes slideUp { from {transform: translateY(50px); opacity: 0;} to {transform: translateY(0); opacity:1;} }
 </style>
 </head>
 <body data-theme="dark">
 
+<button id="themeToggle" onclick="toggleTheme()">🌙</button>
+
 <!-- Hero -->
 <div id="heroIntro">
-<h1 class="glow" id="heroTitle">Red Flag Bingo</h1>
-<img src="https://via.placeholder.com/300x200?text=Red+Flag+Bingo" alt="Red Flag Bingo" style="display:block;margin:20px auto;max-width:300px;height:auto;"/>
-<p>Quick, hilarious, and totally relatable – Red Flag Bingo is the game you didn’t know you needed.<br>Pick a category, then choose to Sip (I’ve done this) or Skip (I haven’t).</p>
+<h1 class="glow" id="heroTitle">Redflag Bingo</h1>
+<img src="redflagbingo.png" alt="Red Flag Bingo" style="display:block;margin:20px auto;max-width:300px;height:auto;"/>
+<p>Quick, hilarious, and totally relatable – Redflag Bingo is the game you didn’t know you needed.<br>Pick a category, then choose to Sip (I’ve done this) or Skip (I haven’t).</p>
 </div>
 
 <!-- Category Screen -->
 <div id="categoryScreen" class="category-container">
+  <!-- Unlocked -->
   <div class="category-button" onclick="selectCategory('Sip or Skip')">
-    <img src="https://i.imgflip.com/7qq5sm.jpg" alt="Sip or Skip">
+    <img src="ss.png" alt="Sip or Skip">
     <div class="category-title">Sip or Skip</div>
   </div>
+
   <div class="category-button" onclick="selectCategory('Boundaries? Never Heard of Her')">
-    <img src="https://i.imgflip.com/7qq60x.jpg" alt="Boundaries">
+    <img src="boundaries.jpg" alt="Boundaries? Never Heard of Her">
     <div class="category-title">Boundaries? Never Heard of Her</div>
   </div>
+
   <div class="category-button" onclick="selectCategory('Finance & Finesse')">
-    <img src="https://i.imgflip.com/7qq65k.jpg" alt="Finance & Finesse">
+    <img src="ff.png" alt="Finance & Finesse">
     <div class="category-title">Finance & Finesse</div>
   </div>
-  <a href="https://your-upgrade-link.com" target="_blank" class="category-button locked">
-    <img src="https://via.placeholder.com/400x200?text=Locked" alt="Situationships & Ghosts">
+
+  <!-- Locked -->
+  <div class="category-button locked" onclick="openUpgradeModal()">
+    <img src="sg.png" alt="Situationships & Ghosts">
     <div class="locked-overlay">🔒 Locked</div>
     <div class="category-title">Situationships & Ghosts</div>
-  </a>
-  <a href="https://your-upgrade-link.com" target="_blank" class="category-button locked">
-    <img src="https://via.placeholder.com/400x200?text=Locked" alt="Delulu Diaries">
+  </div>
+
+  <div class="category-button locked" onclick="openUpgradeModal()">
+    <img src="dd.png" alt="Delulu Diaries">
     <div class="locked-overlay">🔒 Locked</div>
     <div class="category-title">Delulu Diaries</div>
-  </a>
+  </div>
 </div>
 
 <!-- Game Screen -->
 <div id="gameScreen" style="display:none;">
-<h2 id="questionCount"></h2>
-<div class="question-tile">
-  <img id="questionMeme" class="question-meme" src="https://via.placeholder.com/400x200?text=Loading+Meme" alt="Meme" />
-  <div id="questionText"></div>
-</div>
-<div class="button-container">
-  <button onclick="handleAnswer('sip')">Sip 🍷</button>
-  <button onclick="handleAnswer('skip')">Skip 🙅‍♀️</button>
-</div>
-<div id="progressContainer"><div id="progressBar"></div></div>
-<div class="scoreboard"><p>Sips Taken: <span id="sipCount">0</span></p></div>
+  <h2 id="questionCount"></h2>
+  <div class="question-tile">
+    <div id="questionEmoji" style="font-size:60px;margin-bottom:15px;">🚩</div>
+    <div id="questionText"></div>
+  </div>
+  <div class="button-container">
+    <button onclick="handleAnswer('sip')">Sip 🍷</button>
+    <button onclick="handleAnswer('skip')">Skip 🙅‍♀️</button>
+  </div>
+  <div id="progressContainer"><div id="progressBar"></div></div>
+  <div class="scoreboard"><p>Sips Taken: <span id="sipCount">0</span></p></div>
 </div>
 
 <!-- End Screen -->
-<div id="endScreen" style="display:none;">
-<h2>Game Over!</h2>
-<p>You took <span id="finalSipCount"></span> sips.</p>
-<p id="badgeAwarded"></p>
-<img id="badgeImage" src="" alt="Badge" />
-<button onclick="restartGame()">Play Again</button>
-<br />
-<button onclick="copyShareLink()">Share with friends 🔗</button>
-<p id="copyStatus" style="color:lime;"></p>
+<div id="endScreen" style="display:none; text-align:center;">
+  <h2>Game Over!</h2>
+  <p>You took <span id="finalSipCount"></span> sips.</p>
+  <p id="badgeAwarded"></p>
+  <img id="badgeImage" src="" alt="Badge" style="display:block; margin:15px auto;" />
+  <div class="endScreenButtons" style="margin-top:20px; display:flex; flex-direction:column; gap:10px; align-items:center;">
+    <button onclick="restartGame()" style="width:80%; max-width:250px;">Play Again</button>
+    <button onclick="copyShareLink()" style="width:80%; max-width:250px;">Share with friends 🔗</button>
+    <p id="copyStatus" style="color:lime; margin-top:5px;"></p>
+  </div>
+</div>
+
+<!-- Upgrade Modal -->
+<div id="upgradeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeUpgradeModal()">&times;</span>
+    <h2>Unlock All Categories!</h2>
+    <p>Get access to <strong>Situationships & Ghosts</strong> and <strong>Delulu Diaries</strong> 🎉</p>
+    <button class="upgradeBtn" onclick="window.location.href='bingoupgrade.html'">Upgrade Now 💎</button>
+    <button class="cancelBtn" onclick="closeUpgradeModal()">Cancel ❌</button>
+  </div>
 </div>
 
 <!-- Footer -->
 <footer>
-<p>&copy; 2025 Red Flag Bingo. All rights reserved.</p>
-<button onclick="toggleTheme()">Toggle Dark/Light Mode</button>
+<p>&copy; 2025 Redflag Bingo by TMI Studios. All rights reserved.</p>
 </footer>
 
 <script>
-// Variables
+// Game Variables
 let selectedCategory = '';
 let currentIndex = 0;
 let questions = [];
 let sipCount = 0;
 
-// Meme URLs
-const memeBank = {
-"Sip or Skip":["https://i.imgflip.com/7qq5sm.jpg","https://i.imgflip.com/7qq5t3.jpg","https://i.imgflip.com/7qq5xk.jpg"],
-"Boundaries? Never Heard of Her":["https://i.imgflip.com/7qq60x.jpg","https://i.imgflip.com/7qq63d.jpg","https://i.imgflip.com/7qq66o.jpg"],
-"Finance & Finesse":["https://i.imgflip.com/7qq65k.jpg","https://i.imgflip.com/7qq67x.jpg","https://i.imgflip.com/7qq69a.jpg"]
-};
-
-// Questions
 const questionBank = {
-"Sip or Skip":["Lied about your job to impress someone.","Pretended to be asleep to avoid a talk.","Gone through someone’s trash.","Used a fake name on a date.","Texted 'I miss you' without meaning it.","Checked social media obsessively.","Binged an ex’s favorite show.","Stalked someone’s dating profile.","Ghosted and unghosted someone.","Sent a risky text and regretted it.","Pretended to be busy.","Flirted inappropriately.","Ignored red flags.","Tried to impress with a fake skill.","Played dumb to avoid responsibility."],
-"Boundaries? Never Heard of Her":["Shared location after one date.","Read partner’s messages while asleep.","Let someone come over uninvited.","Cancelled plans with friends.","Apologized for setting a boundary.","Let someone borrow money.","Responded immediately even when busy.","Stayed late when you didn’t want to.","Ignored your own needs.","Skipped hobbies for partner.","Accepted bad behavior.","Compromised sleep schedule.","Allowed dictation of weekend plans.","Said yes when you wanted no.","Let someone overstep repeatedly."],
-"Finance & Finesse":["Went on a date for the free meal.","Ghosted after receiving money.","Used Netflix account for months.","Asked for airtime/money.","Faked financial status to impress.","Borrowed money and forgot to repay.","Shared bills unequally.","Haggled for personal favors.","Ignored budget responsibilities.","Overspent on gifts.","Invested in someone else’s idea.","Skipped rent/payment.","Made excuses for financial mistakes.","Bragged about money to impress.","Let someone take advantage financially."]
+  "Sip or Skip": ["Lied about your job to impress someone.","Pretended to be asleep to avoid a talk.","Gone through someone’s trash.","Used a fake name on a date.","Texted 'I miss you' without meaning it.","Checked social media obsessively.","Binged an ex’s favorite show.","Stalked someone’s dating profile.","Ghosted and unghosted someone.","Sent a risky text and regretted it.","Pretended to be busy.","Flirted inappropriately.","Ignored red flags.","Tried to impress with a fake skill.","Played dumb to avoid responsibility."],
+  "Boundaries? Never Heard of Her": ["Shared location after one date.","Read partner’s messages while asleep.","Let someone come over uninvited.","Cancelled plans with friends.","Apologized for setting a boundary.","Let someone borrow money.","Responded immediately even when busy.","Stayed late when you didn’t want to.","Ignored your own needs.","Skipped hobbies for partner.","Accepted bad behavior.","Compromised sleep schedule.","Allowed dictation of weekend plans.","Said yes when you wanted no.","Let someone overstep repeatedly."],
+  "Finance & Finesse": ["Went on a date for the free meal.","Ghosted after receiving money.","Used Netflix account for months.","Asked for airtime/money.","Faked financial status to impress.","Borrowed money and forgot to repay.","Shared bills unequally.","Haggled for personal favors.","Ignored budget responsibilities.","Overspent on gifts.","Invested in someone else’s idea.","Skipped rent/payment.","Made excuses for financial mistakes.","Bragged about money to impress.","Let someone take advantage financially."]
 };
 
-// Badges
-const badges = [
-{threshold:0,text:"A little too cautious, babe, you need to take some risks",img:"https://via.placeholder.com/200x200?text=Badge+1"},
-{threshold:5,text:"Hmm… getting bolder",img:"https://via.placeholder.com/200x200?text=Badge+2"},
-{threshold:10,text:"Carefree & spicy!",img:"https://via.placeholder.com/200x200?text=Badge+3"},
-{threshold:15,text:"You might need therapy",img:"https://via.placeholder.com/200x200?text=Badge+4"}
+const emojiBank = [
+  "🚩", // red flag
+  "💀", // dead
+  "🙅‍♀️", // no
+  "🍷", // sip wine
+  "😬", // awkward
+  "🔥", // spicy
+  "🤦‍♀️", // facepalm
+  "⚠️", // warning
+  "🙃", // upside down
+  "😏", // smirk
+  "😱", // shocked
+  "🫣", // peeking
+  "🥴", // woozy
+  "🤯", // mind blown
+  "💅", // sass
+  "🤷‍♀️", // shrug
+  "💔", // heartbreak
+  "😎", // cool
+  "🫠"  // melting
 ];
 
-// Functions
+const badges = [
+  {threshold: 0, text: "A little too cautious, babe, you need to take some risks", img: "badge1.png"},
+  {threshold: 5, text: "Hmm… getting bolder", img: "badge2.png"},
+  {threshold: 10, text: "Carefree & spicy!", img: "badge3.png"},
+  {threshold: 15, text: "You might need therapy", img: "badge4.png"}
+];
+
+// Select category
 function selectCategory(cat){
   selectedCategory = cat;
   questions = [...questionBank[cat]];
   currentIndex = 0;
   sipCount = 0;
-  document.getElementById('heroIntro').style.display='none';
-  document.getElementById('categoryScreen').style.display='none';
-  document.getElementById('endScreen').style.display='none';
-  document.getElementById('gameScreen').style.display='block';
+  document.getElementById('categoryScreen').style.display = 'none';
+  document.getElementById('gameScreen').style.display = 'block';
   showQuestion();
 }
 
+// Show question
 function showQuestion(){
   if(currentIndex >= questions.length){
     endGame();
     return;
   }
-  document.getElementById('questionCount').innerText = `Question ${currentIndex+1} of ${questions.length}`;
-  document.getElementById('questionText').innerText = questions[currentIndex];
-  const memes = memeBank[selectedCategory];
-  document.getElementById('questionMeme').src = memes[Math.floor(Math.random()*memes.length)];
+  document.getElementById('questionCount').textContent = `Question ${currentIndex+1} of ${questions.length}`;
+  document.getElementById('questionText').textContent = questions[currentIndex];
+
+  // Random emoji for each question
+  document.getElementById('questionEmoji').textContent = emojiBank[Math.floor(Math.random()*emojiBank.length)];
+
   document.getElementById('progressBar').style.width = `${(currentIndex/questions.length)*100}%`;
-  document.getElementById('sipCount').innerText = sipCount;
+  document.getElementById('sipCount').textContent = sipCount;
 }
 
-function handleAnswer(ans){
-  if(ans==='sip') sipCount++;
+// Handle answer
+function handleAnswer(answer){
+  if(answer==='sip') sipCount++;
   currentIndex++;
   showQuestion();
 }
 
+// End game
 function endGame(){
-  document.getElementById('gameScreen').style.display='none';
-  document.getElementById('endScreen').style.display='block';
-  document.getElementById('finalSipCount').innerText = sipCount;
-  const badge = badges.slice().reverse().find(b => sipCount >= b.threshold);
-  document.getElementById('badgeAwarded').innerText = badge.text;
-  document.getElementById('badgeImage').src = badge.img;
-  document.getElementById('badgeImage').classList.add('glow');
+  document.getElementById('gameScreen').style.display = 'none';
+  document.getElementById('endScreen').style.display = 'block';
+  document.getElementById('finalSipCount').textContent = sipCount;
+  // Determine badge
+  let badge = badges[0];
+  for(let i=0;i<badges.length;i++){
+    if(sipCount >= badges[i].threshold) badge = badges[i];
+  }
+  document.getElementById('badgeAwarded').textContent = badge.text;
+  const imgEl = document.getElementById('badgeImage');
+  imgEl.src = badge.img;
+  imgEl.classList.add('glow');
 }
 
+// Restart game
 function restartGame(){
-  document.getElementById('endScreen').style.display='none';
-  document.getElementById('categoryScreen').style.display='grid';
+  document.getElementById('endScreen').style.display = 'none';
+  document.getElementById('categoryScreen').style.display = 'grid';
+  document.getElementById('badgeImage').classList.remove('glow');
+  document.getElementById('copyStatus').textContent = '';
 }
 
+// Copy share link
 function copyShareLink(){
   navigator.clipboard.writeText(window.location.href);
-  document.getElementById('copyStatus').innerText = "Link copied!";
+  document.getElementById('copyStatus').textContent = 'Link copied! Share it with friends 🔗';
 }
 
+// Upgrade Modal
+function openUpgradeModal(){
+  document.getElementById('upgradeModal').style.display='block';
+}
+function closeUpgradeModal(){
+  document.getElementById('upgradeModal').style.display='none';
+}
+
+// Theme toggle
 function toggleTheme(){
-  const theme = document.body.getAttribute('data-theme');
-  document.body.setAttribute('data-theme', theme==='dark'?'light':'dark');
+  const body = document.body;
+  if(body.dataset.theme==='dark'){
+    body.dataset.theme='light';
+  }else{
+    body.dataset.theme='dark';
+  }
+}
+
+// Close modal on outside click
+window.onclick = function(event){
+  const modal = document.getElementById('upgradeModal');
+  if(event.target === modal) modal.style.display='none';
 }
 </script>
 
