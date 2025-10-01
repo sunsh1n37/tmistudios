@@ -311,7 +311,7 @@
   function createTarget(src) {
     if (currentTarget) currentTarget.remove();
     const img = document.createElement('img');
-    img.src = 'images/" + src;
+    img.src = 'images/' + src;
     img.className = 'target';
     container.appendChild(img);
     currentTarget = img;
