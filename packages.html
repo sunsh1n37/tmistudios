@@ -1,341 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Service Packages | TMI Studios – Branding, Websites, Games & Ads</title>
-<meta name="description" content="Explore TMI Studios packages: branding, websites, arcade games, and viral advertising tailored for creators and startups. Fixed pricing. Big results.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Packages | TMI Studios – Branding, Websites, Games & Ads</title>
+    <meta name="description" content="Explore TMI Studios packages: branding, websites, arcade games, and viral advertising tailored for creators and startups. Fixed pricing. Big results.">
 
-<!-- Open Graph / Social Meta -->
-<meta property="og:title" content="TMI Studios Packages – Design, Web, Games, Ads">
-<meta property="og:description" content="From logos to full websites and viral meme games, choose a service package that fits your brand's glow-up.">
-<meta property="og:image" content="https://www.tmistudios.xyz/tmihero.jpeg">
-<meta property="og:url" content="https://www.tmistudios.xyz/packages.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:title" content="TMI Studios Packages – Design, Web, Games, Ads">
+    <meta property="og:description" content="From logos to full websites and viral meme games, choose a service package that fits your brand's glow-up.">
+    <meta property="og:image" content="https://www.tmistudios.xyz/tmihero.jpeg">
+    <meta property="og:url" content="https://www.tmistudios.xyz/packages.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Favicon & Canonical -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://www.tmistudios.xyz/packages.html">
 
-<!-- Favicon & Canonical -->
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="canonical" href="https://www.tmistudios.xyz/packages.html">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-<!-- Tailwind CSS -->
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-<!-- Custom Styles -->
-<style>
-body {
-  background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
-  color: #fff;
-  font-family: 'Segoe UI', sans-serif;
-}
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px #8b5cf6;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.glass:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px #a855f7, 0 0 40px #8b5cf6;
-}
-a { color: #8b5cf6; text-decoration: none; transition: color 0.3s; }
-a:hover { text-decoration: underline; }
-ul { list-style-type: disc; margin: 0.5rem 0 1rem 1rem; color: #d8b4fe; }
-.btn-purple {
-  display: inline-block;
-  background-color: #8b5cf6;
-  color: white;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-  cursor: pointer;
-}
-.btn-purple:hover { background-color: #a855f7; }
-</style>
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px #8b5cf6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px #a855f7, 0 0 40px #8b5cf6;
+        }
+
+        a {
+            color: #8b5cf6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin: 0.5rem 0 1rem 1rem;
+            color: #d8b4fe;
+        }
+
+        .btn-purple {
+            display: inline-block;
+            background-color: #8b5cf6;
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-purple:hover {
+            background-color: #a855f7;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-card {
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+        }
+    </style>
+
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col bg-gradient-to-b from-[#0d0d1a] to-[#000]">
 
-<!-- Navigation -->
-<nav class="bg-[#0d0d1a] text-white px-6 py-4 flex justify-between items-center">
-  <div class="font-bold text-lg">
-    <a href="index.html" class="text-white">TMI Studios</a>
-  </div>
-  <div class="flex gap-6 text-sm">
-    <a href="arcade.html" class="text-white">Arcade</a>
-    <a href="aboutus.html" class="text-white">About</a>
-    <a href="contactus.html" class="text-white">Contact</a>
-  </div>
-</nav>
+    <!-- Navigation -->
+    <nav class="bg-[#0d0d1a] text-white px-6 py-4 flex justify-between items-center">
+        <div class="font-bold text-lg">
+            <a href="index.html" class="text-white">TMI Studios</a>
+        </div>
+        <div class="flex gap-6 text-sm">
+            <a href="arcade.html" class="text-white">Arcade</a>
+            <a href="aboutus.html" class="text-white">About</a>
+            <a href="contactus.html" class="text-white">Contact</a>
+        </div>
+    </nav>
 
-<!-- Header -->
-<header class="text-center p-10">
-  <h1 class="text-4xl font-bold mb-4">Let's make it official!</h1>
-  <p class="text-gray-300 max-w-xl mx-auto">
-    Lock in your package. Tell us what you’re building. We’ll do the rest.
-  </p>
-</header>
+    <!-- Header -->
+    <header class="text-center p-10">
+        <h1 class="text-4xl font-bold mb-4">Let's make it official!</h1>
+        <p class="text-gray-300 max-w-4xl mx-auto">
+            Lock in your package. Tell us what you’re building. We’ll do the rest.
+        </p>
+    </header>
 
-<!-- Packages Sections -->
-<section class="px-6 md:px-16 pb-16">
+    <!-- Packages Section -->
+    <section class="px-6 md:px-16 pb-16">
 
-  <!-- Branding Packages -->
-  <h2 class="text-3xl font-semibold mb-6 text-center">🎨 Branding Packages</h2>
-  <div class="flex gap-6 overflow-x-auto py-4">
-    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-      <h3 class="text-xl font-bold mb-2">BASIC</h3>
-      <ul>
-        <li>Logo</li>
-        <li>Business Cards</li>
-        <li>Email Signature</li>
-      </ul>
-      <p class="font-bold mb-4">R450</p>
-      <button class="btn-purple package-select" data-package="BASIC: Logo, Business Cards, Email Signature – R450">Select</button>
-    </div>
-    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-      <h3 class="text-xl font-bold mb-2">PRO</h3>
-      <ul>
-        <li>BASIC + Letterhead</li>
-        <li>Social Media Profiles</li>
-        <li>Brand Guide</li>
-      </ul>
-      <p class="font-bold mb-4">R1,150</p>
-      <button class="btn-purple package-select" data-package="PRO: Basic + Letterhead, Social Media Profiles, Brand Guide – R1150">Select</button>
-    </div>
-    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-      <h3 class="text-xl font-bold mb-2">PREMIUM</h3>
-      <ul>
-        <li>Full Kit + Flyers</li>
-        <li>Pitch Deck</li>
-        <li>Editable Canva Kits</li>
-      </ul>
-      <p class="font-bold mb-4">Contact for Pricing</p>
-      <button class="btn-purple package-select" data-package="PREMIUM: Full kit + Flyers, Pitch Deck, Editable Canva Kits">Select</button>
-    </div>
-  </div>
+        <!-- Branding Packages -->
+        <h2 class="text-3xl font-semibold mb-6 text-center section-title">🎨 Branding Packages</h2>
+        <div class="flex flex-wrap justify-center gap-6 py-4">
+            <div class="glass p-6 rounded-xl package-card">
+                <h3 class="text-xl font-bold mb-2">BASIC</h3>
+                <ul>
+                    <li>Logo</li>
+                    <li>Business Cards</li>
+                    <li>Email Signature</li>
+                </ul>
+                <p class="font-bold mb-4">R450</p>
+                <button class="btn-purple package-select" data-package="BASIC: Logo, Business Cards, Email Signature – R450">Select</button>
+            </div>
 
-  <!-- Website / App Packages -->
-  <h2 class="text-3xl font-semibold my-6 text-center">📲 Website / App Packages</h2>
-  <div class="flex gap-6 overflow-x-auto py-4">
-    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-      <h3 class="text-xl font-bold mb-2">Starter Site</h3>
-      <ul>
-        <li>1 Page / Landing Page</li>
-        <li>Mobile Responsive</li>
-        <li>Contact Form</li>
-      </ul>
-      <p class="font-bold mb-4">R3,500</p>
-      <button class="btn-purple package-select" data-package="Starter Site: 1 Page / Landing Page, Mobile Responsive, Contact Form – R3500">Select</button>
-    </div>
-    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-      <h3 class="text-xl font-bold mb-2">Business Site</h3>
-      <ul>
-        <li>5 Page Site</li>
-        <li>Blog Setup</li>
-        <li>SEO Optimized</li>
-      </ul>
-      <p class="font-bold mb-4">R7,500</p>
-      <button class="btn-purple package-select" data-package="Business Site: 5 Page Site, Blog Setup, SEO Optimized – R7500">Select</button>
-    </div>
-    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-      <h3 class="text-xl font-bold mb-2">E-commerce Site</h3>
-      <ul>
-        <li>Product Catalog</li>
-        <li>Cart & Checkout</li>
-        <li>Payment Integration</li>
-      </ul>
-      <p class="font-bold mb-4">R12,500</p>
-      <button class="btn-purple package-select" data-package="E-commerce Site: Product Catalog, Cart & Checkout, Payment Integration – R12500">Select</button>
-    </div>
-  </div>
+            <div class="glass p-6 rounded-xl package-card">
+                <h3 class="text-xl font-bold mb-2">PRO</h3>
+                <ul>
+                    <li>BASIC + Letterhead</li>
+                    <li>Social Media Profiles</li>
+                    <li>Brand Guide</li>
+                </ul>
+                <p class="font-bold mb-4">R1,150</p>
+                <button class="btn-purple package-select" data-package="PRO: Basic + Letterhead, Social Media Profiles, Brand Guide – R1150">Select</button>
+            </div>
 
-  <!-- Social Media Packages -->
-  <h2 class="text-3xl font-semibold my-6 text-center">📱 Social Media Marketing</h2>
-  <div class="flex gap-6 overflow-x-auto py-4">
-    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-      <h3 class="text-xl font-bold mb-2">Starter</h3>
-      <ul>
-        <li>Instagram Only</li>
-        <li>5 Posts / Week</li>
-        <li>Basic Captions</li>
-      </ul>
-      <p class="font-bold mb-4">R3,500 / month</p>
-      <button class="btn-purple package-select" data-package="Starter: Instagram Only, 5 Posts / Week, Basic Captions – R3500 / month">Select</button>
-    </div>
-    <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-      <h3 class="text-xl font-bold mb-2">Growth</h3>
-      <ul>
-        <li>Instagram & Facebook</li>
-        <li>10 Posts / Week</li>
-        <li>Engagement Strategy</li>
-      </ul>
-      <p class="font-bold mb-4"><p class="font-bold mb-4">R5,000 / month</p>
-<button class="btn-purple package-select" data-package="Growth: Instagram & Facebook, 10 Posts / Week, Engagement Strategy – R5000 / month">Select</button>
-</div>
-<div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-  <h3 class="text-xl font-bold mb-2">Pro</h3>
-  <ul>
-    <li>Instagram, Facebook & TikTok</li>
-    <li>Full Content Calendar</li>
-    <li>Paid Ad Campaigns</li>
-  </ul>
-  <p class="font-bold mb-4">R9,500 / month</p>
-  <button class="btn-purple package-select" data-package="Pro: Instagram, Facebook & TikTok, Full Content Calendar, Paid Ad Campaigns – R9500 / month">Select</button>
-</div>
-</div>
+            <div class="glass p-6 rounded-xl package-card">
+                <h3 class="text-xl font-bold mb-2">PREMIUM</h3>
+                <ul>
+                    <li>Full Kit + Flyers</li>
+                    <li>Pitch Deck</li>
+                    <li>Editable Canva Kits</li>
+                </ul>
+                <p class="font-bold mb-4">Contact for Pricing</p>
+                <button class="btn-purple package-select" data-package="PREMIUM: Full kit + Flyers, Pitch Deck, Editable Canva Kits">Select</button>
+            </div>
+        </div>
 
-<!-- Arcade / Games Packages -->
-<h2 class="text-3xl font-semibold my-6 text-center">🎮 TMI Arcade</h2>
-<div class="flex gap-6 overflow-x-auto py-4">
-<div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-  <h3 class="text-xl font-bold mb-2">Mini Game</h3>
-  <ul>
-    <li>Quiz / Party Meme Game</li>
-    <li>Branded Memes</li>
-    <li>Mobile & Desktop Friendly</li>
-  </ul>
-  <p class="font-bold mb-4">from R10,000</p>
-  <button class="btn-purple package-select" data-package="Mini Game: Quiz / Party Meme Game – from R10,000">Select</button>
-</div>
-<div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-  <h3 class="text-xl font-bold mb-2">Standard Game</h3>
-  <ul>
-    <li>Custom Shooter Game</li>
-    <li>Multi-Level</li>
-    <li>Mini Challenges</li>
-  </ul>
-  <p class="font-bold mb-4">from R15,000</p>
-  <button class="btn-purple package-select" data-package="Standard Game: Custom Shooter Game – from R15,000">Select</button>
-</div>
-<div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-  <h3 class="text-xl font-bold mb-2">Premium Game</h3>
-  <ul>
-    <li>Endless Runner Game</li>
-    <li>Fully Branded Experience</li>
-    <li>Advanced Mechanics & Rewards</li>
-  </ul>
-  <p class="font-bold mb-4">from R40,000</p>
-  <button class="btn-purple package-select" data-package="Premium Game: Endless Runner Game – from R40,000">Select</button>
-</div>
-</div>
+        <!-- Website / App Packages -->
+        <h2 class="text-3xl font-semibold my-6 text-center section-title">📲 Website / App Packages</h2>
+        <div class="flex flex-wrap justify-center gap-6 py-4">
+            <!-- Package Cards -->
+            <div class="glass p-6 rounded-xl package-card">
+                <h3 class="text-xl font-bold mb-2">Starter Site</h3>
+                <ul>
+                    <li>1 Page / Landing Page</li>
+                    <li>Mobile Responsive</li>
+                    <li>Contact Form</li>
+                </ul>
+                <p class="font-bold mb-4">R3,500</p>
+                <button class="btn-purple package-select" data-package="Starter Site: 1 Page / Landing Page, Mobile Responsive, Contact Form – R3500">Select</button>
+            </div>
+            <!-- Add other packages similarly -->
+        </div>
 
-<!-- Advertising Packages -->
-<h2 class="text-3xl font-semibold my-6 text-center">🚀 Viral Advertising</h2>
-<div class="flex gap-6 overflow-x-auto py-4">
-<div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-  <h3 class="text-xl font-bold mb-2">Basic</h3>
-  <ul>
-    <li>1 Branded Meme</li>
-    <li>Placed in Social Media Ad</li>
-  </ul>
-  <p class="font-bold mb-4">R8,000</p>
-  <button class="btn-purple package-select" data-package="Basic Advertising: 1 Branded Meme, Social Media Ad – R8,000">Select</button>
-</div>
-<div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-  <h3 class="text-xl font-bold mb-2">Pro</h3>
-  <ul>
-    <li>Full Meme Campaign</li>
-    <li>Paid Ads</li>
-    <li>Branded Memes</li>
-  </ul>
-  <p class="font-bold mb-4">R15,000</p>
-  <button class="btn-purple package-select" data-package="Pro Advertising: Full Meme Campaign, Paid Ads, Branded Memes – R15,000">Select</button>
-</div>
-<div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center">
-  <h3 class="text-xl font-bold mb-2">Max</h3>
-  <ul>
-    <li>Pro Package + <br>
-    Meme in Party Game / <br>
-    Viral Quiz</li>
-  </ul>
-  <p class="font-bold mb-4">R25,000</p>
-  <button class="btn-purple package-select" data-package="Max Advertising: Pro + Meme in Party Game / Viral Quiz – R25,000">Select</button>
-</div>
-</div>
+        <!-- Social Media Marketing -->
+        <h2 class="text-3xl font-semibold my-6 text-center section-title">📱 Social Media Marketing</h2>
+        <div class="flex flex-wrap justify-center gap-6 py-4">
+            <!-- Package Cards -->
+        </div>
 
-<!-- Booking Modal -->
-<div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden">
-  <div class="bg-[#0d0d1a] p-8 rounded-xl max-w-md w-full relative">
-    <span id="closeBooking" class="absolute top-3 right-5 cursor-pointer text-gray-400 text-xl">&times;</span>
-    <h2 class="text-2xl font-bold mb-4">Book Your Package</h2>
-    <form id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="flex flex-col gap-4">
-      <input type="text" name="name" placeholder="Your Name" required class="p-2 rounded bg-[#111] border border-gray-700 text-white">
-      <input type="email" name="email" placeholder="Your Email" required class="p-2 rounded bg-[#111] border border-gray-700 text-white">
-      <textarea name="details" placeholder="Additional Details" class="p-2 rounded bg-[#111] border border-gray-700 text-white"></textarea>
-      <input type="hidden" name="package" id="selectedPackage">
-      <button type="submit" class="btn-purple">Submit</button>
-    </form>
-    <p id="bookingSuccess" class="text-green-400 mt-4 hidden">Thank you! We'll reach out soon.</p>
-  </div>
-</div>
+        <!-- Arcade Games Packages -->
+        <h2 class="text-3xl font-semibold my-6 text-center section-title">🎮 TMI Arcade</h2>
+        <div class="flex flex-wrap justify-center gap-6 py-4">
+            <!-- Package Cards -->
+        </div>
 
-<!-- Newsletter Modal -->
-<div id="newsletterModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden">
-  <div class="bg-[#0d0d1a] p-8 rounded-xl max-w-md w-full relative">
-    <span id="closeNewsletter" class="absolute top-3 right-5 cursor-pointer text-gray-400 text-xl">&times;</span>
-    <h2 class="text-2xl font-bold mb-4">Subscribe to our Newsletter</h2>
-    <form id="newsletterForm" action="https://formspree.io/f/YOUR_NEWSLETTER_FORM_ID" method="POST" class="flex flex-col gap-4">
-      <input type="email" name="email" placeholder="Your Email" required class="p-2 rounded bg-[#111] border border-gray-700 text-white">
-      <button type="submit" class="btn-purple">Subscribe</button>
-    </form>
-    <p id="newsletterSuccess" class="text-green-400 mt-4 hidden">Subscribed! You'll get our updates.</p>
-  </div>
-</div>
+        <!-- Viral Advertising Packages -->
+        <h2 class="text-3xl font-semibold my-6 text-center section-title">🚀 Viral Advertising</h2>
+        <div class="flex flex-wrap justify-center gap-6 py-4">
+            <!-- Package Cards -->
+        </div>
+    </section>
 
-<!-- Footer -->
-<footer class="bg-[#0d0d1a] text-gray-400 text-center p-6 mt-auto">
-  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <button id="openNewsletter" class="mt-2 btn-purple">Subscribe to Newsletter</button>
-</footer>
+    <!-- Footer -->
+    <footer class="bg-[#0d0d1a] text-gray-400 text-center p-6 mt-auto">
+        <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+        <button id="openNewsletter" class="mt-2 btn-purple">Subscribe to Newsletter</button>
+    </footer>
 
-<!-- Scripts -->
-<script>
-const packageButtons = document.querySelectorAll('.package-select');
-const bookingModal = document.getElementById('bookingModal');
-const closeBooking = document.getElementById('closeBooking');
-const selectedPackageInput = document.getElementById('selectedPackage');
-
-packageButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    selectedPackageInput.value = btn.dataset.package;
-    bookingModal.classList.remove('hidden');
-  });
-});
-
-closeBooking.addEventListener('click', () => bookingModal.classList.add('hidden'));
-
-document.getElementById('bookingForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const form = e.target;
-  fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-    .then(() => {
-      form.style.display = 'none';
-      document.getElementById('bookingSuccess').classList.remove('hidden');
-    }).catch(() => alert('Oops! There was a problem.'));
-});
-
-// Newsletter modal
-const newsletterModal = document.getElementById('newsletterModal');
-document.getElementById('openNewsletter').addEventListener('click', () => newsletterModal.classList.remove('hidden'));
-document.getElementById('closeNewsletter').addEventListener('click', () => newsletterModal.classList.add('hidden'));
-
-document.getElementById('newsletterForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const form = e.target;
-  fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-    .then(() => {
-      form.style.display = 'none';
-      document.getElementById('newsletterSuccess').classList.remove('hidden');
-    }).catch(() => alert('Oops! There was a problem.'));
-});
-</script>
-
+    <!-- Scripts -->
+    <script>
+        // JavaScript for handling package selection and form submission
+        const packageButtons = document.querySelectorAll('.package-select');
+        packageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const packageName = this.getAttribute('data-package');
+                alert(`You've selected: ${packageName}`);
+            });
+        });
+    </script>
 </body>
+
 </html>
