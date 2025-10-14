@@ -25,14 +25,15 @@
   .hero p { color:#ddd; max-width:600px; margin:20px auto; font-size:18px; line-height:1.5; position:relative; z-index:2; }
 
   .section-title { text-align:center; font-size:24px; margin:30px 0 10px; color:#ddd; }
-  .games { display:flex; overflow-x:auto; padding:20px; gap:20px; scroll-snap-type:x mandatory; scroll-padding:20px; scroll-behavior:smooth; }
+  .games { display:flex; overflow-x:auto; padding:20px; gap:20px; scroll-snap-type:x mandatory; scroll-padding:20px; scroll-behavior:smooth; position:relative; }
   .games::-webkit-scrollbar { height:8px; }
   .games::-webkit-scrollbar-track { background:#111; border-radius:10px; }
   .games::-webkit-scrollbar-thumb { background:#444; border-radius:10px; }
   .games::-webkit-scrollbar-thumb:hover { background:#666; }
 
-  .card { flex:0 0 260px; background:#181818; border-radius:20px; padding:20px; box-shadow:0 0 12px rgba(255,255,255,0.1); scroll-snap-align:start; transition:transform 0.3s ease; border:1px solid #333; text-align:center; }
+  .card { flex:0 0 260px; background:#181818; border-radius:20px; padding:20px; box-shadow:0 0 12px rgba(255,255,255,0.1); scroll-snap-align:start; transition:transform 0.3s ease; border:1px solid #333; text-align:center; position:relative; overflow:hidden; }
   .card:hover { transform:translateY(-8px); }
+
   .emoji { font-size:48px; margin-bottom:10px; }
   .card-title { font-size:20px; margin-bottom:15px; font-weight:700; color:#fff; }
 
@@ -56,6 +57,33 @@
   #newsletterModal input[type=text], #newsletterModal input[type=email] { width:80%; padding:10px; border-radius:10px; border:none; margin-bottom:15px; }
   #newsletterModal button { padding:10px 20px; border:none; border-radius:12px; background:#a855f7; color:#fff; cursor:pointer; font-weight:700; }
   #successMessage { display:none; margin-top:10px; color:#a0ffa0; font-weight:bold; }
+
+  /* ACTIVE CARD BORDER-ONLY GLOW */
+  .card.linked::after {
+    content:'';
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    border-radius:20px;
+    border:2px solid #a855f7;
+    pointer-events:none;
+    animation: borderTrace 2s linear infinite, flicker 0.1s infinite alternate;
+    box-sizing:border-box;
+  }
+
+  @keyframes borderTrace {
+    0% { border-color: #a855f7; }
+    25% { border-color: #c77dff; }
+    50% { border-color: #8c52ff; }
+    75% { border-color: #d980fa; }
+    100% { border-color: #a855f7; }
+  }
+
+  @keyframes flicker {
+    0% { opacity:0.6; }
+    50% { opacity:1; }
+    100% { opacity:0.6; }
+  }
 </style>
 </head>
 <body>
@@ -78,13 +106,13 @@
 
 <h2 class="section-title">Latest Drops</h2>
 <section class="games">
-  <div class="card">
+  <div class="card linked">
     <div class="emoji">💌</div>
     <div class="card-title">Should I Text Him</div>
     <a href="shoulditextmyex.html" class="btn">Play Now</a>
   </div>
 
-  <div class="card">
+  <div class="card linked">
     <div class="emoji">🚩</div>
     <div class="card-title">Red Flag Bingo</div>
     <a href="redflagbingo.html" class="btn">Play Now</a>
