@@ -64,18 +64,35 @@ footer a:hover { color:#ccc !important; }
 /* Subscription tile */
 #email-tile { max-width:360px; margin:2rem auto; background:rgba(255,255,255,0.05); border:2px solid var(--purple); border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 0 10px #8b5cf6; }
 #email-tile button { margin-top:0.75rem; background:var(--purple); color:#fff; padding:.6rem 1.25rem; border-radius:8px; font-weight:bold; cursor:pointer; }
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+    margin-right: 1rem;
+  }
+  .nav-link:last-child { margin-right: 0; }
+  .nav-link:hover { color: #a855f7; }
+  @media (min-width: 768px) {
+    nav {
+      justify-content: center;
+      gap: 2rem;
+    }
+    .nav-link { font-size: 1rem; margin-right: 0; }
+  }
 </style>
 </head>
 
 <body>
 
 <!-- NAV -->
-<nav class="px-6 py-4">
-  <a href="/index.html"><i class="fas fa-home"></i> TMI Studios</a>
-  <a href="/lab.html">Lab</a>
-  <a href="/packages.html">Packages</a>
-  <a href="/aboutus.html">About</a>
-  <a href="/contactus.html">Contact</a>
+<nav class="flex flex-nowrap justify-between items-center px-6 py-4 bg-transparent">
+  <a href="/index.html" class="nav-link font-bold text-white whitespace-nowrap">TMI Studios</a>
+  <a href="/lab.html" class="nav-link text-white whitespace-nowrap">Lab</a>
+  <a href="/packages.html" class="nav-link text-white whitespace-nowrap">Packages</a>
+  <a href="/aboutus.html" class="nav-link text-white whitespace-nowrap">About</a>
+  <a href="/contactus.html" class="nav-link text-white whitespace-nowrap">Contact</a>
 </nav>
 
 <!-- HERO -->
