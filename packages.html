@@ -6,48 +6,279 @@
 <title>TMI Studios Packages</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+  body { background: white; color: #1f2937; font-family: 'Helvetica', sans-serif; }
+
   .glass {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 1rem;
+    min-width: 200px;  
+    flex-shrink: 0;
+    padding: 0.8rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
+
+  .package-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .package-price { font-weight: 700; font-size: 1rem; margin: 0.3rem 0; }
+  .package-list { list-style: none; padding: 0; margin: 0.2rem 0 0.6rem; }
+  .package-list li { margin: 0.2rem 0; font-size: 0.95rem; }
+
   .btn-purple {
     background: #5b21b6;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 0.5rem;
     font-weight: 600;
     transition: 0.3s;
+    width: fit-content;
+    margin: 0 auto;
   }
-  .btn-purple:hover {
-    background: #6d28d9;
+  .btn-purple:hover { background: #6d28d9; }
+
+  .scroll-container {
+    display: flex;
+    gap: 0.6rem;
+    overflow-x: auto;
+    padding: 0.6rem 0;
   }
+  .scroll-container::-webkit-scrollbar { height: 5px; }
+  .scroll-container::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }
+
+  /* MODAL */
+  .modal-bg {
+    display: none;
+    position: fixed;
+    inset:0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+  }
+  .modal-content {
+    background: #f9f9fb;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    position: relative;
+  }
+  .modal-content h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .modal-content p { margin-bottom: 1rem; color: #4b5563; }
+
+  .modal-content input {
+    width: 80%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    outline: none;
+  }
+  .modal-content input:focus {
+    border-color: #5b21b6;
+    box-shadow: 0 0 0 2px rgba(91,33,182,0.2);
+  }
+
+  .modal-content .btn-close {
+    background: #f87171;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+
 </style>
 </head>
-<body class="bg-white text-gray-900 font-sans">
+<body>
 
-<!-- HEADER -->
-<header class="text-center py-10">
+<header class="text-center py-8">
   <h1 class="text-4xl font-bold mb-2">TMI Studios Packages</h1>
   <p class="text-lg text-gray-600">Design, Web, Socials & More — built to make you stand out ✨</p>
 </header>
 
-<!-- MAIN SECTION -->
-<main class="px-6 md:px-16 pb-16 space-y-16">
+<!-- HERO CTA -->
+<section class="py-12 px-6 flex flex-col items-center text-center">
+  <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's Build Your Viral Strategy 🚀</h2>
+  <p class="text-lg text-gray-600 mb-6">From branding to games and social campaigns, we craft strategies that make you stand out.</p>
+
+  <!-- Centralized Buttons -->
+  <div class="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
+    <button class="btn-purple transition-transform transform hover:scale-105 hover:shadow-lg">Get Started</button>
+  </div>
+</section>
+<main class="px-6 md:px-16 pb-16 space-y-12">
 
   <!-- BRANDING -->
   <section>
-    <h2 class="text-3xl font-semibold mb-6 text-center">🎨 Branding Packages</h2> <div class="flex gap-6 overflow-x-auto py-4"> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">BASIC</h3> <ul> <li>Logo</li> <li>Business Cards</li> <li>Email Signature</li> </ul> <p class="font-bold mb-4">R450</p> <button class="btn-purple package-select" data-package="BASIC: Logo, Business Cards, Email Signature – R450">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">PRO</h3> <ul> <li>BASIC + Letterhead</li> <li>Social Media Profiles</li> <li>Brand Guide</li> </ul> <p class="font-bold mb-4">R1,150</p> <button class="btn-purple package-select" data-package="PRO: Basic + Letterhead, Social Media Profiles, Brand Guide – R1150">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">PREMIUM</h3> <ul> <li>Full Kit + Flyers</li> <li>Pitch Deck</li> <li>Editable Canva Kits</li> </ul> <p class="font-bold mb-4">Contact for Pricing</p> <button class="btn-purple package-select" data-package="PREMIUM: Full kit + Flyers, Pitch Deck, Editable Canva Kits">Select</button> </div> </div> <!-- Website / App Packages --> <h2 class="text-3xl font-semibold my-6 text-center">📲 Website / App Packages</h2> <div class="flex gap-6 overflow-x-auto py-4"> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Starter Site</h3> <ul> <li>1 Page / Landing Page</li> <li>Mobile Responsive</li> <li>Contact Form</li> </ul> <p class="font-bold mb-4">R3,500</p> <button class="btn-purple package-select" data-package="Starter Site: 1 Page / Landing Page, Mobile Responsive, Contact Form – R3500">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Business Site</h3> <ul> <li>5 Page Site</li> <li>Blog Setup</li> <li>SEO Optimized</li> </ul> <p class="font-bold mb-4">R7,500</p> <button class="btn-purple package-select" data-package="Business Site: 5 Page Site, Blog Setup, SEO Optimized – R7500">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">E-commerce Site</h3> <ul> <li>Product Catalog</li> <li>Cart & Checkout</li> <li>Payment Integration</li> </ul> <p class="font-bold mb-4">R12,500</p> <button class="btn-purple package-select" data-package="E-commerce Site: Product Catalog, Cart & Checkout, Payment Integration – R12500">Select</button> </div> </div> <!-- Social Media Packages --> <h2 class="text-3xl font-semibold my-6 text-center">📱 Social Media Marketing</h2> <div class="flex gap-6 overflow-x-auto py-4"> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Starter</h3> <ul> <li>Instagram Only</li> <li>5 Posts / Week</li> <li>Basic Captions</li> </ul> <p class="font-bold mb-4">R3,500 / month</p> <button class="btn-purple package-select" data-package="Starter: Instagram Only, 5 Posts / Week, Basic Captions – R3500 / month">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Growth</h3> <ul> <li>Instagram & Facebook</li> <li>10 Posts / Week</li> <li>Engagement Strategy</li> </ul> <p class="font-bold mb-4"><p class="font-bold mb-4">R5,000 / month</p> <button class="btn-purple package-select" data-package="Growth: Instagram & Facebook, 10 Posts / Week, Engagement Strategy – R5000 / month">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Pro</h3> <ul> <li>Instagram, Facebook & TikTok</li> <li>Full Content Calendar</li> <li>Paid Ad Campaigns</li> </ul> <p class="font-bold mb-4">R9,500 / month</p> <button class="btn-purple package-select" data-package="Pro: Instagram, Facebook & TikTok, Full Content Calendar, Paid Ad Campaigns – R9500 / month">Select</button> </div> </div> <!-- Arcade / Games Packages --> <h2 class="text-3xl font-semibold my-6 text-center">🎮 TMI Arcade</h2> <div class="flex gap-6 overflow-x-auto py-4"> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Mini Game</h3> <ul> <li>Quiz / Party Meme Game</li> <li>Branded Memes</li> <li>Mobile & Desktop Friendly</li> </ul> <p class="font-bold mb-4">from R10,000</p> <button class="btn-purple package-select" data-package="Mini Game: Quiz / Party Meme Game – from R10,000">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Standard Game</h3> <ul> <li>Custom Shooter Game</li> <li>Multi-Level</li> <li>Mini Challenges</li> </ul> <p class="font-bold mb-4">from R15,000</p> <button class="btn-purple package-select" data-package="Standard Game: Custom Shooter Game – from R15,000">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Premium Game</h3> <ul> <li>Endless Runner Game</li> <li>Fully Branded Experience</li> <li>Advanced Mechanics & Rewards</li> </ul> <p class="font-bold mb-4">from R40,000</p> <button class="btn-purple package-select" data-package="Premium Game: Endless Runner Game – from R40,000">Select</button> </div> </div> <!-- Advertising Packages --> <h2 class="text-3xl font-semibold my-6 text-center">🚀 Viral Advertising</h2> <div class="flex gap-6 overflow-x-auto py-4"> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Basic</h3> <ul> <li>1 Branded Meme</li> <li>Placed in Social Media Ad</li> </ul> <p class="font-bold mb-4">R8,000</p> <button class="btn-purple package-select" data-package="Basic Advertising: 1 Branded Meme, Social Media Ad – R8,000">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Pro</h3> <ul> <li>Full Meme Campaign</li> <li>Paid Ads</li> <li>Branded Memes</li> </ul> <p class="font-bold mb-4">R15,000</p> <button class="btn-purple package-select" data-package="Pro Advertising: Full Meme Campaign, Paid Ads, Branded Memes – R15,000">Select</button> </div> <div class="glass p-6 rounded-xl min-w-[250px] flex-shrink-0 text-center"> <h3 class="text-xl font-bold mb-2">Max</h3> <ul> <li>Pro Package + <br> Meme in Party Game / <br> Viral Quiz</li> </ul> <p class="font-bold mb-4">R25,000</p> <button class="btn-purple package-select" data-package="Max Advertising: Pro + Meme in Party Game / Viral Quiz – R25,000">Select</button>
+    <h2 class="text-3xl font-semibold mb-4 text-center">🎨 Branding Packages</h2>
+    <div class="scroll-container">
+      <div class="glass">
+        <h3 class="package-title">BASIC</h3>
+        <ul class="package-list"><li>Logo</li><li>Business Cards</li><li>Email Signature</li></ul>
+        <p class="package-price">R450</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">PRO</h3>
+        <ul class="package-list"><li>BASIC + Letterhead</li><li>Social Media Profiles</li><li>Brand Guide</li></ul>
+        <p class="package-price">R1,150</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">PREMIUM</h3>
+        <ul class="package-list"><li>Full Kit + Flyers</li><li>Pitch Deck</li><li>Editable Canva Kits</li></ul>
+        <p class="package-price">Contact</p>
+        <button class="btn-purple">Select</button>
       </div>
     </div>
   </section>
 
+  <!-- WEBSITE / APP -->
+  <section>
+    <h2 class="text-3xl font-semibold mb-4 text-center">📲 Website / App Packages</h2>
+    <div class="scroll-container">
+      <div class="glass">
+        <h3 class="package-title">Google My Business</h3>
+        <ul class="package-list"><li>Business Profile Setup</li><li>Photos & Description</li><li>Basic SEO</li></ul>
+        <p class="package-price">R1,200</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">Starter Site</h3>
+        <ul class="package-list"><li>1 Page / Landing Page</li><li>Mobile Responsive</li><li>Contact Form</li></ul>
+        <p class="package-price">R3,500</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">Business Site</h3>
+        <ul class="package-list"><li>5 Page Site</li><li>Blog Setup</li><li>SEO Optimized</li></ul>
+        <p class="package-price">R7,500</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">E-commerce Site</h3>
+        <ul class="package-list"><li>Product Catalog</li><li>Cart & Checkout</li><li>Payment Integration</li></ul>
+        <p class="package-price">R12,500</p>
+        <button class="btn-purple">Select</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL MEDIA -->
+  <section>
+    <h2 class="text-3xl font-semibold mb-4 text-center">📱 Social Media Marketing</h2>
+    <div class="scroll-container">
+      <div class="glass">
+        <h3 class="package-title">Starter</h3>
+        <ul class="package-list"><li>Instagram Only</li><li>5 Posts / Week</li><li>Basic Captions</li></ul>
+        <p class="package-price">R3,500 / month</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">Growth</h3>
+        <ul class="package-list"><li>Instagram & Facebook</li><li>10 Posts / Week</li><li>Engagement Strategy</li></ul>
+        <p class="package-price">R5,000 / month</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">Pro</h3>
+        <ul class="package-list"><li>Instagram, Facebook & TikTok</li><li>Full Content Calendar</li><li>Paid Ad Campaigns</li></ul>
+        <p class="package-price">R9,500 / month</p>
+        <button class="btn-purple">Select</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCADE / GAMES -->
+  <section>
+    <h2 class="text-3xl font-semibold mb-4 text-center">🎮 TMI Arcade</h2>
+    <div class="scroll-container">
+      <div class="glass">
+        <h3 class="package-title">Mini Game</h3>
+        <ul class="package-list"><li>Quiz / Party Meme Game</li><li>Branded Memes</li><li>Mobile & Desktop Friendly</li></ul>
+        <p class="package-price">from R10,000</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">Standard Game</h3>
+        <ul class="package-list"><li>Custom Shooter Game</li><li>Multi-Level</li><li>Mini Challenges</li></ul>
+        <p class="package-price">from R15,000</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">Premium Game</h3>
+        <ul class="package-list"><li>Endless Runner Game</li><li>Fully Branded Experience</li><li>Advanced Mechanics & Rewards</li></ul>
+        <p class="package-price">from R40,000</p>
+        <button class="btn-purple">Select</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVERTISING -->
+  <section>
+    <h2 class="text-3xl font-semibold mb-4 text-center">🚀 Viral Advertising</h2>
+    <div class="scroll-container">
+      <div class="glass">
+        <h3 class="package-title">Basic</h3>
+        <ul class="package-list"><li>1 Branded Meme</li><li>Placed in Social Media Ad</li></ul>
+        <p class="package-price">R8,000</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">Pro</h3>
+        <ul class="package-list"><li>Full Meme Campaign</li><li>Paid Ads</li><li>Branded Memes</li></ul>
+        <p class="package-price">R15,000</p>
+        <button class="btn-purple">Select</button>
+      </div>
+      <div class="glass">
+        <h3 class="package-title">Max</h3>
+        <ul class="package-list"><li>Pro Package + Meme in Party Game / Viral Quiz</li></ul>
+        <p class="package-price">R25,000</p>
+        <button class="btn-purple">Select</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL SUBSCRIPTION -->
+  <section class="text-center">
+    <h2 class="text-2xl font-semibold mb-4">Subscribe to Our Newsletter</h2>
+    <button id="openModal" class="btn-purple">Subscribe</button>
+  </section>
+
 </main>
 
-<!-- FOOTER -->
+<!-- EMAIL MODAL -->
+<div class="modal-bg" id="emailModal">
+  <div class="modal-content">
+    <div style="position:absolute; top:-15px; right:-15px;">
+      <button class="btn-close" id="closeModal">&times;</button>
+    </div>
+    <h3>Stay in the Loop!</h3>
+    <p>Sign up for our latest packages, offers & insights.</p>
+    <input type="email" placeholder="Your email address">
+    <br>
+    <button class="btn-purple">Subscribe</button>
+  </div>
+</div>
+
 <footer class="bg-gray-100 text-gray-700 text-center py-6">
   <p>&copy; 2025 TMI Studios. All Rights Reserved.</p>
 </footer>
+
+<script>
+  const openModal = document.getElementById('openModal');
+  const closeModal = document.getElementById('closeModal');
+  const modal = document.getElementById('emailModal');
+  openModal.addEventListener('click', () => { modal.style.display = 'flex'; });
+  closeModal.addEventListener('click', () => { modal.style.display = 'none'; });
+</script>
 
 </body>
 </html>
