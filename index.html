@@ -6,7 +6,6 @@
   <title>TMI Studios | Viral Web Design, Branding & Interactive Experiences</title>
   <meta name="description" content="TMI Studios builds viral websites, games, and branding experiences that grab attention and engage Gen Z audiences. Based in South Africa.">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0d0d1a">
 
   <!-- Open Graph / Twitter Meta Tags -->
   <meta property="og:title" content="TMI Studios | Viral Design Studio">
@@ -37,7 +36,7 @@
     "sameAs": [
       "https://instagram.com/tmi_studios",
       "https://tiktok.com/@tmi_studios",
-      "https://www.facebook.com/share/15HZAd34yak/"
+      "https://facebook.com/tmistudios"
     ],
     "description": "We build viral websites, games, and brand experiences for digital-first brands and startups."
   }
@@ -53,40 +52,35 @@
       position: relative;
     }
 
-    /* Nav */
+    /* NAVIGATION */
     nav {
-      background: transparent;
-      z-index: 20;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      z-index: 10;
       position: relative;
     }
-    nav ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      list-style: none;
-      margin: 0;
-      padding: 1rem 0;
-      gap: 2rem;
-    }
-    nav a {
+    .nav-link {
       color: #fff;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
+      font-size: 0.875rem;
+      flex-shrink: 1;
+      white-space: nowrap;
       transition: color 0.3s ease;
     }
-    nav a:hover {
-      color: #a855f7;
+    .nav-link:hover { color: #a855f7; }
+    @media (min-width: 768px) {
+      nav { justify-content: center; gap: 1.5rem; }
+      .nav-link { font-size: 1rem; }
     }
 
-    /* Hero */
-    .home-slogan {
-      font-size: 1.5rem;
-      color: #fff;
-      text-shadow: 0 0 8px #a855f7;
-      font-weight: bold;
-      margin-top: 1rem;
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .custom-btn {
       display: inline-block;
       padding: 0.75rem 1.5rem;
@@ -96,30 +90,9 @@
       text-decoration: none;
       border-radius: 6px;
       transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
     }
-    .custom-btn:hover {
-      background-color: #9333ea;
-      color: white;
-    }
-
-    /* Footer */
-    .footer-link {
-      color: #666;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-link:hover {
-      color: #fff;
-    }
-
-    /* Glass effect */
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* Sparkle canvas */
+    .custom-btn:hover { background-color: #9333ea; }
     #sparkleCanvas {
       position: fixed;
       top: 0;
@@ -129,30 +102,18 @@
       pointer-events: none;
       z-index: 0;
     }
-
-    /* Robot animation section */
-    .running-robot-section {
-      height: 120px;
-      overflow: hidden;
-      position: relative;
+    .home-slogan {
+      font-size: 1.25rem;
+      color: #fff;
+      text-shadow: 0 0 8px #a855f7;
+      font-weight: bold;
+      margin-top: 1rem;
     }
-
-    /* Speech bubble */
-    .speech-bubble {
-      background: #fff;
-      border-radius: 15px;
-      padding: 8px 12px;
-      font-size: 0.8rem;
-      color: #000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      position: relative;
-      margin-left: 8px;
-      max-width: 140px;
+    .footer-link {
+      color: #666;
+      text-decoration: none;
     }
-
-    @media (min-width: 768px) {
-      .home-slogan { font-size: 2rem; }
-    }
+    .footer-link:hover { text-decoration: underline; }
   </style>
 </head>
 
@@ -161,31 +122,26 @@
 
 <!-- NAV -->
 <nav>
-  <ul>
-    <li><a href="/arcade.html">Arcade</a></li>
-    <li><a href="/packages.html">Packages</a></li>
-    <li><a href="/lab.html">Lab</a></li>
-    <li><a href="/aboutus.html">About</a></li>
-    <li><a href="/contactus.html">Contact</a></li>
-  </ul>
+  <a href="/arcade.html" class="nav-link">Arcade</a>
+  <a href="/packages.html" class="nav-link">Packages</a>
+  <a href="/lab.html" class="nav-link">Lab</a>
+  <a href="/aboutus.html" class="nav-link">About</a>
+  <a href="/contactus.html" class="nav-link">Contact</a>
 </nav>
 
 <!-- HERO -->
 <section class="text-center px-4 py-16">
-  <h1 class="text-4xl md:text-5xl font-extrabold mt-6">Viral Web Design, Branding & Interactive Experiences</h1>
-  <img src="images/tmihero.jpeg" alt="TMI Studios Hero Banner" class="mx-auto mb-4" width="800" height="400" loading="lazy"/>
-  <p class="home-slogan">TMI Studios — Innovation that breaks feeds, not budgets.</p>
-  <p class="text-lg md:text-xl max-w-xl text-gray-300 mx-auto mt-4">
-    We build websites, branding, and fun interactive content that wins attention — softly.
-  </p>
+  <img src="images/tmihero.jpeg" alt="TMI Studios Hero Banner" class="mx-auto mb-4" width="800" height="400"/>
+  <h1 class="home-slogan text-3xl font-bold">Viral Web Design, Branding & Interactive Experiences.</h1>
+  <p>We build websites, branding and fun, interactive content that wins attention.</p>
 </section>
 
 <!-- ROBOT ANIMATION -->
-<section class="running-robot-section my-12">
+<section class="running-robot-section my-12" style="height: 120px; overflow: hidden; position: relative;">
   <div class="robot-container" style="position: absolute; top: 10px; left: -150px; display: flex; align-items: center; transform: translateX(0); transition: transform 0.1s linear;">
-    <img src="images/robot.jpeg" alt="Running Robot" class="robot robot-before" style="width: 80px; height: auto;" loading="lazy"/>
-    <img src="images/robot2.jpeg" alt="Crashed Robot" class="robot robot-after" style="width: 80px; height: auto; display: none;" loading="lazy"/>
-    <div class="speech-bubble">
+    <img src="images/robot.jpeg" alt="Running Robot" class="robot robot-before" style="width: 80px; height: auto;" />
+    <img src="images/robot2.jpeg" alt="Crashed Robot" class="robot robot-after" style="width: 80px; height: auto; display: none;" />
+    <div class="speech-bubble" style="background: #fff; border-radius: 15px; padding: 8px 12px; font-size: 0.8rem; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: relative; margin-left: 8px; max-width: 140px;">
       <p>On my way to<br>invent the next<br>viral experience…</p>
     </div>
   </div>
@@ -200,26 +156,26 @@
 <!-- SUB-STUDIO TILES -->
 <section class="grid md:grid-cols-3 gap-8 mt-24 px-6 max-w-6xl mx-auto" data-aos="fade-up">
   <div class="glass p-6 rounded-xl text-center">
-    <img src="images/tmigraphix.jpeg" alt="TMI Graphix Logo and Branding Services" class="mx-auto mb-2" width="240" height="160" loading="lazy"/>
+    <img src="images/tmigraphix.jpeg" alt="TMI Graphix Logo and Branding Services" class="mx-auto mb-2" width="240" height="160"/>
     <p class="text-gray-300 mb-4">Business branding from logo to launch — we design logos, business cards, flyers, pitch decks & more.</p>
-    <a href="/packages.html" class="custom-link">Explore Branding Packages</a>
+    <a href="/packages.html" class="nav-link">Explore Branding Packages</a>
   </div>
+
   <div class="glass p-6 rounded-xl text-center">
-    <img src="images/tmiweb.jpeg" alt="TMI Web Design Studio" class="mx-auto mb-2" width="240" height="160" loading="lazy"/>
+    <img src="images/tmiweb.jpeg" alt="TMI Web Design Studio" class="mx-auto mb-2" width="240" height="160"/>
     <p class="text-gray-300 mb-4">We build sleek, fast-loading websites and custom platforms that convert — from landing pages to full e-commerce stores.</p>
-    <a href="/packages.html" class="custom-link">Explore Website / App Packages</a>
+    <a href="/packages.html" class="nav-link">Explore Website / App Packages</a>
   </div>
+
   <div class="glass p-4 rounded-xl text-center opacity-80">
-    <img src="images/tmiarcade.jpeg" alt="TMI Arcade Games and Viral Experiences" class="mx-auto mb-2" width="240" height="160" loading="lazy"/>
+    <img src="images/tmiarcade.jpeg" alt="TMI Arcade Games and Viral Experiences" class="mx-auto mb-2" width="240" height="160"/>
     <p class="text-gray-500 mb-4">Gen Z-ready party games and viral quizzes that double as soft advertising. Engage your audience while secretly selling to them.</p>
-    <a href="/arcade.html" class="custom-link">Enter Arcade</a>
+    <a href="/arcade.html" class="nav-link">Enter Arcade</a>
   </div>
 </section>
 
 <!-- BOOKING CTA -->
 <section class="text-center px-6 py-16">
-  <h2 class="text-2xl font-bold mb-4">🚀 Ready to elevate your brand?</h2>
-  <p class="text-gray-300 mb-6">Let’s create something unforgettable together.</p>
   <button id="bookCTA" class="custom-btn">Book a free strategy call</button>
 
   <div id="ctaModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 opacity-0 scale-95 pointer-events-none transition-all duration-300">
@@ -243,19 +199,17 @@
 <footer class="bg-black text-center text-sm text-gray-400 py-8">
   <div class="mb-3">
     <span class="mr-2">Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" aria-label="TMI TikTok" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
       <i class="fab fa-tiktok"></i>
     </a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" aria-label="TMI WhatsApp" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
       <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://www.facebook.com/share/15HZAd34yak/" target="_blank" rel="noopener" aria-label="TMI Facebook" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
+    <a href="https://facebook.com/tmistudios" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
       <i class="fab fa-facebook"></i>
     </a>
   </div>
   <p class="text-gray-400">&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html" class="footer-link">Need a website or viral design? Let's build it!</a></p>
-  <p><a href="/arcade.html" class="footer-link">Arcade</a></p>
 </footer>
 
 <!-- Scripts -->
@@ -263,117 +217,87 @@
 <script>AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });</script>
 
 <script>
-  // Sparkle Canvas
-  const canvas = document.getElementById('sparkleCanvas');
-  const ctx = canvas.getContext('2d');
-  let width, height, sparkles = [];
-  function resizeCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+const canvas = document.getElementById('sparkleCanvas');
+const ctx = canvas.getContext('2d');
+let width, height, sparkles = [];
+function resizeCanvas() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+for (let i=0;i<100;i++){sparkles.push({x:Math.random()*width,y:Math.random()*height,r:Math.random()*1.5+0.5,alpha:Math.random(),delta:Math.random()*0.02});}
+function draw(){ctx.clearRect(0,0,width,height);sparkles.forEach(s=>{s.alpha+=s.delta;if(s.alpha<=0||s.alpha>=1)s.delta=-s.delta;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${s.alpha})`;ctx.fill();});requestAnimationFrame(draw);}
+draw();
+</script>
+
+<script>
+const robotContainer = document.querySelector(".robot-container");
+const robotBefore = robotContainer.querySelector(".robot-before");
+const robotAfter = robotContainer.querySelector(".robot-after");
+const bubble = robotContainer.querySelector(".speech-bubble p");
+let posX = -150, speed = 2, crashed = false, stopped = false;
+
+function createExplosion() {
+  const explosion = document.createElement("div");
+  explosion.classList.add("explosion");
+  const robotRect = robotContainer.getBoundingClientRect();
+  explosion.style.left = `${robotRect.left + 50}px`;
+  explosion.style.top = `${robotRect.top + 30 + window.scrollY}px`;
+  document.body.appendChild(explosion);
+  setTimeout(()=>explosion.remove(),800);
+}
+
+function stopAnimation() {
+  stopped = true;
+  document.querySelector(".running-robot-section").innerHTML = `
+    <a href="/lab.html" class="nav-link">
+      Follow our clumsy bot to see what's cooking in the <strong>Lab →</strong>
+    </a>`;
+}
+
+function update() {
+  if(stopped) return;
+  if(!crashed){posX+=speed;robotContainer.style.transform=`translateX(${posX}px)`;}
+  const crashPoint = window.innerWidth*0.5;
+  if(!crashed && robotContainer.getBoundingClientRect().left>crashPoint){
+    crashed=true;speed=0;createExplosion();robotBefore.style.display="none";robotAfter.style.display="block";bubble.innerHTML=`I'm okay`;setTimeout(stopAnimation,2000);return;
   }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-  for (let i = 0; i < 100; i++) {
-    sparkles.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 1.5 + 0.5, alpha: Math.random(), delta: Math.random() * 0.02 });
-  }
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-    sparkles.forEach(s => {
-      s.alpha += s.delta;
-      if (s.alpha <= 0 || s.alpha >= 1) s.delta = -s.delta;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
+  requestAnimationFrame(update);
+}
+update();
+</script>
 
-  // Robot animation
-  const robotContainer = document.querySelector(".robot-container");
-  const robotBefore = robotContainer.querySelector(".robot-before");
-  const robotAfter = robotContainer.querySelector(".robot-after");
-  const bubble = robotContainer.querySelector(".speech-bubble p");
-  let posX = -150, speed = 2, crashed = false, stopped = false;
+<script>
+const bookBtn = document.getElementById('bookCTA');
+const modal = document.getElementById('ctaModal');
+const closeModal = document.getElementById('closeModal');
 
-  function createExplosion() {
-    const explosion = document.createElement("div");
-    explosion.classList.add("explosion");
-    const robotRect = robotContainer.getBoundingClientRect();
-    explosion.style.left = `${robotRect.left + 50}px`;
-    explosion.style.top = `${robotRect.top + 30 + window.scrollY}px`;
-    document.body.appendChild(explosion);
-    setTimeout(() => explosion.remove(), 800);
-  }
+function openModal() {
+  modal.classList.remove('opacity-0','scale-95','pointer-events-none');
+  modal.classList.add('opacity-100','scale-100');
+}
+function closeModalFunc() {
+  modal.classList.add('opacity-0','scale-95','pointer-events-none');
+  modal.classList.remove('opacity-100','scale-100');
+}
+bookBtn.addEventListener('click',openModal);
+closeModal.addEventListener('click',closeModalFunc);
+modal.addEventListener('click',(e)=>{if(e.target===modal) closeModalFunc();});
+</script>
 
-  function stopAnimation() {
-    stopped = true;
-    document.querySelector(".running-robot-section").innerHTML = `
-      <a href="/lab.html" class="custom-link">
-        Follow our clumsy bot to see what she's cooking up in the <strong>Lab →</strong>
-      </a>`;
-  }
-
-  function update() {
-    if (stopped) return;
-    if (!crashed) {
-      posX += speed;
-      robotContainer.style.transform = `translateX(${posX}px)`;
-    }
-    const crashPoint = window.innerWidth * 0.5;
-    if (!crashed && robotContainer.getBoundingClientRect().left > crashPoint) {
-      crashed = true;
-      speed = 0;
-      createExplosion();
-      robotBefore.style.display = "none";
-      robotAfter.style.display = "block";
-      bubble.innerHTML = `I'm okay`;
-      setTimeout(stopAnimation, 2000);
-      return;
-    }
-    requestAnimationFrame(update);
-  }
-  update();
-
-  // Modal
-  const bookBtn = document.getElementById('bookCTA');
-  const modal = document.getElementById('ctaModal');
-  const closeModal = document.getElementById('closeModal');
-
-  function openModal() {
-    modal.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-    modal.classList.add('opacity-100', 'scale-100');
-  }
-
-  function closeModalFunc() {
-    modal.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-    modal.classList.remove('opacity-100', 'scale-100');
-  }
-
-  bookBtn.addEventListener('click', openModal);
-  closeModal.addEventListener('click', closeModalFunc);
-  modal.addEventListener('click', (e) => { if(e.target===modal) closeModalFunc(); });
-
-  // Booking form
-  const bookingForm = document.getElementById('bookingForm');
-  const bookingSuccess = document.getElementById('bookingSuccess');
-
-  bookingForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const formData = new FormData(bookingForm);
-    try {
-      const response = await fetch(bookingForm.action, { method: 'POST', body: formData, headers: {'Accept': 'application/json' } });
-      if (response.ok) {
-        bookingSuccess.style.display = 'block';
-        bookingForm.reset();
-      } else {
-        alert('Oops! Something went wrong. Please try again.');
-      }
-    } catch (error) {
-      alert('Error submitting form. Please try again later.');
-    }
-  });
+<script>
+const bookingForm = document.getElementById('bookingForm');
+const bookingSuccess = document.getElementById('bookingSuccess');
+bookingForm.addEventListener('submit',async function(e){
+  e.preventDefault();
+  const formData = new FormData(bookingForm);
+  try {
+    const response = await fetch(bookingForm.action,{method:'POST',body:formData,headers:{'Accept':'application/json'}});
+    if(response.ok){bookingSuccess.style.display='block';bookingForm.reset();}
+    else{alert('Oops! Something went wrong. Please try again.');}
+  } catch(error){alert('Error submitting form. Please try again later.');}
+});
 </script>
 
 </body>
