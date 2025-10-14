@@ -5,24 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About TMI Studios</title>
   <meta name="description" content="Meet TMI Studios: a creative lab building weird websites, viral games, and scroll-breaking digital campaigns that don’t do boring." />
+  
+  <!-- Open Graph -->
   <meta property="og:title" content="About TMI Studios" />
   <meta property="og:description" content="Too Many Ideas? Nah, just the right amount. We make viral digital stuff that actually sticks." />
   <meta property="og:image" content="https://www.tmistudios.xyz/tmihero.jpeg" />
   <meta property="og:url" content="https://www.tmistudios.xyz/aboutus.html" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- SEO JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TMI Studios",
+    "url": "https://www.tmistudios.xyz",
+    "logo": "https://www.tmistudios.xyz/tmihero.jpeg",
+    "founder": {
+      "@type": "Person",
+      "name": "Buyi Mncube"
+    },
+    "sameAs": [
+      "https://www.tiktok.com/@tmistudios",
+      "https://www.whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"
+    ],
+    "description": "TMI Studios is a creative lab building weird websites, viral games, and scroll-breaking digital campaigns that don’t do boring."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About TMI Studios",
+    "url": "https://www.tmistudios.xyz/aboutus.html",
+    "description": "Learn about TMI Studios, a one-person digital lab creating viral games, interactive campaigns, and sticky websites that grab attention.",
+    "inLanguage": "en",
+    "publisher": {
+      "@type": "Organization",
+      "name": "TMI Studios",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.tmistudios.xyz/tmihero.jpeg"
+      }
+    }
+  }
+  </script>
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Styles -->
   <style>
     body {
       margin: 0;
-      background: #0d0d0d;
-      color: #f3f3f3;
+      background: #fff;
+      color: #1f2937;
       font-family: 'Segoe UI', sans-serif;
     }
 
     nav {
-      background-color: #0d0d1a;
+      background-color: #1f2937;
       color: white;
       padding: 16px 24px;
       display: flex;
@@ -51,7 +95,7 @@
       font-size: 1.1rem;
       line-height: 1.6;
       margin-bottom: 1.4rem;
-      color: #e2e2e2;
+      color: #1f2937;
     }
 
     .fun-list {
@@ -63,7 +107,7 @@
       margin: 0.5rem 0;
       padding-left: 1.2rem;
       font-weight: bold;
-      color: #fff;
+      color: #1f2937;
       transition: transform 0.2s ease;
     }
 
@@ -74,7 +118,7 @@
     .glitch-title {
       font-size: 3rem;
       font-weight: 800;
-      color: #fff;
+      color: #1f2937;
       position: relative;
       display: inline-block;
       margin-bottom: 2rem;
@@ -146,8 +190,8 @@
     }
 
     footer {
-      background-color: black;
-      color: #666;
+      background-color: #1f2937;
+      color: #e5e7eb;
       text-align: center;
       padding: 30px 20px;
       font-size: 14px;
@@ -262,7 +306,7 @@
       <span class="close" onclick="closeModal()">&times;</span>
       <h2>Subscribe / Book a Project</h2>
       <p id="selectionRecap" style="font-weight:bold; margin-bottom:10px;"></p>
-      <form id="form" action="https://formspree.io/f/xyznzwdg" method="POST">
+      <form id="form" action="https://formspree.io/f/manpnobz" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <input type="text" name="package" id="packageInput" style="display:none;" />
@@ -274,21 +318,22 @@
 
   <!-- FOOTER -->
   <footer class="bg-black text-center text-sm text-gray-400 py-8">
-  <div class="mb-3">
-    <span class="mr-2">Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
-      <i class="fab fa-tiktok"></i>
-    </a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-  </div>
+    <div class="mb-3">
+      <span class="mr-2">Follow us:</span>
+      <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
 
-  <p class="text-gray-400">&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html" class="text-gray-400 hover:text-gray-100">Need a website or viral design? Let's build it!</a></p>
-  <p><a href="/arcade.html" class="text-gray-400 hover:text-gray-100">Arcade</a></p>
-</footer>
+    <p class="text-gray-400">&copy; 2025 TMI Studios. All rights reserved.</p>
+    <p><a href="/contactus.html" class="text-gray-400 hover:text-gray-100">Need a website or viral design? Let's build it!</a></p>
+    <p><a href="/arcade.html" class="text-gray-400 hover:text-gray-100">Arcade</a></p>
+  </footer>
 
+  <!-- MODAL SCRIPT -->
   <script>
     const modal = document.getElementById('actionModal');
     const form = document.getElementById('form');
