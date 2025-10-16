@@ -2,57 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TMI Studios | Viral Web Design, Branding & Interactive Experiences</title>
-  <meta name="description" content="TMI Studios builds viral websites, games, and branding experiences that grab attention and engage Gen Z audiences. Based in South Africa.">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph / Twitter Meta Tags -->
-  <meta property="og:title" content="TMI Studios | Viral Design Studio">
-  <meta property="og:description" content="Viral quizzes, stunning websites, and next-gen branding by TMI Studios.">
-  <meta property="og:image" content="https://www.tmistudios.xyz/tmihero.jpeg">
-  <meta property="og:url" content="https://www.tmistudios.xyz">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Favicon & Canonical -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="canonical" href="https://www.tmistudios.xyz/">
-
-  <!-- Fonts & CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TMI Studios — Code. Chaos. Cool.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "TMI Studios",
-    "url": "https://www.tmistudios.xyz",
-    "logo": "https://www.tmistudios.xyz/logo.jpeg",
-    "sameAs": [
-      "https://instagram.com/tmi_studios",
-      "https://tiktok.com/@tmi_studios",
-      "https://facebook.com/tmistudios"
-    ],
-    "description": "We build viral websites, games, and brand experiences for digital-first brands and startups."
-  }
-  </script>
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      color: #fff;
-      background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000 100%);
-      overflow-x: hidden;
-      position: relative;
+    :root {
+      --bg: #0b0015;
+      --accent: #b388ff;
+      --accent2: #a855f7;
+      --text: #f4f4f4;
+      --muted: #c0bcd0;
+      --font: 'Space Grotesk', sans-serif;
+      --footer-bg: radial-gradient(circle at top left, #1b0036, #0b0015);
+      --footer-link: #bfa3ff;
     }
 
-    /* NAVIGATION */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    canvas#stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
     nav {
       display: flex;
       flex-wrap: nowrap;
@@ -67,171 +51,175 @@
       font-weight: 500;
       font-size: 0.875rem;
       flex-shrink: 1;
-      white-space: nowrap;
       transition: color 0.3s ease;
     }
-    .nav-link:hover { color: #a855f7; }
+    .nav-link:hover { color: var(--accent2); }
+
     @media (min-width: 768px) {
       nav { justify-content: center; gap: 1.5rem; }
       .nav-link { font-size: 1rem; }
     }
 
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
     }
-    .custom-btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: #a855f7;
-      color: white;
-      font-weight: bold;
+
+    .robot-wrap {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
+
+    .robot {
+      width: 160px;
+      filter: drop-shadow(0 0 25px var(--accent));
+    }
+
+    .title { font-size: 3rem; margin-top: 1rem; color: var(--text); }
+    .title::after {
+      content:" "; position:absolute; left:0; bottom:-4px; width:100%; height:2px;
+      background: var(--accent); opacity:0.5;
+    }
+    .subtitle { font-size: 1.2rem; color: var(--muted); margin-top: 0.4rem; }
+
+    .cta-group { margin-top: 2rem; display:flex; gap:1rem; }
+    .btn {
+      text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 50px;
+      font-weight: 600; transition: all 0.3s;
+    }
+    .btn.primary { background: var(--accent); color: var(--bg); }
+    .btn.primary:hover { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    .btn.secondary { border: 2px solid var(--accent); color: var(--accent); }
+    .btn.secondary:hover { background: var(--accent); color: var(--bg); }
+
+    section { padding: 6rem 10%; max-width: 1200px; margin:auto; text-align:center; }
+    h2 { font-size: 2rem; margin-bottom:1rem; color: var(--accent2); }
+    p { line-height:1.6; margin-bottom:1rem; color: var(--text); }
+
+    .projects {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:2rem; margin-top:3rem;
+    }
+    .project {
+      background: rgba(255,255,255,0.05);
+      padding:1.5rem; border-radius:12px;
+      transition:transform 0.3s,background 0.3s;
+      position:relative; overflow:hidden;
+    }
+    .project:hover { transform:translateY(-5px); background:rgba(255,255,255,0.08); }
+    .project img { width:100%; border-radius:10px; margin-bottom:1rem; filter:brightness(0.9); }
+    .project h3 { color: var(--accent2); font-size:1.3rem; margin-bottom:0.5rem; }
+
+    .footer {
+      text-align:center;
+      padding:3rem 1rem;
+      background: var(--footer-bg);
+      color: var(--muted);
+      font-size:0.9rem;
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer a {
+      color: var(--footer-link);
       text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      cursor: pointer;
+      transition: color 0.3s;
     }
-    .custom-btn:hover { background-color: #9333ea; }
-    #sparkleCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 0;
+
+    .footer a:hover { color: #fff; text-decoration: underline; }
+
+    .footer i { color: var(--footer-link); transition: color 0.3s; }
+    .footer i:hover { color: #fff; }
+
+    @media (max-width:600px){
+      .title{font-size:2rem;}
+      .cta-group{flex-direction:column;}
     }
-    .home-slogan {
-      font-size: 1.25rem;
-      color: #fff;
-      text-shadow: 0 0 8px #a855f7;
-      font-weight: bold;
-      margin-top: 1rem;
-    }
-    .footer-link {
-      color: #666;
-      text-decoration: none;
-    }
-    .footer-link:hover { text-decoration: underline; }
+
   </style>
 </head>
 
 <body>
-<canvas id="sparkleCanvas"></canvas>
+  <canvas id="stars"></canvas>
 
-<!-- NAV -->
-<nav>
-  <a href="/arcade.html" class="nav-link">Arcade</a>
-  <a href="/packages.html" class="nav-link">Packages</a>
-  <a href="/lab.html" class="nav-link">Lab</a>
-  <a href="/aboutus.html" class="nav-link">About</a>
-  <a href="/contactus.html" class="nav-link">Contact</a>
-</nav>
+  <nav>
+    <a href="/arcade.html" class="nav-link">Arcade</a>
+    <a href="/packages.html" class="nav-link">Packages</a>
+    <a href="/lab.html" class="nav-link">Lab</a>
+    <a href="/aboutus.html" class="nav-link">About</a>
+    <a href="/contactus.html" class="nav-link">Contact</a>
+  </nav>
 
-<!-- HERO -->
-<section class="text-center px-4 py-16">
-  <img src="images/tmihero.jpeg" alt="TMI Studios Hero Banner" class="mx-auto mb-4" width="800" height="400"/>
-  <h1 class="home-slogan text-3xl font-bold">Innovation that breaks feeds, not budgets.</h1>
-</section>
-
-<!-- ROBOT ANIMATION -->
-<section class="running-robot-section my-12" style="height: 120px; overflow: hidden; position: relative;">
-  <div class="robot-container" style="position: absolute; top: 10px; left: -150px; display: flex; align-items: center; transform: translateX(0); transition: transform 0.1s linear;">
-    <img src="images/robot.jpeg" alt="Running Robot" class="robot robot-before" style="width: 80px; height: auto;" />
-    <img src="images/robot2.jpeg" alt="Crashed Robot" class="robot robot-after" style="width: 80px; height: auto; display: none;" />
-    <div class="speech-bubble" style="background: #fff; border-radius: 15px; padding: 8px 12px; font-size: 0.8rem; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: relative; margin-left: 8px; max-width: 140px;">
-      <p>On my way to<br>invent the next<br>viral experience…</p>
+  <header class="hero">
+    <div class="robot-wrap">
+      <img src="tmihero.jpeg" alt="TMI Studios logo" class="title-hero" />
+      <p class="subtitle">Code. Chaos. Cool.</p>
     </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="mt-32 px-6 text-center max-w-4xl mx-auto" data-aos="fade-up">
-  <h2 class="text-3xl mb-4 font-bold">What is TMI Studios?</h2>
-  <p class="text-gray-400">We’re a dev house disguised as a meme lab. A digital shapeshifter blending code and culture. TMI Studios builds viral games, interactive tools, and sneaky-smart brand experiences — so good, your audience won’t even realize it’s an ad.</p>
-</section>
-
-<!-- SUB-STUDIO TILES -->
-<section class="grid md:grid-cols-3 gap-8 mt-24 px-6 max-w-6xl mx-auto" data-aos="fade-up">
-  <div class="glass p-6 rounded-xl text-center">
-    <img src="images/tmigraphix.jpeg" alt="TMI Graphix Logo and Branding Services" class="mx-auto mb-2" width="240" height="160"/>
-    <p class="text-gray-300 mb-4">Business branding from logo to launch — we design logos, business cards, flyers, pitch decks & more.</p>
-    <a href="/packages.html" class="nav-link">Explore Branding Packages</a>
-  </div>
-
-  <div class="glass p-6 rounded-xl text-center">
-    <img src="images/tmiweb.jpeg" alt="TMI Web Design Studio" class="mx-auto mb-2" width="240" height="160"/>
-    <p class="text-gray-300 mb-4">We build sleek, fast-loading websites and custom platforms that convert — from landing pages to full e-commerce stores.</p>
-    <a href="/packages.html" class="nav-link">Explore Website / App Packages</a>
-  </div>
-
-  <div class="glass p-4 rounded-xl text-center opacity-80">
-    <img src="images/tmiarcade.jpeg" alt="TMI Arcade Games and Viral Experiences" class="mx-auto mb-2" width="240" height="160"/>
-    <p class="text-gray-500 mb-4">Gen Z-ready party games and viral quizzes that double as soft advertising. Engage your audience while secretly selling to them.</p>
-    <a href="/arcade.html" class="nav-link">Enter Arcade</a>
-  </div>
-</section>
-
-<!-- BOOKING CTA -->
-<section class="text-center px-6 py-16">
-  <button id="bookCTA" class="custom-btn">Book a free strategy call</button>
-
-  <div id="ctaModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 opacity-0 scale-95 pointer-events-none transition-all duration-300">
-    <div class="bg-[#0d0d1a] p-6 rounded-xl max-w-md w-full relative glass transform transition-transform duration-300">
-      <button id="closeModal" class="absolute top-2 right-3 text-white font-bold text-xl">&times;</button>
-      <h3 class="text-xl font-bold mb-4 text-white">Book Your Strategy Call</h3>
-      <form id="bookingForm" action="https://formspree.io/f/manpnobz" method="POST" class="flex flex-col gap-4">
-        <input type="text" name="name" placeholder="Your Name" required class="p-2 rounded text-black">
-        <input type="email" name="email" placeholder="Your Email" required class="p-2 rounded text-black">
-        <input type="hidden" name="message" value="Booked via Home CTA">
-        <button type="submit" class="custom-btn">Submit</button>
-        <p id="bookingSuccess" style="display:none; color:lightgreen; font-weight:bold; margin-top:10px;">
-          ✅ Booking submitted. We'll be in touch with next steps shortly.
-        </p>
-      </form>
+    <div class="cta-group">
+      <a href="#work" class="btn primary">See the Madness</a>
+      <a href="/contactus.html" class="btn secondary">Work With Me</a>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- FOOTER -->
-<footer class="bg-black text-center text-sm text-gray-400 py-8">
-  <div class="mb-3">
-    <span class="mr-2">Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
-      <i class="fab fa-tiktok"></i>
-    </a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="https://facebook.com/tmistudios" target="_blank" rel="noopener" class="inline-block mx-2 text-lg text-gray-400 hover:text-gray-100">
-      <i class="fab fa-facebook"></i>
-    </a>
-  </div>
-  <p class="text-gray-400">&copy; 2025 TMI Studios. All rights reserved.</p>
-</footer>
+  <section class="running-robot-section my-12" style="height: 120px; overflow: hidden; position: relative;">
+    <div class="robot-container" style="position: absolute; top: 10px; left: -150px; display: flex; align-items: center; transform: translateX(0); transition: transform 0.1s linear;">
+      <img src="robot.jpeg" alt="Running Robot" class="robot robot-before" style="width: 80px; height: auto;" />
+      <img src="robot2.jpeg" alt="Crashed Robot" class="robot robot-after" style="width: 80px; height: auto; display: none;" />
+      <div class="speech-bubble" style="background: #fff; border-radius: 15px; padding: 8px 12px; font-size: 0.8rem; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: relative; margin-left: 8px; max-width: 140px;">
+        <p>On my way to<br>invent the next<br>viral experience…</p>
+      </div>
+    </div>
+  </section>
 
-<!-- Scripts -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init({ once: true, duration: 800, easing: 'ease-in-out' });</script>
+  <section id="about">
+    <h2>What’s TMI?</h2>
+    <p>A one-person creative lab turning caffeine, chaos, and curiosity into games, websites, and ad campaigns that actually slap.</p>
+    <p>No templates. No committees. Just one coder with too much imagination and a mission to make the internet less boring.</p>
+  </section>
 
-<script>
-const canvas = document.getElementById('sparkleCanvas');
-const ctx = canvas.getContext('2d');
-let width, height, sparkles = [];
-function resizeCanvas() {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-for (let i=0;i<100;i++){sparkles.push({x:Math.random()*width,y:Math.random()*height,r:Math.random()*1.5+0.5,alpha:Math.random(),delta:Math.random()*0.02});}
-function draw(){ctx.clearRect(0,0,width,height);sparkles.forEach(s=>{s.alpha+=s.delta;if(s.alpha<=0||s.alpha>=1)s.delta=-s.delta;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${s.alpha})`;ctx.fill();});requestAnimationFrame(draw);}
-draw();
-</script>
+  <section id="work">
+    <h2>Recent Experiments</h2>
+    <div class="projects">
+      <div class="project"><img src="emojicrush.jpeg" alt="Game Sample" /><h3>Emoji Crush</h3><p>A chaotic emoji game that went from idea to dopamine hit in 3 weeks.</p></div>
+      <div class="project"><img src="glamfish.jpeg" alt="Website Sample" /><h3>Glam Fish</h3><p>Built an entire beauty marketplace app solo. Chic meets logic.</p></div>
+      <div class="project"><img src="project3.jpeg" alt="Ad Campaign" /><h3>The 90-Day Rebellion</h3><p>A digital campaign that made discipline look dangerous.</p></div>
+    </div>
+  </section>
 
-<script>
-const robotContainer = document.querySelector(".robot-container");
+  <section id="contact" class="contact">
+    <h2>Let’s Make Something Wild</h2>
+    <p>I work with brands, creators, and studios who aren’t afraid of ideas that feel “too much.”</p>
+    <a href="/contactus.html" class="btn primary">Start the Chaos</a>
+  </section>
+
+  <footer class="footer">
+    <div style="margin-bottom:1rem;">
+      <span>Follow us:</span>
+      <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg mx-2"></i></a>
+      <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg mx-2"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+    </div>
+    <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+    <p><a href="/contactus.html">Need a website or viral design? Let's build it!</a></p>
+    <p><a href="/arcade.html">Arcade</a></p>
+  </footer>
+
+  <script>
+    const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let stars=[];
+    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+      stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}
+    window.addEventListener('resize',resizeCanvas);resizeCanvas();
+    function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);
+      stars.forEach(s=>{ctx.beginPath();ctx.fillStyle=s.color;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1;});
+      requestAnimationFrame(animate);}animate();
+  </script>
+
+  <script>
+    const robotContainer = document.querySelector(".robot-container");
 const robotBefore = robotContainer.querySelector(".robot-before");
 const robotAfter = robotContainer.querySelector(".robot-after");
 const bubble = robotContainer.querySelector(".speech-bubble p");
@@ -265,39 +253,6 @@ function update() {
   requestAnimationFrame(update);
 }
 update();
-</script>
-
-<script>
-const bookBtn = document.getElementById('bookCTA');
-const modal = document.getElementById('ctaModal');
-const closeModal = document.getElementById('closeModal');
-
-function openModal() {
-  modal.classList.remove('opacity-0','scale-95','pointer-events-none');
-  modal.classList.add('opacity-100','scale-100');
-}
-function closeModalFunc() {
-  modal.classList.add('opacity-0','scale-95','pointer-events-none');
-  modal.classList.remove('opacity-100','scale-100');
-}
-bookBtn.addEventListener('click',openModal);
-closeModal.addEventListener('click',closeModalFunc);
-modal.addEventListener('click',(e)=>{if(e.target===modal) closeModalFunc();});
-</script>
-
-<script>
-const bookingForm = document.getElementById('bookingForm');
-const bookingSuccess = document.getElementById('bookingSuccess');
-bookingForm.addEventListener('submit',async function(e){
-  e.preventDefault();
-  const formData = new FormData(bookingForm);
-  try {
-    const response = await fetch(bookingForm.action,{method:'POST',body:formData,headers:{'Accept':'application/json'}});
-    if(response.ok){bookingSuccess.style.display='block';bookingForm.reset();}
-    else{alert('Oops! Something went wrong. Please try again.');}
-  } catch(error){alert('Error submitting form. Please try again later.');}
-});
-</script>
-
+  </script>
 </body>
 </html>
