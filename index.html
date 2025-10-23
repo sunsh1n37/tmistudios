@@ -6,8 +6,7 @@
   <title>TMI Studios — Code. Chaos. Cool.</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
-     crossorigin="anonymous"></script>
+
   <style>
     :root {
       --bg: #0b0015;
@@ -150,6 +149,15 @@
       .cta-group{flex-direction:column;}
     }
 
+/* TMI News Section */
+#tmi-news { padding: 6rem 10%; background: rgba(255,255,255,0.03); border-radius: 12px; margin: 4rem auto; }
+#tmi-news h2 { color: var(--accent); margin-bottom: 2rem; }
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+.news-card { background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 12px; transition: transform 0.3s, background 0.3s; text-align: center; }
+.news-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08); }
+.news-card h3 { font-size: 1.1rem; margin: 0.8rem 0; color: var(--accent2); }
+.news-card .btn.secondary { margin-top: 0.5rem; }
+
   </style>
 </head>
 
@@ -199,6 +207,27 @@
       <div class="project"><img src="images/project3.jpeg" alt="Ad Campaign" /><h3>The 90-Day Rebellion</h3><p>A digital campaign that made discipline look dangerous.</p></div>
     </div>
   </section>
+
+<section id="tmi-news">
+  <h2>Top Stories from TMI News</h2>
+  <div class="news-grid">
+    <article class="news-card">
+      <img src="images/news1.jpeg" alt="Story 1" class="hero-image"/>
+      <h3>3 Free AI Tools Changing the Game for Creators</h3>
+      <a href="/news/story1.html" class="btn secondary">Read More</a>
+    </article>
+    <article class="news-card">
+      <img src="images/news2.jpeg" alt="Story 2" class="hero-image"/>
+      <h3>The Esports Boom: How South African Gamers Are Cashing In</h3>
+      <a href="/news/story2.html" class="btn secondary">Read More</a>
+    </article>
+    <article class="news-card">
+      <img src="images/news3.jpeg" alt="Story 3" class="hero-image"/>
+      <h3>Meet the Women Leading Africa’s Indie Game Scene</h3>
+      <a href="/news/story3.html" class="btn secondary">Read More</a>
+    </article>
+  </div>
+</section>
 
   <section id="contact" class="contact">
     <h2>Let’s Make Something Wild</h2>
