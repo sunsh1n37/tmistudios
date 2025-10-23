@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMI News | The future, reported by TMI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="news-header">
+    <div class="container">
+      <h1 class="title">TMI News</h1>
+      <p class="tagline">The future, reported by TMI.</p>
+      <nav class="news-nav">
+        <a href="#tech">Tech & AI</a>
+        <a href="#gaming">Gaming</a>
+        <a href="#culture">Culture</a>
+        <a href="#entertainment">Entertainment</a>
+        <a href="#opinion">Opinion</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO FEATURE -->
+  <section class="hero-feature">
+    <div class="hero-image" style="background-image: url('images/hero.jpg');"></div>
+    <div class="hero-content">
+      <h2>Inside Africa’s Booming AI Startups</h2>
+      <p>Discover how young innovators are shaping the future with artificial intelligence.</p>
+      <a href="#" class="read-more">Read More</a>
+    </div>
+  </section>
+
+  <!-- LATEST STORIES -->
+  <section class="latest-stories container">
+    <h2>Latest Stories</h2>
+    <div class="story-grid">
+      <article class="story-card">
+        <img src="images/story1.jpg" alt="Story 1">
+        <span class="category">Tech & AI</span>
+        <h3>3 Free AI Tools Changing the Game for Creators</h3>
+        <a href="#" class="read-more">Read</a>
+      </article>
+      <article class="story-card">
+        <img src="images/story2.jpg" alt="Story 2">
+        <span class="category">Gaming</span>
+        <h3>The Esports Boom: How South African Gamers Are Cashing In</h3>
+        <a href="#" class="read-more">Read</a>
+      </article>
+      <article class="story-card">
+        <img src="images/story3.jpg" alt="Story 3">
+        <span class="category">Culture</span>
+        <h3>Meet the Women Leading Africa’s Indie Game Scene</h3>
+        <a href="#" class="read-more">Read</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- EDITOR'S PICKS -->
+  <section class="editors-picks container">
+    <h2>Editor’s Picks</h2>
+    <div class="story-scroll">
+      <article class="story-card-small">
+        <img src="images/pick1.jpg" alt="Pick 1">
+        <h4>The Future of Gaming in Africa</h4>
+      </article>
+      <article class="story-card-small">
+        <img src="images/pick2.jpg" alt="Pick 2">
+        <h4>Top African Tech Startups to Watch</h4>
+      </article>
+      <article class="story-card-small">
+        <img src="images/pick3.jpg" alt="Pick 3">
+        <h4>How Creators Are Monetizing AI Tools</h4>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="news-footer">
+    <p>A TMI Studios Publication</p>
+    <div class="social-icons">
+      <a href="#">Twitter</a> | <a href="#">Instagram</a> | <a href="#">LinkedIn</a>
+    </div>
+    <p>&copy; 2025 TMI Studios</p>
+  </footer>
+
+  <!-- CSS -->
+  <style>
+    /* Reset & Fonts */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Inter', sans-serif; line-height: 1.6; color:#1a1a1a; background:#f5f5f5; }
+
+    /* Container */
+    .container { width:90%; max-width:1200px; margin:0 auto; }
+
+    /* Header */
+    .news-header { padding:2rem 0; text-align:center; background:#f5f5f5; border-bottom:1px solid #dcdcdc; }
+    .news-header .title { font-family:'Playfair Display', serif; font-size:3rem; color:#1a1a1a; }
+    .news-header .tagline { font-size:1.2rem; color:#555; margin-top:0.5rem; }
+    .news-nav { margin-top:1rem; }
+    .news-nav a { margin:0 0.75rem; text-decoration:none; color:#6a0dad; font-weight:500; transition:0.2s; }
+    .news-nav a:hover { color:#8a2be2; }
+
+    /* Hero Feature */
+    .hero-feature { display:flex; flex-wrap:wrap; margin:2rem 0; background:#eee; }
+    .hero-image { flex:1 1 50%; min-height:300px; background-size:cover; background-position:center; }
+    .hero-content { flex:1 1 50%; padding:2rem; display:flex; flex-direction:column; justify-content:center; }
+    .hero-content h2 { font-family:'Playfair Display', serif; font-size:2rem; margin-bottom:1rem; color:#1a1a1a; }
+    .hero-content p { color:#555; margin-bottom:1rem; }
+    .hero-content .read-more { background:#6a0dad; color:#fff; padding:0.5rem 1rem; border-radius:5px; width:max-content; text-decoration:none; transition:0.3s; }
+    .hero-content .read-more:hover { background:#8a2be2; }
+
+    /* Latest Stories Grid */
+    .latest-stories h2 { font-family:'Playfair Display', serif; font-size:2rem; margin-bottom:1rem; text-align:center; color:#6a0dad; }
+    .story-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; }
+    .story-card { background:#fff; border:1px solid #dcdcdc; border-radius:8px; overflow:hidden; transition:0.3s; }
+    .story-card img { width:100%; height:180px; object-fit:cover; }
+    .story-card .category { display:inline-block; margin:0.5rem; font-size:0.85rem; color:#6a0dad; font-weight:600; }
+    .story-card h3 { font-size:1.1rem; margin:0.5rem; color:#1a1a1a; }
+    .story-card .read-more { display:inline-block; margin:0.5rem; color:#6a0dad; text-decoration:none; font-weight:500; }
+    .story-card:hover { transform:translateY(-3px); box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+
+    /* Editor’s Picks */
+    .editors-picks h2 { font-family:'Playfair Display', serif; font-size:2rem; margin:2rem 0 1rem; text-align:center; color:#6a0dad; }
+    .story-scroll { display:flex; overflow-x:auto; gap:1rem; padding-bottom:1rem; }
+    .story-card-small { min-width:200px; border:1px solid #dcdcdc; border-radius:8px; overflow:hidden; background:#fff; }
+    .story-card-small img { width:100%; height:120px; object-fit:cover; }
+    .story-card-small h4 { font-size:0.95rem; padding:0.5rem; color:#1a1a1a; }
+
+    /* Footer */
+    .news-footer { text-align:center; padding:2rem 0; border-top:1px solid #dcdcdc; margin-top:2rem; color:#555; background:#f5f5f5; }
+    .news-footer .social-icons a { color:#6a0dad; text-decoration:none; margin:0 0.5rem; transition:0.2s; }
+    .news-footer .social-icons a:hover { color:#8a2be2; }
+  </style>
+</body>
+</html>
