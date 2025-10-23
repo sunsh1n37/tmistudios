@@ -149,14 +149,14 @@
       .cta-group{flex-direction:column;}
     }
 
-/* TMI News Section */
-#tmi-news { padding: 6rem 10%; background: rgba(255,255,255,0.03); border-radius: 12px; margin: 4rem auto; }
-#tmi-news h2 { color: var(--accent); margin-bottom: 2rem; }
+/* TMI News Section — lighter version */
+#tmi-news { padding: 6rem 10%; margin: 4rem auto; text-align:center; }
 .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-.news-card { background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 12px; transition: transform 0.3s, background 0.3s; text-align: center; }
-.news-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08); }
-.news-card h3 { font-size: 1.1rem; margin: 0.8rem 0; color: var(--accent2); }
-.news-card .btn.secondary { margin-top: 0.5rem; }
+.news-card { background: #fff; padding: 1rem; border-radius: 12px; transition: transform 0.3s, box-shadow 0.3s; text-align: center; }
+.news-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+.news-card h3 { font-size: 1.1rem; margin: 0.8rem 0; }
+.news-card .btn.secondary { margin-top: 0.5rem; border-color: var(--accent); color: var(--accent); }
+.news-card .btn.secondary:hover { background: var(--accent); color: var(--bg); }
 
   </style>
 </head>
@@ -209,22 +209,22 @@
   </section>
 
 <section id="tmi-news">
-  <h2>Top Stories from TMI News</h2>
+  <h2 style="color: var(--accent);">Top Stories from TMI News</h2>
   <div class="news-grid">
     <article class="news-card">
       <img src="images/news1.jpeg" alt="Story 1" class="hero-image"/>
-      <h3>3 Free AI Tools Changing the Game for Creators</h3>
-      <a href="/news/story1.html" class="btn secondary">Read More</a>
+      <h3 style="color: var(--accent2);">3 Free AI Tools Changing the Game for Creators</h3>
+      <a href="/news/index.html" class="btn secondary">Read More</a>
     </article>
     <article class="news-card">
       <img src="images/news2.jpeg" alt="Story 2" class="hero-image"/>
-      <h3>The Esports Boom: How South African Gamers Are Cashing In</h3>
-      <a href="/news/story2.html" class="btn secondary">Read More</a>
+      <h3 style="color: var(--accent2);">The Esports Boom: How South African Gamers Are Cashing In</h3>
+      <a href="/news/index.html" class="btn secondary">Read More</a>
     </article>
     <article class="news-card">
       <img src="images/news3.jpeg" alt="Story 3" class="hero-image"/>
-      <h3>Meet the Women Leading Africa’s Indie Game Scene</h3>
-      <a href="/news/story3.html" class="btn secondary">Read More</a>
+      <h3 style="color: var(--accent2);">Meet the Women Leading Africa’s Indie Game Scene</h3>
+      <a href="/news/index.html" class="btn secondary">Read More</a>
     </article>
   </div>
 </section>
