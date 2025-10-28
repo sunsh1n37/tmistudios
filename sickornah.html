@@ -3,38 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Work or Nah? | TMI Studios Arcade</title>
-<meta name="description" content="Flip the coin and decide your fate — Work or Sick? Best of 5 rounds. Quick, fun, and only at TMI Studios Arcade." />
-<meta name="keywords" content="coin flip game, Work or Sick, decision maker, fun arcade game, TMI Studios" />
-<meta name="author" content="TMI Studios" />
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://tmistudios.com/arcade/work-or-sick">
-<meta property="og:title" content="Work or Sick? | TMI Studios Arcade">
-<meta property="og:description" content="Flip the coin and decide your fate — Work or Sick? Best of 5 rounds, quick and fun! Only at TMI Studios Arcade.">
-<meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/1048/1048942.png">
-<meta property="og:image:alt" content="Work or Sick? Coin Flip Game | TMI Studios">
-<meta property="og:site_name" content="TMI Studios Arcade">
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Game",
-  "name": "Work or Nah?",
-  "description": "A quick coin toss game to decide your fate. Flip 5 times, best of 5 wins!",
-  "author": { "@type": "Organization", "name": "TMI Studios" },
-  "genre": "Arcade",
-  "applicationCategory": "WebGame",
-  "operatingSystem": "All",
-  "url": "https://tmistudios.com/arcade/work-or-sick",
-  "image": "https://cdn-icons-png.flaticon.com/512/1048/1048942.png"
-}
-</script>
+<title>Work or Nah? | TMI Studios Lab</title>
+<meta name="description" content="Flip the coin and decide your fate — Work or Nah? Best of 5 rounds. Quick, fun, and only at TMI Studios Arcade." />
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- html2canvas for card rendering -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
 :root {
@@ -51,21 +28,20 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  overflow-x: hidden;
   text-align: center;
 }
 
 nav {
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0,0,0,0.7);
   display: flex;
   justify-content: center;
   padding: 15px 0;
-  box-shadow: 0 0 10px rgba(255, 204, 102, 0.2);
+  box-shadow: 0 0 10px rgba(255,204,102,0.2);
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
+  top:0;
+  left:0;
+  z-index:100;
 }
 
 nav a {
@@ -234,19 +210,121 @@ footer.footer i {
   margin: 0 8px;
 }
 
-#confettiCanvas {
+/* Overlay */
+#overlay {
   position: fixed;
-  pointer-events: none;
-  top: 0;
-  left: 0;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.6);
+  display:none;
+  z-index:999;
+}
+
+#overlay.show { display:block; }
+
+/* Share Card Modal */
+#shareCardModal {
+  position: fixed;
+  top:50%; left:50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg,#111,#222);
+  color:#fff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  width: 400px;
+  max-width: 90%;
+  text-align:center;
+  box-shadow: 0 0 30px rgba(255,204,102,0.7);
+  display:none;
+  z-index:1000;
+}
+
+#shareCardModal.show { display:block; }
+
+#shareCardModal h2 {
+  color: #ffcc66;
+  margin-bottom: 10px;
+}
+
+#shareCardModal .ctaText {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.modalCoin {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #222, #444);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 204, 102, 0.3);
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.modalCoin::before, .modalCoin::after {
+  content: attr(data-text);
+  position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  font-weight: 700;
 }
+
+.modalCoin::before {
+  background: radial-gradient(circle, #ffcc66 10%, #b8860b 90%);
+  color: #111;
+  transform: rotateY(0deg);
+}
+
+.modalCoin::after {
+  background: radial-gradient(circle, #444, #000);
+  color: #ffcc66;
+  transform: rotateY(180deg);
+}
+
+.modalBtns {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.downloadBtn, .closeBtn {
+  background: #ffcc66;color: #111;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.downloadBtn:hover, .closeBtn:hover {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 15px rgba(255, 204, 102, 0.8);
+}
+
+.byline {
+  color: #ccc;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
 </style>
 </head>
-
 <body>
+
 <nav>
   <a href="/index.html">TMI Studios</a>
   <a href="/arcade.html">Arcade</a>
@@ -256,22 +334,36 @@ footer.footer i {
 </nav>
 
 <main>
-<h1>Work or Nah?</h1>
-<div class="coin" id="coin" data-text="Yah" aria-label="Coin showing Yah or Nah"></div>
-<div class="notification" id="notification"></div>
-<button id="flipButton">Flip Coin</button>
-<div class="scoreboard" id="score">Yah: 0 | Nah: 0</div>
-<div class="verdict" id="verdict"></div>
+  <h1>Work or Nah?</h1>
+  <div class="coin" id="coin" data-text="Yah"></div>
+  <div class="notification" id="notification"></div>
+  <button id="flipButton">Flip Coin</button>
+  <div class="scoreboard" id="score">Yah: 0 | Nah: 0</div>
+  <div class="verdict" id="verdict"></div>
 
-<!-- CTA Buttons -->
-<div class="cta-container">
-  <button class="cta-btn" onclick="window.location.href='/contactus.html'">Contact Us</button>
-  <button class="cta-btn alt" onclick="window.location.href='/arcade.html'">See More Games</button>
-  <button class="cta-btn" onclick="shareResult()">Share Your Result</button>
-</div>
+  <div class="cta-container">
+    <button class="cta-btn" onclick="window.location.href='/contactus.html'">Contact Us</button>
+    <button class="cta-btn alt" onclick="window.location.href='/arcade.html'">See More Games</button>
+    <button class="cta-btn" onclick="openShareCard()">Share Your Result</button>
+  </div>
 
-<p style="font-size:0.8rem;color:#aaa;">*For entertainment purposes only. Go to work, you're grown.</p>
+  <p style="font-size:0.8rem;color:#aaa;">*For entertainment purposes only. Go to work, you're grown.</p>
 </main>
+
+<!-- Overlay & Share Card Modal -->
+<div id="overlay"></div>
+<div id="shareCardModal">
+  <h2>Work or Nah?</h2>
+  <div class="modalCoin" id="modalCoin" data-text="Yah"></div>
+  <p class="ctaText">Feeling too cool to toil today? Let the coin decide!</p>
+  <p id="modalScore">Yah: 0 | Nah: 0</p>
+  <p id="modalVerdict">Final verdict here</p>
+  <p class="byline">By TMI Studios</p>
+  <div class="modalBtns">
+    <button class="downloadBtn" onclick="downloadCard()">Download Card</button>
+    <button class="closeBtn" onclick="closeShareCard()">Close</button>
+  </div>
+</div>
 
 <canvas id="confettiCanvas"></canvas>
 
@@ -287,12 +379,11 @@ footer.footer i {
   <p><a href="/arcade.html">Arcade</a></p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script>
 const coin = document.getElementById("coin");
 const button = document.getElementById("flipButton");
-const score = document.getElementById("score");
-const verdict = document.getElementById("verdict");
+const scoreEl = document.getElementById("score");
+const verdictEl = document.getElementById("verdict");
 const notification = document.getElementById("notification");
 
 let yahScore = 0;
@@ -333,21 +424,15 @@ function showNotification() {
   const msg = hrMessages[Math.floor(Math.random() * hrMessages.length)];
   notification.textContent = msg;
   notification.style.opacity= "1";
-  setTimeout(() => {
-    notification.style.opacity = "0";
-  }, 1800);
+  setTimeout(() => { notification.style.opacity = "0"; }, 1800);
 }
 
 function updateScore() {
-  score.textContent = `Yah: ${yahScore} | Nah: ${nahScore}`;
+  scoreEl.textContent = `Yah: ${yahScore} | Nah: ${nahScore}`;
 }
 
 function fireConfetti() {
-  confetti({
-    particleCount: 80,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
+  confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
 }
 
 function finalVerdict() {
@@ -355,22 +440,21 @@ function finalVerdict() {
   const comment = winner === "Yah" 
       ? yahVerdicts[Math.floor(Math.random() * yahVerdicts.length)]
       : nahVerdicts[Math.floor(Math.random() * nahVerdicts.length)];
-  verdict.textContent = `Final verdict: ${winner} wins — ${comment}`;
+  verdictEl.textContent = `Final verdict: ${winner} wins — ${comment}`;
   verdictSound.play();
   fireConfetti();
   button.textContent = "Play Again";
 }
 
 button.addEventListener("click", () => {
-  if (isFlipping) return; // prevent double click
+  if (isFlipping) return;
   isFlipping = true;
 
   if (flips >= 5) {
-    // Reset game
     yahScore = 0;
     nahScore = 0;
     flips = 0;
-    verdict.textContent = "";
+    verdictEl.textContent = "";
     updateScore();
     button.textContent = "Flip Coin";
     isFlipping = false;
@@ -379,7 +463,6 @@ button.addEventListener("click", () => {
     return;
   }
 
-  // Prepare flip
   coin.style.transition = "none";
   coin.style.transform = "rotateY(0deg)";
   void coin.offsetWidth;
@@ -389,7 +472,6 @@ button.addEventListener("click", () => {
   const angle = nextSide === "Yah" ? 720 : 900;
 
   flipSound.play();
-
   coin.style.transition = "transform 1s ease-in-out";
   coin.style.transform = `rotateY(${angle}deg)`;
 
@@ -398,24 +480,43 @@ button.addEventListener("click", () => {
   setTimeout(() => {
     coin.setAttribute("data-text", nextSide);
     flips++;
-    if (isYah) yahScore++;
-    else nahScore++;
+    if (isYah) yahScore++; else nahScore++;
     updateScore();
-
     if (flips === 5) finalVerdict();
     isFlipping = false;
   }, 1000);
 });
 
-// Share result
-function shareResult() {
-  const text = `I just played Work or Sick? on TMI Studios Arcade! Final score — Yah: ${yahScore}, Nah: ${nahScore}. Can you beat me? https://tmistudios.xyz/arcade/work-or-nah`;
-  if (navigator.share) {
-    navigator.share({ text });
-  } else {
-    prompt("Copy your result to share:", text);
-  }
+// --- Share Card Modal ---
+const modal = document.getElementById("shareCardModal");
+const overlay = document.getElementById("overlay");
+const modalCoin = document.getElementById("modalCoin");
+
+function openShareCard() {
+  const winner = yahScore >= nahScore ? "Yah" : "Nah";
+  modalCoin.setAttribute("data-text", winner);
+  document.getElementById("modalScore").textContent = `Yah: ${yahScore} | Nah: ${nahScore}`;
+  document.getElementById("modalVerdict").textContent = verdictEl.textContent || "Flip the coin to get your verdict!";
+  overlay.classList.add("show");
+  modal.classList.add("show");
 }
+
+function closeShareCard() {
+  overlay.classList.remove("show");
+  modal.classList.remove("show");
+}
+
+// Download modal as image
+function downloadCard() {
+  html2canvas(modal).then(canvas => {
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = "work-or-nah-result.png";
+    link.click();
+  });
+}
+
+overlay.addEventListener("click", closeShareCard);
 </script>
 </body>
 </html>
