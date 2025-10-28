@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Work or Nah? | TMI Studios Arcade</title>
+<meta name="description" content="Flip the coin and decide your fate — Work or Sick? Best of 5 rounds. Quick, fun, and only at TMI Studios Arcade." />
+<meta name="keywords" content="coin flip game, Work or Sick, decision maker, fun arcade game, TMI Studios" />
+<meta name="author" content="TMI Studios" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tmistudios.com/arcade/work-or-sick">
+<meta property="og:title" content="Work or Sick? | TMI Studios Arcade">
+<meta property="og:description" content="Flip the coin and decide your fate — Work or Sick? Best of 5 rounds, quick and fun! Only at TMI Studios Arcade.">
+<meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/1048/1048942.png">
+<meta property="og:image:alt" content="Work or Sick? Coin Flip Game | TMI Studios">
+<meta property="og:site_name" content="TMI Studios Arcade">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Game",
+  "name": "Work or Nah?",
+  "description": "A quick coin toss game to decide your fate. Flip 5 times, best of 5 wins!",
+  "author": { "@type": "Organization", "name": "TMI Studios" },
+  "genre": "Arcade",
+  "applicationCategory": "WebGame",
+  "operatingSystem": "All",
+  "url": "https://tmistudios.com/arcade/work-or-sick",
+  "image": "https://cdn-icons-png.flaticon.com/512/1048/1048942.png"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+:root {
+  --accent: #ffcc66;
+  --bg: radial-gradient(circle at top, #111, #000);
+}
+
+body {
+  background: var(--bg);
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+nav {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  box-shadow: 0 0 10px rgba(255, 204, 102, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 100px;
+  text-shadow: 0 0 10px var(--accent);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.coin {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #222, #444);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 204, 102, 0.3);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+  margin-top: 40px;
+}
+
+.coin::before, .coin::after {
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  font-weight: 700;
+}
+
+.coin::before {
+  background: radial-gradient(circle, var(--accent) 10%, #b8860b 90%);
+  color: #111;
+  transform: rotateY(0deg);
+}
+
+.coin::after {
+  background: radial-gradient(circle, #444, #000);
+  color: var(--accent);
+  transform: rotateY(180deg);
+}
+
+button {
+  background: var(--accent);
+  color: #111;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 35px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 204, 102, 0.6);
+}
+
+button:hover {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 204, 102, 0.9);
+}
+
+.scoreboard {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.verdict {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--accent);
+  min-height: 1.5em;
+}
+
+.notification {
+  margin-top: 20px;
+  background: var(--accent);
+  color: #111;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(255, 204, 102, 0.8);
+  opacity: 0;
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.cta-container {
+  display: flex;
+  gap: 20px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-btn {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 75, 43, 0.6);
+}
+
+.cta-btn.alt {
+  background: linear-gradient(135deg, #29b6f6, #0288d1);
+}
+
+footer.footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 14px;
+}
+
+footer.footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer.footer i {
+  color: #fff;
+  margin: 0 8px;
+}
+
+#confettiCanvas {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <a href="/index.html">TMI Studios</a>
+  <a href="/arcade.html">Arcade</a>
+  <a href="/packages.html">Packages</a>
+  <a href="/aboutus.html">About</a>
+  <a href="/contactus.html">Contact</a>
+</nav>
+
+<main>
+<h1>Work or Nah?</h1>
+<div class="coin" id="coin" data-text="Yah" aria-label="Coin showing Yah or Nah"></div>
+<div class="notification" id="notification"></div>
+<button id="flipButton">Flip Coin</button>
+<div class="scoreboard" id="score">Yah: 0 | Nah: 0</div>
+<div class="verdict" id="verdict"></div>
+
+<!-- CTA Buttons -->
+<div class="cta-container">
+  <button class="cta-btn" onclick="window.location.href='/contactus.html'">Contact Us</button>
+  <button class="cta-btn alt" onclick="window.location.href='/arcade.html'">See More Games</button>
+  <button class="cta-btn" onclick="shareResult()">Share Your Result</button>
+</div>
+
+<p style="font-size:0.8rem;color:#aaa;">*For entertainment purposes only. Go to work, you're grown.</p>
+</main>
+
+<canvas id="confettiCanvas"></canvas>
+
+<footer class="footer">
+  <div style="margin-bottom:1rem;">
+    <span>Follow us:</span>
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+  </div>
+  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+  <p><a href="/contactus.html">Need a website or viral design? Let's build it!</a></p>
+  <p><a href="/arcade.html">Arcade</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+const coin = document.getElementById("coin");
+const button = document.getElementById("flipButton");
+const score = document.getElementById("score");
+const verdict = document.getElementById("verdict");
+const notification = document.getElementById("notification");
+
+let yahScore = 0;
+let nahScore = 0;
+let flips = 0;
+let isFlipping = false;
+
+// Sounds
+const flipSound = new Audio("https://freesound.org/data/previews/341/341695_62424-lq.mp3");
+const verdictSound = new Audio("https://freesound.org/data/previews/320/320655_493943-lq.mp3");
+
+// HR notifications
+const hrMessages = [
+  "HR just sighed loudly...",
+  "Boss is watching your WhatsApp posts 👀",
+  "Slack status set to 'offline' 😬",
+  "Team meeting in 5... oh wait, you're 'sick' 🤧",
+  "PTO request denied — chaos mode activated 🔥",
+  "HR pretending they didn't see your Insta story 👀"
+];
+
+// Verdicts
+const yahVerdicts = [
+  "Free coffee and WiFi awaits ☕💻",
+  "Time to go conquer that job you prayed for 🙌",
+  "Boss will pretend to notice you… maybe 😎",
+  "Another day, another chance to shine ✨"
+];
+
+const nahVerdicts = [
+  "HR just spotted your sick day story 👀",
+  "Clock in or scroll TikTok? Decisions, decisions 😏",
+  "Congrats, your desk misses you already 🪑",
+  "PTO approved? Not today, sweetie 😈"
+];
+
+function showNotification() {
+  const msg = hrMessages[Math.floor(Math.random() * hrMessages.length)];
+  notification.textContent = msg;
+  notification.style.opacity= "1";
+  setTimeout(() => {
+    notification.style.opacity = "0";
+  }, 1800);
+}
+
+function updateScore() {
+  score.textContent = `Yah: ${yahScore} | Nah: ${nahScore}`;
+}
+
+function fireConfetti() {
+  confetti({
+    particleCount: 80,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}
+
+function finalVerdict() {
+  const winner = yahScore > nahScore ? "Yah" : "Nah";
+  const comment = winner === "Yah" 
+      ? yahVerdicts[Math.floor(Math.random() * yahVerdicts.length)]
+      : nahVerdicts[Math.floor(Math.random() * nahVerdicts.length)];
+  verdict.textContent = `Final verdict: ${winner} wins — ${comment}`;
+  verdictSound.play();
+  fireConfetti();
+  button.textContent = "Play Again";
+}
+
+button.addEventListener("click", () => {
+  if (isFlipping) return; // prevent double click
+  isFlipping = true;
+
+  if (flips >= 5) {
+    // Reset game
+    yahScore = 0;
+    nahScore = 0;
+    flips = 0;
+    verdict.textContent = "";
+    updateScore();
+    button.textContent = "Flip Coin";
+    isFlipping = false;
+    coin.setAttribute("data-text", "Yah");
+    coin.style.transform = "rotateY(0deg)";
+    return;
+  }
+
+  // Prepare flip
+  coin.style.transition = "none";
+  coin.style.transform = "rotateY(0deg)";
+  void coin.offsetWidth;
+
+  const isYah = Math.random() < 0.5;
+  const nextSide = isYah ? "Yah" : "Nah";
+  const angle = nextSide === "Yah" ? 720 : 900;
+
+  flipSound.play();
+
+  coin.style.transition = "transform 1s ease-in-out";
+  coin.style.transform = `rotateY(${angle}deg)`;
+
+  showNotification();
+
+  setTimeout(() => {
+    coin.setAttribute("data-text", nextSide);
+    flips++;
+    if (isYah) yahScore++;
+    else nahScore++;
+    updateScore();
+
+    if (flips === 5) finalVerdict();
+    isFlipping = false;
+  }, 1000);
+});
+
+// Share result
+function shareResult() {
+  const text = `I just played Work or Sick? on TMI Studios Arcade! Final score — Yah: ${yahScore}, Nah: ${nahScore}. Can you beat me? https://tmistudios.xyz/arcade/work-or-nah`;
+  if (navigator.share) {
+    navigator.share({ text });
+  } else {
+    prompt("Copy your result to share:", text);
+  }
+}
+</script>
+</body>
+</html>
