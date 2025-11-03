@@ -315,18 +315,33 @@ fetch('news.json')
   .then(res => res.json())
   .then(data => {
     const newsContainer = document.getElementById('news-container');
+
     data.stories.forEach(story => {
       const card = document.createElement('div');
       card.classList.add('card');
+
       card.innerHTML = `
         <img src="${story.image}" alt="${story.headline}">
         <div class="card-content">
           <p class="date">${story.date}</p>
           <h3>${story.headline}</h3>
           <p>${story.preview}</p>
-        </div>`;
+          <button class="read-more-btn">Read More</button>
+          <div class="full-story hidden">${story.fullStory}</div>
+        </div>
+      `;
+
+      const readBtn = card.querySelector('.read-more-btn');
+      const fullStoryDiv = card.querySelector('.full-story');
+      readBtn.addEventListener('click', () => {
+        fullStoryDiv.classList.toggle('hidden');
+        readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
+      });
+
       newsContainer.appendChild(card);
     });
+  });
+</script>
 
     const poiContainer = document.getElementById('poi-container');
     if(data.poi && data.poi.length){
