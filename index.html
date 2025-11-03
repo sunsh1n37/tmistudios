@@ -321,25 +321,29 @@
     <p><a href="/arcade.html">Arcade</a></p>
   </footer>
 
-  <script>
-  // Fetch and display only the latest 3 stories from tminews.json
-  fetch('tminews.json')
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById('news-container');
-      const latest = data.slice(-3).reverse(); // show latest 3
-      latest.forEach(story => {
-        const card = document.createElement('article');
-        card.classList.add('news-card');
-        card.innerHTML = `
-          <img src="${story.image}" alt="${story.title}" class="hero-image"/>
-          <h3>${story.title}</h3>
-          <a href="news.html#${story.id}" class="btn secondary">Read More</a>
-        `;
-        container.appendChild(card);
-      });
-    })
-    .catch(err => console.error('Error loading news:', err));
+<script>
+fetch('news.json?' + new Date().getTime())
+  .then(res => res.json())
+  .then(data => {
+    const newsContainer = document.getElementById('news-container');
+
+    // Sort stories by date (newest first)
+    const sortedStories = data.stories.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+    // Render only the 3 latest stories on index
+    sortedStories.slice(0, 3).forEach(story => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <img src="${story.image}" alt="${story.headline}">
+        <div class="card-content">
+          <p class="date">${story.date}</p>
+          <h3>${story.headline}</h3>
+          <p>${story.preview}</p>
+        </div>`;
+      newsContainer.appendChild(card);
+    });
+  });
 </script>
 <script>
     const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let stars=[];
