@@ -1,137 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TMI News | The future, reported by TMI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TMI News — Tech. Magic. Innovation</title>
+<meta name="description" content="TMI News brings you the latest in African tech, innovation, creators, and chaos. Stay tuned for stories shaping the future of code, business, and creativity." />
+<meta name="keywords" content="TMI Studios, tech news Africa, startups, Durban, innovation, creators, AI, events, technology, African innovation" />
+<meta property="og:title" content="TMI News — Code. Chaos. Cool." />
+<meta property="og:description" content="African innovation, creators, and stories reshaping tech." />
+<meta property="og:image" content="https://placehold.co/900x500?text=TMI+News" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #fafafa;
+    color: #111;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #000;
+    color: #00ffff;
+  }
+
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .tagline {
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #111;
+    border-left: 4px solid #00ffff;
+    padding-left: 0.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
+
+  .date {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.3rem;
+  }
+
+  .cta-banner {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .cta-banner button {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .cta-banner button:hover {
+    background: #00ffff;
+    color: #111;
+  }
+
+  .cta-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 2rem auto;
+    max-width: 400px;
+  }
+
+  .cta-stack button {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .cta-stack button:hover {
+    background: #00ffff;
+    color: #111;
+  }
+
+  footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Popup form */
+  .popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.7);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+  }
+
+  .popup-content {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+  }
+
+  .popup-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .popup-content input, .popup-content textarea {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .popup-content button {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
+
+  .popup-content button:hover {
+    background: #00ffff;
+    color: #111;
+  }
+
+  .popup-content .close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+</style>
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsMediaOrganization",
+  "name": "TMI News",
+  "url": "https://tmistudios.xyz/news",
+  "logo": "https://placehold.co/900x500?text=TMI+News",
+  "sameAs": ["https://twitter.com/tmistudios", "https://instagram.com/tmistudios"],
+  "description": "TMI News covers African tech, startups, and innovation with a dash of chaos and creativity."
+}
+</script>
 </head>
+
 <body>
-  <!-- HEADER -->
-  <header class="news-header">
-    <div class="container">
-      <h1 class="title">TMI News</h1>
-      <p class="tagline">The future, reported by TMI.</p>
-      <nav class="news-nav">
-        <a href="#tech">Tech & AI</a>
-        <a href="#gaming">Gaming</a>
-        <a href="#culture">Culture</a>
-        <a href="#entertainment">Entertainment</a>
-        <a href="#opinion">Opinion</a>
-      </nav>
-    </div>
-  </header>
+<header>
+  <h1 class="logo">TMI News</h1>
+  <p class="tagline">Tech  |  Magic  |  Innovation </p>
+</header>
 
-  <!-- HERO FEATURE -->
-  <section class="hero-feature">
-    <div class="hero-image" style="background-image: url('images/hero.jpg');"></div>
-    <div class="hero-content">
-      <h2>Inside Africa’s Booming AI Startups</h2>
-      <p>Discover how young innovators are shaping the future with artificial intelligence.</p>
-      <a href="#" class="read-more">Read More</a>
-    </div>
-  </section>
-
-  <!-- LATEST STORIES -->
-  <section class="latest-stories container">
+<main>
+  <!-- NEWS SECTION -->
+  <section id="news-section">
     <h2>Latest Stories</h2>
-    <div class="story-grid">
-      <article class="story-card">
-        <img src="images/story1.jpg" alt="Story 1">
-        <span class="category">Tech & AI</span>
-        <h3>3 Free AI Tools Changing the Game for Creators</h3>
-        <a href="#" class="read-more">Read</a>
-      </article>
-      <article class="story-card">
-        <img src="images/story2.jpg" alt="Story 2">
-        <span class="category">Gaming</span>
-        <h3>The Esports Boom: How South African Gamers Are Cashing In</h3>
-        <a href="#" class="read-more">Read</a>
-      </article>
-      <article class="story-card">
-        <img src="images/story3.jpg" alt="Story 3">
-        <span class="category">Culture</span>
-        <h3>Meet the Women Leading Africa’s Indie Game Scene</h3>
-        <a href="#" class="read-more">Read</a>
-      </article>
-    </div>
+    <div id="news-container" class="card-grid"></div>
   </section>
 
-  <!-- EDITOR'S PICKS -->
-  <section class="editors-picks container">
-    <h2>Editor’s Picks</h2>
-    <div class="story-scroll">
-      <article class="story-card-small">
-        <img src="images/pick1.jpg" alt="Pick 1">
-        <h4>The Future of Gaming in Africa</h4>
-      </article>
-      <article class="story-card-small">
-        <img src="images/pick2.jpg" alt="Pick 2">
-        <h4>Top African Tech Startups to Watch</h4>
-      </article>
-      <article class="story-card-small">
-        <img src="images/pick3.jpg" alt="Pick 3">
-        <h4>How Creators Are Monetizing AI Tools</h4>
-      </article>
-    </div>
+  <!-- PERSON OF INTEREST -->
+  <section id="poi-section">
+    <h2>Person of Interest</h2>
+    <div id="poi-container" class="card-grid"></div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="news-footer">
-    <p>A TMI Studios Publication</p>
-    <div class="social-icons">
-      <a href="#">Twitter</a> | <a href="#">Instagram</a> | <a href="#">LinkedIn</a>
-    </div>
-    <p>&copy; 2025 TMI Studios</p>
-  </footer>
+  <!-- NEW TECH ALERT -->
+  <section id="tech-section">
+    <h2>New Tech Alert</h2>
+    <div id="tech-container" class="card-grid"></div>
+  </section>
 
-  <!-- CSS -->
-  <style>
-    /* Reset & Fonts */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Inter', sans-serif; line-height: 1.6; color:#1a1a1a; background:#f5f5f5; }
+  <!-- EVENTS -->
+  <section id="events-section">
+    <h2>Upcoming Tech Events</h2>
+    <div id="events-container" class="card-grid"></div>
+  </section>
 
-    /* Container */
-    .container { width:90%; max-width:1200px; margin:0 auto; }
+  <!-- ADVERTISE CTA -->
+  <section id="advertise" class="cta-banner">
+    <button id="advertiseBtn">Advertise with Us</button>
+  </section>
+</main>
 
-    /* Header */
-    .news-header { padding:2rem 0; text-align:center; background:#f5f5f5; border-bottom:1px solid #dcdcdc; }
-    .news-header .title { font-family:'Playfair Display', serif; font-size:3rem; color:#1a1a1a; }
-    .news-header .tagline { font-size:1.2rem; color:#555; margin-top:0.5rem; }
-    .news-nav { margin-top:1rem; }
-    .news-nav a { margin:0 0.75rem; text-decoration:none; color:#6a0dad; font-weight:500; transition:0.2s; }
-    .news-nav a:hover { color:#8a2be2; }
+<footer>
+  <div class="cta-stack">
+    <button id="submitTipBtn">Submit a Tech Tip</button>
+    <button id="nominateBtn">Nominate a Creator</button>
+    <button id="referTechBtn">Refer a New Tech</button>
+  </div>
+  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+</footer>
 
-    /* Hero Feature */
-    .hero-feature { display:flex; flex-wrap:wrap; margin:2rem 0; background:#eee; }
-    .hero-image { flex:1 1 50%; min-height:300px; background-size:cover; background-position:center; }
-    .hero-content { flex:1 1 50%; padding:2rem; display:flex; flex-direction:column; justify-content:center; }
-    .hero-content h2 { font-family:'Playfair Display', serif; font-size:2rem; margin-bottom:1rem; color:#1a1a1a; }
-    .hero-content p { color:#555; margin-bottom:1rem; }
-    .hero-content .read-more { background:#6a0dad; color:#fff; padding:0.5rem 1rem; border-radius:5px; width:max-content; text-decoration:none; transition:0.3s; }
-    .hero-content .read-more:hover { background:#8a2be2; }
+<script>
+fetch('news.json')
+  .then(res => res.json())
+  .then(data => {
+    const newsContainer = document.getElementById('news-container');
+    data.stories.forEach(story => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <img src="${story.image}" alt="${story.headline}">
+        <div class="card-content">
+          <p class="date">${story.date}</p>
+          <h3>${story.headline}</h3>
+          <p>${story.preview}</p>
+        </div>`;
+      newsContainer.appendChild(card);
+    });
 
-    /* Latest Stories Grid */
-    .latest-stories h2 { font-family:'Playfair Display', serif; font-size:2rem; margin-bottom:1rem; text-align:center; color:#6a0dad; }
-    .story-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; }
-    .story-card { background:#fff; border:1px solid #dcdcdc; border-radius:8px; overflow:hidden; transition:0.3s; }
-    .story-card img { width:100%; height:180px; object-fit:cover; }
-    .story-card .category { display:inline-block; margin:0.5rem; font-size:0.85rem; color:#6a0dad; font-weight:600; }
-    .story-card h3 { font-size:1.1rem; margin:0.5rem; color:#1a1a1a; }
-    .story-card .read-more { display:inline-block; margin:0.5rem; color:#6a0dad; text-decoration:none; font-weight:500; }
-    .story-card:hover { transform:translateY(-3px); box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+    const poiContainer = document.getElementById('poi-container');
+    if(data.poi && data.poi.length){
+      data.poi.forEach(person => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+          <img src="${person.image}" alt="${person.name}">
+          <div class="card-content">
+            <h3>${person.name}</h3>
+            <p class="title">${person.title}</p>
+            <blockquote>${person.quote}</blockquote>
+            <p>${person.bio}</p>
+          </div>`;
+        poiContainer.appendChild(card);
+      });
+    }
 
-    /* Editor’s Picks */
-    .editors-picks h2 { font-family:'Playfair Display', serif; font-size:2rem; margin:2rem 0 1rem; text-align:center; color:#6a0dad; }
-    .story-scroll { display:flex; overflow-x:auto; gap:1rem; padding-bottom:1rem; }
-    .story-card-small { min-width:200px; border:1px solid #dcdcdc; border-radius:8px; overflow:hidden; background:#fff; }
-    .story-card-small img { width:100%; height:120px; object-fit:cover; }
-    .story-card-small h4 { font-size:0.95rem; padding:0.5rem; color:#1a1a1a; }
+    const techContainer = document.getElementById('tech-container');
+    if(data.tech && data.tech.length){
+      data.tech.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.headline}">
+          <div class="card-content">
+            <h3>${item.headline}</h3>
+            <p>${item.preview}</p>
+          </div>`;
+        techContainer.appendChild(card);
+      });
+    }
 
-    /* Footer */
-    .news-footer { text-align:center; padding:2rem 0; border-top:1px solid #dcdcdc; margin-top:2rem; color:#555; background:#f5f5f5; }
-    .news-footer .social-icons a { color:#6a0dad; text-decoration:none; margin:0 0.5rem; transition:0.2s; }
-    .news-footer .social-icons a:hover { color:#8a2be2; }
-  </style>
+    const eventsContainer = document.getElementById('events-container');
+    if(data.events && data.events.length){
+      data.events.forEach(event => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+          <img src="${event.image}" alt="${event.title}">
+          <div class="card-content">
+            <p class="date">${event.date}</p>
+            <h3>${event.title}</h3>
+            <p>${event.description}</p>
+          </div>`;
+        eventsContainer.appendChild(card);
+      });
+    }
+  });
+
+// CTA Forms
+const ctas = {
+  submitTipBtn: "https://formspree.io/f/xldpdblq",
+  nominateBtn: "https://formspree.io/f/xldpdblq",
+  referTechBtn: "https://formspree.io/f/xldpdblq",
+  advertiseBtn: "https://formspree.io/f/xldpdblq"
+};
+
+Object.keys(ctas).forEach(id => {
+  const btn = document.getElementById(id);
+  if(btn){
+    btn.addEventListener("click", () => {
+      const popup = document.createElement("div");
+      popup.classList.add("popup");
+      popup.innerHTML = `
+        <div class="popup-content">
+          <span class="close">&times;</span>
+          <form action="${ctas[id]}" method="POST">
+            <label>Your Name</label>
+            <input type="text" name="name" required />
+            <label>Your Email</label>
+            <input type="email" name="_replyto" required />
+            <label>Message</label>
+            <textarea name="message" required></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </div>`;
+      document.body.appendChild(popup);
+      popup.querySelector(".close").onclick = () => popup.remove();
+    });
+  }
+});
+</script>
 </body>
 </html>
