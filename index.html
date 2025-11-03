@@ -4,8 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TMI Studios — Code. Chaos. Cool.</title>
+  <meta name="description" content="TMI Studios: African tech, games, innovation, and chaotic creativity. Stay updated on stories shaping code, culture, and creators." />
+  <meta name="keywords" content="TMI Studios, African tech, innovation, games, AI, creativity, news, chaos, coding" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- JSON-LD for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "TMI Studios",
+    "url": "https://tmistudios.xyz",
+    "logo": "https://placehold.co/900x500?text=TMI+Studios",
+    "sameAs": [
+      "https://twitter.com/tmistudios",
+      "https://instagram.com/tmistudios"
+    ],
+    "description": "TMI Studios covers African tech, startups, games, and innovation with a chaotic creative spin."
+  }
+  </script>
 
   <style>
     :root {
@@ -19,219 +37,67 @@
       --footer-link: #bfa3ff;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: var(--font); color: var(--text); background: var(--bg); overflow-x:hidden; }
 
-    body {
-      font-family: var(--font);
-      color: var(--text);
-      background: var(--bg);
-      overflow-x: hidden;
-    }
+    nav { display:flex; flex-wrap:nowrap; justify-content:space-between; padding:.75rem 1rem; z-index:10; position:relative; }
+    .nav-link { color:#fff; text-decoration:none; font-weight:500; font-size:.875rem; transition:color .3s ease; }
+    .nav-link:hover { color:var(--accent2); }
 
-.hero-image {
-  width: 300px;
-  max-width: 300px; /* optional max width */
-  height: auto;
-  margin-bottom: 1rem;
-  border-radius: 12px; /* optional rounded corners */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4); /* optional shadow */
-}
-
-    canvas#stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      z-index: 10;
-      position: relative;
-    }
-    .nav-link {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.875rem;
-      flex-shrink: 1;
-      transition: color 0.3s ease;
-    }
-    .nav-link:hover { color: var(--accent2); }
-
-    @media (min-width: 768px) {
-      nav { justify-content: center; gap: 1.5rem; }
-      .nav-link { font-size: 1rem; }
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 1rem;
-    }
-
-    .robot-wrap {
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
-
-    .robot {
-      width: 160px;
-      filter: drop-shadow(0 0 25px var(--accent));
-    }
-
-    .title { font-size: 3rem; margin-top: 1rem; color: var(--text); }
-    .title::after {
-      content:" "; position:absolute; left:0; bottom:-4px; width:100%; height:2px;
-      background: var(--accent); opacity:0.5;
-    }
-    .subtitle { font-size: 1.2rem; color: var(--muted); margin-top: 0.4rem; }
-
-    .cta-group { margin-top: 2rem; display:flex; gap:1rem; }
-    .btn {
-      text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 50px;
-      font-weight: 600; transition: all 0.3s;
-    }
+    .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 1rem; }
+    .subtitle { font-size:1.2rem; color: var(--muted); margin-top:.4rem; }
+    .cta-group { margin-top:2rem; display:flex; gap:1rem; }
+    .btn { text-decoration:none; padding:.8rem 1.5rem; border-radius:50px; font-weight:600; transition:all .3s; }
     .btn.primary { background: var(--accent); color: var(--bg); }
-    .btn.primary:hover { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
-    .btn.secondary { border: 2px solid var(--accent); color: var(--accent); }
+    .btn.primary:hover { background:transparent; color: var(--accent); border:2px solid var(--accent); }
+    .btn.secondary { border:2px solid var(--accent); color: var(--accent); }
     .btn.secondary:hover { background: var(--accent); color: var(--bg); }
 
-    section { padding: 6rem 10%; max-width: 1200px; margin:auto; text-align:center; }
-    h2 { font-size: 2rem; margin-bottom:1rem; color: var(--text); }
+    section { padding:6rem 10%; max-width:1200px; margin:auto; text-align:center; }
+    h2 { font-size:2rem; margin-bottom:1rem; color: var(--text); }
     p { line-height:1.6; margin-bottom:1rem; color: var(--text); }
 
-    .projects {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:2rem; margin-top:3rem;
-    }
-    .project {
+    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; margin-top:3rem; }
+    .project { background: rgba(255,255,255,0.05); padding:1.5rem; border-radius:12px; transition: transform .3s, background .3s; overflow:hidden; }
+    .project:hover { transform:translateY(-5px); background: rgba(255,255,255,0.08); }
+    .project img { width:100%; border-radius:10px; margin-bottom:1rem; filter: brightness(0.9); }
+    .project h3 { color: var(--accent2); font-size:1.3rem; margin-bottom:.5rem; }
+
+    .footer { text-align:center; padding:3rem 1rem; background: var(--footer-bg); color: var(--muted); font-size:.9rem; border-top:1px solid rgba(255,255,255,0.05); }
+    .footer a { color: var(--footer-link); text-decoration:none; transition:color .3s; }
+    .footer a:hover { color:#fff; text-decoration:underline; }
+
+    canvas#stars { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+
+    /* TMI News Section — transparent frosted-glass look */
+    .news-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; }
+    .news-card {
       background: rgba(255,255,255,0.05);
-      padding:1.5rem; border-radius:12px;
-      transition:transform 0.3s,background 0.3s;
-      position:relative; overflow:hidden;
-    }
-    .project:hover { transform:translateY(-5px); background:rgba(255,255,255,0.08); }
-    .project img { width:100%; border-radius:10px; margin-bottom:1rem; filter:brightness(0.9); }
-    .project h3 { color: var(--accent2); font-size:1.3rem; margin-bottom:0.5rem; }
-
-    .footer {
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.2rem;
       text-align:center;
-      padding:3rem 1rem;
-      background: var(--footer-bg);
-      color: var(--muted);
-      font-size:0.9rem;
-      border-top:1px solid rgba(255,255,255,0.05);
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease;
+      position: relative;
+      overflow:hidden;
     }
-
-    .footer a {
-      color: var(--footer-link);
-      text-decoration: none;
-      transition: color 0.3s;
+    .news-card::before {
+      content:"";
+      position:absolute; inset:0;
+      border-radius:16px;
+      background: linear-gradient(45deg, var(--accent2), var(--accent));
+      opacity:0; filter: blur(12px); z-index:0;
+      transition: opacity .4s ease;
     }
+    .news-card:hover::before { opacity:.3; }
+    .news-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); border-color: rgba(179,136,255,0.4); box-shadow:0 8px 25px rgba(179,136,255,.2);}
+    .news-card img { width:100%; border-radius:12px; margin-bottom:1rem; filter: brightness(0.9); position:relative; z-index:1; }
+    .news-card h3 { font-size:1.1rem; margin:.8rem 0; color: var(--accent2); position:relative; z-index:1; }
+    .news-card .btn.secondary { margin-top:.5rem; border-color: var(--accent); color: var(--accent); position:relative; z-index:1; }
+    .news-card .btn.secondary:hover { background: var(--accent); color: var(--bg); }
 
-    .footer a:hover { color: #fff; text-decoration: underline; }
-
-    .footer i { color: var(--footer-link); transition: color 0.3s; }
-    .footer i:hover { color: #fff; }
-
-    @media (max-width:600px){
-      .title{font-size:2rem;}
-      .cta-group{flex-direction:column;}
-    }
-
-/* TMI News Section — transparent frosted-glass look */
-#tmi-news {
-  padding: 6rem 10%;
-  margin: 4rem auto;
-  text-align: center;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.news-card {
-  background: rgba(255, 255, 255, 0.05); /* soft transparent layer */
-  backdrop-filter: blur(8px); /* frosted glass */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 1.2rem;
-  text-align: center;
-  transition: 
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease,
-    border-color 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* subtle purple glow on hover */
-.news-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  background: linear-gradient(45deg, var(--accent2), var(--accent));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  filter: blur(12px);
-  z-index: 0;
-}
-
-.news-card:hover::before {
-  opacity: 0.3; /* glowing edge */
-}
-
-.news-card:hover {
-  transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(179, 136, 255, 0.4);
-  box-shadow: 0 8px 25px rgba(179, 136, 255, 0.2);
-}
-
-.news-card img {
-  width: 100%;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  filter: brightness(0.9);
-  position: relative;
-  z-index: 1;
-}
-
-.news-card h3 {
-  font-size: 1.1rem;
-  margin: 0.8rem 0;
-  color: var(--accent2);
-  position: relative;
-  z-index: 1;
-}
-
-.news-card .btn.secondary {
-  margin-top: 0.5rem;
-  border-color: var(--accent);
-  color: var(--accent);
-  position: relative;
-  z-index: 1;
-}
-
-.news-card .btn.secondary:hover {
-  background: var(--accent);
-  color: var(--bg);
-}
-
+    @media (max-width:600px){ .title{font-size:2rem;} .cta-group{flex-direction:column;} }
   </style>
 </head>
 
@@ -247,25 +113,13 @@
   </nav>
 
   <header class="hero">
-    <div class="robot-wrap">
-     <img src="images/tmihero.jpeg" alt="TMI Studios" style="width:300px; mix-blend-mode: lighten;" />
-      <p class="subtitle">Code. Chaos. Cool.</p>
-    </div>
+    <img src="images/tmihero.jpeg" alt="TMI Studios" style="width:300px; mix-blend-mode: lighten;" />
+    <p class="subtitle">Code. Chaos. Cool.</p>
     <div class="cta-group">
       <a href="#work" class="btn primary">See the Madness</a>
       <a href="/contactus.html" class="btn secondary">Work With Me</a>
     </div>
   </header>
-
-  <section class="running-robot-section my-12" style="height: 120px; overflow: hidden; position: relative;">
-    <div class="robot-container" style="position: absolute; top: 10px; left: -150px; display: flex; align-items: center; transform: translateX(0); transition: transform 0.1s linear;">
-      <img src="images/robot.jpeg" alt="Running Robot" class="robot robot-before" style="width: 80px; height: auto;" />
-      <img src="images/robot2.jpeg" alt="Crashed Robot" class="robot robot-after" style="width: 80px; height: auto; display: none;" />
-      <div class="speech-bubble" style="background: #fff; border-radius: 15px; padding: 8px 12px; font-size: 0.8rem; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: relative; margin-left: 8px; max-width: 140px;">
-        <p>On my way to<br>invent the next<br>viral experience…</p>
-      </div>
-    </div>
-  </section>
 
   <section id="about">
     <h2>What’s TMI?</h2>
@@ -276,32 +130,17 @@
   <section id="work">
     <h2>Recent Experiments</h2>
     <div class="projects">
-      <div class="project"><img src="images/emojicrush.jpeg" alt="Game Sample" /><h3>Emoji Crush</h3><p>A chaotic emoji game that went from idea to dopamine hit in 3 weeks.</p></div>
-      <div class="project"><img src="images/glamfish.jpeg" alt="Website Sample" /><h3>Glam Fish</h3><p>Built an entire beauty marketplace app solo. Chic meets logic.</p></div>
-      <div class="project"><img src="images/project3.jpeg" alt="Ad Campaign" /><h3>The 90-Day Rebellion</h3><p>A digital campaign that made discipline look dangerous.</p></div>
+      <div class="project"><img src="images/emojicrush.jpeg" alt="Emoji Crush" /><h3>Emoji Crush</h3><p>A chaotic emoji game that went from idea to dopamine hit in 3 weeks.</p></div>
+      <div class="project"><img src="images/glamfish.jpeg" alt="Glam Fish" /><h3>Glam Fish</h3><p>Built an entire beauty marketplace app solo. Chic meets logic.</p></div>
+      <div class="project"><img src="images/project3.jpeg" alt="90-Day Rebellion" /><h3>The 90-Day Rebellion</h3><p>A digital campaign that made discipline look dangerous.</p></div>
     </div>
   </section>
 
-<section id="tmi-news">
-  <h2 style="color: var(--accent);">Top Stories from TMI News</h2>
-  <div class="news-grid">
-    <article class="news-card">
-      <img src="images/news1.jpeg" alt="Story 1" class="hero-image"/>
-      <h3 style="color: var(--accent2);">3 Free AI Tools Changing the Game for Creators</h3>
-      <a href="news.html" class="btn secondary">Read More</a>
-    </article>
-    <article class="news-card">
-      <img src="images/news2.jpeg" alt="Story 2" class="hero-image"/>
-      <h3 style="color: var(--accent2);">The Esports Boom: How South African Gamers Are Cashing In</h3>
-      <a href="news.html" class="btn secondary">Read More</a>
-    </article>
-    <article class="news-card">
-      <img src="images/news3.jpeg" alt="Story 3" class="hero-image"/>
-      <h3 style="color: var(--accent2);">Meet the Women Leading Africa’s Indie Game Scene</h3>
-      <a href="news.html" class="btn secondary">Read More</a>
-    </article>
-  </div>
-</section>
+  <section id="tmi-news">
+    <h2 style="color: var(--accent);">Top Stories from TMI News</h2>
+    <!-- This is the dynamic container -->
+    <div id="news-container" class="news-grid"></div>
+  </section>
 
   <section id="contact" class="contact">
     <h2>Let’s Make Something Wild</h2>
@@ -318,34 +157,10 @@
     </div>
     <p>&copy; 2025 TMI Studios. All rights reserved.</p>
     <p><a href="/contactus.html">Need a website or viral design? Let's build it!</a></p>
-    <p><a href="/arcade.html">Arcade</a></p>
   </footer>
 
-<script>
-fetch('news.json?' + new Date().getTime())
-  .then(res => res.json())
-  .then(data => {
-    const newsContainer = document.getElementById('news-container');
-
-    // Sort stories by date (newest first)
-    const sortedStories = data.stories.sort((a,b) => new Date(b.date) - new Date(a.date));
-
-    // Render only the 3 latest stories on index
-    sortedStories.slice(0, 3).forEach(story => {
-      const card = document.createElement('div');
-      card.classList.add('card');
-      card.innerHTML = `
-        <img src="${story.image}" alt="${story.headline}">
-        <div class="card-content">
-          <p class="date">${story.date}</p>
-          <h3>${story.headline}</h3>
-          <p>${story.preview}</p>
-        </div>`;
-      newsContainer.appendChild(card);
-    });
-  });
-</script>
-<script>
+  <!-- Stars Animation -->
+  <script>
     const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let stars=[];
     function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;
       stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}
@@ -355,41 +170,23 @@ fetch('news.json?' + new Date().getTime())
       requestAnimationFrame(animate);}animate();
   </script>
 
+  <!-- Dynamic News -->
   <script>
-    const robotContainer = document.querySelector(".robot-container");
-const robotBefore = robotContainer.querySelector(".robot-before");
-const robotAfter = robotContainer.querySelector(".robot-after");
-const bubble = robotContainer.querySelector(".speech-bubble p");
-let posX = -150, speed = 2, crashed = false, stopped = false;
-
-function createExplosion() {
-  const explosion = document.createElement("div");
-  explosion.classList.add("explosion");
-  const robotRect = robotContainer.getBoundingClientRect();
-  explosion.style.left = `${robotRect.left + 50}px`;
-  explosion.style.top = `${robotRect.top + 30 + window.scrollY}px`;
-  document.body.appendChild(explosion);
-  setTimeout(()=>explosion.remove(),800);
-}
-
-function stopAnimation() {
-  stopped = true;
-  document.querySelector(".running-robot-section").innerHTML = `
-    <a href="/lab.html" class="nav-link">
-      Follow our clumsy bot to see what she's cooking up in the <strong>Lab →</strong>
-    </a>`;
-}
-
-function update() {
-  if(stopped) return;
-  if(!crashed){posX+=speed;robotContainer.style.transform=`translateX(${posX}px)`;}
-  const crashPoint = window.innerWidth*0.5;
-  if(!crashed && robotContainer.getBoundingClientRect().left>crashPoint){
-    crashed=true;speed=0;createExplosion();robotBefore.style.display="none";robotAfter.style.display="block";bubble.innerHTML=`I'm okay`;setTimeout(stopAnimation,2000);return;
-  }
-  requestAnimationFrame(update);
-}
-update();
+    fetch('news.json?' + new Date().getTime())
+      .then(res => res.json())
+      .then(data => {
+        const newsContainer = document.getElementById('news-container');
+        const sortedStories = data.stories.sort((a,b) => new Date(b.date) - new Date(a.date));
+        sortedStories.slice(0,3).forEach(story => {
+          const card = document.createElement('article');
+          card.classList.add('news-card');
+          card.innerHTML = `
+            <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
+            <h3>${story.headline}</h3>
+            <a href="news.html" class="btn secondary">Read More</a>`;
+          newsContainer.appendChild(card);
+        });
+      });
   </script>
 </body>
 </html>
