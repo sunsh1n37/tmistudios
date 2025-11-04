@@ -308,6 +308,7 @@
     <button id="referTechBtn">Refer a New Tech</button>
   </div>
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+  <p><a href="/privacy.html">Privacy Policy</a></p>
 </footer>
 
 <script>
@@ -342,7 +343,7 @@ fetch('news.json')
     });
   });
 </script>
-
+<script>
     const poiContainer = document.getElementById('poi-container');
     if(data.poi && data.poi.length){
       data.poi.forEach(person => {
