@@ -7,6 +7,8 @@
   <meta name="description" content="A chaotic Gen Z‑coded quiz to answer the age‑old question: Should you text your ex? Press the button to find out."/>
   <meta name="keywords" content="should I text my ex, ex quiz, Gen Z advice, funny breakup quiz, toxic ex test, memes about exes"/>
   <meta name="author" content="TMI Studios" />
+
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
      crossorigin="anonymous"></script>
 
@@ -22,6 +24,22 @@
   <meta name="twitter:title" content="Should I Text My Ex? 👀"/>
   <meta name="twitter:description" content="Chaotic Gen Z‑coded quiz to decide if you should text your ex."/>
   <meta name="twitter:image" content="https://yourdomain.com/og-image.jpg"/>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "name": "Should I Text My Ex? 👀",
+    "description": "Interactive Gen Z quiz to help you decide whether to text your ex.",
+    "creator": {
+      "@type": "Organization",
+      "name": "TMI Studios",
+      "url": "https://tmistudios.xyz"
+    },
+    "url": "https://yourdomain.com/"
+  }
+  </script>
 
   <link rel="icon" href="/favicon.ico" />
 
@@ -62,6 +80,7 @@
 
     .response-card {
       max-width: 400px;
+      width: 90%;
       background: white;
       border: 1px solid #ddd;
       border-radius: 12px;
@@ -69,6 +88,7 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.05);
       text-align: center;
       animation: fadeIn 0.8s ease;
+      margin-bottom: 2rem;
     }
 
     .response-card img {
@@ -85,6 +105,8 @@
       color: #d63384;
       margin-bottom: 1rem;
     }
+
+    .ad-container { margin: 1rem 0; }
 
     .share-buttons {
       margin-top: 1rem;
@@ -175,6 +197,20 @@
     <section class="response-card" id="responseCard" style="display:none;">
       <p id="responseText"></p>
       <img id="responseMeme" src="" alt="meme">
+
+      <!-- AdSense Placeholder -->
+      <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9744535609211271"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+
       <div class="share-buttons">
         <a id="shareTwitter" target="_blank">Share on Twitter</a>
         <a id="shareWhatsApp" target="_blank">Share on WhatsApp</a>
@@ -199,6 +235,7 @@
     <div class="promo-card">
       <p>💾 <strong>Download the full game</strong> & play with the whole gang IRL<br>
          🧃<a href="/arcade.html">More unserious fun in our arcade!</a>
+      </p>
       <p>If you laughed… you owe us a follow. 🎤</p>
     </div>
 
