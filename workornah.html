@@ -5,13 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Work or Nah? | TMI Studios Lab</title>
 <meta name="description" content="Flip the coin and decide your fate — Work or Nah? Best of 5 rounds. Quick, fun, and only at TMI Studios Arcade." />
+<meta name="keywords" content="Work or Nah, TMI Studios, Coin Flip Game, Fun Office Game, Quick Game, Gen Z Arcade">
+<meta name="author" content="TMI Studios" />
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
+     crossorigin="anonymous"></script>
+
+<!-- Open Graph & Twitter -->
+<meta property="og:title" content="Work or Nah? | TMI Studios Arcade" />
+<meta property="og:description" content="Flip the coin and decide your fate — Work or Nah? Best of 5 rounds." />
+<meta property="og:image" content="https://yourdomain.com/og-image-work-or-nah.jpg" />
+<meta property="og:url" content="https://yourdomain.com/work-or-nah.html" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Work or Nah? | TMI Studios Arcade"/>
+<meta name="twitter:description" content="Flip the coin and decide your fate — Work or Nah? Best of 5 rounds."/>
+<meta name="twitter:image" content="https://yourdomain.com/og-image-work-or-nah.jpg"/>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!-- html2canvas for card rendering -->
+<!-- html2canvas for share card -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Game",
+  "name": "Work or Nah?",
+  "url": "https://yourdomain.com/work-or-nah.html",
+  "image": "https://yourdomain.com/og-image-work-or-nah.jpg",
+  "description": "Flip the coin and decide your fate — Work or Nah? Best of 5 rounds. Quick, fun, and only at TMI Studios Arcade.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TMI Studios",
+    "url": "https://tmistudios.xyz"
+  }
+}
+</script>
 
 <style>
 :root {
@@ -29,6 +62,7 @@ body {
   min-height: 100vh;
   margin: 0;
   text-align: center;
+  perspective: 1000px; /* enable 3D flip */
 }
 
 nav {
@@ -240,28 +274,16 @@ footer.footer i {
 
 #shareCardModal.show { display:block; }
 
-#shareCardModal h2 {
-  color: #ffcc66;
-  margin-bottom: 10px;
-}
-
-#shareCardModal .ctaText {
-  color: #ccc;
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-}
+#shareCardModal h2 { color: #ffcc66; margin-bottom: 10px; }
+#shareCardModal .ctaText { color: #ccc; font-size: 0.95rem; margin-bottom: 20px; }
 
 .modalCoin {
-  width: 180px;
-  height: 180px;
+  width: 180px; height: 180px;
   margin: 0 auto 20px auto;
   border-radius: 50%;
   background: linear-gradient(145deg, #222, #444);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: #fff;
   box-shadow: 0 0 20px rgba(255, 204, 102, 0.3);
   position: relative;
   transform-style: preserve-3d;
@@ -269,58 +291,18 @@ footer.footer i {
 
 .modalCoin::before, .modalCoin::after {
   content: attr(data-text);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backface-visibility: hidden;
-  font-weight: 700;
+  position: absolute; width: 100%; height: 100%; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; backface-visibility: hidden; font-weight:700;
 }
 
-.modalCoin::before {
-  background: radial-gradient(circle, #ffcc66 10%, #b8860b 90%);
-  color: #111;
-  transform: rotateY(0deg);
-}
+.modalCoin::before { background: radial-gradient(circle, #ffcc66 10%,#b8860b 90%); color: #111; transform: rotateY(0deg); }
+.modalCoin::after { background: radial-gradient(circle, #444, #000); color: #ffcc66; transform: rotateY(180deg); }
 
-.modalCoin::after {
-  background: radial-gradient(circle, #444, #000);
-  color: #ffcc66;
-  transform: rotateY(180deg);
-}
+.modalBtns { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+.downloadBtn, .closeBtn { background: #ffcc66; color: #111; border: none; border-radius: 50px; padding: 10px 20px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.downloadBtn:hover, .closeBtn:hover { background: #fff; color: #000; box-shadow: 0 0 15px rgba(255, 204, 102, 0.8); }
 
-.modalBtns {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.downloadBtn, .closeBtn {
-  background: #ffcc66;color: #111;
-  border: none;
-  border-radius: 50px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.downloadBtn:hover, .closeBtn:hover {
-  background: #fff;
-  color: #000;
-  box-shadow: 0 0 15px rgba(255, 204, 102, 0.8);
-}
-
-.byline {
-  color: #ccc;
-  font-size: 0.85rem;
-  margin-top: 10px;
-}
-
+.byline { color: #ccc; font-size: 0.85rem; margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -348,6 +330,17 @@ footer.footer i {
   </div>
 
   <p style="font-size:0.8rem;color:#aaa;">*For entertainment purposes only. Go to work, you're grown.</p>
+
+  <!-- AdSense Example -->
+  <ins class="adsbygoogle"
+       style="display:block; text-align:center; margin-top:20px;"
+       data-ad-client="ca-pub-9744535609211271"
+       data-ad-slot="1234567890"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </main>
 
 <!-- Overlay & Share Card Modal -->
@@ -387,10 +380,7 @@ const scoreEl = document.getElementById("score");
 const verdictEl = document.getElementById("verdict");
 const notification = document.getElementById("notification");
 
-let yahScore = 0;
-let nahScore = 0;
-let flips = 0;
-let isFlipping = false;
+let yahScore = 0, nahScore = 0, flips = 0, isFlipping = false;
 
 // Sounds
 const flipSound = new Audio("https://freesound.org/data/previews/341/341695_62424-lq.mp3");
@@ -413,7 +403,6 @@ const yahVerdicts = [
   "Boss will pretend to notice you… maybe 😎",
   "Another day, another chance to shine ✨"
 ];
-
 const nahVerdicts = [
   "HR just spotted your sick day story 👀",
   "Clock in or scroll TikTok? Decisions, decisions 😏",
@@ -432,9 +421,7 @@ function updateScore() {
   scoreEl.textContent = `Yah: ${yahScore} | Nah: ${nahScore}`;
 }
 
-function fireConfetti() {
-  confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-}
+function fireConfetti() { confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } }); }
 
 function finalVerdict() {
   const winner = yahScore > nahScore ? "Yah" : "Nah";
@@ -452,9 +439,7 @@ button.addEventListener("click", () => {
   isFlipping = true;
 
   if (flips >= 5) {
-    yahScore = 0;
-    nahScore = 0;
-    flips = 0;
+    yahScore = nahScore = flips = 0;
     verdictEl.textContent = "";
     updateScore();
     button.textContent = "Flip Coin";
@@ -507,7 +492,6 @@ function closeShareCard() {
   modal.classList.remove("show");
 }
 
-// Download modal as image
 function downloadCard() {
   html2canvas(modal).then(canvas => {
     const link = document.createElement("a");
