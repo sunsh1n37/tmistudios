@@ -6,9 +6,11 @@
 <title>TMI Studios Arcade</title>
 <meta name="description" content="Play chaotic, unhinged, and oddly accurate quizzes & games by TMI Studios. Subscribe for exclusive drops.">
 <meta name="robots" content="index, follow">
+
+<!-- AdSense loader (only needed on pages with ads) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
      crossorigin="anonymous"></script>
-  
+
 <!-- JSON-LD SEO -->
 <script type="application/ld+json">
 {
@@ -33,6 +35,7 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
+/* YOUR EXISTING STYLES — unchanged */
 :root { --cyan:#00ffff; --magenta:#ff00ff; --purple:#a855f7; }
 body { margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); }
 a { transition: color 0.3s ease; } a:hover { color:#d8b4fe; }
@@ -49,21 +52,17 @@ footer a:hover { color:#ccc !important; }
 .explode { animation: explode .45s forwards; }
 @keyframes explode { 0% { transform: scale(1); opacity:1; } 100% { transform: scale(2.8); opacity:0; } }
 
-/* Sparks */
 .spark { position:absolute; width:4px; height:4px; border-radius:50%; pointer-events:none; filter:blur(1.5px); animation:sparkMove 0.6s ease-out forwards; }
 @keyframes sparkMove { 0% { transform: translate(0,0) scale(1); opacity:1; } 100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity:0; } }
 
-/* Game cards */
 .game-card { display:inline-block; width:250px; margin-right:1rem; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid #000; vertical-align:top; text-align:center; }
 .game-card button { background:var(--purple); color:white; border:none; padding:.5rem 1rem; margin:.5rem; border-radius:6px; cursor:pointer; font-weight:bold; }
 
-/* Modals */
 .modal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,.85); justify-content:center; align-items:center; z-index:2000; }
 .modal-content { background:#1a1a1a; border:2px dashed var(--purple); border-radius:10px; padding:2rem; text-align:center; max-width:400px; }
 .modal-content input { display:block; width:100%; margin:1rem auto; padding:.6rem; border-radius:6px; border:none; }
 .modal-content button { background:var(--purple); color:#fff; padding:.5rem 1rem; border:none; border-radius:6px; font-weight:700; cursor:pointer; }
 
-/* Subscription tile */
 #email-tile { max-width:360px; margin:2rem auto; background:rgba(255,255,255,0.05); border:2px solid var(--purple); border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 0 10px #8b5cf6; }
 #email-tile button { margin-top:0.75rem; background:var(--purple); color:#fff; padding:.6rem 1.25rem; border-radius:8px; font-weight:bold; cursor:pointer; }
 
@@ -77,10 +76,7 @@ footer a:hover { color:#ccc !important; }
   .nav-link:last-child { margin-right: 0; }
   .nav-link:hover { color: #a855f7; }
   @media (min-width: 768px) {
-    nav {
-      justify-content: center;
-      gap: 2rem;
-    }
+    nav { justify-content: center; gap: 2rem; }
     .nav-link { font-size: 1rem; margin-right: 0; }
   }
 </style>
@@ -105,6 +101,19 @@ footer a:hover { color:#ccc !important; }
     <a href="/packages.html" style="background:var(--purple); color:#fff; padding:.7rem 1rem; border-radius:8px; font-weight:700;">Let’s build your viral game!</a>
   </div>
 </section>
+
+<!-- INSERT ADS HERE (Optional) -->
+<!-- Example Ad Unit: 
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9744535609211271"
+     data-ad-slot="XXXXXXX"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+-->
 
 <!-- GAME -->
 <div id="game-container">
@@ -137,7 +146,7 @@ footer a:hover { color:#ccc !important; }
   <button id="openEmailBtn">Subscribe</button>
 </div>
 
-<!-- NEWSLETTER MODAL -->
+<!-- MODALS -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <h3 style="font-weight:bold; font-size:1.2rem;">Subscribe to TMI Newsletter</h3>
@@ -148,7 +157,6 @@ footer a:hover { color:#ccc !important; }
   </div>
 </div>
 
-<!-- COMING SOON MODAL -->
 <div id="comingModal" class="modal">
   <div class="modal-content">
     <h3 style="font-weight:bold; font-size:1.2rem;">Remind Me When This Game Drops</h3>
@@ -169,129 +177,120 @@ footer a:hover { color:#ccc !important; }
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
   <p><a href="/contactus.html">Need a website or viral design? Let's build it!</a></p>
   <p><a href="/arcade.html">Arcade</a></p>
-     <p><a href="/privacy.html">Privacy Policy</a></p>
+  <p><a href="/privacy.html">Privacy Policy</a></p>
 </footer>
 
 <script>
-// Modal logic
+// EXISTING GAME + MODAL LOGIC (unchanged)
 const modal = document.getElementById('modal');
 const comingModal = document.getElementById('comingModal');
 const openBtn = document.getElementById('openEmailBtn');
-
 function showModal(m = modal){ m.style.display='flex'; }
 function hideModal(m = modal){ m.style.display='none'; }
-
 openBtn.addEventListener('click', ()=>showModal());
 modal.addEventListener('click', e=>{ if(e.target===modal) hideModal(); });
 comingModal.addEventListener('click', e=>{ if(e.target===comingModal) hideModal(comingModal); });
+document.querySelectorAll('.coming-soon').forEach(btn=>{ btn.addEventListener('click', ()=>showModal(comingModal)); });
 
-// Coming soon buttons
-document.querySelectorAll('.coming-soon').forEach(btn=>{
-  btn.addEventListener('click', ()=>showModal(comingModal));
-});
-
-// Game Logic
 const targetImages=['target1.jpeg','target2.jpeg','target3.jpeg','target4.jpeg','target5.jpeg', 'target6.jpeg','target7.jpeg','target8.jpeg','target9.jpeg','target10.jpeg','target11.jpeg','target12.jpeg','target13.jpeg','target14.jpeg','target15.jpeg'];
 const container=document.getElementById('game-container');
 const shooter=document.getElementById('shooter');
 let currentTargetIndex=0, currentTarget=null;
-
-function createTarget(src){
-  if(currentTarget) currentTarget.remove();
-  const img=document.createElement('img');
-  img.src='images/'+src;
-  img.className='target';
-  container.appendChild(img);
-  currentTarget=img;
-}
+function createTarget(src){ if(currentTarget) currentTarget.remove(); const img=document.createElement('img'); img.src='images/'+src; img.className='target'; container.appendChild(img); currentTarget=img; }
 function spawnTarget(){ if(currentTargetIndex>=targetImages.length) currentTargetIndex=0; createTarget(targetImages[currentTargetIndex]); }
 
-// Spark function
-function createSpark(x,y,color='cyan'){
-  const spark=document.createElement('div');
-  spark.className='spark';
-  spark.style.left=x+'px';
-  spark.style.top=y+'px';
-  spark.style.background=color;
-  const dx=(Math.random()-0.5)*40+'px';
-  const dy=(Math.random()-0.5)*40+'px';
-  spark.style.setProperty('--dx',dx);
-  spark.style.setProperty('--dy',dy);
-  container.appendChild(spark);
-  setTimeout(()=>spark.remove(),600);
-}
+function createSpark(x,y,color='cyan'){ const spark=document.createElement('div'); spark.className='spark'; spark.style.left=x+'px'; spark.style.top=y+'px'; spark.style.background=color; const dx=(Math.random()-0.5)*40+'px'; const dy=(Math.random()-0.5)*40+'px'; spark.style.setProperty('--dx',dx); spark.style.setProperty('--dy',dy); container.appendChild(spark); setTimeout(()=>spark.remove(),600); }
 
-// Bullet with sparks
-function fireBullet(){
-  const bullet=document.createElement('div');
-  bullet.className='bullet';
-  const sRect=shooter.getBoundingClientRect();
-  const cRect=container.getBoundingClientRect();
-  bullet.style.left=(sRect.right-cRect.left)+'px';
-  bullet.style.top=(sRect.top+sRect.height/2-2-cRect.top)+'px';
-  container.appendChild(bullet);
-
-  const trailInterval = setInterval(()=>{
-    createSpark(parseFloat(bullet.style.left), parseFloat(bullet.style.top),'cyan');
-  },50);
-
-  function move(){
-    let left=parseFloat(bullet.style.left);
-    if(left>container.clientWidth+20){ bullet.remove(); clearInterval(trailInterval); return; }
-    bullet.style.left=(left+14)+'px';
+function fireBullet(){ const bullet=document.createElement('div'); bullet.className='bullet'; const sRect=shooter.getBoundingClientRect(); const cRect=container.getBoundingClientRect(); bullet.style.left=(sRect.right-cRect.left)+'px'; bullet.style.top=(sRect.top+sRect.height/2-2-cRect.top)+'px'; container.appendChild(bullet); const trailInterval = setInterval(()=>{ createSpark(parseFloat(bullet.style.left), parseFloat(bullet.style.top),'cyan'); },50); function move(){ letlet left = parseFloat(bullet.style.left);
+    if(left > container.clientWidth + 20){ 
+        bullet.remove(); 
+        clearInterval(trailInterval); 
+        return; 
+    }
+    bullet.style.left = (left + 14) + 'px';
     if(currentTarget){
-      const bRect=bullet.getBoundingClientRect();
-      const tRect=currentTarget.getBoundingClientRect();
-      if(bRect.right>=tRect.left && bRect.left<=tRect.right && bRect.top<=tRect.bottom && bRect.bottom>=tRect.top){
-        bullet.remove(); clearInterval(trailInterval); explodeTarget(); return;
-      }
+        const bRect = bullet.getBoundingClientRect();
+        const tRect = currentTarget.getBoundingClientRect();
+        if(bRect.right >= tRect.left && bRect.left <= tRect.right && bRect.top <= tRect.bottom && bRect.bottom >= tRect.top){
+            bullet.remove(); 
+            clearInterval(trailInterval); 
+            explodeTarget(); 
+            return;
+        }
     }
     requestAnimationFrame(move);
-  }
-  requestAnimationFrame(move);
+}
+requestAnimationFrame(move);
 }
 
 function explodeTarget(){
-  if(!currentTarget) return;
-  const tRect=currentTarget.getBoundingClientRect();
-  for(let i=0;i<15;i++){
-    createSpark(tRect.left-container.getBoundingClientRect().left+tRect.width/2, tRect.top-container.getBoundingClientRect().top+tRect.height/2,'--magenta');
-  }
-  currentTarget.classList.add('explode');
-  setTimeout(()=>{ currentTarget.remove(); currentTarget=null; currentTargetIndex++; spawnTarget(); },450);
+    if(!currentTarget) return;
+    const tRect = currentTarget.getBoundingClientRect();
+    for(let i = 0; i < 15; i++){
+        createSpark(
+            tRect.left - container.getBoundingClientRect().left + tRect.width/2, 
+            tRect.top - container.getBoundingClientRect().top + tRect.height/2, 
+            '--magenta'
+        );
+    }
+    currentTarget.classList.add('explode');
+    setTimeout(()=>{
+        currentTarget.remove();
+        currentTarget = null;
+        currentTargetIndex++;
+        spawnTarget();
+    }, 450);
 }
 
 container.addEventListener('click', fireBullet);
 spawnTarget();
 
-// Newsletter submit
+// Newsletter modal submit
 document.getElementById('emailSubmit').addEventListener('click', async ()=>{
-  const name=document.getElementById('nameInput').value;
-  const email=document.getElementById('emailInput').value;
-  if(!name||!email){ document.getElementById('emailFeedback').innerText='Fill in both fields'; return; }
-  const data={name,email,form_type:'newsletter'};
-  try{
-    const res=await fetch('https://formspree.io/f/xyznzwdg',{
-      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
-    });
-    if(res.ok){ document.getElementById('emailFeedback').innerText='Subscribed! 💜'; setTimeout(()=>hideModal(),1500); }
-    else document.getElementById('emailFeedback').innerText='Error. Try again.';
-  } catch(e){ document.getElementById('emailFeedback').innerText='Error: '+e.message; }
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('emailInput').value;
+    if(!name || !email){
+        document.getElementById('emailFeedback').innerText = 'Fill in both fields';
+        return;
+    }
+    const data = { name, email, form_type: 'newsletter' };
+    try{
+        const res = await fetch('https://formspree.io/f/xyznzwdg', {
+            method: 'POST',
+            headers: { 'Content-Type':'application/json' },
+            body: JSON.stringify(data)
+        });
+        if(res.ok){
+            document.getElementById('emailFeedback').innerText = 'Subscribed! 💜';
+            setTimeout(()=>hideModal(),1500);
+        } else document.getElementById('emailFeedback').innerText = 'Error. Try again.';
+    } catch(e){
+        document.getElementById('emailFeedback').innerText = 'Error: ' + e.message;
+    }
 });
 
 // Coming soon modal submit
 document.getElementById('comingSubmit').addEventListener('click', async ()=>{
-  const name=document.getElementById('comingName').value;
-  const email=document.getElementById('comingEmail').value;
-  if(!name||!email){ document.getElementById('comingFeedback').innerText='Fill in both fields'; return; }
-  const data={name,email,form_type:'coming_soon'};
-  try{
-    const res=await fetch('https://formspree.io/f/xyznzwdg',{
-      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
-    });
-    if(res.ok){ document.getElementById('comingFeedback').innerText='We will notify you! 💜'; setTimeout(()=>hideModal(comingModal),1500); }
-    else document.getElementById('comingFeedback').innerText='Error. Try again.';
-  } catch(e){ document.getElementById('comingFeedback').innerText='Error: '+e.message; }
+    const name = document.getElementById('comingName').value;
+    const email = document.getElementById('comingEmail').value;
+    if(!name || !email){
+        document.getElementById('comingFeedback').innerText = 'Fill in both fields';
+        return;
+    }
+    const data = { name, email, form_type: 'coming_soon' };
+    try{
+        const res = await fetch('https://formspree.io/f/xyznzwdg', {
+            method: 'POST',
+            headers: { 'Content-Type':'application/json' },
+            body: JSON.stringify(data)
+        });
+        if(res.ok){
+            document.getElementById('comingFeedback').innerText = 'We will notify you! 💜';
+            setTimeout(()=>hideModal(comingModal),1500);
+        } else document.getElementById('comingFeedback').innerText = 'Error. Try again.';
+    } catch(e){
+        document.getElementById('comingFeedback').innerText = 'Error: ' + e.message;
+    }
 });
 </script>
 </body>
