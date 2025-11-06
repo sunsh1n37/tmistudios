@@ -58,6 +58,40 @@ footer a {
 footer a:hover {
   text-decoration: underline; /* optional — keeps a hover effect */
 }
+
+/* Share buttons base style */
+.share-btn {
+  padding:0.5rem 0.75rem;
+  border-radius:0.5rem;
+  font-size:0.85rem;
+  text-decoration:none;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Platform colors */
+.share-btn.whatsapp { background:#25D366; }
+.share-btn.telegram { background:#0088cc; }
+.share-btn.twitter { background:#1DA1F2; }
+.share-btn.copy-link-btn { background:#111; }
+
+/* Hover pop + glow */
+.share-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(255,0,255,0.5);
+}
+
+/* Glitch/flicker animation */
+@keyframes glitchFlicker {
+  0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}
+  20%,22%,24%,55%{opacity:0.6; transform: translateX(-1px);}
+}
+.glitch-share {
+  animation: glitchFlicker 2s infinite;
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -120,6 +154,7 @@ footer a:hover {
 </footer>
 
 <script>
+<script>
 fetch('news.json')
   .then(res => res.json())
   .then(data => {
@@ -128,25 +163,64 @@ fetch('news.json')
     data.stories.forEach(story => {
       const card = document.createElement('div');
       card.classList.add('card');
+
+      // Unique story ID & URL
+      const storyId = "story-" + story.date.replace(/-/g,'');
+      const storyUrl = encodeURIComponent(window.location.href + "#" + storyId);
+      const shareText = encodeURIComponent(story.headline + " — " + story.preview);
+
       card.innerHTML = `
         <img src="${story.image}" alt="${story.headline}">
         <div class="card-content">
           <p class="date">${story.date}</p>
-          <h3>${story.headline}</h3>
+          <h3 id="${storyId}">${story.headline}</h3>
           <p>${story.preview}</p>
           <button class="read-more-btn">Read More</button>
           <div class="full-story hidden"><p>${story.fullStory}</p></div>
+          <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <a href="https://wa.me/?text=${shareText}%20${storyUrl}" target="_blank" 
+               class="share-btn whatsapp">📲 WhatsApp</a>
+            <a href="https://t.me/share/url?url=${storyUrl}&text=${shareText}" target="_blank"
+               class="share-btn telegram">✈️ Telegram</a>
+            <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${storyUrl}" target="_blank"
+               class="share-btn twitter">🐦 Twitter</a>
+            <button class="share-btn copy-link-btn">📋 Copy Link</button>
+          </div>
         </div>
       `;
+
+      // Read More toggle
       const readBtn = card.querySelector('.read-more-btn');
       const fullStoryDiv = card.querySelector('.full-story');
       readBtn.addEventListener('click', () => {
         fullStoryDiv.classList.toggle('hidden');
         readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
       });
+
+      // Copy link functionality
+      const copyBtn = card.querySelector('.copy-link-btn');
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href + "#" + storyId)
+          .then(() => {
+            copyBtn.textContent = '✅ Copied';
+            setTimeout(() => copyBtn.textContent = '📋 Copy Link', 1500);
+          })
+          .catch(() => {
+            copyBtn.textContent = '❌ Failed';
+            setTimeout(() => copyBtn.textContent = '📋 Copy Link', 1500);
+          });
+      });
+
+      // Add flicker/glitch effect class
+      const shareButtons = card.querySelectorAll('.share-btn');
+      shareButtons.forEach(btn => {
+        btn.classList.add('glitch-share');
+      });
+
       newsContainer.appendChild(card);
     });
   });
+</script>
 </script>
 
 <script>
