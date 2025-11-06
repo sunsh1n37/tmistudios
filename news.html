@@ -13,12 +13,10 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- ✅ AdSense loader -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
      crossorigin="anonymous"></script>
 
 <style>
-/* same CSS as before — unchanged for layout and style */
 body {font-family:'Space Grotesk',sans-serif;background:#fafafa;color:#111;margin:0;padding:0;}
 header{text-align:center;padding:2rem 1rem;background:#000;color:#00ffff;}
 .logo{font-family:'Orbitron',sans-serif;font-size:3rem;margin:0;text-transform:uppercase;position:relative;color:#00ffff;animation:flicker 2s infinite;}
@@ -36,6 +34,9 @@ h2{font-family:'Orbitron',sans-serif;color:#111;border-left:4px solid #00ffff;pa
 .card img{width:100%;height:180px;object-fit:cover;}
 .card-content{padding:1rem;}
 .date{font-size:0.8rem;color:#666;margin-bottom:0.3rem;}
+.read-more-btn{margin-top:0.5rem;background:#111;color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:0.5rem;cursor:pointer;font-size:0.9rem;transition:background 0.3s;}
+.read-more-btn:hover{background:#00ffff;color:#111;}
+.hidden{display:none;}
 footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:0.9rem;}
 .cta-banner{text-align:center;margin:2rem 0;}
 .cta-banner button{background:#111;color:#fff;border:none;padding:1rem 1.5rem;font-size:1.1rem;border-radius:0.75rem;cursor:pointer;transition:background 0.3s;}
@@ -71,48 +72,30 @@ footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:
 </header>
 
 <main>
-  <!-- ✅ OPTIONAL AD PLACEMENT: Top Banner -->
-  <div class="adsense-slot" style="margin: 1.5rem 0; text-align:center;">
-    <!-- Replace below with ad unit when ready -->
-    <!-- <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9744535609211271"
-         data-ad-slot="XXXXXXX"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
-  </div>
+  <div class="adsense-slot" style="margin: 1.5rem 0; text-align:center;"></div>
 
-  <!-- NEWS SECTION -->
   <section id="news-section">
     <h2>Latest Stories</h2>
     <div id="news-container" class="card-grid"></div>
   </section>
 
-  <!-- ✅ OPTIONAL IN-FEED AD -->
-  <div class="adsense-slot" style="margin: 2rem 0; text-align:center;">
-    <!-- Placeholder for in-feed ad -->
-  </div>
+  <div class="adsense-slot" style="margin: 2rem 0; text-align:center;"></div>
 
-  <!-- PERSON OF INTEREST -->
   <section id="poi-section">
     <h2>Person of Interest</h2>
     <div id="poi-container" class="card-grid"></div>
   </section>
 
-  <!-- NEW TECH ALERT -->
   <section id="tech-section">
     <h2>New Tech Alert</h2>
     <div id="tech-container" class="card-grid"></div>
   </section>
 
-  <!-- EVENTS -->
   <section id="events-section">
     <h2>Upcoming Tech Events</h2>
     <div id="events-container" class="card-grid"></div>
   </section>
 
-  <!-- ADVERTISE CTA -->
   <section id="advertise" class="cta-banner">
     <button id="advertiseBtn">Advertise with Us</button>
   </section>
@@ -144,7 +127,7 @@ fetch('news.json')
           <h3>${story.headline}</h3>
           <p>${story.preview}</p>
           <button class="read-more-btn">Read More</button>
-          <div class="full-story hidden">${story.fullStory}</div>
+          <div class="full-story hidden"><p>${story.fullStory}</p></div>
         </div>
       `;
       const readBtn = card.querySelector('.read-more-btn');
@@ -157,6 +140,7 @@ fetch('news.json')
     });
   });
 </script>
+
 <script>
 const ctas = {
   submitTipBtn: "https://formspree.io/f/xldpdblq",
