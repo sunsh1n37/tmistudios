@@ -6,11 +6,19 @@
 <title>TMI News — Tech. Magic. Innovation</title>
 <meta name="description" content="TMI News brings you the latest in African tech, innovation, creators, and chaos. Stay tuned for stories shaping the future of code, business, and creativity." />
 <meta name="keywords" content="TMI Studios, tech news Africa, startups, Durban, innovation, creators, AI, events, technology, African innovation" />
-<meta property="og:title" content="TMI News — Code. Chaos. Cool." />
+
+<!-- Open Graph / Social Meta Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="TMI News — Tech. Magic. Innovation" />
 <meta property="og:description" content="African innovation, creators, and stories reshaping tech." />
 <meta property="og:image" content="https://placehold.co/900x500?text=TMI+News" />
-<meta property="og:type" content="website" />
+<meta property="og:url" content="https://tmistudios.xyz/news" />
+
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="TMI News — Tech. Magic. Innovation" />
+<meta name="twitter:description" content="African innovation, creators, and stories reshaping tech." />
+<meta name="twitter:image" content="https://placehold.co/900x500?text=TMI+News" />
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -31,8 +39,9 @@ h2{font-family:'Orbitron',sans-serif;color:#111;border-left:4px solid #00ffff;pa
 .card img{width:100%;height:180px;object-fit:cover;}
 .card-content{padding:1rem;}
 .date{font-size:0.8rem;color:#666;margin-bottom:0.3rem;}
-.read-more-btn{margin-top:0.5rem;background:#111;color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:0.5rem;cursor:pointer;font-size:0.9rem;transition:background 0.3s;text-decoration:none;display:inline-block;}
+.read-more-btn{margin-top:0.5rem;background:#111;color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:0.5rem;cursor:pointer;font-size:0.9rem;transition:background 0.3s;}
 .read-more-btn:hover{background:#00ffff;color:#111;}
+.hidden{display:none;}
 footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:0.9rem;}
 .cta-banner{text-align:center;margin:2rem 0;}
 .cta-banner button{background:#111;color:#fff;border:none;padding:1rem 1.5rem;font-size:1.1rem;border-radius:0.75rem;cursor:pointer;transition:background 0.3s;}
@@ -40,13 +49,33 @@ footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:
 .cta-stack{display:flex;flex-direction:column;gap:0.75rem;margin:2rem auto;max-width:400px;}
 .cta-stack button{background:#111;color:#fff;border:none;padding:1rem 1.5rem;font-size:1rem;border-radius:0.75rem;cursor:pointer;transition:background 0.3s;}
 .cta-stack button:hover{background:#00ffff;color:#111;}
-.share-btn{margin:0.25rem; padding:0.5rem 0.75rem; border-radius:0.5rem; color:#fff; text-decoration:none; cursor:pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;}
+.popup{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);display:flex;justify-content:center;align-items:center;z-index:1000;}
+.popup-content{background:#fff;padding:1rem;border-radius:1rem;position:relative;max-width:600px;width:90%;}
+.popup-content input,.popup-content textarea{padding:0.75rem;border-radius:0.5rem;border:1px solid #ccc;font-family:'Space Grotesk',sans-serif;font-size:1rem;width:100%;}
+.popup-content button{background:#111;color:#fff;border:none;padding:1rem;border-radius:0.75rem;cursor:pointer;font-size:1rem;transition:background 0.3s;}
+.popup-content button:hover{background:#00ffff;color:#111;}
+.popup-content .close{position:absolute;top:10px;right:15px;font-size:1.5rem;cursor:pointer;}
+footer a {text-decoration: none; color: inherit;}
+footer a:hover {text-decoration: underline;}
+
+/* Social Share Buttons */
+.share-btn {
+  padding:0.5rem 0.75rem;
+  border-radius:0.5rem;
+  font-size:0.85rem;
+  text-decoration:none;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 .share-btn.whatsapp { background:#25D366; }
 .share-btn.telegram { background:#0088cc; }
 .share-btn.twitter { background:#1DA1F2; }
-.share-btn:hover { transform: scale(1.05); box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(255,0,255,0.5);}
+.share-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(0,255,255,0.7),0 0 5px rgba(255,0,255,0.5);}
 </style>
 </head>
+
 <body>
 <header>
   <h1 class="logo" data-text="TMI News">TMI News</h1>
@@ -62,54 +91,48 @@ footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:
 
 <footer>
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+  <p><a href="/privacy.html">Privacy Policy</a></p>
 </footer>
 
 <script>
-<script>
+// Load news from external JSON
 fetch('news.json')
   .then(res => res.json())
   .then(data => {
-    const newsContainer = document.getElementById('news-container');
+    const container = document.getElementById('news-container');
 
     data.stories.forEach(story => {
+      const storyId = "story-" + story.date.replace(/-/g,'');
+      const storyUrl = encodeURIComponent(window.location.href + "#" + storyId);
+      const shareText = encodeURIComponent(story.headline + " — " + story.preview);
+
       const card = document.createElement('div');
       card.classList.add('card');
-
-      const storyId = "story-" + story.date.replace(/-/g,'');
-      const storyUrl = window.location.origin + window.location.pathname + "#" + storyId;
-
       card.innerHTML = `
         <img src="${story.image}" alt="${story.headline}">
         <div class="card-content">
-          <p class="date">${story.date}</p>
+          <p class="date">${<p class="date">${story.date}</p>
           <h3 id="${storyId}">${story.headline}</h3>
           <p>${story.preview}</p>
-          <button class="read-more-btn">Read More</button>
-          <div class="full-story hidden"><p>${story.fullStory}</p></div>
+          <button class="read-more-btn">Read Full Story on Our Site</button>
           <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-            <a href="https://wa.me/?text=${encodeURIComponent(story.headline + ' ' + storyUrl)}" target="_blank"
-               class="share-btn whatsapp">📲 WhatsApp</a>
-            <a href="https://t.me/share/url?url=${encodeURIComponent(storyUrl)}&text=${encodeURIComponent(story.headline)}" target="_blank"
-               class="share-btn telegram">✈️ Telegram</a>
-            <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(story.headline)}&url=${encodeURIComponent(storyUrl)}" target="_blank"
-               class="share-btn twitter">🐦 Twitter</a>
+            <a href="https://wa.me/?text=${shareText}%20${storyUrl}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
+            <a href="https://t.me/share/url?url=${storyUrl}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
+            <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${storyUrl}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
           </div>
         </div>
       `;
 
-      // Read More toggle
+      // "Read Full Story" button opens the story on your site
       const readBtn = card.querySelector('.read-more-btn');
-      const fullStoryDiv = card.querySelector('.full-story');
       readBtn.addEventListener('click', () => {
-        fullStoryDiv.classList.toggle('hidden');
-        readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
+        window.location.href = story.fullUrl || storyUrl; // fullUrl if available in JSON
       });
 
-      newsContainer.appendChild(card);
+      container.appendChild(card);
     });
   })
-  .catch(err => console.error("Failed to load news:", err));
-</script>
+  .catch(err => console.error("Failed to load news.json:", err));
 </script>
 </body>
 </html>
