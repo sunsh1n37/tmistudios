@@ -65,38 +65,51 @@ footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:
 </footer>
 
 <script>
+<script>
 fetch('news.json')
-.then(res => res.json())
-.then(data => {
-  const newsContainer = document.getElementById('news-container');
+  .then(res => res.json())
+  .then(data => {
+    const newsContainer = document.getElementById('news-container');
 
-  data.stories.forEach(story => {
-    const card = document.createElement('div');
-    card.classList.add('card');
+    data.stories.forEach(story => {
+      const card = document.createElement('div');
+      card.classList.add('card');
 
-    // Unique story ID
-    const storyId = story.id || "story-" + story.date.replace(/-/g,'');
-    const storyUrl = window.location.origin + "/news/story.html?id=" + storyId;
-    const shareText = encodeURIComponent(story.headline + " — " + story.preview);
+      const storyId = "story-" + story.date.replace(/-/g,'');
+      const storyUrl = window.location.origin + window.location.pathname + "#" + storyId;
 
-    card.innerHTML = `
-      <img src="${story.image}" alt="${story.headline}">
-      <div class="card-content">
-        <p class="date">${story.date}</p>
-        <h3>${story.headline}</h3>
-        <p>${story.preview}</p>
-        <a href="${storyUrl}" class="read-more-btn">Read Full Story</a>
-        <div class="share-buttons" style="margin-top:0.5rem;">
-          <a href="https://wa.me/?text=${shareText}%20${storyUrl}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
-          <a href="https://t.me/share/url?url=${storyUrl}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
-          <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${storyUrl}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
+      card.innerHTML = `
+        <img src="${story.image}" alt="${story.headline}">
+        <div class="card-content">
+          <p class="date">${story.date}</p>
+          <h3 id="${storyId}">${story.headline}</h3>
+          <p>${story.preview}</p>
+          <button class="read-more-btn">Read More</button>
+          <div class="full-story hidden"><p>${story.fullStory}</p></div>
+          <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <a href="https://wa.me/?text=${encodeURIComponent(story.headline + ' ' + storyUrl)}" target="_blank"
+               class="share-btn whatsapp">📲 WhatsApp</a>
+            <a href="https://t.me/share/url?url=${encodeURIComponent(storyUrl)}&text=${encodeURIComponent(story.headline)}" target="_blank"
+               class="share-btn telegram">✈️ Telegram</a>
+            <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(story.headline)}&url=${encodeURIComponent(storyUrl)}" target="_blank"
+               class="share-btn twitter">🐦 Twitter</a>
+          </div>
         </div>
-      </div>
-    `;
+      `;
 
-    newsContainer.appendChild(card);
-  });
-});
+      // Read More toggle
+      const readBtn = card.querySelector('.read-more-btn');
+      const fullStoryDiv = card.querySelector('.full-story');
+      readBtn.addEventListener('click', () => {
+        fullStoryDiv.classList.toggle('hidden');
+        readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
+      });
+
+      newsContainer.appendChild(card);
+    });
+  })
+  .catch(err => console.error("Failed to load news:", err));
+</script>
 </script>
 </body>
 </html>
