@@ -2,6 +2,14 @@
   "stories": [
     {
       "date": "2025-11-06",
+      "category": "Tech",
+      "headline": "African Super-App Gozem officially lands in Brazzaville 🎉",
+      "preview": "Gozem expands into Central Africa, offering ride-hailing, delivery, and financial services via one app in Brazzaville.",
+      "fullStory": "The Francophone Africa “super-app” Gozem has officially launched its operations in Brazzaville (Republic of the Congo) as of 6 November 2025, marking a major step in its regional expansion. The move furthers Gozem’s mission to bundle ride-hailing, delivery, and financial services under one roof – all tailored for African users.<br><br>For Brazzaville residents, this means you can now book standard taxis, ride in air-conditioned comfort options, or hire by the hour for errands or business trips — all via the Gozem app. Drivers (dubbed “Champions”) are also being onboarded, giving local earners new opportunities via this digital platform. Gozem says it already has more than 2 million users and over 30 million trips completed in its footprint.<br><br>What makes this rollout noteworthy:<br>- It shows African-founded tech scaling regionally — beyond West Africa into Central Africa.<br>- It strengthens the “super-app” play in Africa: one app, multiple services.<br>- It gives Brazzaville a shot at improved mobility options just as digital infrastructure is expanding across the country.<br><br>But it’s not all plug-and-play. Gozem’s challenge will be localizing: adjusting to Brazzaville’s transport regulations, language/market specifics, driver onboarding, payments infrastructure, and competition. If it nails those, it could become a serious player in Central African mobility and digital services.",
+      "image": "https://tmistudios.xyz/images/gozem-brazzaville.jpg"
+    },
+    {
+      "date": "2025-11-06",
       "category": "Startups",
       "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
       "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
@@ -21,26 +29,4 @@
       "category": "Business",
       "headline": "Alibaba Opens Doors in Durban",
       "preview": "South Africa welcomes Alibaba’s first local office, signaling big moves in e-commerce.",
-      "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South Africa, with Durban as its latest playground. Why Durban? Well, the port is world-class, the tech talent is bubbling under the surface, and the city’s creative economy is screaming “opportunity.” In short: perfect storm.<br><br>TMI got the inside scoop: Alibaba plans to invest in logistics infrastructure, cloud services, and digital platforms, while keeping an eye on SA’s burgeoning creator scene. What does this mean for local youth? Jobs, upskilling programs, and maybe even a chance for indie developers, content creators, and startup hustlers to plug into one of the world’s largest tech networks. Think global reach, local flavor.<br><br>For Durban creatives, it’s not just about commerce—it’s about visibility. Local artists, app developers, and esports organizers could find themselves suddenly in the crosshairs of international opportunities. TMI spoke to a few local coders and content creators: “If Alibaba is here, there’s no excuse not to launch that app or push that project,” said one 22-year-old indie developer, grinning over her coffee.<br><br>Of course, there’s a flip side. Big tech in small ecosystems can be disruptive. Concerns over local skills gaps, competition, and whether benefits trickle down beyond the big players are real. But for those ready to hustle, adapt, and innovate, it’s a golden ticket.<br><br>Bottom line: Durban isn’t just a port city anymore—it’s a tech node with global pull. The creative economy just got a high-profile ally, and TMI readers have a front-row seat to witness, report, and maybe even participate in the next wave of South African tech disruption.<br><br>So, if you’re a young creator, coder, or cultural hustler, now’s the time to sharpen your skills, network like a boss, and maybe drop that project you’ve been incubating. Alibaba’s in town—and the future’s looking seriously clickable.",
-      "image": "https://tmistudios.xyz/images/alibaba.jpeg"
-    },
-    {
-      "date": "2025-10-28",
-      "category": "Events",
-      "headline": "LED Summit 2025 Highlights",
-      "preview": "Local economic development leaders gather to strategize innovation in Durban.",
-      "fullStory": "The LED Summit held in Durban over the past few days brought together government officials, entrepreneurs, and investors. Key discussions focused on sustainable growth, tech-driven solutions, and youth empowerment in local economies. Several workshops and panels provided actionable insights for attendees.",
-      "image": "https://tmistudios.xyz/images/ledsummit.jpeg"
-    },
-    {
-      "date": "2025-10-23",
-      "category": "Investment",
-      "headline": "KZN Investment Conference 2025",
-      "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
-      "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC. Highlights included bold youth pitches, fintech demos, and a surprise VR experience. Attendees shared visions of collaboration, investment, and innovation — with just enough caffeine-fueled chaos to make it interesting.",
-      "image": "https://tmistudios.xyz/images/investment.jpeg"
-    }
-  ],
-  "tech": [],
-  "poi": []
-}
+      "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South
