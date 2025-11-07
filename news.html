@@ -12,8 +12,8 @@
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271" crossorigin="anonymous"></script>
 <style>
+/* Existing CSS unchanged */
 body {font-family:'Space Grotesk',sans-serif;background:#fafafa;color:#111;margin:0;padding:0;}
 header{text-align:center;padding:2rem 1rem;background:#000;color:#00ffff;}
 .logo{font-family:'Orbitron',sans-serif;font-size:3rem;margin:0;text-transform:uppercase;position:relative;color:#00ffff;animation:flicker 2s infinite;}
@@ -47,28 +47,17 @@ footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:
 .popup-content button{background:#111;color:#fff;border:none;padding:1rem;border-radius:0.75rem;cursor:pointer;font-size:1rem;transition:background 0.3s;}
 .popup-content button:hover{background:#00ffff;color:#111;}
 .popup-content .close{position:absolute;top:10px;right:15px;font-size:1.5rem;cursor:pointer;}
-footer a {text-decoration:none;color:inherit;}
-footer a:hover{text-decoration:underline;}
-.share-btn {padding:0.5rem 0.75rem;border-radius:0.5rem;font-size:0.85rem;text-decoration:none;color:#fff;border:none;cursor:pointer;transition: transform 0.2s ease, box-shadow 0.2s ease;}
+footer a { text-decoration: none; color: inherit; }
+footer a:hover { text-decoration: underline; }
+.share-btn { padding:0.5rem 0.75rem; border-radius:0.5rem; font-size:0.85rem; text-decoration:none; color:#fff; border:none; cursor:pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .share-btn.whatsapp { background:#25D366; }
 .share-btn.telegram { background:#0088cc; }
 .share-btn.twitter { background:#1DA1F2; }
 .share-btn.copy-link-btn { background:#111; }
-.share-btn:hover {transform: scale(1.1);box-shadow: 0 0 10px rgba(0,255,255,0.7),0 0 5px rgba(255,0,255,0.5);}
+.share-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(255,0,255,0.5); }
 @keyframes glitchFlicker {0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}20%,22%,24%,55%{opacity:0.6; transform: translateX(-1px);}}
-.glitch-share {animation: glitchFlicker 2s infinite;}
+.glitch-share { animation: glitchFlicker 2s infinite; }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NewsMediaOrganization",
-  "name": "TMI News",
-  "url": "https://tmistudios.xyz/news",
-  "logo": "https://placehold.co/900x500?text=TMI+News",
-  "sameAs": ["https://twitter.com/tmistudios","https://instagram.com/tmistudios"],
-  "description": "TMI News covers African tech, startups, and innovation with a dash of chaos and creativity."
-}
-</script>
 </head>
 <body>
 <header>
@@ -76,68 +65,75 @@ footer a:hover{text-decoration:underline;}
   <p class="tagline">Tech | Magic | Innovation</p>
 </header>
 <main>
-  <div class="adsense-slot" style="margin: 1.5rem 0; text-align:center;"></div>
   <section id="news-section">
     <h2>Latest Stories</h2>
     <div id="news-container" class="card-grid"></div>
   </section>
-  <div class="adsense-slot" style="margin: 2rem 0; text-align:center;"></div>
-  <section id="poi-section">
-    <h2>Person of Interest</h2>
-    <div id="poi-container" class="card-grid"></div>
-  </section>
-  <section id="tech-section">
-    <h2>New Tech Alert</h2>
-    <div id="tech-container" class="card-grid"></div>
-  </section>
-  <section id="events-section">
-    <h2>Upcoming Tech Events</h2>
-    <div id="events-container" class="card-grid"></div>
-  </section>
-  <section id="advertise" class="cta-banner">
-    <button id="advertiseBtn">Advertise with Us</button>
-  </section>
 </main>
 <footer>
-  <div class="cta-stack">
-    <button id="submitTipBtn">Submit a Tech Tip</button>
-    <button id="nominateBtn">Nominate a Creator</button>
-    <button id="referTechBtn">Refer a New Tech</button>
-  </div>
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/privacy.html">Privacy Policy</a></p>
 </footer>
 
 <script>
-// Sample news data (normally load from news.json)
+// Inline stories data
 const data = {
   "stories": [
     {
-      "date":"2025-11-06",
-      "category":"Startups",
-      "headline":"Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
-      "preview":"eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
-      "fullStory":"Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025... <a href='https://www.bizcommunity.com/article/cape-town-startup-efama-wins-top-prize-in-meta-ai-accelerator-285527a' target='_blank'>Source: BizCommunity</a>",
-      "image":"https://tmistudios.xyz/images/efama.jpeg"
+      "date": "2025-11-06",
+      "category": "Startups",
+      "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
+      "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
+      "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa...",
+      "image": "https://tmistudios.xyz/images/efama.jpeg"
     },
     {
-      "date":"2025-11-06",
-      "category":"Tech",
-      "headline":"African Super-App Gozem officially lands in Brazzaville 🎉",
-      "preview":"Gozem expands into Central Africa, offering ride-hailing, delivery, and financial services via one app in Brazzaville.",
-      "fullStory":"The Francophone Africa “super-app” Gozem has officially launched its operations in Brazzaville... ",
-      "image":"https://tmistudios.xyz/images/gozem-brazzaville.jpg"
+      "date": "2025-11-01",
+      "category": "Business",
+      "headline": "Pepkor Drops $98M Bag, Snaps Up Retailability — and the Streets Are Buzzing",
+      "preview": "The retail giant just made a power move that could shake up how South Africans shop (and spend) in 2026.",
+      "fullStory": "South Africa’s retail scene just got a reality check. Pepkor — the everyday-value powerhouse behind PEP and Ackermans — officially sealed the deal on a $98 million acquisition of Retailability...",
+      "image": "https://tmistudios.xyz/images/pepkor.jpeg"
+    },
+    {
+      "date": "2025-10-30",
+      "category": "Business",
+      "headline": "Alibaba Opens Doors in Durban",
+      "preview": "South Africa welcomes Alibaba’s first local office, signaling big moves in e-commerce.",
+      "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South Africa...",
+      "image": "https://tmistudios.xyz/images/alibaba.jpeg"
+    },
+    {
+      "date": "2025-10-28",
+      "category": "Events",
+      "headline": "LED Summit 2025 Highlights",
+      "preview": "Local economic development leaders gather to strategize innovation in Durban.",
+      "fullStory": "The LED Summit held in Durban over the past few days brought together government officials, entrepreneurs, and investors...",
+      "image": "https://tmistudios.xyz/images/ledsummit.jpeg"
+    },
+    {
+      "date": "2025-10-23",
+      "category": "Investment",
+      "headline": "KZN Investment Conference 2025",
+      "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
+      "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC...",
+      "image": "https://tmistudios.xyz/images/investment.jpeg"
     }
-    // Add other stories as needed
   ]
 };
 
+// Render cards
 const newsContainer = document.getElementById('news-container');
 
 data.stories.forEach(story => {
   const storyId = "story-" + story.date.replace(/-/g,'');
   const card = document.createElement('div');
   card.classList.add('card');
+
+  // Encode share text
+  const shareText = encodeURIComponent(
+    `📰 ${story.headline}\n${story.preview}\nRead full story 👉 ${window.location.href}#${storyId}\n📸 ${story.image}`
+  );
+
   card.innerHTML = `
     <img src="${story.image}" alt="${story.headline}">
     <div class="card-content">
@@ -147,14 +143,15 @@ data.stories.forEach(story => {
       <button class="read-more-btn">Read More</button>
       <div class="full-story hidden"><p>${story.fullStory}</p></div>
       <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-        <a href="https://wa.me/?text=${encodeURIComponent(story.headline + ' - ' + story.preview + ' Read full story 👉 https://tmistudios.xyz/news.html#' + storyId)}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
-        <a href="https://t.me/share/url?url=https://tmistudios.xyz/news.html#${storyId}&text=${encodeURIComponent(story.headline + ' - ' + story.preview)}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
-        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(story.headline + ' - ' + story.preview + ' Read full story 👉 https://tmistudios.xyz/news.html#' + storyId)}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
+        <a href="https://wa.me/?text=${shareText}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
+        <a href="https://t.me/share/url?url=${window.location.href}#${storyId}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
+        <a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
         <button class="share-btn copy-link-btn">📋 Copy Link</button>
       </div>
     </div>
   `;
 
+  // Read More toggle
   const readBtn = card.querySelector('.read-more-btn');
   const fullStoryDiv = card.querySelector('.full-story');
   readBtn.addEventListener('click', () => {
@@ -162,57 +159,27 @@ data.stories.forEach(story => {
     readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
   });
 
+  // Copy link scroll to story
   const copyBtn = card.querySelector('.copy-link-btn');
   copyBtn.addEventListener('click', () => {
-    navigator.clipboard.writeText(window.location.href + "#" + storyId)
-      .then(() => { copyBtn.textContent = '✅ Copied'; setTimeout(() => copyBtn.textContent='📋 Copy Link',1500); })
-      .catch(() => { copyBtn.textContent='❌ Failed'; setTimeout(() => copyBtn.textContent='📋 Copy Link',1500); });
+    const url = `${window.location.href}#${storyId}`;
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        copyBtn.textContent = '✅ Copied';
+        document.getElementById(storyId).scrollIntoView({behavior:'smooth'});
+        setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);
+      });
   });
-
-  const shareButtons = card.querySelectorAll('.share-btn');
-  shareButtons.forEach(btn => btn.classList.add('glitch-share'));
 
   newsContainer.appendChild(card);
 });
 
-// Scroll to story from URL hash
-window.addEventListener("load", () => {
+// Handle hash links on page load (scroll to story if URL has #story-xxxx)
+window.addEventListener('load', () => {
   const hash = window.location.hash;
-  if (hash) {
-    const target = document.querySelector(hash);
-    if (target) target.scrollIntoView({behavior:"smooth", block:"start"});
-  }
-});
-
-// CTA popups
-const ctas = {
-  submitTipBtn:"https://formspree.io/f/xldpdblq",
-  nominateBtn:"https://formspree.io/f/xldpdblq",
-  referTechBtn:"https://formspree.io/f/xldpdblq",
-  advertiseBtn:"https://formspree.io/f/xldpdblq"
-};
-Object.keys(ctas).forEach(id => {
-  const btn = document.getElementById(id);
-  if(btn){
-    btn.addEventListener("click", () => {
-      const popup = document.createElement("div");
-      popup.classList.add("popup");
-      popup.innerHTML = `
-        <div class="popup-content">
-          <span class="close">&times;</span>
-          <form action="${ctas[id]}" method="POST">
-            <label>Your Name</label>
-            <input type="text" name="name" required />
-            <label>Your Email</label>
-            <input type="email" name="_replyto" required />
-            <label>Message</label>
-            <textarea name="message" required></textarea>
-            <button type="submit">Send</button>
-          </form>
-        </div>`;
-      document.body.appendChild(popup);
-      popup.querySelector(".close").onclick = () => popup.remove();
-    });
+  if(hash) {
+    const el = document.querySelector(hash);
+    if(el) el.scrollIntoView({behavior:'smooth'});
   }
 });
 </script>
