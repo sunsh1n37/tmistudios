@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading...</title>
+<script>
+const params = new URLSearchParams(window.location.search);
+const storyId = params.get('id') || '';
+
+fetch('news.json')
+  .then(res => res.json())
+  .then(data => {
+    const story = data.stories.find(s => s.id === storyId);
+    if(story){
+      // Write OG tags dynamically
+      document.title = story.headline;
+      const metaTitle = document.createElement('meta');
+      metaTitle.setAttribute('property','og:title');
+      metaTitle.setAttribute('content', story.headline);
+      document.head.appendChild(metaTitle);
+
+      const metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('property','og:description');
+      metaDesc.setAttribute('content', story.summary);
+      document.head.appendChild(metaDesc);
+
+      const metaImage = document.createElement('meta');
+      metaImage.setAttribute('property','og:image');
+      metaImage.setAttribute('content', story.image);
+      document.head.appendChild(metaImage);
+
+      const metaType = document.createElement('meta');
+      metaType.setAttribute('property','og:type');
+      metaType.setAttribute('content','article');
+      document.head.appendChild(metaType);
+
+      const metaUrl = document.createElement('meta');
+      metaUrl.setAttribute('property','og:url');
+      metaUrl.setAttribute('content', window.location.href);
+      document.head.appendChild(metaUrl);
+
+      // Redirect to news.html after OG tags are read
+      setTimeout(() => {
+        window.location.href = `/news.html#${story.id}`;
+      }, 500); // half-second delay for social crawlers
+    } else {
+      // fallback
+      window.location.href = '/news.html';
+    }
+  });
+</script>
+</head>
+<body>
+<p>Redirecting to TMI News…</p>
+</body>
+</html>
