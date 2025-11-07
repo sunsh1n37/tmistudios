@@ -75,113 +75,69 @@ footer a:hover { text-decoration: underline; }
 </footer>
 
 <script>
-// Inline stories data
-const data = {
-  "stories": [
-    {
-      "date": "2025-11-06",
-      "category": "Startups",
-      "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
-      "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
-      "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa...",
-      "image": "https://tmistudios.xyz/images/efama.jpeg"
-    },
-    {
-      "date": "2025-11-01",
-      "category": "Business",
-      "headline": "Pepkor Drops $98M Bag, Snaps Up Retailability — and the Streets Are Buzzing",
-      "preview": "The retail giant just made a power move that could shake up how South Africans shop (and spend) in 2026.",
-      "fullStory": "South Africa’s retail scene just got a reality check. Pepkor — the everyday-value powerhouse behind PEP and Ackermans — officially sealed the deal on a $98 million acquisition of Retailability...",
-      "image": "https://tmistudios.xyz/images/pepkor.jpeg"
-    },
-    {
-      "date": "2025-10-30",
-      "category": "Business",
-      "headline": "Alibaba Opens Doors in Durban",
-      "preview": "South Africa welcomes Alibaba’s first local office, signaling big moves in e-commerce.",
-      "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South Africa...",
-      "image": "https://tmistudios.xyz/images/alibaba.jpeg"
-    },
-    {
-      "date": "2025-10-28",
-      "category": "Events",
-      "headline": "LED Summit 2025 Highlights",
-      "preview": "Local economic development leaders gather to strategize innovation in Durban.",
-      "fullStory": "The LED Summit held in Durban over the past few days brought together government officials, entrepreneurs, and investors...",
-      "image": "https://tmistudios.xyz/images/ledsummit.jpeg"
-    },
-    {
-      "date": "2025-10-23",
-      "category": "Investment",
-      "headline": "KZN Investment Conference 2025",
-      "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
-      "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC...",
-      "image": "https://tmistudios.xyz/images/investment.jpeg"
-    }
-  ]
-};
+// Fetch stories from news.json
+fetch('news.json')
+  .then(response => response.json())
+  .then(data => {
+    const newsContainer = document.getElementById('news-container');
 
-// Render cards
-const newsContainer = document.getElementById('news-container');
+    data.stories.forEach(story => {
+      const storyId = "story-" + story.date.replace(/-/g,'');
+      const card = document.createElement('div');
+      card.classList.add('card');
 
-data.stories.forEach(story => {
-  const storyId = "story-" + story.date.replace(/-/g,'');
-  const card = document.createElement('div');
-  card.classList.add('card');
+      const shareText = encodeURIComponent(
+        `📰 ${story.headline}\n${story.preview}\nRead full story 👉 ${window.location.href}#${storyId}\n📸 ${story.image}`
+      );
 
-  // Encode share text
-  const shareText = encodeURIComponent(
-    `📰 ${story.headline}\n${story.preview}\nRead full story 👉 ${window.location.href}#${storyId}\n📸 ${story.image}`
-  );
+      card.innerHTML = `
+        <img src="${story.image}" alt="${story.headline}">
+        <div class="card-content">
+          <p class="date">${story.date}</p>
+          <h3 id="${storyId}">${story.headline}</h3>
+          <p>${story.preview}</p>
+          <button class="read-more-btn">Read More</button>
+          <div class="full-story hidden"><p>${story.fullStory}</p></div>
+          <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <a href="https://wa.me/?text=${shareText}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
+            <a href="https://t.me/share/url?url=${window.location.href}#${storyId}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
+            <a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
+            <button class="share-btn copy-link-btn">📋 Copy Link</button>
+          </div>
+        </div>
+      `;
 
-  card.innerHTML = `
-    <img src="${story.image}" alt="${story.headline}">
-    <div class="card-content">
-      <p class="date">${story.date}</p>
-      <h3 id="${storyId}">${story.headline}</h3>
-      <p>${story.preview}</p>
-      <button class="read-more-btn">Read More</button>
-      <div class="full-story hidden"><p>${story.fullStory}</p></div>
-      <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-        <a href="https://wa.me/?text=${shareText}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
-        <a href="https://t.me/share/url?url=${window.location.href}#${storyId}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
-        <a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
-        <button class="share-btn copy-link-btn">📋 Copy Link</button>
-      </div>
-    </div>
-  `;
-
-  // Read More toggle
-  const readBtn = card.querySelector('.read-more-btn');
-  const fullStoryDiv = card.querySelector('.full-story');
-  readBtn.addEventListener('click', () => {
-    fullStoryDiv.classList.toggle('hidden');
-    readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
-  });
-
-  // Copy link scroll to story
-  const copyBtn = card.querySelector('.copy-link-btn');
-  copyBtn.addEventListener('click', () => {
-    const url = `${window.location.href}#${storyId}`;
-    navigator.clipboard.writeText(url)
-      .then(() => {
-        copyBtn.textContent = '✅ Copied';
-        document.getElementById(storyId).scrollIntoView({behavior:'smooth'});
-        setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);
+      // Read More toggle
+      const readBtn = card.querySelector('.read-more-btn');
+      const fullStoryDiv = card.querySelector('.full-story');
+      readBtn.addEventListener('click', () => {
+        fullStoryDiv.classList.toggle('hidden');
+        readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
       });
-  });
 
-  newsContainer.appendChild(card);
-});
+      // Copy link scroll to story
+      const copyBtn = card.querySelector('.copy-link-btn');
+      copyBtn.addEventListener('click', () => {
+        const url = `${window.location.href}#${storyId}`;
+        navigator.clipboard.writeText(url)
+          .then(() => {
+            copyBtn.textContent = '✅ Copied';
+            document.getElementById(storyId).scrollIntoView({behavior:'smooth'});
+            setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);
+          });
+      });
 
-// Handle hash links on page load (scroll to story if URL has #story-xxxx)
-window.addEventListener('load', () => {
-  const hash = window.location.hash;
-  if(hash) {
-    const el = document.querySelector(hash);
-    if(el) el.scrollIntoView({behavior:'smooth'});
-  }
-});
+      newsContainer.appendChild(card);
+    });
+
+    // Scroll to hash if present
+    const hash = window.location.hash;
+    if(hash) {
+      const el = document.querySelector(hash);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }
+  })
+  .catch(err => console.error('Error loading news.json:', err));
 </script>
 </body>
 </html>
