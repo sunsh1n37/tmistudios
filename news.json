@@ -2,6 +2,14 @@
   "stories": [
     {
       "date": "2025-11-06",
+      "category": "Startups",
+      "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
+      "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
+      "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa...",
+      "image": "https://tmistudios.xyz/images/efama.jpeg"
+    },
+    {
+      "date": "2025-11-06",
       "category": "Tech",
       "headline": "African Super-App Gozem officially lands in Brazzaville 🎉",
       "preview": "Gozem expands into Central Africa, offering ride-hailing, delivery, and financial services via one app in Brazzaville.",
@@ -9,19 +17,11 @@
       "image": "https://tmistudios.xyz/images/gozem-brazzaville.jpg"
     },
     {
-      "date": "2025-11-06",
-      "category": "Startups",
-      "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
-      "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
-      "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa. The accelerator saw over 1,400 applications from across Sub-Saharan Africa, and eFama stood out for its smart marketplace that links smallholder farmers directly to verified buyers using data analytics, pricing algorithms, and digital logistics.<br><br>The win signals a massive leap for South Africa’s agricultural innovation scene. eFama’s platform is designed to cut out middlemen, boost transparency, and give farmers fairer prices while helping buyers source fresh produce efficiently. The startup’s co-founder described it as 'global tech with local roots,' showing how AI can directly impact food security and rural income.<br><br>With this victory, eFama moves to the regional phase — gaining access to mentorship from Meta engineers, growth funding, and a chance to showcase its model at the upcoming AI Summit in Dubai. It’s a major nod to how African tech can go from idea to global stage in record time.<br><br>For South African youth in tech, logistics, or sustainability, this is the blueprint: innovation with impact. Expect more homegrown agritech startups to follow eFama’s lead — turning local challenges into world-class opportunities.<br><br><a href='https://www.bizcommunity.com/article/cape-town-startup-efama-wins-top-prize-in-meta-ai-accelerator-285527a' target='_blank'>Source: BizCommunity</a>",
-      "image": "https://tmistudios.xyz/images/efama.jpeg"
-    },
-    {
       "date": "2025-11-01",
       "category": "Business",
       "headline": "Pepkor Drops $98M Bag, Snaps Up Retailability — and the Streets Are Buzzing",
       "preview": "The retail giant just made a power move that could shake up how South Africans shop (and spend) in 2026.",
-      "fullStory": "South Africa’s retail scene just got a reality check. Pepkor — the everyday-value powerhouse behind PEP and Ackermans — officially sealed the deal on a $98 million acquisition of Retailability, the group that owns fashion names like Edgars, Beaver Canoe, and Keedo. That’s 469 new stores sliding under Pepkor’s wing — but this isn’t just about racks and price tags.<br><br>The real play? Data. Logistics. E-commerce muscle. Pepkor’s been quietly upgrading its digital and supply chain game, and this buyout fast-tracks its vision to merge high-street fashion with high-speed tech.<br><br>For the youth market, this means better access, faster deliveries, and maybe even some fresh collabs brewing between big-box brands and indie creators.<br><br>Bottom line: the retail hustle in Mzansi just leveled up — and if you’re in fashion, tech, or logistics, this might be your cue to innovate or get left behind.",
+      "fullStory": "South Africa’s retail scene just got a reality check. Pepkor — the everyday-value powerhouse behind PEP and Ackermans — officially sealed the deal on a $98 million acquisition of Retailability...",
       "image": "https://tmistudios.xyz/images/pepkor.jpeg"
     },
     {
@@ -29,4 +29,24 @@
       "category": "Business",
       "headline": "Alibaba Opens Doors in Durban",
       "preview": "South Africa welcomes Alibaba’s first local office, signaling big moves in e-commerce.",
-      "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South
+      "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South Africa...",
+      "image": "https://tmistudios.xyz/images/alibaba.jpeg"
+    },
+    {
+      "date": "2025-10-28",
+      "category": "Events",
+      "headline": "LED Summit 2025 Highlights",
+      "preview": "Local economic development leaders gather to strategize innovation in Durban.",
+      "fullStory": "The LED Summit held in Durban over the past few days brought together government officials, entrepreneurs, and investors...",
+      "image": "https://tmistudios.xyz/images/ledsummit.jpeg"
+    },
+    {
+      "date": "2025-10-23",
+      "category": "Investment",
+      "headline": "KZN Investment Conference 2025",
+      "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
+      "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC...",
+      "image": "https://tmistudios.xyz/images/investment.jpeg"
+    }
+  ]
+}
