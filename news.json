@@ -1,22 +1,20 @@
 {
   "stories": [
-
-{
-  "date": "2025-11-06",
-  "category": "Startups",
-  "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
-  "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
-  "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa. The accelerator saw over 1,400 applications from across Sub-Saharan Africa, and eFama stood out for its smart marketplace that links smallholder farmers directly to verified buyers using data analytics, pricing algorithms, and digital logistics.<br><br>The win signals a massive leap for South Africa’s agricultural innovation scene. eFama’s platform is designed to cut out middlemen, boost transparency, and give farmers fairer prices while helping buyers source fresh produce efficiently. The startup’s co-founder described it as 'global tech with local roots,' showing how AI can directly impact food security and rural income.<br><br>With this victory, eFama moves to the regional phase — gaining access to mentorship from Meta engineers, growth funding, and a chance to showcase its model at the upcoming AI Summit in Dubai. It’s a major nod to how African tech can go from idea to global stage in record time.<br><br>For South African youth in tech, logistics, or sustainability, this is the blueprint: innovation with impact. Expect more homegrown agritech startups to follow eFama’s lead — turning local challenges into world-class opportunities.<br><br><a href='https://www.bizcommunity.com/article/cape-town-startup-efama-wins-top-prize-in-meta-ai-accelerator-285527a' target='_blank'>Source: BizCommunity</a>",
-  "image": "images/efama.jpeg"
-},
-    
+    {
+      "date": "2025-11-06",
+      "category": "Startups",
+      "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
+      "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
+      "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa. The accelerator saw over 1,400 applications from across Sub-Saharan Africa, and eFama stood out for its smart marketplace that links smallholder farmers directly to verified buyers using data analytics, pricing algorithms, and digital logistics.<br><br>The win signals a massive leap for South Africa’s agricultural innovation scene. eFama’s platform is designed to cut out middlemen, boost transparency, and give farmers fairer prices while helping buyers source fresh produce efficiently. The startup’s co-founder described it as 'global tech with local roots,' showing how AI can directly impact food security and rural income.<br><br>With this victory, eFama moves to the regional phase — gaining access to mentorship from Meta engineers, growth funding, and a chance to showcase its model at the upcoming AI Summit in Dubai. It’s a major nod to how African tech can go from idea to global stage in record time.<br><br>For South African youth in tech, logistics, or sustainability, this is the blueprint: innovation with impact. Expect more homegrown agritech startups to follow eFama’s lead — turning local challenges into world-class opportunities.<br><br><a href='https://www.bizcommunity.com/article/cape-town-startup-efama-wins-top-prize-in-meta-ai-accelerator-285527a' target='_blank'>Source: BizCommunity</a>",
+      "image": "https://tmistudios.xyz/images/efama.jpeg"
+    },
     {
       "date": "2025-11-01",
       "category": "Business",
       "headline": "Pepkor Drops $98M Bag, Snaps Up Retailability — and the Streets Are Buzzing",
       "preview": "The retail giant just made a power move that could shake up how South Africans shop (and spend) in 2026.",
       "fullStory": "South Africa’s retail scene just got a reality check. Pepkor — the everyday-value powerhouse behind PEP and Ackermans — officially sealed the deal on a $98 million acquisition of Retailability, the group that owns fashion names like Edgars, Beaver Canoe, and Keedo. That’s 469 new stores sliding under Pepkor’s wing — but this isn’t just about racks and price tags.<br><br>The real play? Data. Logistics. E-commerce muscle. Pepkor’s been quietly upgrading its digital and supply chain game, and this buyout fast-tracks its vision to merge high-street fashion with high-speed tech.<br><br>For the youth market, this means better access, faster deliveries, and maybe even some fresh collabs brewing between big-box brands and indie creators.<br><br>Bottom line: the retail hustle in Mzansi just leveled up — and if you’re in fashion, tech, or logistics, this might be your cue to innovate or get left behind.",
-      "image": "images/pepkor.jpeg"
+      "image": "https://tmistudios.xyz/images/pepkor.jpeg"
     },
     {
       "date": "2025-10-30",
@@ -24,7 +22,7 @@
       "headline": "Alibaba Opens Doors in Durban",
       "preview": "South Africa welcomes Alibaba’s first local office, signaling big moves in e-commerce.",
       "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South Africa, with Durban as its latest playground. Why Durban? Well, the port is world-class, the tech talent is bubbling under the surface, and the city’s creative economy is screaming “opportunity.” In short: perfect storm.<br><br>TMI got the inside scoop: Alibaba plans to invest in logistics infrastructure, cloud services, and digital platforms, while keeping an eye on SA’s burgeoning creator scene. What does this mean for local youth? Jobs, upskilling programs, and maybe even a chance for indie developers, content creators, and startup hustlers to plug into one of the world’s largest tech networks. Think global reach, local flavor.<br><br>For Durban creatives, it’s not just about commerce—it’s about visibility. Local artists, app developers, and esports organizers could find themselves suddenly in the crosshairs of international opportunities. TMI spoke to a few local coders and content creators: “If Alibaba is here, there’s no excuse not to launch that app or push that project,” said one 22-year-old indie developer, grinning over her coffee.<br><br>Of course, there’s a flip side. Big tech in small ecosystems can be disruptive. Concerns over local skills gaps, competition, and whether benefits trickle down beyond the big players are real. But for those ready to hustle, adapt, and innovate, it’s a golden ticket.<br><br>Bottom line: Durban isn’t just a port city anymore—it’s a tech node with global pull. The creative economy just got a high-profile ally, and TMI readers have a front-row seat to witness, report, and maybe even participate in the next wave of South African tech disruption.<br><br>So, if you’re a young creator, coder, or cultural hustler, now’s the time to sharpen your skills, network like a boss, and maybe drop that project you’ve been incubating. Alibaba’s in town—and the future’s looking seriously clickable.",
-      "image": "images/alibaba.jpeg"
+      "image": "https://tmistudios.xyz/images/alibaba.jpeg"
     },
     {
       "date": "2025-10-28",
@@ -32,7 +30,7 @@
       "headline": "LED Summit 2025 Highlights",
       "preview": "Local economic development leaders gather to strategize innovation in Durban.",
       "fullStory": "The LED Summit held in Durban over the past few days brought together government officials, entrepreneurs, and investors. Key discussions focused on sustainable growth, tech-driven solutions, and youth empowerment in local economies. Several workshops and panels provided actionable insights for attendees.",
-      "image": "images/ledsummit.jpeg"
+      "image": "https://tmistudios.xyz/images/ledsummit.jpeg"
     },
     {
       "date": "2025-10-23",
@@ -40,7 +38,7 @@
       "headline": "KZN Investment Conference 2025",
       "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
       "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC. Highlights included bold youth pitches, fintech demos, and a surprise VR experience. Attendees shared visions of collaboration, investment, and innovation — with just enough caffeine-fueled chaos to make it interesting.",
-      "image": "images/investment.jpeg"
+      "image": "https://tmistudios.xyz/images/investment.jpeg"
     }
   ],
   "tech": [],
