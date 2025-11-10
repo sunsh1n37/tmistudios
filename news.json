@@ -1,31 +1,32 @@
 {
   "stories": [
-{
-  "id": "vodacom-please-call-me-case",
-  "title": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
-  "slug": "vodacom-please-call-me-case",
-  "category": "Tech & Justice",
-  "tags": ["Vodacom", "Please Call Me", "Nkosana Makate", "South Africa", "Legal Tech", "Innovation", "Justice"],
-  "author": "TMI News Team",
-  "date": "2025-11-07",
-  "location": "Johannesburg, South Africa",
-  "image": "https://tmistudios.xyz/news/images/pleasecallme_vodacom.jpg",
-  "image_alt": "Nkosana Makate, inventor of Please Call Me, celebrates court victory against Vodacom",
-  "excerpt": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
-  "content": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service. What started as a simple idea in 2000 — a free message letting someone know to call you — has ended as one of the biggest intellectual property victories in Africa’s tech history.\n\nThe Constitutional Court reaffirmed Makate’s right to a fair compensation for his invention, rejecting Vodacom’s years-long appeal attempts. The judges called the company’s previous offers “shamefully low” and ruled that Makate is entitled to a payment calculated on proper revenue from the feature’s 20+ year usage.\n\n‘Please Call Me’ wasn’t just a product — it was a cultural revolution. From township hustlers to big-city execs, every South African used it. At its peak, Vodacom sent *hundreds of millions* of these messages monthly, driving massive user retention and growth.\n\nMakate’s victory is a win for inventors across the continent — a loud reminder that African innovation deserves its dues. While the exact payout figure remains under wraps, legal analysts suggest it could run into the **billions**.\n\nAfter 17 years, justice finally picked up the call.",
-  "share_card": {
-    "title": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
-    "description": "A historic win for South African innovation — Nkosana Makate finally gets justice after two decades of fighting Vodacom.",
-    "image": "https://tmistudios.xyz/news/cards/pleasecallme_vodacom_card.jpg",
-    "url": "https://tmistudios.xyz/news/vodacom-please-call-me-case"
-},
     {
-  "date": "2025-11-07",
-  "category": "Business",
-  "headline": "South African Banking Giant Nedbank Group to Acquire Fintech iKhokha in ~R1.65 B Deal",
-  "preview": "Cape Town fintech iKhokha is being acquired by Nedbank for R1.65 billion, marking a major push into the SME digital payments space.",
-  "fullStory": "Cape Town-based fintech iKhokha is poised for a major exit in South Africa’s SME payments space as Nedbank Group announced a binding agreement to acquire 100% of iKhokha for approximately R1.65 billion.<br><br>Founded in 2012, iKhokha grew rapidly by deploying card-machines and digital tools tailored for micro, small and medium enterprises (MSMEs) — from township retailers to street vendors. The fintech has helped transform informal payment flows into more formalised digital channels, enabling merchants who were previously cash-only to tap into card, QR and mobile payments. The deal signals Nedbank’s bold move to deepen its footprint in the SME segment by acquiring a specialist platform rather than building from scratch.<br><br>For South Africa’s broader ecosystem, this acquisition highlights several trends:<br>- Big banks are accelerating their digital transformation via acquisitions of home-grown fintechs, not just partnerships.<br>- Fintechs that serve the MSME and informal economy are being recognised as strategic assets in shifting economies.<br>- For iKhokha’s founders and backers, the exit validates years of growth and positions them for the next chapter.<br><br>Regulatory approvals are still needed and the management lock-in arrangement hints at Nedbank’s intention to retain the iKhokha brand, leadership and momentum post-deal. iKhokha’s mission to empower “every merchant, everywhere” in South Africa may now have the backing of a major commercial bank.<br><br>Bottom line: If you’re a creator, developer or entrepreneur targeting underserved payment markets in SA — this is your cue. The fintech-rails game is heating up.",
-  "image": "https://tmistudios.xyz/images/ikhokha.jpeg"
+      "id": "vodacom-please-call-me-case",
+      "title": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
+      "slug": "vodacom-please-call-me-case",
+      "category": "Tech & Justice",
+      "tags": ["Vodacom", "Please Call Me", "Nkosana Makate", "South Africa", "Legal Tech", "Innovation", "Justice"],
+      "author": "TMI News Team",
+      "date": "2025-11-07",
+      "location": "Johannesburg, South Africa",
+      "image": "https://tmistudios.xyz/news/images/pleasecallme_vodacom.jpg",
+      "image_alt": "Nkosana Makate, inventor of Please Call Me, celebrates court victory against Vodacom",
+      "excerpt": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
+      "content": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service. What started as a simple idea in 2000 — a free message letting someone know to call you — has ended as one of the biggest intellectual property victories in Africa’s tech history...\n\nThe Constitutional Court reaffirmed Makate’s right to a fair compensation for his invention, rejecting Vodacom’s years-long appeal attempts. The judges called the company’s previous offers “shamefully low” and ruled that Makate is entitled to a payment calculated on proper revenue from the feature’s 20+ year usage...\n\n‘Please Call Me’ wasn’t just a product — it was a cultural revolution. From township hustlers to big-city execs, every South African used it. At its peak, Vodacom sent hundreds of millions of these messages monthly, driving massive user retention and growth...\n\nMakate’s victory is a win for inventors across the continent — a loud reminder that African innovation deserves its dues. While the exact payout figure remains under wraps, legal analysts suggest it could run into the billions.\n\nAfter 17 years, justice finally picked up the call.",
+      "share_card": {
+        "title": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
+        "description": "A historic win for South African innovation — Nkosana Makate finally gets justice after two decades of fighting Vodacom.",
+        "image": "https://tmistudios.xyz/news/cards/pleasecallme_vodacom_card.jpg",
+        "url": "https://tmistudios.xyz/news/vodacom-please-call-me-case"
+      }
+    },
+    {
+      "date": "2025-11-07",
+      "category": "Business",
+      "headline": "South African Banking Giant Nedbank Group to Acquire Fintech iKhokha in ~R1.65 B Deal",
+      "preview": "Cape Town fintech iKhokha is being acquired by Nedbank for R1.65 billion, marking a major push into the SME digital payments space.",
+      "fullStory": "Cape Town-based fintech iKhokha is poised for a major exit in South Africa’s SME payments space as Nedbank Group announced a binding agreement to acquire 100% of iKhokha for approximately R1.65 billion...",
+      "image": "https://tmistudios.xyz/images/ikhokha.jpeg"
     },
     {
       "date": "2025-11-06",
@@ -40,7 +41,7 @@
       "category": "Tech",
       "headline": "African Super-App Gozem officially lands in Brazzaville 🎉",
       "preview": "Gozem expands into Central Africa, offering ride-hailing, delivery, and financial services via one app in Brazzaville.",
-      "fullStory": "The Francophone Africa “super-app” Gozem has officially launched its operations in Brazzaville (Republic of the Congo) as of 6 November 2025, marking a major step in its regional expansion. The move furthers Gozem’s mission to bundle ride-hailing, delivery, and financial services under one roof – all tailored for African users.<br><br>For Brazzaville residents, this means you can now book standard taxis, ride in air-conditioned comfort options, or hire by the hour for errands or business trips — all via the Gozem app. Drivers (dubbed “Champions”) are also being onboarded, giving local earners new opportunities via this digital platform. Gozem says it already has more than 2 million users and over 30 million trips completed in its footprint.<br><br>What makes this rollout noteworthy:<br>- It shows African-founded tech scaling regionally — beyond West Africa into Central Africa.<br>- It strengthens the “super-app” play in Africa: one app, multiple services.<br>- It gives Brazzaville a shot at improved mobility options just as digital infrastructure is expanding across the country.<br><br>But it’s not all plug-and-play. Gozem’s challenge will be localizing: adjusting to Brazzaville’s transport regulations, language/market specifics, driver onboarding, payments infrastructure, and competition. If it nails those, it could become a serious player in Central African mobility and digital services.",
+      "fullStory": "The Francophone Africa “super-app” Gozem has officially launched its operations in Brazzaville (Republic of the Congo) as of 6 November 2025...",
       "image": "https://tmistudios.xyz/images/gozem.jpeg"
     },
     {
@@ -75,5 +76,7 @@
       "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC...",
       "image": "https://tmistudios.xyz/images/investment.jpeg"
     }
-  ]
+  ],
+  "tech": [],
+  "poi": []
 }
