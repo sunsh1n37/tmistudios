@@ -1,24 +1,12 @@
 {
   "stories": [
     {
-      "id": "vodacom-please-call-me-case",
-      "title": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
-      "slug": "vodacom-please-call-me-case",
-      "category": "Tech & Justice",
-      "tags": ["Vodacom", "Please Call Me", "Nkosana Makate", "South Africa", "Legal Tech", "Innovation", "Justice"],
-      "author": "TMI News Team",
-      "date": "2025-11-07",
-      "location": "Johannesburg, South Africa",
-      "image": "https://tmistudios.xyz/news/images/pleasecallme_vodacom.jpg",
-      "image_alt": "Nkosana Makate, inventor of Please Call Me, celebrates court victory against Vodacom",
-      "excerpt": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
-      "content": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service. What started as a simple idea in 2000 — a free message letting someone know to call you — has ended as one of the biggest intellectual property victories in Africa’s tech history...\n\nThe Constitutional Court reaffirmed Makate’s right to a fair compensation for his invention, rejecting Vodacom’s years-long appeal attempts. The judges called the company’s previous offers “shamefully low” and ruled that Makate is entitled to a payment calculated on proper revenue from the feature’s 20+ year usage...\n\n‘Please Call Me’ wasn’t just a product — it was a cultural revolution. From township hustlers to big-city execs, every South African used it. At its peak, Vodacom sent hundreds of millions of these messages monthly, driving massive user retention and growth...\n\nMakate’s victory is a win for inventors across the continent — a loud reminder that African innovation deserves its dues. While the exact payout figure remains under wraps, legal analysts suggest it could run into the billions.\n\nAfter 17 years, justice finally picked up the call.",
-      "share_card": {
-        "title": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
-        "description": "A historic win for South African innovation — Nkosana Makate finally gets justice after two decades of fighting Vodacom.",
-        "image": "https://tmistudios.xyz/news/cards/pleasecallme_vodacom_card.jpg",
-        "url": "https://tmistudios.xyz/news/vodacom-please-call-me-case"
-      }
+  "date": "2025-11-07",
+  "category": "Tech & Justice",
+  "headline": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
+  "preview": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
+  "fullStory": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service...",
+  "image": "https://tmistudios.xyz/news/images/pleasecallme_vodacom.jpg"
     },
     {
       "date": "2025-11-07",
