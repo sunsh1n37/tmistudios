@@ -14,6 +14,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* Existing CSS unchanged */
+  .tmi-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  font-family: sans-serif;
+}
+
+.tmi-nav .nav-links a,
+.tmi-nav .logo a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+}
+
 body {font-family:'Space Grotesk',sans-serif;background:#fafafa;color:#111;margin:0;padding:0;}
 header{text-align:center;padding:2rem 1rem;background:#000;color:#00ffff;}
 .logo{font-family:'Orbitron',sans-serif;font-size:3rem;margin:0;text-transform:uppercase;position:relative;color:#00ffff;animation:flicker 2s infinite;}
@@ -65,6 +81,18 @@ footer a:hover { text-decoration: underline; }
   <p class="tagline">Tech | Magic | Innovation</p>
 </header>
 <main>
+  <nav class="tmi-nav">
+  <!-- Logo / Home -->
+  <div class="logo">
+    <a href="index.html">TMI Studios</a>
+  </div>
+
+  <!-- Home Link Only -->
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</nav>
+
   <section id="news-section">
     <h2>Latest Stories</h2>
     <div id="news-container" class="card-grid"></div>
