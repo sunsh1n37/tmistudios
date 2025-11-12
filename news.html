@@ -4,13 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TMI News — Tech. Magic. Innovation</title>
-<meta name="description" content="TMI News brings you the latest in African tech, innovation, creators, and chaos. Stay tuned for stories shaping the future of code, business, and creativity." />
-<meta name="keywords" content="TMI Studios, tech news Africa, startups, Durban, innovation, creators, AI, events, technology, African innovation" />
-<meta property="og:title" content="TMI News — Code. Chaos. Cool." />
-<meta property="og:description" content="African innovation, creators, and stories reshaping tech." />
-<meta property="og:image" content="https://placehold.co/900x500?text=TMI+News" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* General Styles */
@@ -24,7 +17,7 @@ header {
 }
 .logo{font-family:'Orbitron',sans-serif;font-size:3rem;margin:0;text-transform:uppercase;position:relative;color:#00ffff;animation:flicker 2s infinite;}
 .logo::before,.logo::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;overflow:hidden;z-index:-1;}
-.logo::before{animation:glitchTop 2s infinite linear;color:#ff00ff;}
+.logo::before{animation:glitchTop 2s infinite linear;color:#8000ff;} /* purple */
 .logo::after{animation:glitchBottom 2s infinite linear;color:#00ff00;}
 @keyframes glitchTop{0%{clip-path:inset(0 0 80% 0);transform:translate(-2px,-2px);}10%{clip-path:inset(20% 0 60% 0);transform:translate(2px,0);}20%{clip-path:inset(10% 0 70% 0);transform:translate(-1px,-1px);}30%,100%{clip-path:inset(0 0 80% 0);transform:translate(0,0);} }
 @keyframes glitchBottom{0%{clip-path:inset(60% 0 0 0);transform:translate(2px,2px);}10%{clip-path:inset(40% 0 10% 0);transform:translate(-2px,0);}20%{clip-path:inset(50% 0 0 0);transform:translate(1px,1px);}30%,100%{clip-path:inset(60% 0 0 0);transform:translate(0,0);} }
@@ -41,7 +34,7 @@ header {
 
 /* Main and Cards */
 main{max-width:1100px;margin:2rem auto;padding:0 1rem;}
-h2{font-family:'Orbitron',sans-serif;color:#111;border-left:4px solid #00ffff;padding-left:0.5rem;margin-bottom:1rem;text-transform:uppercase;}
+h2{font-family:'Orbitron',sans-serif;color:#111;border-left:4px solid #00ffff;padding-left:0.5rem;margin-bottom:1rem;text-transform:uppercase;display:inline-block; max-width:100%;}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
 .card{background:#fff;border-radius:1rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1);transition:transform 0.2s;}
 .card:hover{transform:translateY(-5px);}
@@ -63,12 +56,13 @@ footer a:hover { text-decoration: underline; }
 .share-btn.telegram { background:#0088cc; }
 .share-btn.twitter { background:#1DA1F2; }
 .share-btn.copy-link-btn { background:#111; }
-.share-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(255,0,255,0.5); }
+.share-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(128,0,255,0.5); }
 
-/* Glitch for Algo Title */
-.algo-title{font-size:1.5rem;color:#00ffff;border-left:4px solid #00ffff;padding-left:0.5rem;text-transform:uppercase;position:relative;animation:flicker 2s infinite;}
+/* Algo Section */
+#algo-section{background:#333;padding:2rem 1rem;border-radius:1rem;margin-bottom:2rem;}
+.algo-title{font-size:1.3rem;color:#00ffff;border-left:4px solid #00ffff;padding-left:0.5rem;text-transform:uppercase;position:relative;animation:flicker 2s infinite;display:inline-block;max-width:100%;}
 .algo-title::before,.algo-title::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;overflow:hidden;z-index:-1;}
-.algo-title::before{animation:glitchTop 2s infinite linear;color:#ff00ff;}
+.algo-title::before{animation:glitchTop 2s infinite linear;color:#8000ff;} /* purple */
 .algo-title::after{animation:glitchBottom 2s infinite linear;color:#00ff00;}
 </style>
 </head>
@@ -86,7 +80,7 @@ footer a:hover { text-decoration: underline; }
 
 <main>
   <!-- Algo Section -->
-  <section id="algo-section" style="background:#333; padding:2rem 1rem; border-radius:1rem; margin-bottom:2rem;">
+  <section id="algo-section">
     <h2 class="algo-title" data-text="Algorithm Chronicles">Algorithm Chronicles</h2>
     <div id="algo-container" class="card-grid"></div>
   </section>
@@ -153,7 +147,6 @@ fetch('news.json')
           });
       });
 
-      // Append cards to Algo or News section
       if(story.section === "algo") {
         algoContainer.appendChild(card);
       } else {
