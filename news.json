@@ -1,114 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TMI News — Tech. Mayhem. Internet</title>
-<meta name="description" content="TMI News brings you the latest in African tech, mayhem, culture, and internet trends. Stories shaping the future of code, chaos, and creativity." />
-<meta name="keywords" content="TMI Studios, tech news Africa, startups, Durban, innovation, mayhem, internet, AI, events, culture" />
-<meta property="og:title" content="TMI News — Tech. Mayhem. Internet" />
-<meta property="og:description" content="African innovation, creators, and stories reshaping tech and culture." />
-<meta property="og:image" content="https://placehold.co/900x500?text=TMI+News" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-<style>
-/* Your full CSS here (same as before) */
-</style>
-</head>
-<body>
-
-<header>
-  <h1 class="logo" data-text="TMI News">TMI News</h1>
-  <nav class="tmi-nav">
-    <ul class="nav-links">
-      <li><a href="index.html" class="home-link">🏠 Home</a></li>
-    </ul>
-  </nav>
-  <p class="tagline">Tech | Mayhem | Internet</p>
-</header>
-
-<main>
-  <section id="news-section">
-    <h2>Latest Stories</h2>
-    <div id="news-container" class="card-grid"></div>
-  </section>
-
-  <section id="algorithm-chronicles">
-    <h2>The Algorithm Chronicles</h2>
-    <div class="card-grid" id="algorithm-container"></div>
-  </section>
-</main>
-
-<footer>
-  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-</footer>
-
-<script>
-// Function to create a story card
-function createCard(story, containerId) {
-  const container = document.getElementById(containerId);
-  const storyId = containerId + "-" + story.date.replace(/-/g,'');
-
-  const card = document.createElement('div');
-  card.classList.add('card');
-
-  const shareText = encodeURIComponent(
-    `📰 ${story.headline}\n${story.preview}\nRead full story 👉 ${window.location.href}#${storyId}\n📸 ${story.image}`
-  );
-
-  card.innerHTML = `
-    <img src="${story.image}" alt="${story.headline}">
-    <div class="card-content">
-      <p class="date">${story.date}</p>
-      <h3 id="${storyId}">${story.headline}</h3>
-      <p>${story.preview}</p>
-      <button class="read-more-btn">Read More</button>
-      <div class="full-story hidden"><p>${story.fullStory}</p></div>
-      <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-        <a href="https://wa.me/?text=${shareText}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
-        <a href="https://t.me/share/url?url=${window.location.href}#${storyId}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
-        <a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
-        <button class="share-btn copy-link-btn">📋 Copy Link</button>
-      </div>
-    </div>
-  `;
-
-  const readBtn = card.querySelector('.read-more-btn');
-  const fullStoryDiv = card.querySelector('.full-story');
-  readBtn.addEventListener('click', () => {
-    fullStoryDiv.classList.toggle('hidden');
-    readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
-  });
-
-  const copyBtn = card.querySelector('.copy-link-btn');
-  copyBtn.addEventListener('click', () => {
-    const url = `${window.location.href}#${storyId}`;
-    navigator.clipboard.writeText(url)
-      .then(() => {
-        copyBtn.textContent = '✅ Copied';
-        document.getElementById(storyId).scrollIntoView({behavior:'smooth'});
-        setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);
-      });
-  });
-
-  container.appendChild(card);
+yes.   {
+  "stories": [
+    {
+  "date": "2025-11-11",
+  "category": "Tech & Culture",
+  "headline": "The Algorithm Loves Sin",
+  "preview": "A church scandal goes viral, proving outrage is the new currency in the age of algorithms.",
+  "fullStory": "So, a couple got caught having sex outside a church — in full church uniforms. Shocking? Maybe. Surprising? Not really. Because these days, the only thing holier than faith… is the feed.\n\nBefore the ushers even caught their breath, the clip was already trending — stitched, slowed down, re-uploaded, remixed, re-captioned. The sermon of the century, preached by pixels.\n\nThat’s the thing: in 2025, the algorithm rewards chaos over context. It’s not about truth, it’s about traction. Outrage is the new currency. The more we gasp, the more it gives.\n\nYou could post a thousand sermons on grace and nobody would care. But two sinners in uniform? That’s engagement gold. Every click, comment, and share feeds the machine — a system that doesn’t know morality, only momentum.\n\nWe like to think we’re disgusted by this stuff. But the numbers don’t lie. Scandal is a performance, and we’re all in the audience, popcorn in hand, pretending to be shocked while refreshing the thread.\n\nIn a world where decency doesn’t trend, sin does. Not because we’ve lost faith — but because we’ve found Wi-Fi.",
+  "image": "https://tmistudios.xyz/images/churchscandal.jpeg"
+    }, 
+    {
+  "date": "2025-11-07",
+  "category": "Tech & Justice",
+  "headline": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
+  "preview": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
+  "fullStory": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service...",
+  "image": "https://tmistudios.xyz/images/makate.jpeg"
+    },
+    {
+      "date": "2025-11-07",
+      "category": "Business",
+      "headline": "South African Banking Giant Nedbank Group to Acquire Fintech iKhokha in ~R1.65 B Deal",
+      "preview": "Cape Town fintech iKhokha is being acquired by Nedbank for R1.65 billion, marking a major push into the SME digital payments space.",
+      "fullStory": "Cape Town-based fintech iKhokha is poised for a major exit in South Africa’s SME payments space as Nedbank Group announced a binding agreement to acquire 100% of iKhokha for approximately R1.65 billion...",
+      "image": "https://tmistudios.xyz/images/ikhokha.jpeg"
+    },
+    {
+      "date": "2025-11-06",
+      "category": "Startups",
+      "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
+      "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
+      "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa...",
+      "image": "https://tmistudios.xyz/images/efama.jpeg"
+    },
+    {
+      "date": "2025-11-06",
+      "category": "Tech",
+      "headline": "African Super-App Gozem officially lands in Brazzaville 🎉",
+      "preview": "Gozem expands into Central Africa, offering ride-hailing, delivery, and financial services via one app in Brazzaville.",
+      "fullStory": "The Francophone Africa “super-app” Gozem has officially launched its operations in Brazzaville (Republic of the Congo) as of 6 November 2025...",
+      "image": "https://tmistudios.xyz/images/gozem.jpeg"
+    },
+    {
+      "date": "2025-11-01",
+      "category": "Business",
+      "headline": "Pepkor Drops $98M Bag, Snaps Up Retailability — and the Streets Are Buzzing",
+      "preview": "The retail giant just made a power move that could shake up how South Africans shop (and spend) in 2026.",
+      "fullStory": "South Africa’s retail scene just got a reality check. Pepkor — the everyday-value powerhouse behind PEP and Ackermans — officially sealed the deal on a $98 million acquisition of Retailability...",
+      "image": "https://tmistudios.xyz/images/pepkor.jpeg"
+    },
+    {
+      "date": "2025-10-30",
+      "category": "Business",
+      "headline": "Alibaba Opens Doors in Durban",
+      "preview": "South Africa welcomes Alibaba’s first local office, signaling big moves in e-commerce.",
+      "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South Africa...",
+      "image": "https://tmistudios.xyz/images/alibaba.jpeg"
+    },
+    {
+      "date": "2025-10-28",
+      "category": "Events",
+      "headline": "LED Summit 2025 Highlights",
+      "preview": "Local economic development leaders gather to strategize innovation in Durban.",
+      "fullStory": "The LED Summit held in Durban over the past few days brought together government officials, entrepreneurs, and investors...",
+      "image": "https://tmistudios.xyz/images/ledsummit.jpeg"
+    },
+    {
+      "date": "2025-10-23",
+      "category": "Investment",
+      "headline": "KZN Investment Conference 2025",
+      "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
+      "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC...",
+      "image": "https://tmistudios.xyz/images/investment.jpeg"
+    }
+  ],
+  "tech": [],
+  "poi": []
 }
-
-// Load stories from JSON
-fetch('news.json')
-  .then(response => response.json())
-  .then(data => {
-    data.stories.forEach(story => {
-      if (story.section === 'algo') {
-        createCard(story, 'algorithm-container');
-      } else {
-        createCard(story, 'news-container');
-      }
-    });
-  })
-  .catch(err => console.error('Error loading news.json:', err));
-</script>
-
-</body>
-</html>
