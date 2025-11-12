@@ -157,34 +157,22 @@ function createCard(story, container) {
   container.appendChild(card);
 }
 
-// Algorithm Chronicles hardcoded
-const algoStories = [
-  {
-    date:"2025-11-12",
-    headline:"The Algorithm That Loved Sin",
-    preview:"A scandal in church uniforms went viral, but the real villain? The algorithm itself.",
-    fullStory:"The Algo is cruel, seductive, and unpredictable. It rewards outrage, amplifies scandal, and whispers temptation. We follow it as it wreaks havoc on unsuspecting souls, turning ordinary events into viral spectacles.",
-    image:"https://placehold.co/400x200?text=Algorithm+Chronicles"
-  },
-  {
-    date:"2025-11-05",
-    headline:"The Algorithm Strikes Again",
-    preview:"Yet another viral moment proving that the Algo prefers chaos over calm.",
-    fullStory:"From viral videos to trending tweets, the Algo seems to have a mind of its own, pushing content that shocks and delights. Our journey continues through the lens of digital mischief.",
-    image:"https://placehold.co/400x200?text=Algorithm+Chronicles+2"
-  }
-];
-const algoContainer = document.getElementById('algo-container');
-algoStories.forEach(story => createCard(story, algoContainer));
-
-// Fetch news.json for Latest Stories & Spotlight
+// Fetch news.json for all sections
 fetch('news.json')
   .then(response => response.json())
   .then(data => {
+    const algoContainer = document.getElementById('algo-container');
     const newsContainer = document.getElementById('news-container');
-    data.stories.forEach(story => createCard(story, newsContainer));
-
     const spotlightContainer = document.getElementById('spotlight-container');
+
+    data.stories.forEach(story => {
+      if(story.section && story.section.toLowerCase() === "algo") {
+        createCard(story, algoContainer);
+      } else {
+        createCard(story, newsContainer);
+      }
+    });
+
     if(data.spotlight) data.spotlight.forEach(story => createCard(story, spotlightContainer));
 
     const hash = window.location.hash;
