@@ -10,7 +10,40 @@
 /* General Styles */
 body {font-family:'Space Grotesk',sans-serif;background:#fafafa;color:#111;margin:0;padding:0;}
 header {position: relative;text-align: center;padding:3rem 1rem 2rem 1rem;background:#000;color:#fff;}
-.logo{font-family:'Orbitron',sans-serif;font-size:3rem;margin:0;text-transform:uppercase;color:#111;}
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: white;
+  position: relative;
+  animation: flicker 2s infinite steps(2, end);
+}
+
+.logo::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: #00ffff;
+  opacity: 0.8;
+  clip-path: polygon(0 20%, 100% 20%, 100% 80%, 0 80%);
+  animation: glitch 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.85; }
+}
+
 .tagline{margin:0.5rem 0;font-size:1.2rem;}
 
 /* Navigation Styles */
@@ -56,7 +89,7 @@ footer a:hover { text-decoration: underline; }
 <body>
 
 <header>
-  <h1 class="logo">TMI News</h1>
+  <h1 class="logo" data-text="TMI News">TMI News</h1>
   <nav class="tmi-nav">
     <ul class="nav-links">
       <li><a href="index.html" class="home-link">🏠 Home</a></li>
