@@ -3,188 +3,132 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TMI News — Tech. Magic. Innovation</title>
-<meta name="description" content="TMI News brings you the latest in African tech, innovation, creators, and chaos." />
+<title>TMI News — Tech. Mayhem. Impact.</title>
+<meta name="description" content="TMI News brings you the latest in African tech, mayhem, and impact. From viral chaos to breakthrough innovations, we cover the stories that matter." />
+<meta name="keywords" content="TMI Studios, tech news Africa, startups, Durban, mayhem, impact, AI, events, technology, African innovation, algorithm, viral stories" />
+<meta name="author" content="TMI Studios" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:title" content="TMI News — Tech. Mayhem. Impact." />
+<meta property="og:description" content="African tech, mayhem, and impact stories reshaping the digital world." />
+<meta property="og:image" content="https://placehold.co/900x500?text=TMI+News" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.tminews.com/" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="TMI News — Tech. Mayhem. Impact." />
+<meta name="twitter:description" content="African tech, mayhem, and impact stories reshaping the digital world." />
+<meta name="twitter:image" content="https://placehold.co/900x500?text=TMI+News" />
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- JSON-LD structured data for articles -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsMediaOrganization",
+  "name": "TMI Studios",
+  "url": "https://www.tminews.com",
+  "logo": "https://placehold.co/300x100?text=TMI+Logo",
+  "sameAs": ["https://twitter.com/TMIStudios","https://www.facebook.com/TMIStudios"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "NewsArticle",
+      "headline": "Episode 1: The Algorithm That Loved Sin",
+      "image": "https://placehold.co/400x200?text=Episode+1",
+      "datePublished": "2025-11-12",
+      "author": {"@type": "Organization","name": "TMI Studios"},
+      "publisher": {"@type": "Organization","name": "TMI Studios","logo":{"@type":"ImageObject","url":"https://placehold.co/300x100?text=TMI+Logo"}},
+      "description": "She doesn’t sleep. She doesn’t pray. Her name is The Algorithm, and she devours clicks, chaos, and scandal."
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Episode 2: Swipe Right for Chaos",
+      "image": "https://placehold.co/400x200?text=Episode+2",
+      "datePublished": "2025-11-19",
+      "author": {"@type": "Organization","name": "TMI Studios"},
+      "publisher": {"@type": "Organization","name": "TMI Studios","logo":{"@type":"ImageObject","url":"https://placehold.co/300x100?text=TMI+Logo"}},
+      "description": "The Algorithm thrives on desire and ego. See how dating apps, fake profiles, and viral influencer mishaps fuel her appetite for attention."
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Episode 3: Trending Panic",
+      "image": "https://placehold.co/400x200?text=Episode+3",
+      "datePublished": "2025-11-26",
+      "author": {"@type": "Organization","name": "TMI Studios"},
+      "publisher": {"@type": "Organization","name": "TMI Studios","logo":{"@type":"ImageObject","url":"https://placehold.co/300x100?text=TMI+Logo"}},
+      "description": "From viral AI bribery videos to political scandal clips, see how she amplifies outrage and moral panic — and why we can’t look away."
+    }
+  ]
+}
+</script>
 
 <style>
 /* General Styles */
-body {
-  font-family:'Space Grotesk',sans-serif;
-  background:#fafafa;
-  color:#111;
-  margin:0;
-  padding:0;
-}
-
-header {
-  position: relative;
-  text-align: center;
-  padding:3rem 1rem 2rem 1rem;
-  background:#000;
-  color:#fff;
-}
-
-/* ✅ Fixed Logo Glitch */
-.logo {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3rem;
-  text-transform: uppercase;
-  color: white;
-  position: relative;
-  animation: flicker 2s infinite steps(2, end);
-}
-
-.logo::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 2px;
-  top: 0;
-  color: #00ffff;
-  opacity: 0; /* invisible by default */
-  clip-path: polygon(0 20%,100% 20%,100% 80%,0 80%);
-  animation: glitch 1.2s infinite linear alternate-reverse;
-}
-
-@keyframes glitch {
-  0%, 95%, 100% { opacity: 0; transform: translate(0, 0); }
-  10%, 50%      { opacity: 0.5; transform: translate(-2px, 1px); }
-  80%           { opacity: 0.3; transform: translate(2px, -1px); }
-}
-
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-  20%, 24%, 55% { opacity: 0.85; }
-}
-
-.tagline {
-  margin:0.5rem 0;
-  font-size:1.2rem;
-}
+body {font-family:'Space Grotesk',sans-serif;background:#fafafa;color:#111;margin:0;padding:0;}
+header {position: relative;text-align: center;padding:3rem 1rem 2rem 1rem;background:#000;color:#fff;}
+.logo{font-family:'Orbitron',sans-serif;font-size:3rem;margin:0;text-transform:uppercase;position:relative;color:#00ffff;animation:flicker 2s infinite;}
+.logo::before,.logo::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;overflow:hidden;z-index:-1;}
+.logo::before{animation:glitchTop 2s infinite linear;color:#ff00ff;}
+.logo::after{animation:glitchBottom 2s infinite linear;color:#00ff00;}
+@keyframes glitchTop{0%{clip-path:inset(0 0 80% 0);transform:translate(-2px,-2px);}10%{clip-path:inset(20% 0 60% 0);transform:translate(2px,0);}20%{clip-path:inset(10% 0 70% 0);transform:translate(-1px,-1px);}30%,100%{clip-path:inset(0 0 80% 0);transform:translate(0,0);} }
+@keyframes glitchBottom{0%{clip-path:inset(60% 0 0 0);transform:translate(2px,2px);}10%{clip-path:inset(40% 0 10% 0);transform:translate(-2px,0);}20%{clip-path:inset(50% 0 0 0);transform:translate(1px,1px);}30%,100%{clip-path:inset(60% 0 0 0);transform:translate(0,0);} }
+@keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}20%,22%,24%,55%{opacity:0.6;} }
+.tagline{margin:0.5rem 0;font-size:1.2rem;}
 
 /* Navigation Styles */
-.tmi-nav {
-  position: absolute;
-  top:1rem;
-  right:2rem;
-}
-.tmi-nav .nav-links {
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:flex;
-}
-.tmi-nav .nav-links li {
-  margin-left:1rem;
-}
-.tmi-nav .nav-links a {
-  text-decoration:none;
-  color:#fff;
-  font-weight:500;
-  font-size:1rem;
-  transition: color 0.3s;
-}
+.tmi-nav { position:absolute; top:1rem; right:2rem; }
+.tmi-nav .nav-links { list-style:none; margin:0; padding:0; display:flex; }
+.tmi-nav .nav-links li { margin-left:1rem; }
+.tmi-nav .nav-links a { text-decoration:none; color:#fff; font-weight:500; font-size:1rem; transition: color 0.3s; }
 .tmi-nav .nav-links a:hover { color:#00ffff; }
 .home-link { display:flex; align-items:center; gap:0.3rem; }
 
-/* Sections and Cards */
-main {
-  max-width:1100px;
-  margin:2rem auto;
-  padding:0 1rem;
-}
-h2 {
-  font-family:'Orbitron',sans-serif;
-  color:#111;
-  border-left:4px solid #00ffff;
-  padding-left:0.5rem;
-  margin-bottom:1rem;
-  text-transform:uppercase;
-}
-.card-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:1.5rem;
-}
-.card {
-  background:#fff;
-  border-radius:1rem;
-  overflow:hidden;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
-  transition:transform 0.2s;
-}
-.card:hover { transform:translateY(-5px); }
-.card img {
-  width:100%;
-  height:180px;
-  object-fit:cover;
-}
-.card-content { padding:1rem; }
-.date { font-size:0.8rem; color:#666; margin-bottom:0.3rem; }
-.read-more-btn {
-  margin-top:0.5rem;
-  background:#111;
-  color:#fff;
-  border:none;
-  padding:0.6rem 1.2rem;
-  border-radius:0.5rem;
-  cursor:pointer;
-  font-size:0.9rem;
-  transition:background 0.3s;
-}
-.read-more-btn:hover { background:#00ffff; color:#111; }
-.hidden { display:none; }
-
-/* Algo Section Styles */
-#algo-section {
-  background:#2c2c2c;
-  padding:1rem;
-  margin-bottom:2rem;
-  border-radius:1rem;
-}
-#algo-section h2 {
-  color:#9b59b6;
-  border-color:#9b59b6;
-}
-#algo-section .card {
-  background:#3a3a3a;
-  color:#fff;
-}
+/* Main and Cards */
+main{max-width:1100px;margin:2rem auto;padding:0 1rem;}
+h2{font-family:'Orbitron',sans-serif;color:#111;border-left:4px solid #00ffff;padding-left:0.5rem;margin-bottom:1rem;text-transform:uppercase;}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.card{background:#fff;border-radius:1rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1);transition:transform 0.2s;}
+.card:hover{transform:translateY(-5px);}
+.card img{width:100%;height:180px;object-fit:cover;}
+.card-content{padding:1rem;}
+.date{font-size:0.8rem;color:#666;margin-bottom:0.3rem;}
+.read-more-btn{margin-top:0.5rem;background:#111;color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:0.5rem;cursor:pointer;font-size:0.9rem;transition:background 0.3s;}
+.read-more-btn:hover{background:#00ffff;color:#111;}
+.hidden{display:none;}
 
 /* Footer */
-footer {
-  background:#000;
-  color:#fff;
-  text-align:center;
-  padding:2rem 1rem;
-  font-size:0.9rem;
-}
+footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:0.9rem;}
 footer a { text-decoration: none; color: inherit; }
 footer a:hover { text-decoration: underline; }
 
 /* Share Buttons */
-.share-btn {
-  padding:0.5rem 0.75rem;
-  border-radius:0.5rem;
-  font-size:0.85rem;
-  text-decoration:none;
-  color:#fff;
-  border:none;
-  cursor:pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+.share-btn { padding:0.5rem 0.75rem; border-radius:0.5rem; font-size:0.85rem; text-decoration:none; color:#fff; border:none; cursor:pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .share-btn.whatsapp { background:#25D366; }
 .share-btn.telegram { background:#0088cc; }
 .share-btn.twitter { background:#1DA1F2; }
 .share-btn.copy-link-btn { background:#111; }
-.share-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0,255,255,0.7),
-              0 0 5px rgba(155,0,255,0.5);
-}
+.share-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(255,0,255,0.5); }
+
+/* Algorithm Chronicles specific */
+#algorithm-chronicles { background:#111;color:#fff;padding:2rem 1rem;border-radius:1rem;margin-top:3rem; }
+#algorithm-chronicles h2{border-left:4px solid #ff00ff;padding-left:0.5rem;margin-bottom:1.5rem;}
+#algorithm-chronicles .card { background:#1a1a1a; color:#fff; box-shadow:0 4px 15px rgba(255,0,255,0.2),0 0 10px rgba(0,255,255,0.2); border:1px solid #333; transition: transform 0.3s, box-shadow 0.3s; }
+#algorithm-chronicles .card:hover { transform:translateY(-7px) rotateZ(-1deg); box-shadow:0 6px 20px rgba(255,0,255,0.5),0 0 15px rgba(0,255,255,0.5); }
+#algorithm-chronicles .card img { filter:brightness(0.85) contrast(1.1); animation: flicker 3s infinite; }
+#algorithm-chronicles .card-content h3 { color:#00ffff; animation: glitchTop 2.5s infinite linear; }
+#algorithm-chronicles .card-content p { color:#ccc; }
+#algorithm-chronicles .read-more-btn { background:#ff00ff; color:#111; }
+#algorithm-chronicles .read-more-btn:hover { background:#00ffff; color:#111; }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -194,20 +138,21 @@ footer a:hover { text-decoration: underline; }
       <li><a href="index.html" class="home-link">🏠 Home</a></li>
     </ul>
   </nav>
-  <p class="tagline">Tech | Magic | Innovation</p>
+  <p class="tagline">Tech | Mayhem | Impact</p>
 </header>
 
 <main>
-  <!-- Algo Section -->
-  <section id="algo-section">
-    <h2>The Algo Who Loved Sin</h2>
-    <div id="algo-container" class="card-grid"></div>
-  </section>
-
-  <!-- Latest Stories Section -->
   <section id="news-section">
     <h2>Latest Stories</h2>
     <div id="news-container" class="card-grid"></div>
+  </section>
+
+  <!-- Algorithm Chronicles Series -->
+  <section id="algorithm-chronicles">
+    <h2>The Algorithm Chronicles</h2>
+    <div class="card-grid" id="algorithm-container">
+      <!-- Episodes injected by JS -->
+    </div>
   </section>
 </main>
 
@@ -216,27 +161,17 @@ footer a:hover { text-decoration: underline; }
 </footer>
 
 <script>
-// Fetch stories from news.json
-fetch('news.json')
-  .then(response => response.json())
-  .then(data => {
-    const algoContainer = document.getElementById('algo-container');
-    const newsContainer = document.getElementById('news-container');
-
-    // Algo Section
-    const algoStories = data.stories.filter(s => s.section && s.section.toLowerCase() === 'algo');
-    algoStories.forEach(story => createStoryCard(story, algoContainer));
-
-    // Latest Stories Section
-    const otherStories = data.stories.filter(s => !s.section || s.section.toLowerCase() !== 'algo');
-    otherStories.forEach(story => createStoryCard(story, newsContainer));
-  })
-  .catch(err => console.error('Error loading news.json:', err));
-
-function createStoryCard(story, container) {
-  const storyId = "story-" + story.date.replace(/-/g,'') + "-" + Math.floor(Math.random()*1000);
+// Function to create a story card
+function createCard(story, containerId) {
+  const container = document.getElementById(containerId);
+  const storyId = containerId + "-" + story.date.replace(/-/g,'');
   const card = document.createElement('div');
   card.classList.add('card');
+
+  const shareText = encodeURIComponent(
+    `📰 ${story.headline}\n${story.preview}\nRead full story 👉 ${window.location.href}#${storyId}\n📸 ${story.image}`
+  );
+
   card.innerHTML = `
     <img src="${story.image}" alt="${story.headline}">
     <div class="card-content">
@@ -246,9 +181,9 @@ function createStoryCard(story, container) {
       <button class="read-more-btn">Read More</button>
       <div class="full-story hidden"><p>${story.fullStory}</p></div>
       <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-        <a href="https://wa.me/?text=${encodeURIComponent(story.headline)}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
-        <a href="https://t.me/share/url?url=${window.location.href}#${storyId}&text=${encodeURIComponent(story.headline)}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
-        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(story.headline)}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
+        <a href="https://wa.me/?text=${shareText}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
+        <a href="https://t.me/share/url?url=${window.location.href}#${storyId}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
+        <a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
         <button class="share-btn copy-link-btn">📋 Copy Link</button>
       </div>
     </div>
@@ -264,15 +199,50 @@ function createStoryCard(story, container) {
   const copyBtn = card.querySelector('.copy-link-btn');
   copyBtn.addEventListener('click', () => {
     const url = `${window.location.href}#${storyId}`;
-    navigator.clipboard.writeText(url)
-      .then(() => {
-        copyBtn.textContent = '✅ Copied';
-        setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);
-      });
+    navigator.clipboard.writeText(url).then(() => {
+      copyBtn.textContent = '✅ Copied';
+      document.getElementById(storyId).scrollIntoView({behavior:'smooth'});
+      setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);
+    });
   });
 
   container.appendChild(card);
 }
+
+// Load Latest Stories
+fetch('news.json')
+  .then(response => response.json())
+  .then(data => {
+    data.stories.forEach(story => createCard(story, 'news-container'));
+  })
+  .catch(err => console.error('Error loading news.json:', err));
+
+// Algorithm Chronicles Episodes
+const algorithmEpisodes = [
+  {
+    date: '2025-11-12',
+    headline: 'Episode 1: The Algorithm That Loved Sin',
+    preview: 'She doesn’t sleep. She doesn’t pray. Her name is The Algorithm, and she devours clicks, chaos, and scandal.',
+    fullStory: 'Full story content for Episode 1 goes here...',
+    image: 'https://placehold.co/400x200?text=Episode+1'
+  },
+  {
+    date: '2025-11-19',
+    headline: 'Episode 2: Swipe Right for Chaos',
+    preview: 'The Algorithm thrives on desire and ego. See how dating apps, fake profiles, and viral influencer mishaps fuel her appetite for attention.',
+    fullStory: 'Full story content for Episode 2 goes here...',
+    image: 'https://placehold.co/400x200?text=Episode+2'
+  },
+  {
+    date: '2025-11-26',
+    headline: 'Episode 3: Trending Panic',
+    preview: 'From viral AI bribery videos to political scandal clips, see how she amplifies outrage and moral panic — and why we can’t look away.',
+    fullStory: 'Full story content for Episode 3 goes here...',
+    image: 'https://placehold.co/400x200?text=Episode+3'
+  }
+];
+
+algorithmEpisodes.forEach(ep => createCard(ep, 'algorithm-container'));
 </script>
 
 </body>
