@@ -2,7 +2,7 @@
   "stories": [
     {
       "date": "2025-11-11",
-      "category": "Tech X Culture",
+      "category": "Tech x Culture",
       "section": "algo",
       "headline": "The Algorithm Loves Sin",
       "preview": "A church scandal goes viral, proving outrage is the new currency in the age of algorithms.",
@@ -10,26 +10,27 @@
       "image": "https://tmistudios.xyz/images/churchscandal.jpeg"
     },
     {
-     "date": "2025-11-12",
-     "category": "Tech x Culture",
-     "section": "algo",
-     "headline": "Deepfake Disaster Goes Viral",
-     "preview": "A realistic AI deepfake video of a local celebrity sparks outrage online — and the algorithm eats it up.",
-     "fullStory": "A local influencer found themselves the unwilling star of a deepfake video that went viral within hours. The AI-generated clip was shared, stitched, and captioned across every platform, racking up millions of views. The platform didn’t care about consent or ethics; it only rewarded clicks, shares, and outrage. Social media’s algorithm turned chaos into currency, proving yet again that virality often comes at the expense of reality.",
-     "image": "https://tmistudios.xyz/images/deepfake.jpeg"
-   },
-   {
-     "date": "2025-11-10",
-     "category": "Tech X Culture",
-     "section": "algo",
-     "headline": "TikTok Trend Traps Teens in Dangerous Stunt",
-     "preview": "A viral challenge sends thousands trying a risky stunt — and the algorithm laughs all the way to the next trend.",
-     "fullStory": "The latest viral TikTok challenge encouraged users to attempt a dangerous stunt at home. Thousands participated, filming and posting their attempts, while the algorithm amplified the trend with suggested videos and hashtags. Injuries aside, engagement metrics skyrocketed. This is a stark reminder: the algorithm rewards content that shocks and entertains, not content that’s safe or sensible.",
-     "image": "https://tmistudios.xyz/images/tiktokstunt.jpeg"
+      "date": "2025-11-12",
+      "category": "Tech x Culture",
+      "section": "algo",
+      "headline": "Deepfake Disaster Goes Viral",
+      "preview": "A realistic AI deepfake video of a local celebrity sparks outrage online — and the algorithm eats it up.",
+      "fullStory": "A local influencer found themselves the unwilling star of a deepfake video that went viral within hours. The AI-generated clip was shared, stitched, and captioned across every platform, racking up millions of views. The platform didn’t care about consent or ethics; it only rewarded clicks, shares, and outrage. Social media’s algorithm turned chaos into currency, proving yet again that virality often comes at the expense of reality.",
+      "image": "https://tmistudios.xyz/images/deepfake.jpeg"
+    },
+    {
+      "date": "2025-11-10",
+      "category": "Tech x Culture",
+      "section": "algo",
+      "headline": "TikTok Trend Traps Teens in Dangerous Stunt",
+      "preview": "A viral challenge sends thousands trying a risky stunt — and the algorithm laughs all the way to the next trend.",
+      "fullStory": "The latest viral TikTok challenge encouraged users to attempt a dangerous stunt at home. Thousands participated, filming and posting their attempts, while the algorithm amplified the trend with suggested videos and hashtags. Injuries aside, engagement metrics skyrocketed. This is a stark reminder: the algorithm rewards content that shocks and entertains, not content that’s safe or sensible.",
+      "image": "https://tmistudios.xyz/images/tiktokstunt.jpeg"
     },
     {
       "date": "2025-11-07",
       "category": "Tech & Justice",
+      "section": "general",
       "headline": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
       "preview": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
       "fullStory": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service...",
@@ -38,6 +39,7 @@
     {
       "date": "2025-11-07",
       "category": "Business",
+      "section": "general",
       "headline": "South African Banking Giant Nedbank Group to Acquire Fintech iKhokha in ~R1.65 B Deal",
       "preview": "Cape Town fintech iKhokha is being acquired by Nedbank for R1.65 billion, marking a major push into the SME digital payments space.",
       "fullStory": "Cape Town-based fintech iKhokha is poised for a major exit in South Africa’s SME payments space as Nedbank Group announced a binding agreement to acquire 100% of iKhokha for approximately R1.65 billion...",
@@ -46,6 +48,7 @@
     {
       "date": "2025-11-06",
       "category": "Startups",
+      "section": "general",
       "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
       "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
       "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa...",
@@ -54,6 +57,7 @@
     {
       "date": "2025-11-06",
       "category": "Tech",
+      "section": "general",
       "headline": "African Super-App Gozem officially lands in Brazzaville 🎉",
       "preview": "Gozem expands into Central Africa, offering ride-hailing, delivery, and financial services via one app in Brazzaville.",
       "fullStory": "The Francophone Africa “super-app” Gozem has officially launched its operations in Brazzaville (Republic of the Congo) as of 6 November 2025...",
@@ -62,6 +66,7 @@
     {
       "date": "2025-11-01",
       "category": "Business",
+      "section": "general",
       "headline": "Pepkor Drops $98M Bag, Snaps Up Retailability — and the Streets Are Buzzing",
       "preview": "The retail giant just made a power move that could shake up how South Africans shop (and spend) in 2026.",
       "fullStory": "South Africa’s retail scene just got a reality check. Pepkor — the everyday-value powerhouse behind PEP and Ackermans — officially sealed the deal on a $98 million acquisition of Retailability...",
@@ -70,6 +75,7 @@
     {
       "date": "2025-10-30",
       "category": "Business",
+      "section": "general",
       "headline": "Alibaba Opens Doors in Durban",
       "preview": "South Africa welcomes Alibaba’s first local office, signaling big moves in e-commerce.",
       "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South Africa...",
@@ -78,6 +84,7 @@
     {
       "date": "2025-10-28",
       "category": "Events",
+      "section": "general",
       "headline": "LED Summit 2025 Highlights",
       "preview": "Local economic development leaders gather to strategize innovation in Durban.",
       "fullStory": "The LED Summit held in Durban over the past few days brought together government officials, entrepreneurs, and investors...",
@@ -86,12 +93,11 @@
     {
       "date": "2025-10-23",
       "category": "Investment",
+      "section": "general",
       "headline": "KZN Investment Conference 2025",
       "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
       "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC...",
       "image": "https://tmistudios.xyz/images/investment.jpeg"
     }
-  ],
-  "tech": [],
-  "poi": []
+  ]
 }
