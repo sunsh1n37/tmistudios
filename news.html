@@ -59,8 +59,10 @@ footer a:hover { text-decoration: underline; }
 .share-btn.copy-link-btn { background:#111; }
 .share-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(255,0,255,0.5); }
 
-/* Algo Section */
-#algo-section h2{border-color:#ff00ff;}
+/* Algorithm Chronicles Styles */
+#algo-section h2{border-color:#ff00ff;color:#ff00ff;}
+#algo-container .card:hover{box-shadow:0 0 15px rgba(255,0,255,0.7);}
+#algo-section .tagline{font-size:0.9rem;color:#ff00ff;margin-bottom:1rem;}
 </style>
 </head>
 <body>
@@ -76,6 +78,13 @@ footer a:hover { text-decoration: underline; }
 </header>
 
 <main>
+  <!-- Algorithm Chronicles (Top) -->
+  <section id="algo-section">
+    <h2>Algorithm Chronicles</h2>
+    <p class="tagline">A series exploring the algo’s dark side</p>
+    <div id="algo-container" class="card-grid"></div>
+  </section>
+
   <!-- Latest Stories -->
   <section id="news-section">
     <h2>Latest Stories</h2>
@@ -86,12 +95,6 @@ footer a:hover { text-decoration: underline; }
   <section id="spotlight-section">
     <h2>Spotlight</h2>
     <div id="spotlight-container" class="card-grid"></div>
-  </section>
-
-  <!-- Algorithm Chronicles -->
-  <section id="algo-section">
-    <h2>Algorithm Chronicles</h2>
-    <div id="algo-container" class="card-grid"></div>
   </section>
 </main>
 
