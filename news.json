@@ -1,20 +1,21 @@
 {
   "stories": [
     {
-  "date": "2025-11-11",
-  "category": "Tech & Culture",
-  "headline": "The Algorithm Loves Sin",
-  "preview": "A church scandal goes viral, proving outrage is the new currency in the age of algorithms.",
-  "fullStory": "So, a couple got caught having sex outside a church — in full church uniforms. Shocking? Maybe. Surprising? Not really. Because these days, the only thing holier than faith… is the feed.\n\nBefore the ushers even caught their breath, the clip was already trending — stitched, slowed down, re-uploaded, remixed, re-captioned. The sermon of the century, preached by pixels.\n\nThat’s the thing: in 2025, the algorithm rewards chaos over context. It’s not about truth, it’s about traction. Outrage is the new currency. The more we gasp, the more it gives.\n\nYou could post a thousand sermons on grace and nobody would care. But two sinners in uniform? That’s engagement gold. Every click, comment, and share feeds the machine — a system that doesn’t know morality, only momentum.\n\nWe like to think we’re disgusted by this stuff. But the numbers don’t lie. Scandal is a performance, and we’re all in the audience, popcorn in hand, pretending to be shocked while refreshing the thread.\n\nIn a world where decency doesn’t trend, sin does. Not because we’ve lost faith — but because we’ve found Wi-Fi.",
-  "image": "https://tmistudios.xyz/images/churchscandal.jpeg"
-    }, 
+      "date": "2025-11-11",
+      "category": "Tech & Culture",
+      "section": "algo",
+      "headline": "The Algorithm Loves Sin",
+      "preview": "A church scandal goes viral, proving outrage is the new currency in the age of algorithms.",
+      "fullStory": "So, a couple got caught having sex outside a church — in full church uniforms. Shocking? Maybe. Surprising? Not really. Because these days, the only thing holier than faith… is the feed.\n\nBefore the ushers even caught their breath, the clip was already trending — stitched, slowed down, re-uploaded, remixed, re-captioned. The sermon of the century, preached by pixels.\n\nThat’s the thing: in 2025, the algorithm rewards chaos over context. It’s not about truth, it’s about traction. Outrage is the new currency. The more we gasp, the more it gives.\n\nYou could post a thousand sermons on grace and nobody would care. But two sinners in uniform? That’s engagement gold. Every click, comment, and share feeds the machine — a system that doesn’t know morality, only momentum.\n\nWe like to think we’re disgusted by this stuff. But the numbers don’t lie. Scandal is a performance, and we’re all in the audience, popcorn in hand, pretending to be shocked while refreshing the thread.\n\nIn a world where decency doesn’t trend, sin does. Not because we’ve lost faith — but because we’ve found Wi-Fi.",
+      "image": "https://tmistudios.xyz/images/churchscandal.jpeg"
+    },
     {
-  "date": "2025-11-07",
-  "category": "Tech & Justice",
-  "headline": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
-  "preview": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
-  "fullStory": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service...",
-  "image": "https://tmistudios.xyz/images/makate.jpeg"
+      "date": "2025-11-07",
+      "category": "Tech & Justice",
+      "headline": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
+      "preview": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
+      "fullStory": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service...",
+      "image": "https://tmistudios.xyz/images/makate.jpeg"
     },
     {
       "date": "2025-11-07",
