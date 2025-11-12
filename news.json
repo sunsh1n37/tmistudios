@@ -1,7 +1,90 @@
-"stories": [
+  "stories": [
     {
-  "date": "2025-11-11",
-  "category": "Tech & Culture",
+      "date": "2025-11-11",
+      "category": "Tech & Culture",
+      "section": "algo",
+      "headline": "The Algorithm Loves Sin",
+      "preview": "A church scandal goes viral, proving outrage is the new currency in the age of algorithms.",
+      "fullStory": "So, a couple got caught having sex outside a church — in full church uniforms. Shocking? Maybe. Surprising? Not really. Because these days, the only thing holier than faith… is the feed.\n\nBefore the ushers even caught their breath, the clip was already trending — stitched, slowed down, re-uploaded, remixed, re-captioned. The sermon of the century, preached by pixels.\n\nThat’s the thing: in 2025, the algorithm rewards chaos over context. It’s not about truth, it’s about traction. Outrage is the new currency. The more we gasp, the more it gives.\n\nYou could post a thousand sermons on grace and nobody would care. But two sinners in uniform? That’s engagement gold. Every click, comment, and share feeds the machine — a system that doesn’t know morality, only momentum.\n\nWe like to think we’re disgusted by this stuff. But the numbers don’t lie. Scandal is a performance, and we’re all in the audience, popcorn in hand, pretending to be shocked while refreshing the thread.\n\nIn a world where decency doesn’t trend, sin does. Not because we’ve lost faith — but because we’ve found Wi-Fi.",
+      "image": "https://tmistudios.xyz/images/churchscandal.jpeg"
+    },
+    {
+      "date": "2025-11-07",
+      "category": "Tech & Justice",
+      "section": "news",
+      "headline": "After 17 Years, 'Please Call Me' Inventor Finally Wins Against Vodacom",
+      "preview": "Makate’s David vs. Goliath moment finally pays off — 17 years later, justice picks up the call.",
+      "fullStory": "After nearly two decades of legal warfare, South African innovator Nkosana Makate has officially triumphed in his historic battle against Vodacom — the telecom giant behind the world-famous ‘Please Call Me’ service...",
+      "image": "https://tmistudios.xyz/images/makate.jpeg"
+    },
+    {
+      "date": "2025-11-07",
+      "category": "Business",
+      "section": "news",
+      "headline": "South African Banking Giant Nedbank Group to Acquire Fintech iKhokha in ~R1.65 B Deal",
+      "preview": "Cape Town fintech iKhokha is being acquired by Nedbank for R1.65 billion, marking a major push into the SME digital payments space.",
+      "fullStory": "Cape Town-based fintech iKhokha is poised for a major exit in South Africa’s SME payments space as Nedbank Group announced a binding agreement to acquire 100% of iKhokha for approximately R1.65 billion...",
+      "image": "https://tmistudios.xyz/images/ikhokha.jpeg"
+    },
+    {
+      "date": "2025-11-06",
+      "category": "Startups",
+      "section": "news",
+      "headline": "Cape Town Agritech Startup eFama Wins Meta’s Llama Impact Accelerator 2025",
+      "preview": "eFama’s AI-powered platform just bagged Meta’s top prize for innovation, and it’s about to change how farmers and buyers connect in Africa.",
+      "fullStory": "Cape Town-based agritech startup eFama has clinched first place in Meta’s Llama Impact Accelerator 2025 — a program spotlighting the most promising AI ventures in Africa...",
+      "image": "https://tmistudios.xyz/images/efama.jpeg"
+    },
+    {
+      "date": "2025-11-06",
+      "category": "Tech",
+      "section": "news",
+      "headline": "African Super-App Gozem officially lands in Brazzaville 🎉",
+      "preview": "Gozem expands into Central Africa, offering ride-hailing, delivery, and financial services via one app in Brazzaville.",
+      "fullStory": "The Francophone Africa “super-app” Gozem has officially launched its operations in Brazzaville (Republic of the Congo) as of 6 November 2025...",
+      "image": "https://tmistudios.xyz/images/gozem.jpeg"
+    },
+    {
+      "date": "2025-11-01",
+      "category": "Business",
+      "section": "news",
+      "headline": "Pepkor Drops $98M Bag, Snaps Up Retailability — and the Streets Are Buzzing",
+      "preview": "The retail giant just made a power move that could shake up how South Africans shop (and spend) in 2026.",
+      "fullStory": "South Africa’s retail scene just got a reality check. Pepkor — the everyday-value powerhouse behind PEP and Ackermans — officially sealed the deal on a $98 million acquisition of Retailability...",
+      "image": "https://tmistudios.xyz/images/pepkor.jpeg"
+    },
+    {
+      "date": "2025-10-30",
+      "category": "Business",
+      "section": "news",
+      "headline": "Alibaba Opens Doors in Durban",
+      "preview": "South Africa welcomes Alibaba’s first local office, signaling big moves in e-commerce.",
+      "fullStory": "Durban just leveled up. The e-commerce and cloud behemoth Alibaba is bringing its global reach to South Africa...",
+      "image": "https://tmistudios.xyz/images/alibaba.jpeg"
+    },
+    {
+      "date": "2025-10-28",
+      "category": "Events",
+      "section": "news",
+      "headline": "LED Summit 2025 Highlights",
+      "preview": "Local economic development leaders gather to strategize innovation in Durban.",
+      "fullStory": "The LED Summit held in Durban over the past few days brought together government officials, entrepreneurs, and investors...",
+      "image": "https://tmistudios.xyz/images/ledsummit.jpeg"
+    },
+    {
+      "date": "2025-10-23",
+      "category": "Investment",
+      "section": "news",
+      "headline": "KZN Investment Conference 2025",
+      "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
+      "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC...",
+      "image": "https://tmistudios.xyz/images/investment.jpeg"
+    }
+  ],
+  "tech": [],
+  "poi": []
+}
+
   "headline": "The Algorithm Loves Sin",
   "preview": "A church scandal goes viral, proving outrage is the new currency in the age of algorithms.",
   "fullStory": "So, a couple got caught having sex outside a church — in full church uniforms. Shocking? Maybe. Surprising? Not really. Because these days, the only thing holier than faith… is the feed.\n\nBefore the ushers even caught their breath, the clip was already trending — stitched, slowed down, re-uploaded, remixed, re-captioned. The sermon of the century, preached by pixels.\n\nThat’s the thing: in 2025, the algorithm rewards chaos over context. It’s not about truth, it’s about traction. Outrage is the new currency. The more we gasp, the more it gives.\n\nYou could post a thousand sermons on grace and nobody would care. But two sinners in uniform? That’s engagement gold. Every click, comment, and share feeds the machine — a system that doesn’t know morality, only momentum.\n\nWe like to think we’re disgusted by this stuff. But the numbers don’t lie. Scandal is a performance, and we’re all in the audience, popcorn in hand, pretending to be shocked while refreshing the thread.\n\nIn a world where decency doesn’t trend, sin does. Not because we’ve lost faith — but because we’ve found Wi-Fi.",
