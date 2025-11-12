@@ -61,8 +61,14 @@ footer a:hover { text-decoration: underline; }
 
 /* Algorithm Chronicles Styles */
 #algo-section h2{border-color:#ff00ff;color:#ff00ff;}
-#algo-container .card:hover{box-shadow:0 0 15px rgba(255,0,255,0.7);}
 #algo-section .tagline{font-size:0.9rem;color:#ff00ff;margin-bottom:1rem;}
+#algo-container .card{background:#111;color:#fff;border:2px solid #ff00ff;transition:box-shadow 0.3s, transform 0.2s;}
+#algo-container .card:hover{box-shadow:0 0 20px rgba(255,0,255,0.7);transform:translateY(-5px);}
+#algo-container h3{color:#ff00ff;animation:glitchText 2s infinite;}
+@keyframes glitchText{
+  0%,19%,21%,23%,25%,54%,56%,100%{text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;}
+  20%,22%,24%,55%{text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff;}
+}
 </style>
 </head>
 <body>
@@ -103,52 +109,7 @@ footer a:hover { text-decoration: underline; }
 </footer>
 
 <script>
-// Fetch news and spotlight from news.json
-fetch('news.json')
-  .then(response => response.json())
-  .then(data => {
-    const newsContainer = document.getElementById('news-container');
-    data.stories.forEach(story => {
-      createCard(story, newsContainer);
-    });
-
-    const spotlightContainer = document.getElementById('spotlight-container');
-    if(data.spotlight) {
-      data.spotlight.forEach(story => {
-        createCard(story, spotlightContainer);
-      });
-    }
-
-    const hash = window.location.hash;
-    if(hash) {
-      const el = document.querySelector(hash);
-      if(el) el.scrollIntoView({behavior:'smooth'});
-    }
-  })
-  .catch(err => console.error('Error loading news.json:', err));
-
-// Hardcoded Algorithm Chronicles
-const algoStories = [
-  {
-    date:"2025-11-12",
-    headline:"The Algorithm That Loved Sin",
-    preview:"A scandal in church uniforms went viral, but the real villain? The algorithm itself.",
-    fullStory:"The Algo is cruel, seductive, and unpredictable. It rewards outrage, amplifies scandal, and whispers temptation. We follow it as it wreaks havoc on unsuspecting souls, turning ordinary events into viral spectacles.",
-    image:"https://placehold.co/400x200?text=Algorithm+Chronicles"
-  },
-  {
-    date:"2025-11-05",
-    headline:"The Algorithm Strikes Again",
-    preview:"Yet another viral moment proving that the Algo prefers chaos over calm.",
-    fullStory:"From viral videos to trending tweets, the Algo seems to have a mind of its own, pushing content that shocks and delights. Our journey continues through the lens of digital mischief.",
-    image:"https://placehold.co/400x200?text=Algorithm+Chronicles+2"
-  }
-];
-
-const algoContainer = document.getElementById('algo-container');
-algoStories.forEach(story => createCard(story, algoContainer));
-
-// Card creation helper
+// Helper to create a story card
 function createCard(story, container) {
   const storyId = "story-" + story.date.replace(/-/g,'');
   const card = document.createElement('div');
@@ -195,6 +156,44 @@ function createCard(story, container) {
 
   container.appendChild(card);
 }
+
+// Algorithm Chronicles hardcoded
+const algoStories = [
+  {
+    date:"2025-11-12",
+    headline:"The Algorithm That Loved Sin",
+    preview:"A scandal in church uniforms went viral, but the real villain? The algorithm itself.",
+    fullStory:"The Algo is cruel, seductive, and unpredictable. It rewards outrage, amplifies scandal, and whispers temptation. We follow it as it wreaks havoc on unsuspecting souls, turning ordinary events into viral spectacles.",
+    image:"https://placehold.co/400x200?text=Algorithm+Chronicles"
+  },
+  {
+    date:"2025-11-05",
+    headline:"The Algorithm Strikes Again",
+    preview:"Yet another viral moment proving that the Algo prefers chaos over calm.",
+    fullStory:"From viral videos to trending tweets, the Algo seems to have a mind of its own, pushing content that shocks and delights. Our journey continues through the lens of digital mischief.",
+    image:"https://placehold.co/400x200?text=Algorithm+Chronicles+2"
+  }
+];
+const algoContainer = document.getElementById('algo-container');
+algoStories.forEach(story => createCard(story, algoContainer));
+
+// Fetch news.json for Latest Stories & Spotlight
+fetch('news.json')
+  .then(response => response.json())
+  .then(data => {
+    const newsContainer = document.getElementById('news-container');
+    data.stories.forEach(story => createCard(story, newsContainer));
+
+    const spotlightContainer = document.getElementById('spotlight-container');
+    if(data.spotlight) data.spotlight.forEach(story => createCard(story, spotlightContainer));
+
+    const hash = window.location.hash;
+    if(hash) {
+      const el = document.querySelector(hash);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }
+  })
+  .catch(err => console.error('Error loading news.json:', err));
 </script>
 
 </body>
