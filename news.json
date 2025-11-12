@@ -1,31 +1,114 @@
-{
-  "stories": [
-    {
-      "date": "2025-11-11",
-      "category": "Tech x Culture",
-      "section": "algo",
-      "headline": "The Algorithm Who Loved Sin",
-      "preview": "Holy clicks! Church scandal goes viral. Welcome to the Rage Economy.",
-      "fullStory": "Okay, hold onto your Wi-Fi 📶 because this is actually **wild.** A couple got *caught* — yes, literally caught — having sex **outside a church**. IN FULL CHURCH UNIFORMS. 😱😱 Like… holy robes, hallelujah, scandal, repeat. Shocking? Yeah. Surprising? Nah. Because in 2025, the only thing holier than faith… is your feed. **No cap.**<br><br>Before the ushers could even say ‘amen,’ the clip was EVERYWHERE. Stitched, slowed, captioned, meme’d, reposted, TikTok’ed, X’ed, Reels’ed… this scandal got more traction than a Tesla on launch day. ⚡🔥 Pixels preaching the *sermon of the century*. Move over, Sunday services. The algorithm is in town, and it don’t care about grace. It **cares about chaos.**<br><br>Clicks? ✅ Shares? ✅ Outrage? ✅ Engagement off the charts 📈. Post a thousand sermons about love, kindness, or forgiveness — nobody. gives. a. like. But two sinners in uniform? **Algorithm goes: “feed me more!”** Every gasp, every shriek, every eye-roll fuels the machine. 💀 The internet doesn’t judge morality — it judges momentum.<br><br>We like to act disgusted 🤢. We’re shocked. We’re horrified. But we’re also refreshing the thread. **Popcorn in hand 🍿, coffee on deck ☕, scrolling endlessly.** This is the *performance* of scandal. And yes, we’re all on stage. Bravo, chaos. Bravo.<br><br>Decency doesn’t trend. Virtue gets muted. But sin? **Sin is trending.** Not because we’ve lost faith — no, honey — because we’ve **found Wi-Fi, a hot Wi-Fi signal**, and a drama-hungry algorithm ready to snack on our outrage like it’s tapas. 💥📱",
-      "image": "https://tmistudios.xyz/images/churchscandal.jpeg"
-    },
-    {
-      "date": "2025-11-12",
-      "category": "Tech x Culture",
-      "section": "algo",
-      "headline": "Deepfake Disaster Goes Viral",
-      "preview": "A realistic AI deepfake video of a local celebrity sparks outrage online — and the algorithm eats it up.",
-      "fullStory": "A local influencer woke up to find themselves at the center of a storm — not of their own making, but thanks to AI. A realistic deepfake video, indistinguishable from reality to the casual eye, spread like wildfire across social media within hours. The clip was shared, stitched, captioned, and remixed on every platform imaginable, racking up millions of views in the process.<br><br>Consent? Ethics? These were afterthoughts. The algorithm rewarded nothing but engagement, clicks, and shares. Outrage became currency, and chaos was king. Followers debated, argued, and shared screenshots while the influencer could do little more than watch their reputation hang in the balance.<br><br>This is the double-edged sword of our digital age. Virality often comes at the expense of truth. In the algorithm’s world, the story isn’t about justice or fairness — it’s about traction. The more shocking, controversial, or sensational, the more fuel it provides the machine.<br><br>As AI deepfakes get more convincing, the challenge grows. How do we navigate a landscape where appearances are unreliable, where a single video can erase years of credibility? The Deepfake Disaster serves as a warning: in the attention economy, truth is optional, but virality is mandatory.",
-      "image": "https://tmistudios.xyz/images/deepfake.jpeg"
-    },
-    {
-      "date": "2025-11-10",
-      "category": "Tech x Culture",
-      "section": "algo",
-      "headline": "TikTok Trend Traps Teens in Dangerous Stunt",
-      "preview": "A viral challenge sends thousands trying a risky stunt — and the algorithm laughs all the way to the next trend.",
-      "fullStory": "A new TikTok challenge promised thrills, adrenaline, and, of course, likes. Teens around the country eagerly tried the risky stunt at home, recording every attempt and uploading it with the trending hashtag. The algorithm noticed, amplifying the content to millions in just hours.<br><br>Injuries quickly followed. Local hospitals reported an uptick in accidents related to the challenge. Parents panicked. Authorities warned. Yet the algorithm didn’t care. Views, shares, and comments soared — engagement metrics that fueled the next wave of similar content.<br><br>This is the paradox of social media. Dangerous stunts and shocking videos outperform safe, responsible content. The algorithm doesn’t reward wisdom; it rewards attention. Each click feeds the cycle, ensuring the next trend is even more extreme, even more irresistible.<br><br>As entertainment becomes synonymous with shock value, we have to ask ourselves: are we shaping the next generation, or just feeding them spectacle? TikTok may have started as a platform for creativity, but in 2025, it’s a laboratory for viral chaos, a reminder that in the attention economy, the most dangerous content often gets the most applause.",
-      "image": "https://tmistudios.xyz/images/tiktokstunt.jpeg"
-    }
-  ]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TMI News — Tech. Mayhem. Internet</title>
+<meta name="description" content="TMI News brings you the latest in African tech, mayhem, culture, and internet trends. Stories shaping the future of code, chaos, and creativity." />
+<meta name="keywords" content="TMI Studios, tech news Africa, startups, Durban, innovation, mayhem, internet, AI, events, culture" />
+<meta property="og:title" content="TMI News — Tech. Mayhem. Internet" />
+<meta property="og:description" content="African innovation, creators, and stories reshaping tech and culture." />
+<meta property="og:image" content="https://placehold.co/900x500?text=TMI+News" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Your full CSS here (same as before) */
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="logo" data-text="TMI News">TMI News</h1>
+  <nav class="tmi-nav">
+    <ul class="nav-links">
+      <li><a href="index.html" class="home-link">🏠 Home</a></li>
+    </ul>
+  </nav>
+  <p class="tagline">Tech | Mayhem | Internet</p>
+</header>
+
+<main>
+  <section id="news-section">
+    <h2>Latest Stories</h2>
+    <div id="news-container" class="card-grid"></div>
+  </section>
+
+  <section id="algorithm-chronicles">
+    <h2>The Algorithm Chronicles</h2>
+    <div class="card-grid" id="algorithm-container"></div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+</footer>
+
+<script>
+// Function to create a story card
+function createCard(story, containerId) {
+  const container = document.getElementById(containerId);
+  const storyId = containerId + "-" + story.date.replace(/-/g,'');
+
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  const shareText = encodeURIComponent(
+    `📰 ${story.headline}\n${story.preview}\nRead full story 👉 ${window.location.href}#${storyId}\n📸 ${story.image}`
+  );
+
+  card.innerHTML = `
+    <img src="${story.image}" alt="${story.headline}">
+    <div class="card-content">
+      <p class="date">${story.date}</p>
+      <h3 id="${storyId}">${story.headline}</h3>
+      <p>${story.preview}</p>
+      <button class="read-more-btn">Read More</button>
+      <div class="full-story hidden"><p>${story.fullStory}</p></div>
+      <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <a href="https://wa.me/?text=${shareText}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
+        <a href="https://t.me/share/url?url=${window.location.href}#${storyId}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
+        <a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
+        <button class="share-btn copy-link-btn">📋 Copy Link</button>
+      </div>
+    </div>
+  `;
+
+  const readBtn = card.querySelector('.read-more-btn');
+  const fullStoryDiv = card.querySelector('.full-story');
+  readBtn.addEventListener('click', () => {
+    fullStoryDiv.classList.toggle('hidden');
+    readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
+  });
+
+  const copyBtn = card.querySelector('.copy-link-btn');
+  copyBtn.addEventListener('click', () => {
+    const url = `${window.location.href}#${storyId}`;
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        copyBtn.textContent = '✅ Copied';
+        document.getElementById(storyId).scrollIntoView({behavior:'smooth'});
+        setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);
+      });
+  });
+
+  container.appendChild(card);
 }
+
+// Load stories from JSON
+fetch('news.json')
+  .then(response => response.json())
+  .then(data => {
+    data.stories.forEach(story => {
+      if (story.section === 'algo') {
+        createCard(story, 'algorithm-container');
+      } else {
+        createCard(story, 'news-container');
+      }
+    });
+  })
+  .catch(err => console.error('Error loading news.json:', err));
+</script>
+
+</body>
+</html>
