@@ -72,6 +72,8 @@ footer a:hover { text-decoration: underline; }
   /* Horizontal scroll for Algo and Spotlight sections */
 #algorithm-chronicles .card-grid,
 #spotlight-section .card-grid {
+  min-width: 280px;  /* ensures card doesn't shrink too much */
+  flex: 0 0 auto;
   display: flex;
   overflow-x: auto;
   gap: 1rem;
