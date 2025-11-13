@@ -146,20 +146,25 @@ function createCard(story, containerId) {
 
   container.appendChild(card);
 }
-
 // Load JSON stories
-// First Algo stories
-data.stories.forEach(story => {
-  if(story.section === 'algo') {
-    createCard(story, 'algorithm-container');
-  }
-});
-// Then Latest Stories
-data.stories.forEach(story => {
-  if(!story.section || story.section !== 'algo') {
-    createCard(story, 'news-container');
-  }
-});
+fetch('news.json')
+  .then(response => response.json())
+  .then(data => {
+    // First Algo stories
+    data.stories.forEach(story => {
+      if(story.section === 'algo') {
+        createCard(story, 'algorithm-container');
+      }
+    });
+
+    // Then Latest Stories
+    data.stories.forEach(story => {
+      if(!story.section || story.section !== 'algo') {
+        createCard(story, 'news-container');
+      }
+    });
+  })
+  .catch(err => console.error('Error loading news.json:', err));
 
 </script>
 
