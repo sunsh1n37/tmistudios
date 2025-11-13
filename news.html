@@ -69,6 +69,32 @@ footer a:hover { text-decoration: underline; }
 #algorithm-chronicles .card-content p { color:#ccc; }
 #algorithm-chronicles .read-more-btn { background:#ff00ff; color:#111; }
 #algorithm-chronicles .read-more-btn:hover { background:#00ffff; color:#111; }
+  /* Horizontal scroll for Algo and Spotlight sections */
+#algorithm-chronicles .card-grid,
+#spotlight-section .card-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+}
+
+#algorithm-chronicles .card-grid::-webkit-scrollbar,
+#spotlight-section .card-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+#algorithm-chronicles .card-grid::-webkit-scrollbar-thumb,
+#spotlight-section .card-grid::-webkit-scrollbar-thumb {
+  background: #00ffff;
+  border-radius: 4px;
+}
+
+#algorithm-chronicles .card-grid::-webkit-scrollbar-track,
+#spotlight-section .card-grid::-webkit-scrollbar-track {
+  background: #111;
+}
+
 </style>
 </head>
 <body>
