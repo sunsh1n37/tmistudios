@@ -1,105 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TMI News — Tech. Mayhem. Impact.</title>
-  <meta name="description" content="TMI News: Tech, Mayhem & Impact — where innovation meets chaos. Breaking stories, digital culture, and The Algo’s unpredictable mood swings." />
-  <meta name="keywords" content="TMI News, Tech Mayhem Impact, The Algo, digital culture, tech news, AI, innovation, chaos, South Africa tech" />
-  <meta name="author" content="TMI News" />
-  <link rel="stylesheet" href="styles.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NewsMediaOrganization",
-    "name": "TMI News",
-    "url": "https://tminews.africa",
-    "logo": "https://tminews.africa/assets/logo.png",
-    "sameAs": [
-      "https://twitter.com/tminews",
-      "https://instagram.com/tminews",
-      "https://tiktok.com/@tminews"
-    ],
-    "description": "Tech. Mayhem. Impact. — the future’s messy newsroom.",
-    "founder": "Buyi Mncube"
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TMI News — Tech • Mayhem • Impact</title>
+<meta name="description" content="TMI News brings you the boldest stories at the intersection of Tech, Mayhem, and Impact — featuring The Algo, your AI-fueled chaos feed." />
+<meta name="keywords" content="TMI News, The Algo, Tech Mayhem Impact, digital culture, viral news, AI trends, chaos economy, rage economy, Gen Z news" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
   }
-  </script>
+
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: white;
+    position: relative;
+    display: inline-block;
+  }
+
+  .logo::before {
+    content: "TMI";
+    position: absolute;
+    left: 2px;
+    top: 0;
+    color: #ff007f;
+    opacity: 0.6;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    animation: glitchTop 2s infinite;
+  }
+
+  .logo::after {
+    content: "TMI";
+    position: absolute;
+    left: -2px;
+    top: 0;
+    color: #00ffff;
+    opacity: 0.6;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    animation: glitchBottom 2s infinite;
+  }
+
+  @keyframes glitchTop {
+    0%, 100% { transform: translate(0, 0); }
+    20% { transform: translate(-2px, -1px); }
+    40% { transform: translate(2px, 1px); }
+  }
+
+  @keyframes glitchBottom {
+    0%, 100% { transform: translate(0, 0); }
+    20% { transform: translate(2px, 1px); }
+    40% { transform: translate(-2px, -1px); }
+  }
+
+  .tagline {
+    font-size: 1rem;
+    color: #ff007f;
+    letter-spacing: 1.5px;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  section {
+    padding: 3rem 1rem;
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    border-left: 4px solid #ff007f;
+    padding-left: 10px;
+  }
+
+  /* --- THE ALGO SECTION --- */
+  .algo-section {
+    background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+    border-bottom: 2px solid #ff007f;
+    position: relative;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    overflow: hidden;
+  }
+
+  .algo-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff007f, transparent);
+    animation: pulseLine 3s infinite;
+  }
+
+  @keyframes pulseLine {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .algo-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #ff007f;
+    text-align: center;
+    letter-spacing: 3px;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .story-card {
+    background-color: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(255, 0, 127, 0.3);
+  }
+
+  .story-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .story-content {
+    padding: 1.5rem;
+  }
+
+  .story-content h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+    color: #fff;
+  }
+
+  .story-content p {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
+  }
+
+  .read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #ff007f;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
+  }
+
+  /* LATEST STORIES SECTION */
+  .latest-section {
+    background-color: #000;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+</style>
 </head>
 <body>
   <header>
-    <div class="nav-container">
-      <a href="index.html" class="logo glitch" data-text="TMI">TMI</a>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="news.html" class="active">News</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </nav>
-    </div>
+    <div class="logo">TMI</div>
+    <div class="tagline">Tech • Mayhem • Impact</div>
   </header>
 
-  <main>
+  <!-- THE ALGO SECTION -->
+  <section class="algo-section">
+    <h2 class="algo-title">🌀 The Algo</h2>
+    <div class="story-grid" id="algo-stories"></div>
+  </section>
 
-    <!-- 🔥 The Algo Section (TOP PRIORITY) -->
-    <section id="algo-section">
-      <h2 class="section-title">🌀 The Algo Who Loved Sin</h2>
-      <p class="section-subtitle">The algorithm’s latest crushes, confessions, and calculated chaos.</p>
-      <div id="algo-stories" class="story-grid"></div>
-    </section>
-
-    <!-- 🚨 Latest Stories Section -->
-    <section id="latest-stories">
-      <h2 class="section-title">⚡ Latest Stories</h2>
-      <div id="latest-stories-grid" class="story-grid"></div>
-    </section>
-
-  </main>
+  <!-- LATEST STORIES -->
+  <section class="latest-section">
+    <h2>📰 Latest Stories</h2>
+    <div class="story-grid" id="latest-stories"></div>
+  </section>
 
   <footer>
-    <p>© 2025 TMI News — Tech. Mayhem. Impact.</p>
+    © 2025 TMI Studios — All Chaos Reserved.
   </footer>
 
   <script>
-  async function loadStories() {
-    try {
-      const res = await fetch('news.json');
-      const data = await res.json();
+    fetch('news.json')
+      .then(res => res.json())
+      .then(data => {
+        const algoContainer = document.getElementById('algo-stories');
+        const latestContainer = document.getElementById('latest-stories');
 
-      const algoStories = document.getElementById('algo-stories');
-      const latestStories = document.getElementById('latest-stories-grid');
+        data.stories.forEach(story => {
+          const card = `
+            <div class="story-card">
+              <img src="${story.image}" alt="${story.headline}">
+              <div class="story-content">
+                <h3>${story.headline}</h3>
+                <p>${story.preview}</p>
+                <a href="story.html?slug=${story.slug}" class="read-more">Read More →</a>
+              </div>
+            </div>
+          `;
 
-      // filter by category for The Algo section
-      const algoItems = data.stories.filter(story => story.category === 'The Algo Who Loved Sin');
-      const latestItems = data.stories.filter(story => story.category !== 'The Algo Who Loved Sin');
-
-      algoStories.innerHTML = algoItems.map(story => `
-        <article class="story-card">
-          <img src="${story.image || 'assets/placeholder.jpg'}" alt="${story.headline}">
-          <div class="story-content">
-            <h3>${story.headline}</h3>
-            <p>${story.preview}</p>
-            <a href="story.html?id=${story.id}" class="read-more">Read More</a>
-          </div>
-        </article>
-      `).join('');
-
-      latestStories.innerHTML = latestItems.map(story => `
-        <article class="story-card">
-          <img src="${story.image || 'assets/placeholder.jpg'}" alt="${story.headline}">
-          <div class="story-content">
-            <h3>${story.headline}</h3>
-            <p>${story.preview}</p>
-            <a href="story.html?id=${story.id}" class="read-more">Read More</a>
-          </div>
-        </article>
-      `).join('');
-    } catch (err) {
-      console.error('Error loading stories:', err);
-    }
-  }
-
-  loadStories();
+          if (story.section === 'algo') {
+            algoContainer.innerHTML += card;
+          } else {
+            latestContainer.innerHTML += card;
+          }
+        });
+      });
   </script>
 </body>
 </html>
