@@ -65,7 +65,7 @@ footer a:hover { text-decoration: underline; }
 #algorithm-chronicles .card { background:#1a1a1a; color:#fff; box-shadow:0 4px 15px rgba(255,0,255,0.2),0 0 10px rgba(0,255,255,0.2); border:1px solid #333; transition: transform 0.3s, box-shadow 0.3s; }
 #algorithm-chronicles .card:hover { transform:translateY(-7px) rotateZ(-1deg); box-shadow:0 6px 20px rgba(255,0,255,0.5),0 0 15px rgba(0,255,255,0.5); }
 #algorithm-chronicles .card img { filter:brightness(0.85) contrast(1.1); animation: flicker 3s infinite; }
-#algorithm-chronicles .card-content h3 { color:#00ffff; animation: glitchTop 2.5s infinite linear; }
+#algorithm-chronicles .card-content h3 { color:#00ffff; /* removed glitch animation */ }
 #algorithm-chronicles .card-content p { color:#ccc; }
 #algorithm-chronicles .read-more-btn { background:#ff00ff; color:#111; }
 #algorithm-chronicles .read-more-btn:hover { background:#00ffff; color:#111; }
@@ -148,19 +148,19 @@ function createCard(story, containerId) {
 }
 
 // Load JSON stories
-fetch('news.json')
-  .then(response => response.json())
-  .then(data => {
-    // Separate sections
-    data.stories.forEach(story => {
-      if(story.section === 'algo') {
-        createCard(story, 'algorithm-container');
-      } else {
-        createCard(story, 'news-container');
-      }
-    });
-  })
-  .catch(err => console.error('Error loading news.json:', err));
+// First Algo stories
+data.stories.forEach(story => {
+  if(story.section === 'algo') {
+    createCard(story, 'algorithm-container');
+  }
+});
+// Then Latest Stories
+data.stories.forEach(story => {
+  if(!story.section || story.section !== 'algo') {
+    createCard(story, 'news-container');
+  }
+});
+
 </script>
 
 </body>
