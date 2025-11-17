@@ -108,7 +108,9 @@
       "preview": "TMI gets the front-row view of Durban’s biggest investment meet.",
       "fullStory": "From panel discussions on local startups to impromptu networking chaos, TMI reported live from the Durban ICC...",
       "image": "https://tmistudios.xyz/images/investment.jpeg"
-    },
+    }
+  ],
+  "spotlight": [
     {
       "date": "2025-11-15",
       "category": "Spotlight",
