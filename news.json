@@ -1,16 +1,16 @@
 {
-  "topStories": [
+  "stories": [
     {
       "date": "2025-11-27",
       "category": "Tech & Culture",
       "section": "algo",
-      "headline": "Burberry x Chains: Miss Algo Fixates on Cat Matlala’s Courtroom Drip",
+      "headline": "Burberry x Chains: Miss Algo Fixates on Kat Matlala’s Courtroom Drip",
       "preview": "Luxury shirt, prison chains — the contrast was too delicious for Miss Algo to ignore.",
-      "fullStory": "The internet’s chaotic queen, Miss Algo, has found her latest obsession — and it’s none other than Vusi ‘Cat’ Matlala stepping into Parliament wearing a crisp white Burberry shirt… while shackled like a side character caught mid-mission in GTA.<br><br>Miss Algo LOVES duality. Loves contrast. Loves drama. And nothing screams ‘algorithmic feast’ like luxury drip paired with correctional-services chrome. Upper body: Sandton soft life. Lower body: Sun City Prison vibes. The timeline combusted instantly.<br><br>Stitches? 48k in two hours. Comments? A disaster. Engagement? Unholy. TikTok stitched the outfit so many times the platform essentially became a \"Cat-walk\". The machine couldn’t get enough.<br><br>Fashion TikTok wanted the Burberry SKU. True-crime TikTok wanted the case files. Meme TikTok wanted him animated into an AI runway edit, shackles clinking perfectly on beat. Miss Algo amplified it all because chaos is her love language.<br><br>Users delivered the heat:<br>— “Fit by Burberry, accessories by SAPS.”<br>— “Bro’s going to a soft launch AND a sentencing.”<br>— “Rich Dad, Poor Choices.”<br><br>But Miss Algo didn’t push this story for the jokes. She pushed it because the visuals SLAPPED. Beige Burberry softness vs cold metal brutality. Wealth vs restraint. Rebrand vs reality. It’s aesthetic conflict — the kind of content she treats like caviar.<br><br>Whether it’s a redemption arc, a PR pivot, or just a man refusing to stop dripping even in government-issued restraints, one thing is certain: Miss Algo made sure this fit entered the cultural chat. And she’s still chewing on it.",
-      "image": "images/catmatlala.jpeg"
+      "fullStory": "The internet’s chaotic queen, Miss Algo, has found her latest obsession — and it’s none other than Vusi ‘Kat’ Matlala stepping into Parliament wearing a crisp white Burberry shirt… while shackled like a side character caught mid-mission in GTA.<br><br>Miss Algo LOVES duality. Loves contrast. Loves drama. And nothing screams ‘algorithmic feast’ like luxury drip paired with correctional-services chrome. Upper body: Sandton soft life. Lower body: Sun City Prison vibes. The timeline combusted instantly.<br><br>Stitches? 48k in two hours. Comments? A disaster. Engagement? Unholy. TikTok stitched the outfit so many times the platform essentially became a Kat Matlala fashion show. The machine couldn’t get enough.<br><br>Fashion TikTok wanted the Burberry SKU. True-crime TikTok wanted the case files. Meme TikTok wanted him animated into an AI runway edit, shackles clinking perfectly on beat. Miss Algo amplified it all because chaos is her love language.<br><br>Users delivered the heat:<br>— “Fit by Burberry, movement by SAPS.”<br>— “Bro’s going to a soft launch AND a sentencing.”<br>— “Rich Dad, Poor Choices.”<br><br>But Miss Algo didn’t push this story for the jokes. She pushed it because the visuals SLAPPED. Beige Burberry softness vs cold metal brutality. Wealth vs restraint. Rebrand vs reality. It’s aesthetic conflict — the kind of content she treats like caviar.<br><br>Whether it’s a redemption arc, a PR pivot, or just a man refusing to stop dripping even in government-issued restraints, one thing is certain: Miss Algo made sure this fit entered the cultural chat. And she’s still chewing on it.",
+      "image": ""
     },
     {
-      "date": "2025-11-16",
+     "date": "2025-11-16",
       "category": "Tech x Culture",
       "section": "algo",
       "headline": "SARS cracks down on counterfeit culture",
@@ -119,71 +119,21 @@
       "image": "https://tmistudios.xyz/images/investment.jpeg"
     }
   ],
-  "missAlgo": [
-    {
-      "date": "2025-11-27",
-      "category": "Tech & Culture",
-      "section": "algo",
-      "headline": "Burberry x Chains: Miss Algo Fixates on Cat Matlala’s Courtroom Drip",
-      "preview": "Luxury shirt, prison chains — the contrast was too delicious for Miss Algo to ignore.",
-      "fullStory": "...",
-      "image": "images/catmatlala.jpeg"
-    },
-    {
-      "date": "2025-11-16",
-      "category": "Tech x Culture",
-      "section": "algo",
-      "headline": "SARS cracks down on counterfeit culture",
-      "preview": "The dupe economy meets the taxman — and Miss Algo is loving every chaotic second.",
-      "fullStory": "...",
-      "image": ""
-    },
-    {
-      "date": "2025-11-16",
-      "category": "Tech & Media",
-      "section": "algo",
-      "headline": "Miss Algo Steals South Africa’s News Traffic",
-      "preview": "SA publishers accuse the algorithmic queen of starving newsrooms — and Miss Algo simply smirks.",
-      "fullStory": "...",
-      "image": ""
-    },
-    {
-      "date": "2025-11-11",
-      "category": "Tech & Culture",
-      "section": "algo",
-      "headline": "The Algorithm Loves Sin",
-      "preview": "A church scandal goes viral, Welcome to the rage economy, powered by yow gworl, Algo.",
-      "fullStory": "...",
-      "image": "https://tmistudios.xyz/images/churchscandal.jpeg"
-    },
-    {
-      "date": "2025-02-24",
-      "category": "Tech & Culture",
-      "section": "algo",
-      "headline": "Miss Algo’s Bias Machine Strikes SA News",
-      "preview": "South African media buried under global content — and Miss Algo smiles.",
-      "fullStory": "...",
-      "image": "https://tmistudios.xyz/images/algobias.jpeg"
-    },
-    {
-      "date": "2025-09-27",
-      "category": "Tech & Culture",
-      "section": "algo",
-      "headline": "Miss Algo’s Deepfake Playground",
-      "preview": "Deepfake chaos in South Africa, and Miss Algo is laughing.",
-      "fullStory": "...",
-      "image": "https://tmistudios.xyz/images/missalgo_deepfake_sa.jpeg"
-    }
-  ],
-    "spotlight": [
+  "spotlight": [
     {
       "date": "2025-11-15",
       "category": "Spotlight",
       "section": "spotlight",
-      "headline": "Marvelous E Creations Takes SA by Storm",
-      "preview": "From small-town startup to national sensation — Marvelous E Creations is the Spotlight of the month.",
-      "fullStory": "Marvelous E Creations, a homegrown South African creative agency, has been making waves across the country with its innovative designs and digital solutions. Known for blending local culture with cutting-edge tech, the company has quickly become a favorite for brands looking for fresh, chaotic, and viral campaigns.<br><br>The agency’s latest project, an AI-powered marketing campaign for a leading beverage brand, went viral within hours, cementing its status as a trendsetter. Miss Algo herself couldn’t help but amplify the story, dubbing it a prime example of how creativity and tech collide in the TMI universe.<br><br>With national recognition, a growing client base, and a knack for unpredictable yet effective campaigns, Marvelous E Creations is not just in the spotlight — it IS the spotlight. Their secret? A fearless approach to innovation, a finger on the cultural pulse, and a willingness to embrace the beautiful chaos of digital life in South Africa.",
-      "image": "https://tmistudios.xyz/images/marvelouse.jpeg"
+      "headline": "Marvelous E Creations — The Studio Turning Scrolls Into Sales",
+      "preview": "Durban’s Marvelous E Creations combines craft and tech, turning social media scrolls into bookings with cinematic flair and digital savvy.",
+      "fullStory": "Durban’s Marvelous E Creations is one of those studios you stumble across online and immediately think: Wow, who is behind this sorcery? Clean visuals, cinematic energy, soft colour grading, the works. But what makes them stand out isn’t just the photography — it’s how they’ve adapted to the new digital hustle.\n\nMarvelous E Creations didn’t start with a business plan or a glossy studio space. It began with a camera gifted by parents, a willingness to try everything, and family members who quickly became permanent models. From birthday shoots to small events to portraits “just for fun,” the craft evolved — and so did the ambition.\n\nBut the real plot twist? The industry changed faster than anyone expected. “Being good wasn’t enough anymore,” the founder tells TMI. “If you’re not online, you basically don’t exist. You need a portfolio AND a personality.”\n\nAnd so Marvelous E Creations shifted — with intention. They stopped waiting for foot traffic and started chasing scroll traffic. Now, their client funnel looks like the modern creative pipeline: Instagram → WhatsApp → Booking → Shoot → Repeat. Most clients discover them through reels, carousel posts, and shared stories. The rest comes from good old word of mouth — which, in 2025, is basically offline retweets.\n\nThey’ve learned the digital playbook by heart: behind-the-scenes clips, quick transitions, aesthetic edits, trending audio, captions that feel like conversations. They perfectly balance artistic vision with what the algorithm currently finds snackable — without letting trends swallow their identity.\n\nTheir most viral post wasn’t staged or over-produced. It was a candid portrait — soft lighting, real emotion — the kind of photo people save to their Pinterest boards without thinking.\n\nThat’s the duality of Marvelous E Creations: rooted in craft, powered by tech. They’ve embraced tools like Lightroom, Photoshop, Luminar AI, Calendly, SEO basics, and social content planning — not because they wanted to, but because 2025 demands it. Being an artist and a marketer is no longer optional. It’s survival.\n\nAnd instead of complaining about the pressure to “create for the algorithm,” they hacked it. They create what they love, then tailor it for the timeline.\n\nWhat’s next for the studio? Workshops, creative collabs, more portrait series, maybe even a content-creation wing. They’re expanding without losing the heart of why they started: to capture moments that feel like memories.\n\nMarvelous E Creations is proof that South African creatives aren’t waiting for opportunities — they’re building them, branding them, and posting them in 4K. That’s why they’re in this week’s Spotlight.",
+      "images": [
+        "https://tmistudios.xyz/images/marvelous0.jpeg",
+        "https://tmistudios.xyz/images/marvelous1.jpeg",
+        "https://tmistudios.xyz/images/marvelous2.jpeg"
+      ]
     }
-  ]
+  ],
+  "tech": [],
+  "poi": []
 }
