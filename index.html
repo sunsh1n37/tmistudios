@@ -1,226 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TMI Studios — Scroll-stopping digital experiences</title>
-  <meta name="description" content="TMI Studios: African tech, games, innovation, and chaotic creativity. Stay updated on stories shaping code, culture, and creators." />
-  <meta name="keywords" content="TMI Studios, African tech, innovation, games, AI, creativity, news, chaos, coding" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TMI Studios — Scroll-stopping digital experiences</title>
+<meta name="description" content="TMI Studios Arcade: African tech, games, chaos quizzes, and viral web experiences. Play, explore, and get hooked!" />
+<meta name="keywords" content="TMI Studios, African tech, arcade, games, chaos quizzes, AI, creativity, news, coding" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- JSON-LD for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NewsMediaOrganization",
-    "name": "TMI Studios",
-    "url": "https://tmistudios.xyz",
-    "logo": "https://placehold.co/900x500?text=TMI+Studios",
-    "sameAs": [
-      "https://twitter.com/tmistudios",
-      "https://instagram.com/tmistudios"
-    ],
-    "description": "TMI Studios covers African tech, startups, games, and innovation with a chaotic creative spin."
-  }
-  </script>
+<!-- JSON-LD for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGameSeries",
+  "name": "TMI Studios Arcade",
+  "url": "https://tmistudios.xyz",
+  "description": "TMI Studios Arcade: Play fast, chaotic web games and quizzes from Africa’s most viral creators.",
+  "sameAs": [
+    "https://twitter.com/tmistudios",
+    "https://instagram.com/tmistudios"
+  ]
+}
+</script>
 
-  <style>
-    :root {
-      --bg: #0b0015;
-      --accent: #b388ff;
-      --accent2: #a855f7;
-      --text: #f4f4f4;
-      --muted: #c0bcd0;
-      --font: 'Space Grotesk', sans-serif;
-      --footer-bg: radial-gradient(circle at top left, #1b0036, #0b0015);
-      --footer-link: #bfa3ff;
-    }
+<style>
+:root {
+  --bg: #0b0015;
+  --accent: #b388ff;
+  --accent2: #a855f7;
+  --text: #f4f4f4;
+  --muted: #c0bcd0;
+  --font: 'Space Grotesk', sans-serif;
+  --footer-bg: radial-gradient(circle at top left, #1b0036, #0b0015);
+  --footer-link: #bfa3ff;
+}
 
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: var(--font); color: var(--text); background: var(--bg); overflow-x:hidden; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: var(--font); color: var(--text); background: var(--bg); overflow-x:hidden; }
 
-    nav {
-      display:flex; 
-      flex-wrap:nowrap; 
-      justify-content:flex-start; /* changed from space-between */
-      gap:2rem;
-      padding:.75rem 1rem; 
-      z-index:10; 
-      position:relative; 
-    }
-    .nav-link { color:#fff; text-decoration:none; font-weight:500; font-size:.875rem; transition:color .3s ease; }
-    .nav-link:hover { color:var(--accent2); }
+nav {
+  display:flex; flex-wrap:nowrap; justify-content:flex-start;
+  gap:2rem; padding:.75rem 1rem; z-index:10; position:relative;
+}
+.nav-link { color:#fff; text-decoration:none; font-weight:500; font-size:.875rem; transition:color .3s ease; }
+.nav-link:hover { color:var(--accent2); }
 
-    .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 1rem; }
-    .subtitle { font-size:1.2rem; color: var(--muted); margin-top:.4rem; }
-    .cta-group { margin-top:2rem; display:flex; gap:1rem; }
-    .btn { text-decoration:none; padding:.8rem 1.5rem; border-radius:50px; font-weight:600; transition:all .3s; }
-    .btn.primary { background: var(--accent); color: var(--bg); }
-    .btn.primary:hover { background:transparent; color: var(--accent); border:2px solid var(--accent); }
-    .btn.secondary { border:2px solid var(--accent); color: var(--accent); }
-    .btn.secondary:hover { background: var(--accent); color: var(--bg); }
+.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 1rem; }
+.subtitle { font-size:1.2rem; color: var(--muted); margin-top:.4rem; }
+.cta-group { margin-top:2rem; display:flex; gap:1rem; }
+.btn { text-decoration:none; padding:.8rem 1.5rem; border-radius:50px; font-weight:600; transition:all .3s; }
+.btn.primary { background: var(--accent); color: var(--bg); }
+.btn.primary:hover { background:transparent; color: var(--accent); border:2px solid var(--accent); }
+.btn.secondary { border:2px solid var(--accent); color: var(--accent); }
+.btn.secondary:hover { background: var(--accent); color: var(--bg); }
 
-    section { padding:6rem 10%; max-width:1200px; margin:auto; text-align:center; }
-    h2 { font-size:2rem; margin-bottom:1rem; color: var(--text); }
-    p { line-height:1.6; margin-bottom:1rem; color: var(--text); }
+section { padding:6rem 10%; max-width:1200px; margin:auto; text-align:center; }
+h2 { font-size:2rem; margin-bottom:1rem; color: var(--text); }
+p { line-height:1.6; margin-bottom:1rem; color: var(--text); }
 
-    /* Recent Experiments Section — horizontal scroll */
-    .projects {
-      display:flex;
-      gap:2rem;
-      overflow-x:auto;
-      padding-bottom:1rem;
-      scroll-snap-type: x mandatory;
-    }
-    .project {
-      flex:0 0 300px; /* width of each card */
-      scroll-snap-align: start;
-      background: rgba(255,255,255,0.05);
-      padding:1.5rem;
-      border-radius:12px;
-      transition: transform .3s, background .3s;
-      overflow:hidden;
-    }
-    .project:hover { transform:translateY(-5px); background: rgba(255,255,255,0.08); }
-    .project img { width:100%; border-radius:10px; margin-bottom:1rem; filter: brightness(0.9); }
-    .project h3 { color: var(--accent2); font-size:1.3rem; margin-bottom:.5rem; }
+.projects {
+  display:flex; gap:2rem; overflow-x:auto; padding-bottom:1rem; scroll-snap-type: x mandatory;
+}
+.project {
+  flex:0 0 300px; scroll-snap-align: start; background: rgba(255,255,255,0.05);
+  padding:1.5rem; border-radius:12px; transition: transform .3s, background .3s; overflow:hidden;
+}
+.project:hover { transform:translateY(-5px); background: rgba(255,255,255,0.08); }
+.project img { width:100%; border-radius:10px; margin-bottom:1rem; filter: brightness(0.9); }
+.project h3 { color: var(--accent2); font-size:1.3rem; margin-bottom:.5rem; }
 
-    /* subtle scrollbar styling */
-    .projects::-webkit-scrollbar { height:8px; }
-    .projects::-webkit-scrollbar-thumb { background: rgba(179,136,255,0.3); border-radius:4px; }
-    .projects::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius:4px; }
+.projects::-webkit-scrollbar { height:8px; }
+.projects::-webkit-scrollbar-thumb { background: rgba(179,136,255,0.3); border-radius:4px; }
+.projects::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius:4px; }
 
-    .footer { text-align:center; padding:3rem 1rem; background: var(--footer-bg); color: var(--muted); font-size:.9rem; border-top:1px solid rgba(255,255,255,0.05); }
-    .footer a { color: var(--footer-link); text-decoration:none; transition:color .3s; }
-    .footer a:hover { color:#fff; text-decoration:underline; }
+.footer { text-align:center; padding:3rem 1rem; background: var(--footer-bg); color: var(--muted); font-size:.9rem; border-top:1px solid rgba(255,255,255,0.05); }
+.footer a { color: var(--footer-link); text-decoration:none; transition:color .3s; }
+.footer a:hover { color:#fff; text-decoration:underline; }
 
-    canvas#stars { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+canvas#stars { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
 
-    /* TMI News Section — transparent frosted-glass look */
-    .news-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; }
-    .news-card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 1.2rem;
-      text-align:center;
-      transition: transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease;
-      position: relative;
-      overflow:hidden;
-    }
-    .news-card::before {
-      content:"";
-      position:absolute; inset:0;
-      border-radius:16px;
-      background: linear-gradient(45deg, var(--accent2), var(--accent));
-      opacity:0; filter: blur(12px); z-index:0;
-      transition: opacity .4s ease;
-    }
-    .news-card:hover::before { opacity:.3; }
-    .news-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); border-color: rgba(179,136,255,0.4); box-shadow:0 8px 25px rgba(179,136,255,.2);}
-    .news-card img { width:100%; border-radius:12px; margin-bottom:1rem; filter: brightness(0.9); position:relative; z-index:1; }
-    .news-card h3 { font-size:1.1rem; margin:.8rem 0; color: var(--accent2); position:relative; z-index:1; }
-    .news-card .btn.secondary { margin-top:.5rem; border-color: var(--accent); color: var(--accent); position:relative; z-index:1; }
-    .news-card .btn.secondary:hover { background: var(--accent); color: var(--bg); }
+.news-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; }
+.news-card {
+  background: rgba(255,255,255,0.05); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.2rem;
+  text-align:center; transition: transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease;
+  position: relative; overflow:hidden;
+}
+.news-card::before {
+  content:""; position:absolute; inset:0; border-radius:16px;
+  background: linear-gradient(45deg, var(--accent2), var(--accent));
+  opacity:0; filter: blur(12px); z-index:0; transition: opacity .4s ease;
+}
+.news-card:hover::before { opacity:.3; }
+.news-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); border-color: rgba(179,136,255,0.4); box-shadow:0 8px 25px rgba(179,136,255,.2);}
+.news-card img { width:100%; border-radius:12px; margin-bottom:1rem; filter: brightness(0.9); position:relative; z-index:1; }
+.news-card h3 { font-size:1.1rem; margin:.8rem 0; color: var(--accent2); position:relative; z-index:1; }
+.news-card .btn.secondary { margin-top:.5rem; border-color: var(--accent); color: var(--accent); position:relative; z-index:1; }
+.news-card .btn.secondary:hover { background: var(--accent); color: var(--bg); }
 
-    @media (max-width:600px){
-      .title{font-size:2rem;} 
-      .cta-group{flex-direction:column;} 
-      .projects { flex-wrap:nowrap; } 
-    }
-  </style>
+@media (max-width:600px){
+  .title{font-size:2rem;} 
+  .cta-group{flex-direction:column;} 
+  .projects { flex-wrap:nowrap; } 
+}
+</style>
 </head>
 
 <body>
-  <canvas id="stars"></canvas>
+<canvas id="stars"></canvas>
 
-  <nav>
-    <a href="/arcade.html" class="nav-link">Arcade</a>
-    <a href="/packages.html" class="nav-link">Packages</a>
-    <a href="/lab.html" class="nav-link">Lab</a>
-    <a href="/aboutus.html" class="nav-link">About</a>
-    <a href="/contactus.html" class="nav-link">Contact</a>
-  </nav>
+<nav>
+  <a href="/arcade.html" class="nav-link">Arcade</a>
+  <a href="/lab.html" class="nav-link">Lab</a>
+  <a href="/packages.html" class="nav-link">Packages</a>
+  <a href="/aboutus.html" class="nav-link">About</a>
+  <a href="/contactus.html" class="nav-link">Contact</a>
+</nav>
 
-  <header class="hero">
-    <img src="images/tmihero.jpeg" alt="TMI Studios" style="width:300px; mix-blend-mode: lighten;" />
-    <p class="subtitle">Scroll-stopping digital experiences</p>
-    <div class="cta-group">
-      <a href="#work" class="btn primary">See the Madness</a>
-      <a href="/contactus.html" class="btn secondary">Work With Me</a>
-    </div>
-  </header>
+<header class="hero">
+  <img src="images/tmihero.jpeg" alt="TMI Studios Arcade" style="width:300px; mix-blend-mode: lighten;" />
+  <p class="subtitle">Your hub for fast web games, chaos quizzes, and viral digital mayhem</p>
+  <div class="cta-group">
+    <a href="#arcade" class="btn primary">Enter the Arcade</a>
+    <a href="#lab" class="btn secondary">Visit the Lab</a>
+  </div>
+</header>
 
-  <section id="about">
-    <h2>What’s TMI?</h2>
-    <p>A one-person creative lab turning caffeine, chaos, and curiosity into games, websites, and ad campaigns that actually slap.</p>
-    <p>No templates. No committees. Just one coder with too much imagination and a mission to make the internet less boring.</p>
-  </section>
+<section id="about">
+  <h2>Welcome to TMI Arcade</h2>
+  <p>Step into a digital playground where web games collide with chaos quizzes and viral experiences. Fast, fun, and endlessly scrollable — this is where players get hooked.</p>
+  <p>Arcade games, quizzes, and experiments crafted for adrenaline, laughs, and chaos. No committees, just pure fun and discovery.</p>
+</section>
 
-  <section id="work">
-    <h2>Recent Experiments</h2>
-    <div class="projects">
-      <div class="project"><img src="images/emojicrush.jpeg" alt="Emoji Crush" /><h3>Emoji Crush</h3><p>A chaotic emoji game that went from idea to dopamine hit in 3 weeks.</p></div>
-      <div class="project"><img src="images/glamfish.jpeg" alt="Glam Fish" /><h3>Glam Fish</h3><p>Built an entire beauty marketplace app solo. Chic meets logic.</p></div>
-      <div class="project"><img src="images/project3.jpeg" alt="90-Day Rebellion" /><h3>The 90-Day Rebellion</h3><p>A digital campaign that made discipline look dangerous.</p></div>
-    </div>
-  </section>
+<section id="arcade">
+  <h2>Arcade — Games & Chaos Quizzes</h2>
+  <div class="projects" id="arcade-container"></div>
+</section>
 
-  <section id="tmi-news">
-    <h2 style="color: var(--accent);">Top Stories from TMI News</h2>
-    <p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">
-    The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs.</p>
-    <div id="news-container" class="news-grid"></div>
-  </section>
+<section id="lab">
+  <h2>Lab — AI Tools & Experiments</h2>
+  <div class="projects" id="lab-container"></div>
+</section>
 
-  <section id="contact" class="contact">
-    <h2>Let’s Make Something Wild</h2>
-    <p>I work with brands, creators, and studios who aren’t afraid of ideas that feel “too much.”</p>
-    <a href="/contactus.html" class="btn primary">Start the Chaos</a>
-  </section>
+<section id="tmi-news">
+  <h2 style="color: var(--accent);">Top Stories from TMI News</h2>
+  <p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">
+  The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs.</p>
+  <div id="news-container" class="news-grid"></div>
+</section>
 
-  <footer class="footer">
-    <div style="margin-bottom:1rem;">
-      <span>Follow us:</span>
-      <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg mx-2"></i></a>
-      <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg mx-2"></i></a>
-      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg mx-2"></i></a>
-    </div>
-    <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-    <p><a href="/contactus.html">Need a website or viral design? Let's build it!</a></p>
-    <p><a href="/privacy.html">Privacy Policy</a></p>
-  </footer>
+<section id="contact" class="contact">
+  <h2>Turn Ads into Playable Chaos</h2>
+  <p>We transform your campaigns into interactive game cards that players can’t help but share. Fun, viral, and immersive — your brand becomes part of the chaos.</p>
+  <a href="/contactus.html" class="btn primary">Start the Madness</a>
+</section>
 
-  <!-- Stars Animation -->
-  <script>
-    const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let stars=[];
-    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;
-      stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}
-    window.addEventListener('resize',resizeCanvas);resizeCanvas();
-    function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);
-      stars.forEach(s=>{ctx.beginPath();ctx.fillStyle=s.color;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1;});
-      requestAnimationFrame(animate);}animate();
-  </script>
+<footer class="footer">
+  <div style="margin-bottom:1rem;">
+    <span>Follow us:</span>
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg mx-2"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg mx-2"></i></a>
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+  </div>
+  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+  <p><a href="/contactus.html">Contact Us</a></p>
+  <p><a href="/privacy.html">Privacy Policy</a> | <a href="/termsofuse.html">Terms of Use</a></p>
+</footer>
 
-  <!-- Dynamic News -->
-  <script>
-    fetch('news.json?' + new Date().getTime())
-      .then(res => res.json())
-      .then(data => {
-        const newsContainer = document.getElementById('news-container');
-        const sortedStories = data.stories.sort((a,b) => new Date(b.date) - new Date(a.date));
-        sortedStories.slice(0,3).forEach(story => {
-          const card = document.createElement('article');
-          card.classList.add('news-card');
-          card.innerHTML = `
-            <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
-            <h3>${story.headline}</h3>
-            <a href="news.html" class="btn secondary">Read More</a>`;
-          newsContainer.appendChild(card);
-        });
-      });
-  </script>
+<!-- Stars Animation -->
+<script>
+const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let stars=[];
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}
+window.addEventListener('resize',resizeCanvas);resizeCanvas();
+function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{ctx.beginPath();ctx.fillStyle=s.color;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1;});
+  requestAnimationFrame(animate);}animate();
+</script>
+
+<script>
+// Arcade + Quizzes
+fetch('arcade.json?' + new Date().getTime())
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('arcade-container');
+    data.items.slice(0,4).forEach(item => {
+      const card = document.createElement('div');
+      card.classList.add('project');
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <a href="${item.url}" class="btn secondary">${item.buttonText}</a>
+      `;
+      container.appendChild(card);
+    });
+  });
+
+// Lab — AI Tools
+fetch('lab.json?' + new Date().getTime())
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('lab-container');
+    data.items.forEach(item => {
+      const card = document.createElement('div');
+      card.classList.add('project');
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <a href="${item.url}" class="btn secondary">${item.buttonText}</a>
+      `;
+      container.appendChild(card);
+    });
+  });
+
+// News
+fetch('news.json?' + new Date().getTime())
+  .then(res => res.json())
+  .then(data => {
+    const newsContainer = document.getElementById('news-container');
+    const sortedStories = data.stories.sort((a,b) => new Date(b.date) - new Date(a.date));
+    sortedStories.slice(0,3).forEach(story => {
+      const card = document.createElement('article');
+      card.classList.add('news-card');
+      card.innerHTML = `
+        <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
+        <h3>${story.headline}</h3>
+        <a href="news.html" class="btn secondary">Read More</a>`;
+      newsContainer.appendChild(card);
+    });
+  });
+</script>
 </body>
 </html>
