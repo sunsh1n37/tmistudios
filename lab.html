@@ -1,262 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TMI Studios | Lab</title>
-<meta name="description" content="TMI Lab is where ideas get playful. We experiment, create, and bring bold digital content to life—think fun campaigns, design experiments, and interactive experiences. Curiosity meets creativity here.">
-<meta property="og:title" content="TMI Studios Lab – Fun Games, Experiments & Creative Drops">
-<meta property="og:description" content="Discover TMI Lab's latest interactive games and experiments. Be the first to try new digital content made for creators and founders.">
-<meta property="og:image" content="https://www.tmistudios.xyz/tmilabs.png">
-<meta property="og:url" content="https://www.tmistudios.xyz/lab.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TMI Studios Lab</title>
+<meta name="description" content="TMI Lab — Experiments in viral chaos, interactive concepts, and creative mischief. Join our Lab channel for exclusive previews.">
+<meta name="robots" content="index, follow">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
      crossorigin="anonymous"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- Fonts & CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Segoe UI', sans-serif; background:#0d0d1a; color:#fff; min-height:100vh; overflow-x:hidden; }
+:root { --cyan:#00ffff; --magenta:#ff00ff; --purple:#a855f7; }
+body { margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); }
+a { transition: color 0.3s ease; } a:hover { color:#d8b4fe; }
+nav a { color:#fff !important; margin-right:.75rem; font-weight:700; } 
+footer a { color:#fff !important; text-decoration:none; } 
+footer a:hover { color:#ccc !important; }
 
-  nav { background:#0d0d1a; color:#fff; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; }
-  nav a { color:#fff; text-decoration:none; margin-left:16px; font-size:14px; }
+.hero-title { font-size:3rem; font-weight:700; background:linear-gradient(135deg,#fff,#c0c0c0,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:2px 2px 5px rgba(255,255,255,.25);}
+.hero-sub { font-size:1.2rem; text-shadow:0 0 8px var(--cyan); font-weight:700; margin-top:1rem; }
 
-  .hero { text-align:center; padding:3rem 1rem 2rem; position:relative; z-index:1; overflow:hidden; }
-  .hero img { width:300px; height:auto; margin-bottom:1rem; position:relative; z-index:2; }
-  .hero p { color:#ddd; max-width:600px; margin:20px auto; font-size:18px; line-height:1.5; position:relative; z-index:2; }
+#chaos-container { position:relative; width:100%; height:200px; margin:3rem 0; overflow:hidden; }
+.emoji { position:absolute; font-size:2rem; user-select:none; pointer-events:none; animation:float 8s linear infinite; }
+@keyframes float {
+  0% { transform: translateY(100%); opacity:0; }
+  10% { opacity:1; }
+  100% { transform: translateY(-10%); opacity:0; }
+}
 
-  .section-title { text-align:center; font-size:24px; margin:30px 0 10px; color:#ddd; }
-  .games { display:flex; overflow-x:auto; padding:20px; gap:20px; scroll-snap-type:x mandatory; scroll-padding:20px; scroll-behavior:smooth; position:relative; }
-  .games::-webkit-scrollbar { height:8px; }
-  .games::-webkit-scrollbar-track { background:#111; border-radius:10px; }
-  .games::-webkit-scrollbar-thumb { background:#444; border-radius:10px; }
-  .games::-webkit-scrollbar-thumb:hover { background:#666; }
+#whatsapp-tile { max-width:360px; margin:2rem auto; background:rgba(255,255,255,0.05); border:2px solid var(--purple); border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 0 10px #8b5cf6; }
+#whatsapp-tile a { margin-top:0.75rem; background:var(--purple); color:#fff; padding:.6rem 1.25rem; border-radius:8px; font-weight:bold; display:inline-block; text-decoration:none; }
 
-  .card { flex:0 0 260px; background:#181818; border-radius:20px; padding:20px; box-shadow:0 0 12px rgba(255,255,255,0.1); scroll-snap-align:start; transition:transform 0.3s ease; border:1px solid #333; text-align:center; position:relative; overflow:hidden; }
-  .card:hover { transform:translateY(-8px); }
+.section-title { font-size:1.75rem; font-weight:700; text-align:center; margin-bottom:1rem; color:var(--cyan); }
 
-  .emoji { font-size:48px; margin-bottom:10px; }
-  .card-title { font-size:20px; margin-bottom:15px; font-weight:700; color:#fff; }
+.game-card, .quiz-card { display:inline-block; width:200px; margin-right:1rem; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid #000; text-align:center; flex: 0 0 auto; }
+.game-card img, .quiz-card img { width:100%; height:140px; object-fit:cover; display:block; }
+.game-card button, .quiz-card button { background:var(--purple); color:white; border:none; padding:.7rem 1rem; margin:.5rem; border-radius:6px; cursor:not-allowed; font-weight:bold; min-width:140px; }
+.games, .quizzes { display:flex; overflow-x:auto; white-space:nowrap; padding:1rem; gap:1rem; scroll-behavior:smooth; }
 
-  .card .btn { background:none; color:#888; border:1px solid #888; padding:10px 18px; border-radius:12px; cursor:pointer; font-size:14px; text-transform:uppercase; text-decoration:none; display:inline-block; transition:all 0.3s ease; }
-  .card .btn:hover { color:#fff; border-color:#fff; }
+.games::-webkit-scrollbar, .quizzes::-webkit-scrollbar { height:6px; }
+.games::-webkit-scrollbar-track, .quizzes::-webkit-scrollbar-track { background:#111; }
+.games::-webkit-scrollbar-thumb, .quizzes::-webkit-scrollbar-thumb { background:var(--purple); border-radius:3px; }
 
-  .cta { text-align:center; margin:60px 20px 40px; }
-  .cta h2 { font-size:28px; color:#eee; margin-bottom:10px; }
-
-  #bubbles { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; overflow:hidden; }
-  .bubble { position:absolute; bottom:0; width:16px; height:16px; border-radius:50%; opacity:0.6; animation:rise 8s linear infinite; }
-  @keyframes rise { 0%{transform:translateY(0) scale(1);opacity:0.6;} 100%{transform:translateY(-500px) scale(0.8);opacity:0;} }
-
-  footer { background:#111; color:#888; text-align:center; padding:30px 20px; font-size:14px; }
-  footer a { color:#888; text-decoration:none; margin:0 8px; transition:all 0.3s ease; }
-  footer a:hover { color:#a855f7; transform:scale(1.2); }
-
-  #newsletterModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
-  #newsletterModal > div { background:#1a1a1a; padding:30px; border-radius:20px; max-width:400px; width:90%; text-align:center; position:relative; border:2px dashed #a855f7; }
-  #closeModal { position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer; color:#fff; }
-  #newsletterModal input[type=text], #newsletterModal input[type=email] { width:80%; padding:10px; border-radius:10px; border:none; margin-bottom:15px; }
-  #newsletterModal button { padding:10px 20px; border:none; border-radius:12px; background:#a855f7; color:#fff; cursor:pointer; font-weight:700; }
-  #successMessage { display:none; margin-top:10px; color:#a0ffa0; font-weight:bold; }
-
-  /* ACTIVE CARD BORDER-ONLY GLOW */
-  .card.linked::after {
-    content:'';
-    position:absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    border-radius:20px;
-    border:2px solid #a855f7;
-    pointer-events:none;
-    animation: borderTrace 2s linear infinite, flicker 0.1s infinite alternate;
-    box-sizing:border-box;
-  }
-
-  @keyframes borderTrace {
-    0% { border-color: #a855f7; }
-    25% { border-color: #c77dff; }
-    50% { border-color: #8c52ff; }
-    75% { border-color: #d980fa; }
-    100% { border-color: #a855f7; }
-  }
-
-  @keyframes flicker {
-    0% { opacity:0.6; }
-    50% { opacity:1; }
-    100% { opacity:0.6; }
-  }
+@media (max-width:480px){
+  .game-card button, .quiz-card button { padding:.5rem .7rem; font-size:.9rem; min-width:120px; }
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <div style="font-weight:bold; font-size:20px;"><a href="index.html">TMI Studios</a></div>
-  <div style="display:flex;">
-    <a href="arcade.html">Arcade</a>
-    <a href="packages.html">Packages</a>
-    <a href="aboutus.html">About</a>
-    <a href="contactus.html">Contact</a>
-  </div>
+<nav class="flex flex-nowrap justify-between items-center px-6 py-4 bg-transparent">
+  <a href="/index.html" class="nav-link font-bold text-white whitespace-nowrap">TMI Studios</a>
+  <a href="/arcade.html" class="nav-link text-white whitespace-nowrap">Arcade</a>
+  <a href="/packages.html" class="nav-link text-white whitespace-nowrap">Packages</a>
+  <a href="/aboutus.html" class="nav-link text-white whitespace-nowrap">About</a>
+  <a href="/contactus.html" class="nav-link text-white whitespace-nowrap">Contact</a>
 </nav>
 
-<section class="hero">
-  <div id="bubbles"></div>
-  <img src="images/tmilab.jpeg" alt="TMI Labs Hero Title" />
-  <p>TMI Lab is where ideas get playful. We experiment, create, and bring bold digital content to life—think fun campaigns, design experiments, and interactive experiences. Curiosity meets creativity here.</p>
+<section style="text-align:center; padding:4rem 1rem 1rem;">
+  <h1 class="hero-title">TMI Lab</h1>
+  <p class="hero-sub">Experiments in chaos, viral concepts & interactive mischief.</p>
 </section>
 
-<h2 class="section-title">Latest Drops</h2>
-<section class="games">
-  <div class="card linked">
-    <div class="emoji">💌</div>
-    <div class="card-title">Should I Text Him</div>
-    <a href="shoulditextmyex.html" class="btn">Play Now</a>
-  </div>
+<div id="chaos-container"></div>
 
-  <div class="card linked">
-    <div class="emoji">🚩</div>
-    <div class="card-title">Red Flag Bingo</div>
-    <a href="redflagbingo.html" class="btn">Play Now</a>
+<!-- Coming Soon Games -->
+<h2 class="section-title">Future Experiments — Games</h2>
+<div class="games" style="max-width:1000px; margin:1.5rem auto;">
+  <div class="game-card">
+    <img src="images/emojicrush.jpeg" alt="Emoji Crush">
+    <div style="padding:.5rem; font-weight:700;">Emoji Crush</div>
+    <button>Coming Soon</button>
   </div>
-
-  <!-- New Sick or Nah tile -->
-  <div class="card linked">
-    <div class="emoji">🤒</div>
-    <div class="card-title">Work or Nah</div>
-    <a href="workornah.html" class="btn">Play Now</a>
+  <div class="game-card">
+    <img src="images/emojiblast.png" alt="Emoji Blast">
+    <div style="padding:.5rem; font-weight:700;">Emoji Blast</div>
+    <button>Coming Soon</button>
   </div>
-
-  <div class="card" data-title="TMI Tarot" data-text="Draw your card to discover the CEO energy you're manifesting. Fun, mystical, and full of inspiration.">
-    <div class="emoji">🔮</div>
-    <div class="card-title">TMI Tarot</div>
-    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
+  <div class="game-card">
+    <img src="images/game3.jpeg" alt="Meme Blaster">
+    <div style="padding:.5rem; font-weight:700;">Meme Blaster</div>
+    <button>Coming Soon</button>
   </div>
-
-  <div class="card" data-title="TMI Dare" data-text="Dare to play? TMI Dare challenges you to bold, funny, and unpredictable tasks—perfect for creators and founders who love a twist.">
-    <div class="emoji">🎲</div>
-    <div class="card-title">TMI Dare</div>
-    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
-  </div>
-</section>
-
-<div class="cta">
-  <h2>Get the weekly spark</h2>
-  <p style="color:#aaa; max-width:500px; margin:10px auto;">
-    Tiny rituals, spicy ideas, and creative prompts straight to your inbox. Fuel for founders, creators, and marketing misfits.
-  </p>
-  <button class="btn open-modal">Subscribe</button>
 </div>
 
-<footer class="footer">
-  <div style="margin-bottom:1rem;">
-    <span>Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
-    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+<!-- Coming Soon Quizzes -->
+<h2 class="section-title">Future Experiments — Quizzes</h2>
+<div class="quizzes" style="max-width:1000px; margin:1.5rem auto;">
+  <div class="quiz-card">
+    <img src="images/quiz1.jpeg" alt="Should I Text Him">
+    <div style="padding:.5rem; font-weight:700;">Should I Text Him</div>
+    <button>Coming Soon</button>
+  </div>
+  <div class="quiz-card">
+    <img src="images/quiz2.jpeg" alt="Red Flag Bingo">
+    <div style="padding:.5rem; font-weight:700;">Red Flag Bingo</div>
+    <button>Coming Soon</button>
+  </div>
+  <div class="quiz-card">
+    <img src="images/quiz3.jpeg" alt="Work or Nah">
+    <div style="padding:.5rem; font-weight:700;">Work or Nah</div>
+    <button>Coming Soon</button>
+  </div>
+</div>
+
+<!-- WhatsApp Lab CTA -->
+<div id="whatsapp-tile">
+  <div style="font-weight:bold;">Join Our Lab Channel</div>
+  <div style="margin-top:.5rem;">Get early access to experiments, previews & collabs</div>
+  <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">Join Now 💬</a>
+</div>
+
+<footer class="bg-black text-center text-sm text-gray-600 py-8">
+  <div class="mb-3">
+    <span class="mr-2">Follow us:</span>
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-tiktok"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com/tmistudios" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-facebook"></i></a>
   </div>
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html">Need a website or viral design? Let's build it!</a></p>
+  <p><a href="/contactus.html">Put your ad in our games and reach thousands of daily players</a></p>
   <p><a href="/arcade.html">Arcade</a></p>
+  <p><a href="/privacy.html">Privacy Policy</a></p>
+  <p><a href="/termsofuse.html">Terms of Use</a></p>
 </footer>
 
-<!-- Newsletter / Game Modal -->
-<div id="newsletterModal">
-  <div>
-    <span id="closeModal">&times;</span>
-    <h2 id="modalTitle" style="color:#fff; margin-bottom:15px;">Subscribe for latest news and drops</h2>
-    <p id="modalText" style="color:#ccc; margin-bottom:20px;">Be the first to know when new games or experiments drop!</p>
-    <form id="newsletterForm" action="https://formspree.io/f/xyznzwdg" method="POST">
-      <input type="hidden" name="game" id="gameField" value="">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <br/>
-      <input type="email" name="email" placeholder="Your Email" required />
-      <br/>
-      <button type="submit">Subscribe</button>
-      <div id="successMessage"></div>
-    </form>
-  </div>
-</div>
-
 <script>
-  // Bubble animation
-  const bubbleContainer = document.getElementById("bubbles");
-  const colors = ["#a64ca6","#8c52ff","#d980fa","#c77dff","#9d4edd"];
-  function createBubble(){
-    const bubble = document.createElement("div");
-    bubble.classList.add("bubble");
-    const size = Math.random()*20+10;
-    bubble.style.width = `${size}px`;
-    bubble.style.height = `${size}px`;
-    bubble.style.left = `${Math.random()*100}%`;
-    bubble.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-    bubble.style.animationDuration = `${Math.random()*4+6}s`;
-    bubbleContainer.appendChild(bubble);
-    setTimeout(()=>bubble.remove(),10000);
-  }
-  setInterval(createBubble,200);
+// Floating emojis
+const container = document.getElementById('chaos-container');
+const emojis = ['🔥','💀','🤯','⚡','💌','🎲','🫠','💎','🎮','🤡'];
 
-  // Modal logic
-  const modal = document.getElementById('newsletterModal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalText = document.getElementById('modalText');
-  const gameField = document.getElementById('gameField');
-  const successMessage = document.getElementById('successMessage');
+function spawnEmoji() {
+  const emojiEl = document.createElement('div');
+  emojiEl.className = 'emoji';
+  emojiEl.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+  emojiEl.style.left = Math.random() * 90 + '%';
+  emojiEl.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+  emojiEl.style.animationDuration = (6 + Math.random() * 4) + 's';
+  container.appendChild(emojiEl);
+  setTimeout(() => emojiEl.remove(), 10000);
+}
 
-  document.querySelectorAll('.card .open-modal').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      const card = e.target.closest('.card');
-      const title = card.dataset.title;
-      const text = card.dataset.text;
-      modalTitle.textContent = title;
-      modalText.textContent = text;
-      gameField.value = title;
-      successMessage.textContent = `✅ Submitted. You'll be the first to know when ${title} drops!`;
-      successMessage.style.display = 'none';
-      modal.style.display = 'flex';
-    });
-  });
-
-  document.querySelector('.cta .open-modal').addEventListener('click', () => {
-    modalTitle.textContent = 'Subscribe for latest news and drops';
-    modalText.textContent = 'Enter your name and email to be the first to know when new games or experiments drop.';
-    gameField.value = '';
-    successMessage.textContent = `✅ Subscription submitted! You're officially part of the TMI cult. We love that for you, bestie 💋`;
-    successMessage.style.display = 'none';
-    modal.style.display = 'flex';
-  });
-
-  document.getElementById('closeModal').addEventListener('click', () => { modal.style.display = 'none'; });
-  window.addEventListener('click', (e) => { if(e.target === modal) modal.style.display='none'; });
-
-  // Form submission
-  document.getElementById('newsletterForm').addEventListener('submit', async function(e){
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if(response.ok){
-        successMessage.style.display = 'block';
-        form.reset();
-      } else {
-        const result = await response.json();
-        alert(result.error || "Oops, there was a problem submitting your form.");
-      }
-    } catch(err){
-      alert("Oops, there was a problem submitting your form.");
-    }
-  });
+setInterval(spawnEmoji, 400);
 </script>
 
 </body>
