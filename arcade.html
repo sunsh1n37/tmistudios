@@ -4,14 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TMI Studios Arcade</title>
-<meta name="description" content="Play chaotic, unhinged, and oddly accurate quizzes & games by TMI Studios. Subscribe for exclusive drops.">
+<meta name="description" content="Play chaotic, unhinged, and oddly accurate quizzes & games by TMI Studios. Join our WhatsApp channel for exclusive drops.">
 <meta name="robots" content="index, follow">
 
-<!-- AdSense loader (only needed on pages with ads) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
      crossorigin="anonymous"></script>
 
-<!-- JSON-LD SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,64 +33,114 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
-/* YOUR EXISTING STYLES — unchanged */
 :root { --cyan:#00ffff; --magenta:#ff00ff; --purple:#a855f7; }
-body { margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); }
-a { transition: color 0.3s ease; } a:hover { color:#d8b4fe; }
+
+body { 
+    margin:0; 
+    font-family:'Segoe UI',sans-serif; 
+    color:#fff; 
+    background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); 
+}
+
+a { transition: color 0.3s ease; } 
+a:hover { color:#d8b4fe; }
+
 nav a { color:#fff !important; margin-right:.75rem; font-weight:700; } 
 footer a { color:#fff !important; text-decoration:none; } 
 footer a:hover { color:#ccc !important; }
-.hero-title { font-size:3rem; font-weight:700; background:linear-gradient(135deg,#fff,#c0c0c0,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:2px 2px 5px rgba(255,255,255,.25);}
-.home-slogan { font-size:1rem; text-shadow:0 0 8px var(--cyan); font-weight:700; margin-top:1rem; }
 
-#game-container { position: relative; height: 150px; margin:2.5rem auto; max-width:900px; background:#111; border:2px solid #000; border-radius:12px; overflow:visible; }
-#shooter { position:absolute; left:20px; top:50%; width:40px; height:40px; transform:translateY(-50%); cursor:pointer; z-index:1000; user-select:none; display:block; }
-.bullet { position:absolute; width:10px; height:4px; background:yellow; border-radius:2px; z-index:1001; filter: drop-shadow(0 0 6px yellow); }
-.target { position:absolute; width:60px; height:60px; top:50%; left:80%; transform:translate(-50%,-50%); z-index:900; }
+.hero-title { 
+    font-size:3rem; font-weight:700; 
+    background:linear-gradient(135deg,#fff,#c0c0c0,#fff); 
+    -webkit-background-clip:text; background-clip:text; 
+    color:transparent; 
+    text-shadow:2px 2px 5px rgba(255,255,255,.25);
+}
+
+.home-slogan { 
+    font-size:1rem; text-shadow:0 0 8px var(--cyan); font-weight:700; 
+    margin-top:.5rem; 
+}
+
+#game-container { 
+    position: relative; 
+    height: 150px; 
+    margin:1.5rem auto; 
+    max-width:900px; 
+    background:#111; 
+    border:2px solid #000; 
+    border-radius:12px; 
+    overflow:visible; 
+}
+
+#shooter { 
+    position:absolute; left:20px; top:50%; width:40px; height:40px; 
+    transform:translateY(-50%); cursor:pointer; z-index:1000; 
+    user-select:none; display:block; 
+}
+
+.bullet { 
+    position:absolute; width:10px; height:4px; background:yellow; border-radius:2px; 
+    z-index:1001; filter: drop-shadow(0 0 6px yellow); 
+}
+
+.target { 
+    position:absolute; width:60px; height:60px; top:50%; left:80%; 
+    transform:translate(-50%,-50%); z-index:900; 
+}
+
 .explode { animation: explode .45s forwards; }
 @keyframes explode { 0% { transform: scale(1); opacity:1; } 100% { transform: scale(2.8); opacity:0; } }
 
-.spark { position:absolute; width:4px; height:4px; border-radius:50%; pointer-events:none; filter:blur(1.5px); animation:sparkMove 0.6s ease-out forwards; }
+.spark { 
+    position:absolute; width:4px; height:4px; border-radius:50%; pointer-events:none; 
+    filter:blur(1.5px); animation:sparkMove 0.6s ease-out forwards; 
+}
 @keyframes sparkMove { 0% { transform: translate(0,0) scale(1); opacity:1; } 100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity:0; } }
 
-.game-card { display:inline-block; width:250px; margin-right:1rem; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid #000; vertical-align:top; text-align:center; }
-.game-card button { background:var(--purple); color:white; border:none; padding:.5rem 1rem; margin:.5rem; border-radius:6px; cursor:pointer; font-weight:bold; }
-/* Ensure all game card images are the same size */
-/* Make all game card images uniform and shorter */
-.game-card img {
-    width: 100%;           /* fill card width */
-    height: 140px;         /* match height of cards 2,3, etc. */
-    object-fit: cover;     /* crop instead of stretching */
-    display: block;        /* remove inline spacing issues */
+.game-card { 
+    display:inline-block; width:250px; margin-right:1rem; 
+    background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid #000; vertical-align:top; text-align:center; 
 }
 
-.modal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,.85); justify-content:center; align-items:center; z-index:2000; }
-.modal-content { background:#1a1a1a; border:2px dashed var(--purple); border-radius:10px; padding:2rem; text-align:center; max-width:400px; }
-.modal-content input { display:block; width:100%; margin:1rem auto; padding:.6rem; border-radius:6px; border:none; }
-.modal-content button { background:var(--purple); color:#fff; padding:.5rem 1rem; border:none; border-radius:6px; font-weight:700; cursor:pointer; }
+.game-card button { 
+    background:var(--purple); color:white; border:none; padding:.5rem 1rem; margin:.5rem; border-radius:6px; cursor:pointer; font-weight:bold; 
+}
 
-#email-tile { max-width:360px; margin:2rem auto; background:rgba(255,255,255,0.05); border:2px solid var(--purple); border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 0 10px #8b5cf6; }
-#email-tile button { margin-top:0.75rem; background:var(--purple); color:#fff; padding:.6rem 1.25rem; border-radius:8px; font-weight:bold; cursor:pointer; }
+.game-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
 
-.nav-link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: color 0.3s ease;
-    margin-right: 1rem;
-  }
-  .nav-link:last-child { margin-right: 0; }
-  .nav-link:hover { color: #a855f7; }
-  @media (min-width: 768px) {
+.nav-link { color: #fff; text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; margin-right: 1rem; }
+.nav-link:last-child { margin-right: 0; }
+.nav-link:hover { color: #a855f7; }
+
+@media (min-width: 768px) {
     nav { justify-content: center; gap: 2rem; }
     .nav-link { font-size: 1rem; margin-right: 0; }
-  }
+}
+
+.section-title { font-size:1.75rem; font-weight:700; text-align:center; margin-bottom:.75rem; color:var(--cyan); }
+
+.games { display:flex; overflow-x:auto; white-space:nowrap; padding-bottom:.5rem; margin-bottom:1rem; }
+
+.games .card { display:inline-block; width:200px; margin-right:1rem; background:#1a1a1a; border-radius:12px; padding:.75rem; text-align:center; border:2px solid #000; }
+
+.games .card .emoji { font-size:2.5rem; margin-bottom:.5rem; }
+.games .card .card-title { font-weight:700; margin-bottom:.5rem; }
+.games .card .btn { background:var(--purple); color:#fff; padding:.5rem 1rem; border-radius:6px; font-weight:bold; text-decoration:none; display:inline-block; }
+
+#whatsapp-tile { 
+    max-width:360px; margin:1.5rem auto; background:rgba(255,255,255,0.05); 
+    border:2px solid var(--purple); border-radius:12px; padding:1rem; text-align:center; 
+    box-shadow:0 0 10px #8b5cf6; 
+}
+
+#whatsapp-tile a { 
+    margin-top:0.5rem; background:var(--purple); color:#fff; padding:.6rem 1.25rem; border-radius:8px; font-weight:bold; display:inline-block; text-decoration:none; 
+}
 </style>
 </head>
-
 <body>
 
-<!-- NAV -->
 <nav class="flex flex-nowrap justify-between items-center px-6 py-4 bg-transparent">
   <a href="/index.html" class="nav-link font-bold text-white whitespace-nowrap">TMI Studios</a>
   <a href="/lab.html" class="nav-link text-white whitespace-nowrap">Lab</a>
@@ -101,215 +149,116 @@ footer a:hover { color:#ccc !important; }
   <a href="/contactus.html" class="nav-link text-white whitespace-nowrap">Contact</a>
 </nav>
 
-<!-- HERO -->
-<section style="text-align:center; padding:3.5rem 1rem 1rem;">
+<section style="text-align:center; padding:2rem 1rem 1rem;">
   <img src="images/tmiarcade.jpeg" alt="TMI Arcade" style="max-width:320px; margin:0 auto;">
   <p class="home-slogan">Engage Gen Z Like Never Before — Custom Quizzes, Games & Interactive Experiences That Convert.</p>
-  <div style="margin-top:1rem;">
+  <div style="margin-top:.75rem;">
     <a href="/packages.html" style="background:var(--purple); color:#fff; padding:.7rem 1rem; border-radius:8px; font-weight:700;">Let’s build your viral game!</a>
   </div>
 </section>
 
-<!-- INSERT ADS HERE (Optional) -->
-<!-- Example Ad Unit: 
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9744535609211271"
-     data-ad-slot="XXXXXXX"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
--->
-
-<!-- GAME -->
 <div id="game-container">
   <img id="shooter" src="images/shooter.jpeg" alt="Shooter">
 </div>
 
-<!-- GAME CARDS -->
-<div id="game-tiles" style="max-width:900px; margin:1.5rem auto; overflow-x:auto; white-space:nowrap; padding-bottom:.5rem;">
+<!-- Latest Drops -->
+<h2 class="section-title">Latest Drops</h2>
 
+<!-- Game Cards -->
+<div id="game-tiles" style="max-width:900px; margin:1rem auto; overflow-x:auto; white-space:nowrap; padding-bottom:.5rem;">
   <a href="flappyfury.html" class="game-card" style="display:inline-block; text-decoration:none; color:inherit;">
-    <img src="https://i.ibb.co/4RPHbNw9/flappyfury.jpg" alt="Flappy Fury" style="width:100%;">
+    <img src="https://i.ibb.co/4RPHbNw9/flappyfury.jpg" alt="Flappy Fury">
     <div style="padding:.75rem; font-weight:700;">Flappy Fury</div>
     <button class="play-now">Play Now</button>
   </a>
-
   <div class="game-card">
-    <img src="images/emojicrush.jpeg" alt="Emoji Crush" style="width:100%;">
+    <img src="images/emojicrush.jpeg" alt="Emoji Crush">
     <div style="padding:.75rem; font-weight:700;">Emoji Crush</div>
     <button class="coming-soon">Coming Soon</button>
   </div>
-
   <div class="game-card">
-    <img src="images/emojiblast.png" alt="Emoji Blast" style="width:100%;">
+    <img src="images/emojiblast.png" alt="Emoji Blast">
     <div style="padding:.75rem; font-weight:700;">Emoji Blast</div>
     <button class="coming-soon">Coming Soon</button>
   </div>
-
   <div class="game-card">
-    <img src="images/game3.jpeg" alt="Meme Blaster" style="width:100%;">
+    <img src="images/game3.jpeg" alt="Meme Blaster">
     <div style="padding:.75rem; font-weight:700;">Meme Blaster</div>
     <button class="coming-soon">Coming Soon</button>
   </div>
-
 </div>
 
-<!-- EMAIL SUBSCRIPTION TILE -->
-<div id="email-tile">
-  <div style="font-weight:bold;">Get Exclusive Game Drops</div>
-  <div style="margin-top:.5rem;">Drop your email for new games, templates & collabs</div>
-  <button id="openEmailBtn">Subscribe</button>
-</div>
-
-<!-- MODALS -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <h3 style="font-weight:bold; font-size:1.2rem;">Subscribe to TMI Newsletter</h3>
-    <input id="nameInput" type="text" placeholder="Your Name">
-    <input id="emailInput" type="email" placeholder="you@domain.com">
-    <button id="emailSubmit">Subscribe</button>
-    <div id="emailFeedback" style="margin-top:.5rem; min-height:1.25rem;"></div>
+<!-- Quiz Chaos Section -->
+<section id="quiz-chaos" style="max-width:900px; margin:1.5rem auto;">
+  <h2 class="section-title">Quiz Chaos 🔥</h2>
+ <section class="games">
+  <div class="card linked">
+    <div class="emoji">💌</div>
+    <div class="card-title">Should I Text Him</div>
+    <a href="shoulditextmyex.html" class="btn">Play Now</a>
   </div>
-</div>
-
-<div id="comingModal" class="modal">
-  <div class="modal-content">
-    <h3 style="font-weight:bold; font-size:1.2rem;">Remind Me When This Game Drops</h3>
-    <input id="comingName" type="text" placeholder="Your Name">
-    <input id="comingEmail" type="email" placeholder="you@domain.com">
-    <button id="comingSubmit">Submit Reminder</button>
-    <div id="comingFeedback" style="margin-top:.5rem; min-height:1.25rem;"></div>
+  <div class="card linked">
+    <div class="emoji">🚩</div>
+    <div class="card-title">Red Flag Bingo</div>
+    <a href="redflagbingo.html" class="btn">Play Now</a>
   </div>
+  <div class="card linked">
+    <div class="emoji">🤒</div>
+    <div class="card-title">Work or Nah</div>
+    <a href="workornah.html" class="btn">Play Now</a>
+  </div>
+  <div class="card" data-title="TMI Tarot" data-text="Draw your card to discover the CEO energy you're manifesting. Fun, mystical, and full of inspiration.">
+    <div class="emoji">🔮</div>
+    <div class="card-title">TMI Tarot</div>
+    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
+  </div>
+  <div class="card" data-title="TMI Dare" data-text="Dare to play? TMI Dare challenges you to bold, funny, and unpredictable tasks—perfect for creators and founders who love a twist.">
+    <div class="emoji">🎲</div>
+    <div class="card-title">TMI Dare</div>
+    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
+  </div>
+</section>
+
+<!-- WhatsApp Channel Tile -->
+<div id="whatsapp-tile">
+  <div style="font-weight:bold;">Join Our WhatsApp Channel</div>
+  <div style="margin-top:.5rem;">Get exclusive game drops, templates & collabs</div>
+  <a href="https://wa.me/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">Join Now 💬</a>
 </div>
 
-<!-- FOOTER -->
-<footer class="bg-black text-center text-sm text-gray-600 py-8">
-  <div class="mb-3">
+<footer class="bg-black text-center text-sm text-gray-600 py-6">
+  <div class="mb-2">
     <span class="mr-2">Follow us:</span>
     <a href="https://tinyurl.com/mwfd4d73" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-tiktok"></i></a>
     <a href="https://wa.me/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-whatsapp"></i></a>
   </div>
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html">Need a website or viral design? Let's build it!</a></p>
+  <p><a href="/contactus.html">Put your ad in our games and reach thousands of daily players</a></p>
   <p><a href="/arcade.html">Arcade</a></p>
   <p><a href="/privacy.html">Privacy Policy</a></p>
 </footer>
 
 <script>
-// EXISTING GAME + MODAL LOGIC (unchanged)
-const modal = document.getElementById('modal');
-const comingModal = document.getElementById('comingModal');
-const openBtn = document.getElementById('openEmailBtn');
-function showModal(m = modal){ m.style.display='flex'; }
-function hideModal(m = modal){ m.style.display='none'; }
-openBtn.addEventListener('click', ()=>showModal());
-modal.addEventListener('click', e=>{ if(e.target===modal) hideModal(); });
-comingModal.addEventListener('click', e=>{ if(e.target===comingModal) hideModal(comingModal); });
-document.querySelectorAll('.coming-soon').forEach(btn=>{ btn.addEventListener('click', ()=>showModal(comingModal)); });
-
-const targetImages=['target1.jpeg','target2.jpeg','target3.jpeg','target4.jpeg','target5.jpeg', 'target6.jpeg','target7.jpeg','target8.jpeg','target9.jpeg','target10.jpeg','target11.jpeg','target12.jpeg','target13.jpeg','target14.jpeg','target15.jpeg'];
+// Shooter mini-game logic
 const container=document.getElementById('game-container');
 const shooter=document.getElementById('shooter');
+const targetImages=['target1.jpeg','target2.jpeg','target3.jpeg','target4.jpeg','target5.jpeg','target6.jpeg','target7.jpeg','target8.jpeg','target9.jpeg','target10.jpeg','target11.jpeg','target12.jpeg','target13.jpeg','target14.jpeg','target15.jpeg'];
 let currentTargetIndex=0, currentTarget=null;
+
 function createTarget(src){ if(currentTarget) currentTarget.remove(); const img=document.createElement('img'); img.src='images/'+src; img.className='target'; container.appendChild(img); currentTarget=img; }
 function spawnTarget(){ if(currentTargetIndex>=targetImages.length) currentTargetIndex=0; createTarget(targetImages[currentTargetIndex]); }
 
-function createSpark(x,y,color='cyan'){ const spark=document.createElement('div'); spark.className='spark'; spark.style.left=x+'px'; spark.style.top=y+'px'; spark.style.background=color; const dx=(Math.random()-0.5)*40+'px'; const dy=(Math.random()-0.5)*40+'px'; spark.style.setProperty('--dx',dx); spark.style.setProperty('--dy',dy); container.appendChild(spark); setTimeout(()=>spark.remove(),600); }
+function createSpark(x,y,color='cyan'){ const spark=document.createElement('div'); spark.className='spark'; spark.style.left=x+'px'; spark.style.top=y+'px'; const dx=(Math.random()-0.5)*40+'px'; const dy=(Math.random()-0.5)*40+'px'; spark.style.setProperty('--dx',dx); spark.style.setProperty('--dy',dy); container.appendChild(spark); setTimeout(()=>spark.remove(),600); }
 
-function fireBullet(){ const bullet=document.createElement('div'); bullet.className='bullet'; const sRect=shooter.getBoundingClientRect(); const cRect=container.getBoundingClientRect(); bullet.style.left=(sRect.right-cRect.left)+'px'; bullet.style.top=(sRect.top+sRect.height/2-2-cRect.top)+'px'; container.appendChild(bullet); const trailInterval = setInterval(()=>{ createSpark(parseFloat(bullet.style.left), parseFloat(bullet.style.top),'cyan'); },50); function move(){ letlet left = parseFloat(bullet.style.left);
-    if(left > container.clientWidth + 20){ 
-        bullet.remove(); 
-        clearInterval(trailInterval); 
-        return; 
-    }
-    bullet.style.left = (left + 14) + 'px';
-    if(currentTarget){
-        const bRect = bullet.getBoundingClientRect();
-        const tRect = currentTarget.getBoundingClientRect();
-        if(bRect.right >= tRect.left && bRect.left <= tRect.right && bRect.top <= tRect.bottom && bRect.bottom >= tRect.top){
-            bullet.remove(); 
-            clearInterval(trailInterval); 
-            explodeTarget(); 
-            return;
-        }
-    }
-    requestAnimationFrame(move);
-}
-requestAnimationFrame(move);
-}
+function fireBullet(){ const bullet=document.createElement('div'); bullet.className='bullet'; const sRect=shooter.getBoundingClientRect(); const cRect=container.getBoundingClientRect(); bullet.style.left=(sRect.left-cRect.left+shooter.offsetWidth)+'px'; bullet.style.top=(sRect.top-cRect.top+shooter.offsetHeight/2-2)+'px'; container.appendChild(bullet);  
+  const speed=8; let pos=parseFloat(bullet.style.left); const interval=setInterval(()=>{ pos+=speed; bullet.style.left=pos+'px';  
+    if(currentTarget){ const tRect=currentTarget.getBoundingClientRect(); const bRect=bullet.getBoundingClientRect();  
+      if(bRect.right>tRect.left && bRect.left<tRect.right && bRect.bottom>tRect.top && bRect.top<tRect.bottom){  
+        currentTarget.classList.add('explode'); setTimeout(()=>currentTarget.remove(),450); spawnTarget(); createSpark(tRect.left-cRect.left+tRect.width/2, tRect.top-cRect.top+tRect.height/2,'magenta'); clearInterval(interval); bullet.remove(); } }  
+    if(pos>cRect.width){ clearInterval(interval); bullet.remove(); } },16); }
 
-function explodeTarget(){
-    if(!currentTarget) return;
-    const tRect = currentTarget.getBoundingClientRect();
-    for(let i = 0; i < 15; i++){
-        createSpark(
-            tRect.left - container.getBoundingClientRect().left + tRect.width/2, 
-            tRect.top - container.getBoundingClientRect().top + tRect.height/2, 
-            '--magenta'
-        );
-    }
-    currentTarget.classList.add('explode');
-    setTimeout(()=>{
-        currentTarget.remove();
-        currentTarget = null;
-        currentTargetIndex++;
-        spawnTarget();
-    }, 450);
-}
-
-container.addEventListener('click', fireBullet);
+shooter.addEventListener('click', fireBullet);  
 spawnTarget();
-
-// Newsletter modal submit
-document.getElementById('emailSubmit').addEventListener('click', async ()=>{
-    const name = document.getElementById('nameInput').value;
-    const email = document.getElementById('emailInput').value;
-    if(!name || !email){
-        document.getElementById('emailFeedback').innerText = 'Fill in both fields';
-        return;
-    }
-    const data = { name, email, form_type: 'newsletter' };
-    try{
-        const res = await fetch('https://formspree.io/f/xyznzwdg', {
-            method: 'POST',
-            headers: { 'Content-Type':'application/json' },
-            body: JSON.stringify(data)
-        });
-        if(res.ok){
-            document.getElementById('emailFeedback').innerText = 'Subscribed! 💜';
-            setTimeout(()=>hideModal(),1500);
-        } else document.getElementById('emailFeedback').innerText = 'Error. Try again.';
-    } catch(e){
-        document.getElementById('emailFeedback').innerText = 'Error: ' + e.message;
-    }
-});
-
-// Coming soon modal submit
-document.getElementById('comingSubmit').addEventListener('click', async ()=>{
-    const name = document.getElementById('comingName').value;
-    const email = document.getElementById('comingEmail').value;
-    if(!name || !email){
-        document.getElementById('comingFeedback').innerText = 'Fill in both fields';
-        return;
-    }
-    const data = { name, email, form_type: 'coming_soon' };
-    try{
-        const res = await fetch('https://formspree.io/f/xyznzwdg', {
-            method: 'POST',
-            headers: { 'Content-Type':'application/json' },
-            body: JSON.stringify(data)
-        });
-        if(res.ok){
-            document.getElementById('comingFeedback').innerText = 'We will notify you! 💜';
-            setTimeout(()=>hideModal(comingModal),1500);
-        } else document.getElementById('comingFeedback').innerText = 'Error. Try again.';
-    } catch(e){
-        document.getElementById('comingFeedback').innerText = 'Error: ' + e.message;
-    }
-});
 </script>
 </body>
 </html>
