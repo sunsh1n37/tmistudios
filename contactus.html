@@ -4,31 +4,49 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contact Us | TMI Studios</title>
-<meta name="description" content="Reach out to TMI Studios for your next web, game, or digital campaign project. Book a package or subscribe to our newsletter." />
+<meta name="description" content="Reach out to TMI Studios for your next web, game, or viral campaign. Book a package or join our WhatsApp channel for chaos quizzes and memes." />
 <meta property="og:title" content="Contact Us | TMI Studios" />
-<meta property="og:description" content="Book your package or subscribe to TMI Studios newsletter for web, games, and interactive campaigns that stick." />
+<meta property="og:description" content="Book your package or join TMI Studios WhatsApp channel for web, games, and viral campaigns that stick." />
 <meta property="og:image" content="https://www.tmistudios.xyz/tmihero.jpeg" />
 <meta property="og:url" content="https://www.tmistudios.xyz/contactus.html" />
 <meta name="twitter:card" content="summary_large_image" />
 
-  
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "TMI Studios",
-  "url": "https://www.tmistudios.xyz",
-  "logo": "https://www.tmistudios.xyz/tmihero.jpeg",
-  "sameAs": [
-    "https://www.tiktok.com/@tmistudios",
-    "https://wa.me/0029Vb5jDfqB4hdUr7W2Nt1H"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "info@tmistudios.xyz",
-    "contactType": "customer support",
-    "availableLanguage": ["English"]
-  }
+  "@type": "ContactPage",
+  "name": "Contact Us | TMI Studios",
+  "url": "https://www.tmistudios.xyz/contactus.html",
+  "description": "Reach out to TMI Studios for web, games, and viral campaigns. Book a package or join our WhatsApp channel for daily chaos quizzes and memes.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TMI Studios",
+    "url": "https://www.tmistudios.xyz",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.tmistudios.xyz/tmihero.jpeg"
+    },
+    "sameAs": [
+      "https://tinyurl.com/mwfd4d73",
+      "https://www.facebook.com/tmistudios",
+      "https://wa.me/0029Vb5jDfqB4hdUr7W2Nt1H",
+      "https://www.tiktok.com/@tmistudios"
+    ]
+  },
+  "potentialAction": [
+    {
+      "@type": "ReserveAction",
+      "target": "https://www.tmistudios.xyz/contactus.html#packageForm",
+      "name": "Book a Package",
+      "description": "Select a web, games, or memes package and submit your request to TMI Studios."
+    },
+    {
+      "@type": "JoinAction",
+      "target": "https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H",
+      "name": "Join WhatsApp Channel",
+      "description": "Join TMI Studios WhatsApp channel for daily chaos quizzes, memes, and viral content."
+    }
+  ]
 }
 </script>
 
@@ -36,19 +54,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
-body {
-  background: #ffffff;
-  color: #1f2937;
-  font-family: 'Segoe UI', sans-serif;
-}
-nav {
-  background-color: #f3f3f3;
-  padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+body { background: #ffffff; color: #1f2937; font-family: 'Segoe UI', sans-serif; }
+nav { background-color: #f3f3f3; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 nav a { color: #1f2937; text-decoration: none; margin-right: 16px; font-weight: 500; }
 nav a:hover { color: #8b5cf6; }
 
@@ -70,34 +77,17 @@ button { background-color: #8b5cf6; color: white; font-weight: bold; padding: 0.
 button:hover { background-color: #a855f7; }
 
 .glitch-title {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #1f2937;
-  position: relative;
-  display: inline-block;
-  margin-bottom: 2rem;
+  font-size: 3rem; font-weight: 800; color: #1f2937; position: relative; display: inline-block; margin-bottom: 2rem;
 }
 .glitch-title::before,
 .glitch-title::after {
   content: attr(data-text);
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  overflow: hidden;
-  z-index: -1;
+  position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; z-index: -1;
 }
 .glitch-title::before { animation: glitchTop 2s infinite linear; color: #a855f7; }
 .glitch-title::after { animation: glitchBottom 2s infinite linear; color: #d8b4fe; }
-@keyframes glitchTop {
-  0% { clip-path: inset(0 0 90% 0); transform: translate(-2px, -2px); }
-  10% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
-  100% { clip-path: inset(0 0 90% 0); transform: translate(0, 0); }
-}
-@keyframes glitchBottom {
-  0% { clip-path: inset(60% 0 20% 0); transform: translate(2px, 2px); }
-  10% { clip-path: inset(0 0 90% 0); transform: translate(-1px, -2px); }
-  100% { clip-path: inset(60% 0 20% 0); transform: translate(0, 0); }
-}
+@keyframes glitchTop { 0% { clip-path: inset(0 0 90% 0); transform: translate(-2px, -2px); } 10% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); } 100% { clip-path: inset(0 0 90% 0); transform: translate(0, 0); } }
+@keyframes glitchBottom { 0% { clip-path: inset(60% 0 20% 0); transform: translate(2px, 2px); } 10% { clip-path: inset(0 0 90% 0); transform: translate(-1px, -2px); } 100% { clip-path: inset(60% 0 20% 0); transform: translate(0, 0); } }
 
 #formSuccess { display:none; margin-top:1rem; color:#4ade80; font-weight:bold; text-align:center; }
 </style>
@@ -119,7 +109,7 @@ button:hover { background-color: #a855f7; }
 <header class="text-center p-10">
   <h1 class="glitch-title" data-text="Contact Us">Contact Us</h1>
   <p class="text-gray-600 max-w-xl mx-auto">
-    Take your brand online today. Select a package below and we’ll handle the rest—from websites to viral campaigns, we’ve got you.
+    Got a wild idea? A game, a viral campaign, or just something unhinged you want to bring to life? Drop us a line and let’s make it happen. Fun, chaos, and eyeball-catching content guaranteed.
   </p>
 </header>
 
@@ -138,9 +128,7 @@ button:hover { background-color: #a855f7; }
       <span class="font-bold mb-2">Select Package Category</span>
       <select id="packageCategory" name="category" required>
         <option value="">-- Choose Category --</option>
-        <option value="Branding">Branding</option>
         <option value="Web">Website / App</option>
-        <option value="Social">Social Media Marketing</option>
         <option value="Games">Games / Arcade</option>
         <option value="Advertising">Memes & Ads</option>
       </select>
@@ -151,23 +139,11 @@ button:hover { background-color: #a855f7; }
   </form>
 </section>
 
-<!-- Newsletter Form -->
-<section class="px-6 md:px-16 pb-16">
-  <h2 class="text-3xl font-semibold mb-4 text-center">🗞️ TMI Newsletter</h2>
-  <p class="text-gray-500 text-center mb-6">Be the first to know when new packages drop or viral ideas hit the lab.</p>
-
-  <form id="newsletterForm" class="max-w-2xl mx-auto glass p-8 rounded-xl flex flex-col gap-6">
-    <label class="flex flex-col">
-      <span class="font-bold mb-2">Your Name</span>
-      <input type="text" name="name" required>
-    </label>
-    <label class="flex flex-col">
-      <span class="font-bold mb-2">Your Email</span>
-      <input type="email" name="email" required>
-    </label>
-    <input type="hidden" name="form_type" value="newsletter">
-    <button type="submit">Subscribe</button>
-  </form>
+<!-- WhatsApp Invite -->
+<section class="px-6 md:px-16 pb-16 text-center">
+  <h2 class="text-3xl font-semibold mb-4">💬 Join our WhatsApp Channel</h2>
+  <p class="text-gray-500 mb-6">Get your daily dose of chaos quizzes, memes & the occasional brain rot 😛</p>
+  <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition">Join WhatsApp Channel</a>
 </section>
 
 <p id="formSuccess"></p>
@@ -179,22 +155,38 @@ button:hover { background-color: #a855f7; }
     <a href="https://tinyurl.com/mwfd4d73" target="_blank" class="inline-block mx-2 text-lg">
       <i class="fab fa-tiktok"></i>
     </a>
+    <a href="https://www.facebook.com/tmistudios" target="_blank" class="inline-block mx-2 text-lg">
+      <i class="fab fa-facebook"></i>
+    </a>
     <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block mx-2 text-lg">
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/privacy.html">Privacy Policy</a></p>
+  <p>
+    <a href="/privacy.html">Privacy Policy</a> | 
+    <a href="/termsofuse.html">Terms of Use</a>
+  </p>
 </footer>
 
 <script>
 // Package options
 const packages = {
-  "Branding": ["BASIC: Logo, Business Cards – R450","PRO: Basic + Social Media – R1,150","PREMI"Branding": ["BASIC: Logo, Business Cards – R450","PRO: Basic + Social Media – R1,150","PREMIUM: Full kit + Flyers, Pitch Deck – R2,500"],
-  "Web": ["Starter Site: 1 page landing page, contact form – R3,500","Business Site: 5 page site, SEO optimized – R7,500","E-commerce Site: Full catalog + checkout – R12,500"],
-  "Social": ["Starter: Instagram 5 posts/week – R3,500 pm","Growth: Instagram & Facebook 10 posts/week – R5,000 pm","Pro: Full content calendar + ads – R9,500 pm"],
-  "Games": ["Basic: Quiz / party meme game – R10,000","Custom: Shooter game – R15,000","Pro: Endless runner game – R40,000"],
-  "Advertising": ["Basic: 1 branded meme – R8,000","Pro: Full meme campaign – R15,000","Max: Meme in viral game – R25,000"]
+  "Web": [
+    "Starter Site: 1 page landing page, contact form – R3,500",
+    "Business Site: 5 page site, SEO optimized – R7,500",
+    "E-commerce Site: Full catalog + checkout – R12,500"
+  ],
+  "Games": [
+    "Basic: Quiz / party meme game – R10,000",
+    "Custom: Shooter game – R15,000",
+    "Pro: Endless runner game – R40,000"
+  ],
+  "Advertising": [
+    "Basic: 1 branded meme – R8,000",
+    "Pro: Full meme campaign – R15,000",
+    "Max: Meme in viral game – R25,000"
+  ]
 };
 
 // Show package options dynamically
@@ -239,46 +231,7 @@ document.getElementById("packageForm").addEventListener("submit", e=>{
   e.preventDefault();
   handleFormSubmit(e.target,"https://formspree.io/f/manpnobz","📨 Booking Submitted! We'll be in touch shortly.");
 });
+</script>
 
-// Newsletter subscription form
-document.getElementById("newsletterForm").addEventListener("submit", e=>{
-  e.preventDefault();
-  handleFormSubmit(e.target,"https://formspree.io/f/xyznzwdg","✅ Subscription Confirmed! You're officially on our newsletter.");
-});
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Packages | TMI Studios",
-  "url": "https://www.tmistudios.xyz/packages.html",
-  "description": "Lock in your package with TMI Studios. Web, branding, social media, games, and viral ads – all designed to make people 👀 look twice.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "TMI Studios",
-    "url": "https://www.tmistudios.xyz",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.tmistudios.xyz/tmihero.jpeg"
-    },
-    "sameAs": [
-      "https://tinyurl.com/mwfd4d73",
-      "https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"
-    ]
-  },
-  "potentialAction": [
-    {
-      "@type": "ReserveAction",
-      "target": "https://www.tmistudios.xyz/packages.html#packageForm",
-      "name": "Book a Package"
-    },
-    {
-      "@type": "SubscribeAction",
-      "target": "https://www.tmistudios.xyz/packages.html#newsletterForm",
-      "name": "Subscribe to Newsletter"
-    }
-  ]
-}
-</script>
 </body>
 </html>
