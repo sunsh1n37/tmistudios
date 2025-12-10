@@ -10,24 +10,6 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
      crossorigin="anonymous"></script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "TMI Studios",
-  "url": "https://tmistudios.com",
-  "sameAs": [
-    "https://www.tiktok.com/@tmistudios",
-    "https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"
-  ],
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://tmistudios.com/?s={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -39,31 +21,64 @@ a { transition: color 0.3s ease; } a:hover { color:#d8b4fe; }
 nav a { color:#fff !important; margin-right:.75rem; font-weight:700; } 
 footer a { color:#fff !important; text-decoration:none; } 
 footer a:hover { color:#ccc !important; }
+
 .hero-title { font-size:3rem; font-weight:700; background:linear-gradient(135deg,#fff,#c0c0c0,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:2px 2px 5px rgba(255,255,255,.25);}
 .home-slogan { font-size:1rem; text-shadow:0 0 8px var(--cyan); font-weight:700; margin-top:1rem; }
 
-#game-container { position: relative; height: 150px; margin:2.5rem auto; max-width:900px; background:#111; border:2px solid #000; border-radius:12px; overflow:visible; }
-#shooter { position:absolute; left:20px; top:50%; width:40px; height:40px; transform:translateY(-50%); cursor:pointer; z-index:1000; user-select:none; display:block; }
-.bullet { position:absolute; width:10px; height:4px; background:yellow; border-radius:2px; z-index:1001; filter: drop-shadow(0 0 6px yellow); }
-.target { position:absolute; width:60px; height:60px; top:50%; left:80%; transform:translate(-50%,-50%); z-index:900; }
-.explode { animation: explode .45s forwards; }
-@keyframes explode { 0% { transform: scale(1); opacity:1; } 100% { transform: scale(2.8); opacity:0; } }
+#game-container {
+  position: relative;
+  height: 150px;
+  margin: 2.5rem auto;
+  max-width: 900px;
+  background: #111;
+  border: 2px solid #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
 
-.spark { position:absolute; width:4px; height:4px; border-radius:50%; pointer-events:none; filter:blur(1.5px); animation:sparkMove 0.6s ease-out forwards; }
-@keyframes sparkMove { 0% { transform: translate(0,0) scale(1); opacity:1; } 100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity:0; } }
+#shooter {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.target {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.target.explode {
+  transform: scale(2);
+  opacity: 0;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.bullet {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--purple);
+  border-radius: 50%;
+  z-index: 500;
+}
 
 .game-card { display:inline-block; width:250px; margin-right:1rem; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid #000; vertical-align:top; text-align:center; }
 .game-card button { background:var(--purple); color:white; border:none; padding:.5rem 1rem; margin:.5rem; border-radius:6px; cursor:pointer; font-weight:bold; }
-
 .game-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
 
 .nav-link { color: #fff; text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; margin-right: 1rem; }
 .nav-link:last-child { margin-right: 0; }
 .nav-link:hover { color: #a855f7; }
-@media (min-width: 768px) {
-    nav { justify-content: center; gap: 2rem; }
-    .nav-link { font-size: 1rem; margin-right: 0; }
-}
 
 .section-title { font-size:1.75rem; font-weight:700; text-align:center; margin-bottom:1rem; color:var(--cyan); }
 .games { display:flex; overflow-x:auto; white-space:nowrap; padding-bottom:.5rem; }
@@ -90,37 +105,30 @@ footer a:hover { color:#ccc !important; }
   <img src="images/tmiarcade.jpeg" alt="TMI Arcade" style="max-width:320px; margin:0 auto;">
   <p class="home-slogan">Engage Gen Z Like Never Before — Custom Quizzes, Games & Interactive Experiences That Convert.</p>
   <div style="margin-top:1rem;">
-    <a href="/packages.html" style="background:var(--purple); color:#fff; padding:.7rem 1rem; border-radius:8px; font-weight:700;">Let’s build your viral game!</a>
+    <a href="/packages.html" style="background:var(--purple); color:#fff; padding:.7rem 1rem; border-radius:8px; font-weight:700;">Advertise in our viral games!</a>
   </div>
 </section>
 
+<!-- Mini Shooter Game -->
 <div id="game-container">
   <img id="shooter" src="images/shooter.jpeg" alt="Shooter">
 </div>
 
-<!-- Adsense Spacer -->
-<div style="max-width:900px; margin:2rem auto; text-align:center;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-9744535609211271"
-       data-ad-slot="1234567890"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-</div>
-
-<!-- Latest Drops -->
-<h2 class="section-title">Latest Drops</h2>
-
-<!-- Game Cards -->
-<div id="game-tiles" style="max-width:900px; margin:1.5rem auto; overflow-x:auto; white-space:nowrap; padding-bottom:.5rem;">
-  <a href="flappyfury.html" class="game-card" style="display:inline-block; text-decoration:none; color:inherit;">
-    <img src="https://i.ibb.co/4RPHbNw9/flappyfury.jpg" alt="Flappy Fury">
-    <div style="padding:.75rem; font-weight:700;">Flappy Fury</div>
-    <button class="play-now">Play Now</button>
+<!-- Featured Live Game: Flappy Fury -->
+<section style="text-align:center; padding:1.5rem 1rem 1rem; max-width:900px; margin:2rem auto;">
+  <img src="https://i.ibb.co/4RPHbNw9/flappyfury.jpg" alt="Flappy Fury" style="width:100%; max-height:360px; object-fit:cover; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.5); margin-bottom:1rem;">
+  <div style="font-weight:700; font-size:1.5rem; margin-bottom:0.5rem; color:#fff;">Flappy Fury 🐦</div>
+  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:700px; margin:0 auto 1rem;">
+    Flap, dodge, and survive! Flappy Fury is a chaotic, fast-paced game that tests your reflexes and persistence. Beat your high score and prove you’re the ultimate flapper! Perfect for quick, addictive gameplay that keeps players coming back.
+  </p>
+  <a href="flappyfury.html" style="background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold; display:inline-block; text-decoration:none;">
+    Play Now
   </a>
+</section>
+
+<!-- Latest Drops Section -->
+<h2 class="section-title" style="margin-top:3rem;">Latest Drops</h2>
+<div id="game-tiles" style="max-width:900px; margin:1.5rem auto 3rem; overflow-x:auto; white-space:nowrap; padding-bottom:.5rem;">
   <div class="game-card">
     <img src="images/emojicrush.jpeg" alt="Emoji Crush">
     <div style="padding:.75rem; font-weight:700;">Emoji Crush</div>
@@ -139,40 +147,41 @@ footer a:hover { color:#ccc !important; }
 </div>
 
 <!-- Quiz Chaos Section -->
-<section id="quiz-chaos" style="max-width:900px; margin:2rem auto;">
-  <h2 class="section-title">Quiz Chaos 🔥</h2>
- <section class="games">
-  <div class="card linked">
-    <div class="emoji">💌</div>
-    <div class="card-title">Should I Text Him</div>
-    <a href="shoulditextmyex.html" class="btn">Play Now</a>
-  </div>
-  <div class="card linked">
+<section id="quiz-chaos" style="max-width:900px; margin:3rem auto 4rem;">
+  <h2 class="section-title">Quiz Chaos</h2>
+  <section class="games">
+    <div class="card linked">
     <div class="emoji">🚩</div>
-    <div class="card-title">Red Flag Bingo</div>
-    <a href="redflagbingo.html" class="btn">Play Now</a>
-  </div>
-  <div class="card linked">
-    <div class="emoji">🤒</div>
-    <div class="card-title">Work or Nah</div>
-    <a href="workornah.html" class="btn">Play Now</a>
-  </div>
-  <div class="card" data-title="TMI Tarot" data-text="Draw your card to discover the CEO energy you're manifesting. Fun, mystical, and full of inspiration.">
-    <div class="emoji">🔮</div>
-    <div class="card-title">TMI Tarot</div>
-    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
-  </div>
-  <div class="card" data-title="TMI Dare" data-text="Dare to play? TMI Dare challenges you to bold, funny, and unpredictable tasks—perfect for creators and founders who love a twist.">
-    <div class="emoji">🎲</div>
-    <div class="card-title">TMI Dare</div>
-    <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
-  </div>
+      <div class="card-title">Red Flag Bingo</div>
+      <a href="redflagbingo.html" class="btn">Play Now</a>
+    </div>
+    <div class="card linked">
+      <div class="emoji">💌</div>
+      <div class="card-title">Should I Text Him</div>
+      <a href="shoulditextmyex.html" class="btn">Play Now</a>
+    </div>
+    <div class="card linked">
+      <div class="emoji">🤒</div>
+      <div class="card-title">Work or Nah</div>
+      <a href="workornah.html" class="btn">Play Now</a>
+    </div>
+    <div class="card" data-title="TMI Tarot" data-text="Draw your card to discover the CEO energy you're manifesting. Fun, mystical, and full of inspiration.">
+      <div class="emoji">🔮</div>
+      <div class="card-title">TMI Tarot</div>
+      <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
+    </div>
+    <div class="card" data-title="TMI Dare" data-text="Dare to play? TMI Dare challenges you to bold, funny, and unpredictable tasks—perfect for creators and founders who love a twist.">
+      <div class="emoji">🎲</div>
+      <div class="card-title">TMI Dare</div>
+      <a href="javascript:void(0);" class="btn open-modal">Coming Soon</a>
+    </div>
+  </section>
 </section>
 
 <!-- Whatsapp Channel Tile -->
 <div id="whatsapp-tile">
   <div style="font-weight:bold;">Join Our WhatsApp Channel</div>
-  <div style="margin-top:.5rem;">Get exclusive game drops, templates & collabs</div>
+  <div style="margin-top:.5rem;">Get your daily dose of chaos quizzes, memes & the occasional brain rot 😛</div>
   <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener noreferrer">Join Now 💬</a>
 </div>
 
@@ -181,34 +190,82 @@ footer a:hover { color:#ccc !important; }
     <span class="mr-2">Follow us:</span>
     <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener noreferrer" class="inline-block mx-2 text-lg"><i class="fab fa-tiktok"></i></a>
     <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener noreferrer" class="inline-block mx-2 text-lg"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com/tmistudios" target="_blank" rel="noopener noreferrer" class="inline-block mx-2 text-lg"><i class="fab fa-facebook"></i></a>
   </div>
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
   <p><a href="/contactus.html">Put your ad in our games and reach thousands of daily players</a></p>
   <p><a href="/arcade.html">Arcade</a></p>
   <p><a href="/privacy.html">Privacy Policy</a></p>
+  <p><a href="/termsofuse.html">Terms of Use</a></p>
 </footer>
 
 <script>
-// Shooter mini-game logic
-const container=document.getElementById('game-container');
-const shooter=document.getElementById('shooter');
-const targetImages=['target1.jpeg','target2.jpeg','target3.jpeg','target4.jpeg','target5.jpeg','target6.jpeg','target7.jpeg','target8.jpeg','target9.jpeg','target10.jpeg','target11.jpeg','target12.jpeg','target13.jpeg','target14.jpeg','target15.jpeg'];
-let currentTargetIndex=0, currentTarget=null;
+// Shooter game logic
+const targetImages = [...Array(10)].map((_, i) => `images/target${i + 1}.jpg`);
+const shooterContainer = document.getElementById('game-container');
+const shooter = document.getElementById('shooter');
 
-function createTarget(src){ if(currentTarget) currentTarget.remove(); const img=document.createElement('img'); img.src='images/'+src; img.className='target'; container.appendChild(img); currentTarget=img; }
-function spawnTarget(){ if(currentTargetIndex>=targetImages.length) currentTargetIndex=0; createTarget(targetImages[currentTargetIndex]); }
+let currentTargetIndex = 0;
+let currentTarget = null;
 
-function createSpark(x,y,color='cyan'){ const spark=document.createElement('div'); spark.className='spark'; spark.style.left=x+'px'; spark.style.top=y+'px'; const dx=(Math.random()-0.5)*40+'px'; const dy=(Math.random()-0.5)*40+'px'; spark.style.setProperty('--dx',dx); spark.style.setProperty('--dy',dy); container.appendChild(spark); setTimeout(()=>spark.remove(),600); }
+function createTarget(src) {
+  if (currentTarget) currentTarget.remove();
+  const img = document.createElement('img');
+  img.src = src;
+  img.className = 'target';
+  shooterContainer.appendChild(img);
+  currentTarget = img;
+}
 
-function fireBullet(){ const bullet=document.createElement('div'); bullet.className='bullet'; const sRect=shooter.getBoundingClientRect(); const cRect=container.getBoundingClientRect(); bullet.style.left=(sRect.left-cRect.left+shooter.offsetWidth)+'px'; bullet.style.top=(sRect.top-cRect.top+shooter.offsetHeight/2-2)+'px'; container.appendChild(bullet);  
-  const speed=8; let pos=parseFloat(bullet.style.left); const interval=setInterval(()=>{ pos+=speed; bullet.style.left=pos+'px';  
-    if(currentTarget){ const tRect=currentTarget.getBoundingClientRect(); const bRect=bullet.getBoundingClientRect();  
-      if(bRect.right>tRect.left && bRect.left<tRect.right && bRect.bottom>tRect.top && bRect.top<tRect.bottom){  
-        currentTarget.classList.add('explode'); setTimeout(()=>currentTarget.remove(),450); spawnTarget(); createSpark(tRect.left-cRect.left+tRect.width/2, tRect.top-cRect.top+tRect.height/2,'magenta'); clearInterval(interval); bullet.remove(); } }  
-    if(pos>cRect.width){ clearInterval(interval); bullet.remove(); } },16); }
+function spawnTarget() {
+  if (currentTargetIndex >= targetImages.length) currentTargetIndex = 0;
+  createTarget(targetImages[currentTargetIndex]);
+}
 
-shooter.addEventListener('click', fireBullet);  
+function explodeTarget() {
+  if (!currentTarget) return;
+  currentTarget.classList.add('explode');
+  setTimeout(() => {
+    currentTarget.remove();
+    currentTarget = null;
+    currentTargetIndex++;
+    spawnTarget();
+  }, 450);
+}
+
+function fireBullet() {
+  const bullet = document.createElement('div');
+  bullet.className = 'bullet';
+  const shooterRect = shooter.getBoundingClientRect();
+  const containerRect = shooterContainer.getBoundingClientRect();
+  bullet.style.left = (shooterRect.right - containerRect.left) + 'px';
+  bullet.style.top = (shooterRect.top + shooterRect.height / 2 - 3 - containerRect.top) + 'px';
+  shooterContainer.appendChild(bullet);
+
+  function move() {
+    const left = parseFloat(bullet.style.left);
+    if (left > shooterContainer.clientWidth + 20) {
+      bullet.remove();
+      return;
+    }
+    bullet.style.left = (left + 14) + 'px';
+    if (currentTarget) {
+      const bRect = bullet.getBoundingClientRect();
+      const tRect = currentTarget.getBoundingClientRect();
+      if (bRect.right >= tRect.left && bRect.left <= tRect.right && bRect.top <= tRect.bottom && bRect.bottom >= tRect.top) {
+        bullet.remove();
+        explodeTarget();
+        return;
+      }
+    }
+    requestAnimationFrame(move);
+  }
+  requestAnimationFrame(move);
+}
+
+shooterContainer.addEventListener('click', fireBullet);
 spawnTarget();
 </script>
+
 </body>
 </html>
