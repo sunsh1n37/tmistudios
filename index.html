@@ -1,113 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TMI Studios — Scroll-stopping digital experiences</title>
-<meta name="description" content="TMI Studios Arcade: African tech, games, chaos quizzes, and viral web experiences. Play, explore, and get hooked!" />
-<meta name="keywords" content="TMI Studios, African tech, arcade, games, chaos quizzes, AI, creativity, news, coding" />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<!-- JSON-LD for SEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGameSeries",
-  "name": "TMI Studios Arcade",
-  "url": "https://tmistudios.xyz",
-  "description": "TMI Studios Arcade: Play fast, chaotic web games and quizzes from Africa’s most viral creators.",
-  "sameAs": [
-    "https://twitter.com/tmistudios",
-    "https://instagram.com/tmistudios"
-  ]
-}
-</script>
-
+<meta name="description" content="TMI Studios Arcade: African tech, games, chaos quizzes, and viral web experiences. Play, explore, and get hooked!">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
-:root {
-  --bg: #0b0015;
-  --accent: #b388ff;
-  --accent2: #a855f7;
-  --text: #f4f4f4;
-  --muted: #c0bcd0;
-  --font: 'Space Grotesk', sans-serif;
-  --footer-bg: radial-gradient(circle at top left, #1b0036, #0b0015);
-  --footer-link: #bfa3ff;
+:root{
+  --bg:#0b0015;
+  --accent:#b388ff;
+  --accent2:#a855f7;
+  --text:#f4f4f4;
+  --muted:#c0bcd0;
+  --font:'Space Grotesk',sans-serif;
+  --footer-bg:radial-gradient(circle at top left,#1b0036,#0b0015);
+  --footer-link:#bfa3ff
 }
-
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: var(--font); color: var(--text); background: var(--bg); overflow-x:hidden; }
-
-nav {
-  display:flex; flex-wrap:nowrap; justify-content:flex-start;
-  gap:2rem; padding:.75rem 1rem; z-index:10; position:relative;
-}
-.nav-link { color:#fff; text-decoration:none; font-weight:500; font-size:.875rem; transition:color .3s ease; }
-.nav-link:hover { color:var(--accent2); }
-
-.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 1rem; }
-.subtitle { font-size:1.2rem; color: var(--muted); margin-top:.4rem; }
-.cta-group { margin-top:2rem; display:flex; gap:1rem; }
-.btn { text-decoration:none; padding:.8rem 1.5rem; border-radius:50px; font-weight:600; transition:all .3s; }
-.btn.primary { background: var(--accent); color: var(--bg); }
-.btn.primary:hover { background:transparent; color: var(--accent); border:2px solid var(--accent); }
-.btn.secondary { border:2px solid var(--accent); color: var(--accent); }
-.btn.secondary:hover { background: var(--accent); color: var(--bg); }
-
-section { padding:6rem 10%; max-width:1200px; margin:auto; text-align:center; }
-h2 { font-size:2rem; margin-bottom:1rem; color: var(--text); }
-p { line-height:1.6; margin-bottom:1rem; color: var(--text); }
-
-.projects {
-  display:flex; gap:2rem; overflow-x:auto; padding-bottom:1rem; scroll-snap-type: x mandatory;
-}
-.project {
-  flex:0 0 300px; scroll-snap-align: start; background: rgba(255,255,255,0.05);
-  padding:1.5rem; border-radius:12px; transition: transform .3s, background .3s; overflow:hidden;
-}
-.project:hover { transform:translateY(-5px); background: rgba(255,255,255,0.08); }
-.project img { width:100%; border-radius:10px; margin-bottom:1rem; filter: brightness(0.9); }
-.project h3 { color: var(--accent2); font-size:1.3rem; margin-bottom:.5rem; }
-
-.projects::-webkit-scrollbar { height:8px; }
-.projects::-webkit-scrollbar-thumb { background: rgba(179,136,255,0.3); border-radius:4px; }
-.projects::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius:4px; }
-
-.footer { text-align:center; padding:3rem 1rem; background: var(--footer-bg); color: var(--muted); font-size:.9rem; border-top:1px solid rgba(255,255,255,0.05); }
-.footer a { color: var(--footer-link); text-decoration:none; transition:color .3s; }
-.footer a:hover { color:#fff; text-decoration:underline; }
-
-canvas#stars { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
-
-.news-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; }
-.news-card {
-  background: rgba(255,255,255,0.05); backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.2rem;
-  text-align:center; transition: transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease;
-  position: relative; overflow:hidden;
-}
-.news-card::before {
-  content:""; position:absolute; inset:0; border-radius:16px;
-  background: linear-gradient(45deg, var(--accent2), var(--accent));
-  opacity:0; filter: blur(12px); z-index:0; transition: opacity .4s ease;
-}
-.news-card:hover::before { opacity:.3; }
-.news-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); border-color: rgba(179,136,255,0.4); box-shadow:0 8px 25px rgba(179,136,255,.2);}
-.news-card img { width:100%; border-radius:12px; margin-bottom:1rem; filter: brightness(0.9); position:relative; z-index:1; }
-.news-card h3 { font-size:1.1rem; margin:.8rem 0; color: var(--accent2); position:relative; z-index:1; }
-.news-card .btn.secondary { margin-top:.5rem; border-color: var(--accent); color: var(--accent); position:relative; z-index:1; }
-.news-card .btn.secondary:hover { background: var(--accent); color: var(--bg); }
-
-@media (max-width:600px){
-  .title{font-size:2rem;} 
-  .cta-group{flex-direction:column;} 
-  .projects { flex-wrap:nowrap; } 
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);color:var(--text);background:var(--bg);overflow-x:hidden}
+nav{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:2rem;padding:.75rem 1rem;z-index:10;position:sticky;top:0;background:var(--bg)}
+.nav-link{color:#fff;text-decoration:none;font-weight:500;font-size:.875rem;transition:color .3s}
+.nav-link:hover{color:var(--accent2)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1rem}
+.subtitle{font-size:1.2rem;color:var(--muted);margin-top:.4rem}
+.cta-group{margin-top:2rem;display:flex;gap:1rem}
+.btn{text-decoration:none;padding:.8rem 1.5rem;border-radius:50px;font-weight:600;transition:all .3s}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.primary:hover{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.btn.secondary{border:2px solid var(--accent);color:var(--accent)}
+.btn.secondary:hover{background:var(--accent);color:var(--bg)}
+.btn.tile-btn{border:2px solid var(--accent);color:var(--accent);background:transparent;font-weight:600;border-radius:50px;padding:.8rem 1.5rem;transition:all .3s}
+.btn.tile-btn:hover{background:var(--accent);color:var(--bg)}
+section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
+h2{font-size:2rem;margin-bottom:1rem;color:var(--text)}
+p{line-height:1.6;margin-bottom:1rem;color:var(--text)}
+.projects{display:flex;gap:2rem;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory}
+.project{flex:0 0 300px;scroll-snap-align:start;background:rgba(255,255,255,0.05);padding:1.5rem;border-radius:12px;transition:transform .3s,background .3s;overflow:hidden}
+.project:hover{transform:translateY(-5px);background:rgba(255,255,255,0.08)}
+.project img{width:100%;border-radius:10px;margin-bottom:1rem;filter:brightness(0.9)}
+.project h3{color:var(--accent2);font-size:1.3rem;margin-bottom:.5rem}
+.projects::-webkit-scrollbar{height:8px}
+.projects::-webkit-scrollbar-thumb{background:rgba(179,136,255,0.3);border-radius:4px}
+.projects::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);border-radius:4px}
+.footer{text-align:center;padding:3rem 1rem;background:var(--footer-bg);color:var(--muted);font-size:.9rem;border-top:1px solid rgba(255,255,255,0.05)}
+.footer a{color:var(--footer-link);text-decoration:none;transition:color .3s}
+.footer a:hover{color:#fff;text-decoration:underline}
+canvas#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
+.news-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.2rem;text-align:center;transition:transform .3s ease,box-shadow .3s ease,background .3s ease,border-color .3s ease;position:relative;overflow:hidden}
+.news-card::before{content:"";position:absolute;inset:0;border-radius:16px;background:linear-gradient(45deg,var(--accent2),var(--accent));opacity:0;filter:blur(12px);z-index:0;transition:opacity .4s}
+.news-card:hover::before{opacity:.3}
+.news-card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.1);border-color:rgba(179,136,255,0.4);box-shadow:0 8px 25px rgba(179,136,255,.2)}
+.news-card img{width:100%;border-radius:12px;margin-bottom:1rem;position:relative;z-index:1}
+.news-card h3{font-size:1.1rem;margin:.8rem 0;color:var(--accent2);position:relative;z-index:1}
+.news-card .btn.secondary{margin-top:.5rem;border-color:var(--accent);color:var(--accent);position:relative;z-index:1}
+.news-card .btn.secondary:hover{background:var(--accent);color:var(--bg)}
+@media(max-width:600px){.title{font-size:2rem}.cta-group{flex-direction:column}.projects{flex-wrap:nowrap}}
+.popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(4px)}
+.popup-content{background:#1b0036;padding:25px;width:90%;max-width:350px;border-radius:20px;text-align:center;position:relative;animation:pop .25s ease-out;color:#f4f4f4;font-weight:500}
+.popup-content h2{color:var(--accent2);margin-bottom:.5rem}
+.popup-content p{color:var(--text);margin-bottom:1rem}
+.close-popup{position:absolute;top:8px;right:8px;background:none;border:none;font-size:18px;color:var(--text);cursor:pointer}
+.popup-btn{display:inline-block;margin-top:15px;padding:12px 18px;background:var(--accent);color:white;text-decoration:none;border-radius:12px;font-size:16px;font-weight:600;transition:all .3s}
+.popup-btn:hover{background:var(--accent2)}
+@keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
 </style>
 </head>
-
 <body>
+
 <canvas id="stars"></canvas>
 
 <nav>
@@ -119,7 +81,7 @@ canvas#stars { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-
 </nav>
 
 <header class="hero">
-  <img src="images/tmihero.jpeg" alt="TMI Studios Arcade" style="width:300px; mix-blend-mode: lighten;" />
+  <img src="images/tmihero.jpeg" alt="TMI Studios Arcade" style="width:300px; mix-blend-mode: lighten;">
   <p class="subtitle">Your hub for fast web games, chaos quizzes, and viral digital mayhem</p>
   <div class="cta-group">
     <a href="arcade.html" class="btn primary">Enter the Arcade</a>
@@ -130,31 +92,78 @@ canvas#stars { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-
 <section id="about">
   <h2>Welcome to TMI Arcade</h2>
   <p>Step into a digital playground where web games collide with chaos quizzes and viral experiences. Fast, fun, and endlessly scrollable — this is where players get hooked.</p>
-  <p>Arcade games, quizzes, and experiments crafted for adrenaline, laughs, and chaos. No committees, just pure fun and discovery.</p>
 </section>
 
 <section id="arcade">
   <h2>Arcade — Games & Chaos Quizzes</h2>
-  <div class="projects" id="arcade-container"></div>
+  <div class="projects">
+    <div class="project">
+      <img src="images/flappyfury.jpeg" alt="Flappy Fury">
+      <h3>Flappy Fury</h3>
+      <p>Navigate the chaos and score high in this fast-paced Flappy-style madness.</p>
+      <a href="flappyfury.html" class="btn tile-btn">Play Now</a>
+    </div>
+    <div class="project">
+      <img src="images/redflagbingo.jpeg" alt="Redflag Bingo">
+      <h3>Redflag Bingo</h3>
+      <p>Chaos sip-or-skip game to expose your inner delulu.</p>
+      <a href="redflagbingo.html" class="btn tile-btn">Play Now</a>
+    </div>
+    <div class="project">
+      <img src="images/workornah.jpeg" alt="Work or Nah">
+      <h3>Work or Nah</h3>
+      <p>Quick, savage, and relatable – guess who’s working and who’s slacking.</p>
+      <a href="workornah.html" class="btn tile-btn">Play Now</a>
+    </div>
+  </div>
 </section>
 
 <section id="lab">
-  <h2>Lab — AI Tools & Experiments</h2>
-  <div class="projects" id="lab-container"></div>
+  <h2>Lab — Experiments & AI Tools</h2>
+  <div class="projects">
+    <div class="project">
+      <img src="images/chaoscookie.jpeg" alt="Chaos Cookie">
+      <h3>Chaos Cookie</h3>
+      <p>Get a random chaotic fortune. Fun, light, and unpredictable!</p>
+      <a href="chaoscookie.html" class="btn tile-btn">Play Now</a>
+    </div>
+    <div class="project">
+      <img src="images/redflagquiz.jpeg" alt="What Redflag Are You?">
+      <h3>What Redflag Are You?</h3>
+      <p>Discover your inner chaos in this upcoming quiz.</p>
+      <button class="btn tile-btn" onclick="openComingSoon()">Coming Soon</button>
+    </div>
+    <div class="project">
+      <img src="images/solodateidea.jpeg" alt="Solo Date Idea Generator">
+      <h3>Solo Date Idea Generator</h3>
+      <p>Get wild solo date ideas from our upcoming AI experiment.</p>
+      <button class="btn tile-btn" onclick="openComingSoon()">Coming Soon</button>
+    </div>
+  </div>
 </section>
 
 <section id="tmi-news">
   <h2 style="color: var(--accent);">Top Stories from TMI News</h2>
   <p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">
-  The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs.</p>
+    The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs.
+  </p>
   <div id="news-container" class="news-grid"></div>
 </section>
 
-<section id="contact" class="contact">
+<section id="contact">
   <h2>Turn Ads into Playable Chaos</h2>
   <p>We transform your campaigns into interactive game cards that players can’t help but share. Fun, viral, and immersive — your brand becomes part of the chaos.</p>
   <a href="/contactus.html" class="btn primary">Start the Madness</a>
 </section>
+
+<div id="comingSoonPopup" class="popup-overlay">
+  <div class="popup-content">
+    <button class="close-popup" onclick="closeComingSoon()">✖</button>
+    <h2>Want first access? 👀</h2>
+    <p>Join our WhatsApp channel to be the <strong>first to know</strong> when this game drops.</p>
+    <a class="popup-btn" href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">Join the Channel 🚀</a>
+  </div>
+</div>
 
 <footer class="footer">
   <div style="margin-bottom:1rem;">
@@ -168,138 +177,32 @@ canvas#stars { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-
   <p><a href="/privacy.html">Privacy Policy</a> | <a href="/termsofuse.html">Terms of Use</a></p>
 </footer>
 
-<!-- Stars Animation -->
 <script>
-const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let stars=[];
+// Stars
+const canvas=document.getElementById("stars"),ctx=canvas.getContext("2d");let stars=[];
 function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;
-  stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}
-window.addEventListener('resize',resizeCanvas);resizeCanvas();
-function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);
-  stars.forEach(s=>{ctx.beginPath();ctx.fillStyle=s.color;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1;});
-  requestAnimationFrame(animate);}animate();
-</script>
+  stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}window.addEventListener("resize",resizeCanvas);resizeCanvas();
+function animateStars(){ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{ctx.beginPath();ctx.fillStyle=s.color;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1});requestAnimationFrame(animateStars)}animateStars();
 
-<script>
-// ---------- FALLBACK DATA ----------
-const fallbackArcade = [
-  {
-    title: "Flappy Fury",
-    description: "Rage-inducing Xmas chaos. Tap. Survive. Cry.",
-    image: "images/flappy1.png",
-    url: "/flappyfury.html",
-    buttonText: "Play"
-  },
-  {
-    title: "Chaotic Fortune Cookie",
-    description: "Unhinged fortunes for chronically online souls.",
-    image: "images/fortunecookie.png",
-    url: "/fortunecookie.html",
-    buttonText: "Open Cookie"
-  },
-  {
-    title: "What Red Flag Did You Ignore?",
-    description: "The quiz you already know the answer to.",
-    image: "images/redflag.png",
-    url: "/redflag.html",
-    buttonText: "Take Quiz"
-  }
-];
+// Coming Soon
+function openComingSoon(){document.getElementById("comingSoonPopup").style.display="flex"}
+function closeComingSoon(){document.getElementById("comingSoonPopup").style.display="none"}
 
-const fallbackLab = [
-  {
-    title: "AI Roast Generator",
-    description: "Get roasted by AI. You asked for this.",
-    image: "images/airoast.png",
-    url: "/roastme.html",
-    buttonText: "Get Roasted"
-  },
-  {
-    title: "Caption Chaos AI",
-    description: "Turn your pics into viral captions.",
-    image: "images/captionai.png",
-    url: "/captionai.html",
-    buttonText: "Try It"
-  },
-  {
-    title: "AI Meme Maker",
-    description: "Make memes faster than your ex ghosts you.",
-    image: "images/memeai.png",
-    url: "/memeai.html",
-    buttonText: "Generate Meme"
-  }
-];
-
-// ---------- LOAD ARCADE ----------
-fetch('arcade.json?' + new Date().getTime())
-  .then(res => res.ok ? res.json() : { items: fallbackArcade })
-  .then(data => {
-    const container = document.getElementById('arcade-container');
-    const items = (data.items && data.items.length > 0 ? data.items : fallbackArcade).slice(0,3);
-    items.forEach(item => {
-      const card = document.createElement('div');
-      card.classList.add('project');
-      card.innerHTML = `
-        <img src="${item.image}" alt="${item.title}">
-        <h3>${item.title}</h3>
-        <p>${item.description}</p>
-        <a href="${item.url}" class="btn secondary">${item.buttonText}</a>
-      `;
-      container.appendChild(card);
-    });
-  });
-
-// ---------- LOAD LAB ----------
-fetch('lab.json?' + new Date().getTime())
-  .then(res => res.ok ? res.json() : { items: fallbackLab })
-  .then(data => {
-    const container = document.getElementById('lab-container');
-    const items = (data.items && data.items.length > 0 ? data.items : fallbackLab).slice(0,3);
-    items.forEach(item => {
-      const card = document.createElement('div');
-      card.classList.add('project');
-      card.innerHTML = `
-        <img src="${item.image}" alt="${item.title}">
-        <h3>${item.title}</h3>
-        <p>${item.description}</p>
-        <a href="${item.url}" class="btn secondary">${item.buttonText}</a>
-      `;
-      container.appendChild(card);
-    });
-  });
-
-// ---------- NEWS ----------
-fetch('news.json?' + new Date().getTime())
-  .then(res => res.json())
-  .then(data => {
-    const newsContainer = document.getElementById('news-container');
-    const sortedStories = data.stories.sort((a,b) => new Date(b.date) - new Date(a.date));
-    sortedStories.slice(0,3).forEach(story => {
-      const card = document.createElement('article');
-      card.classList.add('news-card');
-      card.innerHTML = `
-        <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
-        <h3>${story.headline}</h3>
-        <a href="news.html" class="btn secondary">Read More</a>`;
-      newsContainer.appendChild(card);
-    });
-  });
-</script>
 // News
-fetch('news.json?' + new Date().getTime())
-  .then(res => res.json())
-  .then(data => {
-    const newsContainer = document.getElementById('news-container');
-    const sortedStories = data.stories.sort((a,b) => new Date(b.date) - new Date(a.date));
-    sortedStories.slice(0,3).forEach(story => {
-      const card = document.createElement('article');
-      card.classList.add('news-card');
-      card.innerHTML = `
-        <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
-        <h3>${story.headline}</h3>
-        <a href="news.html" class="btn secondary">Read More</a>`;
-      newsContainer.appendChild(card);
-    });
-  });
+const newsContainer=document.getElementById("news-container");
+const newsData=[
+  {image:"images/news1.jpeg",headline:"Chaos Quiz Hits Millions"},
+  {image:"images/news2.jpeg",headline:"New AI Experiment Launched"},
+  {image:"images/news3.jpeg",headline:"TMI Studios Goes Viral"}
+];
+newsData.forEach(story=>{
+  const card=document.createElement("article");
+  card.classList.add("news-card");
+  card.innerHTML=`<img src="${story.image}" alt="${story.headline}" class="hero-image"/><h3>${story.headline}</h3><a href="news.html" class="btn secondary">Read More</a>`;
+  newsContainer.appendChild(card);
+});
 </script>
+
 </body>
 </html>
