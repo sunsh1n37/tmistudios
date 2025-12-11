@@ -1,353 +1,386 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TMI Studios Packages</title>
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TMI Studios — Viral games, quizzes & digital experiences</title>
 
-<style>
-  body { background: #0d0d1a; color: #fff; font-family: 'Helvetica', sans-serif; margin:0; }
-  a { text-decoration: none; }
-  nav { background: #111; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-  nav a { color: white; transition: 0.3s; }
-  nav a:hover { color: #5b21b6; }
+  <!-- Primary SEO -->
+  <meta name="description" content="TMI Studios builds scroll-stopping web games, chaos quizzes and viral campaigns. Packages include game builds, apps, branding and paid social strategies — designed for shareable growth." />
+  <meta name="keywords" content="TMI Studios, web games, viral quizzes, arcade games, branding, game dev, social campaigns, digital experiences" />
+  <link rel="canonical" href="https://www.tmistudios.xyz/packages.html" />
+  <meta name="robots" content="index, follow" />
 
-  .glass {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 1rem;
-    min-width: 200px;
-    flex-shrink: 0;
-    padding: 1rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .package-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .package-price { font-weight: 700; font-size: 1rem; margin: 0.5rem 0; }
-  .package-list { list-style: none; padding: 0; margin: 0.2rem 0 0.6rem; }
-  .package-list li { margin: 0.2rem 0; font-size: 0.95rem; }
+  <!-- Open Graph (optimised for sharing) -->
+  <meta property="og:site_name" content="TMI Studios" />
+  <meta property="og:title" content="TMI Studios — Packages for viral web games & campaigns" />
+  <meta property="og:description" content="From mini branded games to full viral ad campaigns — packaged for fast launch and shareability." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tmistudios.xyz/packages.html" />
+  <meta property="og:image" content="https://www.tmistudios.xyz/images/tmistudios-share.png" />
 
-  .btn-purple {
-    background: #5b21b6;
-    color: white;
-    padding: 0.6rem 1rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: 0.3s;
-    width: fit-content;
-    margin: 0 auto;
-    cursor: pointer;
-  }
-  .btn-purple:hover { background: #6d28d9; }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@tmistudios" />
+  <meta name="twitter:title" content="TMI Studios — Packages for viral web games & campaigns" />
+  <meta name="twitter:description" content="Branded micro-games, quizzes, and paid social that drives viral reach." />
+  <meta name="twitter:image" content="https://www.tmistudios.xyz/images/tmistudios-share.png" />
 
-  .scroll-container { display: flex; gap: 0.6rem; overflow-x: auto; padding: 0.6rem 0; }
-  .scroll-container::-webkit-scrollbar { height: 5px; }
-  .scroll-container::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }
+  <!-- AdSense (use your publisher ID) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
+    crossorigin="anonymous"></script>
 
-  .modal-bg { display: none; position: fixed; inset:0; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 50; }
-  .modal-content {
-    background: #1a1a2e;
-    padding: 2rem;
-    border-radius: 1.25rem;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-    position: relative;
-    color: #fff;
+  <!-- JSON-LD structured data: Organization + WebSite + WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.tmistudios.xyz/#org",
+        "name": "TMI Studios",
+        "url": "https://www.tmistudios.xyz/",
+        "logo": "https://www.tmistudios.xyz/images/logo.png",
+        "sameAs": [
+          "https://twitter.com/tmistudios",
+          "https://www.facebook.com/tmistudios",
+          "https://www.instagram.com/tmistudios"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.tmistudios.xyz/#website",
+        "url": "https://www.tmistudios.xyz/",
+        "name": "TMI Studios",
+        "publisher": {
+          "@id": "https://www.tmistudios.xyz/#org"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.tmistudios.xyz/packages.html",
+        "url": "https://www.tmistudios.xyz/packages.html",
+        "name": "Packages — TMI Studios",
+        "description": "Packages for web games, quizzes, branding, and viral ad campaigns by TMI Studios",
+        "inLanguage": "en-GB",
+        "isPartOf": { "@id": "https://www.tmistudios.xyz/#website" }
+      }
+    ]
   }
-  .modal-content h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .modal-content p { margin-bottom: 1rem; color: #ccc; }
-  .modal-content input {
-    width: 80%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #444;
-    outline: none;
-    background: #0d0d1a;
-    color: #fff;
-  }
-  .modal-content input:focus {
-    border-color: #5b21b6;
-    box-shadow: 0 0 0 2px rgba(91,33,182,0.3);
-  }
-  .modal-content .btn-close {
-    background: #f87171;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    color: white;
-    font-weight: 600;
-    margin-top: 0.5rem;
-    cursor: pointer;
-    position: absolute;
-    top: -15px;
-    right: -15px;
-  }
+  </script>
 
-  /* FULL-ON CHAOTIC GLITCH H1 */
-  .glitch {
-    position: relative;
-    font-size: 3rem;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: 1px;
-    animation: flicker 1.5s infinite;
-  }
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    color: #ff00c1;
-    overflow: hidden;
-  }
+  <!-- Minimal Tailwind used only for convenience; rest is custom CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  .glitch::after {
-    color: #00fff9;
-    animation: glitchAnim 1s infinite linear alternate-reverse;
-    clip-path: inset(0 0 0 0);
-  }
+  <style>
+    /* ---------- BASE ---------- */
+    :root{
+      --bg:#0d0d1a;
+      --muted:#cfcfd6;
+      --accent:#5b21b6;
+      --accent-2:#a855f7;
+      --glass: rgba(255,255,255,0.04);
+    }
+    html,body{height:100%}
+    body{margin:0; font-family:Inter, system-ui, -apple-system, "Helvetica Neue", Arial; background:var(--bg); color:#e9e9ef; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
 
-  .glitch::before {
-    animation: glitchAnim 1s infinite linear alternate;
-    clip-path: inset(0 0 0 0);
-  }
+    a{color:inherit; text-decoration:none}
+    /* NAV */
+    nav{background:#0b0b11; padding:1rem 1.25rem; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(255,255,255,0.02)}
+    .brand a{font-weight:700; color:#fff; font-size:1.05rem}
+    .nav-links{display:flex; gap:1.4rem; align-items:center}
+    .nav-links a{color:var(--muted); font-weight:600; font-size:0.95rem}
+    .nav-links a:hover{color:#fff}
 
-  @keyframes flicker {
-    0%,19%,21%,23%,25%,54%,56%,100% {opacity:1;}
-    20%,22%,24%,55% {opacity:0.4;}
-  }
+    /* title - glitch effect */
+    .glitch-title {
+      position: relative;
+      font-size: 2.6rem;
+      font-weight: 800;
+      text-align: center;
+      color: #fff;
+      display: inline-block;
+    }
 
-  @keyframes glitchAnim {
-    0% { transform: translate(0,0) skew(0deg); clip-path: inset(0 0 0 0);}
-    10% { transform: translate(-5px,2px) skew(-5deg); clip-path: inset(5% 0 15% 0);}
-    20% { transform: translate(5px,-2px) skew(3deg); clip-path: inset(10% 0 10% 0);}
-    30% { transform: translate(-3px,5px) skew(-3deg); clip-path: inset(15% 0 5% 0);}
-    40% { transform: translate(2px,-5px) skew(2deg); clip-path: inset(20% 0 0 0);}
-    50% { transform: translate(-2px,3px) skew(-1deg); clip-path: inset(10% 0 20% 0);}
-    60% { transform: translate(4px,-4px) skew(4deg); clip-path: inset(5% 0 10% 0);}
-    70% { transform: translate(-4px,2px) skew(-2deg); clip-path: inset(0 0 15% 0);}
-    80% { transform: translate(2px,0) skew(1deg); clip-path: inset(15% 0 5% 0);}
-    90% { transform: translate(-1px,3px) skew(-3deg); clip-path: inset(5% 0 20% 0);}
-    100% { transform: translate(0,0) skew(0deg); clip-path: inset(0 0 0 0);}
-  }
-</style>
+    .glitch-title::before,
+    .glitch-title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .glitch-title::before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00c1;
+      animation: glitch 1.5s infinite linear alternate-reverse;
+    }
+
+    .glitch-title::after {
+      left: -2px;
+      text-shadow: -2px 0 #00fff9;
+      animation: glitch 2s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch {
+      0% { clip-path: inset(0 0 90% 0); }
+      10% { clip-path: inset(10% 0 60% 0); }
+      20% { clip-path: inset(20% 0 40% 0); }
+      30% { clip-path: inset(5% 0 80% 0); }
+      40% { clip-path: inset(40% 0 20% 0); }
+      50% { clip-path: inset(30% 0 50% 0); }
+      60% { clip-path: inset(15% 0 70% 0); }
+      70% { clip-path: inset(25% 0 30% 0); }
+      80% { clip-path: inset(0 0 100% 0); }
+      90% { clip-path: inset(50% 0 10% 0); }
+      100% { clip-path: inset(0 0 90% 0); }
+    }
+
+    /* layout */
+    header.hero{min-height:36vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem}
+    .subtitle{color:var(--muted); max-width:920px; margin:0.6rem auto 1.6rem; line-height:1.5; font-size:1.05rem}
+
+    /* scroll lists */
+    .scroll-container{display:flex; gap:0.9rem; overflow-x:auto; padding:1rem 0.6rem; -webkit-overflow-scrolling:touch}
+    .glass{background:var(--glass); border:1px solid rgba(255,255,255,0.06); border-radius:12px; min-width:220px; padding:1.15rem; display:flex; flex-direction:column; gap:.6rem}
+    .package-title{font-weight:700; color:var(--accent-2)}
+    .package-price{font-weight:700; color:#fff}
+    .package-list{list-style:none; padding:0; margin:0; color:var(--muted); font-size:.95rem}
+
+    .btn-purple{background:var(--accent); color:#fff; padding:.55rem .9rem; border-radius:.6rem; font-weight:700; cursor:pointer; border:none}
+    .btn-purple:hover{background:#6d28d9}
+
+    /* WhatsApp CTA box */
+    #whatsapp-tile{max-width:640px;margin:2rem auto; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:1rem 1.15rem; border:1px solid rgba(255,255,255,0.04); text-align:center; color:var(--muted)}
+    #whatsapp-tile .title{font-weight:700; color:#fff; margin-bottom:.35rem; font-size:1.1rem}
+    #whatsapp-tile p{margin:0; line-height:1.4}
+    #whatsapp-tile .cta{display:inline-block; margin-top:.8rem; background:#25D366; color:#fff; padding:.6rem 1rem; border-radius:10px; font-weight:700}
+
+    /* modal */
+    .modal-bg{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); align-items:center; justify-content:center; z-index:80}
+    .modal-content{background:#0e0e19; border-radius:12px; padding:1.25rem; max-width:420px; width:94%; border:1px solid rgba(255,255,255,0.04); color:var(--muted)}
+    .modal-content h3{margin-top:0; color:#fff}
+    .modal-content input{width:100%; padding:.6rem; margin:.5rem 0; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:#0a0a10; color:#fff}
+
+    /* footer - centered, light grey */
+    footer{background:#000; text-align:center; padding:2rem 1rem; color:var(--muted)}
+    footer .social{margin-bottom:1rem}
+    footer a{color:var(--muted); text-decoration:none; display:inline-block; margin:6px 8px}
+    footer a:hover{color:#fff}
+    footer p{margin:6px 0; color:var(--muted)}
+
+    /* responsiveness */
+    @media (max-width:768px){
+      .nav-links{gap:1rem}
+      .glitch-title{font-size:1.9rem}
+      .scroll-container{gap:.8rem}
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
-<nav>
-  <div class="font-bold text-lg"><a href="index.html">TMI Studios</a></div>
-  <div class="flex gap-6 text-sm">
-    <a href="arcade.html">Arcade</a>
-    <a href="lab.html">Lab</a>
-    <a href="aboutus.html">About</a>
+  <!-- NAV -->
+  <nav>
+    <div class="brand"><a href="/index.html">TMI Studios</a></div>
+
+    <div class="nav-links" role="navigation" aria-label="Main menu">
+      <a href="/arcade.html">Arcade</a>
+      <a href="/lab.html">Lab</a>
+      <a href="/aboutus.html">About</a>
+      <a href="/contactus.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <h1 class="glitch-title" data-text="Let's Build Your Viral Strategy 🚀">Let's Build Your Viral Strategy 🚀</h1>
+      <p class="subtitle">
+        We design shareable web games, chaos quizzes and viral ad experiences that convert attention into action.
+        Pick a package — from a quick quiz to a full branded game + paid-social launch.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Arcade packages -->
+    <section style="padding:1.25rem 1rem 0;">
+      <h2 style="text-align:center; margin-bottom:.75rem">🎮 Arcade — Game Packages</h2>
+      <div class="scroll-container" aria-hidden="false">
+        <div class="glass" role="group" aria-label="Mini Game package">
+          <div class="package-title">Mini Game</div>
+          <ul class="package-list">
+            <li>Quick quiz or meme game</li>
+            <li>Branded styling & sound</li>
+            <li>Mobile + desktop friendly</li>
+          </ul>
+          <div class="package-price">From R10,000</div>
+          <button class="btn-purple select-package" data-package="Arcade Mini Game">Select</button>
+        </div>
+
+        <div class="glass" role="group" aria-label="Standard Game package">
+          <div class="package-title">Standard Game</div>
+          <ul class="package-list">
+            <li>Custom mechanics</li>
+            <li>Level progression</li>
+            <li>Share + leaderboard</li>
+          </ul>
+          <div class="package-price">From R15,000</div>
+          <button class="btn-purple select-package" data-package="Arcade Standard Game">Select</button>
+        </div>
+
+        <div class="glass" role="group" aria-label="Premium Game package">
+          <div class="package-title">Premium Game</div>
+          <ul class="package-list">
+            <li>Full branded experience</li>
+            <li>Advanced mechanics & rewards</li>
+            <li>Campaign + analytics</li>
+          </ul>
+          <div class="package-price">From R40,000</div>
+          <button class="btn-purple select-package" data-package="Arcade Premium Game">Select</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advertising packages -->
+    <section style="padding:1.75rem 1rem 0;">
+      <h2 style="text-align:center; margin-bottom:.75rem">🚀 Viral Advertising</h2>
+      <div class="scroll-container">
+        <div class="glass">
+          <div class="package-title">Basic</div>
+          <ul class="package-list"><li>1 branded meme</li><li>Ad placement</li></ul>
+          <div class="package-price">R8,000</div>
+          <button class="btn-purple select-package" data-package="Advertising Basic">Select</button>
+        </div>
+
+        <div class="glass">
+          <div class="package-title">Pro</div>
+          <ul class="package-list"><li>Campaign + paid ads</li><li>Creative memetics</li></ul>
+          <div class="package-price">R15,000</div>
+          <button class="btn-purple select-package" data-package="Advertising Pro">Select</button>
+        </div>
+
+        <div class="glass">
+          <div class="package-title">Max</div>
+          <ul class="package-list"><li>Full campaign + in-game placement</li></ul>
+          <div class="package-price">R25,000</div>
+          <button class="btn-purple select-package" data-package="Advertising Max">Select</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Website / App -->
+    <section style="padding:1.75rem 1rem 0 1rem;">
+      <h2 style="text-align:center; margin-bottom:.75rem">📲 Website & App</h2>
+      <div class="scroll-container">
+        <div class="glass">
+          <div class="package-title">Google My Business</div>
+          <ul class="package-list"><li>Profile setup</li><li>Photos & basic SEO</li></ul>
+          <div class="package-price">R1,200</div>
+          <button class="btn-purple select-package" data-package="Website GMB">Select</button>
+        </div>
+
+        <div class="glass">
+          <div class="package-title">Starter Site</div>
+          <ul class="package-list"><li>1 page landing</li><li>Responsive</li></ul>
+          <div class="package-price">R3,500</div>
+          <button class="btn-purple select-package" data-package="Website Starter Site">Select</button>
+        </div>
+
+        <div class="glass">
+          <div class="package-title">E-commerce</div>
+          <ul class="package-list"><li>Products, cart, payments</li></ul>
+          <div class="package-price">R12,500</div>
+          <button class="btn-purple select-package" data-package="Website E-commerce">Select</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WhatsApp CTA -->
+    <div id="whatsapp-tile" role="region" aria-label="Join our WhatsApp channel">
+      <div class="title">Join Our WhatsApp Channel 💬</div>
+      <p>Be first to hear about new games, experiments and drops — chaotic quizzes, limited builds and early playtests.</p>
+      <a class="cta" href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener noreferrer">Join the Channel</a>
+    </div>
+
+  </main>
+
+  <!-- PACKAGE CONTACT MODAL (Formspree used) -->
+  <div class="modal-bg" id="packageModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button style="position:absolute;right:10px;top:8px;background:#f87171;border:none;color:#fff;padding:.35rem .5rem;border-radius:8px;cursor:pointer" id="closeModal" aria-label="Close">✕</button>
+      <h3 id="modalTitle">Request this package</h3>
+      <p style="color:var(--muted)">Tell us a bit about your project. We respond within one business day.</p>
+      <<form action="https://formspree.io/f/manpnobz" method="POST">
+        <input type="hidden" name="package" id="modalPackage" value="">
+        <input name="name" type="text" placeholder="Your name" required>
+        <input name="email" type="email" placeholder="Email" required>
+        <input name="phone" type="text" placeholder="Phone (optional)">
+        <div style="text-align:right; margin-top:.5rem">
+          <button type="submit" class="btn-purple">Send</button>
+        </div>
+      </form>
+    </div>
   </div>
-</nav>
 
-<!-- HERO -->
-<section class="py-12 px-6 flex flex-col items-center text-center">
-  <h1 class="glitch" data-text="Let's Build Your Viral Strategy 🚀">
-    Let's Build Your Viral Strategy 🚀
-  </h1>
-  <p class="text-lg text-gray-400 mb-6">From branding to games and social campaigns, we craft strategies that make you stand out.</p>
-  <button class="btn-purple select-package" data-package="Hero CTA">Get Started</button>
-</section>
-
-<main class="px-6 md:px-16 pb-16 space-y-12">
-  <!-- PACKAGE SECTIONS -->
-  <!-- Branding -->
-  <section>
-    <h2 class="text-3xl font-semibold mb-4 text-center">🎨 Branding Packages</h2>
-    <div class="scroll-container">
-      <div class="glass">
-        <h3 class="package-title">BASIC</h3>
-        <ul class="package-list"><li>Logo</li><li>Business Cards</li><li>Email Signature</li></ul>
-        <p class="package-price">R450</p>
-        <button class="btn-purple select-package" data-package="Branding BASIC">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">PRO</h3>
-        <ul class="package-list"><li>BASIC + Letterhead</li><li>Social Media Profiles</li><li>Brand Guide</li></ul>
-        <p class="package-price">R1,150</p>
-        <button class="btn-purple select-package" data-package="Branding PRO">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">PREMIUM</h3>
-        <ul class="package-list"><li>Full Kit + Flyers</li><li>Pitch Deck</li><li>Editable Canva Kits</li></ul>
-        <p class="package-price">Contact</p>
-        <button class="btn-purple select-package" data-package="Branding PREMIUM">Select</button>
-      </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="social" aria-label="Follow us">
+      <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok fa-lg"></i></a>
+      <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
+      <a href="https://facebook.com/tmistudios" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
     </div>
-  </section>
 
-  <!-- Website / App -->
-  <section>
-    <h2 class="text-3xl font-semibold mb-4 text-center">📲 Website / App Packages</h2>
-    <div class="scroll-container">
-      <div class="glass">
-        <h3 class="package-title">Google My Business</h3>
-        <ul class="package-list"><li>Business Profile Setup</li><li>Photos & Description</li><li>Basic SEO</li></ul>
-        <p class="package-price">R1,200</p>
-        <button class="btn-purple select-package" data-package="Website Google My Business">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">Starter Site</h3>
-        <ul class="package-list"><li>1 Page / Landing Page</li><li>Mobile Responsive</li><li>Contact Form</li></ul>
-        <p class="package-price">R3,500</p>
-        <button class="btn-purple select-package" data-package="Website Starter Site">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">Business Site</h3>
-        <ul class="package-list"><li>5 Page Site</li><li>Blog Setup</li><li>SEO Optimized</li></ul>
-        <p class="package-price">R7,500</p>
-        <button class="btn-purple select-package" data-package="Website Business Site">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">E-commerce Site</h3>
-        <ul class="package-list"><li>Product Catalog</li><li>Cart & Checkout</li><li>Payment Integration</li></ul>
-        <p class="package-price">R12,500</p>
-        <button class="btn-purple select-package" data-package="Website E-commerce Site">Select</button>
-      </div>
-    </div>
-  </section>
+    <p>&copy; 2025 TMI Studios — All rights reserved</p>
+    <p><a href="/contactus.html">Put your ad in our games and reach thousands of daily players</a></p>
+    <p>
+      <a href="/arcade.html">Arcade</a> &nbsp; • &nbsp;
+      <a href="/privacy.html">Privacy Policy</a> &nbsp; • &nbsp;
+      <a href="/termsofuse.html">Terms of Use</a>
+    </p>
+  </footer>
 
-  <!-- Social Media -->
-  <section>
-    <h2 class="text-3xl font-semibold mb-4 text-center">📱 Social Media Marketing</h2>
-    <div class="scroll-container">
-      <div class="glass">
-        <h3 class="package-title">Starter</h3>
-        <ul class="package-list"><li>Instagram Only</li><li>5 Posts / Week</li><li>Basic Captions</li></ul>
-        <p class="package-price">R3,500 / month</p>
-        <button class="btn-purple select-package" data-package="Social Starter">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">Growth</h3>
-        <ul class="package-list"><li>Instagram & Facebook</li><li>10 Posts / Week</li><li>Engagement Strategy</li></ul>
-        <p class="package-price">R5,000 / month</p>
-        <button class="btn-purple select-package" data-package="Social Growth">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">Pro</h3>
-        <ul class="package-list"><li>Instagram, Facebook & TikTok</li><li>Full Content Calendar</li><li>Paid Ad Campaigns</li></ul>
-        <p class="package-price">R9,500 / month</p>
-        <button class="btn-purple select-package" data-package="Social Pro">Select</button>
-      </div>
-    </div>
-  </section>
+  <!-- Minimal JS: modal + package buttons -->
+  <script>
+    // Modal logic
+    const modalBg = document.getElementById('packageModal');
+    const modalPackageInput = document.getElementById('modalPackage');
+    const closeModal = document.getElementById('closeModal');
 
-  <!-- Arcade -->
-  <section>
-    <h2 class="text-3xl font-semibold mb-4 text-center">🎮 TMI Arcade</h2>
-    <div class="scroll-container">
-      <div class="glass">
-        <h3 class="package-title">Mini Game</h3>
-        <ul class="package-list"><li>Quiz / Party Meme Game</li><li>Branded Memes</li><li>Mobile & Desktop Friendly</li></ul>
-        <p class="package-price">from R10,000</p>
-        <button class="btn-purple select-package" data-package="Arcade Mini Game">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">Standard Game</h3>
-        <ul class="package-list"><li>Custom Shooter Game</li><li>Multi-Level</li><li>Mini Challenges</li></ul>
-        <p class="package-price">from R15,000</p>
-        <button class="btn-purple select-package" data-package="Arcade Standard Game">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">Premium Game</h3>
-        <ul class="package-list"><li>Endless Runner Game</li><li>Fully Branded Experience</li><li>Advanced Mechanics & Rewards</li></ul>
-        <p class="package-price">from R40,000</p>
-        <button class="btn-purple select-package" data-package="Arcade Premium Game">Select</button>
-      </div>
-    </div>
-  </section>
+    document.querySelectorAll('.select-package').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pkg = btn.getAttribute('data-package') || 'Package enquiry';
+        modalPackageInput.value = pkg;
+        modalBg.style.display = 'flex';
+        modalBg.setAttribute('aria-hidden','false');
+      });
+    });
 
-  <!-- Advertising -->
-  <section>
-    <h2 class="text-3xl font-semibold mb-4 text-center">🚀 Viral Advertising</h2>
-    <div class="scroll-container">
-      <div class="glass">
-        <h3 class="package-title">Basic</h3>
-        <ul class="package-list"><li>1 Branded Meme</li><li>Placed in Social Media Ad</li></ul>
-        <p class="package-price">R8,000</p>
-        <button class="btn-purple select-package" data-package="Advertising Basic">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">Pro</h3>
-        <ul class="package-list"><li>Full Meme Campaign</li><li>Paid Ads</li><li>Branded Memes</li></ul>
-        <p class="package-price">R15,000</p>
-        <button class="btn-purple select-package" data-package="Advertising Pro">Select</button>
-      </div>
-      <div class="glass">
-        <h3 class="package-title">Max</h3>
-        <ul class="package-list"><li>Pro Package + Meme in Party Game / Viral Quiz</li></ul>
-        <p class="package-price">R25,000</p>
-        <button class="btn-purple select-package" data-package="Advertising Max">Select</button>
-      </div>
-    </div>
-  </section>
+    closeModal.addEventListener('click', () => {
+      modalBg.style.display = 'none';
+      modalBg.setAttribute('aria-hidden','true');
+    });
 
-  <!-- Newsletter Subscription -->
-  <section class="text-center">
-    <h2 class="text-2xl font-semibold mb-4">Subscribe to Our Newsletter</h2>
-    <button class="btn-purple select-package" data-package="Newsletter">Subscribe</button>
-  </section>
+    window.addEventListener('click', (e) => {
+      if (e.target === modalBg) {
+        modalBg.style.display = 'none';
+        modalBg.setAttribute('aria-hidden','true');
+      }
+    });
 
-</main>
-
-<!-- PACKAGE MODAL -->
-<div class="modal-bg" id="packageModal">
-  <div class="modal-content">
-    <button class="btn-close" id="closeModal">&times;</button>
-    <h3 id="modalTitle">Get This Package</h3>
-    <p>Fill in your details and we'll get back to you!</p>
-    <form action="https://formspree.io/f/manpnobz" method="POST">
-      <input type="hidden" name="package" id="modalPackage" value="">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <input type="text" name="phone" placeholder="Phone Number">
-      <br>
-      <button type="submit" class="btn-purple">Submit</button>
-    </form>
-  </div>
-</div>
-
-<footer class="bg-gray-900 text-gray-400 text-center py-6">
-  <p>&copy; 2025 TMI Studios. All Rights Reserved.</p>
-  <p><a href="/privacy.html">Privacy Policy</a></p>
-</footer>
-
-<script>
-  const modal = document.getElementById('packageModal');
-  const closeModalBtn = document.getElementById('closeModal');
-  const modalPackageInput = document.getElementById('modalPackage');
-  const modalTitle = document.getElementById('modalTitle');
-
-  document.querySelectorAll('.select-package').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const packageName = btn.getAttribute('data-package');
-      modal.style.display = 'flex';
-      modalPackageInput.value = packageName;
-      modalTitle.innerText = `Interested in "${packageName}"?`;
-    });});
-
-  closeModalBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-</script>
+    // Accessibility: escape key closes modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalBg.style.display === 'flex') {
+        modalBg.style.display = 'none';
+        modalBg.setAttribute('aria-hidden','true');
+      }
+    });
+  </script>
 
 </body>
 </html>
