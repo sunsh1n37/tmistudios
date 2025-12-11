@@ -4,12 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>🚩 Red Flag Bingo | Savage Sip or Skip Game</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<!-- AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
      crossorigin="anonymous"></script>
 
 <!-- Open Graph Tags -->
 <meta property="og:title" content="Red Flag Bingo – Sip or Skip Game by TMI Studios" />
-<meta property="og:description" content="Quick, hilarious, and totally relatable – expose your inner delulu 🍷" />
+<meta property="og:description" content="Play Red Flag Bingo – a chaotic, hilarious sip-or-skip game that exposes your inner delulu 🍷" />
 <meta property="og:image" content="https://www.tmistudios.xyz/images/redflagbingo-sharecard.png" />
 <meta property="og:url" content="https://www.tmistudios.xyz/redflagbingo.html" />
 <meta property="og:type" content="website" />
@@ -18,11 +20,11 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Red Flag Bingo – Sip or Skip Game by TMI Studios">
-<meta name="twitter:description" content="Quick, hilarious, and totally relatable – expose your inner delulu 🍷">
+<meta name="twitter:description" content="Play Red Flag Bingo – a chaotic, hilarious sip-or-skip game that exposes your inner delulu 🍷">
 <meta name="twitter:image" content="https://www.tmistudios.xyz/images/redflagbingo-sharecard.png">
 
 <!-- Fallback SEO Meta -->
-<meta name="description" content="Play Red Flag Bingo – a chaotic, savage sip-or-skip game. Pick a category, then choose Sip 🍷 or Skip 🙅‍♀️. Are you ready to expose your inner delulu?" />
+<meta name="description" content="Red Flag Bingo is a quick, hilarious, and totally relatable sip-or-skip game. Pick a category, then choose Sip 🍷 or Skip 🙅‍♀️. Expose your inner delulu now!" />
 
 <!-- JSON-LD structured data -->
 <script type="application/ld+json">
@@ -72,6 +74,7 @@ button:hover{background:#ff4d4d;}
 #badgeImage.glow{animation:glow 1.5s infinite;}
 @keyframes glow{0%{box-shadow:0 0 5px gold;transform:scale(1);}50%{box-shadow:0 0 15px gold,0 0 20px orange;transform:scale(1.05);}100%{box-shadow:0 0 5px gold;transform:scale(1);}}
 footer{margin-top:30px;font-size:14px;color:#aaa;}
+.stickyHome{position:sticky;top:0;left:0;text-align:left; margin-bottom:20px;}
 .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(3px); animation: fadeIn 0.3s; }
 .modal-content { background: linear-gradient(145deg,#ff4d4d,#cc3333); margin: 10% auto; padding: 30px 20px; border-radius: 16px; max-width: 350px; text-align: center; color: #fff; box-shadow: 0 0 20px #ff4d4d; animation: slideUp 0.3s; position: relative; }
 .modal-content h2 { margin-bottom: 15px; font-size: 22px; text-shadow: 0 0 10px gold; }
@@ -88,13 +91,17 @@ footer{margin-top:30px;font-size:14px;color:#aaa;}
 </head>
 <body data-theme="dark">
 
+<!-- Sticky Home Link -->
+<div class="stickyHome"><a href="index.html" style="color:#ff4d4d;font-weight:bold;text-decoration:none;font-size:18px;">🏠 Home</a></div>
+
 <button id="themeToggle" onclick="toggleTheme()">🌙</button>
 
 <!-- Hero -->
 <div id="heroIntro">
 <h1 class="glow" id="heroTitle">Redflag Bingo</h1>
 <img src="images/redflagbingo.jpeg" alt="Red Flag Bingo" style="display:block;margin:20px auto;max-width:300px;height:auto;"/>
-<p>Quick, hilarious, and totally relatable – Redflag Bingo is the game you didn’t know you needed.<br>Pick a category, then choose to Sip (I’ve done this) or Skip (I haven’t).</p>
+  🚨 Ready to spill the tea, sis? <br><strong>Red Flag Bingo</strong> <p>Unhinged, must-play girls night game! 🍷🙅‍♀️ Sip or Skip, laugh, scream, and share with the group chat 👀<br> Only the bold survive this chaos!
+<br>Pick a category, then choose to Sip (I’ve done this) or Skip (I haven’t).
 </div>
 
 <!-- Category Screen -->
@@ -121,6 +128,11 @@ footer{margin-top:30px;font-size:14px;color:#aaa;}
     <div class="locked-overlay">🔒 Locked</div>
     <div class="category-title">Delulu Diaries</div>
   </div>
+</div>
+
+<!-- Back to Arcade Button -->
+<div style="margin-bottom:30px;">
+  <a href="arcade.html" style="display:inline-block;padding:12px 25px;background:#cc3333;color:#fff;border-radius:12px;text-decoration:none;font-weight:bold;transition:0.3s;">⬅️ Back to Arcade</a>
 </div>
 
 <!-- Game Screen -->
@@ -162,12 +174,39 @@ footer{margin-top:30px;font-size:14px;color:#aaa;}
   </div>
 </div>
 
-<footer>
-<p>&copy; 2025 Redflag Bingo by TMI Studios. All rights reserved.</p>
+<!-- Footer -->
+<footer class="bg-black text-center text-sm text-gray-600 py-8">
+  <div class="mb-3">
+    <span class="mr-2">Follow us:</span>
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-tiktok"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com/tmistudios" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-facebook"></i></a>
+ <footer>
+  <div>
+    <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+    <p><a href="/contactus.html">Put your ad in our games and reach thousands of daily players</a></p>
+    <p><a href="/arcade.html">Arcade</a></p>
+    <p><a href="/privacy.html">Privacy Policy</a></p>
+    <p><a href="/termsofuse.html">Terms of Use</a></p>
+  </div>
+</footer>
+
+<style>
+footer a {
+  text-decoration: none; /* removes underline */
+  color: inherit; /* keeps footer color */
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #ff4d4d; /* optional hover color */
+}
+</style>
 </footer>
 
 <script>
-// Game Variables
+// === GAME LOGIC ===
+// No changes here; game works exactly as before
 let selectedCategory = '';
 let currentIndex = 0;
 let questions = [];
@@ -212,12 +251,13 @@ function handleAnswer(answer){ if(answer==='sip') sipCount++; currentIndex++; sh
 
 function endGame(){
   document.getElementById('gameScreen').style.display = 'none';
-  document.getElementById('endScreen').style.display = 'block';
-  document.getElementById('finalSipCount').textContent = sipCount;
+  document.getElementById('endScreen').style.display = 'block';document.getElementById('finalSipCount').textContent = sipCount;
   let badge = badges[0];
   for(let i=0;i<badges.length;i++){ if(sipCount >= badges[i].threshold) badge = badges[i]; }
   document.getElementById('badgeAwarded').textContent = badge.text;
-  const imgEl = document.getElementById('badgeImage'); imgEl.src = badge.img; imgEl.classList.add('glow');
+  const imgEl = document.getElementById('badgeImage'); 
+  imgEl.src = badge.img; 
+  imgEl.classList.add('glow');
 }
 
 function restartGame(){
@@ -227,12 +267,23 @@ function restartGame(){
   document.getElementById('copyStatus').textContent = '';
 }
 
-function copyShareLink(){ navigator.clipboard.writeText(window.location.href); document.getElementById('copyStatus').textContent = 'Link copied! Share it with friends 🔗'; }
+function copyShareLink(){ 
+  navigator.clipboard.writeText(window.location.href); 
+  document.getElementById('copyStatus').textContent = 'Link copied! Share it with friends 🔗'; 
+}
 
-function openUpgradeModal(){document.getElementById('upgradeModal').style.display='block';}
-function closeUpgradeModal(){document.getElementById('upgradeModal').style.display='none';}
-function toggleTheme(){document.body.dataset.theme=document.body.dataset.theme==='dark'?'light':'dark';}
-window.onclick=function(event){if(event.target===document.getElementById('upgradeModal'))document.getElementById('upgradeModal').style.display='none';}
+function openUpgradeModal(){ document.getElementById('upgradeModal').style.display='block'; }
+function closeUpgradeModal(){ document.getElementById('upgradeModal').style.display='none'; }
+
+function toggleTheme(){
+  document.body.dataset.theme = document.body.dataset.theme==='dark' ? 'light' : 'dark';
+}
+
+// Close modal if clicking outside
+window.onclick=function(event){
+  if(event.target===document.getElementById('upgradeModal')) 
+    document.getElementById('upgradeModal').style.display='none';
+}
 </script>
 
 </body>
