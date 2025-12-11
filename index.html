@@ -180,12 +180,62 @@ function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);
 </script>
 
 <script>
-// Arcade + Quizzes
+// ---------- FALLBACK DATA ----------
+const fallbackArcade = [
+  {
+    title: "Flappy Fury",
+    description: "Rage-inducing Xmas chaos. Tap. Survive. Cry.",
+    image: "images/flappy1.png",
+    url: "/flappyfury.html",
+    buttonText: "Play"
+  },
+  {
+    title: "Chaotic Fortune Cookie",
+    description: "Unhinged fortunes for chronically online souls.",
+    image: "images/fortunecookie.png",
+    url: "/fortunecookie.html",
+    buttonText: "Open Cookie"
+  },
+  {
+    title: "What Red Flag Did You Ignore?",
+    description: "The quiz you already know the answer to.",
+    image: "images/redflag.png",
+    url: "/redflag.html",
+    buttonText: "Take Quiz"
+  }
+];
+
+const fallbackLab = [
+  {
+    title: "AI Roast Generator",
+    description: "Get roasted by AI. You asked for this.",
+    image: "images/airoast.png",
+    url: "/roastme.html",
+    buttonText: "Get Roasted"
+  },
+  {
+    title: "Caption Chaos AI",
+    description: "Turn your pics into viral captions.",
+    image: "images/captionai.png",
+    url: "/captionai.html",
+    buttonText: "Try It"
+  },
+  {
+    title: "AI Meme Maker",
+    description: "Make memes faster than your ex ghosts you.",
+    image: "images/memeai.png",
+    url: "/memeai.html",
+    buttonText: "Generate Meme"
+  }
+];
+
+// ---------- LOAD ARCADE ----------
 fetch('arcade.json?' + new Date().getTime())
-  .then(res => res.json())
+  .then(res => res.ok ? res.json() : { items: fallbackArcade })
   .then(data => {
     const container = document.getElementById('arcade-container');
-    data.items.slice(0,4).forEach(item => {
+    const items = (data.items && data.items.length > 0 ? data.items : fallbackArcade).slice(0,3);
+    items.forEach(item => {
       const card = document.createElement('div');
       card.classList.add('project');
       card.innerHTML = `
@@ -198,12 +248,13 @@ fetch('arcade.json?' + new Date().getTime())
     });
   });
 
-// Lab — AI Tools
+// ---------- LOAD LAB ----------
 fetch('lab.json?' + new Date().getTime())
-  .then(res => res.json())
+  .then(res => res.ok ? res.json() : { items: fallbackLab })
   .then(data => {
     const container = document.getElementById('lab-container');
-    data.items.forEach(item => {
+    const items = (data.items && data.items.length > 0 ? data.items : fallbackLab).slice(0,3);
+    items.forEach(item => {
       const card = document.createElement('div');
       card.classList.add('project');
       card.innerHTML = `
@@ -216,6 +267,23 @@ fetch('lab.json?' + new Date().getTime())
     });
   });
 
+// ---------- NEWS ----------
+fetch('news.json?' + new Date().getTime())
+  .then(res => res.json())
+  .then(data => {
+    const newsContainer = document.getElementById('news-container');
+    const sortedStories = data.stories.sort((a,b) => new Date(b.date) - new Date(a.date));
+    sortedStories.slice(0,3).forEach(story => {
+      const card = document.createElement('article');
+      card.classList.add('news-card');
+      card.innerHTML = `
+        <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
+        <h3>${story.headline}</h3>
+        <a href="news.html" class="btn secondary">Read More</a>`;
+      newsContainer.appendChild(card);
+    });
+  });
+</script>
 // News
 fetch('news.json?' + new Date().getTime())
   .then(res => res.json())
