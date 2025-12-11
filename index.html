@@ -8,16 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
-:root{
-  --bg:#0b0015;
-  --accent:#b388ff;
-  --accent2:#a855f7;
-  --text:#f4f4f4;
-  --muted:#c0bcd0;
-  --font:'Space Grotesk',sans-serif;
-  --footer-bg:radial-gradient(circle at top left,#1b0036,#0b0015);
-  --footer-link:#bfa3ff
-}
+:root{--bg:#0b0015;--accent:#b388ff;--accent2:#a855f7;--text:#f4f4f4;--muted:#c0bcd0;--font:'Space Grotesk',sans-serif;--footer-bg:radial-gradient(circle at top left,#1b0036,#0b0015);--footer-link:#bfa3ff}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:var(--font);color:var(--text);background:var(--bg);overflow-x:hidden}
 nav{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:2rem;padding:.75rem 1rem;z-index:10;position:sticky;top:0;background:var(--bg)}
@@ -69,140 +60,128 @@ canvas#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
 </style>
 </head>
 <body>
-
 <canvas id="stars"></canvas>
-
 <nav>
-  <a href="/arcade.html" class="nav-link">Arcade</a>
-  <a href="/lab.html" class="nav-link">Lab</a>
-  <a href="/packages.html" class="nav-link">Packages</a>
-  <a href="/aboutus.html" class="nav-link">About</a>
-  <a href="/contactus.html" class="nav-link">Contact</a>
+<a href="/arcade.html" class="nav-link">Arcade</a>
+<a href="/lab.html" class="nav-link">Lab</a>
+<a href="/packages.html" class="nav-link">Packages</a>
+<a href="/aboutus.html" class="nav-link">About</a>
+<a href="/contactus.html" class="nav-link">Contact</a>
 </nav>
 
 <header class="hero">
-  <img src="images/tmihero.jpeg" alt="TMI Studios Arcade" style="width:300px; mix-blend-mode: lighten;">
-  <p class="subtitle">Your hub for fast web games, chaos quizzes, and viral digital mayhem</p>
-  <div class="cta-group">
-    <a href="arcade.html" class="btn primary">Enter the Arcade</a>
-    <a href="lab.html" class="btn secondary">Visit the Lab</a>
-  </div>
+<img src="https://i.ibb.co/s2vYH0p/tmihero.jpeg" alt="TMI Studios Arcade" style="width:300px; mix-blend-mode: lighten;">
+<p class="subtitle">Your hub for fast web games, chaos quizzes, and viral digital mayhem</p>
+<div class="cta-group">
+<a href="arcade.html" class="btn primary">Enter the Arcade</a>
+<a href="lab.html" class="btn secondary">Visit the Lab</a>
+</div>
 </header>
 
 <section id="about">
-  <h2>Welcome to TMI Arcade</h2>
-  <p>Step into a digital playground where web games collide with chaos quizzes and viral experiences. Fast, fun, and endlessly scrollable — this is where players get hooked.</p>
+<h2>Welcome to TMI Arcade</h2>
+<p>Step into a digital playground where web games collide with chaos quizzes and viral experiences. Fast, fun, and endlessly scrollable — this is where players get hooked.</p>
 </section>
 
 <section id="arcade">
-  <h2>Arcade — Games & Chaos Quizzes</h2>
-  <div class="projects">
-    <div class="project">
-      <img src="images/flappyfury.jpeg" alt="Flappy Fury">
-      <h3>Flappy Fury</h3>
-      <p>Navigate the chaos and score high in this fast-paced Flappy-style madness.</p>
-      <a href="flappyfury.html" class="btn tile-btn">Play Now</a>
-    </div>
-    <div class="project">
-      <img src="images/redflagbingo.jpeg" alt="Redflag Bingo">
-      <h3>Redflag Bingo</h3>
-      <p>Chaos sip-or-skip game to expose your inner delulu.</p>
-      <a href="redflagbingo.html" class="btn tile-btn">Play Now</a>
-    </div>
-    <div class="project">
-      <img src="images/workornah.jpeg" alt="Work or Nah">
-      <h3>Work or Nah</h3>
-      <p>Quick, savage, and relatable – guess who’s working and who’s slacking.</p>
-      <a href="workornah.html" class="btn tile-btn">Play Now</a>
-    </div>
-  </div>
+<h2>Arcade — Games & Chaos Quizzes</h2>
+<div class="projects">
+<div class="project">
+<img src="https://i.ibb.co/QdR3fz1/flappyfury.jpeg" alt="Flappy Fury">
+<h3>Flappy Fury</h3>
+<p>Navigate the chaos and score high in this fast-paced Flappy-style madness.</p>
+<a href="flappyfury.html" class="btn tile-btn">Play Now</a>
+</div>
+<div class="project">
+<img src="https://i.ibb.co/wN7FznC/redflagbingo.jpeg" alt="Redflag Bingo">
+<h3>Redflag Bingo</h3>
+<p>Chaos sip-or-skip game to expose your inner delulu.</p>
+<a href="redflagbingo.html" class="btn tile-btn">Play Now</a>
+</div>
+<div class="project">
+<img src="https://i.ibb.co/FhZW9N7/workornah.jpeg" alt="Work or Nah">
+<h3>Work or Nah</h3>
+<p>Quick, savage, and relatable – guess who’s working and who’s slacking.</p>
+<a href="workornah.html" class="btn tile-btn">Play Now</a>
+</div>
+</div>
 </section>
 
 <section id="lab">
-  <h2>Lab — Experiments & AI Tools</h2>
-  <div class="projects">
-    <div class="project">
-      <img src="images/chaoscookie.jpeg" alt="Chaos Cookie">
-      <h3>Chaos Cookie</h3>
-      <p>Get a random chaotic fortune. Fun, light, and unpredictable!</p>
-      <a href="fortunecookie.html" class="btn tile-btn">Play Now</a>
-    </div>
-    <div class="project">
-      <img src="images/redflagquiz.jpeg" alt="What Redflag Are You?">
-      <h3>What Redflag Are You?</h3>
-      <p>Discover your inner chaos in this upcoming quiz.</p>
-      <button class="btn tile-btn" onclick="openComingSoon()">Coming Soon</button>
-    </div>
-    <div class="project">
-      <img src="images/solodateidea.jpeg" alt="Solo Date Idea Generator">
-      <h3>Solo Date Idea Generator</h3>
-      <p>Get wild solo date ideas from our upcoming AI experiment.</p>
-      <button class="btn tile-btn" onclick="openComingSoon()">Coming Soon</button>
-    </div>
-  </div>
+<h2>Lab — Experiments & AI Tools</h2>
+<div class="projects">
+<div class="project">
+<img src="https://i.ibb.co/1r3MK3V/chaoscookie.jpeg" alt="Chaos Cookie">
+<h3>Chaos Cookie</h3>
+<p>Get a random chaotic fortune. Fun, light, and unpredictable!</p>
+<a href="chaoscookie.html" class="btn tile-btn">Play Now</a>
+</div>
+<div class="project">
+<img src="https://i.ibb.co/fFj3R6h/redflagquiz.jpeg" alt="What Redflag Are You?">
+<h3>What Redflag Are You?</h3>
+<p>Discover your inner chaos in this upcoming quiz.</p>
+<button class="btn tile-btn" onclick="openComingSoon()">Coming Soon</button>
+</div>
+<div class="project">
+<img src="https://i.ibb.co/Tt9y7XY/solodateidea.jpeg" alt="Solo Date Idea Generator">
+<h3>Solo Date Idea Generator</h3>
+<p>Get wild solo date ideas from our upcoming AI experiment.</p>
+<button class="btn tile-btn" onclick="openComingSoon()">Coming Soon</button>
+</div>
+</div>
 </section>
 
 <section id="tmi-news">
-  <h2 style="color: var(--accent);">Top Stories from TMI News</h2>
-  <p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">
-    The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs.
-  </p>
-  <div id="news-container" class="news-grid"></div>
+<h2 style="color: var(--accent);">Top Stories from TMI News</h2>
+<p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs.</p>
+<div id="news-container" class="news-grid"></div>
 </section>
 
 <section id="contact">
-  <h2>Turn Ads into Playable Chaos</h2>
-  <p>We transform your campaigns into interactive game cards that players can’t help but share. Fun, viral, and immersive — your brand becomes part of the chaos.</p>
-  <a href="/contactus.html" class="btn primary">Start the Madness</a>
+<h2>Turn Ads into Playable Chaos</h2>
+<p>We transform your campaigns into interactive game cards that players can’t help but share. Fun, viral, and immersive — your brand becomes part of the chaos.</p>
+<a href="/contactus.html" class="btn primary">Start the Madness</a>
 </section>
 
 <div id="comingSoonPopup" class="popup-overlay">
-  <div class="popup-content">
-    <button class="close-popup" onclick="closeComingSoon()">✖</button>
-    <h2>Want first access? 👀</h2>
-    <p>Join our WhatsApp channel to be the <strong>first to know</strong> when this game drops.</p>
-    <a class="popup-btn" href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">Join the Channel 🚀</a>
-  </div>
+<div class="popup-content">
+<button class="close-popup" onclick="closeComingSoon()">✖</button>
+<h2>Want first access? 👀</h2>
+<p>Join our WhatsApp channel to be the <strong>first to know</strong> when this game drops.</p>
+<a class="popup-btn" href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">Join the Channel 🚀</a>
+</div>
 </div>
 
 <footer class="footer">
-  <div style="margin-bottom:1rem;">
-    <span>Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg mx-2"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg mx-2"></i></a>
-    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg mx-2"></i></a>
-  </div>
-  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html">Contact Us</a></p>
-  <p><a href="/privacy.html">Privacy Policy</a> | <a href="/termsofuse.html">Terms of Use</a></p>
+<div style="margin-bottom:1rem;">
+<span>Follow us:</span>
+<a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg mx-2"></i></a>
+<a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg mx-2"></i></a>
+<a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+</div>
+<p>&copy; 2025 TMI Studios. All rights reserved.</p>
+<p><a href="/contactus.html">Contact Us</a></p>
+<p><a href="/privacy.html">Privacy Policy</a> | <a href="/termsofuse.html">Terms of Use</a></p>
 </footer>
 
 <script>
 // Stars
 const canvas=document.getElementById("stars"),ctx=canvas.getContext("2d");let stars=[];
-function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;
-  stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}window.addEventListener("resize",resizeCanvas);resizeCanvas();
-function animateStars(){ctx.clearRect(0,0,canvas.width,canvas.height);
-  stars.forEach(s=>{ctx.beginPath();ctx.fillStyle=s.color;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1});requestAnimationFrame(animateStars)}animateStars();
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}
+window.addEventListener("resize",resizeCanvas);resizeCanvas();
+function animateStars(){ctx.clearRect(0,0,canvas.width,canvas.height);stars.forEach(s=>{ctx.beginPath();ctx.fillStyle=s.color;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1});requestAnimationFrame(animateStars)}
+animateStars();
 
 // Coming Soon
 function openComingSoon(){document.getElementById("comingSoonPopup").style.display="flex"}
 function closeComingSoon(){document.getElementById("comingSoonPopup").style.display="none"}
 
-// News
+// News Fetch
 const newsContainer=document.getElementById("news-container");
-const newsData=[
-  {image:"images/news1.jpeg",headline:"Chaos Quiz Hits Millions"},
-  {image:"images/news2.jpeg",headline:"New AI Experiment Launched"},
-  {image:"images/news3.jpeg",headline:"TMI Studios Goes Viral"}
-];
-newsData.forEach(story=>{
-  const card=document.createElement("article");
-  card.classList.add("news-card");
-  card.innerHTML=`<img src="${story.image}" alt="${story.headline}" class="hero-image"/><h3>${story.headline}</h3><a href="news.html" class="btn secondary">Read More</a>`;
-  newsContainer.appendChild(card);
-});
+fetch("news.json")
+.then(r=>r.json())
+.then(data=>{data.forEach(story=>{const card=document.createElement("article");card.classList.add("news-card");card.innerHTML=`<img src="${story.image}" alt="${story.headline}" class="hero-image"/><h3>${story.headline}</h3><a href="news.html" class="btn secondary">Read More</a>`;newsContainer.appendChild(card);})})
+.catch(err=>{console.error("News fetch failed:",err)});
 </script>
-
 </body>
 </html>
