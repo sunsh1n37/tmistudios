@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lava Climber — TMI Arcade</title>
+<style>
+body { margin:0; overflow:hidden; background:#87CEEB; font-family:Arial,sans-serif; touch-action:none; }
+#gameCanvas { display:block; }
+.screen { position:absolute; top:0; left:0; width:100%; height:100%; display:none; flex-direction:column; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); color:#fff; text-align:center; transition:opacity 0.3s ease; }
+button { margin:10px; padding:10px 20px; font-size:20px; border:none; border-radius:12px; background:#ff4500; color:#fff; cursor:pointer; }
+#score, #highScore, #levelDisplay { position:absolute; top:10px; font-size:18px; font-weight:bold; color:#fff; text-shadow:1px 1px 2px #000; }
+#score { left:10px; }
+#highScore { right:10px; }
+#levelDisplay { left:50%; transform:translateX(-50%); }
+#commentary { position:absolute; bottom:120px; left:50%; transform:translateX(-50%); color:#ff0; font-weight:bold; text-align:center; text-shadow:1px 1px 2px #000; }
+.arrow-btn { position:absolute; bottom:20px; width:60px; height:60px; background:rgba(0,0,0,0.5); color:#fff; font-size:36px; line-height:60px; text-align:center; border-radius:12px; user-select:none; }
+#left { left:20px; }
+#right { left:100px; }
+#jump { right:20px; }
+.skinBtn { font-size:32px; margin:5px; padding:5px 10px; cursor:pointer; border-radius:8px; background:rgba(0,0,0,0.5); color:#fff; }
+.locked { opacity:0.4; cursor:not-allowed; }
+#skinsContainer, #powerUpContainer { display:flex; flex-wrap:wrap; justify-content:center; margin:10px; }
+</style>
+</head>
+<body>
+<canvas id="gameCanvas"></canvas>
+
+<div id="score">Score: 0</div>
+<div id="highScore">High: 0</div>
+<div id="levelDisplay">Level: 1</div>
+<div id="commentary"></div>
+
+<div id="left" class="arrow-btn">◀️</div>
+<div id="right" class="arrow-btn">▶️</div>
+<div id="jump" class="arrow-btn">⬆️</div>
+
+<!-- HOME SCREEN -->
+<div id="homeScreen" class="screen" style="display:flex;">
+  <h1>Lava Climber</h1>
+  <p>Climb platforms, avoid lava, collect coins & power-ups!</p>
+  <button id="startGameBtn">Start Game</button>
+  <button id="openShopBtn">Shop</button>
+  <button id="openSettingsBtn">Settings</button>
+  <footer style="position:absolute;bottom:20px;">© TMI Arcade 2025</footer>
+</div>
+
+<!-- SHOP SCREEN -->
+<div id="shopScreen" class="screen">
+  <h2>Player & Power-Up Skins</h2>
+  <h3>Player Skins</h3>
+  <div id="skinsContainer"></div>
+  <h3>Power-Up Skins</h3>
+  <div id="powerUpContainer"></div>
+  <button id="closeShopBtn">Back to Home</button>
+</div>
+
+<!-- SETTINGS SCREEN -->
+<div id="settingsScreen" class="screen">
+  <h2>Settings</h2>
+  <p>Volume, Controls, etc.</p>
+  <button id="closeSettingsBtn">Back to Home</button>
+</div>
+
+<!-- LEVEL SCREEN -->
+<div id="levelScreen" class="screen">
+  <h2>Level <span id="nextLevelDisplay">1</span></h2>
+  <p>Target: <span id="targetPointsDisplay">5</span> points</p>
+  <button id="startLevelBtn">Start Level</button>
+</div>
+
+<!-- GAME OVER SCREEN -->
+<div id="gameOverScreen" class="screen">
+  <div id="gameOverText">🔥 You Burned! 🔥</div>
+  <button id="restartBtn">Restart</button>
+</div>
+
+<script>
+/* ------------------ CORE ------------------ */
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+/* HUD */
+const scoreEl = document.getElementById("score");
+const highScoreEl = document.getElementById("highScore");
+const levelDisplay = document.getElementById("levelDisplay");
+const commentary = document.getElementById("commentary");
+
+/* SCREENS */
+const homeScreen = document.getElementById("homeScreen");
+const shopScreen = document.getElementById("shopScreen");
+const settingsScreen = document.getElementById("settingsScreen");
+const levelScreen = document.getElementById("levelScreen");
+const gameOverScreen = document.getElementById("gameOverScreen");
+
+/* BUTTONS */
+const startGameBtn = document.getElementById("startGameBtn");
+const openShopBtn = document.getElementById("openShopBtn");
+const openSettingsBtn = document.getElementById("openSettingsBtn");
+const closeShopBtn = document.getElementById("closeShopBtn");
+const closeSettingsBtn = document.getElementById("closeSettingsBtn");
+const restartBtn = document.getElementById("restartBtn");
+const startLevelBtn = document.getElementById("startLevelBtn");
+
+/* LEVEL INFO */
+const nextLevelDisplay = document.getElementById("nextLevelDisplay");
+const targetPointsDisplay = document.getElementById("targetPointsDisplay");
+
+/* PLAYER & GAME STATE */
+let highScore = localStorage.getItem("lavaHighScore") || 0;
+highScoreEl.innerText = "High: " + highScore;
+
+let lavaHeight = 50, gravity = 0.6, jumpForce = -12, moveSpeed = 6;
+let velocityX = 0, score = 0, level = 1, targetPoints = 5, gameOverFlag = false, levelPaused = false;
+
+let player = {x:0,y:0,width:40,height:40,dy:0,jumping:false};
+let playerSkin = "🧑"; 
+let powerUpSkin = {default:"💰", pizza:"🍕", snowflake:"❄️", magnet:"🧲", shrink:"🍄"};
+
+let platforms = [], coins = [], powerUps = [], particles = [];
+let powerUpActive = {magnet:false,doublePoints:false,shrink:false,grow:false,freezeLava:false};
+let powerUpTimers = {magnet:0,doublePoints:0,shrink:0,grow:0,freezeLava:0};
+
+/* SHOP DATA */
+const freeSkins = ["🧑","👧"];
+const lockedSkins = ["👻","🤖","☠️","👽"];
+const freePowerUps = ["💰","🍕","❄️","🧲"];
+const lockedPowerUps = ["💜","🍄"];
+const skinsContainer = document.getElementById("skinsContainer");
+const powerUpContainer = document.getElementById("powerUpContainer");
+
+function renderShop(){
+  skinsContainer.innerHTML="";
+  [...freeSkins,...lockedSkins].forEach(s=>{
+    const btn = document.createElement("button");
+    btn.classList.add("skinBtn");
+    btn.innerText=s;
+    if(lockedSkins.includes(s)) btn.classList.add("locked");
+    btn.onclick = ()=>{ if(freeSkins.includes(s)) playerSkin=s; else alert("Skin locked!"); };
+    skinsContainer.appendChild(btn);
+  });
+  powerUpContainer.innerHTML="";
+  [...freePowerUps,...lockedPowerUps].forEach(p=>{
+    const btn = document.createElement("button");
+    btn.classList.add("skinBtn");
+    btn.innerText=p;
+    if(lockedPowerUps.includes(p)) btn.classList.add("locked");
+    btn.onclick = ()=>{
+      if(freePowerUps.includes(p)){
+        switch(p){ case "💰": powerUpSkin.default=p; break; case "🍕": powerUpSkin.pizza=p; break; case "❄️": powerUpSkin.snowflake=p; break; case "🧲": powerUpSkin.magnet=p; break; }
+      } else if(p==="🍄") powerUpSkin.shrink=p; else alert("Power-up locked!");
+    };
+    powerUpContainer.appendChild(btn);
+  });
+}
+
+/* CONTROLS */
+document.getElementById("left").ontouchstart = ()=> velocityX=-moveSpeed;
+document.getElementById("left").ontouchend = ()=> velocityX=0;
+document.getElementById("right").ontouchstart = ()=> velocityX=moveSpeed;
+document.getElementById("right").ontouchend = ()=> velocityX=0;
+document.getElementById("jump").ontouchstart = ()=>{
+  if(!player.jumping){ player.dy=jumpForce; player.jumping=true; }
+};
+window.addEventListener("keydown", e=>{
+  if(e.key==="ArrowLeft") velocityX=-moveSpeed;
+  if(e.key==="ArrowRight") velocityX=moveSpeed;
+  if(e.key===" " && !player.jumping) player.dy=jumpForce, player.jumping=true;
+});
+window.addEventListener("keyup", e=>{ if(e.key.includes("Arrow")) velocityX=0; });
+
+/* PLATFORMS */
+function createPlatforms(){ platforms=[]; let y=canvas.height-150; while(y>0){ let w=Math.random()*150+100; let x=Math.random()*(canvas.width-w); platforms.push({x,y,width:w,height:20}); y-=Math.random()*50+70; } }
+function placePlayer(){ let p=platforms.at(-1); player.x=p.x+p.width/2-player.width/2; player.y=p.y-player.height; player.dy=0; player.jumping=false; }
+function platformCollision(){ for(let p of platforms){ if(player.dy>=0 && player.x+player.width>p.x && player.x<p.x+p.width && player.y+player.height>=p.y && player.y+player.height<=p.y+p.height+player.dy){ player.y=p.y-player.height; player.dy=0; player.jumping=false; } } }
+
+/* PARTICLES */
+function burst(x,y,c){ for(let i=0;i<8;i++){ particles.push({x,y,dx:(Math.random()-0.5)*4,dy:(Math.random()-1.5)*4,life:30,c}); } }
+
+/* COLLISION */
+function hit(o,s){ return player.x<o.x+s && player.x+player.width>o.x && player.y<o.y+s && player.y+player.height>o.y; }
+
+/* GAME LOOP */
+function update(){
+  if(!levelPaused){
+    player.dy+=gravity; player.y+=player.dy; player.x+=velocityX;
+    if(player.x<0) player.x=0; if(player.x+player.width>canvas.width) player.x=canvas.width-player.width;
+    platformCollision();
+    if(player.y+player.height>canvas.height-(powerUpActive.freezeLava?0:lavaHeight)) endGame();
+    lavaHeight += powerUpActive.freezeLava?0:0.03;
+    applyPowerUps();
+
+    // Coins spawn & collision
+    if(Math.random()<0.02) coins.push({x:Math.random()*canvas.width,y:-20,size:20});
+    coins.forEach((c,i)=>{ c.y+=3; if(hit(c,20)){ burst(c.x,c.y,"gold"); score+=powerUpActive.doublePoints?2:1; coins.splice(i,1); if(score>=targetPoints) showLevelScreen(); } });
+
+    // PowerUps spawn & collision
+    if(Math.random()<0.005){ const t=[powerUpSkin.snowflake,powerUpSkin.magnet,powerUpSkin.grow,powerUpSkin.shrink]; powerUps.push({x:Math.random()*canvas.width,y:-30,size:30,type:t[Math.floor(Math.random()*t.length)]}); }
+    powerUps.forEach((p,i)=>{ p.y+=3; if(hit(p,p.size)){ burst(p.x,p.y,"magenta"); switch(p.type){ case powerUpSkin.snowflake: powerUpActive.freezeLava=true,powerUpTimers.freezeLava=300; break; case powerUpSkin.magnet: powerUpActive.magnet=true,powerUpTimers.magnet=300; break; case powerUpSkin.grow: powerUpActive.grow=true,powerUpTimers.grow=300; break; case powerUpSkin.shrink: powerUpActive.shrink=true,powerUpTimers.shrink=300; break; } powerUps.splice(i,1); } });
+
+    // PowerUp timers
+    for(let k in powerUpTimers){ if(powerUpTimers[k]>0) powerUpTimers[k]--; else powerUpActive[k]=false; }
+
+    // Particles
+    particles.forEach((p,i)=>{ p.x+=p.dx; p.y+=p.dy; p.life--; if(p.life<=0) particles.splice(i,1); });
+
+    scoreEl.innerText="Score: "+Math.floor(score);
+    levelDisplay.innerText = "Level: "+level;
+  }
+  draw(); requestAnimationFrame(update);
+}
+
+function applyPowerUps(){
+  let targetW = powerUpActive.shrink?20:powerUpActive.grow?60:40;
+  let targetH = powerUpActive.shrink?20:powerUpActive.grow?60:40;
+  player.width += (targetW-player.width)*0.1;
+  player.height += (targetH-player.height)*0.1;
+
+  if(powerUpActive.magnet){
+    coins.forEach(c=>{
+      let dx = player.x+player.width/2-c.x;
+      let dy = player.y+player.height/2-c.y;
+      let dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<200){ c.x+=dx*0.05; c.y+=dy*0.05; }
+    });
+  }
+}
+
+/* LEVEL / GAMEOVER */
+const roasts = [  "🔥You got burned! 🔥",
+  "💥 RIP, bro!☠️",
+  "😱 Oooooh burn! 😱",
+  "🤣 Flame broiled by chef TMI💜!",
+  "🍟 You just got fried!",
+  "🍗 This game just fried you like KFC!",
+  "🔥 Would you lime a slice of cheese with your toast? 😂🥪",
+  "💀 Burned to a crisp!",
+  "😵 You’re lava soup now🥘",
+  "🌋 Melting faster than ice cream in peek summer🍨🫠"];
+
+function endGame(){
+  gameOverFlag = true;
+  levelPaused = true;
+  const roast = roasts[Math.floor(Math.random() * roasts.length)];
+  document.getElementById("gameOverText").innerText = roast;  // show roast in game over div
+  if(score > highScore){
+    highScore = Math.floor(score);
+    localStorage.setItem("lavaHighScore", highScore);
+    highScoreEl.innerText = "High: " + highScore;
+  }
+  gameOverScreen.style.display = "flex";
+}
+
+function showLevelScreen(){
+  levelPaused=true;
+  level++;
+  targetPoints+=5;
+  nextLevelDisplay.innerText=level;
+  targetPointsDisplay.innerText=targetPoints;
+  commentary.innerText="";
+  levelScreen.style.display="flex";
+}
+
+function resetGame(){
+  lavaHeight=50; velocityX=0; score=0; levelPaused=false; gameOverFlag=false;
+  player={x:0,y:0,width:40,height:40,dy:0,jumping:false};
+  coins=[]; powerUps=[]; particles=[];
+  powerUpActive={magnet:false,doublePoints:false,shrink:false,grow:false,freezeLava:false};
+  powerUpTimers={magnet:0,doublePoints:0,shrink:0,grow:0,freezeLava:0};
+  createPlatforms(); placePlayer();
+}
+
+/* DRAW */
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#654321"; platforms.forEach(p=>ctx.fillRect(p.x,p.y,p.width,p.height));
+  ctx.font=player.width+"px Arial"; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(playerSkin, player.x+player.width/2, player.y+player.height/2);
+  ctx.font="20px Arial"; coins.forEach(c=>ctx.fillText(powerUpSkin.default,c.x,c.y));
+  ctx.font="30px Arial"; powerUps.forEach(p=>ctx.fillText(p.type||powerUpSkin.shrink,p.x,p.y));
+  let wave=Math.sin(Date.now()*0.002)*5; ctx.fillStyle=powerUpActive.freezeLava ? "#fff" : `rgb(255,${60+Math.sin(Date.now()*0.01)*20},0)`; ctx.fillRect(0,canvas.height-lavaHeight+wave,canvas.width,lavaHeight);
+  particles.forEach(p=>{ ctx.fillStyle=p.c; ctx.globalAlpha=p.life/30; ctx.beginPath(); ctx.arc(p.x,p.y,3,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1; });
+}
+
+/* BUTTONS */
+startGameBtn.onclick = ()=>{ homeScreen.style.display="none"; resetGame(); };
+openShopBtn.onclick = ()=>{ homeScreen.style.display="none"; shopScreen.style.display="flex"; renderShop(); };
+closeShopBtn.onclick = ()=>{ shopScreen.style.display="none"; homeScreen.style.display="flex"; };
+openSettingsBtn.onclick = ()=>{ homeScreen.style.display="none"; settingsScreen.style.display="flex"; };
+closeSettingsBtn.onclick = ()=>{ settingsScreen.style.display="none"; homeScreen.style.display="flex"; };
+restartBtn.onclick = ()=>{ gameOverScreen.style.display="none"; resetGame(); };
+startLevelBtn.onclick = ()=>{ levelScreen.style.display="none"; resetGame(); };
+
+/* START */
+createPlatforms(); placePlayer(); update();
+window.onresize=()=>{ canvas.width=innerWidth; canvas.height=innerHeight; createPlatforms(); placePlayer(); };
+</script>
+</body>
+</html>
