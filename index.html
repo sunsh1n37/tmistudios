@@ -200,6 +200,15 @@ fetch("news.json")
   .catch(err => {
     console.error("News fetch failed:", err);
   });
+
+<script>
+const games = document.querySelectorAll('.arcade-game');
+games.forEach((game, index) => {
+  if (index > 2) game.style.display = 'none'; // hide 4th+ games
+});
 </script>
+
+</script>
+
 </body>
 </html>
