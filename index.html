@@ -178,11 +178,27 @@ function openComingSoon(){document.getElementById("comingSoonPopup").style.displ
 function closeComingSoon(){document.getElementById("comingSoonPopup").style.display="none"}
 
 // News Fetch
-const newsContainer=document.getElementById("news-container");
+const newsContainer = document.getElementById("news-container");
+
 fetch("news.json")
-.then(r=>r.json())
-.then(data=>{data.forEach(story=>{const card=document.createElement("article");card.classList.add("news-card");card.innerHTML=`<img src="${story.image}" alt="${story.headline}" class="hero-image"/><h3>${story.headline}</h3><a href="news.html" class="btn secondary">Read More</a>`;newsContainer.appendChild(card);})})
-.catch(err=>{console.error("News fetch failed:",err)});
+  .then(r => r.json())
+  .then(data => {
+    data.stories.forEach(story => {
+      const card = document.createElement("article");
+      card.classList.add("news-card");
+
+      card.innerHTML = `
+        <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
+        <h3>${story.headline}</h3>
+        <a href="news.html" class="btn secondary">Read More</a>
+      `;
+
+      newsContainer.appendChild(card);
+    });
+  })
+  .catch(err => {
+    console.error("News fetch failed:", err);
+  });
 </script>
 </body>
 </html>
