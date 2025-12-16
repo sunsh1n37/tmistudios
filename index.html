@@ -31,7 +31,6 @@ p{line-height:1.6;margin-bottom:1rem;color:var(--text)}
 .project{flex:0 0 300px;scroll-snap-align:start;background:rgba(255,255,255,0.05);padding:1.5rem;border-radius:12px;transition:transform .3s,background .3s;overflow:hidden}
 .project:hover{transform:translateY(-5px);background:rgba(255,255,255,0.08)}
 .project img{width:100%;border-radius:10px;margin-bottom:1rem;filter:brightness(0.9)}
-.project h3{color:var(--accent2);font-size:1.3rem;margin-bottom:.5rem}
 .projects::-webkit-scrollbar{height:8px}
 .projects::-webkit-scrollbar-thumb{background:rgba(179,136,255,0.3);border-radius:4px}
 .projects::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);border-radius:4px}
@@ -84,11 +83,10 @@ canvas#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
 <p>Step into a digital playground where web games collide with chaos quizzes and viral experiences. Fast, fun, and endlessly scrollable — this is where players get hooked 😎🎯</p>
 </section>
 
-<!-- Arcade Section -->
 <section id="arcade">
 <h2>Arcade — Games & Chaos Quizzes 🎲</h2>
 <div id="arcade-container" class="projects"></div>
-<button id="seeMoreBtn" class="btn secondary" style="margin-top:1.5rem; display:none;">See More Games ⬇️</button>
+<button id="seeMoreBtn" class="btn tile-btn" style="margin-top:1rem; display:none;">See More 🎮</button>
 </section>
 
 <section id="lab">
@@ -176,19 +174,21 @@ fetch("news.json")
       newsContainer.appendChild(card);
     });
   })
-  .catch(err => { console.error("News fetch failed:", err); });
+  .catch(err => console.error("News fetch failed:", err));
 
-// Arcade auto-fetch + See More
-const arcadeGames = [
-  { title: "Flappy Fury 🕹️", img: "https://i.ibb.co/4RPHbNw9/flappyfury.jpg", desc: "Navigate the chaos and score high in this fast-paced Flappy-style madness 🐦🔥", link: "flappyfury.html" },
-  { title: "Redflag Bingo 🃏", img: "images/redflagbingo.jpeg", desc: "Chaos sip-or-skip game to expose your inner delulu 😈🍷", link: "redflagbingo.html" },
-  { title: "Work or Nah 💼", img: "images/workornah.jpeg", desc: "Quick, savage, and relatable – guess who’s working and who’s slacking 🤓💀", link: "workornah.html" },
-  { title: "Ronaldo Jump ⚽", img: "images/ronaldojump.jpeg", desc: "Jump and dodge objects in this chaotic soccer challenge 🏆🔥", link: "ronaldojump.html" },
-  { title: "Mini Chaos Quiz 🔮", img: "images/chaosquiz.jpeg", desc: "Test your inner chaos in a fast, fun quiz 🌀😜", link: "chaosquiz.html" }
-];
-
+// Arcade Fetch
 const arcadeContainer = document.getElementById("arcade-container");
 const seeMoreBtn = document.getElementById("seeMoreBtn");
+let arcadeGames = [];
+let currentLimit = 3;
+
+fetch("arcade.json")
+  .then(res => res.json())
+  .then(data => {
+    arcadeGames = data.games || [];
+    renderGames(currentLimit);
+  })
+  .catch(err => console.error("Failed to fetch Arcade games:", err));
 
 function renderGames(limit) {
   arcadeContainer.innerHTML = "";
@@ -203,15 +203,10 @@ function renderGames(limit) {
     `;
     arcadeContainer.appendChild(tile);
   });
-  // Show "See More" button if there are more than 3
-  seeMoreBtn.style.display = arcadeGames.length > 3 ? "inline-block" : "none";
+
+  seeMoreBtn.style.display = arcadeGames.length > 3 && limit < arcadeGames.length ? "inline-block" : "none";
 }
 
-// Initial render
-let currentLimit = 3;
-renderGames(currentLimit);
-
-// See More click
 seeMoreBtn.addEventListener("click", () => {
   currentLimit = arcadeGames.length;
   renderGames(currentLimit);
