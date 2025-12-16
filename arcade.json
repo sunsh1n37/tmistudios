@@ -1,0 +1,34 @@
+{
+  "games": [
+    {
+      "title": "Lava Climber 🔥",
+      "img": "https://i.ibb.co/4ZCD7Wym/Lava-Climber.jpg",
+      "desc": "Jump between platforms, avoid the rising lava, and climb as high as possible! Can you survive the heat and reach the top?",
+      "link": "lavaclimber.html"
+    },
+    {
+      "title": "Flappy Fury 🐦",
+      "img": "https://i.ibb.co/4RPHbNw9/flappyfury.jpg",
+      "desc": "Flap, dodge, and survive! Flappy Fury is a chaotic, fast-paced game that tests your reflexes and persistence. Beat your high score and prove you’re the ultimate flapper! Perfect for quick, addictive gameplay that keeps players coming back.",
+      "link": "flappyfury.html"
+    },
+    {
+      "title": "Red Flag Bingo 🚩",
+      "img": "images/redflagbingo.jpeg",
+      "desc": "Chaos sip-or-skip game to expose your inner delulu 😈🍷",
+      "link": "redflagbingo.html"
+    },
+    {
+      "title": "Should I Text Him 💌",
+      "img": "images/shoulditext.jpeg",
+      "desc": "A quiz to see if you should text your ex — chaotic, hilarious, and eye-opening!",
+      "link": "shoulditextmyex.html"
+    },
+    {
+      "title": "Work or Nah 🤒",
+      "img": "images/workornah.jpeg",
+      "desc": "Quick, savage, and relatable – guess who’s working and who’s slacking 🤓💀",
+      "link": "workornah.html"
+    }
+  ]
+}
