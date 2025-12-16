@@ -177,13 +177,14 @@ animateStars();
 function openComingSoon(){document.getElementById("comingSoonPopup").style.display="flex"}
 function closeComingSoon(){document.getElementById("comingSoonPopup").style.display="none"}
 
+
 // News Fetch
 const newsContainer = document.getElementById("news-container");
 
 fetch("news.json")
   .then(r => r.json())
   .then(data => {
-    data.stories.forEach(story => {
+    data.stories.slice(0, 3).forEach(story => {
       const card = document.createElement("article");
       card.classList.add("news-card");
 
