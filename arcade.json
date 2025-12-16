@@ -9,15 +9,15 @@
     {
       "title": "Flappy Fury 🐦",
       "img": "https://i.ibb.co/4RPHbNw9/flappyfury.jpg",
-      "desc": "Flap, dodge, and survive! Flappy Fury is a chaotic, fast-paced game that tests your reflexes and persistence. Beat your high score and prove you’re the ultimate flapper! Perfect for quick, addictive gameplay that keeps players coming back.",
+      "desc": "Flap, dodge, and survive! Flappy Fury is a chaotic, fast-paced game that tests your reflexes and persistence. Beat your high score and prove you’re the ultimate flapper!",
       "link": "flappyfury.html"
     },
     {
-  "title": "Red Flag Bingo",
-  "desc": "Test your chaos IQ with this fun red flag quiz! 🚩😜",
-  "img": "https://i.ibb.co/p6vnP8LP/redflagbingo.jpg",
-  "link": "redflagbingo.html"
-}
+      "title": "Red Flag Bingo 🚩",
+      "img": "https://i.ibb.co/p6vnP8LP/redflagbingo.jpg",
+      "desc": "Test your chaos IQ with this fun red flag quiz! 🚩😜",
+      "link": "redflagbingo.html"
+    },
     {
       "title": "Should I Text Him 💌",
       "img": "images/shoulditext.jpeg",
