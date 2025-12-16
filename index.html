@@ -53,7 +53,7 @@ canvas#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
 .popup-content{background:#1b0036;padding:25px;width:90%;max-width:350px;border-radius:20px;text-align:center;position:relative;animation:pop .25s ease-out;color:#f4f4f4;font-weight:500}
 .popup-content h2{color:var(--accent2);margin-bottom:.5rem}
 .popup-content p{color:var(--text);margin-bottom:1rem}
-.close-popup{position:absolute;top:8px;right:8px;background:none;border:none;font-size:18px;color:var(--text);cursor:pointer}
+.close-popup{position:absolute;top:8px;right:8px;background:none;border:none;font-size:18px;color:#f4f4f4;cursor:pointer}
 .popup-btn{display:inline-block;margin-top:15px;padding:12px 18px;background:var(--accent);color:white;text-decoration:none;border-radius:12px;font-size:16px;font-weight:600;transition:all .3s}
 .popup-btn:hover{background:var(--accent2)}
 @keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
@@ -84,28 +84,11 @@ canvas#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
 <p>Step into a digital playground where web games collide with chaos quizzes and viral experiences. Fast, fun, and endlessly scrollable — this is where players get hooked 😎🎯</p>
 </section>
 
+<!-- Arcade Section -->
 <section id="arcade">
 <h2>Arcade — Games & Chaos Quizzes 🎲</h2>
-<div class="projects">
-<div class="project">
-<img src="https://i.ibb.co/4RPHbNw9/flappyfury.jpg" alt="Flappy Fury" style="width:100%; max-height:360px; object-fit:cover; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.5); margin-bottom:1rem;">
-<h3>Flappy Fury 🕹️</h3>
-<p>Navigate the chaos and score high in this fast-paced Flappy-style madness 🐦🔥</p>
-<a href="flappyfury.html" class="btn tile-btn">Play Now</a>
-</div>
-<div class="project">
-<img src="images/redflagbingo.jpeg" alt="Redflag Bingo">
-<h3>Redflag Bingo 🃏</h3>
-<p>Chaos sip-or-skip game to expose your inner delulu 😈🍷</p>
-<a href="redflagbingo.html" class="btn tile-btn">Play Now</a>
-</div>
-<div class="project">
-<img src="images/workornah.jpeg" alt="Work or Nah">
-<h3>Work or Nah 💼</h3>
-<p>Quick, savage, and relatable – guess who’s working and who’s slacking 🤓💀</p>
-<a href="workornah.html" class="btn tile-btn">Play Now</a>
-</div>
-</div>
+<div id="arcade-container" class="projects"></div>
+<button id="seeMoreBtn" class="btn secondary" style="margin-top:1.5rem; display:none;">See More Games ⬇️</button>
 </section>
 
 <section id="lab">
@@ -177,37 +160,63 @@ animateStars();
 function openComingSoon(){document.getElementById("comingSoonPopup").style.display="flex"}
 function closeComingSoon(){document.getElementById("comingSoonPopup").style.display="none"}
 
-
 // News Fetch
 const newsContainer = document.getElementById("news-container");
-
 fetch("news.json")
   .then(r => r.json())
   .then(data => {
     data.stories.slice(0, 3).forEach(story => {
       const card = document.createElement("article");
       card.classList.add("news-card");
-
       card.innerHTML = `
         <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
         <h3>${story.headline}</h3>
         <a href="news.html" class="btn secondary">Read More</a>
       `;
-
       newsContainer.appendChild(card);
     });
   })
-  .catch(err => {
-    console.error("News fetch failed:", err);
+  .catch(err => { console.error("News fetch failed:", err); });
+
+// Arcade auto-fetch + See More
+const arcadeGames = [
+  { title: "Flappy Fury 🕹️", img: "https://i.ibb.co/4RPHbNw9/flappyfury.jpg", desc: "Navigate the chaos and score high in this fast-paced Flappy-style madness 🐦🔥", link: "flappyfury.html" },
+  { title: "Redflag Bingo 🃏", img: "images/redflagbingo.jpeg", desc: "Chaos sip-or-skip game to expose your inner delulu 😈🍷", link: "redflagbingo.html" },
+  { title: "Work or Nah 💼", img: "images/workornah.jpeg", desc: "Quick, savage, and relatable – guess who’s working and who’s slacking 🤓💀", link: "workornah.html" },
+  { title: "Ronaldo Jump ⚽", img: "images/ronaldojump.jpeg", desc: "Jump and dodge objects in this chaotic soccer challenge 🏆🔥", link: "ronaldojump.html" },
+  { title: "Mini Chaos Quiz 🔮", img: "images/chaosquiz.jpeg", desc: "Test your inner chaos in a fast, fun quiz 🌀😜", link: "chaosquiz.html" }
+];
+
+const arcadeContainer = document.getElementById("arcade-container");
+const seeMoreBtn = document.getElementById("seeMoreBtn");
+
+function renderGames(limit) {
+  arcadeContainer.innerHTML = "";
+  arcadeGames.slice(0, limit).forEach(game => {
+    const tile = document.createElement("div");
+    tile.classList.add("project");
+    tile.innerHTML = `
+      <img src="${game.img}" alt="${game.title}" style="width:100%; max-height:360px; object-fit:cover; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.5); margin-bottom:1rem;">
+      <h3>${game.title}</h3>
+      <p>${game.desc}</p>
+      <a href="${game.link}" class="btn tile-btn">Play Now</a>
+    `;
+    arcadeContainer.appendChild(tile);
   });
+  // Show "See More" button if there are more than 3
+  seeMoreBtn.style.display = arcadeGames.length > 3 ? "inline-block" : "none";
+}
 
-<script>
-const games = document.querySelectorAll('.arcade-game');
-games.forEach((game, index) => {
-  if (index > 2) game.style.display = 'none'; // hide 4th+ games
+// Initial render
+let currentLimit = 3;
+renderGames(currentLimit);
+
+// See More click
+seeMoreBtn.addEventListener("click", () => {
+  currentLimit = arcadeGames.length;
+  renderGames(currentLimit);
+  seeMoreBtn.style.display = "none";
 });
-</script>
-
 </script>
 
 </body>
