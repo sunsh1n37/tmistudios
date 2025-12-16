@@ -31,7 +31,6 @@ p{line-height:1.6;margin-bottom:1rem;color:var(--text)}
 .project{flex:0 0 300px;scroll-snap-align:start;background:rgba(255,255,255,0.05);padding:1.5rem;border-radius:12px;transition:transform .3s,background .3s;overflow:hidden}
 .project:hover{transform:translateY(-5px);background:rgba(255,255,255,0.08)}
 .project img{width:100%;border-radius:10px;margin-bottom:1rem;filter:brightness(0.9)}
-.project h3{color:var(--accent2);font-size:1.3rem;margin-bottom:.5rem}
 .projects::-webkit-scrollbar{height:8px}
 .projects::-webkit-scrollbar-thumb{background:rgba(179,136,255,0.3);border-radius:4px}
 .projects::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);border-radius:4px}
@@ -85,9 +84,9 @@ canvas#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
 </section>
 
 <section id="arcade">
-<h2>Arcade — Games & Chaos Quizzes 🎲</h2>
-<div class="projects" id="arcade-container"></div>
-<a href="arcade.html" class="btn secondary" style="margin-top:1.5rem;">See More 🎮</a>
+  <h2>Arcade — Games & Chaos Quizzes 🎲</h2>
+  <div id="arcade-container" class="projects"></div>
+  <a href="arcade.html" class="btn tile-btn" style="margin-top:1rem;">See More 🎮</a>
 </section>
 
 <section id="lab">
@@ -177,29 +176,42 @@ fetch("news.json")
   })
   .catch(err => console.error("News fetch failed:", err));
 
-// Arcade Fetch — prettier card layout
+// Arcade Fetch
 const arcadeContainer = document.getElementById("arcade-container");
+const seeMoreBtn = document.getElementById("seeMoreBtn");
+let arcadeGames = [];
+let currentLimit = 3;
+
 fetch("arcade.json")
-  .then(r => r.json())
+  .then(res => res.json())
   .then(data => {
-    data.games.slice(0,3).forEach(game => {
-      const card = document.createElement("div");
-      card.classList.add("project");
-      card.style.background = "rgba(255,255,255,0.05)";
-      card.style.padding = "1.5rem";
-      card.style.borderRadius = "12px";
-      card.style.textAlign = "center";
-      card.style.transition = "transform .3s, background .3s";
-      card.innerHTML = `
-        <img src="${game.image}" alt="${game.title}" style="width:100%; border-radius:12px; margin-bottom:1rem; filter:brightness(0.9);" />
-        <h3 style="color:var(--accent2); font-size:1.3rem; margin-bottom:.5rem;">${game.title}</h3>
-        <p style="color:var(--text); line-height:1.6; margin-bottom:1rem;">${game.description}</p>
-        <a href="${game.link}" class="btn tile-btn">Play Now</a>
-      `;
-      arcadeContainer.appendChild(card);
-    });
+    arcadeGames = data.games || [];
+    renderGames(currentLimit);
   })
-  .catch(err => console.error("Arcade fetch failed:", err));
+  .catch(err => console.error("Failed to fetch Arcade games:", err));
+
+function renderGames(limit) {
+  arcadeContainer.innerHTML = "";
+  arcadeGames.slice(0, limit).forEach(game => {
+    const tile = document.createElement("div");
+    tile.classList.add("project");
+    tile.innerHTML = `
+      <img src="${game.img}" alt="${game.title}" style="width:100%; max-height:360px; object-fit:cover; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.5); margin-bottom:1rem;">
+      <h3>${game.title}</h3>
+      <p>${game.desc}</p>
+      <a href="${game.link}" class="btn tile-btn">Play Now</a>
+    `;
+    arcadeContainer.appendChild(tile);
+  });
+
+  seeMoreBtn.style.display = arcadeGames.length > 3 && limit < arcadeGames.length ? "inline-block" : "none";
+}
+
+seeMoreBtn.addEventListener("click", () => {
+  currentLimit = arcadeGames.length;
+  renderGames(currentLimit);
+  seeMoreBtn.style.display = "none";
+});
 </script>
 
 </body>
