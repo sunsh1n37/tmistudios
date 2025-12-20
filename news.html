@@ -125,18 +125,18 @@ footer a:hover { text-decoration: underline; }
     <div class="card-grid" id="algorithm-container"></div>
   </section>
 
- <!-- YouthWorks Section -->
+<!-- YouthWorks Section -->
 <section id="youthworks" style="padding:2rem 1rem; background:#f9f9f9; margin-top:2rem;">
   <div style="max-width:900px; margin:auto;">
     <h2 style="font-size:2rem; margin-bottom:0.5rem; color:#222; text-align:center;">
-      YouthWorks: Top 10 Phone-Friendly Businesses for 2025
+      YouthWorks: Top 10 Phone-and-WiFi Side Hustles in South Africa, 2025
     </h2>
     <p style="font-size:1rem; color:#555; margin-bottom:1.5rem; text-align:center;">
-      Just a phone, WiFi, and hustle—see how teens and young adults are making money in 2025!
+      See how teens and young adults turned social media into real income this year!
     </p>
     <!-- Horizontal scroll container -->
     <div id="youthworks-list" style="display:flex; gap:1rem; overflow-x:auto; padding-bottom:1rem; scroll-behavior:smooth;">
-      <!-- Cards injected here -->
+      <!-- Card will be injected here -->
     </div>
   </div>
 </section>
@@ -158,6 +158,14 @@ footer a:hover { text-decoration: underline; }
     margin-right:0.3rem;
     margin-top:0.5rem;
   }
+
+  .read-more {
+    color:#1d4ed8; 
+    font-weight:bold; 
+    cursor:pointer; 
+    display:block; 
+    margin-top:0.5rem;
+  }
 </style>
 
 <script>
@@ -165,52 +173,60 @@ footer a:hover { text-decoration: underline; }
     .then(response => response.json())
     .then(data => {
       const listContainer = document.getElementById('youthworks-list');
-      const items = data.youthHustle; // JSON key
+      const item = data.youthHustle[0]; // single entry
 
-      items.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.style.minWidth = '250px';
-        card.style.flex = '0 0 auto';
-        card.style.background = '#fff';
-        card.style.padding = '1rem';
-        card.style.borderRadius = '12px';
-        card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
-        card.style.transition = 'transform 0.2s';
-        card.style.cursor = 'pointer';
+      const card = document.createElement('div');
+      card.style.minWidth = '300px';
+      card.style.flex = '0 0 auto';
+      card.style.background = '#fff';
+      card.style.padding = '1rem';
+      card.style.borderRadius = '12px';
+      card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
+      card.style.transition = 'transform 0.2s';
+      card.style.cursor = 'pointer';
 
-        // Hover effect
-        card.onmouseenter = () => card.style.transform = 'scale(1.05)';
-        card.onmouseleave = () => card.style.transform = 'scale(1)';
+      // Hover effect
+      card.onmouseenter = () => card.style.transform = 'scale(1.05)';
+      card.onmouseleave = () => card.style.transform = 'scale(1)';
 
-        // Emoji highlights
-        const emoji = (() => {
-          switch(index){
-            case 0: return '🎥';
-            case 1: return '🖼️';
-            case 2: return '🛒';
-            case 3: return '📚';
-            case 4: return '💰';
-            case 5: return '🛍️';
-            case 6: return '🎮';
-            case 7: return '💡';
-            case 8: return '👕';
-            case 9: return '🤖';
-            default: return '✨';
-          }
-        })();
+      // Emoji for highlight
+      const emoji = '💼';
 
-        // Stats badges from JSON (optional: you can add fields earnings, growth, views)
-        const stats = [];
-        if(item.earnings) stats.push(`<span class="badge">💵 ${item.earnings}</span>`);
-        if(item.growth) stats.push(`<span class="badge">📈 ${item.growth}</span>`);
-        if(item.views) stats.push(`<span class="badge">👀 ${item.views}</span>`);
+      // Stats badges
+      const stats = [];
+      if(item.stats.topEarnings) stats.push(`<span class="badge">💵 ${item.stats.topEarnings}</span>`);
+      if(item.stats.averageEarnings) stats.push(`<span class="badge">💰 ${item.stats.averageEarnings}</span>`);
+      if(item.stats.growth) stats.push(`<span class="badge">📈 ${item.stats.growth}</span>`);
+      if(item.stats.reach) stats.push(`<span class="badge">👀 ${item.stats.reach}</span>`);
+      if(item.stats.youthParticipation) stats.push(`<span class="badge">🧑‍💻 ${item.stats.youthParticipation}</span>`);
 
-        card.innerHTML = `
-          <h3 style="color:#222; margin-bottom:0.5rem;">${emoji} ${index + 1}. ${item.title}</h3>
-          <p style="color:#555; margin:0;">${item.description}</p>
-          <div style="margin-top:0.5rem;">${stats.join('')}</div>
-        `;
-        listContainer.appendChild(card);
+      // Card content with Read More
+      card.innerHTML = `
+        <h3 style="color:#222; margin-bottom:0.5rem;">${emoji} ${item.title}</h3>
+        <p style="color:#555; margin-bottom:0.5rem;" id="short-desc">
+          ${item.description.substring(0, 250)}...
+        </p>
+        <span class="read-more" id="toggle-read">Read More</span>
+        <div style="margin-top:0.5rem;">${stats.join('')}</div>
+      `;
+
+      listContainer.appendChild(card);
+
+      // Toggle Read More
+      const toggleBtn = card.querySelector('#toggle-read');
+      const shortDesc = card.querySelector('#short-desc');
+      let expanded = false;
+
+      toggleBtn.addEventListener('click', () => {
+        if(!expanded) {
+          shortDesc.textContent = item.description;
+          toggleBtn.textContent = 'Show Less';
+          expanded = true;
+        } else {
+          shortDesc.textContent = item.description.substring(0, 250) + '...';
+          toggleBtn.textContent = 'Read More';
+          expanded = false;
+        }
       });
     })
     .catch(err => console.error('Error fetching YouthWorks data:', err));
