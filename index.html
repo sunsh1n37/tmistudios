@@ -355,24 +355,52 @@ document.addEventListener('click', e => {
   }
 });
 
-/* ================= ARCADE FETCH ================= */
-fetch('arcade.json')
-  .then(r => r.json())
-  .then(d => {
-    const c = document.getElementById('arcade-container');
-    d.slice(0,5).forEach(i => {
-      c.innerHTML += `
-        <div class="project">
-          <img src="${i.image}">
-          <h3>${i.title}</h3>
-          <p>${i.description}</p>
-          <a href="${i.link}" class="btn tile-btn">Play</a>
-        </div>
-      `;
-    });
+/* ARCADE — INLINE DATA (NO JSON FILE) */
+document.addEventListener('DOMContentLoaded', () => {
+  const arcadeData = [
+    {
+      title: "Red Flag Bingo 🚩",
+      description: "A chaotic drinking game for the group chat girls. Sip if guilty, skip if nah 😭🍷",
+      image: "https://i.ibb.co/YfY6R2z/redflag.jpg",
+      link: "redflagbingo.html"
+    },
+    {
+      title: "Cute Quotes 💬",
+      description: "Design aesthetic quotes with fonts, emojis & backgrounds. Shareable vibes only ✨",
+      image: "https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png",
+      link: "cutequotes.html"
+    },
+    {
+      title: "Work or Nah? 💼",
+      description: "Would you actually work here… or nah? Be honest 😭",
+      image: "https://i.ibb.co/4Z0tM5Q/workornah.jpg",
+      link: "workornah.html"
+    }
+  ];
+
+  const container = document.getElementById('arcade-container');
+  const seeMoreBtn = document.getElementById('seeMoreBtn');
+
+  container.innerHTML = '';
+
+  arcadeData.slice(0, 5).forEach(item => {
+    container.innerHTML += `
+      <div class="project">
+        <img src="${item.image}" alt="${item.title}">
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <a href="${item.link}" class="btn tile-btn">Play</a>
+      </div>
+    `;
   });
 
-/* ================= NEWS FETCH ================= */
+  if (arcadeData.length > 5) {
+    seeMoreBtn.style.display = 'inline-block';
+    seeMoreBtn.onclick = () => window.location.href = 'arcade.html';
+  }
+});
+
+/* =============== NEWS FETCH =========== */
 document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('news-container');
 
