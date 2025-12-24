@@ -355,48 +355,55 @@ document.addEventListener('click', e => {
   }
 });
 
-/* ARCADE — INLINE DATA (NO JSON FILE) */
-document.addEventListener('DOMContentLoaded', () => {
-  const arcadeData = [
-    {
-      title: "Red Flag Bingo 🚩",
-      description: "A chaotic drinking game for the group chat girls. Sip if guilty, skip if nah 😭🍷",
-      image: "https://i.ibb.co/YfY6R2z/redflag.jpg",
-      link: "redflagbingo.html"
-    },
-    {
-      title: "Cute Quotes 💬",
-      description: "Design aesthetic quotes with fonts, emojis & backgrounds. Shareable vibes only ✨",
-      image: "https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png",
-      link: "cutequotes.html"
-    },
-    {
-      title: "Work or Nah? 💼",
-      description: "Would you actually work here… or nah? Be honest 😭",
-      image: "https://i.ibb.co/4Z0tM5Q/workornah.jpg",
-      link: "workornah.html"
-    }
-  ];
-
+/* ARCADE FETCH — Game of the Week enabled */
+document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('arcade-container');
   const seeMoreBtn = document.getElementById('seeMoreBtn');
 
-  container.innerHTML = '';
+  try {
+    const res = await fetch('arcade.json');
+    const data = await res.json();
+    const games = Array.isArray(data.games) ? data.games : [];
 
-  arcadeData.slice(0, 5).forEach(item => {
-    container.innerHTML += `
-      <div class="project">
-        <img src="${item.image}" alt="${item.title}">
-        <h3>${item.title}</h3>
-        <p>${item.description}</p>
-        <a href="${item.link}" class="btn tile-btn">Play</a>
-      </div>
-    `;
-  });
+    container.innerHTML = '';
 
-  if (arcadeData.length > 5) {
-    seeMoreBtn.style.display = 'inline-block';
-    seeMoreBtn.onclick = () => window.location.href = 'arcade.html';
+    games.forEach((game, index) => {
+      const isFeatured = index === 0;
+
+      container.innerHTML += `
+        <div class="project" style="${isFeatured ? 'outline:2px solid var(--accent);' : ''}">
+          
+          ${isFeatured ? `
+            <div style="
+              background:var(--accent);
+              color:var(--bg);
+              font-size:.75rem;
+              font-weight:700;
+              padding:.25rem .6rem;
+              border-radius:999px;
+              display:inline-block;
+              margin-bottom:.5rem;
+            ">
+              🏆 Game of the Week
+            </div>
+          ` : ''}
+
+          <img src="${game.img}" alt="${game.title}">
+          <h3>${game.title}</h3>
+          <p>${game.desc}</p>
+          <a href="${game.link}" class="btn tile-btn">
+            ${isFeatured ? 'Play Now 🔥' : 'Play'}
+          </a>
+        </div>
+      `;
+    });
+
+    if (seeMoreBtn) seeMoreBtn.style.display = 'none';
+
+  } catch (err) {
+    console.error('Arcade fetch failed:', err);
+    container.innerHTML =
+      '<p style="color:#c0bcd0">Unable to load arcade games.</p>';
   }
 });
 
