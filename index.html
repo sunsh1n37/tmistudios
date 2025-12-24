@@ -362,14 +362,45 @@ c.innerHTML+=`<div class="project"><img src="${i.image}"><h3>${i.title}</h3><p>$
 });
 });
 
-/* NEWS FETCH */
-fetch('news.json').then(r=>r.json()).then(d=>{
-const c=document.getElementById('news-container');
-d.slice(0,6).forEach(n=>{
-c.innerHTML+=`<div class="news-card"><img src="${n.image}"><h3>${n.headline}</h3><p>${n.preview}</p></div>`;
-});
-});
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const container = document.getElementById('news-container');
 
+  try {
+    const res = await fetch('news.json');
+    const data = await res.json();
+
+    const newsItems = Array.isArray(data)
+      ? data
+      : Array.isArray(data.stories)
+        ? data.stories
+        : [data];
+
+    container.innerHTML = '';
+
+    newsItems.slice(0, 6).forEach(n => {
+      container.innerHTML += `
+        <div class="news-card">
+          ${n.image ? `<img src="${n.image}" alt="${n.headline}">` : ''}
+          <h3>${n.headline || 'Untitled story'}</h3>
+          <p>${n.preview || ''}</p>
+
+          <a href="news.html?story=${encodeURIComponent(n.headline)}"
+             class="btn tile-btn"
+             style="margin-top:1rem; display:inline-block;">
+            Read story →
+          </a>
+        </div>
+      `;
+    });
+
+  } catch (err) {
+    console.error('News fetch failed:', err);
+    container.innerHTML =
+      '<p style="color:#c0bcd0">Unable to load news right now.</p>';
+  }
+});
+</script>
 /* STARS */
 const c=document.getElementById("stars"),x=c.getContext("2d");let s=[];
 function r(){c.width=innerWidth;c.height=innerHeight;s=[...Array(100)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3}))}
