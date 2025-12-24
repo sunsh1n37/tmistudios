@@ -291,17 +291,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const res = await fetch('news.json');
     const data = await res.json();
 
-    // ✅ Normalize: force data into an array
-    const newsItems = Array.isArray(data) ? data : [data];
+    // ✅ Detect if it's wrapped under "stories"
+    const newsItems = Array.isArray(data)
+      ? data
+      : Array.isArray(data.stories)
+        ? data.stories
+        : [data];
 
     container.innerHTML = '';
 
     newsItems.slice(0, 6).forEach(n => {
       container.innerHTML += `
         <div class="news-card">
-          <img src="${n.image}" alt="${n.headline}">
-          <h3>${n.headline}</h3>
-          <p>${n.preview}</p>
+          <img src="${n.image || ''}" alt="${n.headline || 'News image'}">
+          <h3>${n.headline || 'Untitled'}</h3>
+          <p>${n.preview || ''}</p>
         </div>
       `;
     });
