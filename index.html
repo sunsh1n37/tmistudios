@@ -7,7 +7,6 @@
 <meta name="description" content="TMI Studios Arcade: African tech, games, chaos quizzes, and viral web experiences. Play, explore, and get hooked!">
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -30,18 +29,61 @@ body{
   overflow-x:hidden;
 }
 
+/* ================= NAV ================= */
 nav{
   display:flex;
-  gap:2rem;
+  justify-content:space-between;
+  align-items:center;
   padding:.75rem 1rem;
   position:sticky;
   top:0;
   background:var(--bg);
-  z-index:10;
+  z-index:100;
 }
-.nav-link{color:#fff;text-decoration:none;font-size:.875rem}
-.nav-link:hover{color:var(--accent2)}
 
+.arcade-btn{
+  background:var(--accent);
+  color:var(--bg);
+  padding:.45rem 1rem;
+  border-radius:999px;
+  font-weight:700;
+  text-decoration:none;
+  font-size:.9rem;
+}
+
+.nav-right{position:relative}
+
+.hamburger{
+  font-size:1.4rem;
+  cursor:pointer;
+  color:#fff;
+}
+
+.dropdown{
+  position:absolute;
+  right:0;
+  top:140%;
+  background:#140022;
+  border-radius:14px;
+  padding:.75rem 0;
+  min-width:160px;
+  display:none;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.dropdown a{
+  display:block;
+  padding:.6rem 1rem;
+  color:#fff;
+  text-decoration:none;
+  font-size:.9rem;
+}
+
+.dropdown a:hover{
+  background:rgba(179,136,255,.15);
+}
+
+/* ================= HERO ================= */
 .hero{
   min-height:100vh;
   display:flex;
@@ -77,12 +119,8 @@ section{
   margin:auto;
   text-align:center;
 }
-h2{margin-bottom:1rem}
-p{line-height:1.6;margin-bottom:1rem}
 
-/* =========================
-   ARCADE SCROLL (unchanged)
-   ========================= */
+/* ================= ARCADE ================= */
 .projects{
   display:flex;
   gap:2rem;
@@ -103,38 +141,43 @@ p{line-height:1.6;margin-bottom:1rem}
   margin-bottom:1rem;
 }
 
-/* =========================
-   LAB HORIZONTAL SCROLL
-   (GUARANTEED)
-   ========================= */
+/* ================= LAB ================= */
 .lab-scroll{
-  display:grid !important;
-  grid-auto-flow:column !important;
-  grid-auto-columns:280px !important;
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:280px;
   gap:16px;
-  overflow-x:auto !important;
-  overflow-y:hidden;
-  padding:1rem 0;
-  -webkit-overflow-scrolling:touch;
+  overflow-x:auto;
 }
-.lab-scroll::-webkit-scrollbar{display:none}
 
 .lab-tile{
   background:rgba(255,255,255,.06);
   padding:1.5rem;
   border-radius:16px;
   text-align:left;
+
+  /* ✅ FIX APPLIED */
+  display:flex;
+  flex-direction:column;
 }
+
 .lab-tile img{
   width:100%;
   border-radius:12px;
   margin-bottom:1rem;
-  box-shadow:0 4px 10px rgba(0,0,0,.3);
 }
 
-/* =========================
-   NEWS
-   ========================= */
+.lab-tile p{
+  margin-top:.5rem;
+  flex-grow:1;
+}
+
+.lab-tile .btn{
+  margin-top:1rem;
+  align-self:flex-start;
+}
+
+/* ================= NEWS ================= */
 .news-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -150,9 +193,7 @@ p{line-height:1.6;margin-bottom:1rem}
   border-radius:12px;
 }
 
-/* =========================
-   FOOTER
-   ========================= */
+/* ================= FOOTER ================= */
 .footer{
   padding:3rem 1rem;
   background:var(--footer-bg);
@@ -161,35 +202,33 @@ p{line-height:1.6;margin-bottom:1rem}
 }
 .footer a{color:var(--footer-link);text-decoration:none}
 
-canvas#stars{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-}
+/* ================= POPUP ================= */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9999}
+.popup-content{background:#1b0036;padding:25px;width:90%;max-width:350px;border-radius:20px;text-align:center;position:relative}
+.close-popup{position:absolute;top:8px;right:8px;background:none;border:none;color:#fff;font-size:18px;cursor:pointer}
 
-@media(max-width:600px){.title{font-size:2rem}.cta-group{flex-direction:column}.projects{flex-wrap:nowrap}}
-.popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(4px)}
-.popup-content{background:#1b0036;padding:25px;width:90%;max-width:350px;border-radius:20px;text-align:center;position:relative;animation:pop .25s ease-out;color:#f4f4f4;font-weight:500}
-.popup-content h2{color:var(--accent2);margin-bottom:.5rem}
-.popup-content p{color:var(--text);margin-bottom:1rem}
-.close-popup{position:absolute;top:8px;right:8px;background:none;border:none;font-size:18px;color:#f4f4f4;cursor:pointer}
-.popup-btn{display:inline-block;margin-top:15px;padding:12px 18px;background:var(--accent);color:white;text-decoration:none;border-radius:12px;font-size:16px;font-weight:600;transition:all .3s}
-.popup-btn:hover{background:var(--accent2)}
-@keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
+canvas#stars{position:fixed;inset:0;z-index:-1}
 </style>
 </head>
 
 <body>
 <canvas id="stars"></canvas>
 
+<!-- NAV -->
 <nav>
-  <a href="arcade.html" class="nav-link">Arcade</a>
-  <a href="lab.html" class="nav-link">Lab</a>
-  <a href="packages.html" class="nav-link">Packages</a>
-  <a href="aboutus.html" class="nav-link">About</a>
-  <a href="contactus.html" class="nav-link">Contact</a>
+  <a href="arcade.html" class="arcade-btn">🎮 Arcade</a>
+  <div class="nav-right">
+    <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
+    <div class="dropdown" id="navMenu">
+      <a href="lab.html">Lab</a>
+      <a href="packages.html">Packages</a>
+      <a href="aboutus.html">About</a>
+      <a href="contactus.html">Contact</a>
+    </div>
+  </div>
 </nav>
 
+<!-- HERO -->
 <header class="hero">
   <img src="images/tmihero.jpeg" width="300" style="mix-blend-mode:lighten">
   <p class="subtitle">Your gub for fast games, chaos quizzes & viral digital mayhem 🚀</p>
@@ -199,69 +238,70 @@ canvas#stars{
   </div>
 </header>
 
-<section id="arcade">  
-<h2>Arcade — Games & Chaos Quizzes 🎲</h2>  
-<div id="arcade-container" class="projects"></div>  
-<button id="seeMoreBtn" class="btn tile-btn" style="margin-top:1rem; display:none;">See More 🎮</button>  
+<!-- ARCADE -->
+<section id="arcade">
+<h2>Arcade — Games & Chaos Quizzes 🎲</h2>
+<div id="arcade-container" class="projects"></div>
+<button id="seeMoreBtn" class="btn tile-btn" style="margin-top:1rem; display:none;">See More 🎮</button>
 </section>
 
+<!-- LAB -->
 <section id="lab">
-  <h2>Lab — Experiments & AI Tools 🧪</h2>
+<h2>Lab — Experiments & AI Tools 🧪</h2>
+<div class="lab-scroll">
 
-  <div class="lab-scroll">
+<div class="lab-tile">
+<img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg">
+<h3>Chaos Cookie 🍪</h3>
+<p>Crack it open and let the madness unfold 🥠</p>
+<a href="fortunecookie.html" class="btn tile-btn">Play</a>
+</div>
 
-    <div class="lab-tile">
-      <img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg">
-      <h3>Chaos Cookie 🍪</h3>
-      <p>Crack it open and let the madness unfold 🥠</p>
-      <a href="fortunecookie.html" class="btn tile-btn">Play</a>
-    </div>
+<div class="lab-tile">
+<img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png">
+<h3>Cute Quotes 📝</h3>
+<p>Create your own inspiring or funny quotes!</p>
+<a href="cutequotes.html" class="btn tile-btn">Open</a>
+</div>
 
-    <div class="lab-tile">
-      <img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png">
-      <h3>Cute Quotes 📝</h3>
-      <p>Create your own inspiring or funny quotes! Customize backgrounds, fonts, emojis, and download your personal cute quote images. Perfect for sharing with friends or posting on social media✨</p>
-      <a href="cutequotes.html" class="btn tile-btn">Open</a>
-    </div>
+<div class="lab-tile">
+<img src="https://i.ibb.co/dw5kNYfW/file-00000000d16071fda716a8a922684b8b.png" alt="Bible Quotes">
+<h3>Bible Verses ✝️</h3>
+<p>Create your own personalized daily bible quotes!</p>
+<a href="biblequotes.html" class="btn tile-btn">Open</a>
+</div>
 
-    <div class="lab-tile">
-      <img src="https://i.ibb.co/dw5kNYfW/file-00000000d16071fda716a8a922684b8b.png alt="Bible Quotes" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-      <h3>Bible Verses ✝️</h3>
-      <p>Create your own personalized daily bible quotes! Generate a birthday card with a bible quote. Perfect for sharing with friends and posting on social media 🤍</p>
-      <a href="biblequotes.html" class="btn tile-btn">Open</a>
-    </div>
-
-  </div>
+</div>
 </section>
 
-</section>
-  <section id="tmi-news">  
-<h2 style="color: var(--accent);">Top Stories from TMI News 📰</h2>  
-<p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs ✨🔥</p>  
-<div id="news-container" class="news-grid"></div>  
-</section> 
-
-<section id="contact">
-<h2>Turn Ads into Playable Chaos 🎯</h2>
-<p>We transform your campaigns into interactive game cards that players can’t help but share. Fun, viral, and immersive — your brand becomes part of the chaos 💥💻</p>
-<a href="/contactus.html" class="btn primary">Start the Madness 🚀</a>
+<!-- NEWS -->
+<section id="tmi-news">
+<h2 style="color: var(--accent);">Top Stories from TMI News 📰</h2>
+<p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">
+The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs ✨🔥
+</p>
+<div id="news-container" class="news-grid"></div>
 </section>
 
+<!-- WHATSAPP POPUP -->
 <div id="comingSoonPopup" class="popup-overlay">
 <div class="popup-content">
-<button class="close-popup" onclick="closeComingSoon()">✖</button>
+<button class="close-popup" onclick="document.getElementById('comingSoonPopup').style.display='none'">✖</button>
 <h2>Want first access? 👀</h2>
 <p>Join our WhatsApp channel to be the <strong>first to know</strong> when this game drops 📨🔥</p>
-<a class="popup-btn" href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">Join the Channel 🚀</a>
+<a class="popup-btn" href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">
+Join the Channel 🚀
+</a>
 </div>
 </div>
 
+<!-- FOOTER -->
 <footer class="footer">
 <div style="margin-bottom:1rem;">
 <span>Follow us:</span>
-<a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg mx-2"></i></a>
-<a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg mx-2"></i></a>
-<a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+<a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok fa-lg"></i></a>
+<a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+<a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
 </div>
 <p>&copy; 2025 TMI Studios. All rights reserved.</p>
 <p><a href="/contactus.html">Contact Us</a></p>
@@ -269,7 +309,34 @@ canvas#stars{
 </footer>
 
 <script>
-/* Stars background */
+/* NAV */
+function toggleMenu(){
+  const m=document.getElementById('navMenu');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.nav-right')){
+    document.getElementById('navMenu').style.display='none';
+  }
+});
+
+/* ARCADE FETCH */
+fetch('arcade.json').then(r=>r.json()).then(d=>{
+const c=document.getElementById('arcade-container');
+d.slice(0,5).forEach(i=>{
+c.innerHTML+=`<div class="project"><img src="${i.image}"><h3>${i.title}</h3><p>${i.description}</p><a href="${i.link}" class="btn tile-btn">Play</a></div>`;
+});
+});
+
+/* NEWS FETCH */
+fetch('news.json').then(r=>r.json()).then(d=>{
+const c=document.getElementById('news-container');
+d.slice(0,6).forEach(n=>{
+c.innerHTML+=`<div class="news-card"><img src="${n.image}"><h3>${n.headline}</h3><p>${n.preview}</p></div>`;
+});
+});
+
+/* STARS */
 const c=document.getElementById("stars"),x=c.getContext("2d");let s=[];
 function r(){c.width=innerWidth;c.height=innerHeight;s=[...Array(100)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3}))}
 addEventListener("resize",r);r();
