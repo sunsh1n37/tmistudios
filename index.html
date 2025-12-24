@@ -275,13 +275,52 @@ canvas#stars{position:fixed;inset:0;z-index:-1}
 </section>
 
 <!-- NEWS -->
+<!-- NEWS -->
 <section id="tmi-news">
-<h2 style="color: var(--accent);">Top Stories from TMI News 📰</h2>
-<p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">
-The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs ✨🔥
-</p>
-<div id="news-container" class="news-grid"></div>
+  <h2 style="color: var(--accent);">Top Stories from TMI News 📰</h2>
+  <p style="color:#c0bcd0; max-width:600px; margin:0 auto 2rem;">
+    The latest chaos from Africa’s tech and creator scene — stories, launches, and experiments fresh from the TMI Labs ✨🔥
+  </p>
+  <div id="news-container" class="news-grid"></div>
 </section>
+
+<script>
+/* NEWS FETCH */
+fetch('news.json')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById('news-container');
+    data.slice(0, 6).forEach(item => {
+      container.innerHTML += `
+        <div class="news-card">
+          <img src="${item.image}" alt="${item.headline}">
+          <h3>${item.headline}</h3>
+          <p>${item.preview}</p>
+        </div>
+      `;
+    });
+  })
+  .catch(err => console.error('Error fetching news:', err));
+</script>
+
+<style>
+/* ================= NEWS ================= */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+.news-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.2rem;
+  border-radius: 16px;
+}
+.news-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+</style>
 
 <!-- WHATSAPP POPUP -->
 <div id="comingSoonPopup" class="popup-overlay">
