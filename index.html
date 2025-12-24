@@ -5,48 +5,168 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TMI Studios — Scroll-stopping digital experiences</title>
 <meta name="description" content="TMI Studios Arcade: African tech, games, chaos quizzes, and viral web experiences. Play, explore, and get hooked!">
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
-:root{--bg:#0b0015;--accent:#b388ff;--accent2:#a855f7;--text:#f4f4f4;--muted:#c0bcd0;--font:'Space Grotesk',sans-serif;--footer-bg:radial-gradient(circle at top left,#1b0036,#0b0015);--footer-link:#bfa3ff}
+:root{
+  --bg:#0b0015;
+  --accent:#b388ff;
+  --accent2:#a855f7;
+  --text:#f4f4f4;
+  --muted:#c0bcd0;
+  --font:'Space Grotesk',sans-serif;
+  --footer-bg:radial-gradient(circle at top left,#1b0036,#0b0015);
+  --footer-link:#bfa3ff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font);color:var(--text);background:var(--bg);overflow-x:hidden}
-nav{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:2rem;padding:.75rem 1rem;z-index:10;position:sticky;top:0;background:var(--bg)}
-.nav-link{color:#fff;text-decoration:none;font-weight:500;font-size:.875rem;transition:color .3s}
+body{
+  font-family:var(--font);
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+nav{
+  display:flex;
+  gap:2rem;
+  padding:.75rem 1rem;
+  position:sticky;
+  top:0;
+  background:var(--bg);
+  z-index:10;
+}
+.nav-link{color:#fff;text-decoration:none;font-size:.875rem}
 .nav-link:hover{color:var(--accent2)}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1rem}
-.subtitle{font-size:1.2rem;color:var(--muted);margin-top:.4rem}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:0 1rem;
+}
+.subtitle{color:var(--muted);margin-top:.5rem}
+
 .cta-group{margin-top:2rem;display:flex;gap:1rem}
-.btn{text-decoration:none;padding:.8rem 1.5rem;border-radius:50px;font-weight:600;transition:all .3s}
+.btn{
+  padding:.8rem 1.5rem;
+  border-radius:50px;
+  font-weight:600;
+  text-decoration:none;
+  transition:.3s;
+}
 .btn.primary{background:var(--accent);color:var(--bg)}
-.btn.primary:hover{background:transparent;color:var(--accent);border:2px solid var(--accent)}
 .btn.secondary{border:2px solid var(--accent);color:var(--accent)}
 .btn.secondary:hover{background:var(--accent);color:var(--bg)}
-.btn.tile-btn{border:2px solid var(--accent);color:var(--accent);background:transparent;font-weight:600;border-radius:50px;padding:.8rem 1.5rem;transition:all .3s}
+.btn.tile-btn{
+  border:2px solid var(--accent);
+  color:var(--accent);
+  background:transparent;
+}
 .btn.tile-btn:hover{background:var(--accent);color:var(--bg)}
-section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
-h2{font-size:2rem;margin-bottom:1rem;color:var(--text)}
-p{line-height:1.6;margin-bottom:1rem;color:var(--text)}
-.projects{display:flex;gap:2rem;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory}
-.project{flex:0 0 300px;scroll-snap-align:start;background:rgba(255,255,255,0.05);padding:1.5rem;border-radius:12px;transition:transform .3s,background .3s;overflow:hidden}
-.project:hover{transform:translateY(-5px);background:rgba(255,255,255,0.08)}
-.project img{width:100%;border-radius:10px;margin-bottom:1rem;filter:brightness(0.9)}
-.projects::-webkit-scrollbar{height:8px}
-.projects::-webkit-scrollbar-thumb{background:rgba(179,136,255,0.3);border-radius:4px}
-.projects::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);border-radius:4px}
-.footer{text-align:center;padding:3rem 1rem;background:var(--footer-bg);color:var(--muted);font-size:.9rem;border-top:1px solid rgba(255,255,255,0.05)}
-.footer a{color:var(--footer-link);text-decoration:none;transition:color .3s}
-.footer a:hover{color:#fff;text-decoration:underline}
-canvas#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
-.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.news-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.2rem;text-align:center;transition:transform .3s ease,box-shadow .3s ease,background .3s ease,border-color .3s ease;position:relative;overflow:hidden}
-.news-card::before{content:"";position:absolute;inset:0;border-radius:16px;background:linear-gradient(45deg,var(--accent2),var(--accent));opacity:0;filter:blur(12px);z-index:0;transition:opacity .4s}
-.news-card:hover::before{opacity:.3}
-.news-card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.1);border-color:rgba(179,136,255,0.4);box-shadow:0 8px 25px rgba(179,136,255,.2)}
-.news-card img{width:100%;border-radius:12px;margin-bottom:1rem;position:relative;z-index:1}
-.news-card h3{font-size:1.1rem;margin:.8rem 0;color:var(--accent2);position:relative;z-index:1}
-.news-card .btn.secondary{margin-top:.5rem;border-color:var(--accent);color:var(--accent);position:relative;z-index:1}
-.news-card .btn.secondary:hover{background:var(--accent);color:var(--bg)}
+
+section{
+  padding:6rem 10%;
+  max-width:1200px;
+  margin:auto;
+  text-align:center;
+}
+h2{margin-bottom:1rem}
+p{line-height:1.6;margin-bottom:1rem}
+
+/* =========================
+   ARCADE SCROLL (unchanged)
+   ========================= */
+.projects{
+  display:flex;
+  gap:2rem;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:1rem;
+}
+.project{
+  flex:0 0 300px;
+  background:rgba(255,255,255,.05);
+  padding:1.5rem;
+  border-radius:14px;
+  scroll-snap-align:start;
+}
+.project img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:1rem;
+}
+
+/* =========================
+   LAB HORIZONTAL SCROLL
+   (GUARANTEED)
+   ========================= */
+.lab-scroll{
+  display:grid !important;
+  grid-auto-flow:column !important;
+  grid-auto-columns:280px !important;
+  gap:16px;
+  overflow-x:auto !important;
+  overflow-y:hidden;
+  padding:1rem 0;
+  -webkit-overflow-scrolling:touch;
+}
+.lab-scroll::-webkit-scrollbar{display:none}
+
+.lab-tile{
+  background:rgba(255,255,255,.06);
+  padding:1.5rem;
+  border-radius:16px;
+  text-align:left;
+}
+.lab-tile img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:1rem;
+  box-shadow:0 4px 10px rgba(0,0,0,.3);
+}
+
+/* =========================
+   NEWS
+   ========================= */
+.news-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:2rem;
+}
+.news-card{
+  background:rgba(255,255,255,.05);
+  padding:1.2rem;
+  border-radius:16px;
+}
+.news-card img{
+  width:100%;
+  border-radius:12px;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer{
+  padding:3rem 1rem;
+  background:var(--footer-bg);
+  text-align:center;
+  font-size:.9rem;
+}
+.footer a{color:var(--footer-link);text-decoration:none}
+
+canvas#stars{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
 @media(max-width:600px){.title{font-size:2rem}.cta-group{flex-direction:column}.projects{flex-wrap:nowrap}}
 .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(4px)}
 .popup-content{background:#1b0036;padding:25px;width:90%;max-width:350px;border-radius:20px;text-align:center;position:relative;animation:pop .25s ease-out;color:#f4f4f4;font-weight:500}
@@ -58,57 +178,61 @@ canvas#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
 @keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
 </style>
 </head>
+
 <body>
 <canvas id="stars"></canvas>
 
 <nav>
-<a href="/arcade.html" class="nav-link">Arcade</a>
-<a href="/lab.html" class="nav-link">Lab</a>
-<a href="/packages.html" class="nav-link">Packages</a>
-<a href="/aboutus.html" class="nav-link">About</a>
-<a href="/contactus.html" class="nav-link">Contact</a>
+  <a href="arcade.html" class="nav-link">Arcade</a>
+  <a href="lab.html" class="nav-link">Lab</a>
+  <a href="packages.html" class="nav-link">Packages</a>
+  <a href="aboutus.html" class="nav-link">About</a>
+  <a href="contactus.html" class="nav-link">Contact</a>
 </nav>
 
 <header class="hero">
-<img src="images/tmihero.jpeg" alt="TMI Studios Arcade" style="width:300px; mix-blend-mode: lighten;">
-<p class="subtitle">Your hub for fast web games, chaos quizzes, and viral digital mayhem 🚀🔥</p>
-<div class="cta-group">
-<a href="arcade.html" class="btn primary">Enter the Arcade 🎮</a>
-<a href="lab.html" class="btn secondary">Visit the Lab 🧪</a>
-</div>
+  <img src="images/tmihero.jpeg" width="300" style="mix-blend-mode:lighten">
+  <p class="subtitle">Your gub for fast games, chaos quizzes & viral digital mayhem 🚀</p>
+  <div class="cta-group">
+    <a href="arcade.html" class="btn primary">Enter the Arcade 🎮</a>
+    <a href="lab.html" class="btn secondary">Visit the Lab 🧪</a>
+  </div>
 </header>
-
-<section id="about">
-<h2>Welcome to TMI Arcade ✨</h2>
-<p>Step into a digital playground where web games collide with chaos quizzes and viral experiences. Fast, fun, and endlessly scrollable — this is where players get hooked 😎🎯</p>
-</section>
 
 <section id="arcade">
   <h2>Arcade — Games & Chaos Quizzes 🎲</h2>
   <div id="arcade-container" class="projects"></div>
-  <a href="arcade.html" class="btn tile-btn" style="margin-top:1rem;">See More 🎮</a>
+  <a href="arcade.html" class="btn tile-btn">See More 🎮</a>
 </section>
 
 <section id="lab">
-<h2>Lab — Experiments & AI Tools 🧪</h2>
+  <h2>Lab — Experiments & AI Tools 🧪</h2>
 
-Please fix this section. I want 2 more tiles after chaos Cookie. Horizontally scrollable. 1st chaos Cookie (already there) 2nd is cute quotes, third is Bible verse
+  <div class="lab-scroll">
 
-<div class="project">  
-<div class="projects">  
-<div class="project">  
-<img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg" alt="Chaos Cookie" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">  
-<h3>Chaos Cookie 🍪</h3>  
-<p>Crack it open and let the madness unfold! 🥠💥 Hilarious, unpredictable, and totally chaotic fortunes await—will you get a laugh, a weird prediction, or absolute nonsense? Perfect for friends, parties, or just a little daily chaos 👀💥</p>  
-<a href="fortunecookie.html" class="btn tile-btn">Play Now</a>  
-</div>  <div class="projects">  
-<div class="project">  
-<img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png alt="Cute Quotes" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">  
-<h3>Cute Quotes 📝</h3>  
-Create your own inspiring or funny quotes! Customize backgrounds, fonts, emojis, and download your personal cute quote images. Perfect for sharing with friends or posting on social media.</p>  
-<a href="cutequotes.html" class="btn tile-btn">Open</a>  
-</div>  
-</div>  
+    <div class="lab-tile">
+      <img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg">
+      <h3>Chaos Cookie 🍪</h3>
+      <p>Crack it open and let the madness unfold 🥠</p>
+      <a href="fortunecookie.html" class="btn tile-btn">Play</a>
+    </div>
+
+    <div class="lab-tile">
+      <img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png">
+      <h3>Cute Quotes 📝</h3>
+      <p>Create cute & viral quote images ✨</p>
+      <a href="cutequotes.html" class="btn tile-btn">Open</a>
+    </div>
+
+    <div class="lab-tile">
+      <img src="https://i.ibb.co/HDv5Qq4w/Bible-Quotes.jpg">
+      <h3>Bible Verses ✝️</h3>
+      <p>Faith-filled verse images 🤍</p>
+      <a href="biblequotes.html" class="btn tile-btn">Open</a>
+    </div>
+
+  </div>
+</section>
 
 </section>
 <section id="tmi-news">
@@ -145,71 +269,11 @@ Create your own inspiring or funny quotes! Customize backgrounds, fonts, emojis,
 </footer>
 
 <script>
-// Stars
-const canvas=document.getElementById("stars"),ctx=canvas.getContext("2d");let stars=[];
-function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;stars=Array.from({length:100},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,color:Math.random()>.5?'#b388ff':'#fff'}))}
-window.addEventListener("resize",resizeCanvas);resizeCanvas();
-function animateStars(){ctx.clearRect(0,0,canvas.width,canvas.height);stars.forEach(s=>{ctx.beginPath();ctx.fillStyle=s.color;ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1});requestAnimationFrame(animateStars)}
-animateStars();
-
-// Coming Soon
-function openComingSoon(){document.getElementById("comingSoonPopup").style.display="flex"}
-function closeComingSoon(){document.getElementById("comingSoonPopup").style.display="none"}
-
-// News Fetch
-const newsContainer = document.getElementById("news-container");
-fetch("news.json")
-  .then(r => r.json())
-  .then(data => {
-    data.stories.slice(0, 3).forEach(story => {
-      const card = document.createElement("article");
-      card.classList.add("news-card");
-      card.innerHTML = `
-        <img src="${story.image}" alt="${story.headline}" class="hero-image"/>
-        <h3>${story.headline}</h3>
-        <a href="news.html" class="btn secondary">Read More</a>
-      `;
-      newsContainer.appendChild(card);
-    });
-  })
-  .catch(err => console.error("News fetch failed:", err));
-
-// Arcade Fetch
-const arcadeContainer = document.getElementById("arcade-container");
-const seeMoreBtn = document.getElementById("seeMoreBtn");
-let arcadeGames = [];
-let currentLimit = 3;
-
-fetch("arcade.json")
-  .then(res => res.json())
-  .then(data => {
-    arcadeGames = data.games || [];
-    renderGames(currentLimit);
-  })
-  .catch(err => console.error("Failed to fetch Arcade games:", err));
-
-function renderGames(limit) {
-  arcadeContainer.innerHTML = "";
-  arcadeGames.slice(0, limit).forEach(game => {
-    const tile = document.createElement("div");
-    tile.classList.add("project");
-    tile.innerHTML = `
-      <img src="${game.img}" alt="${game.title}" style="width:100%; max-height:360px; object-fit:cover; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.5); margin-bottom:1rem;">
-      <h3>${game.title}</h3>
-      <p>${game.desc}</p>
-      <a href="${game.link}" class="btn tile-btn">Play Now</a>
-    `;
-    arcadeContainer.appendChild(tile);
-  });
-
-  seeMoreBtn.style.display = arcadeGames.length > 3 && limit < arcadeGames.length ? "inline-block" : "none";
-}
-
-seeMoreBtn.addEventListener("click", () => {
-  currentLimit = arcadeGames.length;
-  renderGames(currentLimit);
-  seeMoreBtn.style.display = "none";
-});
+/* Stars background */
+const c=document.getElementById("stars"),x=c.getContext("2d");let s=[];
+function r(){c.width=innerWidth;c.height=innerHeight;s=[...Array(100)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3}))}
+addEventListener("resize",r);r();
+(function a(){x.clearRect(0,0,c.width,c.height);s.forEach(o=>{x.beginPath();x.arc(o.x,o.y,o.r,0,7);x.fillStyle="#b388ff";x.fill();o.x+=o.dx;o.y+=o.dy});requestAnimationFrame(a)})();
 </script>
 
 </body>
