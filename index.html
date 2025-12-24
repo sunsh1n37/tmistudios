@@ -401,7 +401,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 </script>
+
 /* STARS */
+<script>
 const c=document.getElementById("stars"),x=c.getContext("2d");let s=[];
 function r(){c.width=innerWidth;c.height=innerHeight;s=[...Array(100)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3}))}
 addEventListener("resize",r);r();
