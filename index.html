@@ -343,26 +343,36 @@ Join the Channel 🚀
 </footer>
 
 <script>
-/* NAV */
+/* ================= NAV ================= */
 function toggleMenu(){
-  const m=document.getElementById('navMenu');
+  const m = document.getElementById('navMenu');
   m.style.display = m.style.display === 'block' ? 'none' : 'block';
 }
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.nav-right')){
-    document.getElementById('navMenu').style.display='none';
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-right')) {
+    document.getElementById('navMenu').style.display = 'none';
   }
 });
 
-/* ARCADE FETCH */
-fetch('arcade.json').then(r=>r.json()).then(d=>{
-const c=document.getElementById('arcade-container');
-d.slice(0,5).forEach(i=>{
-c.innerHTML+=`<div class="project"><img src="${i.image}"><h3>${i.title}</h3><p>${i.description}</p><a href="${i.link}" class="btn tile-btn">Play</a></div>`;
-});
-});
+/* ================= ARCADE FETCH ================= */
+fetch('arcade.json')
+  .then(r => r.json())
+  .then(d => {
+    const c = document.getElementById('arcade-container');
+    d.slice(0,5).forEach(i => {
+      c.innerHTML += `
+        <div class="project">
+          <img src="${i.image}">
+          <h3>${i.title}</h3>
+          <p>${i.description}</p>
+          <a href="${i.link}" class="btn tile-btn">Play</a>
+        </div>
+      `;
+    });
+  });
 
-<script>
+/* ================= NEWS FETCH ================= */
 document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('news-container');
 
@@ -378,13 +388,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     container.innerHTML = '';
 
-    newsItems.slice(0, 6).forEach(n => {
+    newsItems.slice(0,6).forEach(n => {
       container.innerHTML += `
         <div class="news-card">
           ${n.image ? `<img src="${n.image}" alt="${n.headline}">` : ''}
           <h3>${n.headline || 'Untitled story'}</h3>
           <p>${n.preview || ''}</p>
-
           <a href="news.html?story=${encodeURIComponent(n.headline)}"
              class="btn tile-btn"
              style="margin-top:1rem; display:inline-block;">
@@ -397,18 +406,42 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (err) {
     console.error('News fetch failed:', err);
     container.innerHTML =
-      '<p style="color:#c0bcd0">Unable to load news right now.</p>';
+      '<p style="color:#c0bcd0">Unable to load news.</p>';
   }
 });
-</script>
 
-/* STARS */
-<script>
-const c=document.getElementById("stars"),x=c.getContext("2d");let s=[];
-function r(){c.width=innerWidth;c.height=innerHeight;s=[...Array(100)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3}))}
-addEventListener("resize",r);r();
-(function a(){x.clearRect(0,0,c.width,c.height);s.forEach(o=>{x.beginPath();x.arc(o.x,o.y,o.r,0,7);x.fillStyle="#b388ff";x.fill();o.x+=o.dx;o.y+=o.dy});requestAnimationFrame(a)})();
-</script>
+/* ================= STARS ================= */
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let stars = [];
 
+function resizeStars(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+  stars = [...Array(100)].map(() => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    dx: (Math.random() - .5) * .3,
+    dy: (Math.random() - .5) * .3
+  }));
+}
+
+addEventListener("resize", resizeStars);
+resizeStars();
+
+(function animateStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle = "#b388ff";
+    ctx.fill();
+    s.x += s.dx;
+    s.y += s.dy;
+  });
+  requestAnimationFrame(animateStars);
+})();
+</script>
 </body>
 </html>
