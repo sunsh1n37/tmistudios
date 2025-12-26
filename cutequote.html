@@ -223,14 +223,33 @@ footer a{
   <div class="bg" style="background:#000" onclick="setColor('#000')"></div>
   <div class="bg" style="background:#ffdac1" onclick="setColor('#ffdac1')"></div>
   <div class="bg" style="background:#fdd7ff" onclick="setColor('#fdd7ff')"></div>
-  <div class="bg" style="background:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&w=150')" onclick="setImg('sky')"></div>
-  <div class="bg" style="background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=150')" onclick="setImg('clouds')"></div>
-  <div class="bg locked" onclick="showPaywall()"></div>
+  
+<!-- FREE IMAGES -->
+<div class="bg" style="background:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=150') center/cover" onclick="setImg('sky')"></div>
+<div class="bg" style="background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=150') center/cover" onclick="setImg('clouds')"></div>
+<div class="bg" style="background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=150') center/cover" onclick="setImg('beachFree')"></div>
+
+<!-- PREMIUM IMAGES -->
+<div class="bg locked" style="background:url('https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg') center/cover" onclick="showPaywall()"></div>
+<div class="bg locked" style="background:url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg') center/cover" onclick="showPaywall()"></div>
+<div class="bg locked" style="background:url('https://images.pexels.com/photos/1257860/pexels-photo-1257860.jpeg') center/cover" onclick="showPaywall()"></div>
+
+</div>
 </div>
 </div>
 
 <div class="section">
 <button onclick="downloadImg()">Download Quote</button>
+</div>
+
+<div class="section">
+<h4>Trending Quotes 🔥</h4>
+<div class="quote" onclick="useQuote(this)">I am the plot twist.</div>
+<div class="quote" onclick="useQuote(this)">Soft life, sharp mind.</div>
+<div class="quote" onclick="useQuote(this)">Chosen. Always.</div>
+<div class="quote locked" onclick="showPaywall()">✨ I don’t chase. I attract.</div>
+<div class="quote locked" onclick="showPaywall()">✨ Everything bends in my favour.</div>
+<div class="quote locked" onclick="showPaywall()">✨ Soft life is a strategy.</div>
 </div>
 
 </main>
@@ -260,73 +279,129 @@ footer a{
 </div>
 
 <script>
-/* NAV TOGGLE */
-const hamburger=document.getElementById('hamburger');
-const dropdown=document.getElementById('menuDropdown');
+/* ===== NAV TOGGLE ===== */
+const hamburger = document.getElementById('hamburger');
+const dropdown = document.getElementById('menuDropdown');
 
-hamburger.addEventListener('click',e=>{
+hamburger.addEventListener('click', e => {
   e.stopPropagation();
-  dropdown.style.display=dropdown.style.display==='block'?'none':'block';
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-document.addEventListener('click',()=>{
-  dropdown.style.display='none';
+document.addEventListener('click', () => {
+  dropdown.style.display = 'none';
 });
 
-/* ===== EXISTING APP JS (unchanged) ===== */
-const canvas=document.getElementById('canvas');
-const ctx=canvas.getContext('2d');
-let bgType='color',bgValue='#333',bgImg=null;
-let textX=canvas.width/2,textY=canvas.height/2;
-let dragging=false;
+/* ===== GRAB ELEMENTS ===== */
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  if(bgType==='image'&&bgImg) ctx.drawImage(bgImg,0,0,canvas.width,canvas.height);
-  else{ctx.fillStyle=bgValue;ctx.fillRect(0,0,canvas.width,canvas.height)}
+const quoteInput = document.getElementById('quoteInput');
+const emojiInput = document.getElementById('emojiInput');
+const fontSelect = document.getElementById('fontSelect');
+const textSize = document.getElementById('textSize');
+const textColor = document.getElementById('textColor');
+const postSize = document.getElementById('postSize');
 
-  const q=quoteInput.value||"Your quote here ✨";
-  const font=fontSelect.value.replace(' 🔒','');
-  ctx.fillStyle=textColor.value;
-  ctx.textAlign="center";
-  ctx.font=`bold ${textSize.value}px ${font}`;
-  wrapText(q,textX,textY,canvas.width-100,parseInt(textSize.value)+10);
+let bgType = 'color', bgValue = '#333', bgImg = null;
+let textX = canvas.width / 2, textY = canvas.height / 2;
+let dragging = false;
+
+/* ===== DRAW CANVAS ===== */
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if(bgType === 'image' && bgImg) ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+  else { ctx.fillStyle = bgValue; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+
+  const q = quoteInput.value || "Your quote here ✨";
+  const e = emojiInput.value;
+  const font = fontSelect.value.replace(' 🔒', '');
+  ctx.fillStyle = textColor.value;
+  ctx.textAlign = "center";
+  ctx.font = `bold ${textSize.value}px ${font}`;
+
+  if(e) ctx.fillText(e, textX, textY - parseInt(textSize.value) * 1.6);
+  wrapText(q, textX, textY, canvas.width - 100, parseInt(textSize.value) + 10);
+
+  // watermark
+  ctx.globalAlpha = 0.5;
+  ctx.font = "20px Montserrat";
+  ctx.textAlign = "right";
+  ctx.fillText("Gramvas · TMI Studios", canvas.width - 20, canvas.height - 20);
+  ctx.globalAlpha = 1;
 }
 
-function wrapText(t,x,y,m,l){
-  let w=t.split(' '),line='',yy=y;
-  for(let i=0;i<w.length;i++){
-    let test=line+w[i]+' ';
-    if(ctx.measureText(test).width>m){
-      ctx.fillText(line,x,yy);
-      line=w[i]+' '; yy+=l;
-    } else line=test;
+function wrapText(text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let yy = y;
+  for(let i = 0; i < words.length; i++){
+    const test = line + words[i] + ' ';
+    if(ctx.measureText(test).width > maxWidth){
+      ctx.fillText(line, x, yy);
+      line = words[i] + ' ';
+      yy += lineHeight;
+    } else line = test;
   }
-  ctx.fillText(line,x,yy);
+  ctx.fillText(line, x, yy);
 }
 
-function setColor(c){bgType='color';bgValue=c;bgImg=null;draw()}
+/* ===== BACKGROUNDS ===== */
+function setColor(c){ bgType='color'; bgValue=c; bgImg=null; draw(); }
 function setImg(type){
-  const map={
+  const map = {
     sky:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&w=800',
-    clouds:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=800'
+    clouds:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=800',
+    beachFree:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=800'
   };
-  const i=new Image(); i.crossOrigin="anonymous";
-  i.src=map[type];
-  i.onload=()=>{bgType='image';bgImg=i;draw()};
+  const i = new Image(); i.crossOrigin = "anonymous";
+  i.src = map[type];
+  i.onload = () => { bgType='image'; bgImg=i; draw(); }
 }
 
-function downloadImg(){
-  const a=document.createElement('a');
-  a.download='gramvas.png';
-  a.href=canvas.toDataURL();
+/* ===== DOWNLOAD IMAGE ===== */
+function downloadImg() {
+  const a = document.createElement('a');
+  a.download = 'gramvas.png';
+  a.href = canvas.toDataURL();
   a.click();
 }
 
-function showPaywall(){paywall.style.display='flex'}
-function closePaywall(){paywall.style.display='none'}
+/* ===== PAYWALL ===== */
+function showPaywall(){ document.getElementById('paywall').style.display = 'flex'; }
+function closePaywall(){ document.getElementById('paywall').style.display = 'none'; }
 
-document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',draw));
+/* ===== QUOTE CLICK ===== */
+function useQuote(el) {
+  quoteInput.value = el.textContent;
+  draw();
+}
+
+/* ===== CANVAS DRAG ===== */
+canvas.addEventListener('mousedown', ()=>dragging=true);
+canvas.addEventListener('mousemove', e=>{
+  if(!dragging) return;
+  const r = canvas.getBoundingClientRect();
+  textX = (e.clientX - r.left) * (canvas.width / r.width);
+  textY = (e.clientY - r.top) * (canvas.height / r.height);
+  draw();
+});
+canvas.addEventListener('mouseup', ()=>dragging=false);
+canvas.addEventListener('mouseleave', ()=>dragging=false);
+
+/* ===== POST SIZE SELECTOR ===== */
+postSize.addEventListener('change', ()=>{
+  const val = postSize.value;
+  if(val==='ig'){ canvas.width=1080; canvas.height=1080; }
+  else if(val==='fb'){ canvas.width=1200; canvas.height=630; }
+  else if(val==='x'){ canvas.width=1200; canvas.height=675; }
+  textX = canvas.width/2; textY = canvas.height/2;
+  draw();
+});
+
+/* ===== INPUT LISTENERS ===== */
+[quoteInput, emojiInput, fontSelect, textSize, textColor].forEach(el => el.addEventListener('input', draw));
+
 draw();
 </script>
 
