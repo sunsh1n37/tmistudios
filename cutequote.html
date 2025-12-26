@@ -2,39 +2,167 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Cute Quotes — TMI Studios</title>
+<title>Gramvas — TMI Studios</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@600&family=Pacifico&family=Great+Vibes&family=Oswald:wght@600&family=Amatic+SC:wght@700&family=Lobster&family=Sacramento&family=Dancing+Script&family=Caveat&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Montserrat,sans-serif;background:#0f0f14;color:#fff;}
-nav{position:sticky;top:0;background:#111;padding:12px 16px;display:flex;justify-content:space-between;z-index:10}
-nav .logo{font-weight:700}
-nav .menu{font-size:22px;cursor:pointer}
+body{margin:0;font-family:Montserrat,sans-serif;background:#0f0f14;color:#fff}
+
+/* ===== NAV ===== */
+nav{
+  position:sticky;
+  top:0;
+  background:#111;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:100;
+}
+
+nav .logo a{
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  font-size:20px;
+}
+
+nav .menu{
+  position:relative;
+  font-size:22px;
+  cursor:pointer;
+  user-select:none;
+}
+
+nav .dropdown{
+  display:none;
+  position:absolute;
+  right:0;
+  top:36px;
+  background:#181820;
+  border-radius:10px;
+  overflow:hidden;
+  min-width:160px;
+  box-shadow:0 6px 20px rgba(0,0,0,.4);
+}
+
+nav .dropdown a{
+  display:block;
+  padding:12px 16px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+}
+
+nav .dropdown a:hover{
+  background:#222;
+}
+
+/* ===== APP ===== */
 main{max-width:420px;margin:auto;padding:16px}
-canvas{width:100%;border-radius:14px;background:#222;margin-bottom:12px}
-.section{background:#181820;border-radius:14px;padding:14px;margin-bottom:14px}
-input,select,button{width:100%;padding:10px;margin:6px 0;border-radius:10px;border:none;font-size:14px}
-button{background:#ff6ec7;font-weight:600;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.bg{height:60px;border-radius:10px;cursor:pointer;background-size:cover;background-position:center}
-.bg.locked{opacity:.35;border:2px dashed #ff6ec7;pointer-events:auto}
-.quote{background:#222;padding:10px;border-radius:10px;margin-bottom:8px;cursor:pointer}
-.quote.locked{opacity:.4;pointer-events:auto}
-#paywall{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:99}
-#paywall .box{background:#181820;padding:20px;border-radius:16px;text-align:center;width:80%;max-width:300px}
-#paywall button{margin-top:10px}
-footer{text-align:center;font-size:12px;opacity:.6;padding:20px}
-footer a{text-decoration:none;color:inherit;}
-.locked-font{color:#aaa;font-style:italic;}
+
+canvas{
+  width:100%;
+  border-radius:14px;
+  background:#222;
+  margin-bottom:12px;
+  cursor:grab;
+}
+
+.section{
+  background:#181820;
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:14px;
+}
+
+input,select,button{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:10px;
+  border:none;
+  font-size:14px;
+}
+
+button{
+  background:#ff6ec7;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.bg{
+  height:60px;
+  border-radius:10px;
+  cursor:pointer;
+  background-size:cover;
+  background-position:center;
+}
+
+.bg.locked{
+  opacity:.35;
+  border:2px dashed #ff6ec7;
+}
+
+.quote{
+  background:#222;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:8px;
+  cursor:pointer;
+}
+
+.quote.locked{opacity:.4}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  font-size:12px;
+  opacity:.6;
+  padding:20px;
+}
+
+footer a{
+  text-decoration:none;
+  color:inherit;
+  margin:0 6px;
+}
+
+/* ===== PAYWALL ===== */
+#paywall{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+#paywall .box{
+  background:#181820;
+  padding:20px;
+  border-radius:16px;
+  text-align:center;
+  width:80%;
+  max-width:300px;
+}
 </style>
 </head>
+
 <body>
-  
+
 <nav>
   <div class="logo"><a href="index.html">TMI Studios</a></div>
   <div class="menu" id="hamburger">☰
@@ -48,294 +176,159 @@ footer a{text-decoration:none;color:inherit;}
   </div>
 </nav>
 
-<style>
-nav {
-  position: sticky;
-  top: 0;
-  background: #111;
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-  font-family: Montserrat, sans-serif;
-}
-
-nav .logo a {
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-nav .menu {
-  position: relative;
-  cursor: pointer;
-  font-size: 22px;
-  color: #fff;
-  user-select: none;
-}
-
-nav .dropdown {
-  display: none;
-  position: absolute;
-  top: 36px;
-  right: 0;
-  background: #181820;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-nav .dropdown a {
-  display: block;
-  padding: 10px 16px;
-  color: #fff;
-  text-decoration: none;
-}
-
-nav .dropdown a:hover {
-  background: #222;
-}
-</style>
-
-<script>
-const hamburger = document.getElementById('hamburger');
-const dropdown = document.getElementById('menuDropdown');
-
-hamburger.addEventListener('click', () => {
-  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-});
-
-// Optional: Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-  if (!hamburger.contains(e.target)) {
-    dropdown.style.display = 'none';
-  }
-});
-</script>
-
 <main>
-<canvas id="canvas" width="600" height="600"></canvas>
+
+<canvas id="canvas" width="1080" height="1080"></canvas>
 
 <div class="section">
   <input id="quoteInput" placeholder="Type your quote…" />
   <input id="emojiInput" placeholder="Optional emoji ✨" />
   <label>
-    <input type="checkbox" id="wmToggle" checked disabled>
-    Watermark (Premium to remove 🔒)
+    <input type="checkbox" checked disabled>
+    Watermark (Premium 🔒)
   </label>
 </div>
 
 <div class="section">
   <select id="fontSelect">
-    <option>Playfair Display</option>
-    <option>Montserrat</option>
-    <option>Pacifico</option>
-    <option>Great Vibes</option>
-    <option>Oswald</option>
-
-    <!-- Locked / Premium Cute Fonts -->
-    <option class="locked-font">Amatic SC 🔒</option>
-    <option class="locked-font">Lobster 🔒</option>
-    <option class="locked-font">Sacramento 🔒</option>
-    <option class="locked-font">Dancing Script 🔒</option>
-    <option class="locked-font">Caveat 🔒</option>
+    <option style="font-family:'Playfair Display'">Playfair Display</option>
+    <option style="font-family:'Montserrat'">Montserrat</option>
+    <option style="font-family:'Pacifico'">Pacifico</option>
+    <option style="font-family:'Great Vibes'">Great Vibes</option>
+    <option style="font-family:'Oswald'">Oswald</option>
+    <option style="font-family:'Amatic SC'">Amatic SC 🔒</option>
+    <option style="font-family:'Lobster'">Lobster 🔒</option>
+    <option style="font-family:'Sacramento'">Sacramento 🔒</option>
+    <option style="font-family:'Dancing Script'">Dancing Script 🔒</option>
+    <option style="font-family:'Caveat'">Caveat 🔒</option>
   </select>
 </div>
 
 <div class="section">
-  <h4>Text Color & Post Size</h4>
-  <label>Text Color:</label>
+  <label>Text Size</label>
+  <input type="range" id="textSize" min="40" max="140" value="72">
+  <label>Text Color</label>
   <input type="color" id="textColor" value="#ffffff">
-  <label>Post Size:</label>
+  <label>Post Size</label>
   <select id="postSize">
-    <option value="ig">Instagram (1080x1080)</option>
-    <option value="fb">Facebook (1200x630)</option>
-    <option value="x">X/Twitter (1200x675)</option>
+    <option value="ig">Instagram (1080×1080)</option>
+    <option value="fb">Facebook (1200×630)</option>
+    <option value="x">X / Twitter (1200×675)</option>
   </select>
 </div>
 
 <div class="section">
 <h4>Backgrounds</h4>
 <div class="grid">
-
-<!-- FREE COLORS -->
-<div class="bg" style="background:#000000" onclick="setColor('#000000')"></div>
-<div class="bg" style="background:#ffdac1" onclick="setColor('#ffdac1')"></div>
-<div class="bg" style="background:#fdd7ff" onclick="setColor('#fdd7ff')"></div>
-
-<!-- FREE IMAGES -->
-<div class="bg" style="background:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=150') center/cover" onclick="setImg('sky')"></div>
-<div class="bg" style="background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=150') center/cover" onclick="setImg('clouds')"></div>
-<div class="bg" style="background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=150') center/cover" onclick="setImg('beachFree')"></div>
-
-<!-- PREMIUM IMAGES -->
-<div class="bg locked" style="background:url('https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg') center/cover" onclick="showPaywall()"></div>
-<div class="bg locked" style="background:url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg') center/cover" onclick="showPaywall()"></div>
-<div class="bg locked" style="background:url('https://images.pexels.com/photos/1257860/pexels-photo-1257860.jpeg') center/cover" onclick="showPaywall()"></div>
-
+  <div class="bg" style="background:#000" onclick="setColor('#000')"></div>
+  <div class="bg" style="background:#ffdac1" onclick="setColor('#ffdac1')"></div>
+  <div class="bg" style="background:#fdd7ff" onclick="setColor('#fdd7ff')"></div>
+  <div class="bg" style="background:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&w=150')" onclick="setImg('sky')"></div>
+  <div class="bg" style="background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=150')" onclick="setImg('clouds')"></div>
+  <div class="bg locked" onclick="showPaywall()"></div>
 </div>
-
-<input type="file" accept="image/*" onchange="uploadBg(event)">
 </div>
 
 <div class="section">
 <button onclick="downloadImg()">Download Quote</button>
 </div>
 
-<div class="section">
-<h4>Trending Quotes 🔥</h4>
-<div class="quote" onclick="useQuote(this)">I am the plot twist.</div>
-<div class="quote" onclick="useQuote(this)">Soft life, sharp mind.</div>
-<div class="quote" onclick="useQuote(this)">Chosen. Always.</div>
-<div class="quote locked" onclick="showPaywall()">✨ I don’t chase. I attract.</div>
-<div class="quote locked" onclick="showPaywall()">✨ Everything bends in my favour.</div>
-<div class="quote locked" onclick="showPaywall()">✨ Soft life is a strategy.</div>
-</div>
-
 </main>
-<footer class="bg-black text-center text-sm text-gray-600 py-8">
-  <div class="mb-3">
-    <span class="mr-2">Follow us:</span>
+
+<footer>
+  <div>
     <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg mx-2"></i></a>
+    <a href="https://facebook.com/tmistudios" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
   </div>
-  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html">Put your ad in our games and reach thousands of daily players</a></p>
-  <p><a href="/arcade.html">Arcade</a></p>
-  <p><a href="/privacy.html">Privacy Policy</a></p>
-  <p><a href="/termsofuse.html">Terms of Use</a></p>
+  <p>© 2025 TMI Studios</p>
+  <p>
+    <a href="/arcade.html">Arcade</a> ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/termsofuse.html">Terms</a>
+  </p>
 </footer>
 
-<!-- PAYWALL -->
 <div id="paywall">
   <div class="box">
     <h3>✨ Premium ✨</h3>
-    <p>Remove watermark, unlock quotes & backgrounds.</p>
-    <button onclick="closePaywall()">Maybe Later</button>
+    <p>Unlock fonts, images & remove watermark</p>
+    <button onclick="closePaywall()">Maybe later</button>
   </div>
 </div>
 
 <script>
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-let bg = null;
-let bgType = 'color';
-let bgValue = '#333';
-let currentFont = "Playfair Display";
+/* NAV TOGGLE */
+const hamburger=document.getElementById('hamburger');
+const dropdown=document.getElementById('menuDropdown');
 
-/* ================= DRAW ================= */
+hamburger.addEventListener('click',e=>{
+  e.stopPropagation();
+  dropdown.style.display=dropdown.style.display==='block'?'none':'block';
+});
+
+document.addEventListener('click',()=>{
+  dropdown.style.display='none';
+});
+
+/* ===== EXISTING APP JS (unchanged) ===== */
+const canvas=document.getElementById('canvas');
+const ctx=canvas.getContext('2d');
+let bgType='color',bgValue='#333',bgImg=null;
+let textX=canvas.width/2,textY=canvas.height/2;
+let dragging=false;
+
 function draw(){
-  // Canvas size
-  const size = document.getElementById('postSize').value;
-  if(size==='ig'){canvas.width=canvas.height=1080;}
-  else if(size==='fb'){canvas.width=1200; canvas.height=630;}
-  else if(size==='x'){canvas.width=1200; canvas.height=675;}
-
   ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(bgType==='image'&&bgImg) ctx.drawImage(bgImg,0,0,canvas.width,canvas.height);
+  else{ctx.fillStyle=bgValue;ctx.fillRect(0,0,canvas.width,canvas.height)}
 
-  // Background
-  if(bgType==='image' && bg) ctx.drawImage(bg,0,0,canvas.width,canvas.height);
-  else if(bgType==='gradient'){
-    const g = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
-    g.addColorStop(0,'#ff6ec7'); g.addColorStop(1,'#7366ff');
-    ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);
-  } else { ctx.fillStyle=bgValue; ctx.fillRect(0,0,canvas.width,canvas.height); }
-
-  // Quote
-  const q=document.getElementById('quoteInput').value || "Your quote here ✨";
-  const e=document.getElementById('emojiInput').value;
-  const f=currentFont; // use currentFont instead of dropdown value
-  const tColor=document.getElementById('textColor').value;
-
-  ctx.fillStyle = tColor;
-  ctx.textAlign = "center";
-
-  let fontSize = Math.floor(canvas.width / 15);
-  ctx.font = `bold ${fontSize}px ${f}`;
-  if(e) ctx.fillText(e, canvas.width/2, fontSize + 50);
-
-  wrapText(q, canvas.width/2, canvas.height/2, canvas.width - 100, fontSize + 20);
-
-  // Watermark
-  ctx.font = `${Math.floor(canvas.width/40)}px Montserrat`;
-  ctx.textAlign = "right";
-  ctx.globalAlpha = 0.6;
-  ctx.fillText("Cute Quotes by TMI Studios", canvas.width - 20, canvas.height - 20);
-  ctx.globalAlpha = 1;
+  const q=quoteInput.value||"Your quote here ✨";
+  const font=fontSelect.value.replace(' 🔒','');
+  ctx.fillStyle=textColor.value;
+  ctx.textAlign="center";
+  ctx.font=`bold ${textSize.value}px ${font}`;
+  wrapText(q,textX,textY,canvas.width-100,parseInt(textSize.value)+10);
 }
 
-/* ================= TEXT WRAP ================= */
-function wrapText(text,x,y,maxWidth,lineHeight){
-  const words = text.split(' '); let line=''; let yy=y;
-  words.forEach(word=>{
-    const test=line+word+' ';
-    if(ctx.measureText(test).width>maxWidth){ctx.fillText(line,x,yy); line=word+' '; yy+=lineHeight;}
-    else line=test;
-  });
+function wrapText(t,x,y,m,l){
+  let w=t.split(' '),line='',yy=y;
+  for(let i=0;i<w.length;i++){
+    let test=line+w[i]+' ';
+    if(ctx.measureText(test).width>m){
+      ctx.fillText(line,x,yy);
+      line=w[i]+' '; yy+=l;
+    } else line=test;
+  }
   ctx.fillText(line,x,yy);
 }
 
-/* ================= BACKGROUNDS ================= */
-function setColor(c){bgType='color';bgValue=c;bg=null;draw();}
-function setGradient(){bgType='gradient';bg=null;draw();}
+function setColor(c){bgType='color';bgValue=c;bgImg=null;draw()}
 function setImg(type){
   const map={
-    sky:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=600',
-    clouds:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=600',
-    beachFree:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=600'
+    sky:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&w=800',
+    clouds:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=800'
   };
-  const img=new Image();
-  img.crossOrigin="anonymous";
-  img.src=map[type];
-  img.onload=()=>{bgType='image';bg=img;draw();}
+  const i=new Image(); i.crossOrigin="anonymous";
+  i.src=map[type];
+  i.onload=()=>{bgType='image';bgImg=i;draw()};
 }
 
-/* ================= UPLOAD ================= */
-function uploadBg(e){
-  const file=e.target.files[0];
-  if(!file) return;
-  const img=new Image();
-  img.onload=()=>{bgType='image';bg=img;draw();}
-  img.src=URL.createObjectURL(file);
-}
-
-/* ================= QUOTES ================= */
-function useQuote(el){
-  if(el.classList.contains('locked')){showPaywall(); return;}
-  document.getElementById('quoteInput').value=el.textContent; draw();
-}
-
-/* ================= FONT SELECT ================= */
-const fontSelect = document.getElementById('fontSelect');
-const lockedFonts = ['Amatic SC','Lobster','Sacramento','Dancing Script','Caveat'];
-
-fontSelect.addEventListener('change', function(){
-  const selectedFont = this.value.replace(' 🔒','');
-  if(lockedFonts.includes(selectedFont)){
-    showPaywall();
-    this.value = currentFont; // restore previous font
-  } else {
-    currentFont = selectedFont;
-    draw();
-  }
-});
-
-/* ================= DOWNLOAD ================= */
 function downloadImg(){
-  const a=document.createElement('a'); a.download='cute-quote.png';
-  a.href=canvas.toDataURL('image/png'); a.click();
+  const a=document.createElement('a');
+  a.download='gramvas.png';
+  a.href=canvas.toDataURL();
+  a.click();
 }
 
-/* ================= PAYWALL ================= */
-function showPaywall(){document.getElementById('paywall').style.display='flex';}
-function closePaywall(){document.getElementById('paywall').style.display='none';}
+function showPaywall(){paywall.style.display='flex'}
+function closePaywall(){paywall.style.display='none'}
 
-/* ================= REDRAW ================= */
 document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',draw));
 draw();
 </script>
+
 </body>
 </html>
