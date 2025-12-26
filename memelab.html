@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TMI Meme Lab — TMI Studios</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Impact&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,sans-serif;background:#0f0f14;color:#fff;}
+nav{position:sticky;top:0;background:#111;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;z-index:10;font-family:Montserrat,sans-serif;}
+nav .logo a{color:#fff;font-weight:700;text-decoration:none;font-size:20px;}
+nav .menu{position:relative;cursor:pointer;font-size:22px;color:#fff;user-select:none;}
+nav .dropdown{display:none;position:absolute;top:36px;right:0;background:#181820;border-radius:8px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.3);}
+nav .dropdown a{display:block;padding:10px 16px;color:#fff;text-decoration:none;}
+nav .dropdown a:hover{background:#222;}
+
+main{max-width:420px;margin:auto;padding:16px}
+canvas{width:100%;border-radius:14px;background:#000;margin-bottom:14px}
+.section{background:#181820;border-radius:14px;padding:14px;margin-bottom:14px}
+input,select,button{width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;font-size:14px}
+button{background:#ff6ec7;font-weight:700;cursor:pointer;transition:.2s}
+button:hover{background:#e055b0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.thumb{height:80px;border-radius:10px;background-size:cover;background-position:center;cursor:pointer}
+
+footer{text-align:center;font-size:12px;opacity:.6;padding:20px;background:#111;box-shadow:0 -2px 4px rgba(0,0,0,0.5);}
+footer a{text-decoration:none;color:inherit;}
+footer .social-icons a{margin:0 5px;color:#fff;font-size:18px;}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html">TMI Meme Lab</a></div>
+  <div class="menu" id="hamburger">☰
+    <div class="dropdown" id="menuDropdown">
+      <a href="lab.html">Lab</a>
+      <a href="arcade.html">Arcade</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="packages.html">Packages</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<canvas id="canvas" width="1080" height="1080"></canvas>
+
+<div class="section">
+  <input id="topText" placeholder="TOP TEXT">
+  <input id="bottomText" placeholder="BOTTOM TEXT">
+</div>
+
+<div class="section">
+  <label>Font Size</label>
+  <input type="range" id="fontSize" min="40" max="120" value="80">
+
+  <label>Text Color</label>
+  <input type="color" id="textColor" value="#ffffff">
+</div>
+
+<div class="section">
+  <h4>Meme Templates</h4>
+  <div class="grid">
+    <div class="thumb" style="background-image:url('https://i.imgflip.com/1bij.jpg')" onclick="setMeme('drake')"></div>
+    <div class="thumb" style="background-image:url('https://i.imgflip.com/1ur9b0.jpg')" onclick="setMeme('distracted')"></div>
+    <div class="thumb" style="background-image:url('https://i.imgflip.com/26am.jpg')" onclick="setMeme('grumpy')"></div>
+    <div class="thumb" style="background-image:url('https://i.imgflip.com/30b1gx.jpg')" onclick="setMeme('cat')"></div>
+    <div class="thumb" style="background-image:url('https://i.imgflip.com/1g8my4.jpg')" onclick="setMeme('fine')"></div>
+    <div class="thumb" style="background-image:url('https://i.imgflip.com/1ihzfe.jpg')" onclick="setMeme('brain')"></div>
+  </div>
+</div>
+
+<div class="section">
+  <button onclick="downloadMeme()">Download Meme</button>
+</div>
+</main>
+
+<footer>
+  <div class="social-icons">
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+  </div>
+  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+  <p><a href="/contactus.html">Advertise with us</a> | <a href="/arcade.html">Arcade</a> | <a href="/privacy.html">Privacy Policy</a> | <a href="/termsofuse.html">Terms of Use</a></p>
+</footer>
+
+<script>
+// Hamburger dropdown
+const hamburger = document.getElementById('hamburger');
+const dropdown = document.getElementById('menuDropdown');
+
+hamburger.addEventListener('click', () => {
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+});
+document.addEventListener('click', (e) => {
+  if (!hamburger.contains(e.target)) dropdown.style.display = 'none';
+});
+
+// Meme logic
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let memeImg = new Image();
+memeImg.crossOrigin = "anonymous";
+
+const memes = {
+  drake: "https://i.imgflip.com/1bij.jpg",
+  distracted: "https://i.imgflip.com/1ur9b0.jpg",
+  grumpy: "https://i.imgflip.com/26am.jpg",
+  cat: "https://i.imgflip.com/30b1gx.jpg",
+  fine: "https://i.imgflip.com/1g8my4.jpg",
+  brain: "https://i.imgflip.com/1ihzfe.jpg"
+};
+
+function setMeme(type) {
+  memeImg.src = memes[type];
+}
+
+function draw() {
+  document.fonts.ready.then(() => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(memeImg, 0, 0, canvas.width, canvas.height);
+
+    const top = document.getElementById("topText").value.toUpperCase();
+    const bottom = document.getElementById("bottomText").value.toUpperCase();
+    const size = parseInt(document.getElementById("fontSize").value);
+    const color = document.getElementById("textColor").value;
+
+    ctx.font = `${size}px Impact, Montserrat`;
+    ctx.textAlign = "center";
+    ctx.fillStyle = color;
+    ctx.strokeStyle = "#000";
+    ctx.lineWidth = Math.floor(size / 10);
+
+    if (top) ctxFillStroke(top, size + 30);
+    if (bottom) ctxFillStroke(bottom, canvas.height - 30);
+
+    // Floating watermark
+    const wmText = "TMI Meme Lab";
+    ctx.font = `${Math.floor(canvas.width / 40)}px Montserrat`;
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#fff";
+    ctx.globalAlpha = 0.5;
+    ctx.fillText(wmText, canvas.width - 20, canvas.height - 20);
+    ctx.globalAlpha = 1;
+  });
+}
+
+function ctxFillStroke(text, y){
+  ctx.strokeText(text, canvas.width/2, y);
+  ctx.fillText(text, canvas.width/2, y);
+}
+
+function downloadMeme() {
+  const a = document.createElement("a");
+  a.download = "meme.png";
+  a.href = canvas.toDataURL("image/png");
+  a.click();
+}
+
+document.querySelectorAll("input").forEach(el => el.addEventListener("input", draw));
+memeImg.onload = draw;
+setMeme("drake");
+</script>
+
+</body>
+</html>
