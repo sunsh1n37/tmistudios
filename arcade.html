@@ -474,6 +474,25 @@ function fireBullet() {
 shooterContainer.addEventListener('click', fireBullet);
 spawnTarget();
 </script>
+<script>
+const hamburger = document.getElementById('hamburger');
+const menuDropdown = document.getElementById('menuDropdown');
+
+hamburger.addEventListener('click', () => {
+  if (menuDropdown.style.display === 'block') {
+    menuDropdown.style.display = 'none';
+  } else {
+    menuDropdown.style.display = 'block';
+  }
+});
+
+// Optional: click outside to close dropdown
+document.addEventListener('click', (e) => {
+  if (!hamburger.contains(e.target)) {
+    menuDropdown.style.display = 'none';
+  }
+});
+</script>
 
 </body>
 </html>
