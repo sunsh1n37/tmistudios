@@ -15,16 +15,47 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
-:root { --cyan:#00ffff; --magenta:#ff00ff; --purple:#a855f7; }
-body { margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); }
-a { transition: color 0.3s ease; } a:hover { color:#d8b4fe; }
-nav a { color:#fff !important; margin-right:.75rem; font-weight:700; } 
-footer a { color:#fff !important; text-decoration:none; } 
+:root {
+  --cyan:#00ffff;
+  --magenta:#ff00ff;
+  --purple:#a855f7;
+}
+
+/* BASE */
+body {
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  color:#fff;
+  background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%);
+}
+
+a { transition: color 0.3s ease; }
+a:hover { color:#d8b4fe; }
+
+/* NAV + FOOTER */
+nav a { color:#fff !important; margin-right:.75rem; font-weight:700; }
+footer a { color:#fff !important; text-decoration:none; }
 footer a:hover { color:#ccc !important; }
 
-.hero-title { font-size:3rem; font-weight:700; background:linear-gradient(135deg,#fff,#c0c0c0,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:2px 2px 5px rgba(255,255,255,.25);}
-.home-slogan { font-size:1rem; text-shadow:0 0 8px var(--cyan); font-weight:700; margin-top:1rem; }
+/* HERO */
+.hero-title {
+  font-size:3rem;
+  font-weight:700;
+  background:linear-gradient(135deg,#fff,#c0c0c0,#fff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-shadow:2px 2px 5px rgba(255,255,255,.25);
+}
 
+.home-slogan {
+  font-size:1rem;
+  text-shadow:0 0 8px var(--cyan);
+  font-weight:700;
+  margin-top:1rem;
+}
+
+/* MINI SHOOTER */
 #game-container {
   position: relative;
   height: 150px;
@@ -54,7 +85,6 @@ footer a:hover { color:#ccc !important; }
   top: 50%;
   transform: translateY(-50%);
   right: 10px;
-  transition: transform 0.3s ease;
 }
 
 .target.explode {
@@ -72,54 +102,133 @@ footer a:hover { color:#ccc !important; }
   z-index: 500;
 }
 
-.game-card { display:inline-block; width:250px; margin-right:1rem; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid #000; vertical-align:top; text-align:center; }
-.game-card button { background:var(--purple); color:white; border:none; padding:.5rem 1rem; margin:.5rem; border-radius:6px; cursor:pointer; font-weight:bold; }
-.game-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
+/* SECTION HEADINGS */
+.section-title {
+  font-size:1.75rem;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:1rem;
+  color:var(--cyan);
+}
 
-.nav-link { color: #fff; text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; margin-right: 1rem; }
-.nav-link:last-child { margin-right: 0; }
-.nav-link:hover { color: #a855f7; }
+/* QUIZ CHAOS (SMALL CARDS – LEAVE AS IS) */
+.games {
+  display:flex;
+  overflow-x:auto;
+  white-space:nowrap;
+  padding-bottom:.5rem;
+}
 
-.section-title { font-size:1.75rem; font-weight:700; text-align:center; margin-bottom:1rem; color:var(--cyan); }
-.games { display:flex; overflow-x:auto; white-space:nowrap; padding-bottom:.5rem; }
-.games .card { display:inline-block; width:200px; margin-right:1rem; background:#1a1a1a; border-radius:12px; padding:1rem; text-align:center; border:2px solid #000; }
-.games .card .emoji { font-size:2.5rem; margin-bottom:.5rem; }
-.games .card .card-title { font-weight:700; margin-bottom:.5rem; }
-.games .card .btn { background:var(--purple); color:#fff; padding:.5rem 1rem; border-radius:6px; font-weight:bold; text-decoration:none; display:inline-block; }
+.games .card {
+  display:inline-block;
+  width:200px;
+  margin-right:1rem;
+  background:#1a1a1a;
+  border-radius:12px;
+  padding:1rem;
+  text-align:center;
+  border:2px solid #000;
+}
 
-#whatsapp-tile { max-width:360px; margin:2rem auto; background:rgba(255,255,255,0.05); border:2px solid var(--purple); border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 0 10px #8b5cf6; }
-#whatsapp-tile a { margin-top:0.75rem; background:var(--purple); color:#fff; padding:.6rem 1.25rem; border-radius:8px; font-weight:bold; display:inline-block; text-decoration:none; }
+.games .card .emoji {
+  font-size:2.5rem;
+  margin-bottom:.5rem;
+}
 
-/* Bigger Pre-Launch Chaos tiles */
+.games .card .card-title {
+  font-weight:700;
+  margin-bottom:.5rem;
+}
+
+.games .card .btn {
+  background:var(--purple);
+  color:#fff;
+  padding:.5rem 1rem;
+  border-radius:6px;
+  font-weight:bold;
+  text-decoration:none;
+  display:inline-block;
+}
+
+/* ============================= */
+/* 🔥 PRE-LAUNCH CHAOS — BIG FIX */
+/* ============================= */
+
+.quizzes {
+  max-width:100%;
+  margin:0 auto;
+  display:flex;
+  gap:1.25rem;
+  overflow-x:auto;
+  padding:1rem 0 1.5rem;
+  scroll-snap-type:x mandatory;
+}
+
+/* BIG, WIDE CARDS */
 .game-card {
-  display: inline-block;
-  width: 320px;              /* was 250px */
-  margin-right: 1.25rem;
-  background: #1a1a1a;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 2px solid #000;
-  vertical-align: top;
-  text-align: center;
+  flex: 0 0 85vw;           /* 👈 mobile width FIX */
+  max-width: 380px;
+  background:#1a1a1a;
+  border-radius:18px;
+  overflow:hidden;
+  border:2px solid #000;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.45);
+  scroll-snap-align:start;
 }
 
+/* FULL IMAGE — NO CROPPING */
 .game-card img {
-  width: 100%;
-  height: 200px;             /* was 140px */
-  object-fit: cover;
-  display: block;
+  width:100%;
+  height:auto;
+  max-height:260px;
+  object-fit:contain;
+  background:#000;
+  display:block;
 }
 
+/* TITLE */
+.game-card > div {
+  padding:0.75rem 1rem 0.5rem;
+  font-weight:800;
+  font-size:1.05rem;
+  white-space:normal;
+}
+
+/* BUTTON */
 .game-card button {
-  background: var(--purple);
-  color: white;
-  border: none;
-  padding: .6rem 1.25rem;
-  margin: .75rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.95rem;
+  background:var(--purple);
+  color:white;
+  border:none;
+  padding:.75rem 1.5rem;
+  margin:.75rem 0 1.25rem;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:800;
+  font-size:1rem;
+}
+
+/* WHATSAPP TILE */
+#whatsapp-tile {
+  max-width:360px;
+  margin:2rem auto;
+  background:rgba(255,255,255,0.05);
+  border:2px solid var(--purple);
+  border-radius:12px;
+  padding:1.25rem;
+  text-align:center;
+  box-shadow:0 0 10px #8b5cf6;
+}
+
+#whatsapp-tile a {
+  margin-top:0.75rem;
+  background:var(--purple);
+  color:#fff;
+  padding:.6rem 1.25rem;
+  border-radius:8px;
+  font-weight:bold;
+  display:inline-block;
+  text-decoration:none;
 }
 </style>
 </head>
