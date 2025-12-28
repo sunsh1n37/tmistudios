@@ -62,7 +62,7 @@ body.light {
 
 h1 {
   font-family: 'Roca Two', serif;
-  font-size: clamp(2.5rem, 8vw, 5rem); /* min 2.5rem, max 5rem, scales with viewport */
+  font-size: clamp(2.5rem, 8vw, 5rem);
   text-align: center;
   color: #a855f7;
   margin-bottom: 1rem;
@@ -106,7 +106,7 @@ body.light #homeButton, body.light #toggleMode { color: #111; }
   max-width: 800px;
   background: #1a1a2e;
   border-radius: 16px;
-  padding: 2rem 3rem; /* extra padding on both sides */
+  padding: 2rem 3rem;
   min-height: 180px;
   display: flex;
   align-items: center;
@@ -123,7 +123,6 @@ body.light #homeButton, body.light #toggleMode { color: #111; }
   box-sizing: border-box;
 }
 
-/* Watermark on container */
 #fortune::after {
   content: "Chaos Cookie by TMI Studios";
   position: absolute;
@@ -165,21 +164,18 @@ body.light #homeButton, body.light #toggleMode { color: #111; }
 
 a { text-decoration: none; }
 
-footer {
-  width: 100%;
-  text-align: center;
-  padding: 1rem 0;
-  color: #aaa;
-  font-size: 0.85rem;
-  margin-top: 2rem;
+/* Footer */
+.skinny-footer {
+  background:#1f2937;
+  color:#e5e7eb;
+  text-align:center;
+  padding:10px 10px;
+  font-size:15px;
 }
-footer div {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
+.skinny-footer .footer-socials { margin-bottom:8px; }
+.skinny-footer .footer-socials a { margin:0 6px; color:#e5e7eb; text-decoration:none; font-size:16px; }
+.skinny-footer .footer-links { margin-top:6px; font-size:13px; }
+.skinny-footer .footer-links a { color:#e5e7eb; margin:0 4px; }
 
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
@@ -197,7 +193,7 @@ footer div {
 </head>
 
 <body>
-  <!-- NAV -->
+<!-- NAV -->
 <nav>
   <div class="nav-right">
     <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
@@ -236,19 +232,24 @@ footer div {
   <a href="#" id="shareFacebook"><i class="fa-brands fa-facebook"></i></a>
 </div>
 
-<!-- Footer -->
-<footer>
-  <p>&copy; 2025 TMI Studios</p>
-  <div class="flex justify-center gap-4 mt-2 flex-wrap">
-    <a href="https://www.facebook.com/tmistudios" target="_blank" class="text-blue-400"><i class="fa-brands fa-facebook"></i></a>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank" class="text-purple-400"><i class="fa-brands fa-tiktok"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="text-green-400"><i class="fa-brands fa-whatsapp"></i></a><br>
-    <a href="/privacy.html" class="text-gray-400"><i class="fa-solid fa-shield-halved"></i> Privacy Policy | </a>
-    <a href="/termsofuse.html" class="text-gray-400"><i class="fa-solid fa-file-lines"></i> Terms of Use</a>
+<!-- FOOTER -->
+<footer class="skinny-footer">
+  <div class="footer-socials">
+    <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
   </div>
+  <p>© 2025 TMI Studios</p>
+  <nav class="footer-links">
+    <a href="arcade.html">Arcade</a> ·
+    <a href="faq.html">FAQ</a> ·
+    <a href="privacy.html">Privacy</a> ·
+    <a href="termsofuse.html">Terms</a>
+  </nav>
 </footer>
 
 <script>
+// Mode toggle
 const modeToggle = document.getElementById('toggleMode');
 modeToggle.addEventListener('click', () => {
   document.body.classList.toggle('light');
@@ -257,6 +258,7 @@ modeToggle.addEventListener('click', () => {
     : '<i class="fa-solid fa-moon"></i>';
 });
 
+// Fortunes array
 const fortunes = [
 "Your vibe is about to confuse someone into liking you. 💀😂",
 "Your bank account will scream today, but like… politely. 😭💸",
@@ -380,63 +382,41 @@ document.getElementById('shareFacebook').onclick = () => {
   window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${text}`, '_blank');
 };
 
-// Download with watermark
+// Download with dynamic size
 document.getElementById('downloadFortune').addEventListener('click', () => {
   const text = fortuneDiv.textContent || "No fortune yet!";
   const canvas = document.createElement('canvas');
-  canvas.width = 800;
-  canvas.height = 400;
   const ctx = canvas.getContext('2d');
+  ctx.font = 'bold 28px Roca Two, serif';
 
-  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  gradient.addColorStop(0, '#a855f7');
-  gradient.addColorStop(1, '#ff00ff');
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  const maxWidth = 800;
+  words.forEach(word => {
+    const testLine = line + word + ' ';
+    if(ctx.measureText(testLine).width > maxWidth - 40) {
+      lines.push(line);
+      line = word + ' ';
+    } else { line = testLine; }
+  });
+  lines.push(line);
+
+  const lineHeight = 36;
+  const padding = 60;
+  canvas.width = maxWidth;
+  canvas.height = lines.length * lineHeight + padding * 2;
 
   ctx.fillStyle = '#1a1a2e';
-  ctx.strokeStyle = '#a855f7';
-  ctx.lineWidth = 8;
-  const radius = 24;
-  ctx.beginPath();
-  ctx.moveTo(radius, 0);
-  ctx.lineTo(canvas.width - radius, 0);
-  ctx.quadraticCurveTo(canvas.width, 0, canvas.width, radius);
-  ctx.lineTo(canvas.width, canvas.height - radius);
-  ctx.quadraticCurveTo(canvas.width, canvas.height, canvas.width - radius, canvas.height);
-  ctx.lineTo(radius, canvas.height);
-  ctx.quadraticCurveTo(0, canvas.height, 0, canvas.height - radius);
-  ctx.lineTo(0, radius);
-  ctx.quadraticCurveTo(0, 0, radius, 0);
-  ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = '#fff';
-  ctx.font = 'bold 32px Roca Two, serif';
+  ctx.fillStyle = '#a855f7';
   ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  const words = text.split(' ');
-  const lineHeight = 40;
-  let lines = [];
-  let currentLine = '';
-  words.forEach(word => {
-    const testLine = currentLine + word + ' ';
-    const metrics = ctx.measureText(testLine);
-    if (metrics.width > canvas.width - 80) {
-      lines.push(currentLine);
-      currentLine = word + ' ';
-    } else {
-      currentLine = testLine;
-    }
-  });
-  lines.push(currentLine);
+  ctx.textBaseline = 'top';
+  lines.forEach((l,i) => ctx.fillText(l.trim(), canvas.width/2, padding + i*lineHeight));
 
-  lines.forEach((line, index) => {
-    ctx.fillText(line.trim(), canvas.width / 2, canvas.height / 2 - (lines.length - 1) / 2 * lineHeight + index * lineHeight);
-  });
-
-  ctx.font = '20px Arial';
+  // Watermark
+  ctx.font = '16px Arial';
   ctx.fillStyle = 'rgba(255,255,255,0.5)';
   ctx.textAlign = 'right';
   ctx.fillText('Chaos Cookie by TMI Studios', canvas.width - 20, canvas.height - 20);
@@ -446,21 +426,17 @@ document.getElementById('downloadFortune').addEventListener('click', () => {
   link.href = canvas.toDataURL('image/png');
   link.click();
 });
-</script>
-<script>
-  
-  /* ================= NAV ================= */
+
+// NAV dropdown
 function toggleMenu(){
   const m = document.getElementById('navMenu');
   m.style.display = m.style.display === 'block' ? 'none' : 'block';
 }
-
 document.addEventListener('click', e => {
   if (!e.target.closest('.nav-right')) {
     document.getElementById('navMenu').style.display = 'none';
   }
 });
-  
 </script>
 </body>
 </html>
