@@ -178,7 +178,7 @@ fetch('arcade.json')
 .then(r=>r.json())
 .then(d=>{
   const c=document.getElementById('arcade-container');
-  d.games.forEach(g=>{
+  d.games.slice(0,3).forEach((g, index)=>{
     c.innerHTML+=`
       <div class="project">
         <img src="${g.img}" alt="${g.title}">
