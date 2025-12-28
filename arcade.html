@@ -3,25 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TMI Studios Arcade</title>
-<meta name="description" content="Play chaotic, unhinged, and oddly accurate quizzes & games by TMI Studios. Join our WhatsApp channel for exclusive drops.">
+<title>TMI Studios Arcade — Viral Quizzes & Games for Gen Z</title>
+<meta name="description" content="Play chaotic, unhinged, and interactive games that go viral. Join our WhatsApp for exclusive previews.">
 <meta name="robots" content="index, follow">
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
-     crossorigin="anonymous"></script>
+<!-- OpenGraph -->
+<meta property="og:title" content="TMI Studios Arcade — Viral Quizzes & Games for Gen Z">
+<meta property="og:description" content="Play chaotic, unhinged, and interactive games that go viral. Join our WhatsApp for exclusive previews.">
+<meta property="og:image" content="images/tmiarcade.jpeg">
+<meta property="og:type" content="website">
 
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TMI Studios Arcade — Viral Quizzes & Games for Gen Z">
+<meta name="twitter:description" content="Play chaotic, unhinged, and interactive games that go viral. Join our WhatsApp for exclusive previews.">
+<meta name="twitter:image" content="images/tmiarcade.jpeg">
+
+<!-- Fonts & Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
+<!-- Page Styles -->
 <style>
 :root {
   --cyan:#00ffff;
-  --magenta:#ff00ff;
   --purple:#a855f7;
 }
 
-/* BASE */
 body {
   margin:0;
   font-family:'Segoe UI',sans-serif;
@@ -32,10 +41,54 @@ body {
 a { transition: color 0.3s ease; }
 a:hover { color:#d8b4fe; }
 
-/* NAV + FOOTER */
-nav a { color:#fff !important; margin-right:.75rem; font-weight:700; }
-footer a { color:#fff !important; text-decoration:none; }
-footer a:hover { color:#ccc !important; }
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  background: #111;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+nav .logo a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+nav .menu {
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  color: #fff;
+  user-select: none;
+}
+
+nav .dropdown {
+  display: none;
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: #181820;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+nav .dropdown a {
+  display: block;
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav .dropdown a:hover {
+  background: #222;
+}
 
 /* HERO */
 .hero-title {
@@ -46,6 +99,7 @@ footer a:hover { color:#ccc !important; }
   background-clip:text;
   color:transparent;
   text-shadow:2px 2px 5px rgba(255,255,255,.25);
+  margin-bottom:1rem;
 }
 
 .home-slogan {
@@ -55,7 +109,7 @@ footer a:hover { color:#ccc !important; }
   margin-top:1rem;
 }
 
-/* MINI SHOOTER */
+/* GAME CONTAINER */
 #game-container {
   position: relative;
   height: 150px;
@@ -102,7 +156,7 @@ footer a:hover { color:#ccc !important; }
   z-index: 500;
 }
 
-/* SECTION HEADINGS */
+/* SECTIONS */
 .section-title {
   font-size:1.75rem;
   font-weight:700;
@@ -111,7 +165,6 @@ footer a:hover { color:#ccc !important; }
   color:var(--cyan);
 }
 
-/* QUIZ CHAOS (SMALL CARDS – LEAVE AS IS) */
 .games {
   display:flex;
   overflow-x:auto;
@@ -150,10 +203,6 @@ footer a:hover { color:#ccc !important; }
   display:inline-block;
 }
 
-/* ============================= */
-/* 🔥 PRE-LAUNCH CHAOS — BIG FIX */
-/* ============================= */
-
 .quizzes {
   max-width:100%;
   margin:0 auto;
@@ -164,9 +213,8 @@ footer a:hover { color:#ccc !important; }
   scroll-snap-type:x mandatory;
 }
 
-/* BIG, WIDE CARDS */
 .game-card {
-  flex: 0 0 85vw;           /* 👈 mobile width FIX */
+  flex: 0 0 85vw;
   max-width: 380px;
   background:#1a1a1a;
   border-radius:18px;
@@ -177,7 +225,6 @@ footer a:hover { color:#ccc !important; }
   scroll-snap-align:start;
 }
 
-/* FULL IMAGE — NO CROPPING */
 .game-card img {
   width:100%;
   height:auto;
@@ -187,15 +234,12 @@ footer a:hover { color:#ccc !important; }
   display:block;
 }
 
-/* TITLE */
 .game-card > div {
   padding:0.75rem 1rem 0.5rem;
   font-weight:800;
   font-size:1.05rem;
-  white-space:normal;
 }
 
-/* BUTTON */
 .game-card button {
   background:var(--purple);
   color:white;
@@ -208,7 +252,6 @@ footer a:hover { color:#ccc !important; }
   font-size:1rem;
 }
 
-/* WHATSAPP TILE */
 #whatsapp-tile {
   max-width:360px;
   margin:2rem auto;
@@ -230,10 +273,59 @@ footer a:hover { color:#ccc !important; }
   display:inline-block;
   text-decoration:none;
 }
+
+/* Footer */
+.skinny-footer {
+  background:#1f2937;
+  color:#e5e7eb;
+  text-align:center;
+  padding:20px 10px;
+  font-size:14px;
+}
+.skinny-footer .footer-socials { margin-bottom:8px; }
+.skinny-footer .footer-socials a { margin:0 6px; color:#e5e7eb; text-decoration:none; font-size:16px; }
+.skinny-footer .footer-links { margin-top:6px; font-size:13px; }
+.skinny-footer .footer-links a { color:#e5e7eb; margin:0 4px; }
 </style>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TMI Studios Arcade",
+  "url": "https://tmistudios.com/arcade.html",
+  "description": "Play chaotic, unhinged, and interactive games that go viral. Join our WhatsApp for exclusive previews.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TMI Studios",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "images/tmistudios-logo.png"
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Lava Climber",
+  "url": "https://tmistudios.com/lavaclimber.html",
+  "description": "Jump between platforms, avoid rising lava, and climb as high as possible!",
+  "image": "https://i.ibb.co/4ZCD7Wym/Lava-Climber.jpg",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TMI Studios"
+  }
+}
+</script>
+
 </head>
 <body>
 
+<header>
 <nav>
   <div class="logo"><a href="index.html">TMI Studios</a></div>
   <div class="menu" id="hamburger">☰
@@ -245,253 +337,135 @@ footer a:hover { color:#ccc !important; }
     </div>
   </div>
 </nav>
+</header>
 
-<style>
-nav {
-  position: sticky;
-  top: 0;
-  background: #111;
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-  font-family: Montserrat, sans-serif;
-}
+<main>
 
-nav .logo a {
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-nav .menu {
-  position: relative;
-  cursor: pointer;
-  font-size: 22px;
-  color: #fff;
-  user-select: none;
-}
-
-nav .dropdown {
-  display: none;
-  position: absolute;
-  top: 36px;
-  right: 0;
-  background: #181820;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-nav .dropdown a {
-  display: block;
-  padding: 10px 16px;
-  color: #fff;
-  text-decoration: none;
-}
-
-nav .dropdown a:hover {
-  background: #222;
-}
-</style>
-<section style="text-align:center; padding:3.5rem 1rem 1rem;">
-  <img src="images/tmiarcade.jpeg" alt="TMI Arcade" style="max-width:320px; margin:0 auto;">
-  <p class="home-slogan">Engage Gen Z Like Never Before — Custom Quizzes, Games & Interactive Experiences That Convert.</p>
-  <div style="margin-top:1rem;">
-    <a href="/packages.html" style="background:var(--purple); color:#fff; padding:.7rem 1rem; border-radius:8px; font-weight:700;">Advertise in our viral games!</a>
+<section class="text-center p-14">
+  <img src="images/tmiarcade.jpeg" loading="lazy" alt="TMI Arcade" class="mx-auto max-w-xs rounded-md">
+  <p class="home-slogan mt-4">Engage Gen Z Like Never Before — Custom Quizzes, Games & Interactive Experiences That Convert.</p>
+  <div class="mt-4 space-y-2">
+    <a href="/packages.html" class="inline-block bg-purple-700 text-white px-4 py-2 rounded font-bold">Advertise in our viral games!</a>
+    <a href="/lab.html" class="inline-block bg-purple-700 text-white px-4 py-2 rounded font-bold">See new games launching soon</a>
   </div>
-  <br>
-  <div style="margin-top:1rem;">
-    <a href="/lab.html" style="background:var(--purple); color:#fff; padding:.7rem 1rem; border-radius:8px; font-weight:700;">See new games launching soon</a>
+</section>
+
+<!-- Mini Shooter -->
+<div id="game-container"></div>
+
+<!-- Lava Climber -->
+<section class="text-center max-w-3xl mx-auto p-6">
+  <img src="https://i.ibb.co/4ZCD7Wym/Lava-Climber.jpg" loading="lazy" alt="Lava Climber" class="w-full max-h-96 object-cover rounded shadow-lg mb-2">
+  <div class="font-bold text-xl text-white">Lava Climber 🔥</div>
+  <p class="text-gray-300 my-2">Jump between platforms, avoid the rising lava, and climb as high as possible! Can you survive the heat and reach the top?</p>
+  <a href="lavaclimber.html" class="inline-block bg-purple-700 text-white px-6 py-2 rounded font-bold">Play Now</a>
+</section>
+
+<!-- Flappy Fury -->
+<section class="text-center max-w-3xl mx-auto p-6">
+  <img src="https://i.ibb.co/CKwNwzx8/Redflag-Bingo-20251216-221900-0000.png" loading="lazy" alt="Flappy Fury" class="w-full max-h-96 object-cover rounded shadow-lg mb-2">
+  <div class="font-bold text-xl text-white mb-1">Flappy Fury 🐦</div>
+  <p class="text-gray-300 my-2">Flap, dodge, and survive! Flappy Fury is a chaotic, fast-paced game that tests your reflexes. Beat your high score and prove you’re the ultimate flapper!</p>
+  <a href="flappyfury.html" class="inline-block bg-purple-700 text-white px-6 py-2 rounded font-bold">Play Now</a>
+</section>
+
+<!-- Redflag Bingo-->
+<section class="text-center max-w-3xl mx-auto p-6">
+  <img src="https://i.ibb.co/5XL4gTxh/Redflag-Bingo-20251216-230427-0000.png" loading="lazy" alt="Redflag Bingo" class="w-full max-h-96 object-cover rounded shadow-lg mb-2">
+  <div class="font-bold text-xl text-white mb-1">Redflag Bingo🚩</div>
+  <p class="text-gray-300 my-2">The ultimate girls’ night drinking game! 🍷 Spot a red flag? Take a sip. Nah, you’re safe? Skip it. Laugh, gasp, and spill the tea as you turn dating disasters into a wild, sassy squad night.</p>
+  <a href="redflagbingo.html" class="inline-block bg-purple-700 text-white px-6 py-2 rounded font-bold">Play Now</a>
+</section>
+
+<!-- Pre-Launch Chaos -->
+<section class="text-center p-8">
+  <h1 class="hero-title">Pre-Launch Chaos</h1>
+  <div class="quizzes">
+    <div class="game-card">
+      <img src="images/emojicrush.jpeg" loading="lazy" alt="Emoji Crush">
+      <div class="font-bold py-1">Emoji Crush</div>
+      <button>Coming Soon</button>
+    </div>
+    <div class="game-card">
+      <img src="images/emojiblast.png" loading="lazy" alt="Emoji Blast">
+      <div class="font-bold py-1">Emoji Blast</div>
+      <button>Coming Soon</button>
+    </div>
+    <div class="game-card">
+      <img src="images/game3.jpeg" loading="lazy" alt="Meme Blaster">
+      <div class="font-bold py-1">Meme Blaster</div>
+      <button>Coming Soon</button>
+    </div>
   </div>
-  
 </section>
 
-<!-- Mini Shooter Game -->
-<div id="game-container">
-  <img id="shooter" src="images/shooter.jpeg" alt="Shooter">
-</div>
-
-
-<!-- New Game Tile: Lava Climber -->
-<section style="text-align:center; padding:1.5rem 1rem; max-width:900px; margin:2rem auto;">
-  <img src="https://i.ibb.co/4ZCD7Wym/Lava-Climber.jpg" alt="Lava Climber" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.5); margin-bottom:1rem;">
-  <div style="font-weight:700; font-size:1.5rem; margin-top:0.5rem; color:#fff;">Lava Climber 🔥</div>
-  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:700px; margin:0 auto 1rem;">
-    Jump between platforms, avoid the rising lava, and climb as high as possible! Can you survive the heat and reach the top?
-  </p>
-  <a href="lavaclimber.html" style="background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold; display:inline-block; text-decoration:none;">
-    Play Now
-  </a>
-</section>
-
-<!-- Featured Live Game: Flappy Fury -->
-<section style="text-align:center; padding:1.5rem 1rem 1rem; max-width:900px; margin:2rem auto;">
-  <img src="https://i.ibb.co/CKwNwzx8/Redflag-Bingo-20251216-221900-0000.png" alt="Flappy Fury" style="width:100%; max-height:360px; object-fit:cover; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.5); margin-bottom:1rem;">
-  <div style="font-weight:700; font-size:1.5rem; margin-bottom:0.5rem; color:#fff;">Flappy Fury 🐦</div>
-  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:700px; margin:0 auto 1rem;">
-    Flap, dodge, and survive! Flappy Fury is a chaotic, fast-paced game that tests your reflexes and persistence. Beat your high score and prove you’re the ultimate flapper! Perfect for quick, addictive gameplay that keeps players coming back.
-  </p>
-  <a href="flappyfury.html" style="background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold; display:inline-block; text-decoration:none;">
-    Play Now
-  </a>
-</section>
-
-<!-- Quiz Chaos Section -->
-<section id="quiz-chaos" style="max-width:900px; margin:3rem auto 4rem;">
-  <h2 class="section-title">Quiz Chaos</h2>
-  <section class="games">
-    <div class="card linked">
-    <div class="emoji">🚩</div>
-      <div class="card-title">Red Flag Bingo</div>
-      <a href="redflagbingo.html" class="btn">Play Now</a>
-    </div>
-    <div class="card linked">
-      <div class="emoji">💌</div>
-      <div class="card-title">Should I Text Him</div>
-      <a href="shoulditextmyex.html" class="btn">Play Now</a>
-    </div>
-    <div class="card linked">
-      <div class="emoji">🤒</div>
-      <div class="card-title">Work or Nah</div>
-      <a href="workornah.html" class="btn">Play Now</a>
-    </div>
-  </section>
-</section>
-
-<!-- Pre-Launch Chaos Section -->
-<section style="text-align:center; padding:2rem 1rem;">
-  <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:0.5rem;">Pre-Launch Chaos</h1>
-
-  <div class="quizzes" style="max-width:1000px; margin:0 auto; display:flex; gap:1rem; overflow-x:auto; padding-bottom:1rem;">
-
-    <!-- Near-launch Games -->
-    <div class="game-card">
-      <img src="images/emojicrush.jpeg" alt="Emoji Crush">
-      <div style="padding:.5rem; font-weight:700;">Emoji Crush</div>
-      <button>Coming Soon</button>
-    </div>
-    <div class="game-card">
-      <img src="images/emojiblast.png" alt="Emoji Blast">
-      <div style="padding:.5rem; font-weight:700;">Emoji Blast</div>
-      <button>Coming Soon</button>
-    </div>
-    <div class="game-card">
-      <img src="images/game3.jpeg" alt="Meme Blaster">
-      <div style="padding:.5rem; font-weight:700;">Meme Blaster</div>
-      <button>Coming Soon</button>
-    </div>
-</section>
-
-<!-- Whatsapp Channel Tile -->
+<!-- WhatsApp Tile -->
 <div id="whatsapp-tile">
-  <div style="font-weight:bold;">Join Our WhatsApp Channel</div>
-  <div style="margin-top:.5rem;">Get your daily dose of chaos quizzes, memes & the occasional brain rot 😛</div>
+  <div class="font-bold">Join Our WhatsApp Channel</div>
+  <div class="mt-1 text-sm">Get your daily dose of chaos quizzes, memes & the occasional brain rot 😛</div>
   <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener noreferrer">Join Now 💬</a>
 </div>
 
-<footer class="bg-black text-center text-sm text-gray-600 py-8">
-  <div class="mb-3">
-    <span class="mr-2">Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank" rel="noopener noreferrer" class="inline-block mx-2 text-lg"><i class="fab fa-tiktok"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener noreferrer" class="inline-block mx-2 text-lg"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com/tmistudios" target="_blank" rel="noopener noreferrer" class="inline-block mx-2 text-lg"><i class="fab fa-facebook"></i></a>
+</main>
+
+<!-- FOOTER -->
+<footer class="skinny-footer">
+  <div class="footer-socials">
+    <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
   </div>
-  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
-  <p><a href="/contactus.html">Put your ad in our games and reach thousands of daily players</a></p>
-  <p><a href="/arcade.html">Arcade</a></p>
-  <p><a href="/privacy.html">Privacy Policy</a></p>
-  <p><a href="/termsofuse.html">Terms of Use</a></p>
+  <p>© 2025 TMI Studios</p>
+  <nav class="footer-links">
+    <a href="arcade.html">Arcade</a> ·
+    <a href="faq.html">FAQ</a> ·
+    <a href="privacy.html">Privacy</a> ·
+    <a href="termsofuse.html">Terms</a>
+  </nav>
 </footer>
 
+<!-- Shooter Game Script -->
 <script>
-// Shooter game logic
 const targetImages = [...Array(10)].map((_, i) => `images/target${i + 1}.jpeg`);
 const shooterContainer = document.getElementById('game-container');
-const shooter = document.getElementById('shooter');
+const shooter = document.createElement('img');
+shooter.id='shooter';
+shooter.src='images/shooter.jpeg';
+shooter.style.cursor='pointer';
+shooterContainer.appendChild(shooter);
 
-let currentTargetIndex = 0;
-let currentTarget = null;
+let currentTargetIndex=0, currentTarget=null;
 
-function createTarget(src) {
-  if (currentTarget) currentTarget.remove();
-  const img = document.createElement('img');
-  img.src = src;
-  img.className = 'target';
-  shooterContainer.appendChild(img);
-  currentTarget = img;
-}
+function createTarget(src){ if(currentTarget) currentTarget.remove(); const img=document.createElement('img'); img.src=src; img.className='target'; shooterContainer.appendChild(img); currentTarget=img; }
 
-function spawnTarget() {
-  if (currentTargetIndex >= targetImages.length) currentTargetIndex = 0;
-  createTarget(targetImages[currentTargetIndex]);
-}
+function spawnTarget(){ if(currentTargetIndex>=targetImages.length) currentTargetIndex=0; createTarget(targetImages[currentTargetIndex]); }
 
-function explodeTarget() {
-  if (!currentTarget) return;
-  currentTarget.classList.add('explode');
-  setTimeout(() => {
-    currentTarget.remove();
-    currentTarget = null;
-    currentTargetIndex++;
-    spawnTarget();
-  }, 450);
-}
+function explodeTarget(){ if(!currentTarget) return; currentTarget.classList.add('explode'); setTimeout(()=>{ currentTarget.remove(); currentTarget=null; currentTargetIndex++; spawnTarget(); },450); }
 
-function fireBullet() {
-  const bullet = document.createElement('div');
-  bullet.className = 'bullet';
-  const shooterRect = shooter.getBoundingClientRect();
-  const containerRect = shooterContainer.getBoundingClientRect();
-  bullet.style.left = (shooterRect.right - containerRect.left) + 'px';
-  bullet.style.top = (shooterRect.top + shooterRect.height / 2 - 3 - containerRect.top) + 'px';
-  shooterContainer.appendChild(bullet);
+function fireBullet(){ const bullet=document.createElement('div'); bullet.className='bullet'; const sRect=shooter.getBoundingClientRect(); const cRect=shooterContainer.getBoundingClientRect(); bullet.style.left=(sRect.right-cRect.left)+'px'; bullet.style.top=(sRect.top+sRect.height/2-3-cRect.top)+'px'; shooterContainer.appendChild(bullet); function move(){ const left=parseFloat(bullet.style.left); if(left>shooterContainer.clientWidth+20){ bullet.remove(); return; } bullet.style.left=(left+14)+'px'; if(currentTarget){ const bRect=bullet.getBoundingClientRect(); const tRect=currentTarget.getBoundingClientRect(); if(bRect.right>=tRect.left && bRect.left<=tRect.right && bRect.top<=tRect.bottom && bRect.bottom>=tRect.top){ bullet.remove(); explodeTarget(); return; } } requestAnimationFrame(move); } requestAnimationFrame(move); }
 
-  function move() {
-    const left = parseFloat(bullet.style.left);
-    if (left > shooterContainer.clientWidth + 20) {
-      bullet.remove();
-      return;
-    }
-    bullet.style.left = (left + 14) + 'px';
-    if (currentTarget) {
-      const bRect = bullet.getBoundingClientRect();
-      const tRect = currentTarget.getBoundingClientRect();
-      if (bRect.right >= tRect.left && bRect.left <= tRect.right && bRect.top <= tRect.bottom && bRect.bottom >= tRect.top) {
-        bullet.remove();
-        explodeTarget();
-        return;
-      }
-    }
-    requestAnimationFrame(move);
-  }
-  requestAnimationFrame(move);
-}
-
-shooterContainer.addEventListener('click', fireBullet);
+shooter.addEventListener('click',fireBullet);
 spawnTarget();
 </script>
+
+<!-- Dropdown -->
 <script>
 const hamburger = document.getElementById('hamburger');
 const menuDropdown = document.getElementById('menuDropdown');
-
 hamburger.addEventListener('click', () => {
-  if (menuDropdown.style.display === 'block') {
-    menuDropdown.style.display = 'none';
-  } else {
-    menuDropdown.style.display = 'block';
-  }
+  menuDropdown.style.display = menuDropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-// Optional: click outside to close dropdown
+// Close dropdown if clicked outside
 document.addEventListener('click', (e) => {
   if (!hamburger.contains(e.target)) {
     menuDropdown.style.display = 'none';
   }
 });
 </script>
+
+<!-- Lazy load polyfill for older browsers -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
 
 </body>
 </html>
