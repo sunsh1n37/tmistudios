@@ -2,12 +2,56 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gramvas — TMI Studios</title>
+<title>Gramvas — Quote & Aesthetic Post Generator | TMI Studios</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== SEO CORE ===== -->
+<meta name="description" content="Gramvas by TMI Studios is a free aesthetic quote generator that lets you design viral Instagram, Facebook, and X quote posts with custom fonts, emojis, backgrounds, and drag-and-drop text.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tmistudios.co/gramvas.html">
+
+<!-- ===== OPEN GRAPH ===== -->
+<meta property="og:title" content="Gramvas — Aesthetic Quote Generator by TMI Studios">
+<meta property="og:description" content="Create beautiful, viral quote posts with custom fonts, colors, emojis, and backgrounds. Download instantly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tmistudios.co/gramvas.html">
+<meta property="og:image" content="https://tmistudios.co/assets/gramvas-preview.png">
+
+<!-- ===== TWITTER ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gramvas — Aesthetic Quote Generator">
+<meta name="twitter:description" content="Design viral quote posts in seconds with Gramvas by TMI Studios.">
+<meta name="twitter:image" content="https://tmistudios.co/assets/gramvas-preview.png">
+
+<!-- ===== PERFORMANCE ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@600&family=Pacifico&family=Great+Vibes&family=Oswald:wght@600&family=Amatic+SC:wght@700&family=Lobster&family=Sacramento&family=Dancing+Script&family=Caveat&display=swap" rel="stylesheet">
+
+<!-- ===== STRUCTURED DATA ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Gramvas",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Web",
+  "description": "Gramvas is a web-based quote and aesthetic post generator that allows users to create social media graphics using custom fonts, backgrounds, emojis, and drag-and-drop text.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TMI Studios",
+    "url": "https://tmistudios.co"
+  }
+}
+</script>
 
 <style>
 *{box-sizing:border-box}
@@ -169,8 +213,9 @@ footer a{
     <div class="dropdown" id="menuDropdown">
       <a href="lab.html">Lab</a>
       <a href="arcade.html">Arcade</a>
-      <a href="contact.html">Contact</a>
-      <a href="about.html">About</a>
+      <a href="news.html">TMI News</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="about.html">About Us</a>
       <a href="packages.html">Packages</a>
     </div>
   </div>
@@ -178,7 +223,9 @@ footer a{
 
 <main>
 
-<canvas id="canvas" width="1080" height="1080"></canvas>
+<canvas id="canvas" width="1080" height="1080">
+  Your browser does not support the canvas element. Gramvas is a quote image generator.
+</canvas>
 
 <div class="section">
   <input id="quoteInput" placeholder="Type your quote…" />
@@ -220,21 +267,19 @@ footer a{
 <div class="section">
 <h4>Backgrounds</h4>
 <div class="grid">
-  <div class="bg" style="background:#000" onclick="setColor('#000')"></div>
-  <div class="bg" style="background:#ffdac1" onclick="setColor('#ffdac1')"></div>
-  <div class="bg" style="background:#fdd7ff" onclick="setColor('#fdd7ff')"></div>
-  
-<!-- FREE IMAGES -->
+
+<div class="bg" style="background:#000" onclick="setColor('#000')"></div>
+<div class="bg" style="background:#ffdac1" onclick="setColor('#ffdac1')"></div>
+<div class="bg" style="background:#fdd7ff" onclick="setColor('#fdd7ff')"></div>
+
 <div class="bg" style="background:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=150') center/cover" onclick="setImg('sky')"></div>
 <div class="bg" style="background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=150') center/cover" onclick="setImg('clouds')"></div>
 <div class="bg" style="background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=150') center/cover" onclick="setImg('beachFree')"></div>
 
-<!-- PREMIUM IMAGES -->
 <div class="bg locked" style="background:url('https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg') center/cover" onclick="showPaywall()"></div>
 <div class="bg locked" style="background:url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg') center/cover" onclick="showPaywall()"></div>
 <div class="bg locked" style="background:url('https://images.pexels.com/photos/1257860/pexels-photo-1257860.jpeg') center/cover" onclick="showPaywall()"></div>
 
-</div>
 </div>
 </div>
 
@@ -258,9 +303,7 @@ footer a{
   <div>
     <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok"></i></a>
     <a href="https://facebook.com/tmistudios" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">
-      <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp"></i></a>
   </div>
   <p>© 2025 TMI Studios</p>
   <p>
@@ -279,6 +322,13 @@ footer a{
 </div>
 
 <script>
+/* ===== ACCESSIBILITY (NON-VISUAL) ===== */
+document.getElementById('canvas').setAttribute('role','img');
+document.getElementById('canvas').setAttribute(
+  'aria-label',
+  'Quote preview canvas showing custom text and background'
+);
+
 /* ===== NAV TOGGLE ===== */
 const hamburger = document.getElementById('hamburger');
 const dropdown = document.getElementById('menuDropdown');
@@ -323,7 +373,6 @@ function draw() {
   if(e) ctx.fillText(e, textX, textY - parseInt(textSize.value) * 1.6);
   wrapText(q, textX, textY, canvas.width - 100, parseInt(textSize.value) + 10);
 
-  // watermark
   ctx.globalAlpha = 0.5;
   ctx.font = "20px Montserrat";
   ctx.textAlign = "right";
@@ -359,7 +408,7 @@ function setImg(type){
   i.onload = () => { bgType='image'; bgImg=i; draw(); }
 }
 
-/* ===== DOWNLOAD IMAGE ===== */
+/* ===== DOWNLOAD ===== */
 function downloadImg() {
   const a = document.createElement('a');
   a.download = 'gramvas.png';
@@ -377,7 +426,7 @@ function useQuote(el) {
   draw();
 }
 
-/* ===== CANVAS DRAG ===== */
+/* ===== DRAG ===== */
 canvas.addEventListener('mousedown', ()=>dragging=true);
 canvas.addEventListener('mousemove', e=>{
   if(!dragging) return;
@@ -389,7 +438,7 @@ canvas.addEventListener('mousemove', e=>{
 canvas.addEventListener('mouseup', ()=>dragging=false);
 canvas.addEventListener('mouseleave', ()=>dragging=false);
 
-/* ===== POST SIZE SELECTOR ===== */
+/* ===== POST SIZE ===== */
 postSize.addEventListener('change', ()=>{
   const val = postSize.value;
   if(val==='ig'){ canvas.width=1080; canvas.height=1080; }
@@ -399,7 +448,7 @@ postSize.addEventListener('change', ()=>{
   draw();
 });
 
-/* ===== INPUT LISTENERS ===== */
+/* ===== INPUTS ===== */
 [quoteInput, emojiInput, fontSelect, textSize, textColor].forEach(el => el.addEventListener('input', draw));
 
 draw();
