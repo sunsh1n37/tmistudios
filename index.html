@@ -48,25 +48,83 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.75rem
 .btn{padding:.8rem 1.5rem;border-radius:50px;font-weight:600;text-decoration:none}
 .primary{background:var(--accent);color:var(--bg)}
 .secondary{border:2px solid var(--accent);color:var(--accent)}
-.tile-btn{border:2px solid var(--accent);color:var(--accent);margin-top:1rem;text-align:center}
+
+/* 🔥 FIXED TILE BUTTONS (THIS IS THE CHANGE) */
+.tile-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.45rem .9rem;
+  margin-top:.75rem;
+  font-size:.85rem;
+  font-weight:600;
+  border-radius:999px;
+  border:1.5px solid var(--accent);
+  color:var(--accent);
+  text-decoration:none;
+  width:auto;
+  align-self:center;
+  transition:all .25s ease;
+  background:transparent;
+}
+
+.tile-btn:hover{
+  background:var(--accent);
+  color:var(--bg);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(179,136,255,.35);
+}
 
 /* SECTIONS */
 section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
 
 /* ARCADE */
-.projects{display:flex;gap:2rem;overflow-x:auto;scroll-snap-type:x mandatory}
-.project{flex:0 0 300px;background:rgba(255,255,255,.05);padding:1.5rem;border-radius:14px;scroll-snap-align:start}
+.projects{
+  display:flex;
+  gap:2rem;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:1rem;
+}
+.project{
+  flex:0 0 300px;
+  background:rgba(255,255,255,.05);
+  padding:1.5rem;
+  border-radius:14px;
+  scroll-snap-align:start;
+}
 .project img{width:100%;border-radius:12px;margin-bottom:1rem}
 
 /* LAB */
-.lab-scroll{display:flex;gap:1.5rem;overflow-x:auto}
-.lab-tile{flex:0 0 280px;background:rgba(255,255,255,.06);padding:1.5rem;border-radius:16px;text-align:left;display:flex;flex-direction:column}
+.lab-scroll{display:flex;gap:1.5rem;overflow-x:auto;padding-bottom:1rem}
+.lab-tile{
+  flex:0 0 280px;
+  background:rgba(255,255,255,.06);
+  padding:1.5rem;
+  border-radius:16px;
+  text-align:left;
+  display:flex;
+  flex-direction:column;
+}
 .lab-tile img{width:100%;border-radius:12px;margin-bottom:1rem}
 .lab-tile p{flex-grow:1}
 
 /* NEWS */
-.news-grid{display:flex;gap:2rem;overflow-x:auto;scroll-snap-type:x mandatory}
-.news-card{flex:0 0 280px;background:rgba(255,255,255,.05);padding:1rem;border-radius:16px;scroll-snap-align:start;text-align:left}
+.news-grid{
+  display:flex;
+  gap:2rem;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:1rem;
+}
+.news-card{
+  flex:0 0 280px;
+  background:rgba(255,255,255,.05);
+  padding:1rem;
+  border-radius:16px;
+  scroll-snap-align:start;
+  text-align:left;
+}
 .news-card img{width:100%;border-radius:12px;margin-bottom:.5rem}
 .news-card a{color:var(--accent);font-weight:600;text-decoration:none}
 
@@ -78,6 +136,7 @@ section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
 
 canvas{position:fixed;inset:0;z-index:-1}
 </style>
+
 </head>
 
 <body>
@@ -94,13 +153,16 @@ canvas{position:fixed;inset:0;z-index:-1}
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
-  <img src="images/tmihero.jpeg" width="300" style="mix-blend-mode:lighten">
-  <p class="subtitle">Your hub for fast games, chaos quizzes & viral digital mayhem 🚀</p>
+  <img src="images/tmihero.jpeg" width="280" alt="TMI Studios logo">
+  <h1>TMI Studios Arcade</h1>
+  <p class="subtitle">
+    African-built digital playground for instant browser games, chaos quizzes,
+    AI tools, and trending South African youth culture news.
+  </p>
   <div class="cta-group">
-    <a href="arcade.html" class="btn primary">Enter the Arcade 🎮</a>
-    <a href="lab.html" class="btn secondary">Visit the Lab 🧪</a>
+    <a href="arcade.html" class="btn primary">Enter Arcade 🎮</a>
+    <a href="lab.html" class="btn secondary">Visit Lab 🧪</a>
   </div>
 </header>
 
@@ -178,7 +240,7 @@ fetch('arcade.json')
 .then(r=>r.json())
 .then(d=>{
   const c=document.getElementById('arcade-container');
-  d.games.slice(0,3).forEach((g, index)=>{
+  d.games.forEach(g=>{
     c.innerHTML+=`
       <div class="project">
         <img src="${g.img}" alt="${g.title}">
