@@ -3,14 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verse of the Day — TMI Universe</title>
-<meta name="description" content="Daily Bible verse (KJV). Personalized, shareable verse cards.">
+
+<title>Verse of the Day (KJV) — Shareable Bible Verse Cards | TMI Studios</title>
+
+<meta name="description" content="Get a daily Bible verse from the King James Version. Create personalized, shareable verse cards for encouragement, birthdays, and reflection.">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://tmistudios.co.za/verse.html">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Verse of the Day (KJV)",
+  "description":"A web app that generates daily King James Bible verses and allows users to download personalized verse cards.",
+  "applicationCategory":"LifestyleApplication",
+  "operatingSystem":"All",
+  "publisher":{
+    "@type":"Organization",
+    "name":"TMI Studios",
+    "url":"https://tmistudios.co.za"
+  }
+}
+</script>
+
 <style>
-:root {
+:root{
   --cream:#fffaf0;
   --gold:#f1c40f;
   --gold-dark:#b7950b;
@@ -52,11 +74,55 @@ button:hover{background:var(--gold-dark)}
 
 .dark-toggle{
   position:absolute;
-  top:12px;
-  right:14px;
+  top:14px;
+  right:16px;
   cursor:pointer;
   font-size:1.4rem;
 }
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  background:#b7950b;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:100;
+}
+
+nav .logo a{
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  font-size:20px;
+}
+
+nav .menu{
+  position:relative;
+  cursor:pointer;
+  font-size:22px;
+  color:#fff;
+}
+
+nav .dropdown{
+  display:none;
+  position:absolute;
+  right:0;
+  top:36px;
+  background:#b7950b;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+nav .dropdown a{
+  display:block;
+  padding:10px 16px;
+  color:#fff;
+  text-decoration:none;
+}
+nav .dropdown a:hover{background:#222}
 
 /* CARD */
 #verseBox{
@@ -68,10 +134,7 @@ button:hover{background:var(--gold-dark)}
   overflow:hidden;
 }
 
-#cardBg{
-  width:100%;
-  display:block;
-}
+#cardBg{width:100%;display:block}
 
 .card-content{
   position:absolute;
@@ -79,210 +142,149 @@ button:hover{background:var(--gold-dark)}
   padding:3rem 2rem;
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;
 }
 
-.card-content > div{
-  background:rgba(255,250,240,0.88);
+.card-content>div{
+  background:rgba(255,250,240,.88);
   padding:1rem 1.2rem;
   border-radius:14px;
   margin-bottom:1rem;
-  color: #2b2416;
-}
-
-#verseRef{
-  font-weight:bold;
-  font-size:1.3rem;
-  color: #2b2416;
-}
-
-#verseText{
-  font-style:italic;
-  line-height:1.5;
-  color: #2b2416;
 }
 
 #watermark{
   margin-top:auto;
   font-size:.7rem;
   opacity:.6;
-  background:none;
-  color: #2b2416;
 }
 
-#downloadBtn{
-  margin-top:1rem;
+/* FOOTER */
+.skinny-footer{
+  margin-top:4rem;
+  padding:2rem 1rem;
+  text-align:center;
+  font-size:.85rem;
+  color:#9ca3af;
 }
 
-footer a{
+.footer-socials a{
+  color:#9ca3af;
+  margin:0 .5rem;
+  font-size:1.2rem;
+}
+.footer-socials a:hover{color:#d1d5db}
+
+.footer-links a{
   color:#9ca3af;
   text-decoration:none;
 }
-footer a:hover{color:#d1d5db}
+.footer-links a:hover{color:#d1d5db}
 </style>
 </head>
 
 <body>
 
-<div class="dark-toggle" onclick="toggleMode()">🌙☀️</div>
 <nav>
   <div class="logo"><a href="index.html">TMI Studios</a></div>
-  <div class="menu" id="hamburger">☰
+  <div class="menu" onclick="toggleMenu()">☰
     <div class="dropdown" id="menuDropdown">
       <a href="lab.html">Lab</a>
       <a href="arcade.html">Arcade</a>
-      <a href="contact.html">Contact</a>
-      <a href="about.html">About</a>
-      <a href="packages.html">Packages</a>
+      <a href="news.html">News</a>
+      <a href="faq.html">FAQ</a>
     </div>
   </div>
-</nav><style>
-nav {
-  position: sticky;
-  top: 0;
-  background: #b7950b;
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-  font-family: Montserrat, sans-serif;
-}
+</nav>
 
-nav .logo a {
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 20px;
-}
+<div class="dark-toggle" onclick="toggleMode()">🌙☀️</div>
 
-nav .menu {
-  position: relative;
-  cursor: pointer;
-  font-size: 22px;
-  color: #fff;
-  user-select: none;
-}
+<main>
+  <h1>Verse of the Day (KJV)</h1>
+  <p>Create a personalized Bible verse card you can save or share.</p>
 
-nav .dropdown {
-  display: none;
-  position: absolute;
-  top: 36px;
-  right: 0;
-  background: #b7950b;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
+  <input type="text" id="name" placeholder="Your Name (optional)">
+  <input type="date" id="dateSelect">
+  <br>
+  <button onclick="showVerse()">Show Verse</button>
 
-nav .dropdown a {
-  display: block;
-  padding: 10px 16px;
-  color: #fff;
-  text-decoration: none;
-}
-
-nav .dropdown a:hover {
-  background: #222;
-}
-</style>
-<h1>Verse of the Day (KJV)</h1>
-
-<p>Enter your name (optional):</p>
-<input type="text" id="name" placeholder="Your Name">
-
-<p>Select a date for a birthday card (optional):</p>
-<input type="date" id="dateSelect">
-
-<br>
-<button onclick="showVerse()">Show Verse</button>
-
-<!-- CARD -->
-<div id="verseBox">
-  <img
-    id="cardBg"
-    src="https://i.ibb.co/v4rNv7rv/20251226-144147-0000.png"
-    crossorigin="anonymous"
-    alt="Verse Card Background"
-  >
-
-  <div class="card-content">
-    <div id="greeting"></div>
-    <div id="verseRef"></div>
-    <div id="verseText"></div>
-    <div id="watermark">Verse Card by TMI Universe</div>
+  <div id="verseBox">
+    <img id="cardBg" src="https://i.ibb.co/v4rNv7rv/20251226-144147-0000.png" crossorigin="anonymous" alt="Bible verse card background">
+    <div class="card-content">
+      <div id="greeting"></div>
+      <div id="verseRef"></div>
+      <div id="verseText"></div>
+      <div id="watermark">Verse Card by TMI Studios</div>
+    </div>
   </div>
-</div>
 
-<button id="downloadBtn" onclick="downloadCard()">Download Card</button>
+  <button id="downloadBtn" onclick="downloadCard()">Download Card</button>
 
-<footer class="bg-black text-center text-sm text-gray-600 py-8">
-  <div class="mb-3">
-    <span class="mr-2">Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com/tmistudios" target="_blank"><i class="fab fa-facebook"></i></a>
+  <!-- SEO SUPPORT CONTENT -->
+  <section style="max-width:800px;margin:3rem auto;text-align:left;font-size:.9rem;opacity:.9">
+    <h2>Daily Bible Verses (King James Version)</h2>
+    <p>
+      The Verse of the Day tool by TMI Studios provides a meaningful King James Bible verse each day.
+      Users can generate personalized verse cards for encouragement, birthdays, reflection, or sharing
+      on social media.
+    </p>
+    <p>
+      This project is part of the TMI Lab — experimental digital tools built for youth culture,
+      creativity, and everyday inspiration.
+    </p>
+  </section>
+</main>
+
+<footer class="skinny-footer">
+  <div class="footer-socials">
+    <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
   </div>
-  
-  
-  <p>&copy; 2025 TMI Universe. Based on the King James Bible.</p>
-  <p><a href="/lab.html">TMI Lab</a></p>
-  <p><a href="/privacy.html">Privacy Policy</a></p>
-  <p><a href="/termsofuse.html">Terms of Use</a></p>
+  <p>© 2025 TMI Studios</p>
+  <nav class="footer-links">
+    <a href="arcade.html">Arcade</a> ·
+    <a href="faq.html">FAQ</a> ·
+    <a href="privacy.html">Privacy</a> ·
+    <a href="termsofuse.html">Terms</a>
+  </nav>
 </footer>
 
-
-<!-- LOAD YOUR VERSES -->
 <script src="verses.js"></script>
-
 <script>
-function toggleMode(){
-  document.body.classList.toggle('dark');
+function toggleMode(){document.body.classList.toggle("dark")}
+function toggleMenu(){
+  const d=document.getElementById("menuDropdown");
+  d.style.display=d.style.display==="block"?"none":"block";
 }
 
-function formatKey(date){
-  const mm=String(date.getMonth()+1).padStart(2,'0');
-  const dd=String(date.getDate()).padStart(2,'0');
-  return mm+'-'+dd;
+function formatKey(d){
+  return String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 }
 
 function showVerse(){
   const name=document.getElementById("name").value.trim();
   const dateInput=document.getElementById("dateSelect").value;
   const date=dateInput?new Date(dateInput):new Date();
+  const verse=verses[formatKey(date)]||verses.default;
 
-  const key=formatKey(date);
-  const verse=verses[key] || verses["default"];
-
-  const isBirthday=!!dateInput;
-
-  document.getElementById("greeting").textContent =
-    isBirthday && name
-      ? `Happy Birthday, ${name}! 🎉`
-      : name
-        ? `${name}, here's your verse for today`
-        : `Here's your verse for today`;
+  document.getElementById("greeting").textContent=
+    dateInput&&name?`Happy Birthday, ${name}! 🎉`:
+    name?`${name}, here's your verse for today`:"Here's your verse for today";
 
   document.getElementById("verseRef").textContent=verse.ref;
   document.getElementById("verseText").textContent=verse.text;
-
   document.getElementById("verseBox").style.display="block";
 }
 
 function downloadCard(){
-  html2canvas(document.getElementById("verseBox"),{
-    useCORS:true,
-    backgroundColor:null,
-    scale:2
-  }).then(canvas=>{
-    const link=document.createElement("a");
-    link.download="verse-card.png";
-    link.href=canvas.toDataURL("image/png");
-    link.click();
+  html2canvas(document.getElementById("verseBox"),{useCORS:true,scale:2})
+  .then(c=>{
+    const a=document.createElement("a");
+    a.download="verse-card.png";
+    a.href=c.toDataURL();
+    a.click();
   });
 }
 
-// auto-load verse of the day
 window.addEventListener("DOMContentLoaded",showVerse);
 </script>
 
