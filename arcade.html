@@ -449,6 +449,19 @@ function fireBullet(){
 
 shooter.addEventListener('click',fireBullet);
 spawnTarget();
+
+/* ================= NAV ================= */
+function toggleMenu(){
+  const m = document.getElementById('navMenu');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-right')) {
+    document.getElementById('navMenu').style.display = 'none';
+  }
+});
+
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async>
