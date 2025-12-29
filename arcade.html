@@ -24,307 +24,89 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-<!-- Page Styles -->
 <style>
-:root {
-  --cyan:#00ffff;
-  --purple:#a855f7;
-}
-
-body {
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  color:#fff;
-  background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%);
-}
-
-a { transition: color 0.3s ease; }
-a:hover { color:#d8b4fe; }
+:root { --cyan:#00ffff; --purple:#a855f7; }
+body { margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); }
+a { transition: color 0.3s ease; } a:hover { color:#d8b4fe; }
 
 /* NAV */
-nav {
-  position: sticky;
-  top: 0;
-  background: #111;
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-}
-
-nav .logo a {
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-nav .menu {
-  position: relative;
-  cursor: pointer;
-  font-size: 22px;
-  color: #fff;
-  user-select: none;
-}
-
-nav .dropdown {
-  display: none;
-  position: absolute;
-  top: 36px;
-  right: 0;
-  background: #181820;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-nav .dropdown a {
-  display: block;
-  padding: 10px 16px;
-  color: #fff;
-  text-decoration: none;
-}
-
-nav .dropdown a:hover {
-  background: #222;
-}
+nav { position: sticky; top: 0; background: #111; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+nav .logo a { color: #fff; font-weight: 700; text-decoration: none; font-size: 20px; }
+nav .menu { position: relative; cursor: pointer; font-size: 22px; color: #fff; user-select: none; }
+nav .dropdown { display: none; position: absolute; top: 36px; right: 0; background: #181820; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+nav .dropdown a { display: block; padding: 10px 16px; color: #fff; text-decoration: none; }
+nav .dropdown a:hover { background: #222; }
 
 /* HERO */
-.hero-title {
-  font-size:3rem;
-  font-weight:700;
-  background:linear-gradient(135deg,#fff,#c0c0c0,#fff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  text-shadow:2px 2px 5px rgba(255,255,255,.25);
-  margin-bottom:1rem;
-}
-
-.home-slogan {
-  font-size:1rem;
-  text-shadow:0 0 8px var(--cyan);
-  font-weight:700;
-  margin-top:1rem;
-}
+.hero-title { font-size:3rem; font-weight:700; background:linear-gradient(135deg,#fff,#c0c0c0,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:2px 2px 5px rgba(255,255,255,.25); margin-bottom:1rem; }
+.home-slogan { font-size:1rem; text-shadow:0 0 8px var(--cyan); font-weight:700; margin-top:1rem; }
 
 /* GAME CONTAINER */
-#game-container {
-  position: relative;
-  height: 150px;
-  margin: 2.5rem auto;
-  max-width: 900px;
-  background: #111;
-  border: 2px solid #000;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-#shooter {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  width: 40px;
-  height: 40px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 1000;
-}
-
-.target {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10px;
-}
-
-.target.explode {
-  transform: scale(2);
-  opacity: 0;
-  transition: transform 0.45s ease, opacity 0.45s ease;
-}
-
-.bullet {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: var(--purple);
-  border-radius: 50%;
-  z-index: 500;
-}
+#game-container { position: relative; height: 180px; margin: 2.5rem auto; max-width: 900px; background: rgba(17,17,17,0.8); border: 2px solid #000; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px #00ffff; }
+#shooter { position: absolute; left: 20px; top: 50%; width: 40px; height: 40px; transform: translateY(-50%); cursor: pointer; z-index: 1000; }
+.target { position: absolute; width: 40px; height: 40px; top: 50%; transform: translateY(-50%); right: 10px; }
+.target.explode { transform: scale(2); opacity: 0; transition: transform 0.45s ease, opacity 0.45s ease; }
+.bullet { position: absolute; width: 6px; height: 6px; background: var(--purple); border-radius: 50%; z-index: 500; box-shadow: 0 0 8px var(--purple); }
 
 /* SECTIONS */
-.section-title {
-  font-size:1.75rem;
-  font-weight:700;
-  text-align:center;
-  margin-bottom:1rem;
-  color:var(--cyan);
-}
+.section-title { font-size:1.75rem; font-weight:700; text-align:center; margin-bottom:1rem; color:var(--cyan); }
+.quizzes { max-width:100%; margin:0 auto; display:flex; gap:1.25rem; overflow-x:auto; padding:1rem 0 1.5rem; scroll-snap-type:x mandatory; }
+.game-card { flex: 0 0 85vw; max-width: 380px; background:#1a1a1a; border-radius:18px; overflow:hidden; border:2px solid #000; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,.45); scroll-snap-align:start; }
+.game-card img { width:100%; height:auto; max-height:260px; object-fit:contain; background:#000; display:block; }
+.game-card > div { padding:0.75rem 1rem 0.5rem; font-weight:800; font-size:1.05rem; }
+.game-card button { background:var(--purple); color:white; border:none; padding:.75rem 1.5rem; margin:.75rem 0 1.25rem; border-radius:10px; cursor:pointer; font-weight:800; font-size:1rem; }
 
-.games {
-  display:flex;
-  overflow-x:auto;
-  white-space:nowrap;
-  padding-bottom:.5rem;
-}
-
-.games .card {
-  display:inline-block;
-  width:200px;
-  margin-right:1rem;
-  background:#1a1a1a;
-  border-radius:12px;
-  padding:1rem;
-  text-align:center;
-  border:2px solid #000;
-}
-
-.games .card .emoji {
-  font-size:2.5rem;
-  margin-bottom:.5rem;
-}
-
-.games .card .card-title {
-  font-weight:700;
-  margin-bottom:.5rem;
-}
-
-.games .card .btn {
-  background:var(--purple);
-  color:#fff;
-  padding:.5rem 1rem;
-  border-radius:6px;
-  font-weight:bold;
-  text-decoration:none;
-  display:inline-block;
-}
-
-.quizzes {
-  max-width:100%;
-  margin:0 auto;
-  display:flex;
-  gap:1.25rem;
-  overflow-x:auto;
-  padding:1rem 0 1.5rem;
-  scroll-snap-type:x mandatory;
-}
-
-.game-card {
-  flex: 0 0 85vw;
-  max-width: 380px;
-  background:#1a1a1a;
-  border-radius:18px;
-  overflow:hidden;
-  border:2px solid #000;
-  text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,.45);
-  scroll-snap-align:start;
-}
-
-.game-card img {
-  width:100%;
-  height:auto;
-  max-height:260px;
-  object-fit:contain;
-  background:#000;
-  display:block;
-}
-
-.game-card > div {
-  padding:0.75rem 1rem 0.5rem;
-  font-weight:800;
-  font-size:1.05rem;
-}
-
-.game-card button {
-  background:var(--purple);
-  color:white;
-  border:none;
-  padding:.75rem 1.5rem;
-  margin:.75rem 0 1.25rem;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:800;
-  font-size:1rem;
-}
-
-#whatsapp-tile {
-  max-width:360px;
-  margin:2rem auto;
-  background:rgba(255,255,255,0.05);
-  border:2px solid var(--purple);
-  border-radius:12px;
-  padding:1.25rem;
-  text-align:center;
-  box-shadow:0 0 10px #8b5cf6;
-}
-
-#whatsapp-tile a {
-  margin-top:0.75rem;
-  background:var(--purple);
-  color:#fff;
-  padding:.6rem 1.25rem;
-  border-radius:8px;
-  font-weight:bold;
-  display:inline-block;
-  text-decoration:none;
-}
+/* WhatsApp Tile */
+#whatsapp-tile { max-width:360px; margin:2rem auto; background:rgba(255,255,255,0.05); border:2px solid var(--purple); border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 0 10px #8b5cf6; }
+#whatsapp-tile a { margin-top:0.75rem; background:var(--purple); color:#fff; padding:.6rem 1.25rem; border-radius:8px; font-weight:bold; display:inline-block; text-decoration:none; }
 
 /* Footer */
-.skinny-footer {
-  background:#1f2937;
-  color:#e5e7eb;
-  text-align:center;
-  padding:20px 10px;
-  font-size:14px;
-}
+.skinny-footer { background: transparent; color:#e5e7eb; text-align:center; padding:20px 10px; font-size:14px; }
 .skinny-footer .footer-socials { margin-bottom:8px; }
 .skinny-footer .footer-socials a { margin:0 6px; color:#e5e7eb; text-decoration:none; font-size:16px; }
 .skinny-footer .footer-links { margin-top:6px; font-size:13px; }
 .skinny-footer .footer-links a { color:#e5e7eb; margin:0 4px; }
+
+/* End Popup */
+#endPopup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; z-index: 9999; display: none; }
+#endPopup a, #endPopup button { display: inline-block; margin-top: 15px; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor:pointer; text-decoration: none; }
+#endPopup a { background: #a855f7; color: #fff; }
+#endPopup button { background: #00ffff; color: #000; border:none; }
 </style>
 
-<!-- Structured Data -->
+<!-- Structured Data for SEO & AdSense -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "TMI Studios Arcade",
-  "url": "https://tmistudios.com/arcade.html",
-  "description": "Play chaotic, unhinged, and interactive games that go viral. Join our WhatsApp for exclusive previews.",
+  "@type": "VideoGame",
+  "name": "TMI Mini Shooter",
+  "url": "https://tmistudios.co.za/arcade.html",
+  "image": "https://tmistudios.co.za/images/tmiarcade.jpeg",
+  "description": "Test your aim and reflexes in the TMI Mini Shooter game! Shoot the targets before time runs out and challenge your friends. Play directly in your browser.",
   "publisher": {
     "@type": "Organization",
     "name": "TMI Studios",
     "logo": {
       "@type": "ImageObject",
-      "url": "images/tmistudios-logo.png"
+      "url": "https://tmistudios.co.za/images/tmiarcade.jpeg"
     }
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "Lava Climber",
-  "url": "https://tmistudios.com/lavaclimber.html",
-  "description": "Jump between platforms, avoid rising lava, and climb as high as possible!",
-  "image": "https://i.ibb.co/4ZCD7Wym/Lava-Climber.jpg",
-  "publisher": {
-    "@type": "Organization",
-    "name": "TMI Studios"
+  },
+  "gamePlatform": "Web Browser",
+  "genre": ["Action","Arcade","Skill"],
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": "https://schema.org/PlayAction",
+    "userInteractionCount": 0
+  },
+  "potentialAction": {
+    "@type": "PlayAction",
+    "target": "https://tmistudios.co.za/arcade.html#game-container"
   }
 }
 </script>
 
 </head>
 <body>
-
 <header>
 <nav>
   <div class="logo"><a href="index.html">TMI Studios</a></div>
@@ -340,7 +122,6 @@ nav .dropdown a:hover {
 </header>
 
 <main>
-
 <section class="text-center p-14">
   <img src="images/tmiarcade.jpeg" loading="lazy" alt="TMI Arcade" class="mx-auto max-w-xs rounded-md">
   <p class="home-slogan mt-4">Engage Gen Z Like Never Before — Custom Quizzes, Games & Interactive Experiences That Convert.</p>
@@ -351,7 +132,139 @@ nav .dropdown a:hover {
 </section>
 
 <!-- Mini Shooter -->
-<div id="game-container"></div>
+<section id="mini-shooter" class="text-center">
+  <h2 class="section-title">TMI Mini Shooter</h2>
+  <p class="max-w-xl mx-auto mb-4">Click the shooter to fire bullets and hit all 15 targets appearing on the right. Complete them all to win and try your skills in other chaos-filled games!</p>
+  <div id="game-container"></div>
+</section>
+
+<!-- Floating Instructions Button -->
+<div id="floatingInstructions" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #00ffff, #a855f7);
+    color: #000;
+    font-weight: bold;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 52px;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00ffff, 0 0 25px #a855f7;
+    z-index: 9999;
+    user-select: none;
+">?</div>
+
+<!-- Instructions Popup -->
+<div id="instructionsPopup" style="
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 10000;
+    overflow-y: auto;
+">
+  <div style="
+      max-width: 640px;
+      margin: 60px auto;
+      background: #111;
+      padding: 28px;
+      border-radius: 20px;
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 25px #00ffff, 0 0 40px #a855f7;
+  ">
+    <h2 style="color:#00ffff; text-align:center; margin-bottom:16px;">
+      TMI Mini Shooter
+    </h2>
+
+    <p>
+      Click the shooter to fire bullets and hit all 15 targets appearing on the right.
+      Complete them all to win and test your skills in other chaos-filled arcade games.
+    </p>
+
+    <h3 style="color:#a855f7; margin-top:20px;">
+      Mini Shooter Game Instructions
+    </h3>
+
+    <p>
+      Click on the shooter to fire bullets and hit the targets as they appear.
+      Each hit triggers a flashy explosion. Clear all targets to complete the game.
+    </p>
+
+    <p>
+      <strong>Pro Tip:</strong> Aim carefully — bullets leave an electric trail and
+      reward precision and timing. Built for fast reflex fun.
+    </p>
+
+    <h3 style="color:#a855f7; margin-top:20px;">
+      Try More Games
+    </h3>
+
+    <ul>
+      <li><strong>Flappy Fury</strong> — Pure reflex chaos. How long can you survive?</li>
+      <li><strong>Lava Climber 🔥</strong> — Climb fast, dodge lava, beat your high score.</li>
+    </ul>
+
+    <div style="text-align:center; margin-top:24px;">
+      <button id="closeInstructionsBtn" style="
+          background: linear-gradient(135deg, #00ffff, #a855f7);
+          color: #000;
+          font-weight: bold;
+          padding: 12px 26px;
+          border: none;
+          border-radius: 14px;
+          cursor: pointer;
+          box-shadow: 0 0 12px #00ffff, 0 0 18px #a855f7;
+      ">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const popup = document.getElementById('instructionsPopup');
+  const openBtn = document.getElementById('floatingInstructions');
+  const closeBtn = document.getElementById('closeInstructionsBtn');
+
+  openBtn.onclick = () => {
+    popup.style.display = 'block';
+    requestAnimationFrame(() => popup.style.opacity = '1');
+  };
+
+  closeBtn.onclick = () => {
+    popup.style.opacity = '0';
+    setTimeout(() => popup.style.display = 'none', 350);
+  };
+</script>
+
+<script>
+  const showBtn = document.getElementById('showInstructionsBtn');
+  const closeBtn = document.getElementById('closeInstructionsBtn');
+  const popup = document.getElementById('instructionsPopup');
+
+  showBtn.addEventListener('click', () => {
+    popup.style.display = 'flex';
+    popup.style.alignItems = 'center';
+    popup.style.justifyContent = 'center';
+    setTimeout(() => { popup.style.opacity = '1'; }, 10);
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popup.style.opacity = '0';
+    setTimeout(() => { popup.style.display = 'none'; }, 300);
+  });
+</script>
+
+<br>
+<br>
+
+  <h1 class="hero-title">🕹 Latest Games</h1>
 
 <!-- Lava Climber -->
 <section class="text-center max-w-3xl mx-auto p-6">
@@ -406,9 +319,7 @@ nav .dropdown a:hover {
   <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" rel="noopener noreferrer">Join Now 💬</a>
 </div>
 
-</main>
-
-<!-- FOOTER -->
+<!-- Footer -->
 <footer class="skinny-footer">
   <div class="footer-socials">
     <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
@@ -424,48 +335,124 @@ nav .dropdown a:hover {
   </nav>
 </footer>
 
+<!-- End Popup -->
+<div id="endPopup">
+  <div>
+    <h2 id="popupMessage">You're really good at aiming! 🎯</h2>
+    <p>Try your skills in these games:</p>
+    <a href="flappyfury.html">Play Flappy Fury</a><br><br>
+    <a href="lavaclimber.html">Play Lava Climber 🔥</a><br><br>
+    <button id="restartGame">Restart Game</button>
+  </div>
+</div>
+
 <!-- Shooter Game Script -->
 <script>
-const targetImages = [...Array(10)].map((_, i) => `images/target${i + 1}.jpeg`);
+const targetImages = [...Array(15)].map((_, i) => `images/target${i+1}.jpeg`);
 const shooterContainer = document.getElementById('game-container');
 const shooter = document.createElement('img');
-shooter.id='shooter';
-shooter.src='images/shooter.jpeg';
-shooter.style.cursor='pointer';
+shooter.id = 'shooter';
+shooter.src = 'images/shooter.jpeg';
+shooter.loading = 'lazy';
 shooterContainer.appendChild(shooter);
 
-let currentTargetIndex=0, currentTarget=null;
+let currentTargetIndex = 0, currentTarget = null;
 
-function createTarget(src){ if(currentTarget) currentTarget.remove(); const img=document.createElement('img'); img.src=src; img.className='target'; shooterContainer.appendChild(img); currentTarget=img; }
+function createTarget(src){
+  if(currentTarget) currentTarget.remove();
+  const img = document.createElement('img');
+  img.src = src;
+  img.loading = 'lazy';
+  img.className = 'target';
+  shooterContainer.appendChild(img);
+  currentTarget = img;
+}
 
-function spawnTarget(){ if(currentTargetIndex>=targetImages.length) currentTargetIndex=0; createTarget(targetImages[currentTargetIndex]); }
+function spawnTarget(){
+  if(currentTargetIndex >= targetImages.length) currentTargetIndex = 0;
+  createTarget(targetImages[currentTargetIndex]);
+}
 
-function explodeTarget(){ if(!currentTarget) return; currentTarget.classList.add('explode'); setTimeout(()=>{ currentTarget.remove(); currentTarget=null; currentTargetIndex++; spawnTarget(); },450); }
+function showEndPopup() {
+  const popupMessages = [
+    "Wow, sharpshooter! 🔥",
+    "Bullseye! You crushed it! 🎯",
+    "Impressive aim! Try these next!",
+    "You're on fire! 🔥 Check these out!"
+  ];
+  const message = popupMessages[Math.floor(Math.random()*popupMessages.length)];
+  const popup = document.getElementById('endPopup');
+  document.getElementById('popupMessage').textContent = message;
+  popup.style.display = 'flex';
+}
 
-function fireBullet(){ const bullet=document.createElement('div'); bullet.className='bullet'; const sRect=shooter.getBoundingClientRect(); const cRect=shooterContainer.getBoundingClientRect(); bullet.style.left=(sRect.right-cRect.left)+'px'; bullet.style.top=(sRect.top+sRect.height/2-3-cRect.top)+'px'; shooterContainer.appendChild(bullet); function move(){ const left=parseFloat(bullet.style.left); if(left>shooterContainer.clientWidth+20){ bullet.remove(); return; } bullet.style.left=(left+14)+'px'; if(currentTarget){ const bRect=bullet.getBoundingClientRect(); const tRect=currentTarget.getBoundingClientRect(); if(bRect.right>=tRect.left && bRect.left<=tRect.right && bRect.top<=tRect.bottom && bRect.bottom>=tRect.top){ bullet.remove(); explodeTarget(); return; } } requestAnimationFrame(move); } requestAnimationFrame(move); }
+document.getElementById('restartGame').addEventListener('click', ()=>{
+  document.getElementById('endPopup').style.display = 'none';
+  currentTargetIndex = 0;
+  if(currentTarget) currentTarget.remove();
+  spawnTarget();
+});
+
+function explodeTarget(){
+  if(!currentTarget) return;
+  currentTarget.classList.add('explode');
+  setTimeout(()=>{
+    currentTarget.remove();
+    currentTarget = null;
+    currentTargetIndex++;
+    if(currentTargetIndex >= targetImages.length){
+      showEndPopup();
+    } else {
+      spawnTarget();
+    }
+  },450);
+}
+
+function fireBullet(){
+  const bullet = document.createElement('div');
+  bullet.className = 'bullet';
+  const sRect = shooter.getBoundingClientRect();
+  const cRect = shooterContainer.getBoundingClientRect();
+  bullet.style.left = (sRect.right - cRect.left) + 'px';
+  bullet.style.top = (sRect.top + sRect.height/2 - 3 - cRect.top) + 'px';
+  shooterContainer.appendChild(bullet);
+
+  function move(){
+    const left = parseFloat(bullet.style.left);
+    if(left > shooterContainer.clientWidth + 20){ bullet.remove(); return; }
+    bullet.style.left = (left + 14) + 'px';
+    const segment = document.createElement('div');
+    segment.style.position='absolute';
+    segment.style.width=Math.random()*4+2+'px';
+    segment.style.height='2px';
+    segment.style.background='linear-gradient(to right, #00ffff, #a855f7)';
+    segment.style.left=bullet.style.left;
+    segment.style.top=(parseFloat(bullet.style.top)+(Math.random()*12-6))+'px';
+    segment.style.transform='rotate('+(Math.random()*60-30)+'deg)';
+    segment.style.opacity=0.8;
+    segment.style.pointerEvents='none';
+    shooterContainer.appendChild(segment);
+    setTimeout(()=>segment.remove(),120);
+
+    if(currentTarget){
+      const bRect=bullet.getBoundingClientRect();
+      const tRect=currentTarget.getBoundingClientRect();
+      if(bRect.right>=tRect.left && bRect.left<=tRect.right &&
+         bRect.top<=tRect.bottom && bRect.bottom>=tRect.top){
+        bullet.remove(); explodeTarget(); return;
+      }
+    }
+    requestAnimationFrame(move);
+  }
+  requestAnimationFrame(move);
+}
 
 shooter.addEventListener('click',fireBullet);
 spawnTarget();
 </script>
 
-<!-- Dropdown -->
-<script>
-const hamburger = document.getElementById('hamburger');
-const menuDropdown = document.getElementById('menuDropdown');
-hamburger.addEventListener('click', () => {
-  menuDropdown.style.display = menuDropdown.style.display === 'block' ? 'none' : 'block';
-});
-
-// Close dropdown if clicked outside
-document.addEventListener('click', (e) => {
-  if (!hamburger.contains(e.target)) {
-    menuDropdown.style.display = 'none';
-  }
-});
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async>
+  
 </script>
-
-<!-- Lazy load polyfill for older browsers -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
-
 </body>
 </html>
