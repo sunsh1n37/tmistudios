@@ -11,226 +11,156 @@
 <meta property="og:image" content="https://placehold.co/900x500?text=TMI+News" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-/* ===== General Styles ===== */
+/* ===== General ===== */
 body {font-family:'Space Grotesk',sans-serif;background:#fafafa;color:#111;margin:0;padding:0;}
-header {position: relative;text-align: center;padding:3rem 1rem 2rem 1rem;background:#000;color:#fff;}
-.logo{font-family:'Orbitron',sans-serif;font-size:3rem;margin:0;text-transform:uppercase;position:relative;color:#00ffff;animation:flicker 2s infinite;}
-.logo::before,.logo::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;overflow:hidden;z-index:-1;}
-.logo::before{animation:glitchTop 2s infinite linear;color:#ff00ff;}
-.logo::after{animation:glitchBottom 2s infinite linear;color:#00ff00;}
+h2,h3{margin:0 0 1rem 0;}
+.hidden{display:none;}
+
+/* ===== Sticky Navigation ===== */
+header {
+  position: sticky; top:0; z-index:1000;
+  background:#000; padding:0.8rem 1rem;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+.nav-container {
+  max-width:1100px; margin:auto;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.home-link {
+  font-family:'Orbitron',sans-serif; font-size:1.5rem;
+  color:#00ffff; text-decoration:none; font-weight:bold;
+}
+.home-link:hover { color:#ff00ff; }
+.hamburger-menu { position:relative; }
+#hamburger-btn { background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer; }
+#dropdown-links {
+  position:absolute; right:0; top:120%;
+  background:#111; list-style:none; padding:0.5rem 1rem;
+  border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+#dropdown-links li { margin:0.5rem 0; }
+#dropdown-links li a { color:#fff; text-decoration:none; font-weight:500; }
+#dropdown-links li a:hover { color:#00ffff; }
+
+/* ===== Header / Logo ===== */
+header .logo{font-family:'Orbitron',sans-serif;font-size:3rem;color:#00ffff;text-transform:uppercase;position:relative;animation:flicker 2s infinite;}
+header .logo::before,.logo::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;overflow:hidden;z-index:-1;}
+header .logo::before{animation:glitchTop 2s infinite linear;color:#ff00ff;}
+header .logo::after{animation:glitchBottom 2s infinite linear;color:#00ff00;}
 @keyframes glitchTop{0%{clip-path:inset(0 0 80% 0);transform:translate(-2px,-2px);}10%{clip-path:inset(20% 0 60% 0);transform:translate(2px,0);}20%{clip-path:inset(10% 0 70% 0);transform:translate(-1px,-1px);}30%,100%{clip-path:inset(0 0 80% 0);transform:translate(0,0);} }
 @keyframes glitchBottom{0%{clip-path:inset(60% 0 0 0);transform:translate(2px,2px);}10%{clip-path:inset(40% 0 10% 0);transform:translate(-2px,0);}20%{clip-path:inset(50% 0 0 0);transform:translate(1px,1px);}30%,100%{clip-path:inset(60% 0 0 0);transform:translate(0,0);} }
 @keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}20%,22%,24%,55%{opacity:0.6;} }
-.tagline{margin:0.5rem 0;font-size:1.2rem;}
+.tagline{margin:0.5rem 0;font-size:1.2rem; text-align:center; color:#fff;}
 
-/* ===== Navigation ===== */
-.tmi-nav {position: absolute;top:1rem;right:2rem;}
-.tmi-nav .nav-links { list-style:none; margin:0; padding:0; display:flex; }
-.tmi-nav .nav-links li { margin-left:1rem; }
-.tmi-nav .nav-links a { text-decoration:none; color:#fff; font-weight:500; font-size:1rem; transition: color 0.3s; }
-.tmi-nav .nav-links a:hover { color:#00ffff; }
-.home-link { display:flex; align-items:center; gap:0.3rem; }
-
-/* ===== Main & Cards ===== */
+/* ===== Main Sections ===== */
 main{max-width:1100px;margin:2rem auto;padding:0 1rem;}
-h2{font-family:'Orbitron',sans-serif;color:purple;border-left:4px solid #00ffff;padding-left:0.5rem;margin-bottom:1rem;text-transform:uppercase;}
+h2{font-family:'Orbitron',sans-serif;color:purple;border-left:4px solid #00ffff;padding-left:0.5rem;text-transform:uppercase;}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
 .card{background:#fff;border-radius:1rem;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1);transition:transform 0.2s;}
 .card:hover{transform:translateY(-5px);}
 .card img{width:100%;height:180px;object-fit:cover;}
 .card-content{padding:1rem;}
 .date{font-size:0.8rem;color:#666;margin-bottom:0.3rem;}
-.read-more-btn{margin-top:0.5rem;background:#111;color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:0.5rem;cursor:pointer;font-size:0.9rem;transition:background 0.3s;}
-.read-more-btn:hover{background:#00ffff;color:#111;}
-.hidden{display:none;}
+.read-more-btn{margin-top:0.5rem;background:#6b21a8;color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:0.5rem;cursor:pointer;font-size:0.9rem;transition:background 0.3s;}
+.read-more-btn:hover{background:#9333ea;}
 
-/* ===== Top Stories Light Grey Background ===== */
-#news-section { background:#f5f5f5; padding:2rem 1rem; border-radius:1rem; }
-
-/* ===== Footer ===== */
-footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:0.9rem;}
-footer a { text-decoration: none; color: inherit; }
-footer a:hover { text-decoration: underline; }
-
-/* ===== Share Buttons ===== */
-.share-btn { padding:0.5rem 0.75rem; border-radius:0.5rem; font-size:0.85rem; text-decoration:none; color:#fff; border:none; cursor:pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.share-btn.whatsapp { background:#25D366; }
-.share-btn.telegram { background:#0088cc; }
-.share-btn.twitter { background:#1DA1F2; }
-.share-btn.copy-link-btn { background:#111; }
-.share-btn:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(255,0,255,0.5); }
-
-/* ===== Algorithm Chronicles ===== */
+/* ===== Algorithm Chronicles Black BG ===== */
 #algorithm-chronicles { background:#111;color:#fff;padding:2rem 1rem;border-radius:1rem;margin-top:3rem; }
-#algorithm-chronicles h2{border-left:4px solid #ff00ff;padding-left:0.5rem;margin-bottom:1.5rem;}
-#algorithm-chronicles .card { background:#1a1a1a; color:#fff; box-shadow:0 4px 15px rgba(255,0,255,0.2),0 0 10px rgba(0,255,255,0.2); border:1px solid #333; transition: transform 0.3s, box-shadow 0.3s; }
-#algorithm-chronicles .card:hover { transform:translateY(-7px); box-shadow:0 6px 20px rgba(255,0,255,0.5),0 0 15px rgba(0,255,255,0.5); }
+#algorithm-chronicles .card { background:#1a1a1a; color:#fff; box-shadow:0 4px 15px rgba(255,0,255,0.2); border:1px solid #333; transition: transform 0.3s; }
+#algorithm-chronicles .card:hover { transform:translateY(-7px); box-shadow:0 6px 20px rgba(255,0,255,0.5); }
 #algorithm-chronicles .card img { filter:brightness(0.85) contrast(1.1); animation: flicker 3s infinite; }
 #algorithm-chronicles .card-content h3 { color:#00ffff; }
 #algorithm-chronicles .card-content p { color:#ccc; }
-#algorithm-chronicles .read-more-btn { background:#ff00ff; color:#111; }
-#algorithm-chronicles .read-more-btn:hover { background:#00ffff; color:#111; }
 
-/* ===== Horizontal scroll for Algo and Spotlight sections ===== */
-#algorithm-chronicles .card-grid,
-#spotlight-section .card-grid {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-behavior: smooth;
-}
+/* ===== Horizontal scroll ===== */
+#algorithm-chronicles .card-grid, #youthworks-list { display:flex; gap:1.5rem; overflow-x:auto; padding-bottom:1rem; scroll-behavior:smooth; }
+#algorithm-chronicles .card-grid .card, #youthworks-list .card { flex:0 0 280px; }
+#algorithm-chronicles .card-grid::-webkit-scrollbar, #youthworks-list::-webkit-scrollbar { height:8px; }
+#algorithm-chronicles .card-grid::-webkit-scrollbar-thumb, #youthworks-list::-webkit-scrollbar-thumb { background:#00ffff; border-radius:4px; }
+#algorithm-chronicles .card-grid::-webkit-scrollbar-track, #youthworks-list::-webkit-scrollbar-track { background:#111; }
 
-#algorithm-chronicles .card-grid .card,
-#spotlight-section .card-grid .card {
-  flex: 0 0 280px; /* fixed width, no shrinking */
-}
+/* ===== Footer ===== */
+footer{background:#000;color:#fff;text-align:center;padding:2rem 1rem;font-size:0.9rem;}
+footer a { color: inherit; text-decoration:none; }
+footer a:hover{text-decoration:underline;}
 
-/* Scrollbar Styling */
-#algorithm-chronicles .card-grid::-webkit-scrollbar,
-#spotlight-section .card-grid::-webkit-scrollbar {
-  height: 8px;
-}
-#algorithm-chronicles .card-grid::-webkit-scrollbar-thumb,
-#spotlight-section .card-grid::-webkit-scrollbar-thumb {
-  background: #00ffff;
-  border-radius: 4px;
-}
-#algorithm-chronicles .card-grid::-webkit-scrollbar-track,
-#spotlight-section .card-grid::-webkit-scrollbar-track {
-  background: #111;
-}
+/* ===== YouthWorks badges ===== */
+.badge { display:inline-block;background:#fde68a;color:#222;font-size:0.8rem;font-weight:bold;padding:0.2rem 0.5rem;border-radius:6px;margin-right:0.3rem;margin-top:0.5rem; }
+.read-more { color:#1d4ed8; font-weight:bold; cursor:pointer; display:block; margin-top:0.5rem; }
 
+/* ===== Category Buttons ===== */
+.category-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #6b21a8;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.category-btn.active {
+  background: #9333ea;
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.7);
+}
+.category-btn:not(.active):hover {
+  background: #7c2bd1;
+  box-shadow: 0 0 8px rgba(124, 43, 209, 0.5);
+}
 </style>
 </head>
 <body>
 
 <header>
+  <div class="nav-container">
+    <a href="index.html" class="home-link">🏠 Home</a>
+    <div class="hamburger-menu">
+      <button id="hamburger-btn"><i class="fa fa-bars"></i></button>
+      <ul id="dropdown-links" class="hidden">
+        <li><a href="news.html">News</a></li>
+        <li><a href="games.html">Arcade</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
   <h1 class="logo" data-text="TMI News">TMI News</h1>
-  <nav class="tmi-nav">
-    <ul class="nav-links">
-      <li><a href="index.html" class="home-link">🏠 Home</a></li>
-    </ul>
-  </nav>
   <p class="tagline">Tech | Mayhem | Influence</p>
 </header>
 
 <main>
-  <!-- Algorithm Chronicles first -->
+  <!-- Category Filters -->
+  <div id="category-filters" style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+    <button class="category-btn" data-cat="all">All</button>
+    <button class="category-btn" data-cat="tech">Tech</button>
+    <button class="category-btn" data-cat="culture">Culture</button>
+    <button class="category-btn" data-cat="mayhem">Mayhem</button>
+  </div>
+
+  <!-- Algorithm Chronicles -->
   <section id="algorithm-chronicles">
     <h2>The Algorithm Chronicles</h2>
     <h3>Meet Algo — part AI, part chaos, all drama. She thrives on clicks, trends, and the wildest corners of the internet.</h3>
     <div class="card-grid" id="algorithm-container"></div>
   </section>
 
-<!-- YouthWorks Section -->
-<section id="youthworks" style="padding:2rem 1rem; background:#f9f9f9; margin-top:2rem;">
-  <div style="max-width:900px; margin:auto;">
-    <h2 style="font-size:2rem; margin-bottom:0.5rem; color:#222; text-align:center;">
-      YouthWorks: Top 10 Phone-and-WiFi Side Hustles in South Africa, 2025
-    </h2>
-    <p style="font-size:1rem; color:#555; margin-bottom:1.5rem; text-align:center;">
-      See how teens and young adults turned social media into real income this year!
-    </p>
-    <!-- Horizontal scroll container -->
-    <div id="youthworks-list" style="display:flex; gap:1rem; overflow-x:auto; padding-bottom:1rem; scroll-behavior:smooth;">
-      <!-- Card will be injected here -->
+  <!-- YouthWorks -->
+  <section id="youthworks" style="padding:2rem 1rem; background:#f9f9f9; margin-top:2rem;">
+    <div style="max-width:900px;margin:auto;">
+      <h2 style="font-size:2rem; margin-bottom:0.5rem; color:#222; text-align:center;">
+        YouthWorks: Top 10 Phone-and-WiFi Side Hustles in South Africa, 2025
+      </h2>
+      <p style="font-size:1rem; color:#555; margin-bottom:1.5rem; text-align:center;">
+        See how teens and young adults turned social media into real income this year!
+      </p>
+      <div id="youthworks-list"></div>
     </div>
-  </div>
-</section>
-
-<style>
-  /* Hide scrollbar on most browsers */
-  #youthworks-list::-webkit-scrollbar { display: none; }
-  #youthworks-list { -ms-overflow-style: none; scrollbar-width: none; }
-  
-  /* Stats badge */
-  .badge {
-    display:inline-block;
-    background:#fde68a; /* soft yellow */
-    color:#222;
-    font-size:0.8rem;
-    font-weight:bold;
-    padding:0.2rem 0.5rem;
-    border-radius:6px;
-    margin-right:0.3rem;
-    margin-top:0.5rem;
-  }
-
-  .read-more {
-    color:#1d4ed8; 
-    font-weight:bold; 
-    cursor:pointer; 
-    display:block; 
-    margin-top:0.5rem;
-  }
-</style>
-
-<script>
-  fetch('news.json')
-    .then(response => response.json())
-    .then(data => {
-      const listContainer = document.getElementById('youthworks-list');
-      const item = data.youthHustle[0]; // single entry
-
-      const card = document.createElement('div');
-      card.style.minWidth = '300px';
-      card.style.flex = '0 0 auto';
-      card.style.background = '#fff';
-      card.style.padding = '1rem';
-      card.style.borderRadius = '12px';
-      card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
-      card.style.transition = 'transform 0.2s';
-      card.style.cursor = 'pointer';
-
-      // Hover effect
-      card.onmouseenter = () => card.style.transform = 'scale(1.05)';
-      card.onmouseleave = () => card.style.transform = 'scale(1)';
-
-      // Emoji for highlight
-      const emoji = '💼';
-
-      // Stats badges
-      const stats = [];
-      if(item.stats.topEarnings) stats.push(`<span class="badge">💵 ${item.stats.topEarnings}</span>`);
-      if(item.stats.averageEarnings) stats.push(`<span class="badge">💰 ${item.stats.averageEarnings}</span>`);
-      if(item.stats.growth) stats.push(`<span class="badge">📈 ${item.stats.growth}</span>`);
-      if(item.stats.reach) stats.push(`<span class="badge">👀 ${item.stats.reach}</span>`);
-      if(item.stats.youthParticipation) stats.push(`<span class="badge">🧑‍💻 ${item.stats.youthParticipation}</span>`);
-
-      // Card content with Read More
-      card.innerHTML = `
-        <h3 style="color:#222; margin-bottom:0.5rem;">${emoji} ${item.title}</h3>
-        <p style="color:#555; margin-bottom:0.5rem;" id="short-desc">
-          ${item.description.substring(0, 250)}...
-        </p>
-        <span class="read-more" id="toggle-read">Read More</span>
-        <div style="margin-top:0.5rem;">${stats.join('')}</div>
-      `;
-
-      listContainer.appendChild(card);
-
-      // Toggle Read More
-      const toggleBtn = card.querySelector('#toggle-read');
-      const shortDesc = card.querySelector('#short-desc');
-      let expanded = false;
-
-      toggleBtn.addEventListener('click', () => {
-        if(!expanded) {
-          shortDesc.textContent = item.description;
-          toggleBtn.textContent = 'Show Less';
-          expanded = true;
-        } else {
-          shortDesc.textContent = item.description.substring(0, 250) + '...';
-          toggleBtn.textContent = 'Read More';
-          expanded = false;
-        }
-      });
-    })
-    .catch(err => console.error('Error fetching YouthWorks data:', err));
-</script>
+  </section>
 
   <!-- Latest Stories -->
   <section id="news-section">
@@ -240,78 +170,112 @@ footer a:hover { text-decoration: underline; }
   </section>
 </main>
 
-
-<footer>
-  <p>&copy; 2025 TMI Studios. All rights reserved.</p>
+<footer class="skinny-footer">
+  <div class="footer-socials">
+    <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p>© 2025 TMI Studios</p>
+  <nav class="footer-links">
+    <a href="arcade.html">Arcade</a> ·
+    <a href="faq.html">FAQ</a> ·
+    <a href="privacy.html">Privacy</a> ·
+    <a href="termsofuse.html">Terms</a>
+  </nav>
 </footer>
 
 <script>
-// Function to create story cards
-function createCard(story, containerId) {
-  const container = document.getElementById(containerId);
-  const storyId = containerId + "-" + story.date.replace(/-/g,'');
+// Hamburger
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const dropdown = document.getElementById('dropdown-links');
+hamburgerBtn.addEventListener('click',()=>{dropdown.classList.toggle('hidden');});
+document.addEventListener('click',(e)=>{if(!hamburgerBtn.contains(e.target)&&!dropdown.contains(e.target)){dropdown.classList.add('hidden');}});
 
-  const card = document.createElement('div');
-  card.classList.add('card');
+// Category Buttons
+let currentCategory = 'all';
+const categoryBtns = document.querySelectorAll('.category-btn');
+function updateActiveCategory() {
+  categoryBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === currentCategory);
+  });
+}
+categoryBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentCategory = btn.dataset.cat;
+    updateActiveCategory();
+    filterStories(currentCategory);
+  });
+});
+updateActiveCategory();
 
-  const shareText = encodeURIComponent(`📰 ${story.headline}\n${story.preview}\nRead full story 👉 ${window.location.href}#${storyId}\n📸 ${story.image}`);
+// YouthWorks fetch
+fetch('news.json').then(r=>r.json()).then(data=>{
+  const listContainer=document.getElementById('youthworks-list');
+  const item=data.youthHustle[0];
+  const card=document.createElement('div');
+  card.style.minWidth='300px'; card.style.flex='0 0 auto';
+  card.style.background='#fff'; card.style.padding='1rem'; card.style.borderRadius='12px';
+  card.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'; card.style.transition='transform 0.2s'; card.style.cursor='pointer';
+  card.onmouseenter=()=>card.style.transform='scale(1.05)'; card.onmouseleave=()=>card.style.transform='scale(1)';
+  const emoji='💼';
+  const stats=[];
+  if(item.stats.topEarnings) stats.push(`<span class="badge">💵 ${item.stats.topEarnings}</span>`);
+  if(item.stats.averageEarnings) stats.push(`<span class="badge">💰 ${item.stats.averageEarnings}</span>`);
+  if(item.stats.growth) stats.push(`<span class="badge">📈 ${item.stats.growth}</span>`);
+  if(item.stats.reach) stats.push(`<span class="badge">👀 ${item.stats.reach}</span>`);
+  if(item.stats.youthParticipation) stats.push(`<span class="badge">🧑‍💻 ${item.stats.youthParticipation}</span>`);
+  card.innerHTML=`<h3 style="color:#222;margin-bottom:0.5rem;">${emoji} ${item.title}</h3>
+    <p style="color:#555;margin-bottom:0.5rem;" id="short-desc">${item.description.substring(0,250)}...</p>
+    <span class="read-more" id="toggle-read">Read More</span>
+    <div style="margin-top:0.5rem;">${stats.join('')}</div>`;
+  listContainer.appendChild(card);
+  const toggleBtn=card.querySelector('#toggle-read');
+  const shortDesc=card.querySelector('#short-desc');
+  let expanded=false;
+  toggleBtn.addEventListener('click',()=>{if(!expanded){shortDesc.textContent=item.description; toggleBtn.textContent='Show Less'; expanded=true;} else{shortDesc.textContent=item.description.substring(0,250)+'...'; toggleBtn.textContent='Read More'; expanded=false;}});
+}).catch(err=>console.error(err));
 
-  card.innerHTML = `
-    <img src="${story.image}" alt="${story.headline}">
+// News Cards
+function createCard(story, containerId){
+  const container=document.getElementById(containerId);
+  const storyId=containerId+"-"+story.date.replace(/-/g,'');
+  const card=document.createElement('div'); card.classList.add('card');
+  card.dataset.category = story.category || 'all';
+  const shareText=encodeURIComponent(`📰 ${story.headline}\n${story.preview}\nRead full story 👉 ${window.location.href}#${storyId}\n📸 ${story.image}`);
+  card.innerHTML=`<img src="${story.image}" alt="${story.headline}">
     <div class="card-content">
       <p class="date">${story.date}</p>
       <h3 id="${storyId}">${story.headline}</h3>
       <p>${story.preview}</p>
       <button class="read-more-btn">Read More</button>
       <div class="full-story hidden"><p>${story.fullStory}</p></div>
-      <div class="share-buttons" style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-        <a href="https://wa.me/?text=${shareText}" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
-        <a href="https://t.me/share/url?url=${window.location.href}#${storyId}&text=${shareText}" target="_blank" class="share-btn telegram">✈️ Telegram</a>
-        <a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" class="share-btn twitter">🐦 Twitter</a>
-        <button class="share-btn copy-link-btn">📋 Copy Link</button>
+      <div style="margin-top:1rem;">
+        <button class="read-more-btn copy-link-btn">📋 Copy Link</button>
       </div>
-    </div>
-  `;
-
-  const readBtn = card.querySelector('.read-more-btn');
-  const fullStoryDiv = card.querySelector('.full-story');
-  readBtn.addEventListener('click', () => {
-    fullStoryDiv.classList.toggle('hidden');
-    readBtn.textContent = fullStoryDiv.classList.contains('hidden') ? 'Read More' : 'Show Less';
-  });
-
-  const copyBtn = card.querySelector('.copy-link-btn');
-  copyBtn.addEventListener('click', () => {
-    const url = `${window.location.href}#${storyId}`;
-    navigator.clipboard.writeText(url).then(() => {
-      copyBtn.textContent = '✅ Copied';
-      document.getElementById(storyId).scrollIntoView({behavior:'smooth'});
-      setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);
-    });
-  });
-
+    </div>`;
+  const readBtn=card.querySelector('.read-more-btn');
+  const fullStoryDiv=card.querySelector('.full-story');
+  readBtn.addEventListener('click',()=>{fullStoryDiv.classList.toggle('hidden'); readBtn.textContent=fullStoryDiv.classList.contains('hidden')?'Read More':'Show Less';});
+  const copyBtn=card.querySelector('.copy-link-btn');
+  copyBtn.addEventListener('click',()=>{const url=`${window.location.href}#${storyId}`; navigator.clipboard.writeText(url).then(()=>{copyBtn.textContent='✅ Copied'; document.getElementById(storyId).scrollIntoView({behavior:'smooth'}); setTimeout(()=>{copyBtn.textContent='📋 Copy Link'},1500);});});
   container.appendChild(card);
 }
-// Load JSON stories
-fetch('news.json')
-  .then(response => response.json())
-  .then(data => {
-    // First Algo stories
-    data.stories.forEach(story => {
-      if(story.section === 'algo') {
-        createCard(story, 'algorithm-container');
-      }
-    });
 
-    // Then Latest Stories
-    data.stories.forEach(story => {
-      if(!story.section || story.section !== 'algo') {
-        createCard(story, 'news-container');
-      }
-    });
-  })
-  .catch(err => console.error('Error loading news.json:', err));
+// Load stories from news.json
+fetch('news.json').then(r=>r.json()).then(data=>{
+  data.stories.forEach(story=>{if(story.section==='algo') createCard(story,'algorithm-container');});
+  data.stories.forEach(story=>{if(!story.section||story.section!=='algo') createCard(story,'news-container');});
+});
 
+// Filter function
+function filterStories(category) {
+  const allCards = document.querySelectorAll('.card');
+  allCards.forEach(card => {
+    if(category==='all' || card.dataset.category===category) card.style.display='block';
+    else card.style.display='none';
+  });
+}
 </script>
 
 </body>
