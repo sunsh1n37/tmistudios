@@ -1,103 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms & Conditions — TMI Studios</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.7;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            color: #333;
-        }
-        h1, h2 {
-            color: #000;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions — TMI Studios</title>
+<meta name="description" content="Read TMI Studios Terms & Conditions for using our games, apps, digital products, and web services. Learn about intellectual property, purchases, ads, and user responsibilities.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- JSON-LD structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms & Conditions",
+  "url": "https://tmistudios.xyz/terms.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TMI Studios",
+    "logo": "https://tmistudios.xyz/logo.png",
+    "url": "https://tmistudios.xyz"
+  },
+  "description": "TMI Studios Terms & Conditions for accessing games, apps, and digital products."
+}
+</script>
+
+<style>
+:root {
+  --accent: #4b0082;
+  --text: #222;
+  --muted: #555;
+  --bg: #fff;
+  --banner-bg: #111;
+  --banner-text: #eee;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* NAVIGATION */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e5e5;
+  transition: top 0.3s ease;
+}
+nav.hide {top: -80px;}
+.brand a {font-weight: 700; color: var(--accent); font-size: 1.2rem;}
+.hamburger {display:flex; flex-direction:column; justify-content:space-between; width:25px; height:18px; cursor:pointer;}
+.hamburger span {display:block; height:3px; background:var(--accent); border-radius:2px; transition: all 0.3s;}
+.hamburger.active span:nth-child(1) {transform: rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2) {opacity:0;}
+.hamburger.active span:nth-child(3) {transform: rotate(-45deg) translate(5px,-5px);}
+.nav-links {display:flex; gap:1.5rem;}
+.nav-links.active {display:flex;}
+@media(max-width:768px){
+  .nav-links {display:none; position:absolute; top:60px; right:1rem; flex-direction:column; background:#fff; border:1px solid #eee; border-radius:8px; padding:0.5rem 0;}
+  .nav-links a {padding:0.5rem 1rem;}
+  .nav-links a:hover {background: rgba(75,0,130,0.1);}
+}
+
+/* MAIN CONTENT */
+main {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 1.5rem;
+}
+h1 {color: var(--accent); font-size: 2.2rem; margin-bottom: 1rem;}
+h2 {margin-top: 2rem; color: var(--accent); font-size: 1.4rem; margin-bottom: 0.5rem;}
+p, ul {margin-bottom: 1rem;}
+ul {padding-left: 1.5rem;}
+li {margin-bottom: 0.5rem;}
+
+/* FOOTER */
+footer.skinny-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  padding: 1.5rem 1rem;
+  border-top: 1px solid #e5e5e5;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+footer .footer-socials a {
+  margin: 0 0.5rem;
+  color: var(--accent);
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+footer .footer-socials a:hover {transform: scale(1.2);}
+footer .footer-links a {margin: 0 0.25rem;}
+footer .footer-links a:hover {text-decoration: underline;}
+</style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav id="nav">
+  <div class="brand"><a href="/index.html">TMI Studios</a></div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <div class="nav-links" id="navMenu">
+    <a href="/arcade.html">Arcade</a>
+    <a href="/lab.html">Lab</a>
+    <a href="/aboutus.html">About</a>
+    <a href="/contactus.html">Contact</a>
+  </div>
+</nav>
+
+<main>
 <h1>Terms & Conditions — TMI Studios</h1>
-<p><strong>Last Updated:</strong> [Insert Date]</p>
+<p><strong>Last Updated:</strong> November 2025</p>
 
 <p>Welcome to <strong>TMI Studios</strong> (“we,” “our,” “us”). These Terms & Conditions (“Terms”) govern your access to and use of our websites, games, apps, digital products, and any services we provide (collectively, the “Services”). By accessing or using our Services, you agree to these Terms. If you do not agree, please do not use our Services.</p>
 
 <h2>1. Who We Are</h2>
 <p>TMI Studios is a creative tech studio building digital products, games, and web/mobile experiences. Our Services include:</p>
 <ul>
-    <li>Online games and entertainment experiences</li>
-    <li>Digital products and downloadable assets</li>
-    <li>Web and app development services</li>
-    <li>Products and apps containing in-app advertisements</li>
+  <li>Online games and entertainment experiences</li>
+  <li>Digital products and downloadable assets</li>
+  <li>Web and app development services</li>
+  <li>Products and apps containing in-app advertisements</li>
 </ul>
 
 <h2>2. Eligibility</h2>
-<p>You must be <strong>13 years or older</strong> to use our Services. If you are under 18, you must have parental or guardian consent. Certain products (e.g., games with ads) may have additional age requirements based on app store regulations.</p>
+<p>You must be <strong>13 years or older</strong> to use our Services. If under 18, parental consent is required. Certain products may have additional age restrictions based on app store regulations.</p>
 
 <h2>3. Use of Our Services</h2>
 <p>You agree to use our Services only for lawful purposes. You may <strong>not</strong>:</p>
 <ul>
-    <li>Copy, modify, or distribute our content without permission</li>
-    <li>Reverse-engineer or tamper with our games, apps, or code</li>
-    <li>Use bots, cheats, exploits, or automation tools in our games</li>
-    <li>Attempt to gain unauthorized access to our systems</li>
-    <li>Use our Services to violate any law or regulation</li>
+  <li>Copy, modify, or distribute our content without permission</li>
+  <li>Reverse-engineer or tamper with our apps or code</li>
+  <li>Use bots, cheats, exploits, or automation tools</li>
+  <li>Attempt unauthorized access to our systems</li>
+  <li>Use our Services to violate any law or regulation</li>
 </ul>
 <p>We may suspend or terminate access for violating these rules.</p>
 
 <h2>4. Intellectual Property</h2>
-<p>All content, code, graphics, designs, trademarks, and digital products provided by TMI Studios are our intellectual property.</p>
-<p>You receive a <strong>limited, non-exclusive, non-transferable license</strong> to access and use our Services for personal or business purposes as intended.</p>
-<p>You may <strong>not</strong> resell, redistribute, or repackage our content unless explicitly stated.</p>
+<p>All content, code, graphics, designs, trademarks, and digital products provided by TMI Studios are our intellectual property. You receive a <strong>limited, non-exclusive, non-transferable license</strong> to access and use our Services for personal or business purposes as intended.</p>
 
 <h2>5. Purchases & Digital Products</h2>
-<p>For digital product purchases:</p>
 <ul>
-    <li>All sales are <strong>final</strong> unless otherwise specified</li>
-    <li>You may receive a license (personal or commercial) depending on the product</li>
-    <li>You are responsible for providing accurate billing information</li>
+  <li>All sales are <strong>final</strong> unless otherwise specified</li>
+  <li>License type depends on product (personal or commercial)</li>
+  <li>You are responsible for accurate billing information</li>
 </ul>
-<p>Refunds are only provided when required by applicable law.</p>
 
 <h2>6. Client Projects (Web & App Development)</h2>
-<p>For custom client work:</p>
 <ul>
-    <li>Project terms and deliverables are outlined in a separate agreement</li>
-    <li>We retain ownership of custom work until full payment is received</li>
-    <li>Late or incomplete payments may delay project delivery</li>
+  <li>Project terms are outlined in a separate agreement</li>
+  <li>Ownership retained until full payment</li>
+  <li>Late payments may delay delivery</li>
 </ul>
 
 <h2>7. In-App Advertisements</h2>
-<p>Some of our apps and games display <strong>third-party ads</strong>. These ads may be delivered by networks like Google AdMob or Unity Ads. Ad networks may collect data as described in our Privacy Policy.</p>
-<p>By using ad-supported products, you consent to the display of advertisements.</p>
+<p>Some of our apps and games display <strong>third-party ads</strong>. Ad networks may collect data as described in our Privacy Policy. By using ad-supported products, you consent to these ads.</p>
 
 <h2>8. Third-Party Services</h2>
-<p>Our Services may link to or integrate with third-party tools, analytics, ad networks, and payment processors. We are <strong>not responsible</strong> for third-party websites, content, policies, or actions.</p>
+<p>Our Services may link to third-party tools, analytics, ad networks, and payment processors. We are <strong>not responsible</strong> for third-party websites, content, policies, or actions.</p>
 
 <h2>9. User-Generated Content</h2>
-<p>If you submit content through any features we provide, you are responsible for it. You agree not to submit:</p>
-<ul>
-    <li>Offensive, harmful, or illegal content</li>
-    <li>Infringing or stolen materials</li>
-    <li>Malware or harmful code</li>
-</ul>
-<p>We may remove content at our discretion.</p>
+<p>You are responsible for content you submit. Do not submit offensive, illegal, infringing, or harmful material. We may remove content at our discretion.</p>
 
 <h2>10. Disclaimer of Warranties</h2>
-<p>Our Services are provided <strong>“as is” and “as available.”</strong> We do not guarantee that our Services will always be available, error-free, or meet your expectations.</p>
+<p>Our Services are provided <strong>“as is” and “as available.”</strong> We do not guarantee availability, error-free performance, or expectations.</p>
 
 <h2>11. Limitation of Liability</h2>
-<p>To the fullest extent permitted by law, TMI Studios is <strong>not liable</strong> for any indirect, incidental, punitive, or consequential damages, including but not limited to loss of data, profits, or business interruption.</p>
+<p>TMI Studios is <strong>not liable</strong> for indirect, incidental, punitive, or consequential damages, including loss of data or business interruption.</p>
 
 <h2>12. Changes to These Terms</h2>
-<p>We may update these Terms occasionally. The “Last Updated” date will reflect the most recent changes. Continued use of our Services indicates acceptance of updated Terms.</p>
+<p>Terms may update occasionally. Continued use indicates acceptance of updated Terms.</p>
 
 <h2>13. Contact Us</h2>
-<p>If you have questions about these Terms, contact us at:</p>
-<p><strong>Email:</strong> [Your Email]</p>
+<p>Email: <a href="mailto:info@tmistudios.xyz">info@tmistudios.xyz</a></p>
+</main>
+
+<!-- FOOTER -->
+<footer class="skinny-footer">
+  <div class="footer-socials">
+    <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p>© 2025 TMI Studios</p>
+  <nav class="footer-links">
+    <a href="arcade.html">Arcade</a> ·
+    <a href="faq.html">FAQ</a> ·
+    <a href="privacy.html">Privacy</a> ·
+    <a href="termsofuse.html">Terms</a>
+  </nav>
+</footer>
+
+<script>
+/* Hamburger menu */
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+
+/* Auto-hide sticky nav */
+let lastScroll = 0;
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY;
+  if (currentScroll > lastScroll && currentScroll > 80) nav.classList.add('hide');
+  else nav.classList.remove('hide');
+  lastScroll = currentScroll;
+});
+</script>
 
 </body>
 </html>
