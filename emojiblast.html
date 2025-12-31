@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emoji Blast — Rocket + Bomb Powerups</title>
+<style>
+body {
+  background:#1b1b1f;
+  color:#fff;
+  font-family: system-ui, Arial;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:10px;
+  margin:0;
+}
+h1 { margin:6px 0; text-align:center; }
+#hud { display:flex; gap:16px; margin-bottom:10px; font-size:16px; flex-wrap:wrap; justify-content:center; }
+#board {
+  display:grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap:6px;
+  padding:8px;
+  background:#2c2c36;
+  border-radius:14px;
+  width:100%;
+  max-width:480px;
+}
+.tile {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  cursor:pointer;
+  transition:transform .15s, opacity .15s, box-shadow .15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  background: #3a3a4b;
+}
+.tile span { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
+
+@keyframes glow {
+  0% { box-shadow: 0 0 4px #fff; transform: scale(1); }
+  50% { box-shadow: 0 0 20px #fff; transform: scale(1.3); }
+  100% { box-shadow: 0 0 4px #fff; transform: scale(1); }
+}
+.flash { animation: glow 0.15s ease-in-out 2; }
+.pop { transform:scale(0.2) rotate(45deg); opacity:0; }
+
+button {
+  background:#ffaa33; border:none; padding:10px 16px;
+  margin-top:10px; border-radius:10px; font-weight:700; cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>Emoji Blast — Rocket + Bomb Powerups</h1>
+
+<div id="hud">
+  <div>Level: <span id="level">1</span></div>
+  <div>Score: <span id="score">0</span></div>
+  <div>Moves: <span id="moves">20</span></div>
+  <div>Target: <span id="target">30</span></div>
+</div>
+
+<div id="board"></div>
+<button onclick="resetGame()">Restart</button>
+
+<script>
+const cols = 8;
+const emojis = ["😀","😎","😍","🥳","😡","🤩"];
+let rows = Math.floor((window.innerHeight - 200) / 50) + 2;
+
+let grid = [];
+let score = 0;
+let moves = 20;
+let level = 1;
+
+function getTarget(level){ return 20 + (level-1)*10; }
+let targetScore = getTarget(level);
+
+const board = document.getElementById("board");
+const scoreEl = document.getElementById("score");
+const movesEl = document.getElementById("moves");
+const levelEl = document.getElementById("level");
+const targetEl = document.getElementById("target");
+
+function randEmoji(){ return emojis[Math.floor(Math.random()*emojis.length)]; }
+
+function createGrid(){
+  grid = [];
+  for(let r=0;r<rows;r++){
+    grid[r]=[];
+    for(let c=0;c<cols;c++){
+      grid[r][c]=randEmoji();
+    }
+  }
+}
+
+function drawGrid(){
+  board.innerHTML="";
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const tile = document.createElement("div");
+      tile.className="tile";
+      tile.innerHTML = `<span>${grid[r][c]}</span>`;
+      tile.dataset.r=r; tile.dataset.c=c;
+      tile.onclick = ()=> handleTileClick(tile);
+      board.appendChild(tile);
+    }
+  }
+}
+
+/* 🔊 sounds */
+function playPopSound(){
+  const s = new Audio("https://freesound.org/data/previews/256/256113_3263906-lq.mp3");
+  s.volume=.6; s.play().catch(()=>{});
+}
+function playExplosion(){
+  const s = new Audio("https://freesound.org/data/previews/341/341695_5121236-lq.mp3");
+  s.volume=.7; s.play().catch(()=>{});
+}
+
+function handleTileClick(tile){
+  if(moves<=0) return;
+  const r = +tile.dataset.r, c = +tile.dataset.c;
+  const emoji = grid[r][c];
+
+  if(emoji==="💣"){
+    if(navigator.vibrate) navigator.vibrate([150,50,150]);
+    playExplosion();
+    handleBomb(r);
+  } else if(emoji==="🚀"){
+    playExplosion();
+    handleRocket(c);
+  } else {
+    playPopSound();
+    handleClick(r,c,tile);
+  }
+}
+
+function getGroup(r,c,emoji,visited=new Set()){
+  const key=r+","+c;
+  if(r<0||c<0||r>=rows||c>=cols) return [];
+  if(grid[r][c]!==emoji || visited.has(key)) return [];
+  visited.add(key);
+  return [
+    [r,c],
+    ...getGroup(r+1,c,emoji,visited),
+    ...getGroup(r-1,c,emoji,visited),
+    ...getGroup(r,c+1,emoji,visited),
+    ...getGroup(r,c-1,emoji,visited)
+  ];
+}
+
+function handleClick(r,c){
+  let group = getGroup(r,c,grid[r][c]);
+  if(group.length < 2) return;
+
+  group.forEach(([rr,cc])=>{
+    board.children[rr*cols+cc].classList.add("flash");
+  });
+
+  setTimeout(()=>{
+    group.forEach(([rr,cc])=>{
+      const el = board.children[rr*cols+cc];
+      el.classList.remove("flash");
+      el.classList.add("pop");
+      grid[rr][cc]=null;
+      score++;
+    });
+
+    // 6+ = bomb
+    if(group.length >=6){
+      const [br,bc] = group[group.length-1];
+      grid[br][bc]="💣";
+    }
+    // 5 = rocket
+    else if(group.length ===5){
+      const [br,bc] = group[group.length-1];
+      grid[br][bc]="🚀";
+    }
+
+    moves--;
+    setTimeout(()=>{
+      applyGravity();
+      refill();
+      updateHUD();
+      checkLevel();
+      drawGrid();
+    },150);
+  },150);
+}
+
+/* 💣 bomb (supports endMode) */
+function handleBomb(r, endMode=false){
+  for(let c2=0;c2<cols;c2++){
+    const el = board.children[r*cols+c2];
+    el.classList.add("flash");
+    setTimeout(()=>{
+      el.classList.add("pop");
+      if(grid[r][c2]) score++;
+      grid[r][c2]=null;
+    }, c2*80);
+  }
+
+  if(!endMode) moves--;
+
+  setTimeout(()=>{
+    applyGravity(); refill(); updateHUD(); drawGrid();
+  }, cols*80+150);
+}
+
+/* 🚀 rocket (supports endMode) */
+function handleRocket(c, endMode=false){
+  for(let r=0;r<rows;r++){
+    const el = board.children[r*cols+c];
+    el.classList.add("flash");
+    setTimeout(()=>{
+      el.classList.add("pop");
+      if(grid[r][c]) score++;
+      grid[r][c]=null;
+    }, r*80);
+  }
+
+  if(!endMode) moves--;
+
+  setTimeout(()=>{
+    applyGravity(); refill(); updateHUD(); drawGrid();
+  }, rows*80+150);
+}
+
+function applyGravity(){
+  for(let c=0;c<cols;c++){
+    let stack=[];
+    for(let r=rows-1;r>=0;r--){
+      if(grid[r][c]) stack.push(grid[r][c]);
+    }
+    for(let r=rows-1;r>=0;r--){
+      grid[r][c]=stack.shift()||null;
+    }
+  }
+}
+
+function refill(){
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      if(!grid[r][c]) grid[r][c]=randEmoji();
+    }
+  }
+}
+
+function updateHUD(){
+  scoreEl.textContent=score;
+  movesEl.textContent=moves;
+  levelEl.textContent=level;
+  targetEl.textContent=targetScore;
+}
+
+/* 💥 End-of-level cleanup using REAL blast behavior */
+async function autoPopPowerupsOnWin(next){
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const val = grid[r][c];
+
+      if(val === "💣"){
+        await new Promise(res=>{
+          handleBomb(r, true);
+          setTimeout(res, 350);
+        });
+      }
+
+      if(val === "🚀"){
+        await new Promise(res=>{
+          handleRocket(c, true);
+          setTimeout(res, 350);
+        });
+      }
+    }
+  }
+
+  setTimeout(next, 200);
+}
+
+function checkLevel(){
+  if(score >= targetScore){
+
+    autoPopPowerupsOnWin(()=>{
+      level++;
+      score = 0;
+      moves = 20;
+      targetScore = getTarget(level);
+      alert("🎉 Level Up! Welcome to Level "+level+"!");
+      createGrid();
+      updateHUD();
+      drawGrid();
+    });
+
+  } else if(moves<=0 && score<targetScore){
+    alert("💀 Game Over! Try again.");
+    resetGame();
+  }
+}
+
+function resetGame(){
+  rows = Math.floor((window.innerHeight - 200) / 50) + 2;
+  score=0; moves=20; level=1; targetScore=getTarget(level);
+  createGrid();
+  updateHUD();
+  drawGrid();
+}
+
+resetGame();
+</script>
+</body>
+</html>
