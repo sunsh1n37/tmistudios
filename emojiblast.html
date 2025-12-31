@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emoji Blast — Rocket + Bomb Powerups</title>
+<title>Emoji Blast — Pretty Progression</title>
 <style>
 body {
   background:#1b1b1f;
@@ -17,6 +17,7 @@ body {
 h1 { margin:6px 0; text-align:center; }
 #hud { display:flex; gap:16px; margin-bottom:10px; font-size:16px; flex-wrap:wrap; justify-content:center; }
 #board {
+  position:relative;
   display:grid;
   grid-template-columns: repeat(8, 1fr);
   gap:6px;
@@ -42,6 +43,39 @@ h1 { margin:6px 0; text-align:center; }
 }
 .tile span { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
 
+#flashOverlay {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background:white; opacity:0; pointer-events:none; border-radius:14px; z-index:5;
+  transition:opacity 0.15s ease-out;
+}
+
+/* 🎉 Level up screen */
+#levelUpScreen {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.85);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:24px;
+  text-align:center;
+  gap:20px;
+  border-radius:14px;
+  z-index:10;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.3s ease;
+}
+#levelUpScreen.show { opacity:1; pointer-events:auto; }
+#levelUpScreen .btn {
+  background:#ffaa33; border:none; padding:12px 24px; border-radius:12px;
+  font-weight:700; cursor:pointer; font-size:18px; transition:transform 0.2s;
+}
+#levelUpScreen .btn:hover { transform:scale(1.1); }
+
 @keyframes glow {
   0% { box-shadow: 0 0 4px #fff; transform: scale(1); }
   50% { box-shadow: 0 0 20px #fff; transform: scale(1.3); }
@@ -50,7 +84,7 @@ h1 { margin:6px 0; text-align:center; }
 .flash { animation: glow 0.15s ease-in-out 2; }
 .pop { transform:scale(0.2) rotate(45deg); opacity:0; }
 
-button {
+button.restart {
   background:#ffaa33; border:none; padding:10px 16px;
   margin-top:10px; border-radius:10px; font-weight:700; cursor:pointer;
 }
@@ -58,7 +92,7 @@ button {
 </head>
 <body>
 
-<h1>Emoji Blast — Rocket + Bomb Powerups</h1>
+<h1>Emoji Blast — Pretty Progression!</h1>
 
 <div id="hud">
   <div>Level: <span id="level">1</span></div>
@@ -67,8 +101,17 @@ button {
   <div>Target: <span id="target">30</span></div>
 </div>
 
-<div id="board"></div>
-<button onclick="resetGame()">Restart</button>
+<div id="board">
+  <div id="flashOverlay"></div>
+</div>
+<button class="restart" onclick="resetGame()">Restart</button>
+
+<!-- Level Up Overlay -->
+<div id="levelUpScreen">
+  <div id="levelUpText">🎉 Level Up! 🎉</div>
+  <div id="levelNumber">Level 2</div>
+  <button class="btn" onclick="nextLevel()">Next Level</button>
+</div>
 
 <script>
 const cols = 8;
@@ -84,10 +127,13 @@ function getTarget(level){ return 20 + (level-1)*10; }
 let targetScore = getTarget(level);
 
 const board = document.getElementById("board");
+const flashOverlay = document.getElementById("flashOverlay");
 const scoreEl = document.getElementById("score");
 const movesEl = document.getElementById("moves");
 const levelEl = document.getElementById("level");
 const targetEl = document.getElementById("target");
+const levelUpScreen = document.getElementById("levelUpScreen");
+const levelNumber = document.getElementById("levelNumber");
 
 function randEmoji(){ return emojis[Math.floor(Math.random()*emojis.length)]; }
 
@@ -103,6 +149,7 @@ function createGrid(){
 
 function drawGrid(){
   board.innerHTML="";
+  board.appendChild(flashOverlay);
   for(let r=0;r<rows;r++){
     for(let c=0;c<cols;c++){
       const tile = document.createElement("div");
@@ -115,34 +162,61 @@ function drawGrid(){
   }
 }
 
-/* 🔊 sounds */
-function playPopSound(){
-  const s = new Audio("https://freesound.org/data/previews/256/256113_3263906-lq.mp3");
-  s.volume=.6; s.play().catch(()=>{});
-}
-function playExplosion(){
-  const s = new Audio("https://freesound.org/data/previews/341/341695_5121236-lq.mp3");
-  s.volume=.7; s.play().catch(()=>{});
-}
+function playPopSound(){ new Audio("https://freesound.org/data/previews/256/256113_3263906-lq.mp3").play().catch(()=>{}); }
+function playExplosion(){ new Audio("https://freesound.org/data/previews/341/341695_5121236-lq.mp3").play().catch(()=>{}); }
 
 function handleTileClick(tile){
   if(moves<=0) return;
   const r = +tile.dataset.r, c = +tile.dataset.c;
   const emoji = grid[r][c];
 
-  if(emoji==="💣"){
-    if(navigator.vibrate) navigator.vibrate([150,50,150]);
-    playExplosion();
-    handleBomb(r);
-  } else if(emoji==="🚀"){
-    playExplosion();
-    handleRocket(c);
-  } else {
-    playPopSound();
-    handleClick(r,c,tile);
+  if(emoji==="💣" || emoji==="🚀"){
+    if(hasFullScreenTrigger(r,c)){
+      triggerFullScreenBlast();
+      moves--;
+      return;
+    }
   }
+
+  if(emoji==="💣"){ handleBomb(r); }
+  else if(emoji==="🚀"){ handleRocket(c); }
+  else { handleClick(r,c); }
 }
 
+function hasFullScreenTrigger(r,c){
+  let emoji = grid[r][c];
+  const dirs=[[1,0],[-1,0],[0,1],[0,-1]];
+  for(const [dr,dc] of dirs){
+    const rr=r+dr, cc=c+dc;
+    if(rr>=0 && rr<rows && cc>=0 && cc<cols){
+      const e2 = grid[rr][cc];
+      if((emoji==="💣" && e2==="🚀") || (emoji==="🚀" && e2==="💣")) return true;
+    }
+  }
+  for(let i=0;i<cols;i++){ if(i!==c){ const e2 = grid[r][i]; if((emoji==="💣" && e2==="🚀") || (emoji==="🚀" && e2==="💣")) return true; } }
+  for(let i=0;i<rows;i++){ if(i!==r){ const e2 = grid[i][c]; if((emoji==="💣" && e2==="🚀") || (emoji==="🚀" && e2==="💣")) return true; } }
+  return false;
+}
+
+function triggerFullScreenBlast(){
+  if(navigator.vibrate) navigator.vibrate([200,50,200]);
+  playExplosion();
+  flashOverlay.style.opacity = 1;
+  setTimeout(()=>{ flashOverlay.style.opacity = 0; }, 150);
+
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const el = board.children[r*cols+c+1];
+      if(grid[r][c]){
+        el.classList.add("flash");
+        setTimeout(()=>{ el.classList.add("pop"); grid[r][c]=null; score++; }, 50*(r+c));
+      }
+    }
+  }
+  setTimeout(()=>{ applyGravity(); refill(); updateHUD(); drawGrid(); }, rows*cols*50 + 150);
+}
+
+// --- standard click / combos ---
 function getGroup(r,c,emoji,visited=new Set()){
   const key=r+","+c;
   if(r<0||c<0||r>=rows||c>=cols) return [];
@@ -160,159 +234,62 @@ function getGroup(r,c,emoji,visited=new Set()){
 function handleClick(r,c){
   let group = getGroup(r,c,grid[r][c]);
   if(group.length < 2) return;
-
-  group.forEach(([rr,cc])=>{
-    board.children[rr*cols+cc].classList.add("flash");
-  });
-
+  group.forEach(([rr,cc])=> board.children[rr*cols+cc+1].classList.add("flash"));
   setTimeout(()=>{
     group.forEach(([rr,cc])=>{
-      const el = board.children[rr*cols+cc];
-      el.classList.remove("flash");
-      el.classList.add("pop");
-      grid[rr][cc]=null;
-      score++;
+      const el = board.children[rr*cols+cc+1];
+      el.classList.remove("flash"); el.classList.add("pop");
+      grid[rr][cc]=null; score++;
     });
-
-    // 6+ = bomb
-    if(group.length >=6){
-      const [br,bc] = group[group.length-1];
-      grid[br][bc]="💣";
-    }
-    // 5 = rocket
-    else if(group.length ===5){
-      const [br,bc] = group[group.length-1];
-      grid[br][bc]="🚀";
-    }
-
+    if(group.length >=6){ const [br,bc]=group[group.length-1]; grid[br][bc]="💣"; }
+    else if(group.length===5){ const [br,bc]=group[group.length-1]; grid[br][bc]="🚀"; }
     moves--;
-    setTimeout(()=>{
-      applyGravity();
-      refill();
-      updateHUD();
-      checkLevel();
-      drawGrid();
-    },150);
+    setTimeout(()=>{ applyGravity(); refill(); updateHUD(); checkLevel(); drawGrid(); },150);
   },150);
 }
 
-/* 💣 bomb (supports endMode) */
-function handleBomb(r, endMode=false){
-  for(let c2=0;c2<cols;c2++){
-    const el = board.children[r*cols+c2];
-    el.classList.add("flash");
-    setTimeout(()=>{
-      el.classList.add("pop");
-      if(grid[r][c2]) score++;
-      grid[r][c2]=null;
-    }, c2*80);
-  }
+function handleBomb(r){ for(let c2=0;c2<cols;c2++){ const el=board.children[r*cols+c2+1]; el.classList.add("flash"); setTimeout(()=>{ el.classList.add("pop"); grid[r][c2]=null; score++; }, c2*80); } moves--; setTimeout(()=>{ applyGravity(); refill(); updateHUD(); checkLevel(); drawGrid(); }, cols*80+150); }
+function handleRocket(c){ for(let r=0;r<rows;r++){ const el=board.children[r*cols+c+1]; el.classList.add("flash"); setTimeout(()=>{ el.classList.add("pop"); grid[r][c]=null; score++; }, r*80); } moves--; setTimeout(()=>{ applyGravity(); refill(); updateHUD(); checkLevel(); drawGrid(); }, rows*80+150); }
 
-  if(!endMode) moves--;
+function applyGravity(){ for(let c=0;c<cols;c++){ let stack=[]; for(let r=rows-1;r>=0;r--){ if(grid[r][c]) stack.push(grid[r][c]); } for(let r=rows-1;r>=0;r--){ grid[r][c]=stack.shift()||null; } } }
+function refill(){ for(let r=0;r<rows;r++){ for(let c=0;c<cols;c++){ if(!grid[r][c]) grid[r][c]=randEmoji(); } } }
 
-  setTimeout(()=>{
-    applyGravity(); refill(); updateHUD(); drawGrid();
-  }, cols*80+150);
-}
+function updateHUD(){ scoreEl.textContent=score; movesEl.textContent=moves; levelEl.textContent=level; targetEl.textContent=targetScore; }
 
-/* 🚀 rocket (supports endMode) */
-function handleRocket(c, endMode=false){
-  for(let r=0;r<rows;r++){
-    const el = board.children[r*cols+c];
-    el.classList.add("flash");
-    setTimeout(()=>{
-      el.classList.add("pop");
-      if(grid[r][c]) score++;
-      grid[r][c]=null;
-    }, r*80);
-  }
-
-  if(!endMode) moves--;
-
-  setTimeout(()=>{
-    applyGravity(); refill(); updateHUD(); drawGrid();
-  }, rows*80+150);
-}
-
-function applyGravity(){
-  for(let c=0;c<cols;c++){
-    let stack=[];
-    for(let r=rows-1;r>=0;r--){
-      if(grid[r][c]) stack.push(grid[r][c]);
+function autoPopPowerupsOnWin(next){
+  let delay=0;
+  for(let r=0;r<rows;r++){ for(let c=0;c<cols;c++){
+    if(grid[r][c]==="💣"||grid[r][c]==="🚀"){ const el=board.children[r*cols+c+1]; el.classList.add("flash");
+      setTimeout(()=>{ if(grid[r][c]==="💣") handleBomb(r); else if(grid[r][c]==="🚀") handleRocket(c); }, delay); delay+=100;
     }
-    for(let r=rows-1;r>=0;r--){
-      grid[r][c]=stack.shift()||null;
-    }
-  }
-}
-
-function refill(){
-  for(let r=0;r<rows;r++){
-    for(let c=0;c<cols;c++){
-      if(!grid[r][c]) grid[r][c]=randEmoji();
-    }
-  }
-}
-
-function updateHUD(){
-  scoreEl.textContent=score;
-  movesEl.textContent=moves;
-  levelEl.textContent=level;
-  targetEl.textContent=targetScore;
-}
-
-/* 💥 End-of-level cleanup using REAL blast behavior */
-async function autoPopPowerupsOnWin(next){
-  for(let r=0;r<rows;r++){
-    for(let c=0;c<cols;c++){
-      const val = grid[r][c];
-
-      if(val === "💣"){
-        await new Promise(res=>{
-          handleBomb(r, true);
-          setTimeout(res, 350);
-        });
-      }
-
-      if(val === "🚀"){
-        await new Promise(res=>{
-          handleRocket(c, true);
-          setTimeout(res, 350);
-        });
-      }
-    }
-  }
-
-  setTimeout(next, 200);
+  }}
+  if(delay===0){ next(); return; }
+  setTimeout(next, delay+200);
 }
 
 function checkLevel(){
-  if(score >= targetScore){
-
-    autoPopPowerupsOnWin(()=>{
-      level++;
-      score = 0;
-      moves = 20;
-      targetScore = getTarget(level);
-      alert("🎉 Level Up! Welcome to Level "+level+"!");
-      createGrid();
-      updateHUD();
-      drawGrid();
-    });
-
+  if(score>=targetScore){
+    autoPopPowerupsOnWin(()=>{ showLevelUpScreen(); });
   } else if(moves<=0 && score<targetScore){
-    alert("💀 Game Over! Try again.");
-    resetGame();
+    alert("💀 Game Over! Try again."); resetGame();
   }
 }
 
-function resetGame(){
-  rows = Math.floor((window.innerHeight - 200) / 50) + 2;
-  score=0; moves=20; level=1; targetScore=getTarget(level);
-  createGrid();
-  updateHUD();
-  drawGrid();
+// Show the pretty progression screen
+function showLevelUpScreen(){
+  levelUpScreen.classList.add("show");
+  levelNumber.textContent = "Level " + (level+1);
 }
+
+// Called by Next Level button
+function nextLevel(){
+  level++;
+  score=0; moves=20; targetScore=getTarget(level);
+  levelUpScreen.classList.remove("show");
+  createGrid(); updateHUD(); drawGrid();
+}
+
+function resetGame(){ rows=Math.floor((window.innerHeight-200)/50)+2; score=0; moves=20; level=1; targetScore=getTarget(level); createGrid(); updateHUD(); drawGrid(); }
 
 resetGame();
 </script>
