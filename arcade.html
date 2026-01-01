@@ -41,6 +41,54 @@ nav .dropdown a:hover { background: #222; }
 .hero-title { font-size:3rem; font-weight:700; background:linear-gradient(135deg,#fff,#c0c0c0,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:2px 2px 5px rgba(255,255,255,.25); margin-bottom:1rem; }
 .home-slogan { font-size:1rem; text-shadow:0 0 8px var(--cyan); font-weight:700; margin-top:1rem; }
 
+/* Pixel font feel (no external font needed) */
+@keyframes pixelPulse {
+  0% {
+    transform: rotate(-12deg) scale(1);
+    box-shadow:
+      0 0 6px #a855f7,
+      0 0 12px #7c3aed,
+      inset 0 0 6px rgba(255,255,255,0.15);
+  }
+  50% {
+    transform: rotate(-12deg) scale(1.15);
+    box-shadow:
+      0 0 12px #a855f7,
+      0 0 24px #7c3aed,
+      0 0 36px rgba(168,85,247,0.9),
+      inset 0 0 10px rgba(255,255,255,0.25);
+  }
+  100% {
+    transform: rotate(-12deg) scale(1);
+    box-shadow:
+      0 0 6px #a855f7,
+      0 0 12px #7c3aed,
+      inset 0 0 6px rgba(255,255,255,0.15);
+  }
+}
+
+.pixel-badge {
+  font-family: monospace;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #7c3aed,
+      #7c3aed 4px,
+      #a855f7 4px,
+      #a855f7 8px
+    );
+  color: #fff;
+  border: 2px solid #c084fc;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 8px #a855f7;
+  animation: pixelPulse 1.5s infinite steps(2);
+}
+
 /* GAME CONTAINER */
 #game-container { position: relative; height: 180px; margin: 2.5rem auto; max-width: 900px; background: rgba(17,17,17,0.8); border: 2px solid #000; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px #00ffff; }
 #shooter { position: absolute; left: 20px; top: 50%; width: 40px; height: 40px; transform: translateY(-50%); cursor: pointer; z-index: 1000; }
@@ -271,10 +319,9 @@ nav .dropdown a:hover { background: #222; }
 <section class="relative text-center max-w-3xl mx-auto p-6">
   <div class="relative inline-block">
     <!-- Slanted New Game Banner -->
-    <div class="absolute top-2 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 
-                transform rotate-12 origin-top-right shadow-lg z-10">
-      NEW GAME
-    </div>
+    <div class="absolute top-2 left-0 transform -rotate-12 origin-top-left z-10 pixel-badge">
+  NEW GAME
+</div>
 
     <!-- Game Image with hover effect -->
     <img src="images/emojiblast.png" alt="Emoji Blast"
@@ -490,7 +537,7 @@ document.addEventListener('click', e => {
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async>
-  
+
 </script>
 </body>
 </html>
