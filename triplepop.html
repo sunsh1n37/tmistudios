@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Match-3 Memory — Grid Aligned</title>
+<style>
+  body {
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0c0c0c;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow-x:hidden;
+  }
+
+  h1 { margin:16px 0 6px; }
+
+  #hud {
+    margin-bottom:10px;
+    display:flex;
+    gap:14px;
+    font-size:14px;
+  }
+
+  #game {
+    width:100vw;
+    max-width:900px;
+    padding:12px;
+    box-sizing:border-box;
+    display:grid;
+    gap:10px;
+    transition: transform 0.1s;
+    position:relative;
+  }
+
+  .card {
+    background:#222;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:clamp(28px,6vw,44px);
+    user-select:none;
+    cursor:pointer;
+    aspect-ratio:1/1;
+    position:relative;
+  }
+
+  .card.revealed { background:#444; }
+  .card.matched  { background:#2ecc71; cursor:default; }
+
+  /* SPARKLE FIX */
+  .sparkle {
+    position:absolute;
+    width:12px;
+    height:12px;
+    pointer-events:none;
+    border-radius:50%;
+    z-index:10;
+    animation: sparkleAnim 600ms forwards;
+  }
+
+  @keyframes sparkleAnim {
+    0% { transform: translate(0,0) scale(1); opacity:1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity:0; }
+  }
+
+  #overlay {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:24px;
+    font-size:18px;
+    gap:16px;
+  }
+
+  #overlay h2 { margin:0 0 6px; }
+
+  .btn {
+    padding:10px 18px;
+    border-radius:12px;
+    border:none;
+    background:#ffb000;
+    color:#000;
+    font-weight:700;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<h1>Match-3 Memory</h1>
+<div id="hud">
+  <div id="level"></div>
+  <div id="moves"></div>
+  <div id="lives"></div>
+  <div id="score"></div>
+</div>
+
+<div id="status">Find all triples</div>
+<div id="game"></div>
+<div id="overlay" style="display:none;"></div>
+
+<script>
+const baseSymbols = ["😀","😎","🤓","😇","🤑","😡","🤠","😱","🥳","🤖","👻","👽"];
+let currentLevel = 1;
+let movesLeft = 0;
+let lives = 3;
+let score = 0;
+
+const gameEl   = document.getElementById("game");
+const statusEl = document.getElementById("status");
+const overlay  = document.getElementById("overlay");
+const levelEl  = document.getElementById("level");
+const movesEl  = document.getElementById("moves");
+const livesEl  = document.getElementById("lives");
+const scoreEl  = document.getElementById("score");
+
+let deck = [];
+let flipped = [];
+let lockBoard = false;
+let matchedCount = 0;
+
+// ---- HUD ----
+function updateHud() {
+  levelEl.textContent = `Level: ${currentLevel}`;
+  movesEl.textContent = `Moves: ${movesLeft}`;
+  livesEl.textContent = `Lives: ${lives}`;
+  scoreEl.textContent = `Score: ${score}`;
+}
+
+// ---- LEVEL SETUP ----
+function setupLevel() {
+  overlay.style.display = "none";
+  gameEl.innerHTML = "";
+  flipped = [];
+  matchedCount = 0;
+
+  const sets = Math.min(currentLevel, 8);
+  const symbols = baseSymbols.slice(0, sets);
+  deck = symbols.flatMap(s => [s,s,s]);
+
+  // ---- GRID ALIGNMENT ----
+  const totalCards = deck.length;
+  let cols = 3; // default
+
+  if(totalCards <= 6) cols = 3;       // 1-2 sets
+  else if(totalCards <= 12) cols = 4; // 3-4 sets
+  else cols = 6;                       // 5-8 sets
+
+  // adjust cols so totalCards % cols === 0
+  while(totalCards % cols !== 0 && cols > 1) cols--;
+  gameEl.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+  movesLeft = 12 + (sets*2); 
+  updateHud();
+
+  deck.sort(() => Math.random() - 0.5);
+  deck.forEach(symbol => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.symbol = symbol;
+    card.textContent = "";
+    card.onclick = () => handleFlip(card);
+    gameEl.appendChild(card);
+  });
+
+  statusEl.textContent = "Find all triples";
+}
+
+// ---- FLIP LOGIC ----
+function handleFlip(card) {
+  if (lockBoard) return;
+  if (card.classList.contains("revealed") || card.classList.contains("matched")) return;
+
+  card.classList.add("revealed");
+  card.textContent = card.dataset.symbol;
+  flipped.push(card);
+
+  if (flipped.length === 2) {
+    if (flipped[0].dataset.symbol !== flipped[1].dataset.symbol) {
+      spendMove();
+      failEffect();
+      return failAndReset(); 
+    }
+  }
+
+  if (flipped.length === 3) {
+    const [a,b,c] = flipped;
+    if (a.dataset.symbol === b.dataset.symbol && b.dataset.symbol === c.dataset.symbol) {
+      flipped.forEach(card => {
+        card.classList.remove("revealed");
+        card.classList.add("matched");
+      });
+      createSparkles([a,b,c]);
+      flipped = [];
+      matchedCount += 3;
+      score += 25;
+      updateHud();
+      statusEl.textContent = "Nice — triple matched!";
+      if (matchedCount === deck.length) return levelWin();
+    } else {
+      spendMove();
+      failEffect();
+      lockBoard = true;
+      setTimeout(() => {
+        flipped.forEach(card => {
+          card.classList.remove("revealed");
+          card.textContent = "";
+        });
+        flipped = [];
+        lockBoard = false;
+        statusEl.textContent = "No match — try again";
+      }, 700);
+    }
+  }
+}
+
+// ---- SPARKLES ----
+function createSparkles(cards) {
+  const colors = ["#ffdd33","#ff7733","#33ffdd","#dd33ff","#33ff77"];
+  cards.forEach(card=>{
+    for(let i=0;i<12;i++){
+      const s = document.createElement("div");
+      s.className="sparkle";
+      const dx = (Math.random()-0.5)*60;
+      const dy = (Math.random()-0.5)*60;
+      s.style.setProperty('--dx', dx+'px');
+      s.style.setProperty('--dy', dy+'px');
+      s.style.background = colors[Math.floor(Math.random()*colors.length)];
+      card.appendChild(s);
+      setTimeout(()=>s.remove(),600);
+    }
+  });
+}
+
+// ---- MOVE & LIVES ----
+function spendMove() {
+  movesLeft--;
+  updateHud();
+  if (movesLeft <= 0) {
+    lives--;
+    updateHud();
+    if (lives <= 0) return showGameOver();
+    return levelFail(); 
+  }
+}
+
+// ---- FAIL EFFECT ----
+function failEffect() {
+  const intensity = 8;
+  let i = 0;
+  const shake = setInterval(() => {
+    const x = (Math.random()*intensity*2)-intensity;
+    const y = (Math.random()*intensity*2)-intensity;
+    gameEl.style.transform = `translate(${x}px,${y}px)`;
+    i++;
+    if(i>5){ clearInterval(shake); gameEl.style.transform='translate(0,0)'; }
+  },30);
+
+  if(navigator.vibrate) navigator.vibrate(150);
+}
+
+// ---- PROGRESSION ----
+function levelWin() {
+  score += movesLeft * 5;
+  updateHud();
+  overlay.innerHTML = `
+    <h2>Level ${currentLevel} Level won 🎉</h2>
+    <div>Score: ${score}</div>
+    <button class="btn" onclick="nextLevel()">Start Level ${currentLevel+1}</button>
+  `;
+  overlay.style.display="flex";
+}
+
+function levelFail() {
+  overlay.innerHTML = `
+    <h2>Level Failed</h2>
+    <div>Zero moves left</div>
+    <button class="btn" onclick="restartLevel()">Restart Level ${currentLevel}</button>
+  `;
+  overlay.style.display = "flex";
+}
+
+function showGameOver() {
+  overlay.innerHTML = `
+    <h2>Game Over 💀</h2>
+    <div>Final Score: ${score}</div>
+    <button class="btn" onclick="resetGame()">Restart Level ${currentLevel}</button>
+  `;
+  overlay.style.display = "flex";
+}
+
+// ---- NAVIGATION ----
+function restartLevel(){ setupLevel(); }
+function nextLevel(){ currentLevel++; setupLevel(); }
+function resetGame(){ lives=3; setupLevel(); }
+
+// ---- START ----
+setupLevel();
+</script>
+
+</body>
+</html>
