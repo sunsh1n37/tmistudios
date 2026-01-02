@@ -49,7 +49,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.75rem
 .primary{background:var(--accent);color:var(--bg)}
 .secondary{border:2px solid var(--accent);color:var(--accent)}
 
-/* 🔥 FIXED TILE BUTTONS (THIS IS THE CHANGE) */
+/* 🔥 FIXED TILE BUTTONS */
 .tile-btn{
   display:inline-flex;
   align-items:center;
@@ -245,10 +245,13 @@ fetch('arcade.json')
         <img src="${g.img}" alt="${g.title}">
         <h3>${g.title}</h3>
         <p>${g.desc}</p>
-        <a href="${g.link}" class="tile-btn">Play</a>
+        <a href="${g.link}" class="tile-btn">
+          ${g.title === 'Emoji Blast' ? 'HOT GAME 🔥' : 'Play'}
+        </a>
       </div>`;
   });
 });
+
 /* NEWS + SEO */
 fetch('news.json')
 .then(r=>r.json())
@@ -291,7 +294,7 @@ fetch('news.json')
 const canvas = document.getElementById("stars");  
 const ctx = canvas.getContext("2d");  
 let stars = [];  
-  
+
 function resizeStars(){  
   canvas.width = innerWidth;  
   canvas.height = innerHeight;  
@@ -303,10 +306,10 @@ function resizeStars(){
     dy: (Math.random() - .5) * .3  
   }));  
 }  
-  
+
 addEventListener("resize", resizeStars);  
 resizeStars();  
-  
+
 (function animateStars(){  
   ctx.clearRect(0,0,canvas.width,canvas.height);  
   stars.forEach(s => {  
