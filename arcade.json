@@ -3,24 +3,21 @@
     {
       "title": "Emoji Blast",
       "img": "images/emojiblast.png",
-      "desc": "Emoji Blast is a vibrant match-and-pop puzzle game filled with explosions, combos, and power-ups. Clear rows, launch rockets, and blast your way to victory before your moves run out!,",
+      "desc": "Emoji Blast is a vibrant match-and-pop puzzle game filled with explosions, combos, and power-ups. Clear rows, launch rockets, and blast your way to victory before your moves run out!",
       "link": "emojiblast.html"
     },
-
-    {
-      "title": "Lava Climber 🔥",
-      "img": "https://i.ibb.co/4ZCD7Wym/Lava-Climber.jpg",
-      "desc": "Jump between platforms, avoid the rising lava, and climb as high as possible! Can you survive the heat and reach the top?",
-      "link": "lavaclimber.html"
-    },
-
     {
       "title": "Triple Pop",
       "img": "https://i.ibb.co/CKwNwzx8/Redflag-Bingo-20251216-221900-0000.png",
       "desc": "TriplePop is a fun match-3 memory puzzle where you flip cards, find matching emoji triples, and level up through increasingly tricky grids. Watch your moves, keep your lives, and chase the perfect score! 🎮✨",
       "link": "triplepop.html"
     },
-
+    {
+      "title": "Lava Climber 🔥",
+      "img": "https://i.ibb.co/4ZCD7Wym/Lava-Climber.jpg",
+      "desc": "Jump between platforms, avoid the rising lava, and climb as high as possible! Can you survive the heat and reach the top?",
+      "link": "lavaclimber.html"
+    },
     {
       "title": "Flappy Fury 🐦",
       "img": "https://i.ibb.co/CKwNwzx8/Redflag-Bingo-20251216-221900-0000.png",
