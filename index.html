@@ -83,6 +83,8 @@ section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
   position:relative;
 }
 .project img{width:100%;border-radius:12px;margin-bottom:1rem}
+.project h3{margin-bottom:.5rem}
+.project p{color:var(--muted);margin-bottom:1rem}
 
 /* RIBBON / BADGE */
 .ribbon{
@@ -153,6 +155,19 @@ section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
 .footer-links a{color:var(--footer-link);text-decoration:none}
 
 canvas{position:fixed;inset:0;z-index:-1}
+
+/* SCROLLBAR STYLING */
+.projects::-webkit-scrollbar,
+.lab-scroll::-webkit-scrollbar,
+.news-grid::-webkit-scrollbar {
+  height:8px;
+}
+.projects::-webkit-scrollbar-thumb,
+.lab-scroll::-webkit-scrollbar-thumb,
+.news-grid::-webkit-scrollbar-thumb {
+  background:rgba(179,136,255,.5);
+  border-radius:4px;
+}
 </style>
 </head>
 
@@ -249,20 +264,37 @@ function toggleMenu(){
 }
 
 /* ARCADE */
-fetch('arcade.json')
-.then(r=>r.json())
-.then(d=>{
-  const c=document.getElementById('arcade-container');
-  d.games.slice(0,3).forEach(g=>{
-    c.innerHTML+=`
-      <div class="project">
-        <div class="ribbon">🔥 HOT GAME</div>
-        <img src="${g.img}" alt="${g.title}">
-        <h3>${g.title}</h3>
-        <p>${g.desc}</p>
-        <a href="${g.link}" class="tile-btn">Play Now</a>
-      </div>`;
-  });
+const games=[
+  {
+    "title":"Emoji Blast",
+    "desc":"Emoji Blast is a vibrant match-and-pop puzzle game filled with explosions, combos, and power-ups. Clear rows and blast your way to victory!",
+    "img":"https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg",
+    "link":"emoji.html"
+  },
+  {
+    "title":"Pixel Runner",
+    "desc":"Dash, dodge, and jump your way to glory in this pixel-perfect endless runner!",
+    "img":"https://i.ibb.co/ckwZjN5/pixel-runner.jpeg",
+    "link":"pixelrunner.html"
+  },
+  {
+    "title":"Block Smash",
+    "desc":"Smash blocks, clear levels, and beat your high score in this addictive puzzle game.",
+    "img":"https://i.ibb.co/2tG3nKw/block-smash.jpeg",
+    "link":"blocksmash.html"
+  }
+];
+
+const arcadeContainer=document.getElementById('arcade-container');
+games.forEach(g=>{
+  arcadeContainer.innerHTML+=`
+    <div class="project">
+      <div class="ribbon">🔥 HOT GAME</div>
+      <img src="${g.img}" alt="${g.title}">
+      <h3>${g.title}</h3>
+      <p>${g.desc}</p>
+      <a href="${g.link}" class="tile-btn">Play Now</a>
+    </div>`;
 });
 
 /* NEWS */
