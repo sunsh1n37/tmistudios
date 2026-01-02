@@ -88,29 +88,33 @@ section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
 .ribbon{
   position:absolute;
   top:12px;
-  left:-25px;
-  width:170px;
+  left:0;
+  width:100%;
   background:#ff3d3d;
   color:white;
   text-align:center;
   font-weight:700;
   font-size:0.85rem;
-  transform:rotate(-45deg);
-  box-shadow:0 2px 6px rgba(0,0,0,0.3);
+  box-shadow:0 0 6px #ff3d3d, 0 0 12px #ff3d3d, 0 0 18px #ff3d3d inset;
   pointer-events:none;
   z-index:10;
   padding:6px 0;
-  animation: ribbonPulse 1.5s infinite alternate, ribbonRotate 3s infinite linear;
+  animation: ribbonPulse 1s infinite alternate, ribbonGlitch 0.8s infinite;
 }
+
 @keyframes ribbonPulse{
-  0%{transform:rotate(-45deg) scale(1);}
-  50%{transform:rotate(-45deg) scale(1.1);}
-  100%{transform:rotate(-45deg) scale(1);}
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
 }
-@keyframes ribbonRotate{
-  0%{transform:rotate(-45deg);}
-  50%{transform:rotate(-50deg);}
-  100%{transform:rotate(-45deg);}
+
+@keyframes ribbonGlitch{
+  0%{text-shadow: 2px 0 #ff3d3d, -2px 0 #b388ff;}
+  20%{text-shadow: -2px 0 #ff3d3d, 2px 0 #b388ff;}
+  40%{text-shadow: 2px 0 #b388ff, -2px 0 #ff3d3d;}
+  60%{text-shadow: -2px 0 #b388ff, 2px 0 #ff3d3d;}
+  80%{text-shadow: 2px 0 #ff3d3d, -2px 0 #b388ff;}
+  100%{text-shadow: -2px 0 #ff3d3d, 2px 0 #b388ff;}
 }
 
 /* LAB */
