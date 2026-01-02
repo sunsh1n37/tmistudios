@@ -5,18 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>TMI Studios Arcade — Games, Chaos Quizzes & Viral Web Experiments</title>
-
 <meta name="description" content="TMI Studios is an African digital playground for fast browser games, chaos quizzes, AI tools, and trending South African youth culture news. No downloads. No signups. Just play.">
-
-<meta name="keywords" content="South African news, trending news, youth culture, viral content, browser games, African tech, quizzes">
-
-<link rel="canonical" href="https://tmistudios.co.za/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="TMI Studios Arcade">
-<meta property="og:description" content="Fast browser games, chaos quizzes & trending South African youth culture news.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://tmistudios.co.za/images/tmihero.jpeg">
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -49,7 +38,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.75rem
 .primary{background:var(--accent);color:var(--bg)}
 .secondary{border:2px solid var(--accent);color:var(--accent)}
 
-/* 🔥 FIXED TILE BUTTONS */
+/* TILE BUTTONS */
 .tile-btn{
   display:inline-flex;
   align-items:center;
@@ -63,11 +52,9 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.75rem
   color:var(--accent);
   text-decoration:none;
   width:auto;
-  align-self:center;
   transition:all .25s ease;
   background:transparent;
 }
-
 .tile-btn:hover{
   background:var(--accent);
   color:var(--bg);
@@ -85,6 +72,7 @@ section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   padding-bottom:1rem;
+  position:relative;
 }
 .project{
   flex:0 0 300px;
@@ -92,31 +80,37 @@ section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
   padding:1.5rem;
   border-radius:14px;
   scroll-snap-align:start;
-  position: relative; /* needed for ribbon */
+  position:relative;
 }
 .project img{width:100%;border-radius:12px;margin-bottom:1rem}
 
-/* HOT GAME RIBBON */
+/* RIBBON / BADGE */
 .ribbon{
-  position: absolute;
+  position:absolute;
   top:12px;
-  left:-40px;
-  width:120px;
+  left:-25px;
+  width:170px;
   background:#ff3d3d;
   color:white;
   text-align:center;
   font-weight:700;
-  font-size:0.8rem;
+  font-size:0.85rem;
   transform:rotate(-45deg);
   box-shadow:0 2px 6px rgba(0,0,0,0.3);
   pointer-events:none;
   z-index:10;
-  padding:4px 0;
-  animation: glow 1.5s infinite alternate;
+  padding:6px 0;
+  animation: ribbonPulse 1.5s infinite alternate, ribbonRotate 3s infinite linear;
 }
-@keyframes glow{
-  0%{box-shadow:0 0 6px rgba(255,61,61,0.6);}
-  100%{box-shadow:0 0 16px rgba(255,61,61,1);}
+@keyframes ribbonPulse{
+  0%{transform:rotate(-45deg) scale(1);}
+  50%{transform:rotate(-45deg) scale(1.1);}
+  100%{transform:rotate(-45deg) scale(1);}
+}
+@keyframes ribbonRotate{
+  0%{transform:rotate(-45deg);}
+  50%{transform:rotate(-50deg);}
+  100%{transform:rotate(-45deg);}
 }
 
 /* LAB */
@@ -160,7 +154,6 @@ section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
 
 canvas{position:fixed;inset:0;z-index:-1}
 </style>
-
 </head>
 
 <body>
@@ -174,12 +167,11 @@ canvas{position:fixed;inset:0;z-index:-1}
     <a href="lab.html">🧪 Lab</a>
     <a href="news.html">📰 TMI News</a>
     <a href="packages.html">📦 Packages</a>
-    <a href="aboutus.htm">🦄 About Us</a>
+    <a href="aboutus.html">🦄 About Us</a>
     <a href="contactus.html">📧 Contact Us</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
   <img src="images/tmihero.jpeg" width="300" style="mix-blend-mode:lighten">
   <p class="subtitle">Your hub for fast games, chaos quizzes & viral digital mayhem 🚀</p>
@@ -211,14 +203,12 @@ canvas{position:fixed;inset:0;z-index:-1}
       <p>Create viral memes in seconds. Upload, edit, and share instantly.</p>
       <a href="memelab.html" class="tile-btn">Create Meme</a>
     </div>
-
     <div class="lab-tile">
       <img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg" alt="Chaos Cookie fortune generator">
       <h3>Chaos Cookie 🍪</h3>
       <p>Crack open a random chaotic fortune made for screenshots.</p>
       <a href="fortunecookie.html" class="tile-btn">Open Cookie</a>
     </div>
-
     <div class="lab-tile">
       <img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png" alt="Cute Quotes generator">
       <h3>Cute Quotes</h3>
@@ -263,10 +253,10 @@ fetch('arcade.json')
 .then(r=>r.json())
 .then(d=>{
   const c=document.getElementById('arcade-container');
-  d.games.slice(0,3).forEach((g, index)=>{
+  d.games.slice(0,3).forEach(g=>{
     c.innerHTML+=`
       <div class="project">
-        ${g.title === 'Emoji Blast' ? '<div class="ribbon">HOT GAME 🔥</div>' : ''}
+        <div class="ribbon">🔥 HOT GAME</div>
         <img src="${g.img}" alt="${g.title}">
         <h3>${g.title}</h3>
         <p>${g.desc}</p>
@@ -275,77 +265,51 @@ fetch('arcade.json')
   });
 });
 
-/* NEWS + SEO */
+/* NEWS */
 fetch('news.json')
 .then(r=>r.json())
 .then(d=>{
   const c=document.getElementById('news-container');
-  const stories=d.stories.slice(0,3);
-
-  stories.forEach(n=>{
+  d.stories.slice(0,3).forEach(n=>{
     c.innerHTML+=`
       <div class="news-card">
-        ${n.image?`<img src="${n.image}" alt="Trending South African news: ${n.headline}">`:''}
+        ${n.image?`<img src="${n.image}" alt="${n.headline}">`:''}
         <h3>${n.headline}</h3>
         <p>${n.preview}</p>
         <a href="news.html?slug=${n.slug}">Read story →</a>
       </div>`;
   });
-
-  const schema={
-    "@context":"https://schema.org",
-    "@type":"NewsMediaOrganization",
-    "name":"TMI Studios",
-    "url":"https://tmistudios.co.za",
-    "hasPart":stories.map(n=>({
-      "@type":"NewsArticle",
-      "headline":n.headline,
-      "image":n.image,
-      "datePublished":n.date,
-      "author":{"@type":"Organization","name":"TMI Studios"},
-      "description":n.preview
-    }))
-  };
-
-  const s=document.createElement('script');
-  s.type='application/ld+json';
-  s.textContent=JSON.stringify(schema);
-  document.head.appendChild(s);
 });
 
-/* ================= STARS ================= */  
-const canvas = document.getElementById("stars");  
-const ctx = canvas.getContext("2d");  
-let stars = [];  
-
-function resizeStars(){  
-  canvas.width = innerWidth;  
-  canvas.height = innerHeight;  
-  stars = [...Array(100)].map(() => ({  
-    x: Math.random() * canvas.width,  
-    y: Math.random() * canvas.height,  
-    r: Math.random() * 2,  
-    dx: (Math.random() - .5) * .3,  
-    dy: (Math.random() - .5) * .3  
-  }));  
-}  
-
-addEventListener("resize", resizeStars);  
-resizeStars();  
-
-(function animateStars(){  
-  ctx.clearRect(0,0,canvas.width,canvas.height);  
-  stars.forEach(s => {  
-    ctx.beginPath();  
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);  
-    ctx.fillStyle = "#b388ff";  
-    ctx.fill();  
-    s.x += s.dx;  
-    s.y += s.dy;  
-  });  
-  requestAnimationFrame(animateStars);  
-})();  
+/* STARS */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+let stars=[];
+function resizeStars(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+  stars=[...Array(100)].map(()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2,
+    dx:(Math.random()-.5)*.3,
+    dy:(Math.random()-.5)*.3
+  }));
+}
+addEventListener("resize",resizeStars);
+resizeStars();
+(function animateStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle="#b388ff";
+    ctx.fill();
+    s.x+=s.dx;
+    s.y+=s.dy;
+  });
+  requestAnimationFrame(animateStars);
+})();
 </script>
-
 </body>
 </html>
