@@ -92,8 +92,32 @@ section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
   padding:1.5rem;
   border-radius:14px;
   scroll-snap-align:start;
+  position: relative; /* needed for ribbon */
 }
 .project img{width:100%;border-radius:12px;margin-bottom:1rem}
+
+/* HOT GAME RIBBON */
+.ribbon{
+  position: absolute;
+  top:12px;
+  left:-40px;
+  width:120px;
+  background:#ff3d3d;
+  color:white;
+  text-align:center;
+  font-weight:700;
+  font-size:0.8rem;
+  transform:rotate(-45deg);
+  box-shadow:0 2px 6px rgba(0,0,0,0.3);
+  pointer-events:none;
+  z-index:10;
+  padding:4px 0;
+  animation: glow 1.5s infinite alternate;
+}
+@keyframes glow{
+  0%{box-shadow:0 0 6px rgba(255,61,61,0.6);}
+  100%{box-shadow:0 0 16px rgba(255,61,61,1);}
+}
 
 /* LAB */
 .lab-scroll{display:flex;gap:1.5rem;overflow-x:auto;padding-bottom:1rem}
@@ -150,7 +174,7 @@ canvas{position:fixed;inset:0;z-index:-1}
     <a href="lab.html">🧪 Lab</a>
     <a href="news.html">📰 TMI News</a>
     <a href="packages.html">📦 Packages</a>
-    <a href="aboutus.htm"l>🦄 About Us</a>
+    <a href="aboutus.htm">🦄 About Us</a>
     <a href="contactus.html">📧 Contact Us</a>
   </div>
 </nav>
@@ -242,12 +266,11 @@ fetch('arcade.json')
   d.games.slice(0,3).forEach((g, index)=>{
     c.innerHTML+=`
       <div class="project">
+        ${g.title === 'Emoji Blast' ? '<div class="ribbon">HOT GAME 🔥</div>' : ''}
         <img src="${g.img}" alt="${g.title}">
         <h3>${g.title}</h3>
         <p>${g.desc}</p>
-        <a href="${g.link}" class="tile-btn">
-          ${g.title === 'Emoji Blast' ? 'HOT GAME 🔥' : 'Play'}
-        </a>
+        <a href="${g.link}" class="tile-btn">Play Now</a>
       </div>`;
   });
 });
