@@ -1,6 +1,6 @@
-import crypto from "crypto";
+const crypto = require("crypto");
 
-export async function handler(event) {
+exports.handler = async function (event) {
   try {
     const merchant_id = process.env.PAYFAST_MERCHANT_ID;
     const merchant_key = process.env.PAYFAST_MERCHANT_KEY;
@@ -15,11 +15,15 @@ export async function handler(event) {
       };
     }
 
-    const { tier } = event.queryStringParameters || {};
-    const amount = tier === "full" ? "12.00" : "1.00";
-    const item_name = tier === "full" ? "Gramvas Full Premium" : "Gramvas Premium Asset";
+    const params = event.queryStringParameters || {};
+    const tier = params.tier || "asset";
 
-    // Base payload
+    const amount = tier === "full" ? "12.00" : "1.00";
+    const item_name =
+      tier === "full"
+        ? "Gramvas Full Premium"
+        : "Gramvas Premium Asset";
+
     const data = {
       merchant_id,
       merchant_key,
@@ -31,10 +35,12 @@ export async function handler(event) {
       notify_url
     };
 
-    // Create signature string
     const paramString = Object.keys(data)
       .sort()
-      .map(key => `${key}=${encodeURIComponent(data[key]).replace(/%20/g, "+")}`)
+      .map(
+        key =>
+          `${key}=${encodeURIComponent(data[key]).replace(/%20/g, "+")}`
+      )
       .join("&");
 
     const signature = crypto
@@ -59,4 +65,4 @@ export async function handler(event) {
       body: "Failed to start payment"
     };
   }
-}
+};
