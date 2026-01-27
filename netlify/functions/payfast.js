@@ -1,34 +1,31 @@
-exports.handler = async function (event) {
+// netlify/functions/payfast.js
+exports.handler = async function(event, context) {
   const merchant_id = process.env.PAYFAST_MERCHANT_ID;
   const merchant_key = process.env.PAYFAST_MERCHANT_KEY;
 
+  // Quick validation
   if (!merchant_id || !merchant_key) {
     return {
-      statusCode: 500,
-      body: "Missing PayFast credentials"
+      statusCode: 400,
+      body: JSON.stringify({
+        error: "Missing PayFast credentials. Please set PAYFAST_MERCHANT_ID and PAYFAST_MERCHANT_KEY in Netlify environment variables."
+      })
     };
   }
 
+  // Read tier from query params
   const { tier } = event.queryStringParameters || {};
-  let amount = "1.00";
-  let item_name = "Gramvas Asset";
+  let amount = 1; // default $1
+  if (tier === 'full') amount = 10;
 
-  if (tier === "full") {
-    amount = "12.00";
-    item_name = "Gramvas Full Premium";
-  }
-
-  const payfastUrl =
-    `https://sandbox.payfast.co.za/eng/process?` +
-    `merchant_id=${merchant_id}` +
-    `&merchant_key=${merchant_key}` +
-    `&amount=${amount}` +
-    `&item_name=${encodeURIComponent(item_name)}`;
+  // Build PayFast URL
+  const payfastUrl = `https://sandbox.payfast.co.za/eng/process?merchant_id=${merchant_id}&merchant_key=${merchant_key}&amount=${amount}&item_name=${tier || 'asset'}`;
 
   return {
     statusCode: 302,
     headers: {
       Location: payfastUrl
-    }
+    },
+    body: ''
   };
 };
