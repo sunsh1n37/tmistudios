@@ -6,6 +6,7 @@
 <title>Chaos Cookie</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Roca+Two:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body {
@@ -16,7 +17,60 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 0;
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  width:100%;
+  background:#111;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:100
+}
+nav .logo a{
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  font-size:20px
+}
+nav .menu{
+  position:relative;
+  font-size:22px;
+  cursor:pointer;
+  user-select:none
+}
+nav .dropdown{
+  display:none;
+  position:absolute;
+  right:0;
+  top:36px;
+  background:#181820;
+  border-radius:10px;
+  overflow:hidden;
+  min-width:160px;
+  box-shadow:0 6px 20px rgba(0,0,0,.4)
+}
+nav .dropdown a{
+  display:block;
+  padding:12px 16px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px
+}
+nav .dropdown a:hover{background:#222}
+
+/* MAIN */
+main{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:2rem;
+  flex:1;
 }
 
 h1 {
@@ -35,7 +89,6 @@ button {
   cursor: pointer;
   border: none;
 }
-
 button:hover { transform: scale(1.05); }
 
 .card {
@@ -81,7 +134,6 @@ button:hover { transform: scale(1.05); }
   justify-content: center;
   z-index: 999;
 }
-
 .modal.show { display: flex; }
 
 .modal-box {
@@ -109,13 +161,45 @@ button:hover { transform: scale(1.05); }
   margin-bottom: 1.2rem;
   color: gold;
 }
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:12px;
+  opacity:.6;
+  padding:20px
+}
+footer a{
+  text-decoration:none;
+  color:inherit;
+  margin:0 6px
+}
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
+<nav>
+  <div class="logo"><a href="index.html">TMI Studios</a></div>
+  <div class="menu" id="hamburger">☰
+    <div class="dropdown" id="menuDropdown">
+      <a href="lab.html">Lab</a>
+      <a href="arcade.html">Arcade</a>
+      <a href="news.html">TMI News</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="about.html">About Us</a>
+      <a href="packages.html">Packages</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
 <h1>Chaos Cookie</h1>
-<p style="color:#c084fc;font-weight:bold">Click and let the universe embarrass you 🔮</p>
+<p style="color:#c084fc;font-weight:bold">
+  Click and let the universe embarrass you 🔮
+</p>
 
 <button id="generate">Crack the Fortune 💥</button>
 
@@ -145,6 +229,23 @@ button:hover { transform: scale(1.05); }
   <button onclick="openPay('Petty Pack')">Unlock</button>
 </div>
 
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/tmistudios" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p>© 2025 TMI Studios</p>
+  <p>
+    <a href="/arcade.html">Arcade</a> ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/termsofuse.html">Terms</a>
+  </p>
+</footer>
+
 <!-- MODAL -->
 <div id="payModal" class="modal">
   <div class="modal-box">
@@ -157,6 +258,22 @@ button:hover { transform: scale(1.05); }
 </div>
 
 <script>
+/* NAV DROPDOWN */
+const hamburger = document.getElementById('hamburger');
+const menuDropdown = document.getElementById('menuDropdown');
+
+hamburger.addEventListener('click', () => {
+  menuDropdown.style.display =
+    menuDropdown.style.display === 'block' ? 'none' : 'block';
+});
+
+window.addEventListener('click', (e) => {
+  if(!hamburger.contains(e.target)) {
+    menuDropdown.style.display = 'none';
+  }
+});
+
+/* FORTUNES */
 const fortunes = [
   "Your bank account will scream today — politely.",
   "Someone who ghosted you will remember you at 2am.",
@@ -186,8 +303,6 @@ function closeModal() {
 
 document.getElementById('confirmPay').onclick = () => {
   if (!selectedPack) return;
-
-  // 🚀 LIVE PAYFAST via Netlify Function
   window.location.href =
     `/.netlify/functions/payfast?pack=${encodeURIComponent(selectedPack)}&amount=20`;
 };
