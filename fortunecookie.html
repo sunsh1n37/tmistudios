@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chaos Cookie</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Roca+Two:wght@700&display=swap" rel="stylesheet">
 
 <style>
@@ -19,424 +17,181 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 2rem;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-body.light {
-  background: radial-gradient(circle at bottom, #f9f9f9 0%, #e0e0e0 100%);
-  color: #111;
-}
-
-.nav-right{position:relative}
-
-.hamburger{
-  font-size:1.4rem;
-  cursor:pointer;
-  color:#fff;
-}
-
-.dropdown{
-  position:absolute;
-  right:0;
-  top:140%;
-  background:#140022;
-  border-radius:14px;
-  padding:.75rem 0;
-  min-width:160px;
-  display:none;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
-
-.dropdown a{
-  display:block;
-  padding:.6rem 1rem;
-  color:#fff;
-  text-decoration:none;
-  font-size:.9rem;
-}
-
-.dropdown a:hover{
-  background:rgba(179,136,255,.15);
 }
 
 h1 {
   font-family: 'Roca Two', serif;
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  text-align: center;
+  font-size: 3rem;
   color: #a855f7;
-  margin-bottom: 1rem;
 }
 
-#homeButton, #toggleMode {
-  position: absolute;
-  top: 1rem;
-  font-size: 2rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  transition: transform 0.2s;
-}
-#homeButton { left: 1rem; color: #fff; }
-#toggleMode { right: 1rem; color: #fff; }
-#homeButton:hover, #toggleMode:hover { transform: scale(1.3); }
-body.light #homeButton, body.light #toggleMode { color: #111; }
-
-#generate {
-  transition: all 0.2s ease;
-  font-size: 1.5rem;
-  font-weight: bold;
-  background: linear-gradient(90deg, #a855f7, #ff00ff, #a855f7);
-  background-size: 200% 200%;
+button {
+  background: linear-gradient(90deg, #a855f7, #ff00ff);
   color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(168,85,247,0.4);
+  font-weight: bold;
+  padding: .9rem 1.6rem;
+  border-radius: 14px;
+  margin: .5rem;
   cursor: pointer;
-  margin-bottom: 2rem;
-}
-#generate:hover {
-  transform: scale(1.05) rotate(-1deg);
-  animation: gradientShift 3s ease infinite;
-  box-shadow: 0 6px 20px rgba(168,85,247,0.6);
+  border: none;
 }
 
-#fortune {
+button:hover { transform: scale(1.05); }
+
+.card {
+  max-width: 420px;
   width: 100%;
-  max-width: 800px;
   background: #1a1a2e;
-  border-radius: 16px;
-  padding: 2rem 3rem;
-  min-height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 18px;
+  padding: 2rem;
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #a855f7;
   box-shadow: 0 0 20px rgba(168,85,247,0.5);
-  transition: all 0.3s ease;
-  margin-bottom: 1.5rem;
-  word-wrap: break-word;
+  margin: 1rem 0;
   position: relative;
-  box-sizing: border-box;
 }
 
-#fortune::after {
-  content: "Chaos Cookie by TMI Studios";
+.badge {
   position: absolute;
-  bottom: 8px;
+  top: 12px;
   right: 12px;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.3);
-}
-
-#downloadFortune {
-  transition: all 0.2s ease;
-  font-size: 1.25rem;
+  background: gold;
+  color: #000;
+  font-size: .7rem;
+  padding: .3rem .6rem;
+  border-radius: 999px;
   font-weight: bold;
-  background: linear-gradient(90deg, #a855f7, #ff00ff, #a855f7);
-  background-size: 200% 200%;
-  color: #fff;
-  padding: 0.8rem 1.5rem;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-bottom: 2rem;
-}
-#downloadFortune:hover {
-  transform: scale(1.05);
-  animation: gradientShift 3s ease infinite;
 }
 
-.social-icons {
-  display: flex;
+.pack-desc {
+  font-size: .95rem;
+  color: #ddd;
+  margin: .75rem 0 1.2rem;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  align-items: center;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-.social-icons a {
-  font-size: 2rem;
-  color: #fff;
-  transition: transform 0.2s;
-}
-.social-icons a:hover { transform: scale(1.3); }
-
-a { text-decoration: none; }
-
-/* Footer */
-.skinny-footer {
-  background:#1f2937;
-  color:#e5e7eb;
-  text-align:center;
-  padding:10px 10px;
-  font-size:15px;
-}
-.skinny-footer .footer-socials { margin-bottom:8px; }
-.skinny-footer .footer-socials a { margin:0 6px; color:#e5e7eb; text-decoration:none; font-size:16px; }
-.skinny-footer .footer-links { margin-top:6px; font-size:13px; }
-.skinny-footer .footer-links a { color:#e5e7eb; margin:0 4px; }
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  z-index: 999;
 }
 
-@media (max-width: 480px) {
-  h1 { font-size: 2.5rem; }
-  #fortune { font-size: 1.1rem; padding: 1.5rem 1.5rem; min-height: 160px; }
-  #generate, #downloadFortune { font-size: 1.1rem; padding: 0.8rem 1.5rem; }
-  .social-icons a { font-size: 1.7rem; }
+.modal.show { display: flex; }
+
+.modal-box {
+  background: #1a1a2e;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 0 30px rgba(168,85,247,.6);
+}
+
+.modal h2 {
+  color: #a855f7;
+  margin-bottom: .5rem;
+}
+
+.modal p {
+  font-size: .95rem;
+  margin-bottom: 1.5rem;
+  color: #ddd;
+}
+
+.modal .price {
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  color: gold;
 }
 </style>
 </head>
 
 <body>
-<!-- NAV -->
-<nav>
-  <div class="nav-right">
-    <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
-    <div class="dropdown" id="navMenu">
-      <a href="lab.html">Lab</a>
-      <a href="arcade.html">🕹Arcade</a>
-      <a href="aboutus.html">About</a>
-      <a href="contactus.html">Contact</a>
-    </div>
-  </div>
-</nav>
 
-<button id="homeButton" onclick="location.href='/index.html'"><i class="fa-solid fa-house"></i></button>
-<button id="toggleMode"><i class="fa-solid fa-moon"></i></button>
+<h1>Chaos Cookie</h1>
+<p style="color:#c084fc;font-weight:bold">Click and let the universe embarrass you 🔮</p>
 
-<header class="text-center mb-8">
-  <h1>Chaos Cookie</h1>
-  <p class="text-purple-400 font-bold">Click and let the universe embarrass you. 🔮</p>
-</header>
+<button id="generate">Crack the Fortune 💥</button>
 
-<section class="w-full max-w-lg px-4 text-center mb-4">
-  <button id="generate">Crack the Fortune 💥</button>
-</section>
-
-<section class="w-full max-w-lg px-4 text-center mb-4">
-  <div id="fortune">✨ Your fortune will appear here! ✨</div>
-</section>
-
-<section class="w-full max-w-lg px-4 text-center mb-4">
-  <button id="downloadFortune">💾 Download Fortune</button>
-</section>
-
-<div class="social-icons mb-4">
-  <a href="#" id="shareTwitter"><i class="fa-brands fa-twitter"></i></a>
-  <a href="#" id="shareWhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-  <a href="#" id="shareFacebook"><i class="fa-brands fa-facebook"></i></a>
+<div id="fortune" class="card">
+  ✨ Your fortune will appear here ✨
 </div>
 
-<!-- FOOTER -->
-<footer class="skinny-footer">
-  <div class="footer-socials">
-    <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
-    <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
+<!-- PREMIUM PACKS -->
+<div class="card">
+  <span class="badge">PREMIUM</span>
+  <h3>Love Pack 💔</h3>
+  <p class="pack-desc">Unhinged romantic chaos, delusions & situationships.</p>
+  <button onclick="openPay('Love Pack')">Unlock</button>
+</div>
+
+<div class="card">
+  <span class="badge">PREMIUM</span>
+  <h3>Money Pack 💸</h3>
+  <p class="pack-desc">Financial delusion, broke prophecies & fake abundance.</p>
+  <button onclick="openPay('Money Pack')">Unlock</button>
+</div>
+
+<div class="card">
+  <span class="badge">PREMIUM</span>
+  <h3>Petty Pack 😈</h3>
+  <p class="pack-desc">Spiritual shade, karma & elite-level pettiness.</p>
+  <button onclick="openPay('Petty Pack')">Unlock</button>
+</div>
+
+<!-- MODAL -->
+<div id="payModal" class="modal">
+  <div class="modal-box">
+    <h2 id="modalTitle"></h2>
+    <p>Unlock this premium pack forever</p>
+    <div class="price">R20 · once-off</div>
+    <button id="confirmPay">Pay with PayFast</button>
+    <button onclick="closeModal()" style="background:#333">Cancel</button>
   </div>
-  <p>© 2025 TMI Studios</p>
-  <nav class="footer-links">
-    <a href="arcade.html">Arcade</a> ·
-    <a href="faq.html">FAQ</a> ·
-    <a href="privacy.html">Privacy</a> ·
-    <a href="termsofuse.html">Terms</a>
-  </nav>
-</footer>
+</div>
 
 <script>
-// Mode toggle
-const modeToggle = document.getElementById('toggleMode');
-modeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('light');
-  modeToggle.innerHTML = document.body.classList.contains('light')
-    ? '<i class="fa-solid fa-sun"></i>'
-    : '<i class="fa-solid fa-moon"></i>';
-});
-
-// Fortunes array
 const fortunes = [
-"Your vibe is about to confuse someone into liking you. 💀😂",
-"Your bank account will scream today, but like… politely. 😭💸",
-"Someone is plotting a soft life for you without your permission. 👀🛋️",
-"Your next message will change EVERYTHING or nothing at all. idk. 🤡📱",
-"You’re about to eat something you absolutely shouldn’t. 🍟🔥",
-"Someone who ghosted you will remember you at 2am tonight. 😭👻",
-"You’re entering your “I don’t care but I care” era. 🤯✨",
-"A blessing disguised as nonsense is coming. 💫🎁",
-"Your crush will stalk your profile today. Don’t panic. 💀📲",
-"You’re about to laugh at the worst possible moment. 💀😂",
-"The universe is sending you chaos. Wear cute shoes. 👟🌪️",
-"Expect drama. Not your drama though. Someone else’s. Your life is boring. 🍿😏",
-"Today’s vibe: confused but unstoppable. 😭💥",
-"You will accidentally slay without trying. 💅🔥",
-"Someone is secretly obsessed with your nonsense. Don’t change.🔥😎",
-"A random compliment is coming to heal your entire childhood. 😭💖",
-"Plot twist: you’re the problem, again. 🎬🌟",
-"Your snack cravings will win today. Accept it. 🍕🤤",
-"Someone shady will expose themselves. Let them. 👀🕵️‍♂️",
-"Your notifications will be dry until you’re busy. 💀📵",
-"You’re entering a new arc: unbothered chaos. 💥🌀",
-"Something tiny will annoy you dramatically. 🤡🙃",
-"You’re about to mishear something and ruin the conversation. 😭🙊",
-"A surprise is coming. It might be good. It might be unhinged. 🤷‍♀️🎁",
-"Someone will overshare with you today for no reason. Get the groupchat ready. 💀💬",
-"You’re the reason someone can’t focus right now. 😭🌀",
-"You’ll trip but recover like a ninja. 🥷💨",
-"A hater will watch you win today. Delicious. 🍽️😏",
-"You’re about to take advice from someone who has no clue what they're talking about. 💀📜",
-"Someone will flirt with you accidentally. Iconic. 😎💘",
-"Your next post will confuse your haters. Good. 👌🌪️",
-"You’ll have one genius idea today and forget it instantly. 😭💡",
-"Your confidence will spike at the wrongest time. Ride it. 💫😎",
-"Someone will say “you remind me of…” and emotionally damage you for life. 💀😭",
-"The chaos you avoided is circling back. Run,  forest, run. 🏃‍♀️💨",
-"You’re about to witness someone lie terribly. Grab popcorn. 🍿😳",
-"You’re about to deal it and pray no one smells it. 😭😂",
-"Someone will misinterpret your emoji and fall in love. 😂💘",
-"A stranger will change your whole mood today. For better or worse. Idk 🤡🌈",
-"You’re about to overspend on something stupid but satisfying. Yolo 🤑💳",
-"Someone thinks you’re ignoring them on purpose. Keep going. 💀😏",
-"A petty moment will feel spiritually healing. 😌✨",
-"You’re about to embarrass yourself and pretend it didn’t happen. 💀😅",
-"Today you’ll be cute by accident. Powerful. 💅💖",
-"Something you lost will reappear in the dumbest place. 😭🌀",
-"Your future self is laughing at your current chaos. 🤣🕰️",
-"Someone thinks your last post was about them, now they're plotting your downfall. 👀🥲",
-"You’re about to win an argument you didn’t know you were in. 🥇💥",
-"The universe is testing your patience. Don’t fail. 💀⏳",
-"Your next decision will be unhinged but iconic. 💫🔥",
-"Your aura is giving “Why is this happening to me again?” 😵‍💫🌪️",
-"Someone’s gonna confess their crush on you by accident. Screenshot fast. 📸💌",
-"Your bank balance is about to jump… but only by R3.49. 💸😂",
-"You’re about to make a decision so unserious, even the ancestors will pause. 👻🫣",
-"Someone is silently competing with you. They’re losing. 🏁😎",
-"Your phone will fall… but the Lord will catch it. 📱🙏",
-"You’re entering your “I don’t care but also I care deeply” era. 🤯❤️",
-"A blessing is loading… slow WiFi vibes, but still. 💫📶",
-"Someone will stalk your profile today. Act cute. 👀😏",
-"Your vibe is so strong today, even haters will greet you nicely. 😎💥",
-"You’re about to say “I’m only buying one thing” then proceed to buy seven. 🛒😂",
-"Someone is lying to you, but at least you look cute. 😘🤥",
-"You’re gonna ignore a text… and instantly regret it. 📵😩",
-"Your petty levels are rising. Don’t fight it. 😌🔥",
-"Money will enter your life soon… through your friend’s birthday invitation. 🎉💰",
-"Someone will flirt with you today. Accidentally. 😏💘",
-"You’re about to misread a situation with absolute confidence. 🤡😎",
-"A plot twist is coming. Wear deodorant. 💫🫡",
-"Your crush will think of you today… but only for 2.3 seconds. ⏱️💔",
-"You’re about to eat something you said you’d stop eating. 🍩🔥",
-"Someone is praying for your downfall. They should pray harder. 🙏😏",
-"Your delusion levels are elite. Keep going. 🧠✨",
-"You’re not dramatic… the world is too calm. Continue. 😎🌪️",
-"A notification is coming that will raise your blood pressure. 📲💢",
-"You’re entering a new season: “I’ll deal with it later.” 🛋️😌",
-"You owe someone an apology. But you'll make them wait... forever. 🙃💌",
-"You’re about to laugh at a message for 12 minutes straight. 😂⏱️",
-"Your next mistake will be hilarious. 🤣🔥",
-"You will win an imaginary argument today. 🏆😎",
-"An opportunity is coming. It will confuse you first. 🤯✨",
-"Someone will overshare to you today for no reason. 💀💬",
-"A blessing will hit you so hard, you’ll check if it’s a prank. 💫😂",
-"Your next crush will be dangerously unserious. 😎💘",
-"You’re about to say “never again” and then proceed to do it again. 🤷‍♀️🔥",
-"Someone will misinterpret your vibe. That’s a them problem. 😏💨",
-"You’re about to be at the right place at the wrong time. ⏰🤦‍♀️",
-"A miracle is coming. It’s stuck in traffic. 🚗✨",
-"Someone is thinking about you… with confusion. 🤔💀",
-"You’re about to live out a tweet. 🐦😂",
-"A chaotic moment is approaching. Act natural. 🤯😌",
-"You’re about to mind your own business… loudly. 📢🤡",
-"Someone will copy your idea. And fail. 😏📝",
-"A compliment is coming. Accept it without fighting for once. 🥰👍",
-"You’re about to trip over nothing. Again. 🥴💥",
-"A new obsession is loading. You won’t shut up about it. 🔄😎",
-"Someone will say “we need to talk.” It’s not serious, relax. 🫡😂",
-"You’re about to say something unfiltered. Good luck to everyone else. 💬💀",
-"A random memory will attack you later. Prepare. 🧠⚡",
-"Someone is intimidated by you. As they should be. 😎🔥",
-"You’re about to experience a plot twist so tiny, it’s funny for no reason. 🤏😂"
+  "Your bank account will scream today — politely.",
+  "Someone who ghosted you will remember you at 2am.",
+  "A blessing disguised as nonsense is loading.",
+  "Your next decision will be unhinged but iconic.",
+  "Someone is silently competing with you. They’re losing."
 ];
 
 const fortuneDiv = document.getElementById('fortune');
 
-document.getElementById('generate').addEventListener('click', () => {
-  const random = fortunes[Math.floor(Math.random()*fortunes.length)];
-  fortuneDiv.textContent = random;
-});
-
-document.getElementById('shareTwitter').onclick = () => {
-  const text = encodeURIComponent(fortuneDiv.textContent + " 🔮 Chaos Cookie: " + window.location.href);
-  window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
-};
-document.getElementById('shareWhatsApp').onclick = () => {
-  const text = encodeURIComponent(fortuneDiv.textContent + " 🔮 Chaos Cookie: " + window.location.href);
-  window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
-};
-document.getElementById('shareFacebook').onclick = () => {
-  const text = encodeURIComponent(fortuneDiv.textContent);
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${text}`, '_blank');
+document.getElementById('generate').onclick = () => {
+  fortuneDiv.textContent =
+    fortunes[Math.floor(Math.random() * fortunes.length)];
 };
 
-// Download with dynamic size
-document.getElementById('downloadFortune').addEventListener('click', () => {
-  const text = fortuneDiv.textContent || "No fortune yet!";
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  ctx.font = 'bold 28px Roca Two, serif';
+let selectedPack = null;
 
-  const words = text.split(' ');
-  const lines = [];
-  let line = '';
-  const maxWidth = 800;
-  words.forEach(word => {
-    const testLine = line + word + ' ';
-    if(ctx.measureText(testLine).width > maxWidth - 40) {
-      lines.push(line);
-      line = word + ' ';
-    } else { line = testLine; }
-  });
-  lines.push(line);
-
-  const lineHeight = 36;
-  const padding = 60;
-  canvas.width = maxWidth;
-  canvas.height = lines.length * lineHeight + padding * 2;
-
-  ctx.fillStyle = '#1a1a2e';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = '#a855f7';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
-  lines.forEach((l,i) => ctx.fillText(l.trim(), canvas.width/2, padding + i*lineHeight));
-
-  // Watermark
-  ctx.font = '16px Arial';
-  ctx.fillStyle = 'rgba(255,255,255,0.5)';
-  ctx.textAlign = 'right';
-  ctx.fillText('Chaos Cookie by TMI Studios', canvas.width - 20, canvas.height - 20);
-
-  const link = document.createElement('a');
-  link.download = 'chaotic_fortune.png';
-  link.href = canvas.toDataURL('image/png');
-  link.click();
-});
-
-// NAV dropdown
-function toggleMenu(){
-  const m = document.getElementById('navMenu');
-  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+function openPay(pack) {
+  selectedPack = pack;
+  document.getElementById('modalTitle').textContent = pack;
+  document.getElementById('payModal').classList.add('show');
 }
-document.addEventListener('click', e => {
-  if (!e.target.closest('.nav-right')) {
-    document.getElementById('navMenu').style.display = 'none';
-  }
-});
+
+function closeModal() {
+  document.getElementById('payModal').classList.remove('show');
+}
+
+document.getElementById('confirmPay').onclick = () => {
+  if (!selectedPack) return;
+
+  // 🚀 LIVE PAYFAST via Netlify Function
+  window.location.href =
+    `/.netlify/functions/payfast?pack=${encodeURIComponent(selectedPack)}&amount=20`;
+};
 </script>
+
 </body>
 </html>
