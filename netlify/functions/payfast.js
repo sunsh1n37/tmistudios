@@ -17,14 +17,21 @@ exports.handler = async function (event, context) {
     };
   }
 
-  // Read tier from query params
+  // Read plan tier from query params
   const { tier } = event.queryStringParameters || {};
 
-  let amount = 1; // R1 default
-  let item_name = "Asset";
+  let amount = 1; // default fallback
+  let item_name = "Default Access";
 
-  if (tier === "full") {
-    amount = 10; // R10 example
+  // Set plan amounts and names
+  if (tier === "pro") {
+    amount = 99;
+    item_name = "DollFin Pro";
+  } else if (tier === "premium") {
+    amount = 149;
+    item_name = "DollFin Premium";
+  } else if (tier === "full") {
+    amount = 10; // optional fallback/example
     item_name = "Full Access";
   }
 
@@ -34,11 +41,14 @@ exports.handler = async function (event, context) {
       ? "https://sandbox.payfast.co.za/eng/process"
       : "https://www.payfast.co.za/eng/process";
 
-  // Build redirect URL
+  // Build redirect URL with required parameters
   const payfastUrl = `${PAYFAST_URL}?merchant_id=${merchant_id}&merchant_key=${merchant_key}&amount=${amount}&item_name=${encodeURIComponent(
     item_name
-  )}`;
+  )}&return_url=${encodeURIComponent(
+    `https://yourwebsite.com/success?plan=${tier}`
+  )}&cancel_url=${encodeURIComponent("https://yourwebsite.com/cancel")}`;
 
+  // Redirect the user to PayFast
   return {
     statusCode: 302,
     headers: {
