@@ -21,6 +21,15 @@ const PAYFAST_URL = "https://www.payfast.co.za/eng/process";
 
 let payfastUrl = "";
 
+/* prevent conflicting requests */
+
+if (tier && product) {
+return {
+statusCode: 400,
+body: "Cannot specify both tier and product"
+};
+}
+
 
 /* ---------------------------
    DOLLFIn SUBSCRIPTIONS
@@ -48,13 +57,15 @@ body: "Invalid DollFin tier"
 };
 }
 
+const billing_date = new Date().toISOString().split("T")[0];
+
 payfastUrl =
 `${PAYFAST_URL}?merchant_id=${merchant_id}` +
 `&merchant_key=${merchant_key}` +
 `&amount=${amount}` +
 `&item_name=${encodeURIComponent(item_name)}` +
 `&subscription_type=1` +
-`&billing_date=${new Date().toISOString().split("T")[0]}` +
+`&billing_date=${billing_date}` +
 `&recurring_amount=${amount}` +
 `&frequency=3` +
 `&cycles=0`;
@@ -80,7 +91,7 @@ break;
 
 case "unlimited":
 amount = 20;
-item_name = "Chaos Cookie Unlimited (Today)";
+item_name = "Chaos Cookie Unlimited Cracks (Today)";
 break;
 
 case "love_pack":
@@ -111,11 +122,18 @@ body: "Invalid Chaos Cookie product"
 
 }
 
+/* return + cancel */
+
 const return_url =
-"https://tmistudios.xyz/chaoscookie?success=true&product=" + product;
+`https://tmistudios.xyz/chaoscookie?success=true&product=${product}`;
 
 const cancel_url =
-"https://tmistudios.xyz/chaoscookie?cancel=true";
+`https://tmistudios.xyz/chaoscookie?cancel=true`;
+
+/* optional IPN (can activate later safely) */
+
+const notify_url =
+`https://tmistudios.xyz/.netlify/functions/payfast-ipn`;
 
 payfastUrl =
 `${PAYFAST_URL}?merchant_id=${merchant_id}` +
@@ -123,10 +141,13 @@ payfastUrl =
 `&amount=${amount}` +
 `&item_name=${encodeURIComponent(item_name)}` +
 `&return_url=${encodeURIComponent(return_url)}` +
-`&cancel_url=${encodeURIComponent(cancel_url)}`;
+`&cancel_url=${encodeURIComponent(cancel_url)}` +
+`&notify_url=${encodeURIComponent(notify_url)}`;
 
 }
 
+
+/* final validation */
 
 if (!payfastUrl) {
 return {
@@ -134,6 +155,9 @@ statusCode: 400,
 body: "No valid payment type specified"
 };
 }
+
+
+/* redirect to PayFast */
 
 return {
 statusCode: 302,
