@@ -4,159 +4,252 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TMI Studios Arcade — Games, Chaos Quizzes & Viral Web Experiments</title>
-<meta name="description" content="TMI Studios is an African digital playground for fast browser games, chaos quizzes, AI tools, and trending South African youth culture news. No downloads. No signups. Just play.">
+<title>TMI Studios — Internet Product Lab</title>
+<meta name="description" content="TMI Studios is an independent internet product lab building viral apps, chaotic tools and fast browser games.">
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root{
-  --bg:#0b0015;
-  --accent:#b388ff;
-  --text:#f4f4f4;
-  --muted:#c0bcd0;
-  --footer-link:#bfa3ff;
-  --font:'Space Grotesk',sans-serif;
+--bg:#0b0015;
+--accent:#b388ff;
+--text:#f4f4f4;
+--muted:#c0bcd0;
+--footer-link:#bfa3ff;
+--font:'Space Grotesk',sans-serif;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden}
+
+body{
+font-family:var(--font);
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+}
 
 /* NAV */
-nav{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;position:sticky;top:0;background:var(--bg);z-index:100}
-.arcade-btn{background:var(--accent);color:var(--bg);padding:.45rem 1rem;border-radius:999px;font-weight:700;text-decoration:none}
-.hamburger{font-size:1.4rem;cursor:pointer}
-.dropdown{position:absolute;right:0;top:140%;background:#140022;border-radius:14px;padding:.75rem 0;display:none}
-.dropdown a{display:block;padding:.6rem 1rem;color:#fff;text-decoration:none}
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:.75rem 1rem;
+position:sticky;
+top:0;
+background:var(--bg);
+z-index:100;
+}
+.arcade-btn{
+background:var(--accent);
+color:var(--bg);
+padding:.45rem 1rem;
+border-radius:999px;
+font-weight:700;
+text-decoration:none;
+}
+.hamburger{
+font-size:1.4rem;
+cursor:pointer;
+}
+.dropdown{
+position:absolute;
+right:0;
+top:140%;
+background:#140022;
+border-radius:14px;
+padding:.75rem 0;
+display:none;
+}
+.dropdown a{
+display:block;
+padding:.6rem 1rem;
+color:#fff;
+text-decoration:none;
+}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1rem}
-.subtitle{color:var(--muted);max-width:720px;margin-top:.75rem}
-.cta-group{margin-top:2rem;display:flex;gap:1rem}
-.btn{padding:.8rem 1.5rem;border-radius:50px;font-weight:600;text-decoration:none}
-.primary{background:var(--accent);color:var(--bg)}
-.secondary{border:2px solid var(--accent);color:var(--accent)}
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:1rem;
+}
+.subtitle{
+color:var(--muted);
+max-width:720px;
+margin-top:.75rem;
+}
+.cta-group{
+margin-top:2rem;
+display:flex;
+gap:1rem;
+}
+.btn{
+padding:.8rem 1.5rem;
+border-radius:50px;
+font-weight:600;
+text-decoration:none;
+}
+.primary{
+background:var(--accent);
+color:var(--bg);
+}
+.secondary{
+border:2px solid var(--accent);
+color:var(--accent);
+}
 
 /* TILE BUTTONS */
 .tile-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:.45rem .9rem;
-  margin-top:.75rem;
-  font-size:.85rem;
-  font-weight:600;
-  border-radius:999px;
-  border:1.5px solid var(--accent);
-  color:var(--accent);
-  text-decoration:none;
-  width:auto;
-  transition:all .25s ease;
-  background:transparent;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:.45rem .9rem;
+margin-top:.75rem;
+font-size:.85rem;
+font-weight:600;
+border-radius:999px;
+border:1.5px solid var(--accent);
+color:var(--accent);
+text-decoration:none;
+width:auto;
+transition:all .25s ease;
+background:transparent;
 }
 .tile-btn:hover{
-  background:var(--accent);
-  color:var(--bg);
-  transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(179,136,255,.35);
+background:var(--accent);
+color:var(--bg);
+transform:translateY(-2px);
+box-shadow:0 6px 20px rgba(179,136,255,.35);
 }
 
 /* SECTIONS */
-section{padding:6rem 10%;max-width:1200px;margin:auto;text-align:center}
+section{
+padding:6rem 10%;
+max-width:1200px;
+margin:auto;
+text-align:center;
+}
 
-/* ARCADE */
+/* PROJECT GRID */
 .projects{
-  display:flex;
-  gap:2rem;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding-bottom:1rem;
-  position:relative;
+display:flex;
+gap:2rem;
+overflow-x:auto;
+scroll-snap-type:x mandatory;
+padding-bottom:1rem;
+position:relative;
 }
 .project{
-  flex:0 0 300px;
-  background:rgba(255,255,255,.05);
-  padding:1.5rem;
-  border-radius:14px;
-  scroll-snap-align:start;
-  position:relative;
+flex:0 0 300px;
+background:rgba(255,255,255,.05);
+padding:1.5rem;
+border-radius:14px;
+scroll-snap-align:start;
+position:relative;
+transition: all .3s ease;
 }
-.project img{width:100%;border-radius:12px;margin-bottom:1rem}
-
-/* RIBBON / BADGE */
-.ribbon{
-  position:absolute;
-  top:12px;
-  left:0;
-  width:100%;
-  background:#ff3d3d;
-  color:white;
-  text-align:center;
-  font-weight:700;
-  font-size:0.85rem;
-  box-shadow:0 0 6px #ff3d3d, 0 0 12px #ff3d3d, 0 0 18px #ff3d3d inset;
-  pointer-events:none;
-  z-index:10;
-  padding:6px 0;
-  animation: ribbonPulse 1s infinite alternate, ribbonGlitch 0.8s infinite;
+.project img{
+width:100%;
+border-radius:12px;
+margin-bottom:1rem;
+transition: transform .3s ease, box-shadow .3s ease;
+}
+.project:hover img{
+transform: scale(1.05);
+box-shadow: 0 8px 20px rgba(179,136,255,.4);
+}
+.project:hover{
+box-shadow: 0 12px 30px rgba(179,136,255,.25);
+transform: translateY(-3px);
 }
 
-@keyframes ribbonPulse{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.1);}
-  100%{transform:scale(1);}
+/* Trending badge */
+.trending-badge{
+position:absolute;
+top:8px;
+left:8px;
+background:#ff3d3d;
+color:#fff;
+font-size:.7rem;
+font-weight:700;
+padding:2px 6px;
+border-radius:8px;
+pointer-events:none;
+z-index:5;
+transition: all .3s ease;
 }
-
-@keyframes ribbonGlitch{
-  0%{text-shadow: 2px 0 #ff3d3d, -2px 0 #b388ff;}
-  20%{text-shadow: -2px 0 #ff3d3d, 2px 0 #b388ff;}
-  40%{text-shadow: 2px 0 #b388ff, -2px 0 #ff3d3d;}
-  60%{text-shadow: -2px 0 #b388ff, 2px 0 #ff3d3d;}
-  80%{text-shadow: 2px 0 #ff3d3d, -2px 0 #b388ff;}
-  100%{text-shadow: -2px 0 #ff3d3d, 2px 0 #b388ff;}
+.project:hover .trending-badge{
+box-shadow: 0 0 10px #ff3d3d90, 0 0 18px #ff3d3d70;
+transform: scale(1.1);
 }
 
 /* LAB */
-.lab-scroll{display:flex;gap:1.5rem;overflow-x:auto;padding-bottom:1rem}
+.lab-scroll{
+display:flex;
+gap:1.5rem;
+overflow-x:auto;
+padding-bottom:1rem;
+}
 .lab-tile{
-  flex:0 0 280px;
-  background:rgba(255,255,255,.06);
-  padding:1.5rem;
-  border-radius:16px;
-  text-align:left;
-  display:flex;
-  flex-direction:column;
+flex:0 0 280px;
+background:rgba(255,255,255,.06);
+padding:1.5rem;
+border-radius:16px;
+text-align:left;
+display:flex;
+flex-direction:column;
+transition: all .3s ease;
 }
-.lab-tile img{width:100%;border-radius:12px;margin-bottom:1rem}
-.lab-tile p{flex-grow:1}
-
-/* NEWS */
-.news-grid{
-  display:flex;
-  gap:2rem;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding-bottom:1rem;
+.lab-tile:hover{
+box-shadow: 0 12px 25px rgba(179,136,255,.25);
+transform: translateY(-3px);
 }
-.news-card{
-  flex:0 0 280px;
-  background:rgba(255,255,255,.05);
-  padding:1rem;
-  border-radius:16px;
-  scroll-snap-align:start;
-  text-align:left;
+.lab-tile img{
+width:100%;
+border-radius:12px;
+margin-bottom:1rem;
+transition: transform .3s ease, box-shadow .3s ease;
 }
-.news-card img{width:100%;border-radius:12px;margin-bottom:.5rem}
-.news-card a{color:var(--accent);font-weight:600;text-decoration:none}
+.lab-tile:hover img{
+transform: scale(1.05);
+box-shadow: 0 8px 20px rgba(179,136,255,.4);
+}
+.lab-tile p{
+flex-grow:1;
+}
 
 /* FOOTER */
-.skinny-footer{padding:1.5rem 1rem;background:#07000f;text-align:center;font-size:.85rem}
-.footer-socials{display:flex;justify-content:center;gap:1rem;margin-bottom:.5rem}
-.footer-socials a{color:var(--footer-link);font-size:1.2rem}
-.footer-links a{color:var(--footer-link);text-decoration:none}
+.skinny-footer{
+padding:1.5rem 1rem;
+background:#07000f;
+text-align:center;
+font-size:.85rem;
+}
+.footer-socials{
+display:flex;
+justify-content:center;
+gap:1rem;
+margin-bottom:.5rem;
+}
+.footer-socials a{
+color:var(--footer-link);
+font-size:1.2rem;
+}
+.footer-links a{
+color:var(--footer-link);
+text-decoration:none;
+}
 
-canvas{position:fixed;inset:0;z-index:-1}
+canvas{
+position:fixed;
+inset:0;
+z-index:-1;
+}
 </style>
 </head>
 
@@ -165,188 +258,172 @@ canvas{position:fixed;inset:0;z-index:-1}
 <canvas id="stars"></canvas>
 
 <nav>
-  <a href="arcade.html" class="arcade-btn">🎮 Arcade</a>
-  <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
-  <div class="dropdown" id="navMenu">
-    <a href="lab.html">🧪 Lab</a>
-    <a href="news.html">📰 TMI News</a>
-    <a href="packages.html">📦 Packages</a>
-    <a href="aboutus.html">🦄 About Us</a>
-    <a href="contactus.html">📧 Contact Us</a>
-  </div>
+<a href="arcade.html" class="arcade-btn">🎮 Arcade</a>
+<i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
+<div class="dropdown" id="navMenu">
+<a href="lab.html">🧪 Lab</a>
+<a href="news.html">📰 TMI News</a>
+<a href="aboutus.html">🦄 About</a>
+<a href="contactus.html">📧 Contact</a>
+</div>
 </nav>
 
 <header class="hero">
-  <img src="images/tmihero.jpeg" width="300" style="mix-blend-mode:lighten">
-  <p class="subtitle">Your hub for fast games, chaos quizzes & viral digital mayhem 🚀</p>
-  <div class="cta-group">
-    <a href="arcade.html" class="btn primary">Enter the Arcade 🎮</a>
-    <a href="lab.html" class="btn secondary">Visit the Lab 🧪</a>
-  </div>
+<img src="images/tmihero.jpeg" width="300" style="mix-blend-mode:lighten">
+<p style="font-size:.9rem;color:var(--accent);margin-top:8px;">Independent Internet Product Lab</p>
+<p class="subtitle">TMI Studios builds viral internet apps, chaotic tools and fast browser games for the modern web.</p>
+<div class="cta-group">
+<a href="lab.html" class="btn secondary">Visit the Lab 🧪</a>
+</div>
 </header>
 
 <section>
-  <h2>What is TMI Studios?</h2>
-  <p style="max-width:800px;margin:1.5rem auto;color:var(--muted)">
-    TMI Studios blends fast browser games, viral tools, and South African trending
-    news into one digital playground built for speed, fun, and shareability.
-  </p>
+<h2>🚀 Products from the Lab</h2>
+<p style="max-width:750px;margin:1.5rem auto;color:var(--muted)">
+A growing collection of experimental apps designed to spread across the internet.
+</p>
+
+<div class="projects">
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="DollFin">
+<div class="trending-badge">Trending</div>
+<h3>DollFin</h3>
+<p>A playful AI-powered look into your money personality.</p>
+<a href="#" class="tile-btn">Play Now</a>
+</div>
+
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="Chaos Cookie">
+<h3>Chaos Cookie</h3>
+<p>Crack open a random chaotic fortune made for screenshots.</p>
+<a href="#" class="tile-btn">Open Cookie</a>
+</div>
+
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="Voyaĵ">
+<h3>Voyaĵ</h3>
+<p>Discover your virtual travel personality with AI fun.</p>
+<a href="#" class="tile-btn">Explore</a>
+</div>
+</div>
 </section>
 
-<section id="arcade">
-  <h2>🎮 Our latest games</h2>
-  <div id="arcade-container" class="projects"></div>
+<section>
+<h2>🔮 What We’re Working On</h2>
+<div class="projects">
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="Prelaunch 1">
+<h3>Prelaunch App 1</h3>
+<p>Secret experimental tool coming soon.</p>
+</div>
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="Prelaunch 2">
+<h3>Prelaunch App 2</h3>
+<p>Another viral experiment in progress.</p>
+</div>
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="Prelaunch 3">
+<h3>Prelaunch App 3</h3>
+<p>Shhh… this one’s under wraps!</p>
+</div>
+</div>
 </section>
 
-<section id="lab">
-  <h2>🧪 Our latest Quizzes, AI Tools & Viral Experiments</h2>
-  <div class="lab-scroll">
-    <div class="lab-tile">
-      <img src="https://i.ibb.co/23Tt4Byw/file-00000000be4c71f8bf71dad2bf5df697.png" alt="MemeRize meme generator">
-      <h3>MemeRize</h3>
-      <p>Create viral memes in seconds. Upload, edit, and share instantly.</p>
-      <a href="memelab.html" class="tile-btn">Create Meme</a>
-    </div>
-    <div class="lab-tile">
-      <img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg" alt="Chaos Cookie fortune generator">
-      <h3>Chaos Cookie 🍪</h3>
-      <p>Crack open a random chaotic fortune made for screenshots.</p>
-      <a href="fortunecookie.html" class="tile-btn">Open Cookie</a>
-    </div>
-    <div class="lab-tile">
-      <img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png" alt="Cute Quotes generator">
-      <h3>Cute Quotes</h3>
-      <p>Design beautiful quote images with custom fonts and emojis.</p>
-      <a href="cutequote.html" class="tile-btn">Create Quote</a>
-    </div>
-  </div>
+<section>
+<h2>📊 Studio Stats</h2>
+<div class="projects">
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="Apps Launched">
+<h3>10+</h3>
+<p>Apps launched</p>
+</div>
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="Monthly Users">
+<h3>Growing</h3>
+<p>Monthly users</p>
+</div>
+<div class="project">
+<img src="https://via.placeholder.com/300x150" alt="Ideas">
+<h3>∞</h3>
+<p>Ideas in the lab</p>
+</div>
+</div>
 </section>
 
-<section id="tmi-news">
-  <h2>📰 Latest headlines from TMI News</h2>
-  <p style="max-width:700px;margin:0 auto 2rem;color:var(--muted)">
-    Trending South African news covering youth culture, entertainment,
-    lifestyle, viral moments, and emerging tech.
-  </p>
-  <div id="news-container" class="news-grid"></div>
+<section>
+<h2>⚡ How We Build</h2>
+<p style="max-width:700px;margin:1.5rem auto;color:var(--muted)">
+Instead of building one perfect product, we launch many experiments and scale what people love.
+</p>
+<div class="lab-scroll">
+<div class="lab-tile">
+<img src="https://via.placeholder.com/280x140" alt="Build Fast">
+<h3>Build Fast</h3>
+<p>Ideas move quickly from concept to working prototype.</p>
+</div>
+<div class="lab-tile">
+<img src="https://via.placeholder.com/280x140" alt="Launch Early">
+<h3>Launch Early</h3>
+<p>Real users help shape the product.</p>
+</div>
+<div class="lab-tile">
+<img src="https://via.placeholder.com/280x140" alt="Scale What Works">
+<h3>Scale What Works</h3>
+<p>The best ideas grow into full products.</p>
+</div>
+</div>
 </section>
 
 <footer class="skinny-footer">
-  <div class="footer-socials">
-    <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
-    <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
-  </div>
-  <p>© 2025 TMI Studios</p>
-  <nav class="footer-links">
-    <a href="arcade.html">Arcade</a> ·
-    <a href="faq.html">FAQ</a> ·
-    <a href="privacy.html">Privacy</a> ·
-    <a href="termsofuse.html">Terms</a>
-  </nav>
+<div class="footer-socials">
+<a href="#"><i class="fab fa-tiktok"></i></a>
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+</div>
+<p>© 2026 TMI Studios</p>
+<nav class="footer-links">
+<a href="arcade.html">Arcade</a> ·
+<a href="privacy.html">Privacy</a> ·
+<a href="terms.html">Terms</a>
+</nav>
 </footer>
 
 <script>
 function toggleMenu(){
-  const m=document.getElementById('navMenu');
-  m.style.display=m.style.display==='block'?'none':'block';
+const m=document.getElementById('navMenu');
+m.style.display=m.style.display==='block'?'none':'block';
 }
-
-/* ARCADE */
-fetch('arcade.json')
-.then(r=>r.json())
-.then(d=>{
-  const c=document.getElementById('arcade-container');
-  d.games.slice(0,3).forEach(g=>{
-    c.innerHTML+=`
-      <div class="project">
-        <div class="ribbon">🔥 HOT GAME</div>
-        <img src="${g.img}" alt="${g.title}">
-        <h3>${g.title}</h3>
-        <p>${g.desc}</p>
-        <a href="${g.link}" class="tile-btn">Play Now</a>
-      </div>`;
-  });
-});
-
-/* NEWS */
-fetch('news.json')
-.then(r=>r.json())
-.then(d=>{
-  const c=document.getElementById('news-container');
-  d.stories.slice(0,3).forEach(n=>{
-    c.innerHTML+=`
-      <div class="news-card">
-        ${n.image?`<img src="${n.image}" alt="${n.headline}">`:''}
-        <h3>${n.headline}</h3>
-        <p>${n.preview}</p>
-        <a href="news.html?slug=${n.slug}">Read story →</a>
-      </div>`;
-  });
-});
 
 /* STARS */
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 let stars=[];
 function resizeStars(){
-  canvas.width=innerWidth;
-  canvas.height=innerHeight;
-  stars=[...Array(100)].map(()=>({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    r:Math.random()*2,
-    dx:(Math.random()-.5)*.3,
-    dy:(Math.random()-.5)*.3
-  }));
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+stars=[...Array(100)].map(()=>({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-.5)*.3,
+dy:(Math.random()-.5)*.3
+}));
 }
 addEventListener("resize",resizeStars);
 resizeStars();
 (function animateStars(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  stars.forEach(s=>{
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fillStyle="#b388ff";
-    ctx.fill();
-    s.x+=s.dx;
-    s.y+=s.dy;
-  });
-  requestAnimationFrame(animateStars);
+ctx.clearRect(0,0,canvas.width,canvas.height);
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fillStyle="#b388ff";
+ctx.fill();
+s.x+=s.dx;
+s.y+=s.dy;
+});
+requestAnimationFrame(animateStars);
 })();
 </script>
 
-<!-- Floating internal links helper for AdSense -->
-<div id="adsenseHelper" style="position:fixed;bottom:20px;right:20px;z-index:9999;">
-  <button id="helperBtn" style="width:50px;height:50px;border-radius:50%;background:var(--accent);color:var(--bg);border:none;font-weight:700;font-size:1.2rem;cursor:pointer;">?</button>
-  <div id="helperPopup" style="display:none;position:absolute;bottom:60px;right:0;background:#140022;color:#fff;padding:1rem;border-radius:12px;min-width:180px;box-shadow:0 4px 12px rgba(0,0,0,0.5);">
-    <p style="margin:0 0 .5rem 0;font-weight:600;">Explore TMI Studios:</p>
-    <ul style="list-style:none;padding:0;margin:0;font-size:0.9rem;line-height:1.5;">
-      <li><a href="arcade.html" style="color:var(--accent);text-decoration:none;">🎮 Arcade</a></li>
-      <li><a href="lab.html" style="color:var(--accent);text-decoration:none;">🧪 Lab</a></li>
-      <li><a href="tutorials.html" style="color:var(--accent);text-decoration:none;">📚 Tutorials</a></li>
-      <li><a href="packages.html" style="color:var(--accent);text-decoration:none;">📦 Packages</a></li>
-      <li><a href="aboutus.html" style="color:var(--accent);text-decoration:none;">🦄 About Us</a></li>
-      <li><a href="contactus.html" style="color:var(--accent);text-decoration:none;">📧 Contact Us</a></li>
-    </ul>
-  </div>
-</div>
-
-<script>
-// Toggle helper popup
-const helperBtn = document.getElementById('helperBtn');
-const helperPopup = document.getElementById('helperPopup');
-
-helperBtn.addEventListener('click', () => {
-  helperPopup.style.display = helperPopup.style.display === 'block' ? 'none' : 'block';
-});
-
-// Close popup if clicked outside
-document.addEventListener('click', (e) => {
-  if (!helperBtn.contains(e.target) && !helperPopup.contains(e.target)) {
-    helperPopup.style.display = 'none';
-  }
-});
-</script>
 </body>
 </html>
