@@ -5,15 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contact Us | TMI Studios</title>
 <meta name="description" content="Reach out to TMI Studios for your next web, game, or viral campaign. Book a package or join our WhatsApp channel for chaos quizzes and memes." />
-
-<!-- Open Graph -->
 <meta property="og:title" content="Contact Us | TMI Studios" />
 <meta property="og:description" content="Book your package or join TMI Studios WhatsApp channel for web, games, and viral campaigns that stick." />
 <meta property="og:image" content="https://www.tmistudios.xyz/tmihero.jpeg" />
 <meta property="og:url" content="https://www.tmistudios.xyz/contactus.html" />
 <meta name="twitter:card" content="summary_large_image" />
 
-<!-- JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,76 +50,121 @@
 }
 </script>
 
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
-body { margin:0; font-family:'Segoe UI',sans-serif; background:#fff; color:#1f2937; }
+body { background: #ffffff; color: #1f2937; font-family: 'Segoe UI', sans-serif; }
 
-/* Navigation */
-nav { background:#1f2937; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; }
-nav a { color:#fff; text-decoration:none; margin-right:16px; font-weight:500; }
-nav a:hover { color:#d8b4fe; }
+/* Mobile-first Sticky Hamburger Nav */
+nav {
+  background-color: #f3f3f3; 
+  padding: 16px 24px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+  position: sticky; 
+  top:0; 
+  z-index:50; 
+}
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease-in-out;
+}
+.nav-links a {
+  color: #1f2937; 
+  text-decoration:none; 
+  font-weight:500; 
+  padding:0.5rem 0;
+}
+.nav-links a:hover { color: #8b5cf6; }
 
-/* Glitch Title */
+.hamburger { font-size:1.5rem; cursor:pointer; display:block; }
+
+/* When active, expand */
+.nav-links.active { max-height: 500px; }
+
+/* Desktop styling */
+@media (min-width: 768px){
+  .nav-links {
+    flex-direction: row;
+    max-height: none;
+    display:flex !important;
+    background: none;
+    position: static;
+    width: auto;
+    gap:16px;
+    overflow: visible;
+  }
+  .hamburger { display: none; }
+}
+
+/* Glass Form */
+.glass {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(200,200,200,0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px #e0d7f7;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #a855f7, 0 0 40px #8b5cf6;
+}
+
+input, select, textarea { padding: 0.8rem; border-radius: 6px; border: 1px solid #d1d5db; width: 100%; }
+button { background-color: #8b5cf6; color: white; font-weight: bold; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+button:hover { background-color: #a855f7; }
+
 .glitch-title {
-  font-size:3rem; font-weight:800; position:relative; display:inline-block; margin-bottom:2rem; color:#1f2937;
+  font-size: 3rem; font-weight: 800; color: #1f2937; position: relative; display: inline-block; margin-bottom: 2rem;
 }
-.glitch-title span {
-  position:absolute; top:0; left:0; width:100%; height:100%; display:block;
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; z-index: -1;
 }
-.glitch-title .line1 { animation: glitchAnim 1.5s infinite linear; color:#a855f7; z-index:-1; }
-.glitch-title .line2 { animation: glitchAnim2 1.8s infinite linear; color:#d8b4fe; z-index:-1; }
-.glitch-title .line3 { animation: glitchAnim3 2s infinite linear; color:#f472b6; z-index:-1; }
-.glitch-title .line4 { animation: glitchAnim4 2.3s infinite linear; color:#fcd34d; z-index:-1; }
-
-@keyframes glitchAnim { 0%{ clip-path: inset(0 0 85% 0); transform:translate(-2px,-2px);} 10%{ clip-path: inset(20% 0 60% 0); transform:translate(2px,0);} 20%{ clip-path: inset(10% 0 70% 0); transform:translate(-1px,1px);} 30%{ clip-path: inset(15% 0 65% 0); transform:translate(1px,-1px);} 40%{ clip-path: inset(0 0 85% 0); transform:translate(-2px,0);} 50%{ clip-path: inset(20% 0 60% 0); transform:translate(2px,2px);} 60%{ clip-path: inset(10% 0 70% 0); transform:translate(0,-1px);} 70%{ clip-path: inset(15% 0 65% 0); transform:translate(1px,0);} 80%{ clip-path: inset(0 0 85% 0); transform:translate(-1px,2px);} 90%{ clip-path: inset(20% 0 60% 0); transform:translate(2px,-1px);} 100%{ clip-path: inset(0 0 85% 0); transform:translate(0,0);} }
-@keyframes glitchAnim2 { 0%{transform:translate(1px,1px);} 25%{transform:translate(-1px,-2px);} 50%{transform:translate(1px,0);} 75%{transform:translate(-1px,2px);} 100%{transform:translate(0,0);} }
-@keyframes glitchAnim3 { 0%{transform:translate(-2px,0);} 25%{transform:translate(2px,-1px);} 50%{transform:translate(-1px,1px);} 75%{transform:translate(2px,2px);} 100%{transform:translate(0,0);} }
-@keyframes glitchAnim4 { 0%{transform:translate(0,-2px);} 25%{transform:translate(1px,2px);} 50%{transform:translate(-1px,-1px);} 75%{transform:translate(2px,0);} 100%{transform:translate(0,0);} }
-
-/* Glass form */
-.glass { background:rgba(255,255,255,0.9); border:1px solid rgba(200,200,200,0.3); backdrop-filter:blur(10px); box-shadow:0 0 10px #e0d7f7; padding:2rem; border-radius:1rem; max-width:600px; margin:2rem auto; transition:0.3s ease; }
-.glass:hover { box-shadow:0 0 20px #a855f7,0 0 40px #d8b4fe; transform:translateY(-5px); }
-
-input, select, textarea { padding:0.8rem; border-radius:6px; border:1px solid #d1d5db; width:100%; }
-button { background-color:#8b5cf6; color:white; font-weight:bold; padding:0.8rem 1.5rem; border-radius:8px; cursor:pointer; transition:0.3s; }
-button:hover { background-color:#a855f7; }
+.glitch-title::before { animation: glitchTop 2s infinite linear; color: #a855f7; }
+.glitch-title::after { animation: glitchBottom 2s infinite linear; color: #d8b4fe; }
+@keyframes glitchTop { 0% { clip-path: inset(0 0 90% 0); transform: translate(-2px, -2px); } 10% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); } 100% { clip-path: inset(0 0 90% 0); transform: translate(0, 0); } }
+@keyframes glitchBottom { 0% { clip-path: inset(60% 0 20% 0); transform: translate(2px, 2px); } 10% { clip-path: inset(0 0 90% 0); transform: translate(-1px, -2px); } 100% { clip-path: inset(60% 0 20% 0); transform: translate(0, 0); } }
 
 #formSuccess { display:none; margin-top:1rem; color:#4ade80; font-weight:bold; text-align:center; }
 </style>
 </head>
-<body>
 
-<!-- NAV -->
+<body class="min-h-screen flex flex-col">
+
+<!-- Sticky Hamburger Navigation -->
 <nav>
-  <div style="font-weight:bold;font-size:20px;"><a href="index.html">TMI Studios</a></div>
-  <div class="flex gap-6 text-sm">
+  <div class="font-bold text-lg"><a href="index.html">TMI Studios</a></div>
+  <div class="hamburger"><i class="fas fa-bars"></i></div>
+  <div class="nav-links">
     <a href="arcade.html">🎮 Arcade</a>
     <a href="lab.html">🧪 Lab</a>
+    <a href="news.html">📰 TMI News</a>
     <a href="packages.html">📦 Packages</a>
     <a href="aboutus.html">🦄 About Us</a>
   </div>
 </nav>
 
-<!-- HEADER -->
+<!-- Header -->
 <header class="text-center p-10">
-  <h1 class="glitch-title">
-    Contact Us
-    <span class="line1">Contact Us</span>
-    <span class="line2">Contact Us</span>
-    <span class="line3">Contact Us</span>
-    <span class="line4">Contact Us</span>
-  </h1>
+  <h1 class="glitch-title" data-text="Contact Us">Contact Us</h1>
   <p class="text-gray-600 max-w-xl mx-auto">
     Got a wild idea? A game, a viral campaign, or just something unhinged you want to bring to life? Drop us a line and let’s make it happen. Fun, chaos, and eyeball-catching content guaranteed.
   </p>
 </header>
 
-<!-- PACKAGE FORM -->
+<!-- Package Booking Form -->
 <section class="px-6 md:px-16 pb-16">
-  <form id="packageForm" class="glass flex flex-col gap-6">
+  <form id="packageForm" class="max-w-3xl mx-auto glass p-8 rounded-xl flex flex-col gap-6">
     <label class="flex flex-col">
       <span class="font-bold mb-2">Your Name</span>
       <input type="text" name="name" required>
@@ -144,23 +186,30 @@ button:hover { background-color:#a855f7; }
     <input type="hidden" name="form_type" value="package_booking">
     <button type="submit">Submit Booking</button>
   </form>
-  <p id="formSuccess"></p>
 </section>
 
-<!-- WhatsApp CTA -->
+<!-- WhatsApp Invite -->
 <section class="px-6 md:px-16 pb-16 text-center">
   <h2 class="text-3xl font-semibold mb-4">💬 Join our WhatsApp Channel</h2>
-  <p class="text-gray-500 mb-6">Get your daily dose of chaos quizzes, memes & viral content 😛</p>
+  <p class="text-gray-500 mb-6">Get your daily dose of chaos quizzes, memes & the occasional brain rot 😛</p>
   <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition">Join WhatsApp Channel</a>
 </section>
 
-<!-- FOOTER -->
+<p id="formSuccess"></p>
+
+<!-- Footer -->
 <footer class="bg-gray-100 text-center text-sm text-gray-600 py-8">
   <div class="mb-3">
     <span class="mr-2">Follow us:</span>
-    <a href="https://tinyurl.com/mwfd4d73" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.facebook.com/tmistudios" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-facebook"></i></a>
-    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block mx-2 text-lg"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank" class="inline-block mx-2 text-lg">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://www.facebook.com/tmistudios" target="_blank" class="inline-block mx-2 text-lg">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank" class="inline-block mx-2 text-lg">
+      <i class="fab fa-whatsapp"></i>
+    </a>
   </div>
   <p>&copy; 2025 TMI Studios. All rights reserved.</p>
   <p>
@@ -170,46 +219,67 @@ button:hover { background-color:#a855f7; }
 </footer>
 
 <script>
+// Hamburger toggle with smooth max-height
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
 // Package options
 const packages = {
-  "Web": ["Starter Site: 1 page landing – R3,500","Business Site: 5 pages, SEO – R7,500","E-commerce Site: Full catalog + checkout – R12,500"],
-  "Games": ["Basic: Quiz / party meme – R10,000","Custom: Shooter game – R15,000","Pro: Endless runner – R40,000"],
-  "Advertising": ["Basic: 1 branded meme – R8,000","Pro: Full meme campaign – R15,000","Max: Meme in viral game – R25,000"]
+  "Web": [
+    "Starter Site: 1 page landing page, contact form – R3,500",
+    "Business Site: 5 page site, SEO optimized – R7,500",
+    "E-commerce Site: Full catalog + checkout – R12,500"
+  ],
+  "Games": [
+    "Basic: Quiz / party meme game – R10,000",
+    "Custom: Shooter game – R15,000",
+    "Pro: Endless runner game – R40,000"
+  ],
+  "Advertising": [
+    "Basic: 1 branded meme – R8,000",
+    "Pro: Full meme campaign – R15,000",
+    "Max: Meme in viral game – R25,000"
+  ]
 };
 
 // Show package options dynamically
-document.getElementById("packageCategory").addEventListener("change", e=>{
-  const selected=e.target.value;
-  const container=document.getElementById("packageOptions");
-  container.innerHTML="";
-  if(selected && packages[selected]){
-    packages[selected].forEach(pkg=>{
-      const label=document.createElement("label");
-      label.className="flex items-center gap-2";
-      label.innerHTML=`<input type="radio" name="SelectedPackage" value="${pkg}" required> ${pkg}`;
+document.getElementById("packageCategory").addEventListener("change", (e) => {
+  const selected = e.target.value;
+  const container = document.getElementById("packageOptions");
+  container.innerHTML = "";
+  if (selected && packages[selected]) {
+    packages[selected].forEach(pkg => {
+      const label = document.createElement("label");
+      label.className = "flex items-center gap-2";
+      label.innerHTML = `<input type="radio" name="SelectedPackage" value="${pkg}" required> ${pkg}`;
       container.appendChild(label);
     });
   }
 });
 
 // Handle form submissions
-async function handleFormSubmit(form,url,successMessage){
-  const data=new FormData(form);
-  const json=JSON.stringify(Object.fromEntries(data.entries()));
-  try{
-    const res=await fetch(url,{
+async function handleFormSubmit(form, url, successMessage){
+  const data = new FormData(form);
+  const json = JSON.stringify(Object.fromEntries(data.entries()));
+  try {
+    const res = await fetch(url,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:json
     });
     if(res.ok){
       form.reset();
-      const success=document.getElementById("formSuccess");
-      success.style.display="block";
-      success.innerText=successMessage;
+      document.getElementById("formSuccess").innerText = successMessage;
       window.scrollTo({top:0, behavior:"smooth"});
-    } else alert("Something went wrong. Please try again.");
-  } catch(err){ alert("Error: "+err.message); }
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  } catch(err){
+    alert("Error: "+err.message);
+  }
 }
 
 document.getElementById("packageForm").addEventListener("submit", e=>{
