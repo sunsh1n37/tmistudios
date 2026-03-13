@@ -15,16 +15,13 @@ exports.handler = async function(event) {
     const querystring = require('querystring');
     const postData = querystring.parse(body);
 
-    // Basic validation: check required fields
     if (postData.m_payment_id && postData.payment_status) {
       console.log("IPN received:", postData);
 
-      // Verify merchant ID & key
       if (postData.merchant_id !== merchant_id) {
         return { statusCode: 400, body: "Invalid merchant ID" };
       }
 
-      // Payment successful
       if (postData.payment_status === "COMPLETE") {
         console.log(`Payment COMPLETE for item: ${postData.item_name}, amount: ${postData.amount_gross}`);
         // TODO: update database or mark product as unlocked
@@ -43,7 +40,7 @@ exports.handler = async function(event) {
   // ---------------------------
   const params = event.queryStringParameters || {};
   const tier = params.tier;        // DollFin subscription
-  const product = params.product;  // Chaos Cookie or Delulu CEO Tarot purchase
+  const product = params.product;  // Chaos Cookie or Delulu CEO
   const PAYFAST_URL = "https://www.payfast.co.za/eng/process";
   let payfastUrl = "";
 
@@ -69,13 +66,13 @@ exports.handler = async function(event) {
       `&cycles=0`;
   }
 
-  // Chaos Cookie and Delulu CEO Tarot Purchases
+  // Chaos Cookie & Delulu CEO Purchases
   if (product) {
     let amount = 0;
     let item_name = "";
 
-    // Chaos Cookie Products
     switch (product) {
+      // Chaos Cookie
       case "extra_crack": amount = 5; item_name = "Chaos Cookie Extra Crack"; break;
       case "unlimited": amount = 20; item_name = "Chaos Cookie Unlimited (Today)"; break;
       case "love_pack": amount = 20; item_name = "Chaos Cookie Love Pack"; break;
@@ -83,16 +80,15 @@ exports.handler = async function(event) {
       case "petty_pack": amount = 20; item_name = "Chaos Cookie Petty Pack"; break;
       case "unhinged_pack": amount = 29; item_name = "Chaos Cookie Unhinged Pack"; break;
 
-      // Delulu CEO Tarot Single Card
-      case "delulu_single": amount = 20; item_name = "Delulu CEO Tarot - Single Card"; break;
-      // Delulu CEO Tarot Full Deck
-      case "delulu_full": amount = 100; item_name = "Delulu CEO Tarot - Full Deck"; break;
+      // Delulu CEO Tarot
+      case "delulu_single": amount = 20; item_name = "Delulu CEO Tarot Single Card"; break;
+      case "delulu_full": amount = 100; item_name = "Delulu CEO Tarot Full Deck"; break;
 
       default: return { statusCode: 400, body: "Invalid product" };
     }
 
-    const return_url = `https://tmistudios.xyz/?success=true&product=${product}`;
-    const cancel_url = `https://tmistudios.xyz/?cancel=true`;
+    const return_url = `https://tmistudios.xyz/checkout?success=true&product=${product}`;
+    const cancel_url = `https://tmistudios.xyz/checkout?cancel=true`;
 
     payfastUrl =
       `${PAYFAST_URL}?merchant_id=${merchant_id}` +
