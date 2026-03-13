@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+<title>DollFin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#5D0565,#A64CA6,#E0B6E4);
+background-attachment:fixed;
+padding:20px;
+color:white;
+}
+
+#planCorner{
+position:fixed;
+top:20px;
+right:20px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+padding:8px 14px;
+border-radius:30px;
+font-size:12px;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.3);
+}
+
+.card{
+background:rgba(255,255,255,0.18);
+backdrop-filter:blur(20px);
+border-radius:25px;
+padding:25px;
+margin-bottom:25px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+h2,h3{
+margin-top:0;
+}
+
+input{
+width:100%;
+padding:14px;
+border-radius:15px;
+border:none;
+margin-bottom:12px;
+font-size:14px;
+}
+
+button{
+background:white;
+color:#5D0565;
+border:none;
+padding:12px 18px;
+border-radius:20px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+box-shadow:0 0 15px white;
+}
+
+#scoreDisplay{
+font-size:48px;
+font-weight:700;
+text-align:center;
+text-shadow:0 0 20px white;
+}
+
+.progressBar{
+height:14px;
+background:rgba(255,255,255,0.3);
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.progressFill{
+height:100%;
+width:0%;
+background:white;
+transition:width 1.2s ease;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(15px);
+display:none;
+padding:30px;
+overflow:auto;
+z-index:9999;
+}
+
+.planCard{
+background:white;
+color:#5D0565;
+padding:22px;
+border-radius:25px;
+margin-bottom:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.planPrice{
+font-weight:700;
+margin:10px 0;
+}
+
+.planBtn{
+width:100%;
+}
+
+.planBtn.current{
+background:#ccc;
+cursor:not-allowed;
+}
+
+.premiumBadge{
+background:gold;
+color:black;
+padding:4px 10px;
+border-radius:15px;
+font-size:11px;
+font-weight:bold;
+display:inline-block;
+}
+
+.shareCard{
+margin-top:25px;
+background:linear-gradient(135deg,#ff7be5,#9c6bff);
+padding:25px;
+border-radius:25px;
+text-align:center;
+color:white;
+box-shadow:0 10px 40px rgba(0,0,0,0.3);
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="planCorner" onclick="openPlans()">
+<span id="planText"></span>
+</div>
+
+<h2>💎 DollFin</h2>
+
+<div class="card">
+
+<h3>Enter Monthly Income</h3>
+
+<input id="incomeInput" type="number" placeholder="Monthly Income">
+
+<h3>Optional: Lifestyle Spending</h3>
+
+<input id="lifestyleInput" type="number" placeholder="Fun / Lifestyle">
+
+<button onclick="generateScore()">Calculate</button>
+
+<div id="budgetOutput" style="margin-top:20px;"></div>
+
+</div>
+
+<div class="overlay" id="plansOverlay">
+
+<button onclick="closePlans()">Close</button>
+
+<h2>Upgrade</h2>
+
+<div id="plansContainer"></div>
+
+</div>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script>
+
+let userData={
+package:localStorage.getItem("plan")||"free"
+};
+
+updateTop();
+
+function updateTop(){
+planText.innerHTML=`Plan: ${userData.package} <span class="premiumBadge">Upgrade</span>`;
+}
+
+const plansData=[
+
+{
+key:"free",
+name:"Free",
+price:"R0",
+desc:"Soft Life Calculator + Share Card"
+},
+
+{
+key:"pro",
+name:"Pro",
+price:"R99 / month",
+desc:"Spending Tips + Downloadable Budget Sheet"
+},
+
+{
+key:"premium",
+name:"Premium",
+price:"R149 / month",
+desc:"Money Making Tips + Wealth Coach + Full Reports"
+}
+
+];
+
+function openPlans(){
+document.getElementById("plansOverlay").style.display="block";
+renderPlans();
+}
+
+function closePlans(){
+document.getElementById("plansOverlay").style.display="none";
+}
+
+function renderPlans(){
+
+let container=document.getElementById("plansContainer");
+
+container.innerHTML="";
+
+plansData.forEach(plan=>{
+
+let isCurrent=userData.package===plan.key;
+
+container.innerHTML+=`
+
+<div class="planCard">
+
+<h3>${plan.name}</h3>
+
+<div class="planPrice">${plan.price}</div>
+
+<p>${plan.desc}</p>
+
+<button class="planBtn ${isCurrent?'current':''}"
+
+onclick="selectPlan('${plan.key}')"
+
+${isCurrent?'disabled':''}>
+
+${isCurrent?"Current Plan":"Select"}
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function selectPlan(plan){
+
+if(plan==="pro" || plan==="premium"){
+
+window.location.href="/.netlify/functions/payfast?tier="+plan;
+
+return;
+
+}
+
+userData.package=plan;
+
+localStorage.setItem("plan",plan);
+
+updateTop();
+
+renderPlans();
+
+}
+
+function animateNumber(element,start,end,duration){
+
+let startTime=null;
+
+function step(timestamp){
+
+if(!startTime) startTime=timestamp;
+
+let progress=Math.min((timestamp-startTime)/duration,1);
+
+let value=Math.floor(progress*(end-start)+start);
+
+element.innerText=value+"%";
+
+if(progress<1){
+requestAnimationFrame(step);
+}
+
+}
+
+requestAnimationFrame(step);
+
+}
+
+function generateScore(){
+
+let income=parseFloat(incomeInput.value)||0;
+
+let lifestyle=parseFloat(lifestyleInput.value)||0;
+
+if(income<=0){
+budgetOutput.innerHTML="Enter valid income.";
+return;
+}
+
+let rent=income*0.3;
+
+let investments=income*0.2;
+
+let emergency=income*0.1;
+
+let lifestyleSpend=lifestyle||income*0.4;
+
+let softScore=((lifestyleSpend/income)*100)+((investments/income)*100);
+
+softScore=Math.min(100,softScore);
+
+let months=Math.round((100-softScore)*0.8);
+
+let archetype="";
+
+if(softScore<40){
+archetype="💸 Soft Life Starter";
+}
+else if(softScore<70){
+archetype="✨ Budget Baddie";
+}
+else if(softScore<90){
+archetype="👑 Wealth Builder";
+}
+else{
+archetype="🔥 Soft Life Queen";
+}
+
+budgetOutput.innerHTML=`
+
+<h3>💖 Breakdown</h3>
+
+<p>🏠 Rent: R${rent.toFixed(0)}</p>
+<p>✨ Lifestyle: R${lifestyleSpend.toFixed(0)}</p>
+<p>💰 Invest: R${investments.toFixed(0)}</p>
+<p>🛑 Emergency: R${emergency.toFixed(0)}</p>
+
+<div id="scoreDisplay">0%</div>
+
+<div class="progressBar">
+<div class="progressFill" id="progressFill"></div>
+</div>
+
+<div class="shareCard" id="shareCard">
+
+<h2>💅 Soft Life Score</h2>
+
+<h1 id="cardScore">${softScore}%</h1>
+
+<p id="cardArchetype">${archetype}</p>
+
+<p id="cardETA">Soft Life ETA: ${months} months</p>
+
+<p style="font-size:12px;opacity:.8;">DollFin</p>
+
+</div>
+
+<button onclick="downloadCard()">Download Flex Card</button>
+
+<button onclick="shareScore()">Share My Score</button>
+
+${premiumSection(investments)}
+
+`;
+
+setTimeout(()=>{
+animateNumber(document.getElementById("scoreDisplay"),0,softScore,1500);
+setTimeout(()=>{
+document.getElementById("progressFill").style.width=softScore+"%";
+},200);
+},100);
+
+}
+
+function premiumSection(investments){
+
+if(userData.package==="free"){
+
+return`
+
+<hr>
+
+<h3>🔒 Premium Features</h3>
+
+<button onclick="openPlans()">Select Plan to Unlock</button>
+
+`;
+
+}
+
+let yearly=investments*12;
+
+let projected=yearly*1.08;
+
+let section=`
+
+<hr>
+
+<h3>📊 Financial Report</h3>
+
+<p>📈 Invested in 1 Year: R${yearly.toFixed(0)}</p>
+
+<p>💎 Estimated Value: R${projected.toFixed(0)}</p>
+
+`;
+
+if(userData.package==="premium"){
+
+section+=`
+
+<p>🔥 Profit Projection: R${(projected-yearly).toFixed(0)}</p>
+
+<p>🚀 Side Hustle Ideas Coming Soon</p>
+
+<p>💬 Wealth Coach Chat Coming Soon</p>
+
+`;
+
+}
+
+section+=`<button onclick="alert('Download Report Coming Soon')">Download Report</button>`;
+
+return section;
+
+}
+
+function shareScore(){
+
+let score=document.getElementById("cardScore").innerText;
+
+if(navigator.share){
+
+navigator.share({
+
+title:"My Soft Life Score 💅",
+text:"I scored "+score+" on DollFin",
+url:window.location.href
+
+});
+
+}
+
+}
+
+function downloadCard(){
+
+html2canvas(document.querySelector("#shareCard")).then(canvas=>{
+
+let link=document.createElement("a");
+
+link.download="dollfin-score.png";
+link.href=canvas.toDataURL();
+link.click();
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
