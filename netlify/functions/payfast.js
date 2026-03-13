@@ -43,7 +43,7 @@ exports.handler = async function(event) {
   // ---------------------------
   const params = event.queryStringParameters || {};
   const tier = params.tier;        // DollFin subscription
-  const product = params.product;  // Chaos Cookie purchase
+  const product = params.product;  // Chaos Cookie or Delulu CEO Tarot purchase
   const PAYFAST_URL = "https://www.payfast.co.za/eng/process";
   let payfastUrl = "";
 
@@ -69,11 +69,12 @@ exports.handler = async function(event) {
       `&cycles=0`;
   }
 
-  // Chaos Cookie Purchases
+  // Chaos Cookie and Delulu CEO Tarot Purchases
   if (product) {
     let amount = 0;
-    let item_name = "Chaos Cookie";
+    let item_name = "";
 
+    // Chaos Cookie Products
     switch (product) {
       case "extra_crack": amount = 5; item_name = "Chaos Cookie Extra Crack"; break;
       case "unlimited": amount = 20; item_name = "Chaos Cookie Unlimited (Today)"; break;
@@ -81,11 +82,17 @@ exports.handler = async function(event) {
       case "money_pack": amount = 20; item_name = "Chaos Cookie Money Pack"; break;
       case "petty_pack": amount = 20; item_name = "Chaos Cookie Petty Pack"; break;
       case "unhinged_pack": amount = 29; item_name = "Chaos Cookie Unhinged Pack"; break;
-      default: return { statusCode: 400, body: "Invalid Chaos Cookie product" };
+
+      // Delulu CEO Tarot Single Card
+      case "delulu_single": amount = 20; item_name = "Delulu CEO Tarot - Single Card"; break;
+      // Delulu CEO Tarot Full Deck
+      case "delulu_full": amount = 100; item_name = "Delulu CEO Tarot - Full Deck"; break;
+
+      default: return { statusCode: 400, body: "Invalid product" };
     }
 
-    const return_url = `https://tmistudios.xyz/chaoscookie?success=true&product=${product}`;
-    const cancel_url = `https://tmistudios.xyz/chaoscookie?cancel=true`;
+    const return_url = `https://tmistudios.xyz/?success=true&product=${product}`;
+    const cancel_url = `https://tmistudios.xyz/?cancel=true`;
 
     payfastUrl =
       `${PAYFAST_URL}?merchant_id=${merchant_id}` +
