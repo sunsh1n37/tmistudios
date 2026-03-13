@@ -1,243 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Delulu CEO Tarot | TMI Studios</title>
+
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <style>
-body { font-family:'Segoe UI', sans-serif; color:#fff; margin:0; background:radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); padding-top:4rem; overflow-x:hidden; }
-h1,h2,h3 { font-family:'Cinzel', serif; }
-nav { position:fixed; top:0; left:0; width:100%; background:#111; display:flex; justify-content:space-between; align-items:center; padding:.75rem 1rem; z-index:999; }
-nav .logo a { color:#fff; font-weight:700; text-decoration:none; font-size:1.25rem; }
-nav .hamburger { font-size:1.5rem; color:#fff; cursor:pointer; user-select:none; }
-.mobile-menu { display:none; flex-direction:column; gap:1rem; margin-top:.5rem; position:absolute; top:3.5rem; right:0; width:200px; background:#1a1a2e; padding:1rem; z-index:100; box-shadow:0 5px 15px rgba(0,0,0,.3); }
-.mobile-menu a { color:#fff; font-weight:600; text-decoration:none; }
-.mobile-menu a:hover { color:#d8b4fe; }
+body{
+  font-family:'Segoe UI',sans-serif;
+  color:#fff;
+  margin:0;
+  background:radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%);
+  padding-top:4rem;
+}
 
-h1.page-title { text-align:center; font-size:2.5rem; font-weight:700; margin-top:1rem; }
-p.page-sub { text-align:center; color:#ccc; max-width:600px; margin:0.5rem auto 2rem; }
+h1,h2,h3{
+  font-family:'Cinzel',serif;
+}
 
-.tarot-container { perspective:1200px; margin:0 auto; width:300px; height:400px; position:relative; z-index:2; }
-.tarot-card { width:100%; height:100%; transform-style: preserve-3d; transition: transform .8s; cursor:pointer; position:relative; }
-.tarot-card.flipped { transform:rotateY(180deg); border:3px solid #5b21b6; }
-.card-face { position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:20px; display:flex; flex-direction:column; justify-content:center; align-items:center; }
-.card-front { background:linear-gradient(135deg,#8b5cf6,#a855f7); padding:2rem; text-align:center; font-weight:bold; font-size:1.2rem; box-shadow:0 0 15px #a855f7,0 0 30px #8b5cf6; }
-.card-back { background:#1e1e2a; transform:rotateY(180deg); padding:1rem; text-align:center; box-shadow:0 0 15px #5b21b6,0 0 30px #7c3aed; position:relative; }
-#cardImage { max-height:55%; border-radius:12px; margin-bottom:.5rem; }
-#cardName { font-size:1.4rem; font-weight:bold; margin-bottom:.25rem; color:#f3f3f3; text-shadow:0 0 5px #a855f7,0 0 10px #8b5cf6; opacity:0; transition:opacity .3s ease-in-out; }
-#cardName.glow { animation:glowAnim 1.5s ease-in-out infinite alternate; opacity:1; }
-@keyframes glowAnim { 0%{text-shadow:0 0 5px #a855f7,0 0 10px #8b5cf6;} 50%{text-shadow:0 0 10px #d8b4fe,0 0 20px #a855f7;} 100%{text-shadow:0 0 15px #f5b0ff,0 0 30px #c084fc;} }
-#cardText { font-size:1rem; line-height:1.4; color:#fffacd; text-shadow:0 0 5px #a855f7,0 0 10px #8b5cf6; font-weight:bold; margin-top:.5rem; }
-.card-branding { position:absolute; bottom:8px; right:8px; font-size:.7rem; color:#d1d5db; text-shadow:0 0 3px #5b21b6; }
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:#111;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.75rem 1rem;
+  z-index:999;
+}
 
-.btn-purple { background-color:#8b5cf6; color:white; font-weight:bold; padding:.5rem 1rem; border-radius:8px; transition: background-color .3s ease; text-decoration:none; display:inline-block; margin-top:1rem; }
-.btn-purple:hover { background-color:#a855f7; }
+nav .logo a{
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  font-size:1.25rem;
+}
 
-.sparkle { position:absolute; border-radius:50%; pointer-events:none; z-index:1; }
-#glowOrb { position:absolute; width:350px; height:350px; background:radial-gradient(circle,rgba(168,85,247,.4),rgba(139,92,246,.2),transparent); border-radius:50%; filter:blur(30px); z-index:0; animation:floatOrb 4s ease-in-out infinite alternate; top:140px; }
+nav .hamburger{
+  font-size:1.5rem;
+  color:#fff;
+  cursor:pointer;
+}
 
-footer { background:#111; text-align:center; padding:2rem 1rem; font-size:.875rem; color:#e5e7eb; margin-top:4rem; }
-footer .footer-socials a { margin:0 6px; color:#e5e7eb; font-size:16px; text-decoration:none; }
-footer .footer-links { margin-top:6px; font-size:13px; }
-footer .footer-links a { color:#e5e7eb; margin:0 4px; text-decoration:none; }
+.mobile-menu{
+  display:none;
+  flex-direction:column;
+  gap:1rem;
+  margin-top:.5rem;
+  position:absolute;
+  top:3.5rem;
+  right:0;
+  width:200px;
+  background:#1a1a2e;
+  padding:1rem;
+}
 
-.modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,.85); align-items:center; justify-content:center; }
-.modal-content { background:#1e1e2a; padding:2rem; border-radius:12px; text-align:center; max-width:300px; color:#fff; }
-.modal-close { position:absolute; top:12px; right:16px; font-size:1.5rem; cursor:pointer; }
+.mobile-menu a{
+  color:#fff;
+  font-weight:600;
+  text-decoration:none;
+}
+
+.page-title{
+  text-align:center;
+  font-size:2.5rem;
+  font-weight:700;
+  margin-top:1rem;
+}
+
+.page-sub{
+  text-align:center;
+  color:#ccc;
+  max-width:600px;
+  margin:0.5rem auto 2rem;
+}
+
+.tarot-container{
+  perspective:1200px;
+  margin:0 auto;
+  width:300px;
+  height:400px;
+  position:relative;
+}
+
+.tarot-card{
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transition:transform .8s;
+  cursor:pointer;
+}
+
+.tarot-card.flipped{
+  transform:rotateY(180deg);
+  border:3px solid #5b21b6;
+}
+
+.card-face{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:1rem;
+  text-align:center;
+}
+
+.card-front{
+  background:linear-gradient(135deg,#8b5cf6,#a855f7);
+  font-weight:bold;
+  font-size:1.2rem;
+}
+
+.card-back{
+  background:#1e1e2a;
+  transform:rotateY(180deg);
+}
+
+#cardName{
+  font-size:1.4rem;
+  font-weight:bold;
+  margin-bottom:.25rem;
+  color:#f3f3f3;
+}
+
+#cardText{
+  font-size:.95rem;
+  line-height:1.4;
+  color:#fffacd;
+  font-weight:bold;
+  margin-top:.5rem;
+}
+
+.btn-purple{
+  background-color:#8b5cf6;
+  color:white;
+  font-weight:bold;
+  padding:.5rem 1rem;
+  border-radius:8px;
+  margin-top:1rem;
+  cursor:pointer;
+}
+
+#paywall {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+  padding:2rem;
+  text-align:center;
+}
+
+#paywall h2{
+  font-size:2rem;
+  margin-bottom:1rem;
+  color:#fff;
+}
+
+#paywall .pay-btn{
+  margin:.5rem;
+}
+
+#paywall .close-btn{
+  position:absolute;
+  top:1rem;
+  right:1rem;
+  font-size:1.5rem;
+  color:#fff;
+  cursor:pointer;
+}
+
+footer{
+  background:#111;
+  text-align:center;
+  padding:2rem 1rem;
+  font-size:.875rem;
+  color:#e5e7eb;
+  margin-top:4rem;
+}
+
+footer a{
+  color:#8b5cf6;
+  margin:0 0.5rem;
+  text-decoration:none;
+  font-weight:bold;
+}
 </style>
 </head>
+
 <body>
 
-<!-- Navbar -->
 <nav>
-  <div class="logo"><a href="index.html">TMI Studios</a></div>
-  <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="arcade.html">Arcade</a>
-    <a href="lab.html">Lab</a>
-    <a href="aboutus.html">About Us</a>
-    <a href="contactus.html">Contact Us</a>
-  </div>
+<div class="logo"><a href="index.html">TMI Studios</a></div>
+<div class="hamburger" id="hamburger">☰</div>
+
+<div class="mobile-menu" id="mobileMenu">
+<a href="arcade.html">Arcade</a>
+<a href="lab.html">Lab</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact</a>
+<a href="lab.html" class="cta-lab">More unserious chaos →</a>
+</div>
 </nav>
 
-<!-- Hero -->
 <h1 class="page-title">Delulu CEO Tarot</h1>
-<p class="page-sub">Draw a card to see what type of delulu CEO you'd be in an alternate reality. Touch or click the card to reveal!</p>
+<p class="page-sub">
+Draw a card to see what type of delulu CEO you'd be in an alternate reality.
+</p>
 
-<!-- Glowing Orb -->
-<div class="relative w-full flex justify-center items-center">
-  <div id="glowOrb"></div>
+<div class="text-center">
+<button id="drawCardBtn" class="btn-purple">Draw Your Card</button>
 </div>
 
-<!-- Draw Card CTA -->
-<div class="text-center mt-4">
-  <button id="drawCardBtn" class="btn-purple">Draw Your Card</button>
-</div>
-
-<!-- Tarot Card -->
 <div class="tarot-container mt-6">
-  <div class="tarot-card" id="tarotCard">
-    <div class="card-face card-front">Touch or click to reveal your Delulu CEO!</div>
-    <div class="card-face card-back" id="cardBack">
-      <img id="cardImage" src="placeholder.jpg" alt="Delulu CEO">
-      <div id="cardName"></div>
-      <p id="cardText"></p>
-      <div class="card-branding">Delulu CEO Tarot by tmistudios.xyz</div>
-    </div>
-  </div>
+<div class="tarot-card" id="tarotCard">
+<div class="card-face card-front">
+Touch or click to reveal your Delulu CEO!
+</div>
+<div class="card-face card-back">
+<div id="cardName"></div>
+<p id="cardText"></p>
+</div>
+</div>
 </div>
 
-<!-- Share -->
-<div class="text-center mt-4">
-  <button id="shareBtn" class="btn-purple">Share Your CEO</button>
+<!-- Paywall Modal -->
+<div id="paywall">
+  <span class="close-btn" id="paywallClose">&times;</span>
+  <h2>Unlock Your Next Card</h2>
+  <button class="btn-purple pay-btn" id="paySingleBtn">R20 - Single Card</button>
+  <button class="btn-purple pay-btn" id="payFullBtn">R100 - Full Deck</button>
 </div>
 
-<!-- More Apps CTA -->
-<section class="text-center mt-10 px-6 max-w-2xl">
-  <h2 class="text-2xl font-bold mb-2">Craving more chaos?</h2>
-  <a href="lab.html" class="btn-purple">Explore More Unserious Apps</a>
-</section>
-
-<!-- Footer -->
 <footer>
-  <p>© 2025 TMI Studios — fully supporting delulu dreams and schemes</p>
-  <div class="footer-socials mt-2">
-    <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
-    <a href="https://instagram.com/tmi_studios"><i class="fab fa-instagram"></i></a>
-    <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
-    <a href="https://wa.me/27820000000"><i class="fab fa-whatsapp"></i></a>
-  </div>
+© 2025 TMI Studios — fully supporting delulu dreams
+<br>
+<a href="https://instagram.com">Instagram</a>
+<a href="https://twitter.com">Twitter</a>
+<a href="https://facebook.com">Facebook</a>
 </footer>
 
-<!-- Modal for Payfast -->
-<div class="modal" id="payModal">
-  <div class="modal-content">
-    <span class="modal-close" id="modalClose">&times;</span>
-    <h2 class="font-bold text-xl mb-4" id="payModalTitle">Buy Detailed Delulu CEO Experience Card</h2>
-    <form id="payForm" action="https://www.payfast.co.za/eng/process" method="post">
-      <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-      <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-      <input type="hidden" name="amount" id="pfAmount" value="20">
-      <input type="hidden" name="item_name" id="pfItemName" value="Delulu CEO Tarot">
-      <input type="hidden" name="product" id="pfProduct" value="delulu_single">
-      <button type="submit" class="btn-purple w-full mt-2" id="payBtn">Buy for R20</button>
-      <button type="button" class="btn-purple w-full mt-2 hidden" id="upgradeDeckBtn">Share & Unlock Full Deck for R100</button>
-    </form>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 // Hamburger toggle
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', ()=> {
-  mobileMenu.style.display = mobileMenu.style.display==='flex'?'none':'flex';
-});
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.onclick=()=>{ mobileMenu.style.display = mobileMenu.style.display==='flex'?'none':'flex'; }
 
-// Tarot Cards
-const ceoCards = [
-  { name: 'The Visionary', image: 'placeholder1.jpg', text: 'I see the future. Ignore budgets. Manifesting IPO energy with zero plan.', price:20 },
-  { name: 'The Toxic Diva', image: 'placeholder2.jpg', text: 'I gaslight the team, gatekeep the password, girlboss through chaos.', price:20 },
-  { name: 'The Micro-Manager', image: 'placeholder3.jpg', text: 'I hired a team just to redo their work. Slay.', price:20 },
-  { name: 'The Risk Taker', image: 'placeholder4.jpg', text: 'I bet the rent on crypto. Might flop, might buy Mars.', price:20 },
-  { name: 'The Delulu Dreamer', image: 'placeholder5.jpg', text: 'CEO of mood boards and motivational quotes. No product, just vibes.', price:20 },
-  { name: 'The Silent Scaler', image: 'placeholder6.jpg', text: 'I don’t tweet, I don’t post. Just wake up with 10k sales.', price:20 },
-  { name: 'The Chaos Brander', image: 'placeholder7.jpg', text: 'I change brand colors weekly. Built an empire on red flags.', price:20 },
-  { name: 'The Soft Life Strategist', image: 'placeholder8.jpg', text: 'I automate everything. Work 3 hrs/week. Still richer than your dad.', price:20 },
-  { name: 'The AI Overlord', image: 'placeholder9.jpg', text: 'I don’t work. Just prompt GPT, hit publish, eat grapes.', price:20 },
-  { name: 'The Networking Narcissist', image: 'placeholder10.jpg', text: 'I don’t code, I don’t design. Just show up cute and collect investments.', price:20 }
+// Cards data
+const ceoCards=[
+{name:"The Chaos Brander",leadership:"Rebrand every Tuesday.",weakness:"Nobody recognizes your logo anymore.",forecast:"New brand colors tonight."},
+{name:"The Manifestation Manager",leadership:"Writes quarterly goals on a vision board.",weakness:"Thinks profit margins respond to moon phases.",forecast:"Mercury retrograde blamed for everything."},
+{name:"The AI Delegator",leadership:"ChatGPT runs the entire company.",weakness:"Doesn't remember how the product works.",forecast:"Launches 6 new startups by accident."},
+{name:"The Soft Launch CEO",leadership:"Soft launching the business since 2022.",weakness:"Nobody knows what the product is.",forecast:"Another mysterious teaser post tonight."},
+{name:"The Hustle Prophet",leadership:"Sleeps 3 hours and tweets motivation.",weakness:"Employees are spiritually exhausted.",forecast:"New productivity routine at 4am tomorrow."},
+{name:"The Pivot Queen",leadership:"Pivot before results arrive.",weakness:"The team no longer knows the mission.",forecast:"Another 'major announcement' incoming."},
+{name:"The Aesthetic Founder",leadership:"Brand moodboard before business model.",weakness:"Beautiful website, no working checkout.",forecast:"New font reveal at midnight."},
+{name:"The Investor Whisperer",leadership:"Pitch deck stronger than the product.",weakness:"Revenue described as 'manifesting soon.'",forecast:"Another meeting where nothing is funded."},
+{name:"The Spreadsheet Oracle",leadership:"Tracks everything in 14 dashboards.",weakness:"Still doesn't know what customers want.",forecast:"Adds three more KPIs tonight."},
+{name:"The Passive Income Wizard",leadership:"Creates courses about creating courses.",weakness:"Forgets to create the actual course.",forecast:"Pre-orders opening soon."},
+{name:"The Viral Visionary",leadership:"Builds the entire strategy around going viral.",weakness:"The product works… sometimes.",forecast:"One TikTok decides the company's fate."},
+{name:"The Exit Strategist",leadership:"Plans the acquisition before launch.",weakness:"There is nothing to acquire yet.",forecast:"LinkedIn post about 'building quietly.'"}
 ];
 
-const drawBtn = document.getElementById('drawCardBtn');
-const tarotCard = document.getElementById('tarotCard');
-const cardImage = document.getElementById('cardImage');
-const cardName = document.getElementById('cardName');
-const cardText = document.getElementById('cardText');
-const shareBtn = document.getElementById('shareBtn');
+const drawBtn=document.getElementById("drawCardBtn");
+const tarotCard=document.getElementById("tarotCard");
+const cardName=document.getElementById("cardName");
+const cardText=document.getElementById("cardText");
+const paywall=document.getElementById("paywall");
+const paySingleBtn=document.getElementById("paySingleBtn");
+const payFullBtn=document.getElementById("payFullBtn");
+const paywallClose=document.getElementById("paywallClose");
 
-const payModal = document.getElementById('payModal');
-const modalClose = document.getElementById('modalClose');
-const pfAmount = document.getElementById('pfAmount');
-const pfItemName = document.getElementById('pfItemName');
-const payModalTitle = document.getElementById('payModalTitle');
-const payBtn = document.getElementById('payBtn');
+let currentCard=null;
+let firstDrawDone=false;
 
-let currentCard = null;
-let firstDrawDone = false;
-
-// Draw card
-drawBtn.addEventListener('click', ()=>{
+// Draw new card
+drawBtn.onclick = () => {
   if(firstDrawDone){
-    // Show Payfast modal on subsequent draw attempt
-    if(currentCard){
-      pfAmount.value = currentCard.price;
-      pfItemName.value = `Delulu CEO Tarot - ${currentCard.name}`;
-      payBtn.textContent = `Buy Detailed Card ${currentCard.name} for R${currentCard.price}`;
-      payModalTitle.textContent = `Want the full experience of ${currentCard.name}?`;
-      payModal.style.display = 'flex';
-    }
-    return; // prevent drawing another card until purchase
+    // Show paywall only after first draw
+    paywall.style.display='flex';
+    return;
   }
-
-  // First card draw
-  const idx = Math.floor(Math.random()*ceoCards.length);
-  currentCard = ceoCards[idx];
-  cardImage.src = currentCard.image;
-  cardName.textContent = currentCard.name;
-  cardText.textContent = currentCard.text;
-  tarotCard.classList.add('flipped');
-  cardName.classList.add('glow');
-
-  firstDrawDone = true; // mark first draw completed
-});
+  const card = ceoCards[Math.floor(Math.random()*ceoCards.length)];
+  currentCard=card;
+  cardName.textContent=card.name;
+  cardText.innerHTML = `
+🔮 Leadership Style:<br>${card.leadership}<br><br>
+⚠️ Weakness:<br>${card.weakness}<br><br>
+📈 Forecast:<br>${card.forecast}
+  `;
+  tarotCard.classList.add("flipped");
+  firstDrawDone=true;
+};
 
 // Flip card on click
-tarotCard.addEventListener('click', ()=>{
-  tarotCard.classList.toggle('flipped');
-  cardName.classList.toggle('glow');
-});
+tarotCard.onclick = ()=>{ tarotCard.classList.toggle("flipped"); };
 
-// Share card
-shareBtn.addEventListener('click', async ()=>{
-  if(!currentCard) return alert('Draw a card first!');
-  const canvas = await html2canvas(tarotCard);
-  canvas.toBlob(blob=>{
-    const file = new File([blob],'delulu-ceo-card.png',{type:'image/png'});
-    if(navigator.canShare && navigator.canShare({files:[file]})){
-      navigator.share({files:[file],title:currentCard.name,text:'Check out my Delulu CEO alter ego!'});
-    } else {
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'delulu-ceo-card.png';
-      link.click();
-      alert('Card downloaded! Post it on socials.');
-    }
-  });
-});
+// Paywall close
+paywallClose.onclick = ()=>{ paywall.style.display='none'; };
 
-// Sparkles
-function createSparkle(){
-  const s=document.createElement('div');
-  s.classList.add('sparkle');
-  const size=Math.random()*6+4;
-  s.style.width=s.style.height=`${size}px`;
-  s.style.background='radial-gradient(circle,#f0f,#8b5cf6)';
-  s.style.left=`${Math.random()*tarotCard.offsetWidth}px`;
-  s.style.top=`${Math.random()*tarotCard.offsetHeight}px`;
-  s.style.opacity='0.8';
-  s.style.filter='blur(1px)';
-  tarotCard.appendChild(s);
-  setTimeout(()=>s.remove(),1000);
-}
-setInterval(createSparkle,200);
-
-// Close modal
-modalClose.addEventListener('click',()=>{
-  payModal.style.display='none';
-});
+// Redirect buttons to PayFast
+paySingleBtn.onclick = () => { 
+  window.location.href = 'https://tmistudios.xyz/.netlify/functions/payfast?product=delulu_single'; 
+};
+payFullBtn.onclick = () => { 
+  window.location.href = 'https://tmistudios.xyz/.netlify/functions/payfast?product=delulu_full'; 
+};
 </script>
+
 </body>
 </html>
