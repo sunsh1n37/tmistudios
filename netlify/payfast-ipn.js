@@ -1,64 +1,50 @@
-// netlify/functions/payfast-ipn.js
-import fetch from 'node-fetch';
+// functions/payfast-ipn.js
+const https = require("https");
+const querystring = require("querystring");
 
-export async function handler(event, context) {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
-  }
+exports.handler = async function (event, context) {
+  const params = querystring.parse(event.body);
 
-  try {
-    const body = new URLSearchParams(event.body);
-    const pfData = {};
-    for (const [key, value] of body.entries()) {
-      pfData[key] = value;
-    }
+  const IS_SANDBOX = process.env.PAYFAST_SANDBOX === "true";
+  const VERIFY_URL = IS_SANDBOX
+    ? "https://sandbox.payfast.co.za/eng/query/validate"
+    : "https://www.payfast.co.za/eng/query/validate";
 
-    const merchant_id = process.env.PAYFAST_MERCHANT_ID;
-    const merchant_key = process.env.PAYFAST_MERCHANT_KEY;
+  const postData = querystring.stringify(params);
 
-    // Step 1: Validate PayFast source
-    const validationURL = 'https://www.payfast.co.za/eng/query/validate';
-    const validationBody = new URLSearchParams({
-      merchant_id,
-      merchant_key,
-      'pf_payment_id': pfData['pf_payment_id'] || '',
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Length": Buffer.byteLength(postData),
+    },
+  };
+
+  const req = https.request(VERIFY_URL, options, (res) => {
+    let body = "";
+    res.on("data", (chunk) => (body += chunk));
+    res.on("end", () => {
+      if (body === "VALID") {
+        console.log("Payment verified:", params);
+
+        // Extract app to unlock correct content
+        const app = params.item_name.toLowerCase();
+
+        // TODO: Update your DB / server to mark user as paid
+        // Example pseudo-code:
+        // db.unlockCard(userId, app);
+
+      } else {
+        console.log("Invalid IPN:", params);
+      }
     });
+  });
 
-    const validateRes = await fetch(validationURL, {
-      method: 'POST',
-      body: validationBody.toString(),
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    });
+  req.write(postData);
+  req.end();
 
-    const validationText = await validateRes.text();
-    if (!validationText.includes('VALID')) {
-      return { statusCode: 400, body: 'IPN Validation Failed' };
-    }
-
-    // Step 2: Confirm payment is complete
-    if (pfData.payment_status !== 'COMPLETE') {
-      return { statusCode: 200, body: 'Payment not complete, ignoring.' };
-    }
-
-    // Step 3: Determine which app and content
-    const userId = pfData['custom_str1']; // your internal user ID
-    const appId = pfData['custom_str2']; // e.g., 'delulu', 'dollfin', 'chaoscookie'
-    const itemPurchased = pfData['item_name'] || 'card/draw';
-
-    console.log(`Payment confirmed for user ${userId} in app ${appId}: ${itemPurchased}`);
-
-    // Step 4: Unlock content in your DB (replace with real DB logic)
-    // Example structure
-    // await db.collection('users').doc(userId).update({
-    //   [appId]: { lastPaidDraw: true, itemPurchased }
-    // });
-
-    return {
-      statusCode: 200,
-      body: 'IPN processed successfully',
-    };
-  } catch (err) {
-    console.error('IPN Error:', err);
-    return { statusCode: 500, body: 'Server Error' };
-  }
-}
+  return {
+    statusCode: 200,
+    body: "OK",
+  };
+};
