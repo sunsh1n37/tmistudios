@@ -7,7 +7,6 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-/* Styles same as previous code */
 body { font-family:'Segoe UI', sans-serif; color:#fff; margin:0; background:radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); padding-top:4rem; overflow-x:hidden; }
 h1,h2,h3 { font-family:'Cinzel', serif; }
 nav { position:fixed; top:0; left:0; width:100%; background:#111; display:flex; justify-content:space-between; align-items:center; padding:.75rem 1rem; z-index:999; }
@@ -57,24 +56,27 @@ footer .footer-links a { color:#e5e7eb; margin:0 4px; text-decoration:none; }
   <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
   <div class="mobile-menu" id="mobileMenu">
     <a href="arcade.html">Arcade</a>
-    <a href="news.html">TMI News</a>
-    <a href="packages.html">Packages</a>
+    <a href="lab.html">Lab</a>
     <a href="aboutus.html">About Us</a>
     <a href="contactus.html">Contact Us</a>
   </div>
 </nav>
 
+<!-- Hero -->
 <h1 class="page-title">Delulu CEO Tarot</h1>
 <p class="page-sub">Draw a card to see what type of delulu CEO you'd be in an alternate reality. Touch or click the card to reveal!</p>
 
+<!-- Glowing Orb -->
 <div class="relative w-full flex justify-center items-center">
   <div id="glowOrb"></div>
 </div>
 
+<!-- Draw Card CTA -->
 <div class="text-center mt-4">
   <button id="drawCardBtn" class="btn-purple">Draw Your Card</button>
 </div>
 
+<!-- Tarot Card -->
 <div class="tarot-container mt-6">
   <div class="tarot-card" id="tarotCard">
     <div class="card-face card-front">Touch or click to reveal your Delulu CEO!</div>
@@ -82,20 +84,23 @@ footer .footer-links a { color:#e5e7eb; margin:0 4px; text-decoration:none; }
       <img id="cardImage" src="placeholder.jpg" alt="Delulu CEO">
       <div id="cardName"></div>
       <p id="cardText"></p>
-      <div class="card-branding">TMI Studios</div>
+      <div class="card-branding">Delulu CEO Tarot by tmistudios.xyz</div>
     </div>
   </div>
 </div>
 
+<!-- Share -->
 <div class="text-center mt-4">
   <button id="shareBtn" class="btn-purple">Share Your CEO</button>
 </div>
 
+<!-- More Apps CTA -->
 <section class="text-center mt-10 px-6 max-w-2xl">
   <h2 class="text-2xl font-bold mb-2">Craving more chaos?</h2>
   <a href="lab.html" class="btn-purple">Explore More Unserious Apps</a>
 </section>
 
+<!-- Footer -->
 <footer>
   <p>© 2025 TMI Studios — fully supporting delulu dreams and schemes</p>
   <div class="footer-socials mt-2">
@@ -106,19 +111,19 @@ footer .footer-links a { color:#e5e7eb; margin:0 4px; text-decoration:none; }
   </div>
 </footer>
 
-<!-- Payfast Modal -->
+<!-- Modal for Payfast -->
 <div class="modal" id="payModal">
   <div class="modal-content">
     <span class="modal-close" id="modalClose">&times;</span>
-    <h2 class="font-bold text-xl mb-4" id="payModalTitle">Buy Your Full Delulu CEO Experience</h2>
-    <form id="payForm" action="https://www.payfast.co.za/eng/process" method="get">
+    <h2 class="font-bold text-xl mb-4" id="payModalTitle">Buy Detailed Delulu CEO Experience Card</h2>
+    <form id="payForm" action="https://www.payfast.co.za/eng/process" method="post">
       <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
       <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
       <input type="hidden" name="amount" id="pfAmount" value="20">
       <input type="hidden" name="item_name" id="pfItemName" value="Delulu CEO Tarot">
-      <input type="hidden" name="product" id="pfProduct" value="single_card">
-      <button type="submit" class="btn-purple w-full mt-2" id="payBtn">Buy this archetype R20</button>
-      <button type="button" class="btn-purple w-full mt-2 bg-gray-600" id="payFullDeckBtn">Buy Full Deck R100</button>
+      <input type="hidden" name="product" id="pfProduct" value="delulu_single">
+      <button type="submit" class="btn-purple w-full mt-2" id="payBtn">Buy for R20</button>
+      <button type="button" class="btn-purple w-full mt-2 hidden" id="upgradeDeckBtn">Share & Unlock Full Deck for R100</button>
     </form>
   </div>
 </div>
@@ -132,18 +137,18 @@ hamburger.addEventListener('click', ()=> {
   mobileMenu.style.display = mobileMenu.style.display==='flex'?'none':'flex';
 });
 
-// Tarot cards
+// Tarot Cards
 const ceoCards = [
-  { name: 'The Visionary', image: 'placeholder1.jpg', text: 'I see the future. Ignore budgets. Manifesting IPO energy with zero plan.' },
-  { name: 'The Toxic Diva', image: 'placeholder2.jpg', text: 'I gaslight the team, gatekeep the password, girlboss through chaos.' },
-  { name: 'The Micro-Manager', image: 'placeholder3.jpg', text: 'I hired a team just to redo their work. Slay.' },
-  { name: 'The Risk Taker', image: 'placeholder4.jpg', text: 'I bet the rent on crypto. Might flop, might buy Mars.' },
-  { name: 'The Delulu Dreamer', image: 'placeholder5.jpg', text: 'CEO of mood boards and motivational quotes. No product, just vibes.' },
-  { name: 'The Silent Scaler', image: 'placeholder6.jpg', text: 'I don’t tweet, I don’t post. Just wake up with 10k sales.' },
-  { name: 'The Chaos Brander', image: 'placeholder7.jpg', text: 'I change brand colors weekly. Built an empire on red flags.' },
-  { name: 'The Soft Life Strategist', image: 'placeholder8.jpg', text: 'I automate everything. Work 3 hrs/week. Still richer than your dad.' },
-  { name: 'The AI Overlord', image: 'placeholder9.jpg', text: 'I don’t work. Just prompt GPT, hit publish, eat grapes.' },
-  { name: 'The Networking Narcissist', image: 'placeholder10.jpg', text: 'I don’t code, I don’t design. Just show up cute and collect investments.' }
+  { name: 'The Visionary', image: 'placeholder1.jpg', text: 'I see the future. Ignore budgets. Manifesting IPO energy with zero plan.', price:20 },
+  { name: 'The Toxic Diva', image: 'placeholder2.jpg', text: 'I gaslight the team, gatekeep the password, girlboss through chaos.', price:20 },
+  { name: 'The Micro-Manager', image: 'placeholder3.jpg', text: 'I hired a team just to redo their work. Slay.', price:20 },
+  { name: 'The Risk Taker', image: 'placeholder4.jpg', text: 'I bet the rent on crypto. Might flop, might buy Mars.', price:20 },
+  { name: 'The Delulu Dreamer', image: 'placeholder5.jpg', text: 'CEO of mood boards and motivational quotes. No product, just vibes.', price:20 },
+  { name: 'The Silent Scaler', image: 'placeholder6.jpg', text: 'I don’t tweet, I don’t post. Just wake up with 10k sales.', price:20 },
+  { name: 'The Chaos Brander', image: 'placeholder7.jpg', text: 'I change brand colors weekly. Built an empire on red flags.', price:20 },
+  { name: 'The Soft Life Strategist', image: 'placeholder8.jpg', text: 'I automate everything. Work 3 hrs/week. Still richer than your dad.', price:20 },
+  { name: 'The AI Overlord', image: 'placeholder9.jpg', text: 'I don’t work. Just prompt GPT, hit publish, eat grapes.', price:20 },
+  { name: 'The Networking Narcissist', image: 'placeholder10.jpg', text: 'I don’t code, I don’t design. Just show up cute and collect investments.', price:20 }
 ];
 
 const drawBtn = document.getElementById('drawCardBtn');
@@ -157,16 +162,27 @@ const payModal = document.getElementById('payModal');
 const modalClose = document.getElementById('modalClose');
 const pfAmount = document.getElementById('pfAmount');
 const pfItemName = document.getElementById('pfItemName');
-const pfProduct = document.getElementById('pfProduct');
+const payModalTitle = document.getElementById('payModalTitle');
 const payBtn = document.getElementById('payBtn');
-const payFullDeckBtn = document.getElementById('payFullDeckBtn');
 
 let currentCard = null;
-let cardDrawn = false;
+let firstDrawDone = false;
 
-// Draw card logic
+// Draw card
 drawBtn.addEventListener('click', ()=>{
-  if(cardDrawn) return; // only 1 free draw
+  if(firstDrawDone){
+    // Show Payfast modal on subsequent draw attempt
+    if(currentCard){
+      pfAmount.value = currentCard.price;
+      pfItemName.value = `Delulu CEO Tarot - ${currentCard.name}`;
+      payBtn.textContent = `Buy Detailed Card ${currentCard.name} for R${currentCard.price}`;
+      payModalTitle.textContent = `Want the full experience of ${currentCard.name}?`;
+      payModal.style.display = 'flex';
+    }
+    return; // prevent drawing another card until purchase
+  }
+
+  // First card draw
   const idx = Math.floor(Math.random()*ceoCards.length);
   currentCard = ceoCards[idx];
   cardImage.src = currentCard.image;
@@ -175,52 +191,27 @@ drawBtn.addEventListener('click', ()=>{
   tarotCard.classList.add('flipped');
   cardName.classList.add('glow');
 
-  cardDrawn = true;
-
-  // Show PayFast modal
-  pfAmount.value = 20;
-  pfItemName.value = `Delulu CEO Tarot - ${currentCard.name}`;
-  pfProduct.value = "single_card";
-  payBtn.textContent = `Buy ${currentCard.name} R20`;
-  payFullDeckBtn.textContent = "Buy Full Deck R100";
-  payModal.style.display = 'flex';
+  firstDrawDone = true; // mark first draw completed
 });
 
-// Prevent card click from drawing again
+// Flip card on click
 tarotCard.addEventListener('click', ()=>{
   tarotCard.classList.toggle('flipped');
   cardName.classList.toggle('glow');
 });
 
-// Modal X button: do not allow closing
-modalClose.addEventListener('click', ()=>{
-  alert("You must purchase to draw more cards!");
-});
-
-// Pay buttons
-payBtn.addEventListener('click', ()=>{
-  document.getElementById('payForm').submit();
-});
-
-payFullDeckBtn.addEventListener('click', ()=>{
-  pfAmount.value = 100;
-  pfItemName.value = "Delulu CEO Tarot - Full Deck";
-  pfProduct.value = "full_deck";
-  document.getElementById('payForm').submit();
-});
-
-// Share
+// Share card
 shareBtn.addEventListener('click', async ()=>{
   if(!currentCard) return alert('Draw a card first!');
-  const canvas=await html2canvas(tarotCard);
+  const canvas = await html2canvas(tarotCard);
   canvas.toBlob(blob=>{
-    const file=new File([blob],'delulu-ceo-card.png',{type:'image/png'});
+    const file = new File([blob],'delulu-ceo-card.png',{type:'image/png'});
     if(navigator.canShare && navigator.canShare({files:[file]})){
       navigator.share({files:[file],title:currentCard.name,text:'Check out my Delulu CEO alter ego!'});
     } else {
-      const link=document.createElement('a');
-      link.href=URL.createObjectURL(blob);
-      link.download='delulu-ceo-card.png';
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'delulu-ceo-card.png';
       link.click();
       alert('Card downloaded! Post it on socials.');
     }
@@ -242,6 +233,11 @@ function createSparkle(){
   setTimeout(()=>s.remove(),1000);
 }
 setInterval(createSparkle,200);
+
+// Close modal
+modalClose.addEventListener('click',()=>{
+  payModal.style.display='none';
+});
 </script>
 </body>
 </html>
