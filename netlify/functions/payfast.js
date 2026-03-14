@@ -94,7 +94,7 @@ exports.handler = async function(event) {
         case "delulu_single": amount = 20; item_name = "Delulu CEO Tarot Single Card"; break;
         case "delulu_full": amount = 100; item_name = "Delulu CEO Tarot Full Deck"; break;
 
-        // Narcissist Full Report
+        // Narcissist Full Report ✅ Added
         case "narcissist_full": amount = 20; item_name = "Narcissist Full Report"; break;
 
         // Next Quiz Unlock
