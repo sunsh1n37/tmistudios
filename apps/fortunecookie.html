@@ -639,23 +639,47 @@ generateBtn.onclick = () => {
 };
 
 // PAYMODAL
-let selectedPack=null;
-let selectedAmount=0;
-function openPay(pack,amount){
-  selectedPack=pack;
-  selectedAmount=amount;
-  document.getElementById('modalTitle').textContent = pack.charAt(0).toUpperCase() + pack.slice(1) + " Pack";
-  document.getElementById('modalPrice').textContent = "R"+amount+" · today only";
-  document.getElementById('payModal').style.display="flex";
+let selectedPack = null;
+let selectedAmount = 0;
+
+function openPay(pack, amount) {
+  selectedPack = pack;
+  selectedAmount = amount;
+
+  // Proper title for modal
+  document.getElementById('modalTitle').textContent = 
+    pack.charAt(0).toUpperCase() + pack.slice(1) + " Pack";
+  document.getElementById('modalPrice').textContent = "R" + amount + " · today only";
+  document.getElementById('payModal').style.display = "flex";
 }
-function closeModal(){ document.getElementById('payModal').style.display="none"; }
-document.getElementById('confirmPay').onclick = ()=>{
-  if(!selectedPack) return;
-  const url = `https://www.payfast.co.za/eng/process?merchant_id=YOUR_MERCHANT_ID&amount=${selectedAmount}&item_name=${encodeURIComponent(selectedPack+' pack')}`;
-  window.open(url,'_blank');
-  if(!unlockedPacks.includes(selectedPack)) unlockedPacks.push(selectedPack);
+
+function closeModal() {
+  document.getElementById('payModal').style.display = "none";
+}
+
+document.getElementById('confirmPay').onclick = () => {
+  if (!selectedPack) return;
+
+  // === FIXED URL ===
+  const PAYFAST_MERCHANT_ID = "YOUR_ACTUAL_MERCHANT_ID"; // <-- replace this with your real ID
+  const itemNameMap = {
+    extra_crack: "Chaos Cookie Extra Crack",
+    unlimited: "Chaos Cookie Unlimited (Today)",
+    love: "Chaos Cookie Love Pack",
+    money: "Chaos Cookie Money Pack",
+    petty: "Chaos Cookie Petty Pack",
+    unhinged: "Chaos Cookie Unhinged Pack"
+  };
+
+  const url = `https://www.payfast.co.za/eng/process?merchant_id=${PAYFAST_MERCHANT_ID}&amount=${selectedAmount}&item_name=${encodeURIComponent(itemNameMap[selectedPack])}`;
+
+  window.open(url, '_blank');
+
+  // Unlock pack locally after purchase
+  if (!unlockedPacks.includes(selectedPack)) unlockedPacks.push(selectedPack);
+
   closeModal();
-  alert(selectedPack + " unlocked for today!");
+  alert(itemNameMap[selectedPack] + " unlocked for today!");
 };
 
 // DOWNLOAD IMAGE WITH BRANDING
