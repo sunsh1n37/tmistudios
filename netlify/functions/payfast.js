@@ -9,7 +9,9 @@ exports.handler = async function(event) {
     };
   }
 
+  // ---------------------------
   // IPN Verification
+  // ---------------------------
   if (event.httpMethod === "POST" && event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
     const body = event.body;
     const querystring = require('querystring');
@@ -40,7 +42,7 @@ exports.handler = async function(event) {
   // ---------------------------
   const params = event.queryStringParameters || {};
   const tier = params.tier;        // DollFin subscription
-  const product = params.product;  // Chaos Cookie or Delulu CEO
+  const product = params.product;  // Chaos Cookie, Delulu CEO, Narcissist quiz
   const PAYFAST_URL = "https://www.payfast.co.za/eng/process";
   let payfastUrl = "";
 
@@ -66,7 +68,7 @@ exports.handler = async function(event) {
       `&cycles=0`;
   }
 
-  // Chaos Cookie & Delulu CEO Purchases
+  // Chaos Cookie, Delulu CEO, Narcissist purchases
   if (product) {
     let amount = 0;
     let item_name = "";
@@ -83,6 +85,9 @@ exports.handler = async function(event) {
       // Delulu CEO Tarot
       case "delulu_single": amount = 20; item_name = "Delulu CEO Tarot Single Card"; break;
       case "delulu_full": amount = 100; item_name = "Delulu CEO Tarot Full Deck"; break;
+
+      // New: Narcissist Full Report
+      case "narcissist_full": amount = 20; item_name = "Narcissist Full Report"; break;
 
       default: return { statusCode: 400, body: "Invalid product" };
     }
