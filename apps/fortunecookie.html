@@ -637,7 +637,6 @@ generateBtn.onclick = () => {
 
   markCrackToday();
 };
-
 // PAYMODAL
 let selectedPack = null;
 let selectedAmount = 0;
@@ -646,7 +645,7 @@ function openPay(pack, amount) {
   selectedPack = pack;
   selectedAmount = amount;
 
-  // Proper title for modal
+  // Set modal title and price
   document.getElementById('modalTitle').textContent = 
     pack.charAt(0).toUpperCase() + pack.slice(1) + " Pack";
   document.getElementById('modalPrice').textContent = "R" + amount + " · today only";
@@ -657,29 +656,37 @@ function closeModal() {
   document.getElementById('payModal').style.display = "none";
 }
 
-document.getElementById('confirmPay').onclick = () => {
+document.getElementById('confirmPay').onclick = async () => {
   if (!selectedPack) return;
 
-  // === FIXED URL ===
-  const PAYFAST_MERCHANT_ID = "YOUR_ACTUAL_MERCHANT_ID"; // <-- replace this with your real ID
-  const itemNameMap = {
-    extra_crack: "Chaos Cookie Extra Crack",
-    unlimited: "Chaos Cookie Unlimited (Today)",
-    love: "Chaos Cookie Love Pack",
-    money: "Chaos Cookie Money Pack",
-    petty: "Chaos Cookie Petty Pack",
-    unhinged: "Chaos Cookie Unhinged Pack"
-  };
+  try {
+    // Call your Netlify function that contains hidden merchant ID & key
+    const res = await fetch("/.netlify/functions/payfast", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pack: selectedPack, amount: selectedAmount })
+    });
 
-  const url = `https://www.payfast.co.za/eng/process?merchant_id=${PAYFAST_MERCHANT_ID}&amount=${selectedAmount}&item_name=${encodeURIComponent(itemNameMap[selectedPack])}`;
+    const data = await res.json();
 
-  window.open(url, '_blank');
+    if (data.url) {
+      // Open PayFast checkout
+      window.open(data.url, "_blank");
 
-  // Unlock pack locally after purchase
-  if (!unlockedPacks.includes(selectedPack)) unlockedPacks.push(selectedPack);
+      // Unlock pack locally after purchase
+      if (!unlockedPacks.includes(selectedPack)) unlockedPacks.push(selectedPack);
 
-  closeModal();
-  alert(itemNameMap[selectedPack] + " unlocked for today!");
+      closeModal();
+      alert(`"${selectedPack}" unlocked for today!`);
+    } else {
+      console.error(data);
+      alert("Failed to generate payment link. Check console.");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Error initiating payment. Check console.");
+  }
 };
 
 // DOWNLOAD IMAGE WITH BRANDING
