@@ -74,6 +74,7 @@ exports.handler = async function(event) {
     let item_name = "";
 
     switch (product) {
+
       // Chaos Cookie
       case "extra_crack": amount = 5; item_name = "Chaos Cookie Extra Crack"; break;
       case "unlimited": amount = 20; item_name = "Chaos Cookie Unlimited (Today)"; break;
@@ -86,8 +87,11 @@ exports.handler = async function(event) {
       case "delulu_single": amount = 20; item_name = "Delulu CEO Tarot Single Card"; break;
       case "delulu_full": amount = 100; item_name = "Delulu CEO Tarot Full Deck"; break;
 
-      // New: Narcissist Full Report
+      // Narcissist Full Report
       case "narcissist_full": amount = 20; item_name = "Narcissist Full Report"; break;
+
+      // NEW: Situationship / Next Quiz Unlock
+      case "next_quiz_r19": amount = 19; item_name = "Unlock Next Quiz"; break;
 
       default: return { statusCode: 400, body: "Invalid product" };
     }
