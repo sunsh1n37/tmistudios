@@ -305,24 +305,56 @@ updateShare(text)
 function openModal(){document.getElementById("modalOverlay").style.display="flex";}
 function closeModal(){document.getElementById("modalOverlay").style.display="none";}
 
-// PAYFAST SIMULATION
+// ---------------------------
+// LIVE PAYFAST INTEGRATION
+// ---------------------------
 function updatePayfast(){
-  const btn=document.getElementById("payfastBtn")
-  btn.href="#";
-  btn.onclick = function(e){
+  const btn=document.getElementById("payfastBtn");
+  const email = localStorage.getItem("quizEmail");
+  if(!email){alert("Please enter your email first 💅"); return;}
+  btn.onclick = async function(e){
     e.preventDefault();
-    setTimeout(paymentConfirmed, 2000);
-  };
+    btn.querySelector("button").disabled = true;
+    btn.querySelector("button").textContent = "Processing...";
+    
+    try{
+      const res = await fetch("/.netlify/functions/payfast", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product: "narcissist_full", email })
+      });
+      const data = await res.json();
+      if(data.url){
+        // Open PayFast page
+        window.location.href = data.url;
+      } else {
+        alert("Error generating payment link 😢");
+        btn.querySelector("button").disabled = false;
+        btn.querySelector("button").textContent = "Pay R20 to Unlock";
+      }
+    }catch(err){
+      console.error(err);
+      alert("Network error 😢 Try again");
+      btn.querySelector("button").disabled = false;
+      btn.querySelector("button").textContent = "Pay R20 to Unlock";
+    }
+  }
 }
 
-function paymentConfirmed(){
-  const modal = document.getElementById("modalContent");
-  modal.innerHTML = `<button class="close-modal" onclick="closeModal()">×</button>
-  <h3>Full Narcissist Report</h3>
-  <p>✅ Payment received! Download your full report below:</p>
-  <a href="full-narcissist-report.pdf" download>
-    <button><i class="fas fa-file-download"></i> Download PDF</button>
-  </a>`;
+// After returning from PayFast, check payment status
+async function checkPayment(){
+  const urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.get("success")==="true" && urlParams.get("product")==="narcissist_full"){
+    // Mark payment as complete and show download
+    const modal = document.getElementById("modalContent");
+    modal.innerHTML = `<button class="close-modal" onclick="closeModal()">×</button>
+    <h3>Full Narcissist Report</h3>
+    <p>✅ Payment received! Download your full report below:</p>
+    <a href="full-narcissist-report.pdf" download>
+      <button><i class="fas fa-file-download"></i> Download PDF</button>
+    </a>`;
+    document.getElementById("unlockSection").style.display="none";
+  }
 }
 
 // SOCIAL SHARING
@@ -333,6 +365,7 @@ document.getElementById("whatsappShare").href="https://wa.me/?text="+encoded
 }
 
 showQuestion();
+checkPayment();
 </script>
 
 </body>
