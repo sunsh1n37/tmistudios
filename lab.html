@@ -7,56 +7,149 @@
 <meta name="description" content="TMI Lab — Experiments in viral chaos, interactive concepts, and creative mischief. Join our Lab channel for exclusive previews.">
 <meta name="robots" content="index, follow">
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9744535609211271"
-     crossorigin="anonymous"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
-:root { --cyan:#00ffff; --magenta:#ff00ff; --purple:#a855f7; }
-body { margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%); }
-a { transition: color 0.3s ease; } a:hover { color:#d8b4fe; }
-nav a { color:#fff !important; margin-right:.75rem; font-weight:700; } 
-footer a { color:#fff !important; text-decoration:none; } 
-footer a:hover { color:#ccc !important; }
+:root {
+  --cyan:#00ffff;
+  --magenta:#ff00ff;
+  --purple:#a855f7;
+  --dark-bg:#0d0d1a;
+  --dark-card:#1a1a1a;
+  --light-text:#fff;
+  --soft-text:#ccc;
+}
 
-.hero-title { font-size:3rem; font-weight:700; background:linear-gradient(135deg,#fff,#c0c0c0,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:2px 2px 5px rgba(255,255,255,.25);}
-.hero-sub { font-size:1.2rem; text-shadow:0 0 8px var(--cyan); font-weight:700; margin-top:1rem; }
+/* GLOBAL */
+body {
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  color: var(--light-text);
+  background: radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%);
+  text-align:center;
+  padding:1rem;
+}
+a { color:inherit; text-decoration:none; transition:0.3s; }
+a:hover { color: var(--magenta); }
 
-#chaos-container { position:relative; width:100%; height:200px; margin:3rem 0; overflow:hidden; }
-.emoji { position:absolute; font-size:2rem; user-select:none; pointer-events:none; animation:float 8s linear infinite; }
+/* NAV */
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#111;
+  padding:.75rem 1rem;
+  position: sticky;
+  top:0;
+  z-index:100;
+}
+nav .logo a { font-weight:700; font-size:1.1rem; color:#fff; }
+nav .menu { font-size:1.5rem; cursor:pointer; user-select:none; color:#fff; }
+nav .dropdown {
+  display:none;
+  position:absolute;
+  top:40px;
+  right:0;
+  background:#181820;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+nav .dropdown a {
+  display:block;
+  padding:.75rem 1rem;
+  color:#fff;
+}
+nav .dropdown a:hover { background:#222; }
+
+/* HERO */
+.hero-title { font-size:2rem; font-weight:700; background:linear-gradient(135deg,#fff,#c0c0c0,#fff); -webkit-background-clip:text; background-clip:text; color:transparent; margin:.5rem 0;}
+.hero-sub { font-size:1rem; font-weight:500; color:var(--cyan); margin-bottom:2rem; }
+
+/* CHAOS EMOJIS */
+#chaos-container { position:relative; width:100%; height:150px; overflow:hidden; margin:2rem 0; }
+.emoji {
+  position:absolute;
+  font-size:1.5rem;
+  user-select:none;
+  pointer-events:none;
+  animation:float 8s linear infinite;
+}
 @keyframes float {
   0% { transform: translateY(100%); opacity:0; }
   10% { opacity:1; }
   100% { transform: translateY(-10%); opacity:0; }
 }
 
-#whatsapp-tile { max-width:360px; margin:2rem auto; background:rgba(255,255,255,0.05); border:2px solid var(--purple); border-radius:12px; padding:1.25rem; text-align:center; box-shadow:0 0 10px #8b5cf6; }
-#whatsapp-tile a { margin-top:0.75rem; background:var(--purple); color:#fff; padding:.6rem 1.25rem; border-radius:8px; font-weight:bold; display:inline-block; text-decoration:none; }
+/* SECTION TITLES */
+.section-title { font-size:1.5rem; font-weight:700; margin:1rem 0; color:var(--cyan); }
 
-.section-title { font-size:1.75rem; font-weight:700; text-align:center; margin-bottom:1rem; color:var(--cyan); }
+/* CARDS */
+.card-container { display:flex; overflow-x:auto; gap:1rem; padding:1rem; scroll-behavior:smooth; }
+.card-container::-webkit-scrollbar { height:6px; }
+.card-container::-webkit-scrollbar-track { background:#111; }
+.card-container::-webkit-scrollbar-thumb { background:var(--purple); border-radius:3px; }
 
-.game-card, .quiz-card { display:inline-block; width:200px; margin-right:1rem; background:#1a1a1a; border-radius:12px; overflow:hidden; border:2px solid #000; text-align:center; flex: 0 0 auto; }
-.game-card img, .quiz-card img { width:100%; height:140px; object-fit:cover; display:block; }
-.game-card button, .quiz-card button { background:var(--purple); color:white; border:none; padding:.7rem 1rem; margin:.5rem; border-radius:6px; cursor:not-allowed; font-weight:bold; min-width:140px; }
-.games, .quizzes { display:flex; overflow-x:auto; white-space:nowrap; padding:1rem; gap:1rem; scroll-behavior:smooth; }
-
-.games::-webkit-scrollbar, .quizzes::-webkit-scrollbar { height:6px; }
-.games::-webkit-scrollbar-track, .quizzes::-webkit-scrollbar-track { background:#111; }
-.games::-webkit-scrollbar-thumb, .quizzes::-webkit-scrollbar-thumb { background:var(--purple); border-radius:3px; }
-
-@media (max-width:480px){
-  .game-card button, .quiz-card button { padding:.5rem .7rem; font-size:.9rem; min-width:120px; }
+.card {
+  flex:0 0 200px;
+  background:var(--dark-card);
+  border-radius:12px;
+  overflow:hidden;
+  text-align:center;
+  border:2px solid #000;
 }
-/* Footer */
-.skinny-footer { background: transparent; color:#e5e7eb; text-align:center; padding:20px 10px; font-size:14px; }
+.card img { width:100%; height:140px; object-fit:cover; display:block; }
+.card h3 { font-size:1rem; margin:.5rem 0; }
+.card p { font-size:.85rem; color:var(--soft-text); padding:0 .5rem; min-height:40px; }
+.card button {
+  background:var(--purple);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  margin:.5rem 0;
+  padding:.5rem 1rem;
+  font-weight:bold;
+  cursor:not-allowed;
+}
+
+/* CTA */
+#whatsapp-tile {
+  max-width:360px;
+  margin:2rem auto;
+  background:rgba(255,255,255,0.05);
+  border:2px solid var(--purple);
+  border-radius:12px;
+  padding:1.25rem;
+  text-align:center;
+  box-shadow:0 0 10px #8b5cf6;
+}
+#whatsapp-tile a {
+  margin-top:.75rem;
+  background:var(--purple);
+  color:#fff;
+  padding:.6rem 1.25rem;
+  border-radius:8px;
+  font-weight:bold;
+  display:inline-block;
+}
+
+/* FOOTER */
+.skinny-footer {
+  background: transparent;
+  color:#e5e7eb;
+  text-align:center;
+  padding:20px 10px;
+  font-size:14px;
+}
 .skinny-footer .footer-socials { margin-bottom:8px; }
-.skinny-footer .footer-socials a { margin:0 6px; color:#e5e7eb; text-decoration:none; font-size:16px; }
+.skinny-footer .footer-socials a { margin:0 6px; color:#e5e7eb; font-size:16px; }
 .skinny-footer .footer-links { margin-top:6px; font-size:13px; }
 .skinny-footer .footer-links a { color:#e5e7eb; margin:0 4px; }
 
+/* RESPONSIVE */
+@media(min-width:600px){ .hero-title{font-size:2.5rem;} }
+@media(min-width:768px){ .card-container{gap:1.5rem;} .card{flex:0 0 220px;} }
 </style>
 </head>
 <body>
@@ -65,133 +158,109 @@ footer a:hover { color:#ccc !important; }
   <div class="logo"><a href="index.html">TMI Studios</a></div>
   <div class="menu" id="hamburger">☰
     <div class="dropdown" id="menuDropdown">
-   <a href="arcade.html">🎮 Arcade</a>
-   <a href="news.html">📰 TMI News</a>
-   <a href="packages.html">📦 Packages</a>
-   <a href="aboutus.htm"l>🦄 About Us</a>
-   <a href="contactus.html">📧 Contact Us</a>
+      <a href="arcade.html">🎮 Arcade</a>
+      <a href="news.html">📰 TMI News</a>
+      <a href="packages.html">📦 Packages</a>
+      <a href="aboutus.html">🦄 About Us</a>
+      <a href="contactus.html">📧 Contact Us</a>
     </div>
   </div>
 </nav>
 
-<style>
-/* NAV */
-nav { position: sticky; top: 0; background: #111; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
-nav .logo a { color: #fff; font-weight: 700; text-decoration: none; font-size: 20px; }
-nav .menu { position: relative; cursor: pointer; font-size: 22px; color: #fff; user-select: none; }
-nav .dropdown { display: none; position: absolute; top: 36px; right: 0; background: #181820; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-nav .dropdown a { display: block; padding: 10px 16px; color: #fff; text-decoration: none; }
-nav .dropdown a:hover { background: #222; }
-</style>
-
-<section style="text-align:center; padding:4rem 1rem 1rem;">
+<section>
   <h1 class="hero-title">TMI Lab</h1>
   <p class="hero-sub">Experiments in chaos, viral concepts & interactive mischief.</p>
 </section>
 
 <div id="chaos-container"></div>
 
-
-<!-- Featured Live Experiment -->
-<section style="text-align:center; padding:2rem 1rem;">
-  <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:0.5rem;"> 🐬 DollFin</h1>
-  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:600px; margin:0 auto 1rem;">
-    Discover your Soft Life Score with DollFin! Calculate your spending, lifestyle, and investments to see where you stand. Unlock tips, downloadable budget sheets, and wealth-building guidance as you upgrade. Perfect for playful financial fun on your phone or desktop.
-  </p>
-  <div style="max-width:300px; margin:0 auto;">
-    <img src="https://i.ibb.co/4ZhpjzdM/file-000000000dcc71fb8b63265beba372c9.png" alt="DollFin" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-    <a href="apps/dollfin.html"><button style="margin-top:1rem; background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold;">Play Now</button></a>
+<!-- Toxic Relationship Lab -->
+<section>
+  <h2 class="section-title">Toxic Relationship Lab 🚩</h2>
+  <p style="max-width:600px;margin:auto;color:#ccc;">A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior. Take one… or take them all if you're brave.</p>
+  <div style="max-width:300px;margin:1.5rem auto;">
+    <img src="images/redflagquiz.png" style="width:100%; border-radius:12px;">
+    <a href="apps/relationshiplab.html">
+      <button>Enter the Lab</button>
+    </a>
   </div>
 </section>
 
+<!-- App Library -->
+<section>
+  <h2 class="section-title">App Library</h2>
 
-<!-- Featured Live Experiment -->
-<section style="text-align:center; padding:2rem 1rem;">
-  <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:0.5rem;">Chaos Cookie</h1>
-  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:600px; margin:0 auto 1rem;">
-    Try our latest interactive experiment: Chaos Cookie generates unpredictable fortunes that keep players coming back for laughs, surprises, and chaotic fun. Perfect for short bursts of entertainment on your phone or desktop.
-  </p>
-  <div style="max-width:300px; margin:0 auto;">
-    <img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg" alt="Chaos Cookie" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-    <a href="apps/fortunecookie.html"><button style="margin-top:1rem; background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold;">Play Now</button></a>
-  </div>
-</section>
-
-<!-- Featured Live Experiment -->
-<section style="text-align:center; padding:2rem 1rem;">
-  <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:0.5rem;">Delulu CEO Tarot</h1>
-  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:600px; margin:0 auto 1rem;">
-    Peek into your CEO energy with Delulu CEO Tarot! Draw cards to reveal your daily hustle, ambition, and chaos vibes. Perfect for quick, playful insights into your business intuition and personal power.
-  </p>
-  <div style="max-width:300px; margin:0 auto;">
-    <img src="https://i.ibb.co/1tfJjmtm/file-00000000870071fbaf4d82f88a6aa1a5.png" alt="Delulu CEO Tarot" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-    <a href="apps/deluluceotarot.html"><button style="margin-top:1rem; background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold;">Play Now</button></a>
-  </div>
-</section>
-
-
-<!-- Featured Live Experiment -->
-<section style="text-align:center; padding:2rem 1rem;">
-  <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:0.5rem;">Cute Quotes</h1>
-  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:600px; margin:0 auto 1rem;">
-    Create your own inspiring or funny quotes! Customize backgrounds, fonts, emojis, and download your personal cute quote images. Perfect for sharing with friends or posting on social media.
-  </p>
-  <div style="max-width:300px; margin:0 auto;">
-    <img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png alt="Cute Quotes" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-    <a href="apps/cutequote.html"><button style="margin-top:1rem; background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold;">Create Now</button></a>
-  </div>
-</section>
-
-<!-- Featured Live Experiment -->
-<section style="text-align:center; padding:2rem 1rem;">
-  <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:0.5rem;">Bible Verses</h1>
-  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:600px; margin:0 auto 1rem;">
-    Create your own personalized daily bible quotes! Generate a birthday card with a bible quote. Perfect for sharing with friends and posting on social media.
-  </p>
-  <div style="max-width:300px; margin:0 auto;">
-    <img src="https://i.ibb.co/dw5kNYfW/file-00000000d16071fda716a8a922684b8b.png alt="Bible Quotes" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-    <a href="apps/bibleverses.html"><button style="margin-top:1rem; background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold;">Open</button></a>
-  </div>
-</section>
-
-<!-- Featured Live Experiment -->
-<section style="text-align:center; padding:2rem 1rem;">
-  <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:0.5rem;">MemeRize</h1>
-  <p style="font-size:1rem; font-weight:500; color:#ccc; max-width:600px; margin:0 auto 1rem;">
-    Turn any image into a hilarious meme instantly! Customize text, fonts, and colors, then download or share your creation. MemeRize is your personal meme generator for chaos and laughs.
-  </p>
-  <div style="max-width:300px; margin:0 auto;">
-    <img src="https://i.ibb.co/23Tt4Byw/file-00000000be4c71f8bf71dad2bf5df697.png" alt="MemeRize" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-    <a href="apps/memelab.html"><button style="margin-top:1rem; background:var(--purple); color:#fff; padding:.7rem 1.2rem; border-radius:8px; font-weight:bold;">Create Now</button></a>
-  </div>
-</section>
-
-
-<!-- Pre-Launch Chaos Section -->
-<section style="text-align:center; padding:2rem 1rem;">
-  <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:0.5rem;">Pre-Launch Chaos</h1>
-
-    <!-- Near-launch Quizzes -->
-    <div class="quiz-card">
-      <img src="images/quiz1.jpeg" alt="TMI Tarot" style="width:100%; height:150px; object-fit:cover;">
-      <div style="padding:.5rem; font-weight:700;">TMI Tarot</div>
-      <button style="margin-bottom:.5rem;">Coming Soon</button>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://i.ibb.co/4ZhpjzdM/file-000000000dcc71fb8b63265beba372c9.png" alt="DollFin">
+      <h3>DollFin</h3>
+      <p>Discover your Soft Life Score: spending, lifestyle & investments. Playful financial fun.</p>
+      <button>Play Now</button>
     </div>
-    <div class="quiz-card">
-      <img src="images/quiz2.jpeg" alt="TMI Dare" style="width:100%; height:150px; object-fit:cover;">
-      <div style="padding:.5rem; font-weight:700;">TMI Dare</div>
-      <button style="margin-bottom:.5rem;">Coming Soon</button>
+
+    <div class="card">
+      <img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg" alt="Chaos Cookie">
+      <h3>Chaos Cookie</h3>
+      <p>Generates unpredictable fortunes that keep players coming back for laughs and surprises.</p>
+      <button>Play Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://i.ibb.co/1tfJjmtm/file-00000000870071fbaf4d82f88a6aa1a5.png" alt="Delulu CEO Tarot">
+      <h3>Delulu CEO Tarot</h3>
+      <p>Peek into your CEO energy with daily cards revealing ambition, hustle & chaos vibes.</p>
+      <button>Play Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png" alt="Cute Quotes">
+      <h3>Cute Quotes</h3>
+      <p>Create your own quotes! Customize fonts, backgrounds, emojis, and download them.</p>
+      <button>Create Now</button>
+    </div>
+
+    <div class="card">
+      <img src="https://i.ibb.co/dw5kNYfW/file-00000000d16071fda716a8a922684b8b.png" alt="Bible Verses">
+      <h3>Bible Verses</h3>
+      <p>Generate daily bible quotes or birthday cards to share with friends & socials.</p>
+      <button>Open</button>
     </div>
   </div>
 </section>
 
-<!-- WhatsApp Lab CTA -->
+<!-- More Apps -->
+<section>
+  <h2 class="section-title">More Apps</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://i.ibb.co/23Tt4Byw/file-00000000be4c71f8bf71dad2bf5df697.png" alt="MemeRize">
+      <h3>MemeRize</h3>
+      <p>Turn any image into a hilarious meme instantly. Customize text, colors, download & share.</p>
+      <button>Coming Soon</button>
+    </div>
+    <div class="card">
+      <img src="images/quiz1.jpeg" alt="TMI Tarot">
+      <h3>TMI Tarot</h3>
+      <p>Discover chaotic tarot insights into your love life, friendships, and vibes.</p>
+      <button>Coming Soon</button>
+    </div>
+    <div class="card">
+      <img src="images/quiz2.jpeg" alt="TMI Dare">
+      <h3>TMI Dare</h3>
+      <p>Play daring quizzes & challenges to expose your friends’ hidden chaos tendencies.</p>
+      <button>Coming Soon</button>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp CTA -->
 <div id="whatsapp-tile">
   <div style="font-weight:bold;">Join Our WhatsApp Channel</div>
-  <div style="margin-top:.5rem;">Get your daily dose of chaos quizzes, memes & the occasional brain rot 😛</div>
+  <div style="margin-top:.5rem;">Get daily chaos quizzes, memes & brain rot 😛</div>
   <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank">Join Now 💬</a>
 </div>
 
+<!-- Footer -->
 <footer class="skinny-footer">
   <div class="footer-socials">
     <a href="https://tinyurl.com/mwfd4d73"><i class="fab fa-tiktok"></i></a>
@@ -211,39 +280,23 @@ nav .dropdown a:hover { background: #222; }
 // Floating emojis
 const container = document.getElementById('chaos-container');
 const emojis = ['🔥','💀','🤯','⚡','💌','🎲','🫠','💎','🎮','🤡'];
-
-function spawnEmoji() {
-  const emojiEl = document.createElement('div');
-  emojiEl.className = 'emoji';
-  emojiEl.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-  emojiEl.style.left = Math.random() * 90 + '%';
-  emojiEl.style.fontSize = (Math.random() * 2 + 1) + 'rem';
-  emojiEl.style.animationDuration = (6 + Math.random() * 4) + 's';
-  container.appendChild(emojiEl);
-  setTimeout(() => emojiEl.remove(), 10000);
+function spawnEmoji(){
+  const e = document.createElement('div');
+  e.className='emoji';
+  e.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*90+'%';
+  e.style.fontSize=(Math.random()*2+1)+'rem';
+  e.style.animationDuration=(6+Math.random()*4)+'s';
+  container.appendChild(e);
+  setTimeout(()=>e.remove(),10000);
 }
+setInterval(spawnEmoji,400);
 
-setInterval(spawnEmoji, 400);
-</script>
-
-<script>
+// Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const menuDropdown = document.getElementById('menuDropdown');
-
-hamburger.addEventListener('click', () => {
-  if (menuDropdown.style.display === 'block') {
-    menuDropdown.style.display = 'none';
-  } else {
-    menuDropdown.style.display = 'block';
-  }
-});
-
-// Optional: click outside to close dropdown
-document.addEventListener('click', (e) => {
-  if (!hamburger.contains(e.target)) {
-    menuDropdown.style.display = 'none';
-  }
-});
+hamburger.addEventListener('click',()=>{menuDropdown.style.display=(menuDropdown.style.display==='block'?'none':'block');});
+document.addEventListener('click',(e)=>{if(!hamburger.contains(e.target)) menuDropdown.style.display='none';});
 </script>
 
 </body>
