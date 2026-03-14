@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Situationship Status Quiz 🔍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+
+:root{
+--main:#ff4d6d;
+--accent:#c9184a;
+--soft:#fff0f5;
+--footer-text:#5c2c3c;
+}
+
+body{
+font-family:'Segoe UI',sans-serif;
+margin:0;
+padding:2rem;
+background:#fff0f5;
+color:#2b2b2b;
+max-width:600px;
+margin:auto;
+}
+
+body.dark{
+background:#1a0033;
+color:white;
+}
+
+/* NAV */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+padding:.75rem 1rem;
+}
+
+nav a{
+text-decoration:none;
+margin:0 10px;
+color:#2b2b2b;
+font-weight:600;
+}
+
+body.dark nav a{color:white}
+
+.menu{
+font-size:1.5rem;
+cursor:pointer;
+}
+
+/* HEADER */
+
+h1{
+text-align:center;
+font-family:'Pacifico';
+color:var(--main);
+}
+
+h2{
+text-align:center;
+font-size:1rem;
+color:#8e3b46;
+}
+
+/* QUIZ CONTAINER */
+
+#quiz-container{
+margin-top:1rem;
+background:white;
+border-radius:16px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+padding:2rem;
+text-align:center;
+}
+
+body.dark #quiz-container{
+background:#2a003f;
+}
+
+/* OPTIONS */
+
+.option{
+background:#ffe2e6;
+border-radius:10px;
+padding:.9rem;
+margin-bottom:.6rem;
+cursor:pointer;
+}
+
+.option:hover{
+background:#ffc2d1;
+}
+
+/* PROGRESS */
+
+#progressBar{
+width:100%;
+background:#f8c1d8;
+height:20px;
+border-radius:10px;
+margin-top:20px;
+overflow:hidden;
+}
+
+#progress{
+height:100%;
+background:var(--main);
+width:0%;
+}
+
+/* PAYWALL */
+
+#nextQuizBtn{
+display:none;
+margin:15px auto;
+padding:12px 20px;
+border:none;
+border-radius:25px;
+background:linear-gradient(135deg,#ff4d6d,#c9184a);
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+/* SHARE CARD */
+
+#shareCard{
+display:none;
+margin-top:20px;
+padding:30px;
+border-radius:20px;
+background:linear-gradient(135deg,#ff4d6d,#ff758f,#c9184a);
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+#shareCard h3{
+margin:0 0 10px 0;
+font-size:1.5rem;
+}
+
+#shareCard img{
+max-width:100%;
+border-radius:12px;
+margin-top:10px;
+}
+
+.brand{
+margin-top:15px;
+font-size:.85rem;
+opacity:.9;
+}
+
+/* RESULT ACTIONS */
+
+#resultActions{
+display:none;
+margin-top:12px;
+}
+
+.share-btn{
+background:var(--main);
+color:white;
+border:none;
+border-radius:8px;
+padding:.6rem 1rem;
+margin:4px;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+.skinny-footer{
+background:transparent;
+color:var(--footer-text);
+text-align:center;
+padding:20px 10px;
+font-size:14px;
+}
+
+.footer-links a{
+color:var(--footer-text);
+margin:0 4px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+<a href="index.html">Home</a>
+<a href="arcade.html">Arcade</a>
+<a href="toxiclab.html">Quizzes</a>
+<a href="lab.html">Lab</a>
+<div class="menu">☰</div>
+</nav>
+
+<h1>Is It Love or Delulu?</h1>
+<h2>This quiz will expose the vibes. No sugarcoating. 👀</h2>
+
+<div id="quiz-container"></div>
+
+<div id="progressBar"><div id="progress"></div></div>
+
+<button id="nextQuizBtn" onclick="unlockNextQuiz()">🔒 Unlock Next Quiz – R19</button>
+
+<!-- SHARE CARD -->
+
+<div id="shareCard">
+<h3 id="cardResult"></h3>
+<p id="cardScore"></p>
+<img id="cardImg">
+<div class="brand">Made by TMI Studios • tmistudios.xyz</div>
+</div>
+
+<div id="resultActions">
+<button class="share-btn" onclick="downloadResult()">Download Result</button>
+<button class="share-btn" onclick="shareWhatsApp()">Share WhatsApp</button>
+<button class="share-btn" onclick="shareTwitter()">Share Twitter</button>
+</div>
+
+<!-- FOOTER -->
+
+<footer class="skinny-footer">
+<p>© 2026 TMI Studios</p>
+<nav class="footer-links">
+<a href="arcade.html">Arcade</a> ·
+<a href="faq.html">FAQ</a> ·
+<a href="privacy.html">Privacy</a> ·
+<a href="terms.html">Terms</a>
+</nav>
+</footer>
+
+<script>
+
+const questions=[
+{question:"How often do you two actually make plans?",options:[
+{text:"We plan vibes but never link",score:2},
+{text:"Only after 11PM",score:1},
+{text:"Actual dates regularly",score:0}
+]},
+{question:"Have you met their friends?",options:[
+{text:"Never",score:2},
+{text:"Only the boys",score:1},
+{text:"Yes properly",score:0}
+]},
+{question:"Future talk?",options:[
+{text:"They disappear",score:2},
+{text:"They dodge it",score:1},
+{text:"We discuss it",score:0}
+]},
+{question:"Your label?",options:[
+{text:"Friend???",score:2},
+{text:"We're chilling",score:1},
+{text:"Partner",score:0}
+]},
+{question:"Text consistency?",options:[
+{text:"Only when bored",score:2},
+{text:"Inconsistent",score:1},
+{text:"Daily",score:0}
+]}
+]
+
+let currentQuestion=0
+let totalScore=0
+
+function showQuestion(){
+
+const container=document.getElementById("quiz-container")
+container.innerHTML=""
+
+if(currentQuestion<questions.length){
+
+const q=questions[currentQuestion]
+
+const qDiv=document.createElement("div")
+qDiv.innerHTML="<b>"+q.question+"</b>"
+
+container.appendChild(qDiv)
+
+q.options.forEach(opt=>{
+
+const btn=document.createElement("div")
+btn.className="option"
+btn.innerText=opt.text
+
+btn.onclick=()=>{
+totalScore+=opt.score
+currentQuestion++
+updateProgressBar()
+showQuestion()
+}
+
+container.appendChild(btn)
+
+})
+
+}else{
+showResult()
+document.getElementById("nextQuizBtn").style.display="block"
+}
+
+}
+
+function updateProgressBar(){
+const percent=(currentQuestion/questions.length)*100
+document.getElementById("progress").style.width=percent+"%"
+}
+
+function showResult(){
+
+const percentage=Math.round((totalScore/(questions.length*2))*100)
+
+let result=""
+let gif=1
+
+if(totalScore>=9){result="🚩 Deep in Delulu Territory";gif=1}
+else if(totalScore>=7){result="😬 Ghosting Risk";gif=2}
+else if(totalScore>=5){result="⚠️ Situationship Zone";gif=3}
+else if(totalScore>=3){result="💖 Might Be Real";gif=4}
+else{result="🌟 Healthy Relationship Energy";gif=5}
+
+document.getElementById("shareCard").style.display="block"
+document.getElementById("cardResult").innerText=result
+document.getElementById("cardScore").innerText="Situationship Score: "+percentage+"%"
+document.getElementById("cardImg").src="situationship"+gif+".jpg"
+
+document.getElementById("resultActions").style.display="block"
+
+}
+
+function downloadResult(){
+
+html2canvas(document.getElementById("shareCard")).then(canvas=>{
+const link=document.createElement("a")
+link.download="situationship-result.png"
+link.href=canvas.toDataURL()
+link.click()
+})
+
+}
+
+function shareWhatsApp(){
+const text="I just took the Situationship Quiz 😂 Try it: "+window.location.href
+window.open("https://wa.me/?text="+encodeURIComponent(text))
+}
+
+function shareTwitter(){
+const text="I just took the Situationship Quiz 💀"
+const url=window.location.href
+window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url))
+}
+
+function unlockNextQuiz(){
+window.location.href="https://tmistudios.xyz/.netlify/functions/payfast?product=next_quiz_r19"
+}
+
+showQuestion()
+
+</script>
+</body>
+</html>
