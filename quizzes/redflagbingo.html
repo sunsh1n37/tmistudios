@@ -8,7 +8,7 @@
 
 <style>
 :root { --footer-text: #ccc; }
-body { margin:0; padding:20px; font-family: 'Arial', sans-serif; text-align:center; background-color:#0d0d0d; color:#fff; transition: background 0.3s, color 0.3s; }
+body { margin:0; padding:20px; font-family:'Arial',sans-serif; text-align:center; background-color:#0d0d0d; color:#fff; transition: background 0.3s, color 0.3s; }
 [data-theme="light"]{background:#f5f5f5;color:#1a1a1a;}
 h1,h2{margin:10px 0;}
 button{padding:10px 20px;font-size:16px;border:none;border-radius:8px;cursor:pointer;background:#cc3333;color:#fff;transition:0.3s;}
@@ -29,19 +29,19 @@ button:hover{background:#ff4d4d;}
 #progressBar{height:100%;width:0%;background:#cc3333;border-radius:8px;transition:width 0.3s;}
 .scoreboard{margin-top:20px;}
 #badgeAwarded{font-size:20px;margin-top:10px;color:gold;}
-#badgeImage { display: block; margin: 15px auto; max-width: 95%;  height: auto; border-radius: 12px; box-shadow: 0 0 20px gold; }
+#badgeImage { display:block;margin:15px auto;max-width:95%;height:auto;border-radius:12px;box-shadow:0 0 20px gold; }
 #badgeImage.glow{animation:glow 1.5s infinite;}
 @keyframes glow{0%{box-shadow:0 0 5px gold;transform:scale(1);}50%{box-shadow:0 0 15px gold,0 0 20px orange;transform:scale(1.05);}100%{box-shadow:0 0 5px gold;transform:scale(1);}}
-.stickyHome{position:sticky;top:0;left:0;text-align:left; margin-bottom:20px; z-index:1000;}
-.modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(3px); animation: fadeIn 0.3s; }
-.modal-content { background: linear-gradient(145deg,#ff4d4d,#cc3333); margin: 10% auto; padding: 30px 20px; border-radius: 16px; max-width: 350px; text-align: center; color: #fff; box-shadow: 0 0 20px #ff4d4d; animation: slideUp 0.3s; position: relative; }
-.modal-content h2 { margin-bottom: 15px; font-size: 22px; text-shadow: 0 0 10px gold; }
-.modal-content p { margin-bottom: 25px; font-size: 16px; }
-.upgradeBtn, .cancelBtn { display: block; width: 80%; margin: 10px auto; padding: 12px 0; font-size: 16px; font-weight: bold; border-radius: 12px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
-.upgradeBtn { background: gold; color: #000; box-shadow: 0 0 15px gold; }
-.upgradeBtn:hover { transform: scale(1.05); box-shadow: 0 0 25px gold; }
-.cancelBtn { background: rgba(255,255,255,0.2); color: #fff; }
-.cancelBtn:hover { background: rgba(255,255,255,0.35); }
+.stickyHome{position:sticky;top:0;left:0;text-align:left;margin-bottom:20px;z-index:1000;}
+.modal { display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.85); backdrop-filter:blur(3px); animation:fadeIn 0.3s; }
+.modal-content { background:linear-gradient(145deg,#ff4d4d,#cc3333); margin:10% auto; padding:30px 20px; border-radius:16px; max-width:350px; text-align:center; color:#fff; box-shadow:0 0 20px #ff4d4d; animation:slideUp 0.3s; position:relative; }
+.modal-content h2 { margin-bottom:15px; font-size:22px; text-shadow:0 0 10px gold; }
+.modal-content p { margin-bottom:25px; font-size:16px; }
+.upgradeBtn, .cancelBtn { display:block; width:80%; margin:10px auto; padding:12px 0; font-size:16px; font-weight:bold; border-radius:12px; border:none; cursor:pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.upgradeBtn { background:gold; color:#000; box-shadow:0 0 15px gold; }
+.upgradeBtn:hover { transform:scale(1.05); box-shadow:0 0 25px gold; }
+.cancelBtn { background:rgba(255,255,255,0.2); color:#fff; }
+.cancelBtn:hover { background:rgba(255,255,255,0.35); }
 
 footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:center;padding:20px 10px;font-size:14px;}
 .footer-links a{color:var(--footer-text);margin:0 4px;text-decoration:none;transition:color 0.3s;}
@@ -54,7 +54,7 @@ footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:
 .nav-stack.show{right:0;}
 
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-@keyframes slideUp { from {transform: translateY(50px); opacity: 0;} to {transform: translateY(0); opacity:1;} }
+@keyframes slideUp { from {transform: translateY(50px); opacity:0;} to {transform: translateY(0); opacity:1;} }
 </style>
 </head>
 <body data-theme="dark">
@@ -96,12 +96,12 @@ footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:
   </div>
   <div class="category-button locked" onclick="openUpgradeModal()">
     <img src="images/sg.jpeg" alt="Situationships & Ghosts">
-    <div class="locked-overlay">🔒 Locked</div>
+    <div class="locked-overlay">🔒 Locked - R49</div>
     <div class="category-title">Situationships & Ghosts</div>
   </div>
   <div class="category-button locked" onclick="openUpgradeModal()">
     <img src="images/dd.jpeg" alt="Delulu Diaries">
-    <div class="locked-overlay">🔒 Locked</div>
+    <div class="locked-overlay">🔒 Locked - R49</div>
     <div class="category-title">Delulu Diaries</div>
   </div>
 </div>
@@ -179,18 +179,18 @@ let sipCount = 0;
 
 const questionBank = {
   "Sip or Skip": ["Lied about your job to impress someone.","Pretended to be asleep to avoid a talk.","Gone through someone’s trash.","Used a fake name on a date.","Texted 'I miss you' without meaning it.","Checked social media obsessively.","Binged an ex’s favorite show.","Stalked someone’s dating profile.","Ghosted and unghosted someone.","Sent a risky text and regretted it.","Pretended to be busy.","Flirted inappropriately.","Ignored red flags.","Tried to impress with a fake skill.","Played dumb to avoid responsibility."],
-  "Boundaries? Never Heard of Her": ["Shared location after one date.","Read partner’s messages while asleep.","Let someone come over uninvited.","Cancelled plans with friends.","Apologized for setting a boundary.","Let someone borrow money.","Responded immediately even when busy.","Stayed late when you didn’t want to.","Ignored your own needs.","Skipped hobbies for partner.","Accepted bad behavior.","Compromised sleep schedule.","Allowed dictation of weekend plans.","Said yes when you wanted no.","Let someone overstep repeatedly."],
+  "Boundaries? Never Heard of Her": ["Shared location after one date.","Read partner’s messages while asleep.","Let someone come over uninvited.","Cancelled plans with friends.","Apologized for setting a boundary.","Let someone borrow money.","Responded immediately even when busy.","Stayed late when you didn’t want to.","Ignored your own needs.","Skipped hobbies for partner.","Accepted bad behavior.","Compromised sleep schedule.","Made excuses for financial mistakes.","Bragged about money to impress.","Let someone overstep repeatedly."],
   "Finance & Finesse": ["Went on a date for the free meal.","Ghosted after receiving money.","Used Netflix account for months.","Asked for airtime/money.","Faked financial status to impress.","Borrowed money and forgot to repay.","Shared bills unequally.","Haggled for personal favors.","Ignored budget responsibilities.","Overspent on gifts.","Invested in someone else’s idea.","Skipped rent/payment.","Made excuses for financial mistakes.","Bragged about money to impress.","Let someone take advantage financially."]
 };
 
 const emojiBank = ["🚩","💀","🙅‍♀️","🍷","😬","🔥","🤦‍♀️","⚠️","🙃","😏","😱","🫣","🥴","🤯","💅","🤷‍♀️","💔","😎","🫠"];
 
 const badges = [
-  {threshold: 0, text: "Too cautious. Babe, you need to take some risks", img: "images/badge1.jpeg"},
-  {threshold: 3, text: "You took a risk or 2 but you're still a bit too cautious", img: "images/badge2.jpeg"},
-  {threshold: 7, text: "Carefree & spicy. Go off, sis!", img: "images/badge3.jpeg"},
-  {threshold: 12, text: "Sis, you might need therapy", img: "images/badge4.jpeg"},
-  {threshold: 15, text: "Ultimate Redflag Queen! 🔥", img: "images/badge5.jpeg"}
+  {threshold:0,text:"Too cautious. Babe, you need to take some risks",img:"images/badge1.jpeg"},
+  {threshold:3,text:"You took a risk or 2 but you're still a bit too cautious",img:"images/badge2.jpeg"},
+  {threshold:7,text:"Carefree & spicy. Go off, sis!",img:"images/badge3.jpeg"},
+  {threshold:12,text:"Sis, you might need therapy",img:"images/badge4.jpeg"},
+  {threshold:15,text:"Ultimate Redflag Queen! 🔥",img:"images/badge5.jpeg"}
 ];
 
 function selectCategory(cat){
@@ -239,46 +239,46 @@ function copyShareLink(){
 }
 
 // === MODAL / BUY TILE LOGIC WITH PAYFAST ===
-function openUpgradeModal(){ 
-  document.getElementById('upgradeModal').style.display='block'; 
-}
-function closeUpgradeModal(){ 
-  document.getElementById('upgradeModal').style.display='none'; 
-}
+async function buyTile(tileName){
+  const productMap = {
+    "Situationships & Ghosts":"ghosts_polterguys",
+    "Delulu Diaries":"gaslight_central"
+  };
+  const productCode = productMap[tileName];
+  if(!productCode){ alert("Invalid product"); return; }
 
-function buyTile(tileName){
-  // PayFast details
-  const merchant_id = 'YOUR_MERCHANT_ID';
-  const merchant_key = 'YOUR_MERCHANT_KEY';
-  const amount = 49.00; // R49
-  const item_name = encodeURIComponent(tileName + " Tile");
-  const return_url = encodeURIComponent(window.location.href);
-  const cancel_url = encodeURIComponent(window.location.href);
-
-  // Sandbox for testing
-  const payfastURL = `https://www.payfast.co.za/eng/process?merchant_id=${merchant_id}&merchant_key=${merchant_key}&amount=${amount}&item_name=${item_name}&return_url=${return_url}&cancel_url=${cancel_url}`;
-
-  // Redirect user to PayFast
-  window.location.href = payfastURL;
-}
-
-// Toggle theme
-function toggleTheme(){
-  document.body.dataset.theme = document.body.dataset.theme==='dark' ? 'light' : 'dark';
-}
-
-// Hamburger nav toggle
-function toggleNav(){
-  document.getElementById('navStack').classList.toggle('show');
-}
-
-// Close modal or nav if clicking outside
-window.onclick=function(event){
-  if(event.target===document.getElementById('upgradeModal')) 
-    document.getElementById('upgradeModal').style.display='none';
-  if(!event.target.closest('.hamburger') && !event.target.closest('.nav-stack')){
-    document.getElementById('navStack').classList.remove('show');
+  try {
+    const res = await fetch("/.netlify/functions/payfast", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ product: productCode })
+    });
+    const data = await res.json();
+    if(data.url){
+      window.location.href = data.url; // Redirect to PayFast payment
+    } else {
+      alert("Payment URL could not be generated. Try again.");
+    }
+  } catch(err){
+    console.error(err);
+    alert("Payment failed. Please try again later.");
   }
+}
+
+function openUpgradeModal(){ document.getElementById('upgradeModal').style.display='block'; }
+function closeUpgradeModal(){ document.getElementById('upgradeModal').style.display='none'; }
+
+// Close modal if click outside content
+window.onclick = function(event){
+  const modal = document.getElementById('upgradeModal');
+  if(event.target == modal){ modal.style.display = "none"; }
+}
+
+// === NAV / THEME ===
+function toggleNav(){ document.getElementById('navStack').classList.toggle('show'); }
+function toggleTheme(){
+  const body = document.body;
+  if(body.dataset.theme==='dark'){body.dataset.theme='light';} else {body.dataset.theme='dark';}
 }
 </script>
 </body>
