@@ -1,5 +1,6 @@
 // netlify/functions/payfast.js
 exports.handler = async function(event) {
+
   const merchant_id = process.env.PAYFAST_MERCHANT_ID;
   const merchant_key = process.env.PAYFAST_MERCHANT_KEY;
 
@@ -12,15 +13,19 @@ exports.handler = async function(event) {
 
   const PAYFAST_URL = "https://www.payfast.co.za/eng/process";
 
+  // normalize content-type
+  const contentType = (event.headers["content-type"] || "").toLowerCase();
+
   // ---------------------------
   // IPN Verification (PayFast server notifications)
   // ---------------------------
-  if (event.httpMethod === "POST" && event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
-    const body = event.body;
-    const querystring = require('querystring');
-    const postData = querystring.parse(body);
+  if (event.httpMethod === "POST" && contentType.includes("application/x-www-form-urlencoded")) {
+
+    const querystring = require("querystring");
+    const postData = querystring.parse(event.body || "");
 
     if (postData.m_payment_id && postData.payment_status) {
+
       console.log("IPN received:", postData);
 
       if (postData.merchant_id !== merchant_id) {
@@ -29,7 +34,6 @@ exports.handler = async function(event) {
 
       if (postData.payment_status === "COMPLETE") {
         console.log(`Payment COMPLETE for item: ${postData.item_name}, amount: ${postData.amount_gross}`);
-        // TODO: update database or mark product/subscription as unlocked
       } else {
         console.log(`Payment status: ${postData.payment_status} for item: ${postData.item_name}`);
       }
@@ -43,23 +47,40 @@ exports.handler = async function(event) {
   // ---------------------------
   // JSON POST Requests (frontend -> return PayFast URL)
   // ---------------------------
-  if (event.httpMethod === "POST" && event.headers['content-type']?.includes('application/json')) {
-    const data = JSON.parse(event.body);
-    const tier = data.tier;             // DollFin subscription
-    const product = data.pack || data.product;  // Chaos Cookie, Delulu CEO, Narcissist, Redflag packs
+  if (event.httpMethod === "POST" && contentType.includes("application/json")) {
+
+    let data = {};
+    try {
+      data = JSON.parse(event.body || "{}");
+    } catch (err) {
+      return { statusCode: 400, body: "Invalid JSON body" };
+    }
+
+    const tier = data.tier;
+    const product = data.pack || data.product;
+
     let payfastUrl = "";
 
     // ---------------------------
     // DollFin Subscriptions
     // ---------------------------
     if (tier) {
+
       let amount = 0;
       let item_name = "DollFin Plan";
 
-      if (tier === "pro") amount = 99, item_name = "DollFin Pro";
-      else if (tier === "premium") amount = 199, item_name = "DollFin Premium";
+      if (tier === "pro") {
+        amount = 99;
+        item_name = "DollFin Pro";
+      }
+      else if (tier === "premium") {
+        amount = 199;
+        item_name = "DollFin Premium";
+      }
 
-      if (!amount) return { statusCode: 400, body: "Invalid DollFin tier" };
+      if (!amount) {
+        return { statusCode: 400, body: "Invalid DollFin tier" };
+      }
 
       payfastUrl =
         `${PAYFAST_URL}?merchant_id=${merchant_id}` +
@@ -74,9 +95,10 @@ exports.handler = async function(event) {
     }
 
     // ---------------------------
-    // Chaos Cookie, Delulu CEO, Narcissist, Next Quiz, Redflag Packs
+    // One-time Products
     // ---------------------------
     if (product) {
+
       let amount = 0;
       let item_name = "";
 
@@ -94,25 +116,24 @@ exports.handler = async function(event) {
         case "delulu_single": amount = 20; item_name = "Delulu CEO Tarot Single Card"; break;
         case "delulu_full": amount = 100; item_name = "Delulu CEO Tarot Full Deck"; break;
 
-        // Narcissist Full Report
+        // Narcissist
         case "narcissist_full": amount = 20; item_name = "Narcissist Full Report"; break;
 
-        // Next Quiz Unlock
+        // Next Quiz
         case "next_quiz_r19": amount = 19; item_name = "Unlock Next Quiz"; break;
 
-        // ---------------------------
-        // Redflag Packs R20 each
+        // Redflag Packs
         case "ghosts_polterguys": amount = 20; item_name = "Redflag Pack: Ghosts & Polterguys"; break;
         case "gaslight_central": amount = 20; item_name = "Redflag Pack: Gaslight Central"; break;
         case "exes_flexes": amount = 20; item_name = "Redflag Pack: Exes and Flexes"; break;
         case "overzealous": amount = 20; item_name = "Redflag Pack: Over Zealous Over Jealous"; break;
 
-        // ---------------------------
-        // RedFlag Bingo Tiles R49 each
+        // RedFlag Bingo Tiles
         case "situationships_ghosts": amount = 49; item_name = "RedFlag Bingo Tile: Situationships & Ghosts"; break;
         case "delulu_diaries": amount = 49; item_name = "RedFlag Bingo Tile: Delulu Diaries"; break;
 
-        default: return { statusCode: 400, body: "Invalid product" };
+        default:
+          return { statusCode: 400, body: "Invalid product" };
       }
 
       const return_url = `https://tmistudios.xyz/checkout?success=true&product=${product}`;
@@ -127,10 +148,13 @@ exports.handler = async function(event) {
         `&cancel_url=${encodeURIComponent(cancel_url)}`;
     }
 
-    if (!payfastUrl) return { statusCode: 400, body: "No valid payment type specified" };
+    if (!payfastUrl) {
+      return { statusCode: 400, body: "No valid payment type specified" };
+    }
 
     return {
       statusCode: 200,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: payfastUrl })
     };
   }
