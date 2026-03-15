@@ -335,8 +335,9 @@ Take The Quiz at tmistudios.xyz
 More Unserious Games
 </button>
 
-
 </div>
+
+<!-- POPUP FOR PURCHASED PACKS WITH NETLIFY PAYFAST -->
 
 <div class="popup-overlay" id="packsPopup">
 
@@ -346,9 +347,10 @@ More Unserious Games
 
 <h3>Unlock More Redflag Packs</h3>
 
-<button>Delulu Level 100 – R20</button>
-<button>Ghosts & Polterguys – R20</button>
-<button>Nice to Beat You – R20</button>
+<!-- CALL NETLIFY FUNCTION FOR PAYFAST -->
+<button onclick="unlockPack('delulu')">Delulu Level 100 – R20</button>
+<button onclick="unlockPack('ghosts')">Ghosts & Polterguys – R20</button>
+<button onclick="unlockPack('nice')">Nice to Beat You – R20</button>
 
 </div>
 
@@ -377,7 +379,7 @@ hamburger.classList.toggle("active");
 navLinks.classList.toggle("active");
 };
 
-/* QUIZ */
+/* QUIZ DATA */
 
 const redflags=[
 "He replies with 'k'. Just 'k'.",
@@ -437,6 +439,29 @@ link.href=canvas.toDataURL();
 link.click();
 
 });
+
+}
+
+/* SURGICAL PAYWALL */
+
+async function unlockPack(pack){
+try{
+const response=await fetch('/.netlify/functions/createPayfastPayment',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({pack})
+});
+const data=await response.json();
+if(data.url){
+window.location.href=data.url;
+}else{
+alert('Something went wrong. Try again.');
+console.error(data);
+}
+}catch(err){
+console.error(err);
+alert('Could not contact server.');
+}
 
 }
 
