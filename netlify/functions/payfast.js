@@ -108,6 +108,12 @@ exports.handler = async function(event) {
         case "exes_flexes": amount = 20; item_name = "Redflag Pack: Exes and Flexes"; break;
         case "overzealous": amount = 20; item_name = "Redflag Pack: Over Zealous Over Jealous"; break;
 
+        // ---------------------------
+        // RedFlag Bingo Tiles R49
+        // ---------------------------
+        case "situationships_ghosts": amount = 49; item_name = "RedFlag Bingo Tile: Situationships & Ghosts"; break;
+        case "delulu_diaries": amount = 49; item_name = "RedFlag Bingo Tile: Delulu Diaries"; break;
+
         default: return { statusCode: 400, body: "Invalid product" };
       }
 
