@@ -1,267 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Redflag Radar Quiz 🚩 | TMI Studios</title>
-
 <meta name="description" content="Play the Redflag Radar Quiz 🚩 and spot toxic dating behavior. Download and share your redflag card with friends.">
 <meta name="author" content="TMI Studios">
 
 <style>
-/* === BODY === */
 body{
-font-family:'Poppins',sans-serif;
-margin:0;
-background:linear-gradient(to bottom,#fff0f5,#ffe0f5);
-display:flex;
-flex-direction:column;
-align-items:center;
-min-height:100vh;
-color:#111;
+  font-family:'Poppins',sans-serif;
+  margin:0;
+  background:linear-gradient(to bottom,#fff0f5,#ffe0f5);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
+  color:#111;
 }
-
-/* === NAV === */
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px 20px;
-width:100%;
-background:#fff0f5;
-box-shadow:0 2px 6px rgba(255,0,100,0.15);
-position:sticky;
-top:0;
-z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  width:100%;
+  background:#fff0f5;
+  box-shadow:0 2px 6px rgba(255,0,100,0.15);
+  position:sticky;
+  top:0;
+  z-index:100;
 }
-
 .logo{
-font-weight:bold;
-font-size:1.3rem;
-color:#ff1a75;
+  font-weight:bold;
+  font-size:1.3rem;
+  color:#ff1a75;
 }
-
 .nav-links{
-display:flex;
-gap:20px;
+  display:flex;
+  gap:20px;
 }
-
 .nav-links a{
-text-decoration:none;
-color:#ff1a75;
-font-weight:600;
+  text-decoration:none;
+  color:#ff1a75;
+  font-weight:600;
 }
-
-/* HAMBURGER */
 .hamburger{
-display:none;
-flex-direction:column;
-cursor:pointer;
-gap:5px;
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:5px;
 }
-
 .hamburger span{
-height:3px;
-width:24px;
-background:#ff1a75;
-border-radius:3px;
-transition:0.3s;
+  height:3px;
+  width:24px;
+  background:#ff1a75;
+  border-radius:3px;
+  transition:0.3s;
 }
-
-/* X animation */
 .hamburger.active span:nth-child(1){
-transform:rotate(45deg) translate(5px,5px);
+  transform:rotate(45deg) translate(5px,5px);
 }
 .hamburger.active span:nth-child(2){
-opacity:0;
+  opacity:0;
 }
 .hamburger.active span:nth-child(3){
-transform:rotate(-45deg) translate(6px,-6px);
+  transform:rotate(-45deg) translate(6px,-6px);
 }
-
-/* MOBILE NAV */
 @media(max-width:768px){
-.nav-links{
-position:absolute;
-top:60px;
-left:0;
-width:100%;
-background:#fff0f5;
-flex-direction:column;
-align-items:center;
-padding:20px 0;
-display:none;
+  .nav-links{
+    position:absolute;
+    top:60px;
+    left:0;
+    width:100%;
+    background:#fff0f5;
+    flex-direction:column;
+    align-items:center;
+    padding:20px 0;
+    display:none;
+  }
+  .nav-links.active{
+    display:flex;
+  }
+  .hamburger{
+    display:flex;
+  }
 }
-.nav-links.active{
-display:flex;
-}
-.hamburger{
-display:flex;
-}
-}
-
-/* TITLE */
 h1{
-font-size:3rem;
-color:#ff1a75;
-text-shadow:1px 1px #ffd0ea;
-margin:25px 0 10px;
-text-align:center;
+  font-size:3rem;
+  color:#ff1a75;
+  text-shadow:1px 1px #ffd0ea;
+  margin:25px 0 10px;
+  text-align:center;
 }
-
-/* CARD */
 .card-container{
-max-width:700px;
-background:#ffe0f5;
-margin:30px auto;
-padding:35px;
-border-radius:20px;
-box-shadow:0 8px 25px rgba(255,0,100,0.35);
-text-align:center;
+  max-width:700px;
+  background:#ffe0f5;
+  margin:30px auto;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 8px 25px rgba(255,0,100,0.35);
+  text-align:center;
 }
-
 .card-container h2{
-color:#ff1a75;
-margin-bottom:20px;
+  color:#ff1a75;
+  margin-bottom:20px;
 }
-
 .redflags-list{
-list-style:none;
-padding:0;
-font-size:1.3rem;
+  list-style:none;
+  padding:0;
+  font-size:1.3rem;
 }
-
-/* BRANDING */
 .branding{
-margin-top:25px;
-font-size:.6rem;
-color:#ff4db8;
-font-weight:600;
-letter-spacing:1px;
+  margin-top:25px;
+  font-size:.6rem;
+  color:#ff4db8;
+  font-weight:600;
+  letter-spacing:1px;
 }
-
-/* ARROWS */
 .arrow-row{
-display:flex;
-justify-content:center;
-gap:40px;
-margin-top:-10px;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin-top:-10px;
 }
-
 .arrow-btn{
-font-size:2rem;
-background:linear-gradient(45deg,#ff1a75,#ff66aa);
-color:white;
-border:none;
-padding:12px 18px;
-border-radius:50%;
-cursor:pointer;
-box-shadow:0 4px 12px rgba(255,26,117,.4);
-transition:all .2s;
+  font-size:2rem;
+  background:linear-gradient(45deg,#ff1a75,#ff66aa);
+  color:white;
+  border:none;
+  padding:12px 18px;
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(255,26,117,.4);
+  transition:all .2s;
 }
 .arrow-btn:hover{
-transform:scale(1.2);
-box-shadow:0 6px 18px rgba(255,26,117,.6);
+  transform:scale(1.2);
+  box-shadow:0 6px 18px rgba(255,26,117,.6);
 }
-
-/* ACTION BUTTONS */
 .action-buttons{
-margin:25px auto 30px;
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:10px;
+  margin:25px auto 30px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
 }
-
 .action-buttons button{
-background:linear-gradient(45deg,#ff99c1,#ffc0e0);
-border:none;
-color:white;
-font-weight:600;
-padding:8px 16px;
-border-radius:10px;
-cursor:pointer;
-box-shadow:0 2px 8px rgba(255,102,170,.2);
+  background:linear-gradient(45deg,#ff99c1,#ffc0e0);
+  border:none;
+  color:white;
+  font-weight:600;
+  padding:8px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(255,102,170,.2);
 }
 .action-buttons button:hover{
-transform:scale(1.05);
+  transform:scale(1.05);
 }
-
-/* POPUP */
 .popup-overlay{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.6);
-justify-content:center;
-align-items:center;
-z-index:200;
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.6);
+  justify-content:center;
+  align-items:center;
+  z-index:200;
 }
-
 .popup{
-background:#fff0f5;
-padding:25px;
-border-radius:20px;
-text-align:center;
-max-width:400px;
+  background:#fff0f5;
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  max-width:400px;
 }
-
 .popup h3{
-color:#ff1a75;
+  color:#ff1a75;
 }
-
 .popup button{
-background:linear-gradient(45deg,#ff1a75,#ff66aa);
-border:none;
-color:white;
-padding:10px;
-margin:8px 0;
-border-radius:12px;
-cursor:pointer;
-width:80%;
+  background:linear-gradient(45deg,#ff1a75,#ff66aa);
+  border:none;
+  color:white;
+  padding:10px;
+  margin:8px 0;
+  border-radius:12px;
+  cursor:pointer;
+  width:80%;
 }
-
 .close-popup{
-cursor:pointer;
-font-size:1.4rem;
-float:right;
+  cursor:pointer;
+  font-size:1.4rem;
+  float:right;
 }
-
-/* FOOTER */
 footer{
-margin-top:auto;
-padding:15px;
-font-size:.9rem;
-background:#fff0f5;
-width:100%;
-text-align:center;
-box-shadow:0 -2px 6px rgba(255,0,100,0.1);
+  margin-top:auto;
+  padding:15px;
+  font-size:.9rem;
+  background:#fff0f5;
+  width:100%;
+  text-align:center;
+  box-shadow:0 -2px 6px rgba(255,0,100,0.1);
 }
 footer a{
-color:#ff99c1;
-text-decoration:none;
-margin:0 8px;
+  color:#ff99c1;
+  text-decoration:none;
+  margin:0 8px;
 }
-
-/* MOBILE */
 @media(max-width:768px){
-h1{
-font-size:2.2rem;
+  h1{
+    font-size:2.2rem;
+  }
+  .card-container{
+    margin:20px;
+    padding:25px;
+  }
 }
-.card-container{
-margin:20px;
-padding:25px;
-}
-}
-
 </style>
 </head>
-
 <body>
 
 <nav>
@@ -295,13 +253,15 @@ padding:25px;
 <button onclick="window.location.href='lab.html'">More Unserious Games</button>
 </div>
 
-<!-- PAYWALL POPUP -->
+<!-- LOCKED PACKS POPUP -->
 <div class="popup-overlay" id="packsPopup">
 <div class="popup">
 <span class="close-popup" onclick="closePopup()">×</span>
 <h3>Unlock More Redflag Packs</h3>
-<button onclick="unlockPack('redflag_ifseen')">If You See Any of These, Run – R20</button>
-<button onclick="unlockPack('redflag_collect')">How Many Redflags Can You Collect – R25</button>
+<button onclick="buyPack('ghosts')">Ghosts & Polterguys – R20</button>
+<button onclick="buyPack('gaslight')">Gaslight Central – R20</button>
+<button onclick="buyPack('exes')">Exes and Flexes – R20</button>
+<button onclick="buyPack('overzealous')">Over Zealous Over Jealous – R20</button>
 </div>
 </div>
 
@@ -313,77 +273,131 @@ padding:25px;
 </footer>
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
 <script>
-/* NAV TOGGLE */
+/* NAV */
 const hamburger=document.getElementById("hamburger");
 const navLinks=document.getElementById("navLinks");
-hamburger.onclick=()=>{
-hamburger.classList.toggle("active");
-navLinks.classList.toggle("active");
+hamburger.onclick=()=>{hamburger.classList.toggle("active");navLinks.classList.toggle("active");};
+
+/* REDFLAGS QUIZ */
+const baseRedflags=[
+"They reply with 'k'. Just 'k'.",
+"They say 'my ex and I are still really close'.",
+"They say 'I don’t believe in labels'.",
+"They won’t let you post them on IG.",
+"Their phone is always on Do Not Disturb.",
+"They disappear for 3 days then text 'hey stranger'.",
+"They call their mom 'baby'.",
+"They always mention their male bestie.",
+"They ask your location but never share theirs.",
+"They replied 'lol' to your 'ily'."
+];
+
+const lockedPacks = {
+  ghosts:[
+    "They disappear after texting then pop up randomly.",
+    "They show up unannounced at your events.",
+    "They vanish after deep conversations.",
+    "They cancel plans frequently last minute.",
+    "They flirt with your friends online.",
+    "They respond only to memes, not real talk.",
+    "They tag you in cryptic posts.",
+    "They ghost for days, then apologize casually.",
+    "They act present in DMs but absent in life.",
+    "They overreact when you check their social stories."
+  ],
+  gaslight:[
+    "They deny things you know happened.",
+    "They blame you for everything that goes wrong.",
+    "They twist your words consistently.",
+    "They accuse you of imagining situations.",
+    "They say 'you're too sensitive'.",
+    "They make you question your memory.",
+    "They pretend you misheard them.",
+    "They subtly insult you and laugh it off.",
+    "They make you feel guilty for normal reactions.",
+    "They shift responsibility constantly."
+  ],
+  exes:[
+    "They talk about exes excessively.",
+    "They flex accomplishments to impress.",
+    "They compare you to their ex.",
+    "They stalk an ex on socials.",
+    "They reminisce about past relationships.",
+    "They bring ex drama into present.",
+    "They gauge your jealousy intentionally.",
+    "They show off past gifts or experiences.",
+    "They test loyalty using ex stories.",
+    "They avoid discussing commitment."
+  ],
+  overzealous:[
+    "They check your phone often.",
+    "They want to know your location constantly.",
+    "They overreact to minor messages.",
+    "They demand instant responses.",
+    "They try to control your social circles.",
+    "They act possessive publicly.",
+    "They interrogate about past interactions.",
+    "They question your friends and family.",
+    "They over-plan shared events obsessively.",
+    "They pressure you about future commitments."
+  ]
 };
 
-/* QUIZ (existing redflags, unchanged) */
-const redflags=[
-"He replies with 'k'. Just 'k'.",
-"She says 'my ex and I are still really close'.",
-"They say 'I don’t believe in labels'.",
-"He won’t let you post him on IG.",
-"Her phone is always on Do Not Disturb.",
-"They disappear for 3 days then text 'hey stranger'.",
-"He calls his mom 'baby'.",
-"She always mentions her male bestie.",
-"They ask your location but never share theirs.",
-"He replied 'lol' to your 'ily'."
-];
 let current=0;
+let unlockedRedflags=[...baseRedflags];
 const list=document.getElementById("redflagsList");
 const popup=document.getElementById("packsPopup");
 
-function updateFlag(){
-list.innerHTML=`<li>${redflags[current]}</li>`;
-if(current===redflags.length-1){
-popup.style.display="flex";
+function updateFlag(){ 
+  list.innerHTML=`<li>${unlockedRedflags[current]}</li>`; 
+  if(current===unlockedRedflags.length-1){ 
+    popup.style.display="flex"; 
+  } 
 }
-}
-function nextFlag(){if(current<redflags.length-1){current++;updateFlag();}}
-function prevFlag(){if(current>0){current--;updateFlag();}}
-function closePopup(){popup.style.display="none";}
+function nextFlag(){ if(current<unlockedRedflags.length-1){ current++; updateFlag(); } }
+function prevFlag(){ if(current>0){ current--; updateFlag(); } }
+function closePopup(){ popup.style.display="none"; }
 
 /* DOWNLOAD CARD */
 function downloadCard(){
-html2canvas(document.getElementById("cardContainer")).then(canvas=>{
-const link=document.createElement("a");
-link.download="redflag-card.png";
-link.href=canvas.toDataURL();
-link.click();
-});
+  html2canvas(document.getElementById("cardContainer")).then(canvas=>{
+    const link=document.createElement("a");
+    link.download="redflag-card.png";
+    link.href=canvas.toDataURL();
+    link.click();
+  });
 }
 
-/* === PAYFAST FUNCTION === */
-async function unlockPack(pack) {
-  try {
-    const res = await fetch('/.netlify/functions/payfast', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pack })
+/* PAYFAST FUNCTION */
+async function buyPack(pack){
+  try{
+    const res=await fetch('/.netlify/functions/payfast',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({pack})
     });
-
-    if (!res.ok) throw new Error('Server error');
-
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url; // Redirect to PayFast
-    } else {
-      alert('Payment URL not returned. Try again.');
+    const data=await res.json();
+    if(data.url){
+      // redirect to PayFast checkout
+      window.location.href = data.url;
+    } else { 
+      alert("Payment link not returned");
     }
-  } catch (err) {
-    console.error(err);
-    alert('Failed to connect to payment server.');
+  }catch(err){console.error(err);alert("Failed to connect to server");}
+}
+
+/* SIMULATE UNLOCK AFTER SUCCESS (URL PARAM) */
+function unlockPackFromURL(){
+  const urlParams=new URLSearchParams(window.location.search);
+  const purchased=urlParams.get("product");
+  if(purchased && lockedPacks[purchased]){
+    unlockedRedflags.push(...lockedPacks[purchased]);
+    updateFlag();
   }
 }
 
-/* INITIALIZE QUIZ */
+unlockPackFromURL();
 updateFlag();
 </script>
 
