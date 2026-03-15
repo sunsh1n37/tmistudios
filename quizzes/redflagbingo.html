@@ -7,9 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <style>
-:root {
-  --footer-text: #ccc;
-}
+:root { --footer-text: #ccc; }
 body { margin:0; padding:20px; font-family: 'Arial', sans-serif; text-align:center; background-color:#0d0d0d; color:#fff; transition: background 0.3s, color 0.3s; }
 [data-theme="light"]{background:#f5f5f5;color:#1a1a1a;}
 h1,h2{margin:10px 0;}
@@ -45,19 +43,8 @@ button:hover{background:#ff4d4d;}
 .cancelBtn { background: rgba(255,255,255,0.2); color: #fff; }
 .cancelBtn:hover { background: rgba(255,255,255,0.35); }
 
-footer.skinny-footer{
-background:transparent;
-color:var(--footer-text);
-text-align:center;
-padding:20px 10px;
-font-size:14px;
-}
-.footer-links a{
-color:var(--footer-text);
-margin:0 4px;
-text-decoration:none;
-transition:color 0.3s;
-}
+footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:center;padding:20px 10px;font-size:14px;}
+.footer-links a{color:var(--footer-text);margin:0 4px;text-decoration:none;transition:color 0.3s;}
 .footer-links a:hover{color:#ff4d4d;}
 
 .hamburger{position:fixed;top:15px;right:15px;font-size:28px;cursor:pointer;color:#ff4d4d;z-index:1100;}
@@ -251,25 +238,31 @@ function copyShareLink(){
   document.getElementById('copyStatus').textContent = 'Link copied! Share it with friends 🔗'; 
 }
 
-// === MODAL / BUY TILE LOGIC ===
-function openUpgradeModal(){ document.getElementById('upgradeModal').style.display='block'; }
-function closeUpgradeModal(){ document.getElementById('upgradeModal').style.display='none'; }
-
-function buyTile(tileName){
-  alert(`You bought "${tileName}" for R49! 🎉`);
-  const tiles = document.querySelectorAll('.category-button.locked');
-  tiles.forEach(tile => {
-    const title = tile.querySelector('.category-title').textContent;
-    if(title === tileName){
-      tile.classList.remove('locked');
-      const overlay = tile.querySelector('.locked-overlay');
-      if(overlay) overlay.remove();
-      tile.onclick = () => selectCategory(tileName);
-    }
-  });
-  closeUpgradeModal();
+// === MODAL / BUY TILE LOGIC WITH PAYFAST ===
+function openUpgradeModal(){ 
+  document.getElementById('upgradeModal').style.display='block'; 
+}
+function closeUpgradeModal(){ 
+  document.getElementById('upgradeModal').style.display='none'; 
 }
 
+function buyTile(tileName){
+  // PayFast details
+  const merchant_id = 'YOUR_MERCHANT_ID';
+  const merchant_key = 'YOUR_MERCHANT_KEY';
+  const amount = 49.00; // R49
+  const item_name = encodeURIComponent(tileName + " Tile");
+  const return_url = encodeURIComponent(window.location.href);
+  const cancel_url = encodeURIComponent(window.location.href);
+
+  // Sandbox for testing
+  const payfastURL = `https://www.payfast.co.za/eng/process?merchant_id=${merchant_id}&merchant_key=${merchant_key}&amount=${amount}&item_name=${item_name}&return_url=${return_url}&cancel_url=${cancel_url}`;
+
+  // Redirect user to PayFast
+  window.location.href = payfastURL;
+}
+
+// Toggle theme
 function toggleTheme(){
   document.body.dataset.theme = document.body.dataset.theme==='dark' ? 'light' : 'dark';
 }
@@ -288,6 +281,5 @@ window.onclick=function(event){
   }
 }
 </script>
-
 </body>
 </html>
