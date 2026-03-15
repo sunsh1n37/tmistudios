@@ -153,7 +153,7 @@ footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:
       Buy <strong>Delulu Diaries</strong> for R49 💎
     </button>
 
-    <button class="cancelBtn" onclick="window.location.href='/toxiclab.html'">
+    <button class="cancelBtn" onclick="window.location.href='lab.html'">
       More unserious quizzes 🎲
     </button>
   </div>
@@ -171,6 +171,7 @@ footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:
 </footer>
 
 <script>
+
 // === GAME LOGIC ===
 let selectedCategory = '';
 let currentIndex = 0;
@@ -179,7 +180,9 @@ let sipCount = 0;
 
 const questionBank = {
   "Sip or Skip": ["Lied about your job to impress someone.","Pretended to be asleep to avoid a talk.","Gone through someone’s trash.","Used a fake name on a date.","Texted 'I miss you' without meaning it.","Checked social media obsessively.","Binged an ex’s favorite show.","Stalked someone’s dating profile.","Ghosted and unghosted someone.","Sent a risky text and regretted it.","Pretended to be busy.","Flirted inappropriately.","Ignored red flags.","Tried to impress with a fake skill.","Played dumb to avoid responsibility."],
+
   "Boundaries? Never Heard of Her": ["Shared location after one date.","Read partner’s messages while asleep.","Let someone come over uninvited.","Cancelled plans with friends.","Apologized for setting a boundary.","Let someone borrow money.","Responded immediately even when busy.","Stayed late when you didn’t want to.","Ignored your own needs.","Skipped hobbies for partner.","Accepted bad behavior.","Compromised sleep schedule.","Allowed dictation of weekend plans.","Said yes when you wanted no.","Let someone overstep repeatedly."],
+
   "Finance & Finesse": ["Went on a date for the free meal.","Ghosted after receiving money.","Used Netflix account for months.","Asked for airtime/money.","Faked financial status to impress.","Borrowed money and forgot to repay.","Shared bills unequally.","Haggled for personal favors.","Ignored budget responsibilities.","Overspent on gifts.","Invested in someone else’s idea.","Skipped rent/payment.","Made excuses for financial mistakes.","Bragged about money to impress.","Let someone take advantage financially."]
 };
 
@@ -198,89 +201,184 @@ function selectCategory(cat){
   questions = [...questionBank[cat]];
   currentIndex = 0;
   sipCount = 0;
+
   document.getElementById('categoryScreen').style.display = 'none';
   document.getElementById('gameScreen').style.display = 'block';
+
   showQuestion();
 }
 
 function showQuestion(){
-  if(currentIndex >= questions.length){ endGame(); return; }
-  document.getElementById('questionCount').textContent = `Question ${currentIndex+1} of ${questions.length}`;
-  document.getElementById('questionText').textContent = questions[currentIndex];
-  document.getElementById('questionEmoji').textContent = emojiBank[Math.floor(Math.random()*emojiBank.length)];
-  document.getElementById('progressBar').style.width = `${(currentIndex/questions.length)*100}%`;
+
+  if(currentIndex >= questions.length){
+    endGame();
+    return;
+  }
+
+  document.getElementById('questionCount').textContent =
+  `Question ${currentIndex+1} of ${questions.length}`;
+
+  document.getElementById('questionText').textContent =
+  questions[currentIndex];
+
+  document.getElementById('questionEmoji').textContent =
+  emojiBank[Math.floor(Math.random()*emojiBank.length)];
+
+  document.getElementById('progressBar').style.width =
+  `${(currentIndex/questions.length)*100}%`;
+
   document.getElementById('sipCount').textContent = sipCount;
 }
 
-function handleAnswer(answer){ if(answer==='sip') sipCount++; currentIndex++; showQuestion(); }
+function handleAnswer(answer){
+  if(answer === 'sip') sipCount++;
+  currentIndex++;
+  showQuestion();
+}
 
 function endGame(){
+
   document.getElementById('gameScreen').style.display = 'none';
   document.getElementById('endScreen').style.display = 'block';
+
   document.getElementById('finalSipCount').textContent = sipCount;
+
   let badge = badges[0];
-  for(let i=0;i<badges.length;i++){ if(sipCount >= badges[i].threshold) badge = badges[i]; }
+
+  for(let i=0;i<badges.length;i++){
+    if(sipCount >= badges[i].threshold){
+      badge = badges[i];
+    }
+  }
+
   document.getElementById('badgeAwarded').textContent = badge.text;
-  const imgEl = document.getElementById('badgeImage'); 
-  imgEl.src = badge.img; 
+
+  const imgEl = document.getElementById('badgeImage');
+  imgEl.src = badge.img;
   imgEl.classList.add('glow');
 }
 
 function restartGame(){
+
   document.getElementById('endScreen').style.display = 'none';
   document.getElementById('categoryScreen').style.display = 'grid';
+
   document.getElementById('badgeImage').classList.remove('glow');
   document.getElementById('copyStatus').textContent = '';
 }
 
-function copyShareLink(){ 
-  navigator.clipboard.writeText(window.location.href); 
-  document.getElementById('copyStatus').textContent = 'Link copied! Share it with friends 🔗'; 
+function copyShareLink(){
+
+  navigator.clipboard.writeText(window.location.href);
+
+  document.getElementById('copyStatus').textContent =
+  'Link copied! Share it with friends 🔗';
 }
 
-// === MODAL / BUY TILE LOGIC ===
-function openUpgradeModal(){ document.getElementById('upgradeModal').style.display='block'; }
-function closeUpgradeModal(){ document.getElementById('upgradeModal').style.display='none'; }
+
+// === PAYFAST PAYWALL ===
+
+function openUpgradeModal(){
+  document.getElementById('upgradeModal').style.display = 'block';
+}
+
+function closeUpgradeModal(){
+  document.getElementById('upgradeModal').style.display = 'none';
+}
 
 function buyTile(tileName){
+
   let productCode = '';
-  if(tileName==='Situationships & Ghosts') productCode='situationships_ghosts';
-  else if(tileName==='Delulu Diaries') productCode='delulu_diaries';
-  else { alert('Invalid tile'); return; }
+
+  if(tileName === 'Situationships & Ghosts'){
+    productCode = 'redflag_situationships';
+  }
+  else if(tileName === 'Delulu Diaries'){
+    productCode = 'redflag_delulu';
+  }
+  else{
+    alert('Invalid tile');
+    return;
+  }
 
   fetch('/.netlify/functions/payfast', {
+
     method:'POST',
-    headers:{ 'Content-Type':'application/json' },
-    body: JSON.stringify({ product: productCode })
+
+    headers:{
+      'Content-Type':'application/json'
+    },
+
+    body:JSON.stringify({
+      product: productCode,
+      amount: 49,
+      app: 'redflagbingo'
+    })
+
   })
   .then(res => res.json())
   .then(data => {
-    if(data.url) window.location.href = data.url;
-    else alert('Error initiating payment. Try again.');
+
+    if(data.url){
+      window.location.href = data.url;
+    }
+    else{
+      console.error(data);
+      alert('Payment failed to start.');
+    }
+
   })
-  .catch(err => { console.error(err); alert('Payment failed.'); });
+  .catch(err=>{
+    console.error(err);
+    alert('Payment error.');
+  });
+
 }
 
-// === Hamburger Navigation ===
+
+// === HAMBURGER NAV ===
+
 function toggleNav(){
+
   const nav = document.getElementById('navStack');
-  if(nav.style.right==='0px') nav.style.right='-250px';
-  else nav.style.right='0px';
+
+  if(nav.style.right === '0px'){
+    nav.style.right = '-250px';
+  }
+  else{
+    nav.style.right = '0px';
+  }
 }
 
-// === Theme Toggle ===
+
+// === THEME TOGGLE ===
+
 function toggleTheme(){
+
   const body = document.body;
-  if(body.getAttribute('data-theme')==='dark') body.setAttribute('data-theme','light');
-  else body.setAttribute('data-theme','dark');
+
+  if(body.getAttribute('data-theme') === 'dark'){
+    body.setAttribute('data-theme','light');
+  }
+  else{
+    body.setAttribute('data-theme','dark');
+  }
+
 }
 
-// Close modal if clicking outside content
+
+// CLOSE MODAL IF CLICK OUTSIDE
+
 window.onclick = function(event){
-  const modal = document.getElementById('upgradeModal');
-  if(event.target === modal) modal.style.display='none';
-}
-</script>
 
+  const modal = document.getElementById('upgradeModal');
+
+  if(event.target === modal){
+    modal.style.display = 'none';
+  }
+
+}
+
+</script>
 </body>
 </html>
