@@ -46,7 +46,7 @@ exports.handler = async function(event) {
   if (event.httpMethod === "POST" && event.headers['content-type']?.includes('application/json')) {
     const data = JSON.parse(event.body);
     const tier = data.tier;             // DollFin subscription
-    const product = data.pack || data.product;  // Chaos Cookie, Delulu CEO, Narcissist, Next Quiz
+    const product = data.pack || data.product;  // Chaos Cookie, Delulu CEO, Narcissist, Redflag packs
     let payfastUrl = "";
 
     // ---------------------------
@@ -74,7 +74,7 @@ exports.handler = async function(event) {
     }
 
     // ---------------------------
-    // Chaos Cookie, Delulu CEO, Narcissist, Next Quiz purchases
+    // Chaos Cookie, Delulu CEO, Narcissist, Next Quiz, Redflag Packs
     // ---------------------------
     if (product) {
       let amount = 0;
@@ -94,11 +94,17 @@ exports.handler = async function(event) {
         case "delulu_single": amount = 20; item_name = "Delulu CEO Tarot Single Card"; break;
         case "delulu_full": amount = 100; item_name = "Delulu CEO Tarot Full Deck"; break;
 
-        // Narcissist Full Report ✅ Added
+        // Narcissist Full Report
         case "narcissist_full": amount = 20; item_name = "Narcissist Full Report"; break;
 
         // Next Quiz Unlock
         case "next_quiz_r19": amount = 19; item_name = "Unlock Next Quiz"; break;
+
+        // ---------------------------
+        // Redflag Packs
+        // ---------------------------
+        case "redflag_ifseen": amount = 20; item_name = "Redflag Pack: If You See Any of These, Run"; break;
+        case "redflag_collect": amount = 25; item_name = "Redflag Pack: How Many Redflags Can You Collect?"; break;
 
         default: return { statusCode: 400, body: "Invalid product" };
       }
