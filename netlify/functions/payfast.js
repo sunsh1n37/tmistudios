@@ -101,10 +101,12 @@ exports.handler = async function(event) {
         case "next_quiz_r19": amount = 19; item_name = "Unlock Next Quiz"; break;
 
         // ---------------------------
-        // Redflag Packs
+        // Redflag Packs R20 each
         // ---------------------------
-        case "redflag_ifseen": amount = 20; item_name = "Redflag Pack: If You See Any of These, Run"; break;
-        case "redflag_collect": amount = 25; item_name = "Redflag Pack: How Many Redflags Can You Collect?"; break;
+        case "ghosts_polterguys": amount = 20; item_name = "Redflag Pack: Ghosts & Polterguys"; break;
+        case "gaslight_central": amount = 20; item_name = "Redflag Pack: Gaslight Central"; break;
+        case "exes_flexes": amount = 20; item_name = "Redflag Pack: Exes and Flexes"; break;
+        case "overzealous": amount = 20; item_name = "Redflag Pack: Over Zealous Over Jealous"; break;
 
         default: return { statusCode: 400, body: "Invalid product" };
       }
