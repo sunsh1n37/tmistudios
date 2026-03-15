@@ -13,11 +13,10 @@ exports.handler = async function(event) {
 
   const PAYFAST_URL = "https://www.payfast.co.za/eng/process";
 
-  // normalize content-type
   const contentType = (event.headers["content-type"] || "").toLowerCase();
 
   // ---------------------------
-  // IPN Verification (PayFast server notifications)
+  // IPN Verification
   // ---------------------------
   if (event.httpMethod === "POST" && contentType.includes("application/x-www-form-urlencoded")) {
 
@@ -45,14 +44,14 @@ exports.handler = async function(event) {
   }
 
   // ---------------------------
-  // JSON POST Requests (frontend -> return PayFast URL)
+  // JSON POST Requests
   // ---------------------------
   if (event.httpMethod === "POST" && contentType.includes("application/json")) {
 
     let data = {};
     try {
       data = JSON.parse(event.body || "{}");
-    } catch (err) {
+    } catch {
       return { statusCode: 400, body: "Invalid JSON body" };
     }
 
@@ -128,9 +127,19 @@ exports.handler = async function(event) {
         case "exes_flexes": amount = 20; item_name = "Redflag Pack: Exes and Flexes"; break;
         case "overzealous": amount = 20; item_name = "Redflag Pack: Over Zealous Over Jealous"; break;
 
-        // RedFlag Bingo Tiles
-        case "situationships_ghosts": amount = 49; item_name = "RedFlag Bingo Tile: Situationships & Ghosts"; break;
-        case "delulu_diaries": amount = 49; item_name = "RedFlag Bingo Tile: Delulu Diaries"; break;
+        // ---------------------------
+        // RedFlag Bingo Tiles (support BOTH names)
+        case "situationships_ghosts":
+        case "redflag_situationships":
+          amount = 49;
+          item_name = "RedFlag Bingo Tile: Situationships & Ghosts";
+          break;
+
+        case "delulu_diaries":
+        case "redflag_delulu":
+          amount = 49;
+          item_name = "RedFlag Bingo Tile: Delulu Diaries";
+          break;
 
         default:
           return { statusCode: 400, body: "Invalid product" };
