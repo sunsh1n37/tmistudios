@@ -11,7 +11,7 @@
 <meta name="author" content="TMI Studios">
 
 <style>
-
+/* === BODY === */
 body{
 font-family:'Poppins',sans-serif;
 margin:0;
@@ -23,8 +23,7 @@ min-height:100vh;
 color:#111;
 }
 
-/* NAV */
-
+/* === NAV === */
 nav{
 display:flex;
 justify-content:space-between;
@@ -56,7 +55,6 @@ font-weight:600;
 }
 
 /* HAMBURGER */
-
 .hamburger{
 display:none;
 flex-direction:column;
@@ -73,23 +71,18 @@ transition:0.3s;
 }
 
 /* X animation */
-
 .hamburger.active span:nth-child(1){
 transform:rotate(45deg) translate(5px,5px);
 }
-
 .hamburger.active span:nth-child(2){
 opacity:0;
 }
-
 .hamburger.active span:nth-child(3){
 transform:rotate(-45deg) translate(6px,-6px);
 }
 
 /* MOBILE NAV */
-
 @media(max-width:768px){
-
 .nav-links{
 position:absolute;
 top:60px;
@@ -101,19 +94,15 @@ align-items:center;
 padding:20px 0;
 display:none;
 }
-
 .nav-links.active{
 display:flex;
 }
-
 .hamburger{
 display:flex;
 }
-
 }
 
 /* TITLE */
-
 h1{
 font-size:3rem;
 color:#ff1a75;
@@ -123,7 +112,6 @@ text-align:center;
 }
 
 /* CARD */
-
 .card-container{
 max-width:700px;
 background:#ffe0f5;
@@ -146,7 +134,6 @@ font-size:1.3rem;
 }
 
 /* BRANDING */
-
 .branding{
 margin-top:25px;
 font-size:.6rem;
@@ -156,7 +143,6 @@ letter-spacing:1px;
 }
 
 /* ARROWS */
-
 .arrow-row{
 display:flex;
 justify-content:center;
@@ -175,14 +161,12 @@ cursor:pointer;
 box-shadow:0 4px 12px rgba(255,26,117,.4);
 transition:all .2s;
 }
-
 .arrow-btn:hover{
 transform:scale(1.2);
 box-shadow:0 6px 18px rgba(255,26,117,.6);
 }
 
 /* ACTION BUTTONS */
-
 .action-buttons{
 margin:25px auto 30px;
 display:flex;
@@ -201,13 +185,11 @@ border-radius:10px;
 cursor:pointer;
 box-shadow:0 2px 8px rgba(255,102,170,.2);
 }
-
 .action-buttons button:hover{
 transform:scale(1.05);
 }
 
 /* POPUP */
-
 .popup-overlay{
 display:none;
 position:fixed;
@@ -251,7 +233,6 @@ float:right;
 }
 
 /* FOOTER */
-
 footer{
 margin-top:auto;
 padding:15px;
@@ -261,7 +242,6 @@ width:100%;
 text-align:center;
 box-shadow:0 -2px 6px rgba(255,0,100,0.1);
 }
-
 footer a{
 color:#ff99c1;
 text-decoration:none;
@@ -269,18 +249,14 @@ margin:0 8px;
 }
 
 /* MOBILE */
-
 @media(max-width:768px){
-
 h1{
 font-size:2.2rem;
 }
-
 .card-container{
 margin:20px;
 padding:25px;
 }
-
 }
 
 </style>
@@ -289,98 +265,65 @@ padding:25px;
 <body>
 
 <nav>
-
 <div class="logo">TMI Studios</div>
-
 <div class="nav-links" id="navLinks">
 <a href="lab.html">Back to Lab</a>
 <a href="#">Arcade</a>
 </div>
-
 <div class="hamburger" id="hamburger">
 <span></span>
 <span></span>
 <span></span>
 </div>
-
 </nav>
 
 <h1>Redflag Radar Quiz 🚩</h1>
 
 <div class="card-container" id="cardContainer">
-
 <h2>Spot the Red Flag</h2>
-
 <ul class="redflags-list" id="redflagsList"></ul>
-
-<div class="branding">
-Take The Quiz at tmistudios.xyz
-</div>
-
+<div class="branding">Take The Quiz at tmistudios.xyz</div>
 </div>
 
 <div class="arrow-row">
-
 <button class="arrow-btn" onclick="prevFlag()">⬅</button>
-
 <button class="arrow-btn" onclick="nextFlag()">➡</button>
-
 </div>
 
 <div class="action-buttons">
-
 <button onclick="downloadCard()">Download & Share Card</button>
-
-<button onclick="window.location.href='lab.html'">
-More Unserious Games
-</button>
-
+<button onclick="window.location.href='lab.html'">More Unserious Games</button>
 </div>
 
-<!-- POPUP FOR PURCHASED PACKS WITH NETLIFY PAYFAST -->
-
+<!-- PAYWALL POPUP -->
 <div class="popup-overlay" id="packsPopup">
-
 <div class="popup">
-
 <span class="close-popup" onclick="closePopup()">×</span>
-
 <h3>Unlock More Redflag Packs</h3>
-
-<!-- CALL NETLIFY FUNCTION FOR PAYFAST -->
-<button onclick="unlockPack('delulu')">Delulu Level 100 – R20</button>
-<button onclick="unlockPack('ghosts')">Ghosts & Polterguys – R20</button>
-<button onclick="unlockPack('nice')">Nice to Beat You – R20</button>
-
+<button onclick="unlockPack('redflag_ifseen')">If You See Any of These, Run – R20</button>
+<button onclick="unlockPack('redflag_collect')">How Many Redflags Can You Collect – R25</button>
 </div>
-
 </div>
 
 <footer>
-
 © 2026 TMI Studios ·
 <a href="lab.html">Back to Lab</a> ·
 <a href="#">Privacy</a> ·
 <a href="#">Terms</a>
-
 </footer>
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script>
-
 /* NAV TOGGLE */
-
 const hamburger=document.getElementById("hamburger");
 const navLinks=document.getElementById("navLinks");
-
 hamburger.onclick=()=>{
 hamburger.classList.toggle("active");
 navLinks.classList.toggle("active");
 };
 
-/* QUIZ DATA */
-
+/* QUIZ (existing redflags, unchanged) */
 const redflags=[
 "He replies with 'k'. Just 'k'.",
 "She says 'my ex and I are still really close'.",
@@ -393,9 +336,7 @@ const redflags=[
 "They ask your location but never share theirs.",
 "He replied 'lol' to your 'ily'."
 ];
-
 let current=0;
-
 const list=document.getElementById("redflagsList");
 const popup=document.getElementById("packsPopup");
 
@@ -405,68 +346,45 @@ if(current===redflags.length-1){
 popup.style.display="flex";
 }
 }
-
-function nextFlag(){
-if(current<redflags.length-1){
-current++;
-updateFlag();
-}
-}
-
-function prevFlag(){
-if(current>0){
-current--;
-updateFlag();
-}
-}
-
-function closePopup(){
-popup.style.display="none";
-}
+function nextFlag(){if(current<redflags.length-1){current++;updateFlag();}}
+function prevFlag(){if(current>0){current--;updateFlag();}}
+function closePopup(){popup.style.display="none";}
 
 /* DOWNLOAD CARD */
-
 function downloadCard(){
-
 html2canvas(document.getElementById("cardContainer")).then(canvas=>{
-
 const link=document.createElement("a");
-
 link.download="redflag-card.png";
-
 link.href=canvas.toDataURL();
-
 link.click();
-
 });
-
 }
 
-/* SURGICAL PAYWALL */
+/* === PAYFAST FUNCTION === */
+async function unlockPack(pack) {
+  try {
+    const res = await fetch('/.netlify/functions/payfast', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pack })
+    });
 
-async function unlockPack(pack){
-try{
-const response=await fetch('/.netlify/functions/createPayfastPayment',{
-method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({pack})
-});
-const data=await response.json();
-if(data.url){
-window.location.href=data.url;
-}else{
-alert('Something went wrong. Try again.');
-console.error(data);
-}
-}catch(err){
-console.error(err);
-alert('Could not contact server.');
+    if (!res.ok) throw new Error('Server error');
+
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url; // Redirect to PayFast
+    } else {
+      alert('Payment URL not returned. Try again.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Failed to connect to payment server.');
+  }
 }
 
-}
-
+/* INITIALIZE QUIZ */
 updateFlag();
-
 </script>
 
 </body>
