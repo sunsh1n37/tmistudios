@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Redflag Radar Quiz 🚩 | TMI Studios</title>
+
+<meta name="description" content="Play the Redflag Radar Quiz 🚩 and spot toxic dating behavior. Download and share your redflag card with friends.">
+<meta name="author" content="TMI Studios">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+margin:0;
+background:linear-gradient(to bottom,#fff0f5,#ffe0f5);
+display:flex;
+flex-direction:column;
+align-items:center;
+min-height:100vh;
+color:#111;
+}
+
+/* NAV */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 20px;
+width:100%;
+background:#fff0f5;
+box-shadow:0 2px 6px rgba(255,0,100,0.15);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-weight:bold;
+font-size:1.3rem;
+color:#ff1a75;
+}
+
+.nav-links{
+display:flex;
+gap:20px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#ff1a75;
+font-weight:600;
+}
+
+/* HAMBURGER */
+
+.hamburger{
+display:none;
+flex-direction:column;
+cursor:pointer;
+gap:5px;
+}
+
+.hamburger span{
+height:3px;
+width:24px;
+background:#ff1a75;
+border-radius:3px;
+transition:0.3s;
+}
+
+/* X animation */
+
+.hamburger.active span:nth-child(1){
+transform:rotate(45deg) translate(5px,5px);
+}
+
+.hamburger.active span:nth-child(2){
+opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+transform:rotate(-45deg) translate(6px,-6px);
+}
+
+/* MOBILE NAV */
+
+@media(max-width:768px){
+
+.nav-links{
+position:absolute;
+top:60px;
+left:0;
+width:100%;
+background:#fff0f5;
+flex-direction:column;
+align-items:center;
+padding:20px 0;
+display:none;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.hamburger{
+display:flex;
+}
+
+}
+
+/* TITLE */
+
+h1{
+font-size:3rem;
+color:#ff1a75;
+text-shadow:1px 1px #ffd0ea;
+margin:25px 0 10px;
+text-align:center;
+}
+
+/* CARD */
+
+.card-container{
+max-width:700px;
+background:#ffe0f5;
+margin:30px auto;
+padding:35px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(255,0,100,0.35);
+text-align:center;
+}
+
+.card-container h2{
+color:#ff1a75;
+margin-bottom:20px;
+}
+
+.redflags-list{
+list-style:none;
+padding:0;
+font-size:1.3rem;
+}
+
+/* BRANDING */
+
+.branding{
+margin-top:25px;
+font-size:.6rem;
+color:#ff4db8;
+font-weight:600;
+letter-spacing:1px;
+}
+
+/* ARROWS */
+
+.arrow-row{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:-10px;
+}
+
+.arrow-btn{
+font-size:2rem;
+background:linear-gradient(45deg,#ff1a75,#ff66aa);
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:50%;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(255,26,117,.4);
+transition:all .2s;
+}
+
+.arrow-btn:hover{
+transform:scale(1.2);
+box-shadow:0 6px 18px rgba(255,26,117,.6);
+}
+
+/* ACTION BUTTONS */
+
+.action-buttons{
+margin:25px auto 30px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+}
+
+.action-buttons button{
+background:linear-gradient(45deg,#ff99c1,#ffc0e0);
+border:none;
+color:white;
+font-weight:600;
+padding:8px 16px;
+border-radius:10px;
+cursor:pointer;
+box-shadow:0 2px 8px rgba(255,102,170,.2);
+}
+
+.action-buttons button:hover{
+transform:scale(1.05);
+}
+
+/* POPUP */
+
+.popup-overlay{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+justify-content:center;
+align-items:center;
+z-index:200;
+}
+
+.popup{
+background:#fff0f5;
+padding:25px;
+border-radius:20px;
+text-align:center;
+max-width:400px;
+}
+
+.popup h3{
+color:#ff1a75;
+}
+
+.popup button{
+background:linear-gradient(45deg,#ff1a75,#ff66aa);
+border:none;
+color:white;
+padding:10px;
+margin:8px 0;
+border-radius:12px;
+cursor:pointer;
+width:80%;
+}
+
+.close-popup{
+cursor:pointer;
+font-size:1.4rem;
+float:right;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:auto;
+padding:15px;
+font-size:.9rem;
+background:#fff0f5;
+width:100%;
+text-align:center;
+box-shadow:0 -2px 6px rgba(255,0,100,0.1);
+}
+
+footer a{
+color:#ff99c1;
+text-decoration:none;
+margin:0 8px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+h1{
+font-size:2.2rem;
+}
+
+.card-container{
+margin:20px;
+padding:25px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">TMI Studios</div>
+
+<div class="nav-links" id="navLinks">
+<a href="lab.html">Back to Lab</a>
+<a href="#">Arcade</a>
+</div>
+
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+</nav>
+
+<h1>Redflag Radar Quiz 🚩</h1>
+
+<div class="card-container" id="cardContainer">
+
+<h2>Spot the Red Flag</h2>
+
+<ul class="redflags-list" id="redflagsList"></ul>
+
+<div class="branding">
+Take The Quiz at tmistudios.xyz
+</div>
+
+</div>
+
+<div class="arrow-row">
+
+<button class="arrow-btn" onclick="prevFlag()">⬅</button>
+
+<button class="arrow-btn" onclick="nextFlag()">➡</button>
+
+</div>
+
+<div class="action-buttons">
+
+<button onclick="downloadCard()">Download & Share Card</button>
+
+<button onclick="window.location.href='lab.html'">
+More Unserious Games
+</button>
+
+
+</div>
+
+<div class="popup-overlay" id="packsPopup">
+
+<div class="popup">
+
+<span class="close-popup" onclick="closePopup()">×</span>
+
+<h3>Unlock More Redflag Packs</h3>
+
+<button>Delulu Level 100 – R20</button>
+<button>Ghosts & Polterguys – R20</button>
+<button>Nice to Beat You – R20</button>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 TMI Studios ·
+<a href="lab.html">Back to Lab</a> ·
+<a href="#">Privacy</a> ·
+<a href="#">Terms</a>
+
+</footer>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script>
+
+/* NAV TOGGLE */
+
+const hamburger=document.getElementById("hamburger");
+const navLinks=document.getElementById("navLinks");
+
+hamburger.onclick=()=>{
+hamburger.classList.toggle("active");
+navLinks.classList.toggle("active");
+};
+
+/* QUIZ */
+
+const redflags=[
+"He replies with 'k'. Just 'k'.",
+"She says 'my ex and I are still really close'.",
+"They say 'I don’t believe in labels'.",
+"He won’t let you post him on IG.",
+"Her phone is always on Do Not Disturb.",
+"They disappear for 3 days then text 'hey stranger'.",
+"He calls his mom 'baby'.",
+"She always mentions her male bestie.",
+"They ask your location but never share theirs.",
+"He replied 'lol' to your 'ily'."
+];
+
+let current=0;
+
+const list=document.getElementById("redflagsList");
+const popup=document.getElementById("packsPopup");
+
+function updateFlag(){
+list.innerHTML=`<li>${redflags[current]}</li>`;
+if(current===redflags.length-1){
+popup.style.display="flex";
+}
+}
+
+function nextFlag(){
+if(current<redflags.length-1){
+current++;
+updateFlag();
+}
+}
+
+function prevFlag(){
+if(current>0){
+current--;
+updateFlag();
+}
+}
+
+function closePopup(){
+popup.style.display="none";
+}
+
+/* DOWNLOAD CARD */
+
+function downloadCard(){
+
+html2canvas(document.getElementById("cardContainer")).then(canvas=>{
+
+const link=document.createElement("a");
+
+link.download="redflag-card.png";
+
+link.href=canvas.toDataURL();
+
+link.click();
+
+});
+
+}
+
+updateFlag();
+
+</script>
+
+</body>
+</html>
