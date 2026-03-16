@@ -130,11 +130,13 @@ footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:
     <span class="close" onclick="closeUpgradeModal()">&times;</span>
     <h2>Unlock a Pack!</h2>
     <p>Buy one of the locked packs for <strong>R49</strong> each 🎉</p>
+    <button class="upgradeBtn" data-pack="Drama-saurus">Drama-saurus R49</button>
+    <button class="upgradeBtn" data-pack="Snakes & Ladders">Snakes & Ladders R49</button>
+    <button class="upgradeBtn" data-pack="TricksterRex">TricksterRex R49</button>
+  </div>
+</div>
 
-   <button class="upgradeBtn" data-pack="Drama-saurus">Drama-saurus R49</button>
-<button class="upgradeBtn" data-pack="Snakes & Ladders">Snakes & Ladders R49</button>
-<button class="upgradeBtn" data-pack="TricksterRex">TricksterRex R49</button>
-
+<!-- Footer -->
 <footer class="skinny-footer">
   <p>© 2026 TMI Studios</p>
   <nav class="footer-links">
@@ -147,64 +149,101 @@ footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:
 
 <script>
 // ================================
-// TEXTPOSÈ FULL SCRIPT FIXED
+// TEXTPOSÈ FULL QUIZ PAYMENT SCRIPT
 // ================================
 
-// ----------------------------
-// DATA
-// ----------------------------
 let currentPack = "";
 let scrollIndex = 0;
 let scrolls = [];
 
 const scrollBank = {
-  "Drama-saurus":[
-    {text:"Ugh", decoder:"They're annoyed but won't say it."},
+  // ===== FREE PACK 1 =====
+  "Ex-Terrex":[
+    {text:"K", decoder:"They're annoyed but won't say it."},
+    {text:"...", decoder:"They ignored you on purpose."},
     {text:"Fine", decoder:"They're upset but hiding it."},
-    {text:"K", decoder:"They're ignoring you."}
+    {text:"Sure", decoder:"They don't really agree."},
+    {text:"Haha", decoder:"They're uncomfortable or annoyed."},
+    {text:"Whatever", decoder:"They don't care about your opinion."},
+    {text:"OK", decoder:"They're frustrated but being polite."},
+    {text:"Thanks", decoder:"They feel forced to respond."},
+    {text:"Yup", decoder:"They're annoyed but hiding feelings."},
+    {text:"No worries", decoder:"They're annoyed but saying it lightly."}
   ],
+
+  // ===== FREE PACK 2 =====
+  "Polyerguys":[
+    {text:"I’ll call you later", decoder:"They're avoiding the conversation."},
+    {text:"Busy rn", decoder:"They don't want to talk now."},
+    {text:"Can we talk?", decoder:"They're nervous or annoyed."},
+    {text:"Not mad", decoder:"They're actually mad."},
+    {text:"IDK", decoder:"They don't want to explain."},
+    {text:"We need to talk", decoder:"They're frustrated."},
+    {text:"Sure", decoder:"They're not really happy."},
+    {text:"Cool", decoder:"They're being passive aggressive."},
+    {text:"Okay...", decoder:"They're upset but hiding it."},
+    {text:"Later", decoder:"They're avoiding you."}
+  ],
+
+  // ===== LOCKED PACK 1 =====
+  "Drama-saurus":[
+    {text:"Why didn't you text me back?", decoder:"They're trying to guilt-trip you."},
+    {text:"Are you busy?", decoder:"They're annoyed you didn’t reply fast enough."},
+    {text:"Whatever", decoder:"They're dismissing your feelings on purpose."},
+    {text:"Fine then", decoder:"They're upset but pretending not to care."},
+    {text:"You always…", decoder:"They're starting drama over small things."},
+    {text:"I don’t care", decoder:"They actually do care, but want attention."},
+    {text:"If you say so", decoder:"They’re passive aggressive."},
+    {text:"Guess you’re right", decoder:"They’re annoyed but letting you win."},
+    {text:"Do what you want", decoder:"They feel frustrated and powerless."},
+    {text:"I’m over it", decoder:"They’re hurt but trying to act cool."}
+  ],
+
+  // ===== LOCKED PACK 2 =====
   "Snakes & Ladders":[
-    {text:"Sure", decoder:"They are passive-aggressive."},
-    {text:"Whatever", decoder:"They don't care about your feelings."},
-    {text:"LOL", decoder:"They're mocking you subtly."}
+    {text:"Not my problem", decoder:"They’re brushing you off."},
+    {text:"You’re overthinking", decoder:"They're dismissing your feelings."},
+    {text:"Chill", decoder:"They think you’re too dramatic."},
+    {text:"It’s fine", decoder:"They’re annoyed but won’t admit it."},
+    {text:"Don’t worry about me", decoder:"They actually do want you to care."},
+    {text:"Whatever you say", decoder:"They’re being passive aggressive."},
+    {text:"Calm down", decoder:"They want to control the conversation."},
+    {text:"It’s nothing", decoder:"Something is wrong but they won’t tell you."},
+    {text:"Stop being so sensitive", decoder:"They’re avoiding responsibility."},
+    {text:"I said I’m fine", decoder:"They’re frustrated but hiding it."}
   ],
+
+  // ===== LOCKED PACK 3 =====
   "TricksterRex":[
-    {text:"Haha", decoder:"They are sarcastic, watch out."},
-    {text:"Maybe", decoder:"They're indecisive or playing games."},
-    {text:"We'll see", decoder:"They're avoiding commitment."}
+    {text:"Kinda busy", decoder:"They don’t want to fully engage."},
+    {text:"IDK rn", decoder:"They’re ignoring you politely."},
+    {text:"Maybe later", decoder:"They’re delaying to avoid you."},
+    {text:"LOL", decoder:"They’re masking annoyance with humor."},
+    {text:"Sure, why not", decoder:"They’re being sarcastic."},
+    {text:"Cool story", decoder:"They’re bored or annoyed."},
+    {text:"If you say so", decoder:"They’re not convinced but don’t want to argue."},
+    {text:"Right…", decoder:"They’re doubtful or irritated."},
+    {text:"I guess", decoder:"They don’t agree but won’t fight."},
+    {text:"Thanks, I guess", decoder:"They feel unappreciated but polite."}
   ]
 };
 
-// ----------------------------
 // PACK SELECTION
-// ----------------------------
 function selectPack(packName){
   currentPack = packName;
   scrollIndex = 0;
   scrolls = scrollBank[packName] || [];
-
-  if(scrolls.length === 0){
-    alert("Pack is empty or locked");
-    return;
-  }
-
+  if(scrolls.length === 0){ alert("Pack is empty or locked"); return; }
   document.getElementById("categoryScreen").style.display = "none";
   document.getElementById("scrollScreen").style.display = "block";
   updateScrollTile();
 }
 
-// ----------------------------
 // SCROLL NAVIGATION
-// ----------------------------
 function nextScroll(){
-  if(scrollIndex < scrolls.length-1){
-    scrollIndex++;
-    updateScrollTile();
-  } else {
-    showEndModal();
-  }
+  if(scrollIndex < scrolls.length-1){ scrollIndex++; updateScrollTile(); } 
+  else{ showEndModal(); }
 }
-
 function updateScrollTile(){
   const tile = scrolls[scrollIndex];
   document.getElementById("scrollText").innerText = tile.text;
@@ -214,105 +253,47 @@ function updateScrollTile(){
   document.getElementById("progressBar").style.width = progressPercent+"%";
 }
 
-// ----------------------------
 // PAYMENT HANDLERS
-// ----------------------------
-const productMap = {
-  "Drama-saurus": "drama_saurus",
-  "Snakes & Ladders": "snakeraptor",
-  "TricksterRex": "tricksterrex"
-};
-
 async function buyPack(pack){
+  const productMap = {"Drama-saurus":"drama_saurus","Snakes & Ladders":"snakeraptor","TricksterRex":"tricksterrex"};
   const product = productMap[pack];
-  if(!product){
-    alert("Invalid pack selected");
-    return;
-  }
-
+  if(!product){ alert("Invalid pack"); return; }
   try{
-    const res = await fetch("/.netlify/functions/payfast", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ product })
-    });
-
-    const data = await res.json();
-    if(data.url){
-      window.location.href = data.url;
-    } else {
-      console.error("No URL returned:", data);
-      alert("Payment error");
-    }
-  } catch(err){
-    console.error("Payment request failed:", err);
-    alert("Payment request failed. Check console.");
-  }
-}
-
-// Clapback purchase button
-async function handleClapback(){
-  try{
-    const res = await fetch("/.netlify/functions/payfast", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ product: "toxic_clapback" })
-    });
+    const res = await fetch("/.netlify/functions/payfast",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({product})});
+    if(!res.ok) throw new Error("Network response not ok");
     const data = await res.json();
     if(data.url){ window.location.href = data.url; }
-    else{ alert("Payment error"); }
-  } catch(err){
-    console.error(err);
-    alert("Payment request failed");
-  }
+    else{ console.error("No URL returned:", data); alert("Payment failed. Try again."); }
+  } catch(err){ console.error(err); alert("Payment request failed. Check console."); }
+}
+async function handleClapback(){
+  try{
+    const res = await fetch("/.netlify/functions/payfast",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({product:"next_quiz_r19"})});
+    if(!res.ok) throw new Error("Network response not ok");
+    const data = await res.json();
+    if(data.url){ window.location.href=data.url; } else{ alert("Payment error"); }
+  } catch(err){ console.error(err); alert("Payment request failed"); }
 }
 
-// ----------------------------
 // MODAL HANDLERS
-// ----------------------------
-function showEndModal(){ document.getElementById("endModal").style.display = "block"; }
-function restartPack(){ 
-  scrollIndex=0; 
-  updateScrollTile(); 
-  document.getElementById("endModal").style.display = "none"; 
-}
-function backToTiles(){ 
-  document.getElementById("scrollScreen").style.display="none"; 
-  document.getElementById("categoryScreen").style.display="grid"; 
-  document.getElementById("endModal").style.display="none"; 
-}
-function openUpgradeFromEndModal(){ 
-  document.getElementById("endModal").style.display="none"; 
-  document.getElementById("upgradeModal").style.display="block"; 
-}
+function showEndModal(){ document.getElementById("endModal").style.display="block"; }
+function restartPack(){ scrollIndex=0; updateScrollTile(); document.getElementById("endModal").style.display="none"; }
+function backToTiles(){ document.getElementById("scrollScreen").style.display="none"; document.getElementById("categoryScreen").style.display="grid"; document.getElementById("endModal").style.display="none"; }
 function openUpgradeModal(){ document.getElementById("upgradeModal").style.display="block"; }
 function closeUpgradeModal(){ document.getElementById("upgradeModal").style.display="none"; }
 
-// ----------------------------
 // THEME & NAV
-// ----------------------------
-function toggleTheme(){
-  const body = document.body;
-  body.dataset.theme = body.dataset.theme === "dark" ? "light" : "dark";
-}
+function toggleTheme(){ const body=document.body; body.dataset.theme=(body.dataset.theme==="dark"?"light":"dark"); }
+function toggleNav(){ const nav=document.getElementById("navStack"); nav.style.right=(nav.style.right==="0px"? "-250px":"0px"); }
 
-function toggleNav(){
-  const nav = document.getElementById("navStack");
-  nav.style.right = (nav.style.right==="0px") ? "-250px" : "0px";
-}
-
-// ----------------------------
-// PREMIUM PACK BUTTONS FIX
-// ----------------------------
+// PREMIUM PACK BUTTONS
 document.addEventListener("DOMContentLoaded",()=>{
-  const premiumButtons = document.querySelectorAll(".upgradeBtn");
-  premiumButtons.forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      const packName = btn.getAttribute("data-pack");
-      buyPack(packName);
-    });
-  });
+  const premiumButtons=document.querySelectorAll(".upgradeBtn");
+  premiumButtons.forEach(btn=>{ btn.addEventListener("click", ()=>{ buyPack(btn.dataset.pack); }); });
 });
+
+// CLOSE MODAL IF CLICK OUTSIDE
+window.onclick = e => { if(e.target===document.getElementById("upgradeModal")||e.target===document.getElementById("endModal")) closeUpgradeModal(); }
 </script>
 </body>
 </html>
