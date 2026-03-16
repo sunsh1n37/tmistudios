@@ -1,111 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Red Flag Bingo – Sip or Skip Game | TMI Studios</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>💬 TextPosè | Toxic Text Decoder</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-<!-- Open Graph / Social -->
-<meta property="og:title" content="Red Flag Bingo – Sip or Skip Game by TMI Studios">
-<meta property="og:description" content="Unleash your inner chaotic queen with Red Flag Bingo! 🍷🙅‍♀️ Sip or Skip your way through the wildest red flags.">
-<meta property="og:image" content="https://www.tmistudios.xyz/images/redflagbingo-sharecard.png">
-<meta property="og:url" content="https://www.tmistudios.xyz/redflagbingo.html">
-<meta property="og:type" content="website">
-
 <style>
-/* Reset + Fonts */
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Arial',sans-serif;background:#0d0d0d;color:#fff;line-height:1.5;transition:0.3s;}
-a{text-decoration:none;color:inherit;}
-
-/* Hero */
-.hero{background:linear-gradient(135deg,#cc3333,#ff4d4d);padding:80px 20px;text-align:center;position:relative;overflow:hidden;}
-.hero h1{font-size:3rem;color:#fff;text-shadow:0 0 10px #ffcc66;}
-.hero p{font-size:1.2rem;margin:20px auto;max-width:700px;}
-.hero img{max-width:250px;width:80%;margin:20px auto;border-radius:16px;box-shadow:0 0 20px #ff4d4d;}
-
-/* CTA Button */
-.btn-play{display:inline-block;background:gold;color:#000;font-weight:bold;padding:15px 30px;border-radius:12px;font-size:1.2rem;box-shadow:0 0 15px gold;transition:transform 0.3s, box-shadow 0.3s;margin-top:20px;}
-.btn-play:hover{transform:scale(1.05);box-shadow:0 0 25px gold;}
-
-/* Features Section */
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:60px 20px;text-align:center;}
-.feature-card{background:#1a1a1a;border:2px solid #ff4d4d;border-radius:16px;padding:30px;transition:0.3s;position:relative;}
-.feature-card:hover{transform:scale(1.05);box-shadow:0 0 15px #ff4d4d;}
-.feature-card i{font-size:3rem;margin-bottom:15px;color:#ff4d4d;}
-.feature-card h3{margin-bottom:10px;}
-.feature-card p{font-size:0.95rem;color:#ddd;}
-
-/* Social Proof */
-.social-proof{background:#111;padding:60px 20px;text-align:center;}
-.social-proof h2{margin-bottom:30px;color:#ff4d4d;}
-.proof-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
-.proof-card{background:#1a1a1a;border-radius:16px;padding:20px;font-size:0.9rem;position:relative;}
-.proof-card::before{content:'🔥';position:absolute;top:-10px;left:-10px;font-size:2rem;}
-.proof-card p{margin-top:15px;color:#fff;font-style:italic;}
-
-/* Footer */
-footer{background:#0d0d0d;color:#aaa;text-align:center;padding:40px 20px;font-size:0.9rem;}
-footer a{color:#ff4d4d;}
-footer a:hover{color:gold;}
+:root { --footer-text:#ccc; --primary:#6a0dad; --secondary:#39ff14; --accent:#000; --button:#39ff14; --button-hover:#2be60f;}
+body{margin:0;padding:20px;font-family:'Arial',sans-serif;text-align:center;background:#12002b;color:#fff;transition:background 0.3s,color 0.3s;}
+[data-theme="light"]{background:#f5f5f5;color:#1a1a1a;}
+h1,h2{margin:10px 0;}
+button{padding:10px 20px;font-size:16px;border:none;border-radius:8px;cursor:pointer;background:var(--button);color:#000;transition:0.3s;}
+button:hover{background:var(--button-hover);}
+.category-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;justify-items:center;margin-bottom:20px;}
+.category-button{width:100%;max-width:240px;background:var(--accent);border:2px solid var(--primary);border-radius:12px;overflow:hidden;cursor:pointer;position:relative;transition:transform 0.3s, box-shadow 0.3s;}
+.category-button:hover{transform:scale(1.05);box-shadow:0 0 15px var(--secondary);}
+.category-button img{width:100%;height:140px;object-fit:cover;display:block;}
+.category-title{padding:10px;font-weight:bold;background:var(--accent);color:#fff;}
+.locked{opacity:0.8;}
+.locked img{filter:grayscale(80%) brightness(0.6);}
+.locked-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:bold;font-size:18px;border-radius:12px;pointer-events:none;}
+.locked .category-title{color:#fff !important;}
+.scroll-tile{background:linear-gradient(145deg,#1b001f,#2e0033);border:2px solid var(--primary);border-radius:16px;padding:20px;margin:20px auto;max-width:600px;font-size:20px;color:#fff;box-shadow:0 0 15px rgba(255,255,255,0.2);}
+.scroll-text{font-weight:bold;margin-bottom:10px;font-size:18px;}
+.scroll-decoder{font-size:16px;color:#39ff14;margin-bottom:15px;}
+.button-container{display:flex;justify-content:center;gap:20px;margin-top:15px;flex-wrap:wrap;}
+#progressContainer{width:80%;height:15px;background:#333;border-radius:8px;margin:15px auto;}
+#progressBar{height:100%;width:0%;background:var(--secondary);border-radius:8px;transition:width 0.3s;}
+.stickyHome{position:sticky;top:0;left:0;text-align:left;margin-bottom:20px;z-index:1000;}
+.modal{display:none;position:fixed;z-index:10000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.85);backdrop-filter:blur(3px);animation:fadeIn 0.3s;}
+.modal-content{background:linear-gradient(145deg,var(--secondary),var(--primary));margin:10% auto;padding:30px 20px;border-radius:16px;max-width:350px;text-align:center;color:#000;box-shadow:0 0 20px var(--secondary);animation:slideUp 0.3s;position:relative;}
+.modal-content h2{margin-bottom:15px;font-size:22px;}
+.modal-content p{margin-bottom:25px;font-size:16px;}
+.upgradeBtn, .cancelBtn{display:block;width:80%;margin:10px auto;padding:12px 0;font-size:16px;font-weight:bold;border-radius:12px;border:none;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;}
+.upgradeBtn{background:var(--secondary);color:#000;box-shadow:0 0 15px var(--secondary);}
+.upgradeBtn:hover{transform:scale(1.05);box-shadow:0 0 25px var(--secondary);}
+.cancelBtn{background:rgba(255,255,255,0.2);color:#fff;}
+.cancelBtn:hover{background:rgba(255,255,255,0.35);}
+footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:center;padding:20px 10px;font-size:14px;}
+.footer-links a{color:var(--footer-text);margin:0 4px;text-decoration:none;transition:color 0.3s;}
+.footer-links a:hover{color:var(--secondary);}
+.hamburger{position:fixed;top:15px;right:15px;font-size:28px;cursor:pointer;color:var(--secondary);z-index:1100;}
+.nav-stack{position:fixed;top:0;right:-250px;width:200px;height:100%;background:var(--accent);box-shadow:-5px 0 15px rgba(0,0,0,0.5);transition:right 0.3s;display:flex;flex-direction:column;padding-top:60px;}
+.nav-stack a{color:#fff;padding:15px;text-decoration:none;font-weight:bold;transition:0.3s;}
+.nav-stack a:hover{background:#333;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{transform:translateY(50px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 </style>
 </head>
-<body>
+<body data-theme="dark">
 
-<!-- Hero Section -->
-<section class="hero">
-<h1>Red Flag Bingo 🍷🙅‍♀️</h1>
-<p>The ultimate chaotic girls’ night game! Sip or Skip through the wildest red flags, spill the tea, laugh until you cry, and share the madness with your squad. Only the bold survive!</p>
-<img src="images/redflagbingo.jpeg" alt="Red Flag Bingo">
-<a href="redflagbingo.html" class="btn-play">🎉 Play Now</a>
-</section>
+<!-- Hamburger Nav -->
+<div class="hamburger" onclick="toggleNav()">☰</div>
+<div id="navStack" class="nav-stack">
+  <a href="index.html">🏠 Home</a>
+  <a href="arcade.html">Arcade</a>
+  <a href="lab.html">More Quizzes</a>
+  <a href="faq.html">FAQ</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+</div>
 
-<!-- Features Section -->
-<section class="features">
-<div class="feature-card">
-<i class="fas fa-glass-cheers"></i>
-<h3>Sip or Skip</h3>
-<p>Choose wisely: Sip if you’ve done it, Skip if you haven’t. Chaos guaranteed.</p>
-</div>
-<div class="feature-card">
-<i class="fas fa-ghost"></i>
-<h3>Exposed Red Flags</h3>
-<p>From ghosting to delulu moments, every red flag is hilariously relatable.</p>
-</div>
-<div class="feature-card">
-<i class="fas fa-users"></i>
-<h3>Squad Fun</h3>
-<p>Play with friends, laugh together, and post your results. Who’s the ultimate red flag queen?</p>
-</div>
-<div class="feature-card">
-<i class="fas fa-lock"></i>
-<h3>Unlock Chaos</h3>
-<p>Premium categories reveal the juiciest, wildest situations. Dare to unlock them?</p>
-</div>
-</section>
+<button id="themeToggle" onclick="toggleTheme()">🌙</button>
 
-<!-- Social Proof Section -->
-<section class="social-proof">
-<h2>🔥 Players are loving it!</h2>
-<div class="proof-cards">
-<div class="proof-card">
-<p>"This game had us dying laughing all night! Can’t believe some of these red flags are real!" – Thandi, Cape Town</p>
+<!-- Hero -->
+<div id="heroIntro">
+<h1 class="glow" id="heroTitle">💬 TextPosè</h1>
+<img src="images/textpose-hero.jpeg" alt="TextPosè" style="display:block;margin:20px auto;max-width:300px;height:auto;"/>
+<p>Decode shady texts your ex or crush sends. Scroll through, see the real meaning, and learn what to text back 🔥💌</p>
+<p>Pick a pack to start decoding.</p>
 </div>
-<div class="proof-card">
-<p>"Boundaries? Never heard of her… literally me 😭. Red Flag Bingo is a vibe." – Zinhle, Johannesburg</p>
-</div>
-<div class="proof-card">
-<p>"We unlocked the premium categories and lost it. 10/10 would recommend!" – Sibo, Durban</p>
-</div>
-</div>
-</section>
 
-<!-- Footer -->
-<footer>
-<p>&copy; 2025 TMI Studios. All rights reserved.</p>
-<p><a href="/privacy.html">Privacy Policy</a> | <a href="/termsofuse.html">Terms of Use</a></p>
+<!-- Category Screen -->
+<div id="categoryScreen" class="category-container">
+  <div class="category-button" onclick="selectPack('Ex-Terrex')">
+    <img src="images/ext.jpg" alt="Ex-Terrex">
+    <div class="category-title">Ex-Terrex</div>
+  </div>
+  <div class="category-button" onclick="selectPack('Polyerguys')">
+    <img src="images/ghost.jpg" alt="Polyerguys">
+    <div class="category-title">Polyerguys</div>
+  </div>
+  <div class="category-button locked" onclick="openUpgradeModal()">
+    <img src="images/drama.jpg" alt="Drama-saurus">
+    <div class="locked-overlay">🔒 Locked</div>
+    <div class="category-title">Drama-saurus</div>
+  </div>
+  <div class="category-button locked" onclick="openUpgradeModal()">
+    <img src="images/snakeraptor.jpg" alt="Snakes & Ladders">
+    <div class="locked-overlay">🔒 Locked</div>
+    <div class="category-title">Snakes & Ladders</div>
+  </div>
+  <div class="category-button locked" onclick="openUpgradeModal()">
+    <img src="images/trixie.jpg" alt="TricksterRex">
+    <div class="locked-overlay">🔒 Locked</div>
+    <div class="category-title">TricksterRex</div>
+  </div>
+</div>
+
+<!-- Scroll Screen -->
+<div id="scrollScreen" style="display:none;">
+  <h2 id="scrollCount"></h2>
+  <div class="scroll-tile">
+    <div class="scroll-text" id="scrollText"></div>
+    <div class="scroll-decoder" id="scrollDecoder"></div>
+  </div>
+  <div class="button-container">
+    <button onclick="handleClapback()">💬 What to text back (R5)</button>
+    <button onclick="nextScroll()">Next ➡️</button>
+  </div>
+  <div id="progressContainer"><div id="progressBar"></div></div>
+</div>
+
+<!-- End-of-Pack Modal -->
+<div id="endModal" class="modal">
+  <div class="modal-content">
+    <h2>🎉 You finished the pack!</h2>
+    <p>Want to unlock more packs or go back to pick another?</p>
+    <button class="upgradeBtn" onclick="openUpgradeModal()">🔓 Unlock More Packs</button>
+    <button class="upgradeBtn" onclick="restartPack()">🔄 Restart Pack</button>
+    <button class="cancelBtn" onclick="backToTiles()">⬅️ Back to Packs</button>
+  </div>
+</div>
+
+<!-- Upgrade Modal -->
+<div id="upgradeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeUpgradeModal()">&times;</span>
+    <h2>Unlock a Pack!</h2>
+    <p>Buy one of the locked packs for <strong>R49</strong> each 🎉</p>
+
+   <button class="upgradeBtn" data-pack="Drama-saurus">Drama-saurus R49</button>
+<button class="upgradeBtn" data-pack="Snakes & Ladders">Snakes & Ladders R49</button>
+<button class="upgradeBtn" data-pack="TricksterRex">TricksterRex R49</button>
+
+<footer class="skinny-footer">
+  <p>© 2026 TMI Studios</p>
+  <nav class="footer-links">
+    <a href="arcade.html">Arcade</a> ·
+    <a href="faq.html">FAQ</a> ·
+    <a href="privacy.html">Privacy</a> ·
+    <a href="terms.html">Terms</a>
+  </nav>
 </footer>
 
+<script>
+// ================================
+// TEXTPOSÈ FULL SCRIPT FIXED
+// ================================
+
+// ----------------------------
+// DATA
+// ----------------------------
+let currentPack = "";
+let scrollIndex = 0;
+let scrolls = [];
+
+const scrollBank = {
+  "Drama-saurus":[
+    {text:"Ugh", decoder:"They're annoyed but won't say it."},
+    {text:"Fine", decoder:"They're upset but hiding it."},
+    {text:"K", decoder:"They're ignoring you."}
+  ],
+  "Snakes & Ladders":[
+    {text:"Sure", decoder:"They are passive-aggressive."},
+    {text:"Whatever", decoder:"They don't care about your feelings."},
+    {text:"LOL", decoder:"They're mocking you subtly."}
+  ],
+  "TricksterRex":[
+    {text:"Haha", decoder:"They are sarcastic, watch out."},
+    {text:"Maybe", decoder:"They're indecisive or playing games."},
+    {text:"We'll see", decoder:"They're avoiding commitment."}
+  ]
+};
+
+// ----------------------------
+// PACK SELECTION
+// ----------------------------
+function selectPack(packName){
+  currentPack = packName;
+  scrollIndex = 0;
+  scrolls = scrollBank[packName] || [];
+
+  if(scrolls.length === 0){
+    alert("Pack is empty or locked");
+    return;
+  }
+
+  document.getElementById("categoryScreen").style.display = "none";
+  document.getElementById("scrollScreen").style.display = "block";
+  updateScrollTile();
+}
+
+// ----------------------------
+// SCROLL NAVIGATION
+// ----------------------------
+function nextScroll(){
+  if(scrollIndex < scrolls.length-1){
+    scrollIndex++;
+    updateScrollTile();
+  } else {
+    showEndModal();
+  }
+}
+
+function updateScrollTile(){
+  const tile = scrolls[scrollIndex];
+  document.getElementById("scrollText").innerText = tile.text;
+  document.getElementById("scrollDecoder").innerText = tile.decoder;
+  document.getElementById("scrollCount").innerText = `Scroll ${scrollIndex+1} of ${scrolls.length}`;
+  const progressPercent = ((scrollIndex+1)/scrolls.length)*100;
+  document.getElementById("progressBar").style.width = progressPercent+"%";
+}
+
+// ----------------------------
+// PAYMENT HANDLERS
+// ----------------------------
+const productMap = {
+  "Drama-saurus": "drama_saurus",
+  "Snakes & Ladders": "snakeraptor",
+  "TricksterRex": "tricksterrex"
+};
+
+async function buyPack(pack){
+  const product = productMap[pack];
+  if(!product){
+    alert("Invalid pack selected");
+    return;
+  }
+
+  try{
+    const res = await fetch("/.netlify/functions/payfast", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ product })
+    });
+
+    const data = await res.json();
+    if(data.url){
+      window.location.href = data.url;
+    } else {
+      console.error("No URL returned:", data);
+      alert("Payment error");
+    }
+  } catch(err){
+    console.error("Payment request failed:", err);
+    alert("Payment request failed. Check console.");
+  }
+}
+
+// Clapback purchase button
+async function handleClapback(){
+  try{
+    const res = await fetch("/.netlify/functions/payfast", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ product: "toxic_clapback" })
+    });
+    const data = await res.json();
+    if(data.url){ window.location.href = data.url; }
+    else{ alert("Payment error"); }
+  } catch(err){
+    console.error(err);
+    alert("Payment request failed");
+  }
+}
+
+// ----------------------------
+// MODAL HANDLERS
+// ----------------------------
+function showEndModal(){ document.getElementById("endModal").style.display = "block"; }
+function restartPack(){ 
+  scrollIndex=0; 
+  updateScrollTile(); 
+  document.getElementById("endModal").style.display = "none"; 
+}
+function backToTiles(){ 
+  document.getElementById("scrollScreen").style.display="none"; 
+  document.getElementById("categoryScreen").style.display="grid"; 
+  document.getElementById("endModal").style.display="none"; 
+}
+function openUpgradeFromEndModal(){ 
+  document.getElementById("endModal").style.display="none"; 
+  document.getElementById("upgradeModal").style.display="block"; 
+}
+function openUpgradeModal(){ document.getElementById("upgradeModal").style.display="block"; }
+function closeUpgradeModal(){ document.getElementById("upgradeModal").style.display="none"; }
+
+// ----------------------------
+// THEME & NAV
+// ----------------------------
+function toggleTheme(){
+  const body = document.body;
+  body.dataset.theme = body.dataset.theme === "dark" ? "light" : "dark";
+}
+
+function toggleNav(){
+  const nav = document.getElementById("navStack");
+  nav.style.right = (nav.style.right==="0px") ? "-250px" : "0px";
+}
+
+// ----------------------------
+// PREMIUM PACK BUTTONS FIX
+// ----------------------------
+document.addEventListener("DOMContentLoaded",()=>{
+  const premiumButtons = document.querySelectorAll(".upgradeBtn");
+  premiumButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const packName = btn.getAttribute("data-pack");
+      buyPack(packName);
+    });
+  });
+});
+</script>
 </body>
 </html>
