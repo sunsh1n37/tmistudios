@@ -131,12 +131,9 @@ footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:
     <h2>Unlock a Pack!</h2>
     <p>Buy one of the locked packs for <strong>R49</strong> each 🎉</p>
 
-    <button class="upgradeBtn" onclick="buyPack('Drama-saurus')">Drama-saurus R49</button>
-    <button class="upgradeBtn" onclick="buyPack('Snakes & Ladders')">Snakes & Ladders R49</button>
-    <button class="upgradeBtn" onclick="buyPack('TricksterRex')">TricksterRex R49</button>
-    <button class="cancelBtn" onclick="window.location.href='lab.html'">More quizzes 🎲</button>
-  </div>
-</div>
+   <button class="upgradeBtn" data-pack="Drama-saurus">Drama-saurus R49</button>
+<button class="upgradeBtn" data-pack="Snakes & Ladders">Snakes & Ladders R49</button>
+<button class="upgradeBtn" data-pack="TricksterRex">TricksterRex R49</button>
 
 <footer class="skinny-footer">
   <p>© 2026 TMI Studios</p>
@@ -150,7 +147,7 @@ footer.skinny-footer{background:transparent;color:var(--footer-text);text-align:
 
 <script>
 // ================================
-// TEXTPOSÈ FULL SCRIPT
+// TEXTPOSÈ FULL SCRIPT FIXED
 // ================================
 
 // ----------------------------
@@ -220,13 +217,13 @@ function updateScrollTile(){
 // ----------------------------
 // PAYMENT HANDLERS
 // ----------------------------
-async function buyPack(pack){
-  const productMap = {
-    "Drama-saurus":"toxic_drama_pack",
-    "Snakes & Ladders":"toxic_snake_pack",
-    "TricksterRex":"toxic_trixie_pack"
-  };
+const productMap = {
+  "Drama-saurus": "drama_saurus",
+  "Snakes & Ladders": "snakeraptor",
+  "TricksterRex": "tricksterrex"
+};
 
+async function buyPack(pack){
   const product = productMap[pack];
   if(!product){
     alert("Invalid pack selected");
@@ -242,7 +239,7 @@ async function buyPack(pack){
 
     const data = await res.json();
     if(data.url){
-      window.location.href = data.url; // redirect to PayFast
+      window.location.href = data.url;
     } else {
       console.error("No URL returned:", data);
       alert("Payment error");
@@ -253,9 +250,7 @@ async function buyPack(pack){
   }
 }
 
-// ----------------------------
-// CLAPBACK TOKEN
-// ----------------------------
+// Clapback purchase button
 async function handleClapback(){
   try{
     const res = await fetch("/.netlify/functions/payfast", {
@@ -310,13 +305,13 @@ function toggleNav(){
 // PREMIUM PACK BUTTONS FIX
 // ----------------------------
 document.addEventListener("DOMContentLoaded",()=>{
-  // Free Packs button (already working)
-  const freeBtn = document.querySelector("#freePacksBtn");
-  if(freeBtn) freeBtn.onclick = ()=> selectPack("Drama-saurus");
-
-  // Premium Packs button
-  const premiumBtn = document.querySelector("#premiumPacksBtn");
-  if(premiumBtn) premiumBtn.onclick = ()=> openUpgradeModal();
+  const premiumButtons = document.querySelectorAll(".upgradeBtn");
+  premiumButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const packName = btn.getAttribute("data-pack");
+      buyPack(packName);
+    });
+  });
 });
 </script>
 </body>
