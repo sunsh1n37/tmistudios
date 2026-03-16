@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Main Character Energy Test</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome for Hamburger & Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* GENERAL */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#1c0025,#0b0014);
+  color:white;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* NAVIGATION */
+nav{
+  background:#090011;
+  border-bottom:1px solid #222;
+  position:relative;
+}
+.nav-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+}
+.logo{font-weight:700;letter-spacing:1px;}
+.menu-icon{
+  font-size:24px;
+  cursor:pointer;
+  display:none;
+  color:#aaa;
+}
+.nav-links{
+  display:flex;
+  gap:20px;
+}
+.nav-links a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+  transition:.3s;
+}
+.nav-links a:hover{color:#ff4d4d;}
+
+/* MOBILE RESPONSIVE */
+@media (max-width:600px){
+  .menu-icon{display:block;}
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:60px;
+    right:0;
+    background:#090011;
+    width:200px;
+    border-left:1px solid #222;
+    border-bottom:1px solid #222;
+  }
+  .nav-links.show{display:flex;}
+  .nav-links a{border-bottom:1px solid #222; padding:12px 20px;}
+}
+
+/* MAIN CONTAINER */
+.wrapper{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+}
+.container{
+  max-width:600px;
+  width:100%;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:35px 25px;
+  box-shadow:0 0 40px rgba(255,0,150,.2);
+  text-align:center;
+}
+
+/* TITLE */
+h1{
+  font-size:32px;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,#ff4db8,#ff7a18);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+p{opacity:.85; margin-bottom:25px;}
+
+/* BUTTONS */
+button{
+  padding:14px 18px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:15px;
+  margin-top:10px;
+  transition:.25s;
+}
+.startBtn{background:linear-gradient(135deg,#ff2d75,#ff7a18); color:white;}
+.startBtn:hover{transform:scale(1.05);}
+.choice{
+  display:block;
+  width:100%;
+  background:#181818;
+  color:white;
+  border:1px solid #333;
+  margin:10px 0;
+}
+.choice:hover{background:#242424;}
+
+/* PROGRESS BAR */
+.progressWrap{
+  width:100%;
+  height:6px;
+  background:#222;
+  border-radius:20px;
+  margin-bottom:25px;
+  overflow:hidden;
+}
+.progressBar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff2d75,#ff7a18);
+  transition:.4s;
+}
+
+/* RESULT CARD */
+.resultCard{
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:35px 25px;
+  box-shadow:0 0 40px rgba(255,0,150,.2);
+  position: relative;
+  text-align:center;
+}
+.resultCard h2{
+  font-size:26px;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,#ff4db8,#ff7a18);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.resultCard p{margin:10px 0;}
+.brandLine{
+  font-size:12px;
+  opacity:.6;
+  margin-top:15px;
+  color:#ff4db8;
+  letter-spacing:0.5px;
+}
+
+/* RESULT BUTTONS */
+.resultBtns{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:20px;
+}
+.unlock{background:linear-gradient(135deg,#ffd700,#ff9d00); color:black; font-weight:600;}
+.download{background:#2a2a2a;color:white;}
+.share{background:#3a3a3a;color:white;}
+.download:hover,
+.share:hover,
+.unlock:hover{transform:scale(1.05); box-shadow:0 0 15px #ff4db8;}
+
+/* FOOTER */
+footer.skinny-footer{
+  background:transparent;
+  color:#aaa;
+  text-align:center;
+  padding:10px;
+  font-size:14px;
+}/* FOOTER LINKS – universal */
+footer a {
+  color: inherit;        /* Use the footer text color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #ff4d4d;        /* Hover color */
+}
+.hidden{display:none;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-container">
+    <div class="logo">TMI Studio</div>
+    <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+      <a href="lab.html">Arcade</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="termsofuse.html">Terms</a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN QUIZ -->
+<div class="wrapper">
+  <div class="container">
+
+    <h1>Main Character Energy</h1>
+    <p>Are you the main character… or emotional background noise?</p>
+
+    <button class="startBtn" onclick="startQuiz()">Start Test</button>
+
+    <div id="quiz" class="hidden">
+      <div class="progressWrap">
+        <div class="progressBar" id="progressBar"></div>
+      </div>
+      <h2 id="question"></h2>
+      <button class="choice" id="a" onclick="answer(0)"></button>
+      <button class="choice" id="b" onclick="answer(1)"></button>
+    </div>
+
+    <div id="result" class="hidden"></div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="skinny-footer">
+  <div class="footer-links">
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/tmistudios" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p>© 2026 TMI Studios</p>
+  <p>
+    <a href="/arcade.html">Arcade</a> ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/termsofuse.html">Terms</a>
+  </p>
+</footer>
+
+<!-- HTML2CANVAS -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script>
+let score=0, q=0;
+
+const questions=[
+{q:"Your friend cancels plans",a:"No stress",b:"I'll go alone and thrive"},
+{q:"You post a selfie",a:"Wait for reactions",b:"Already iconic"},
+{q:"Ex watches story",a:"Ignore",b:"Post hotter story"},
+{q:"Someone criticizes you",a:"Reflect",b:"Glow up and block"},
+{q:"Battery dies outside",a:"Panic",b:"Become mysterious"},
+{q:"Walk into party",a:"Stick to friends",b:"Scan room dramatically"},
+{q:"Someone compliments you",a:"Say thanks",b:"Replay it all day"},
+{q:"Left on read",a:"Text again",b:"Disappear forever"},
+{q:"Bored at home",a:"Scroll",b:"Reinvent life"},
+{q:"Someone copies you",a:"Flattered",b:"Good taste"},
+{q:"Playlist vibe",a:"Chill",b:"Cinematic"},
+{q:"Toxic trait",a:"Overthinking",b:"Thinking you're the plot"},
+{q:"Someone flirts",a:"Get shy",b:"Become mysterious"},
+{q:"New project",a:"Take slow",b:"Launch dramatically"},
+{q:"Life lately",a:"Normal",b:"Episode 7 chaos"}
+];
+
+const personalityLines=[
+"Your life feels like a movie trailer.",
+"People either admire you or recover from you.",
+"You somehow become the plot everywhere.",
+"You radiate something interesting.",
+"You make normal days dramatic."
+];
+
+function startQuiz(){
+  document.querySelector(".startBtn").style.display="none";
+  document.getElementById("quiz").classList.remove("hidden");
+  loadQuestion();
+}
+
+function loadQuestion(){
+  if(q>=questions.length){ showResult(); return; }
+  document.getElementById("question").innerText=questions[q].q;
+  document.getElementById("a").innerText=questions[q].a;
+  document.getElementById("b").innerText=questions[q].b;
+  document.getElementById("progressBar").style.width=(q/questions.length*100)+"%";
+}
+
+function answer(choice){
+  if(choice===1) score++;
+  q++;
+  loadQuestion();
+}
+
+function showResult(){
+  document.getElementById("quiz").classList.add("hidden");
+
+  let title="", text="";
+  if(score<=4){ title="Background Character"; text="You prefer calm over chaos."; }
+  else if(score<=7){ title="Situationship Survivor"; text="You've seen things and survived."; }
+  else if(score<=10){ title="Soft Life CEO"; text="Peace, boundaries and luxury."; }
+  else if(score<=13){ title="Chaos Director"; text="Your life isn't messy. It's cinematic."; }
+  else{ title="The Main Character"; text="Everyone else is supporting cast."; }
+
+  const randomLine=personalityLines[Math.floor(Math.random()*personalityLines.length)];
+
+  document.getElementById("result").innerHTML=`
+  <div class="resultCard" id="card">
+    <h2>${title} 🎬</h2>
+    <p>${text}</p>
+    <p>${randomLine}</p>
+    <div class="brandLine">Take the quiz at tmistudios.xyz</div>
+  </div>
+  <div class="resultBtns">
+    <button class="download" onclick="downloadCard()">Download Result Card</button>
+    <button class="unlock" onclick="unlock()">Unlock Full Character Report (R29)</button>
+    <button onclick="location.href='lab.html'">More Unserious Fun</button>
+  </div>
+  `;
+
+  document.getElementById("result").classList.remove("hidden");
+}
+
+/* TOGGLE MOBILE MENU */
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("show");
+}
+
+/* DOWNLOAD CARD */
+function downloadCard(){
+  html2canvas(document.querySelector("#card"), {backgroundColor:null, scale:2}).then(canvas=>{
+    let link=document.createElement("a");
+    link.download="main-character-result.png";
+    link.href=canvas.toDataURL();
+    link.click();
+  });
+}
+
+/* SHARE TEXT */
+function shareCard(){
+  const title=document.querySelector("#card h2").innerText;
+  const text=document.querySelector("#card p").innerText;
+  const share=`RESULT:
+${title}
+
+${text}
+
+Take the quiz:
+tmistudios.xyz
+  `;
+  navigator.clipboard.writeText(share);
+  alert("Copied! Share it on TikTok or IG.");
+}
+
+/* PAYFAST */
+async function unlock(){
+  try{
+    const res=await fetch("/.netlify/functions/payfast",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({product:"main_character_report"})
+    });
+    const data=await res.json();
+    if(data.url){ window.location.href=data.url; }
+    else{ alert("Payment error"); }
+  }catch(err){ alert("Payment request failed"); }
+}
+
+</script>
+</body>
+</html>
