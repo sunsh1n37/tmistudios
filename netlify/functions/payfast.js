@@ -127,8 +127,7 @@ exports.handler = async function(event) {
         case "exes_flexes": amount = 20; item_name = "Redflag Pack: Exes and Flexes"; break;
         case "overzealous": amount = 20; item_name = "Redflag Pack: Over Zealous Over Jealous"; break;
 
-        // ---------------------------
-        // RedFlag Bingo Tiles (support BOTH names)
+        // RedFlag Bingo Tiles
         case "situationships_ghosts":
         case "redflag_situationships":
           amount = 49;
@@ -140,6 +139,14 @@ exports.handler = async function(event) {
           amount = 49;
           item_name = "RedFlag Bingo Tile: Delulu Diaries";
           break;
+
+        // ---------------------------
+        // TEXT-POSÈ PRODUCTS
+        case "ex_terrex": amount = 49; item_name = "Text-posè Pack: Ex-Terrex"; break;
+        case "polyerguys": amount = 49; item_name = "Text-posè Pack: Polyerguys"; break;
+        case "drama_saurus": amount = 49; item_name = "Text-posè Pack: Drama-saurus"; break;
+        case "snakeraptor": amount = 49; item_name = "Text-posè Pack: Snakes & Ladders"; break;
+        case "tricksterrex": amount = 49; item_name = "Text-posè Pack: TricksterRex"; break;
 
         default:
           return { statusCode: 400, body: "Invalid product" };
