@@ -67,7 +67,7 @@ exports.handler = async function(event) {
         amount = 99;
         item_name = "DollFin Pro";
       } else if (tier === "premium") {
-        amount = 199;
+        amount = 149;
         item_name = "DollFin Premium";
       }
 
@@ -110,6 +110,9 @@ exports.handler = async function(event) {
         // Narcissist
         case "narcissist_full": amount = 20; item_name = "Narcissist Full Report"; break;
 
+        // Villain Quiz
+        case "villain_full_report": amount = 29; item_name = "Villain Quiz Full Report"; break;
+
         // Next Quiz
         case "next_quiz_r19": amount = 19; item_name = "Unlock Next Quiz"; break;
 
@@ -133,7 +136,6 @@ exports.handler = async function(event) {
         case "tricksterrex": amount = 49; item_name = "Text-posè Pack: TricksterRex"; break;
         case "clapback_r5": amount = 5; item_name = "Clapback Unlock (R5)"; break;
 
-        // ---------------------------
         // Main Character Energy
         case "main_character_report":
           amount = 29;
