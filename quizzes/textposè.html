@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>💬 Toxic Text Decoder | Gen Z Edition</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-  
+
   <style>
   :root { --footer-text:#ccc; --primary:#6a0dad; --secondary:#39ff14; --accent:#000; --button:#39ff14; --button-hover:#2be60f;}
   body{margin:0;padding:20px;font-family:'Arial',sans-serif;text-align:center;background:#12002b;color:#fff;transition:background 0.3s,color 0.3s;}
@@ -50,7 +50,7 @@
   </style>
   </head>
   <body data-theme="dark">
-  
+
   <!-- Hamburger Nav -->
   <div class="hamburger" onclick="toggleNav()">☰</div>
   <div id="navStack" class="nav-stack">
@@ -61,9 +61,9 @@
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Terms</a>
   </div>
-  
+
   <button id="themeToggle" onclick="toggleTheme()">🌙</button>
-  
+
   <!-- Hero -->
   <div id="heroIntro">
   <h1 class="glow" id="heroTitle">💬 Toxic Text Decoder</h1>
@@ -71,7 +71,7 @@
   <p>Decode shady texts your ex or crush sends. Scroll through, see the real meaning, and learn what to text back 🔥💌</p>
   <p>Pick a pack to start decoding.</p>
   </div>
-  
+
   <!-- Category Screen -->
   <div id="categoryScreen" class="category-container">
     <div class="category-button" onclick="selectPack('Ex-Terrex')">
@@ -98,12 +98,12 @@
       <div class="category-title">TricksterRex</div>
     </div>
   </div>
-  
+
   <!-- Back to Arcade Button -->
   <div style="margin-bottom:30px;">
     <a href="arcade.html" style="display:inline-block;padding:12px 25px;background:var(--primary);color:#fff;border-radius:12px;text-decoration:none;font-weight:bold;transition:0.3s;">⬅️ Back to Arcade</a>
   </div>
-  
+
   <!-- Scroll Screen -->
   <div id="scrollScreen" style="display:none;">
     <h2 id="scrollCount"></h2>
@@ -117,7 +117,7 @@
     </div>
     <div id="progressContainer"><div id="progressBar"></div></div>
   </div>
-  
+
   <!-- End-of-Pack Modal -->
   <div id="endModal" class="modal">
     <div class="modal-content">
@@ -128,21 +128,21 @@
       <button class="cancelBtn" onclick="backToTiles()">⬅️ Back to Packs</button>
     </div>
   </div>
-  
+
   <!-- Upgrade Modal -->
   <div id="upgradeModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeUpgradeModal()">&times;</span>
       <h2>Unlock a Pack!</h2>
       <p>Buy one of the locked packs for <strong>R49</strong> each 🎉</p>
-  
+
       <button class="upgradeBtn" onclick="buyPack('Drama-saurus')">Drama-saurus R49</button>
       <button class="upgradeBtn" onclick="buyPack('Snakes & Ladders')">Snakes & Ladders R49</button>
       <button class="upgradeBtn" onclick="buyPack('TricksterRex')">TricksterRex R49</button>
       <button class="cancelBtn" onclick="window.location.href='lab.html'">More quizzes 🎲</button>
     </div>
   </div>
-  
+
   <!-- Footer -->
   <footer class="skinny-footer">
     <p>© 2026 TMI Studios</p>
@@ -153,16 +153,16 @@
       <a href="terms.html">Terms</a>
     </nav>
   </footer>
-  
+
   <script>
-  
+
   // ================================
   // DATA
   // ================================
   let currentPack = "";
   let scrollIndex = 0;
   let scrolls = [];
-  
+
   const scrollBank = {
   "Ex-Terrex":[
   {text:"K",decoder:"They're annoyed but won't say it."},
@@ -176,7 +176,7 @@
   {text:"Yup",decoder:"They're annoyed but hiding feelings."},
   {text:"No worries",decoder:"They're annoyed but saying it lightly."}
   ],
-  
+
   "Polyerguys":[
   {text:"I’ll call you later",decoder:"They're avoiding the conversation."},
   {text:"Busy rn",decoder:"They don't want to talk now."},
@@ -189,7 +189,7 @@
   {text:"Okay...",decoder:"They're upset but hiding it."},
   {text:"Later",decoder:"They're avoiding you."}
   ],
-  
+
   "Drama-saurus":[
   {text:"Why didn't you text me back?",decoder:"They're trying to guilt-trip you."},
   {text:"Are you busy?",decoder:"They're annoyed you didn’t reply fast enough."},
@@ -202,7 +202,7 @@
   {text:"Do what you want",decoder:"They feel frustrated and powerless."},
   {text:"I’m over it",decoder:"They’re hurt but trying to act cool."}
   ],
-  
+
   "Snakes & Ladders":[
   {text:"Not my problem",decoder:"They’re brushing you off."},
   {text:"You’re overthinking",decoder:"They're dismissing your feelings."},
@@ -215,7 +215,7 @@
   {text:"Stop being so sensitive",decoder:"They’re avoiding responsibility."},
   {text:"I said I’m fine",decoder:"They’re frustrated but hiding it."}
   ],
-  
+
   "TricksterRex":[
   {text:"Kinda busy",decoder:"They don’t want to fully engage."},
   {text:"IDK rn",decoder:"They’re ignoring you politely."},
@@ -229,11 +229,11 @@
   {text:"Thanks, I guess",decoder:"They feel unappreciated but polite."}
   ]
   };
-  
+
   // ================================
   // PACK SELECT
   // ================================
-  
+
   function selectPack(pack){
     currentPack = pack;
     scrollIndex = 0;
@@ -242,18 +242,18 @@
     document.getElementById("scrollScreen").style.display="block";
     showScroll();
   }
-  
+
   // ================================
   // SHOW TEXT
   // ================================
-  
+
   function showScroll(){
     const item = scrolls[scrollIndex];
     document.getElementById("scrollText").textContent = item.text;
     document.getElementById("scrollDecoder").textContent = item.decoder;
     document.getElementById("scrollCount").textContent = `${scrollIndex + 1} / ${scrolls.length}`;
     document.getElementById("progressBar").style.width = `${((scrollIndex + 1)/scrolls.length)*100}%`;
-  
+
     // End-of-pack check
     if(scrollIndex + 1 === scrolls.length){
       setTimeout(() => {
@@ -261,11 +261,11 @@
       }, 400);
     }
   }
-  
+
   // ================================
   // NEXT
   // ================================
-  
+
   function nextScroll(){
     scrollIndex++;
     if(scrollIndex >= scrolls.length){
@@ -274,11 +274,11 @@
     }
     showScroll();
   }
-  
+
   // ================================
   // CLAPBACK PAYFAST (R5)
   // ================================
-  
+
   async function handleClapback(){
     try{
       const res = await fetch("/.netlify/functions/payfast",{
@@ -293,17 +293,17 @@
       alert("Payment error");
     }
   }
-  
+
   // ================================
   // PACK PAYWALL (R49)
   // ================================
-  
+
   async function buyPack(pack){
     let product = "";
     if(pack === "Drama-saurus") product="toxic_drama_pack";
     if(pack === "Snakes & Ladders") product="toxic_snake_pack";
     if(pack === "TricksterRex") product="toxic_trixie_pack";
-  
+
     try{
       const res = await fetch("/.netlify/functions/payfast",{
         method:"POST",
@@ -317,58 +317,58 @@
       alert("Payment error");
     }
   }
-  
+
   // ================================
   // END MODAL FUNCTIONS
   // ================================
-  
+
   function restartPack(){
     scrollIndex = 0;
     document.getElementById("endModal").style.display="none";
     showScroll();
   }
-  
+
   function backToTiles(){
     document.getElementById("endModal").style.display="none";
     document.getElementById("scrollScreen").style.display="none";
     document.getElementById("categoryScreen").style.display="grid";
   }
-  
+
   function openUpgradeFromEndModal(){
     document.getElementById("endModal").style.display="none";
     openUpgradeModal();
   }
-  
+
   // ================================
   // MODAL
   // ================================
-  
+
   function openUpgradeModal(){
     document.getElementById("upgradeModal").style.display="block";
   }
-  
+
   function closeUpgradeModal(){
     document.getElementById("upgradeModal").style.display="none";
   }
-  
+
   // ================================
   // NAV
   // ================================
-  
+
   function toggleNav(){
     const nav = document.getElementById("navStack");
     nav.style.right = (nav.style.right === "0px") ? "-250px" : "0px";
   }
-  
+
   // ================================
   // THEME
   // ================================
-  
+
   function toggleTheme(){
     const body = document.body;
     body.dataset.theme = (body.dataset.theme === "dark") ? "light" : "dark";
   }
-  
+
   </script>
   </body>
   </html>
