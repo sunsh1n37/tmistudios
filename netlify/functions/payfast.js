@@ -125,17 +125,20 @@ exports.handler = async function(event) {
         case "delulu_diaries":
         case "redflag_delulu": amount = 49; item_name = "RedFlag Bingo Tile: Delulu Diaries"; break;
 
-        // ---------------------------
         // TEXT-POSÈ PRODUCTS
         case "ex_terrex": amount = 49; item_name = "Text-posè Pack: Ex-Terrex"; break;
         case "polyerguys": amount = 49; item_name = "Text-posè Pack: Polyerguys"; break;
         case "drama_saurus": amount = 49; item_name = "Text-posè Pack: Drama-saurus"; break;
         case "snakeraptor": amount = 49; item_name = "Text-posè Pack: Snakes & Ladders"; break;
         case "tricksterrex": amount = 49; item_name = "Text-posè Pack: TricksterRex"; break;
-case "clapback_r5":
-    amount = 5;
-    item_name = "Clapback Unlock (R5)";
-    break;
+        case "clapback_r5": amount = 5; item_name = "Clapback Unlock (R5)"; break;
+
+        // ---------------------------
+        // Main Character Energy
+        case "main_character_report":
+          amount = 29;
+          item_name = "Main Character Energy Full Report (R29)";
+          break;
 
         default: return { statusCode: 400, body: "Invalid product" };
       }
