@@ -268,11 +268,20 @@ async function buyPack(pack){
 }
 async function handleClapback(){
   try{
-    const res = await fetch("/.netlify/functions/payfast",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({product:"next_quiz_r19"})});
+    const res = await fetch("/.netlify/functions/payfast", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ product: "clapback_r5" }) // now calls correct R5 product
+    });
+
     if(!res.ok) throw new Error("Network response not ok");
     const data = await res.json();
-    if(data.url){ window.location.href=data.url; } else{ alert("Payment error"); }
-  } catch(err){ console.error(err); alert("Payment request failed"); }
+    if(data.url){ window.location.href = data.url; }
+    else{ alert("Payment error"); }
+  } catch(err){
+    console.error(err);
+    alert("Payment request failed");
+  }
 }
 
 // MODAL HANDLERS
