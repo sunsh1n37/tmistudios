@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Are You the Villain?</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#2c003e,#0b0014);
+  color:white;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* NAVIGATION */
+nav{
+  background:#120026;
+  border-bottom:1px solid #4b004c;
+  position:relative;
+  z-index:999; /* ensure nav is above container */
+}
+.nav-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+}
+.logo{font-weight:700;letter-spacing:1px; color:#ff4db8;}
+.menu-icon{
+  font-size:24px;
+  cursor:pointer;
+  display:none;
+  color:#ff7a18;
+}
+.nav-links{
+  display:flex;
+  gap:20px;
+  z-index:1000;
+}
+.nav-links a{
+  color:#f2f2f2;
+  text-decoration:none;
+  font-size:14px;
+  transition:.3s;
+}
+.nav-links a:hover{color:#ff2d75;}
+@media (max-width:600px){
+  .menu-icon{display:block;}
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:60px;
+    right:0;
+    background:#120026;
+    width:200px;
+    border-left:1px solid #4b004c;
+    border-bottom:1px solid #4b004c;
+    z-index:1000;
+  }
+  .nav-links.show{display:flex;}
+  .nav-links a{border-bottom:1px solid #4b004c; padding:12px 20px;}
+}
+
+/* MAIN CONTAINER */
+.wrapper{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+}
+.container{
+  max-width:600px;
+  width:100%;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(14px);
+  border-radius:18px;
+  padding:35px 25px;
+  box-shadow:0 0 50px rgba(255,77,184,.4);
+  text-align:center;
+}
+
+/* TITLE */
+h1{
+  font-size:34px;
+  margin-bottom:12px;
+  background:linear-gradient(90deg,#ff2d75,#ff7a18,#7a00ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+p{opacity:.85; margin-bottom:25px; font-size:16px;}
+
+/* BUTTONS */
+button{
+  padding:14px 20px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:15px;
+  margin-top:10px;
+  transition:.25s;
+  font-weight:600;
+}
+.startBtn{
+  background:linear-gradient(135deg,#ff2d75,#7a00ff);
+  color:white;
+  box-shadow:0 0 10px #ff2d75;
+}
+.startBtn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #ff7a18;
+}
+.choice{
+  display:block;
+  width:100%;
+  background:#1c001f;
+  color:white;
+  border:1px solid #4b004c;
+  margin:10px 0;
+  font-weight:500;
+}
+.choice:hover{
+  background:#2a002f;
+  border-color:#ff2d75;
+}
+
+/* PROGRESS BAR */
+.progressWrap{
+  width:100%;
+  height:8px;
+  background:#330044;
+  border-radius:20px;
+  margin-bottom:25px;
+  overflow:hidden;
+}
+.progressBar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff2d75,#ff7a18,#7a00ff);
+  transition:.4s;
+}
+
+/* RESULT CARD */
+.resultCard{
+  background:rgba(20,0,30,.7);
+  backdrop-filter:blur(16px);
+  border-radius:18px;
+  padding:35px 25px;
+  box-shadow:0 0 50px rgba(255,77,184,.5);
+  position: relative;
+  text-align:center;
+}
+.resultCard h2{
+  font-size:28px;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,#ff4db8,#ff7a18,#7a00ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.resultCard p{margin:12px 0; font-size:16px;}
+.brandLine{
+  font-size:12px;
+  opacity:.7;
+  margin-top:15px;
+  color:#ff4db8;
+  letter-spacing:0.5px;
+}
+
+/* RESULT BUTTONS */
+.resultBtns{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:20px;
+}
+.unlock{
+  background:linear-gradient(135deg,#ffd700,#ff9d00);
+  color:black;
+  font-weight:600;
+  box-shadow:0 0 10px #ffd700;
+}
+.download{background:#2a2a2a;color:white;}
+.share{background:#25D366;color:white;}
+.download:hover,
+.share:hover,
+.unlock:hover{transform:scale(1.05); box-shadow:0 0 20px #ff4db8;}
+.hidden{display:none;}
+
+/* FOOTER */
+.skinny-footer{
+  padding:20px;
+  text-align:center;
+}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:10px;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <div class="logo">Vibe Lab</div>
+    <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="termsofuse.html">Terms</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrapper">
+  <div class="container">
+    <h1>Are You the Villain?</h1>
+    <p>You think you're the victim… but are you actually the villain?</p>
+
+    <button id="startBtn" class="startBtn" onclick="startQuiz()">Start Test</button>
+
+    <div id="quiz" class="hidden">
+      <div class="progressWrap">
+        <div class="progressBar" id="progressBar"></div>
+      </div>
+      <h2 id="question"></h2>
+      <button class="choice" id="a" onclick="answer(0)"></button>
+      <button class="choice" id="b" onclick="answer(1)"></button>
+    </div>
+
+    <div id="result" class="hidden"></div>
+  </div>
+</div>
+
+<footer class="skinny-footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p>© 2026 Vibe Lab</p>
+</footer>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+let score=0,q=0;
+const quizEl = document.getElementById("quiz");
+const resultEl = document.getElementById("result");
+const startBtn = document.getElementById("startBtn");
+
+const questions=[
+{q:"Your friend is late again",a:"You say nothing",b:"You send a passive aggressive meme"},
+{q:"Someone confronts you about something you did",a:"You explain your side",b:"You rewrite the story"},
+{q:"Someone blocks you",a:"Move on",b:"Tell everyone they're toxic"},
+{q:"You gossip",a:"Rarely",b:"Only when it’s accurate 😌"},
+{q:"You argue in group chats",a:"DM the person",b:"Air it out publicly"},
+{q:"You cancel plans last minute",a:"Apologize quietly",b:"Post a dramatic story"},
+{q:"Your friend steals your idea",a:"Confront them calmly",b:"Turn it into a meme online"},
+{q:"You prank someone",a:"Funny harmless",b:"Ultimate chaos"},
+{q:"Someone calls you out",a:"Take responsibility",b:"Rewrite the truth subtly"},
+{q:"You lie for fun",a:"Small fibs only",b:"Epic manipulations"},
+{q:"Your ex reaches out",a:"Ignore",b:"Send cryptic messages"},
+{q:"You steal credit at work",a:"Avoid notice",b:"Claim loudly"},
+{q:"You get jealous",a:"Internalize",b:"Start drama creatively"},
+{q:"You break a promise",a:"Apologize sincerely",b:"Make it a plot twist"},
+{q:"Your group ignores you",a:"Stay silent",b:"Plot revenge playfully"}
+];
+
+const results=[
+{title:"The Innocent Bystander",text:"You genuinely try to avoid drama.",color:"#a87fff"},
+{title:"The Accidental Villain",text:"You cause problems… unintentionally.",color:"#ffb347"},
+{title:"The Master Manipulator",text:"You don’t start drama. You redirect it.",color:"#5d3fd3"},
+{title:"The Chaos Villain",text:"You don't avoid drama. Drama avoids you.",color:"#ff00ff"},
+{title:"The Final Boss",text:"You are the plot twist.",color:"#ffd700"}
+];
+
+function startQuiz(){
+  startBtn.style.display="none";
+  quizEl.classList.remove("hidden");
+  loadQuestion();
+}
+
+function loadQuestion(){
+  if(q>=questions.length){ showResult(); return; }
+  document.getElementById("question").innerText=questions[q].q;
+  document.getElementById("a").innerText=questions[q].a;
+  document.getElementById("b").innerText=questions[q].b;
+  document.getElementById("progressBar").style.width=(q/questions.length*100)+"%";
+}
+
+function answer(choice){
+  if(choice===1) score++;
+  q++;
+  loadQuestion();
+}
+
+function showResult(){
+  quizEl.classList.add("hidden");
+  const index=Math.min(Math.floor(score/questions.length*results.length),results.length-1);
+  const result=results[index];
+  resultEl.innerHTML=`
+  <div class="resultCard" id="card" style="background:${result.color};">
+    <h2>${result.title}</h2>
+    <p>${result.text}</p>
+    <div class="brandLine">Take The Quiz at tmistudios.xyz</div>
+  </div>
+  <div class="resultBtns">
+    <button class="unlock" onclick="unlock()">Unlock Your Villain Report (R29)</button>
+    <button class="download" onclick="downloadCard()">Download Result</button>
+    <button class="share" onclick="shareWhatsApp()">Share to WhatsApp</button>
+    <button onclick="location.href='index.html'">Back to Lab</button>
+  </div>
+  `;
+  resultEl.classList.remove("hidden");
+}
+
+// PAYFAST
+function unlock(){
+  fetch("/.netlify/functions/payfast",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({product:"villain_report"})
+  })
+  .then(r=>r.json())
+  .then(d=>{if(d.url) window.location.href=d.url; else alert("Payment failed")})
+  .catch(()=>alert("Payment error"));
+}
+
+// DOWNLOAD RESULT
+function downloadCard(){
+  const card = document.getElementById("card");
+  html2canvas(card).then(canvas=>{
+    const link = document.createElement("a");
+    link.download="vibelab_villain_result.png";
+    link.href=canvas.toDataURL();
+    link.click();
+  });
+}
+
+// SHARE TO WHATSAPP
+function shareWhatsApp(){
+  const card = document.getElementById("card");
+  html2canvas(card).then(canvas=>{
+    const imgData = canvas.toDataURL();
+    fetch(imgData)
+      .then(res=>res.blob())
+      .then(blob=>{
+        const url = URL.createObjectURL(blob);
+        const text = encodeURIComponent("Check out my villain type from Vibe Lab! ");
+        window.open(`https://wa.me/?text=${text}${url}`);
+      });
+  });
+}
+
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
+</body>
+</html>
