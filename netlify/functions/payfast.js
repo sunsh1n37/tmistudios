@@ -132,6 +132,10 @@ exports.handler = async function(event) {
         case "drama_saurus": amount = 49; item_name = "Text-posè Pack: Drama-saurus"; break;
         case "snakeraptor": amount = 49; item_name = "Text-posè Pack: Snakes & Ladders"; break;
         case "tricksterrex": amount = 49; item_name = "Text-posè Pack: TricksterRex"; break;
+case "clapback_r5":
+    amount = 5;
+    item_name = "Clapback Unlock (R5)";
+    break;
 
         default: return { statusCode: 400, body: "Invalid product" };
       }
