@@ -24,7 +24,7 @@ nav{
   background:#120026;
   border-bottom:1px solid #4b004c;
   position:relative;
-  z-index:999; /* ensure nav is above container */
+  z-index:999;
 }
 .nav-container{
   display:flex;
@@ -328,10 +328,10 @@ function unlock(){
   fetch("/.netlify/functions/payfast",{
     method:"POST",
     headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({product:"villain_report"})
+    body: JSON.stringify({ product: "villain_report" })
   })
-  .then(r=>r.json())
-  .then(d=>{if(d.url) window.location.href=d.url; else alert("Payment failed")})
+  .then(r => r.json())
+  .then(d => { if(d.url) window.location.href = d.url; else alert("Payment failed"); })
   .catch(()=>alert("Payment error"));
 }
 
