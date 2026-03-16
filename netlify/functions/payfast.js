@@ -12,19 +12,16 @@ exports.handler = async function(event) {
   }
 
   const PAYFAST_URL = "https://www.payfast.co.za/eng/process";
-
   const contentType = (event.headers["content-type"] || "").toLowerCase();
 
   // ---------------------------
   // IPN Verification
   // ---------------------------
   if (event.httpMethod === "POST" && contentType.includes("application/x-www-form-urlencoded")) {
-
     const querystring = require("querystring");
     const postData = querystring.parse(event.body || "");
 
     if (postData.m_payment_id && postData.payment_status) {
-
       console.log("IPN received:", postData);
 
       if (postData.merchant_id !== merchant_id) {
@@ -47,7 +44,6 @@ exports.handler = async function(event) {
   // JSON POST Requests
   // ---------------------------
   if (event.httpMethod === "POST" && contentType.includes("application/json")) {
-
     let data = {};
     try {
       data = JSON.parse(event.body || "{}");
@@ -61,18 +57,16 @@ exports.handler = async function(event) {
     let payfastUrl = "";
 
     // ---------------------------
-    // DollFin Subscriptions
+    // Subscriptions
     // ---------------------------
     if (tier) {
-
       let amount = 0;
       let item_name = "DollFin Plan";
 
       if (tier === "pro") {
         amount = 99;
         item_name = "DollFin Pro";
-      }
-      else if (tier === "premium") {
+      } else if (tier === "premium") {
         amount = 199;
         item_name = "DollFin Premium";
       }
@@ -97,12 +91,10 @@ exports.handler = async function(event) {
     // One-time Products
     // ---------------------------
     if (product) {
-
       let amount = 0;
       let item_name = "";
 
       switch (product) {
-
         // Chaos Cookie
         case "extra_crack": amount = 5; item_name = "Chaos Cookie Extra Crack"; break;
         case "unlimited": amount = 20; item_name = "Chaos Cookie Unlimited (Today)"; break;
@@ -129,16 +121,9 @@ exports.handler = async function(event) {
 
         // RedFlag Bingo Tiles
         case "situationships_ghosts":
-        case "redflag_situationships":
-          amount = 49;
-          item_name = "RedFlag Bingo Tile: Situationships & Ghosts";
-          break;
-
+        case "redflag_situationships": amount = 49; item_name = "RedFlag Bingo Tile: Situationships & Ghosts"; break;
         case "delulu_diaries":
-        case "redflag_delulu":
-          amount = 49;
-          item_name = "RedFlag Bingo Tile: Delulu Diaries";
-          break;
+        case "redflag_delulu": amount = 49; item_name = "RedFlag Bingo Tile: Delulu Diaries"; break;
 
         // ---------------------------
         // TEXT-POSÈ PRODUCTS
@@ -148,8 +133,7 @@ exports.handler = async function(event) {
         case "snakeraptor": amount = 49; item_name = "Text-posè Pack: Snakes & Ladders"; break;
         case "tricksterrex": amount = 49; item_name = "Text-posè Pack: TricksterRex"; break;
 
-        default:
-          return { statusCode: 400, body: "Invalid product" };
+        default: return { statusCode: 400, body: "Invalid product" };
       }
 
       const return_url = `https://tmistudios.xyz/checkout?success=true&product=${product}`;
