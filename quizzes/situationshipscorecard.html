@@ -364,8 +364,25 @@ const url=window.location.href
 window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url))
 }
 
-function unlockNextQuiz(){
-window.location.href="https://tmistudios.xyz/.netlify/functions/payfast?product=next_quiz_r19"
+function unlockNextQuiz() {
+  // POST request to PayFast function
+  fetch('https://tmistudios.xyz/.netlify/functions/payfast', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ product: 'next_quiz_r19' })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.url) {
+        window.location.href = data.url; // redirect to PayFast checkout
+      } else {
+        alert('Payment failed. Try again.');
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Payment request failed.');
+    });
 }
 
 showQuestion()
