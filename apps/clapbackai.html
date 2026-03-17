@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Him Back AI</title>
+
+<!-- html2canvas for screenshot -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+:root {
+    --bg: #f5f5f7;
+    --card: rgba(255,255,255,0.75);
+    --accent: #ff4d88;
+    --accent-soft: #ffe4ec;
+    --text: #1c1c1e;
+}
+
+/* BASE */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    background: linear-gradient(180deg, #fff, #ffeef3);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+}
+
+/* PHONE FRAME */
+.phone {
+    max-width: 420px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+}
+
+/* HEADER */
+.header {
+    padding: 18px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    backdrop-filter: blur(10px);
+}
+
+/* CHAT */
+.chat {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+/* BUBBLES */
+.bubble {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease;
+}
+
+.received {
+    background: #e9e9eb;
+    color: black;
+}
+
+.sent {
+    background: linear-gradient(135deg, #ff4d88, #ff7aa8);
+    color: white;
+    margin-left: auto;
+}
+
+/* INPUT */
+.input-area {
+    padding: 12px;
+    backdrop-filter: blur(10px);
+}
+
+textarea {
+    width: 100%;
+    border-radius: 14px;
+    padding: 12px;
+    border: none;
+    background: #f2f2f7;
+    font-size: 14px;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ff4d88, #ff7aa8);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* RESULT PANEL */
+.result {
+    padding: 16px;
+    background: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+}
+
+/* SCORE */
+.score {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* CARDS */
+.card {
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(12px);
+    font-size: 14px;
+}
+
+/* LOCKED */
+.locked {
+    filter: blur(8px);
+    position: relative;
+}
+
+/* PAYWALL */
+.paywall {
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+    text-align: center;
+    font-size: 14px;
+}
+
+.paywall button {
+    margin-top: 10px;
+}
+
+/* ACTIONS */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.actions button {
+    flex: 1;
+    background: #1c1c1e;
+    color: white;
+}
+
+/* LOADING ANIMATION */
+.typing {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    margin-right: 4px;
+    animation: bounce 1s infinite ease-in-out;
+}
+
+.typing:nth-child(2) { animation-delay: 0.2s; }
+.typing:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+<div class="phone">
+
+    <div class="header">💬 Text Him Back</div>
+
+    <div class="chat" id="chat"></div>
+
+    <div class="input-area">
+        <textarea id="inputText" placeholder="Paste his message..."></textarea>
+        <button onclick="startAnalysis()">Analyze</button>
+    </div>
+
+    <div class="result" id="result" style="display:none;">
+        <div id="screenshotArea">
+            <div class="score" id="score"></div>
+            <div class="card" id="meaningCard"></div>
+            <div class="card" id="repliesCard"></div>
+            <div style="text-align:center; font-size:12px; margin-top:8px; color: #aaa;">
+                Made at tmistudios.xyz
+            </div>
+        </div>
+
+        <div class="paywall" id="paywall">
+            🔒 Unlock your exact high-value reply<br><br>
+            <button onclick="unlock()">Unlock for R29</button>
+        </div>
+
+        <div class="actions">
+            <button onclick="resetApp()">Reset</button>
+            <button onclick="share()">Screenshot</button>
+        </div>
+    </div>
+</div>
+
+<script>let unlocked = false;
+
+// Add chat bubble
+function addBubble(text, type="received") {
+    const chat = document.getElementById("chat");
+    const div = document.createElement("div");
+    div.className = "bubble " + type;
+    div.innerHTML = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+}
+
+// Start analysis with typing animation
+function startAnalysis() {
+    const input = document.getElementById("inputText").value;
+    if (!input) return;
+
+    document.getElementById("chat").innerHTML = "";
+    document.getElementById("result").style.display = "none";
+
+    addBubble(input, "received");
+
+    // Typing animation bubble
+    setTimeout(() => {
+        const typing = document.createElement("div");
+        typing.className = "bubble sent";
+        typing.id = "typingBubble";
+        typing.innerHTML = `<span class="typing"></span><span class="typing"></span><span class="typing"></span>`;
+        document.getElementById("chat").appendChild(typing);
+        typing.scrollIntoView();
+    }, 500);
+
+    setTimeout(() => {
+        const typing = document.getElementById("typingBubble");
+        if (typing) typing.remove();
+        analyze(input);
+    }, 2000);
+}
+
+// Simple analysis logic
+function analyze(textRaw) {
+    const text = textRaw.toLowerCase();
+    let effortScore = 60 + Math.random() * 30;
+    let meaning = "";
+    let replies = {};
+    const isShort = text.length < 12;
+    const isLong = text.length > 80;
+
+    if (text.includes("wyd")) {
+        meaning = "Low effort. He wants access without effort.";
+        effortScore = 45;
+        replies = { soft:"Just relaxing 😊 you?", savage:"Living my life. You?", high:"Busy. What’s up?" };
+    } else if (text.includes("you up")) {
+        meaning = "Late-night convenience energy.";
+        effortScore = 35;
+        replies = { soft:"Barely lol", savage:"No ❤️", high:"Talk tomorrow." };
+    } else if (text.includes("miss you")) {
+        meaning = "Emotional pull. He’s thinking about you.";
+        effortScore = 85;
+        replies = { soft:"Aww 🥺", savage:"I know", high:"I like that. Why?" };
+    } else if (text.includes("?")) {
+        meaning = "He wants engagement.";
+        effortScore = 75;
+        replies = { soft:"Haha yeah 😊", savage:"Why?", high:"Depends 👀" };
+    } else if (isLong) {
+        meaning = "High emotional investment.";
+        effortScore = 90;
+        replies = { soft:"That was sweet 🥺", savage:"You wrote all that?", high:"I appreciate this." };
+    } else if (isShort) {
+        meaning = "Low effort. You're an option.";
+        effortScore = 45;
+        replies = { soft:"Hey 😊", savage:"That’s it?", high:"Hey." };
+    } else {
+        meaning = "Neutral energy.";
+        effortScore = 65;
+        replies = { soft:"Nice 😊", savage:"Okay…", high:"Got it." };
+    }
+
+    effortScore = Math.round(effortScore);
+    showResult(effortScore, meaning, replies);
+}
+
+// Show result panel with cards and paywall
+function showResult(score, meaning, replies) {
+    const result = document.getElementById("result");
+    result.style.display = "block";
+
+    document.getElementById("score").innerText = `Effort Score: ${score}/100`;
+    document.getElementById("meaningCard").innerHTML = `<strong>What he means:</strong><br>${meaning}`;
+    
+    document.getElementById("repliesCard").innerHTML = `
+        <strong>Replies:</strong><br><br>
+        💕 ${replies.soft}<br>
+        😈 ${replies.savage}<br><br>
+        <div class="locked" id="lockedReply">👑 ${replies.high}</div>
+    `;
+
+    document.getElementById("lockedReply").style.filter = "blur(8px)";
+}
+
+// Unlock paywall with PayFast redirect
+function unlock() {
+    const btn = document.querySelector(".paywall button");
+    btn.disabled = true;
+    btn.innerText = "Redirecting to PayFast...";
+
+    fetch("/.netlify/functions/payfast", {
+        method: "POST",
+        body: JSON.stringify({
+            item_name: "High Value Reply",
+            amount: "29.00",
+            return_url: window.location.href + "?paid=true",
+            cancel_url: window.location.href
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.url) {
+            window.location.href = data.url; // redirect to PayFast
+        } else {
+            alert("Error generating payment link");
+            btn.disabled = false;
+            btn.innerText = "Unlock for R29";
+        }
+    });
+}
+
+// Reset app
+function resetApp() {
+    document.getElementById("chat").innerHTML = "";
+    document.getElementById("result").style.display = "none";
+    document.getElementById("inputText").value = "";
+    unlocked = false;
+}
+
+// Screenshot only the card area (no buttons)
+function share() {
+    const screenshotArea = document.getElementById("screenshotArea");
+    if (!screenshotArea) return;
+
+    html2canvas(screenshotArea, {scale: 2}).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "text-him-back.png";
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
+
+// Auto-unlock if redirected from PayFast
+window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("paid") === "true") {
+        const locked = document.getElementById("lockedReply");
+        if (locked) locked.style.filter = "none";
+
+        const paywall = document.getElementById("paywall");
+        if (paywall) paywall.innerHTML = "✨ Payment received. Go text him!";
+    }
+};
+</script>
+</body>
+</html>
