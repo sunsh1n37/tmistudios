@@ -329,41 +329,44 @@ Built for Financial Dolls
 </div>
 
 <script>
-// ---------------------------
-// Paywall buttons for DollFin
-// ---------------------------
-
-// Grab buttons
+// Grab paywall elements
 const paySingleBtn = document.getElementById("paySingleBtn");
 const payFullBtn = document.getElementById("payFullBtn");
-const paywall = document.getElementById("paywall");
 const paywallClose = document.getElementById("paywallClose");
+const paywall = document.getElementById("paywall");
 
 // Close paywall
-paywallClose.onclick = () => { paywall.style.display = 'none'; };
+paywallClose.onclick = () => {
+  paywall.style.display = 'none';
+};
 
-// Universal function to call PayFast POST endpoint
+// Universal PayFast POST function
 async function payDollFin(product) {
   try {
-    const res = await fetch('https://tmistudios.xyz/.netlify/functions/payfast', {
+    const response = await fetch('https://tmistudios.xyz/.netlify/functions/payfast', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ product })
     });
 
-    const data = await res.json();
+    if (!response.ok) throw new Error(`Server error: ${response.status}`);
+
+    const data = await response.json();
+
     if (data.url) {
-      window.location.href = data.url; // Redirect to PayFast
+      // Redirect to PayFast checkout
+      window.location.href = data.url;
     } else {
-      alert('Payment failed. Please try again.');
+      alert('Payment endpoint did not return a URL.');
+      console.log('PayFast response:', data);
     }
   } catch (err) {
-    console.error(err);
-    alert('Payment request failed. Check console.');
+    console.error('PayFast request failed:', err);
+    alert('Payment request failed. See console for details.');
   }
 }
 
-// Attach buttons to products
+// Attach to DollFin buttons
 paySingleBtn.onclick = () => payDollFin('dollfin_single');
 payFullBtn.onclick = () => payDollFin('dollfin_full');
 </script>
