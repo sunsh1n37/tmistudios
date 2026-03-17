@@ -298,29 +298,48 @@ drawBtn.onclick = () => {
     return;
   }
   const card = ceoCards[Math.floor(Math.random()*ceoCards.length)];
-  currentCard=card;
-  cardName.textContent=card.name;
+  currentCard = card;
+  cardName.textContent = card.name;
   cardText.innerHTML = `
 🔮 Leadership Style:<br>${card.leadership}<br><br>
 ⚠️ Weakness:<br>${card.weakness}<br><br>
 📈 Forecast:<br>${card.forecast}
   `;
   tarotCard.classList.add("flipped");
-  firstDrawDone=true;
+  firstDrawDone = true;
 };
 
 // Flip card on click
-tarotCard.onclick = ()=>{ tarotCard.classList.toggle("flipped"); };
+tarotCard.onclick = () => { tarotCard.classList.toggle("flipped"); };
 
 // Paywall close
-paywallClose.onclick = ()=>{ paywall.style.display='none'; };
+paywallClose.onclick = () => { paywall.style.display = 'none'; };
 
-// Redirect buttons to PayFast
-paySingleBtn.onclick = () => { 
-  window.location.href = 'https://tmistudios.xyz/.netlify/functions/payfast?product=delulu_single'; 
-};
-payFullBtn.onclick = () => { 
-  window.location.href = 'https://tmistudios.xyz/.netlify/functions/payfast?product=delulu_full'; 
+// ---------------------------
+// Redirect buttons to PayFast (fixed POST)
+// ---------------------------
+async function pay(product) {
+  try {
+    const res = await fetch('https://tmistudios.xyz/.netlify/functions/payfast', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product })
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Payment failed. Try again.');
+    }
+  } catch (err) {
+    alert('Payment request failed.');
+    console.error(err);
+  }
+}
+
+// Use the universal POST function for buttons
+paySingleBtn.onclick = () => pay('delulu_single');
+payFullBtn.onclick = () => pay('delulu_full');
 };
 </script>
 
