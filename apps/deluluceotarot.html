@@ -258,46 +258,50 @@ Touch or click to reveal your Delulu CEO!
 
 <script>
 // Hamburger toggle
-const hamburger=document.getElementById('hamburger');
-const mobileMenu=document.getElementById('mobileMenu');
-hamburger.onclick=()=>{ mobileMenu.style.display = mobileMenu.style.display==='flex'?'none':'flex'; }
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.onclick = () => {
+  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+}
 
-// Cards data
-const ceoCards=[
-{name:"The Chaos Brander",leadership:"Rebrand every Tuesday.",weakness:"Nobody recognizes your logo anymore.",forecast:"New brand colors tonight."},
-{name:"The Manifestation Manager",leadership:"Writes quarterly goals on a vision board.",weakness:"Thinks profit margins respond to moon phases.",forecast:"Mercury retrograde blamed for everything."},
-{name:"The AI Delegator",leadership:"ChatGPT runs the entire company.",weakness:"Doesn't remember how the product works.",forecast:"Launches 6 new startups by accident."},
-{name:"The Soft Launch CEO",leadership:"Soft launching the business since 2022.",weakness:"Nobody knows what the product is.",forecast:"Another mysterious teaser post tonight."},
-{name:"The Hustle Prophet",leadership:"Sleeps 3 hours and tweets motivation.",weakness:"Employees are spiritually exhausted.",forecast:"New productivity routine at 4am tomorrow."},
-{name:"The Pivot Queen",leadership:"Pivot before results arrive.",weakness:"The team no longer knows the mission.",forecast:"Another 'major announcement' incoming."},
-{name:"The Aesthetic Founder",leadership:"Brand moodboard before business model.",weakness:"Beautiful website, no working checkout.",forecast:"New font reveal at midnight."},
-{name:"The Investor Whisperer",leadership:"Pitch deck stronger than the product.",weakness:"Revenue described as 'manifesting soon.'",forecast:"Another meeting where nothing is funded."},
-{name:"The Spreadsheet Oracle",leadership:"Tracks everything in 14 dashboards.",weakness:"Still doesn't know what customers want.",forecast:"Adds three more KPIs tonight."},
-{name:"The Passive Income Wizard",leadership:"Creates courses about creating courses.",weakness:"Forgets to create the actual course.",forecast:"Pre-orders opening soon."},
-{name:"The Viral Visionary",leadership:"Builds the entire strategy around going viral.",weakness:"The product works… sometimes.",forecast:"One TikTok decides the company's fate."},
-{name:"The Exit Strategist",leadership:"Plans the acquisition before launch.",weakness:"There is nothing to acquire yet.",forecast:"LinkedIn post about 'building quietly.'"}
+// Tarot cards data
+const ceoCards = [
+  {name:"The Chaos Brander",leadership:"Rebrand every Tuesday.",weakness:"Nobody recognizes your logo anymore.",forecast:"New brand colors tonight."},
+  {name:"The Manifestation Manager",leadership:"Writes quarterly goals on a vision board.",weakness:"Thinks profit margins respond to moon phases.",forecast:"Mercury retrograde blamed for everything."},
+  {name:"The AI Delegator",leadership:"ChatGPT runs the entire company.",weakness:"Doesn't remember how the product works.",forecast:"Launches 6 new startups by accident."},
+  {name:"The Soft Launch CEO",leadership:"Soft launching the business since 2022.",weakness:"Nobody knows what the product is.",forecast:"Another mysterious teaser post tonight."},
+  {name:"The Hustle Prophet",leadership:"Sleeps 3 hours and tweets motivation.",weakness:"Employees are spiritually exhausted.",forecast:"New productivity routine at 4am tomorrow."},
+  {name:"The Pivot Queen",leadership:"Pivot before results arrive.",weakness:"The team no longer knows the mission.",forecast:"Another 'major announcement' incoming."},
+  {name:"The Aesthetic Founder",leadership:"Brand moodboard before business model.",weakness:"Beautiful website, no working checkout.",forecast:"New font reveal at midnight."},
+  {name:"The Investor Whisperer",leadership:"Pitch deck stronger than the product.",weakness:"Revenue described as 'manifesting soon.'",forecast:"Another meeting where nothing is funded."},
+  {name:"The Spreadsheet Oracle",leadership:"Tracks everything in 14 dashboards.",weakness:"Still doesn't know what customers want.",forecast:"Adds three more KPIs tonight."},
+  {name:"The Passive Income Wizard",leadership:"Creates courses about creating courses.",weakness:"Forgets to create the actual course.",forecast:"Pre-orders opening soon."},
+  {name:"The Viral Visionary",leadership:"Builds the entire strategy around going viral.",weakness:"The product works… sometimes.",forecast:"One TikTok decides the company's fate."},
+  {name:"The Exit Strategist",leadership:"Plans the acquisition before launch.",weakness:"There is nothing to acquire yet.",forecast:"LinkedIn post about 'building quietly.'"}
 ];
 
-const drawBtn=document.getElementById("drawCardBtn");
-const tarotCard=document.getElementById("tarotCard");
-const cardName=document.getElementById("cardName");
-const cardText=document.getElementById("cardText");
-const paywall=document.getElementById("paywall");
-const paySingleBtn=document.getElementById("paySingleBtn");
-const payFullBtn=document.getElementById("payFullBtn");
-const paywallClose=document.getElementById("paywallClose");
+// Elements
+const drawBtn = document.getElementById("drawCardBtn");
+const tarotCard = document.getElementById("tarotCard");
+const cardName = document.getElementById("cardName");
+const cardText = document.getElementById("cardText");
+const paywall = document.getElementById("paywall");
+const paySingleBtn = document.getElementById("paySingleBtn");
+const payFullBtn = document.getElementById("payFullBtn");
+const paywallClose = document.getElementById("paywallClose");
 
-let currentCard=null;
-let firstDrawDone=false;
+let currentCard = null;
+let firstDrawDone = false;
 
-// Draw new card
+// ---------------------------
+// Draw a new card
+// ---------------------------
 drawBtn.onclick = () => {
   if(firstDrawDone){
-    // Show paywall only after first draw
-    paywall.style.display='flex';
+    paywall.style.display = 'flex'; // show paywall after first draw
     return;
   }
-  const card = ceoCards[Math.floor(Math.random()*ceoCards.length)];
+  const card = ceoCards[Math.floor(Math.random() * ceoCards.length)];
   currentCard = card;
   cardName.textContent = card.name;
   cardText.innerHTML = `
@@ -309,16 +313,31 @@ drawBtn.onclick = () => {
   firstDrawDone = true;
 };
 
+// ---------------------------
 // Flip card on click
-tarotCard.onclick = () => { tarotCard.classList.toggle("flipped"); };
+// ---------------------------
+tarotCard.onclick = () => {
+  tarotCard.classList.toggle("flipped");
+};
 
+// ---------------------------
 // Paywall close
-paywallClose.onclick = () => { paywall.style.display = 'none'; };
+// ---------------------------
+paywallClose.onclick = () => {
+  paywall.style.display = 'none';
+};
 
 // ---------------------------
-// Redirect buttons to PayFast (fixed POST)
+// Click background to close paywall
 // ---------------------------
-async function pay(product) {
+paywall.addEventListener('click', (e) => {
+  if(e.target === paywall) paywall.style.display = 'none';
+});
+
+// ---------------------------
+// Universal PayFast POST function
+// ---------------------------
+async function pay(product){
   try {
     const res = await fetch('https://tmistudios.xyz/.netlify/functions/payfast', {
       method: 'POST',
@@ -326,21 +345,22 @@ async function pay(product) {
       body: JSON.stringify({ product })
     });
     const data = await res.json();
-    if (data.url) {
+    if(data.url){
       window.location.href = data.url;
     } else {
       alert('Payment failed. Try again.');
     }
-  } catch (err) {
+  } catch(err){
     alert('Payment request failed.');
     console.error(err);
   }
 }
 
-// Use the universal POST function for buttons
+// ---------------------------
+// Paywall buttons
+// ---------------------------
 paySingleBtn.onclick = () => pay('delulu_single');
 payFullBtn.onclick = () => pay('delulu_full');
-};
 </script>
 
 </body>
