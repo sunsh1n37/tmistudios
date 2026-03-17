@@ -157,6 +157,15 @@ case "backgrounds": amount = 20; item_name = "CuteQuote Premium: Unlock Backgrou
 case "quotes": amount = 20; item_name = "CuteQuote Premium: Unlock Trending Quotes"; break;
 case "full_cutequote": amount = 200; item_name = "CuteQuote Full Premium Unlock"; break;
 
+
+
+// Clap Back AI //
+    item_name: "ClapBackAI High-Value Reply",
+    amount: "29.00",
+    return_url: "https://yourapp.netlify.app/?paid=true",
+    cancel_url: "https://yourapp.netlify.app"
+}
+
         default:
           return { statusCode: 400, body: "Invalid product" };
       }
