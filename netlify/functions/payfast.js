@@ -57,9 +57,9 @@ exports.handler = async function(event) {
     let payfastUrl = "";
 
     // ---------------------------
-    // 🐬 DOLLFIN SUBSCRIPTIONS
-    // ---------------------------
-    if (tier) {
+// 🐬 DOLLFIN SUBSCRIPTIONS
+// ---------------------------
+if (tier) {
   let amount = 0;
   let item_name = "DollFin Plan";
 
@@ -77,17 +77,18 @@ exports.handler = async function(event) {
     return { statusCode: 400, body: "Invalid DollFin tier" };
   }
 
-      payfastUrl =
-        `${PAYFAST_URL}?merchant_id=${merchant_id}` +
-        `&merchant_key=${merchant_key}` +
-        `&amount=${amount}` +
-        `&item_name=${encodeURIComponent(item_name)}` +
-        `&subscription_type=1` +
-        `&billing_date=${new Date().toISOString().split("T")[0]}` +
-        `&recurring_amount=${amount}` +
-        `&frequency=3` +
-        `&cycles=0`;
-    }
+  // Build PayFast subscription URL
+  payfastUrl =
+    `${PAYFAST_URL}?merchant_id=${merchant_id}` +
+    `&merchant_key=${merchant_key}` +
+    `&amount=${amount}` +
+    `&item_name=${encodeURIComponent(item_name)}` +
+    `&subscription_type=1` + // recurring subscription
+    `&billing_date=${new Date().toISOString().split("T")[0]}` +
+    `&recurring_amount=${amount}` +
+    `&frequency=3` +  // every 3 months, adjust if needed
+    `&cycles=0`;       // 0 = indefinite until user cancels
+}
 
     // ---------------------------
     // 💰 ONE-TIME PRODUCTS
