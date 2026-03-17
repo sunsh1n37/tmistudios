@@ -86,8 +86,15 @@ if (tier) {
     `&subscription_type=1` + // recurring subscription
     `&billing_date=${new Date().toISOString().split("T")[0]}` +
     `&recurring_amount=${amount}` +
-    `&frequency=3` +  // every 3 months, adjust if needed
+    `&frequency=1` +  // 1 = monthly subscription
     `&cycles=0`;       // 0 = indefinite until user cancels
+
+  // ✅ Immediately return URL for subscriptions so it doesn't get overwritten
+  return {
+    statusCode: 200,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: payfastUrl })
+  };
 }
 
     // ---------------------------
