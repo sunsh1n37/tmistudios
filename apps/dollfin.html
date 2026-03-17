@@ -329,73 +329,43 @@ Built for Financial Dolls
 </div>
 
 <script>
-const calcBtn = document.getElementById("calcBtn");
-const result = document.getElementById("result");
-const paywall = document.getElementById("paywall");
-const paywallClose = document.getElementById("paywallClose");
+// ---------------------------
+// Paywall buttons for DollFin
+// ---------------------------
+
+// Grab buttons
 const paySingleBtn = document.getElementById("paySingleBtn");
 const payFullBtn = document.getElementById("payFullBtn");
-
-let firstCalcDone = false;
-
-// Score calculation
-function demoCalc() {
-  const salary = Number(document.getElementById("salary").value);
-  const rent = Number(document.getElementById("rent").value);
-  const savings = Number(document.getElementById("savings").value);
-
-  if (isNaN(salary) || isNaN(rent) || isNaN(savings)) {
-    alert("Please enter valid numbers for all fields.");
-    return;
-  }
-  if (salary <= 0) {
-    alert("Salary must be greater than 0.");
-    return;
-  }
-
-  let score = ((savings / salary) * 100) + ((salary - rent) / salary) * 40;
-  score = Math.round(score);
-  if (score > 100) score = 100;
-  if (score < 0) score = 0;
-
-  result.innerText = "Your Soft Life Score: " + score + "%";
-
-  // Show paywall only after first calculation
-  if (!firstCalcDone) {
-    firstCalcDone = true;
-    paywall.style.display = "flex";
-  }
-}
+const paywall = document.getElementById("paywall");
+const paywallClose = document.getElementById("paywallClose");
 
 // Close paywall
-paywallClose.onclick = () => { paywall.style.display = "none"; };
+paywallClose.onclick = () => { paywall.style.display = 'none'; };
 
-// Universal PayFast POST function
-async function pay(product) {
+// Universal function to call PayFast POST endpoint
+async function payDollFin(product) {
   try {
     const res = await fetch('https://tmistudios.xyz/.netlify/functions/payfast', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ product })
     });
+
     const data = await res.json();
     if (data.url) {
-      window.location.href = data.url;
+      window.location.href = data.url; // Redirect to PayFast
     } else {
-      alert('Payment failed. Try again.');
+      alert('Payment failed. Please try again.');
     }
   } catch (err) {
-    alert('Payment request failed.');
     console.error(err);
+    alert('Payment request failed. Check console.');
   }
 }
 
-// Button triggers
-paySingleBtn.onclick = () => pay('dollfin_single');
-payFullBtn.onclick = () => pay('dollfin_full');
-
-// Trigger calculation
-calcBtn.onclick = demoCalc;
+// Attach buttons to products
+paySingleBtn.onclick = () => payDollFin('dollfin_single');
+payFullBtn.onclick = () => payDollFin('dollfin_full');
 </script>
 
 </body>
