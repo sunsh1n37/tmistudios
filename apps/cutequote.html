@@ -210,7 +210,13 @@ function draw(){
   ctx.font=`bold ${textSize.value}px ${font}`;
   if(e) ctx.fillText(e,textX,textY - parseInt(textSize.value)*1.6);
   wrapText(q,textX,textY,canvas.width-100,parseInt(textSize.value)+10);
-  if(watermarkCheckbox.checked){ ctx.globalAlpha=0.5; ctx.font="20px Montserrat"; ctx.textAlign="right"; ctx.fillText("CuteQuote · TMI Studios",canvas.width-20,canvas.height-20); ctx.globalAlpha=1;}
+  if(watermarkCheckbox.checked){ 
+    ctx.globalAlpha=0.5; 
+    ctx.font="20px Montserrat"; 
+    ctx.textAlign="right"; 
+    ctx.fillText("CuteQuote · TMI Studios",canvas.width-20,canvas.height-20); 
+    ctx.globalAlpha=1;
+  }
 }
 
 // ===== WRAP TEXT =====
@@ -225,17 +231,38 @@ function wrapText(text,x,y,maxWidth,lineHeight){
 
 // ===== BACKGROUNDS =====
 function setColor(c){bgType='color'; bgValue=c; bgImg=null; draw();}
-function setImg(type){const map={sky:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&w=800', clouds:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=800', beachFree:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=800'}; const i=new Image(); i.crossOrigin="anonymous"; i.src=map[type]; i.onload=()=>{bgType='image'; bgImg=i; draw();}}
-function handleBgClick(el,type,value){if(el.classList.contains('locked')){showPaywallModal(type); return;} if(type==='color') setColor(value); else if(type==='image') setImg(value);}
+function setImg(type){
+  const map={
+    sky:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&w=800',
+    clouds:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&w=800',
+    beachFree:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=800'
+  };
+  const i=new Image(); 
+  i.crossOrigin="anonymous"; 
+  i.src=map[type]; 
+  i.onload=()=>{bgType='image'; bgImg=i; draw();}
+}
+function handleBgClick(el,type,value){
+  if(el.classList.contains('locked')){showPaywallModal('backgrounds'); return;} 
+  if(type==='color') setColor(value); else if(type==='image') setImg(value);
+}
 
 // ===== DOWNLOAD =====
 function downloadImg(){const a=document.createElement('a'); a.download='cutequote.png'; a.href=canvas.toDataURL(); a.click();}
 
 // ===== QUOTES =====
-function useQuote(el){if(el.classList.contains('locked')){showPaywallModal('Quotes'); return;} quoteInput.value=el.textContent; draw();}
+function useQuote(el){if(el.classList.contains('locked')){showPaywallModal('quotes'); return;} quoteInput.value=el.textContent; draw();}
 
 // ===== FONTS =====
-fontSelect.addEventListener('change',()=>{const selected = fontSelect.options[fontSelect.selectedIndex]; if(selected.classList.contains('locked')){showPaywallModal('Fonts'); fontSelect.selectedIndex=0; return;} draw();});
+fontSelect.addEventListener('change',()=>{
+  const selected = fontSelect.options[fontSelect.selectedIndex];
+  if(selected.classList.contains('locked')){
+    showPaywallModal('fonts'); 
+    fontSelect.selectedIndex=0; 
+    return;
+  }
+  draw();
+});
 
 // ===== DRAG =====
 canvas.addEventListener('mousedown',()=>dragging=true);
@@ -248,7 +275,12 @@ postSize.addEventListener('change',()=>{const val=postSize.value;if(val==='ig'){
 [quoteInput,emojiInput,textSize,textColor].forEach(el=>el.addEventListener('input',draw));
 
 // ===== WATERMARK =====
-watermarkCheckbox.addEventListener('change',()=>{if(!watermarkCheckbox.checked){watermarkCheckbox.checked=true; showPaywallModal('Watermark');}});
+watermarkCheckbox.addEventListener('change',()=>{
+  if(!watermarkCheckbox.checked){
+    watermarkCheckbox.checked=true; 
+    showPaywallModal('watermark');
+  }
+});
 
 draw();
 
@@ -261,8 +293,9 @@ let selectedFeature='';
 
 function showPaywallModal(feature){
   selectedFeature = feature.toLowerCase();
-  let price = "$1"; if(selectedFeature==='full') price="$10";
-  paywallFeatureName.textContent = feature + " Premium";
+  let price = "R20"; 
+  if(selectedFeature==='full') price="R200";
+  paywallFeatureName.textContent = feature.charAt(0).toUpperCase()+feature.slice(1)+" Premium";
   paywallPrice.textContent = "Price: "+price;
   if(localStorage.getItem('premium_full')==='true') paywallPrice.textContent = "All features unlocked ✅";
   paywallModal.style.display='flex';
@@ -270,11 +303,43 @@ function showPaywallModal(feature){
 
 function closePaywallModal(){paywallModal.style.display='none';}
 
+// ===== PURCHASE =====
 function paySelectedFeature() {
-  // Send to Netlify function
-  window.location.href = `/.netlify/functions/payfast?tier=${selectedFeature === 'full' ? 'full' : 'asset'}`;
+  // send to Netlify payfast function
+  fetch('/.netlify/functions/payfast', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ product: `cutequote_${selectedFeature}`, amount: 20 })
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    if(data.url){
+      window.location.href = data.url;
+    } else {
+      alert('Payment failed. Try again.');
+    }
+  })
+  .catch(err=>{
+    console.error(err);
+    alert('Payment request failed.');
+  });
 }
 
+// ===== HANDLE PURCHASE SUCCESS =====
+function handlePurchaseSuccess(feature){
+  if(feature === 'full'){
+    ['watermark','fonts','backgrounds','quotes'].forEach(f=>{
+      localStorage.setItem('premium_'+f,'true');
+    });
+  } else {
+    localStorage.setItem('premium_'+feature,'true');
+  }
+  document.querySelectorAll('.locked').forEach(el=>el.classList.remove('locked'));
+  closePaywallModal();
+  alert(`🎉 ${feature.charAt(0).toUpperCase()+feature.slice(1)} unlocked!`);
+}
+
+// ===== UNLOCK ON PAGE LOAD =====
 window.addEventListener('load', () => {
   ['watermark','fonts','backgrounds','quotes'].forEach(f => {
     if(localStorage.getItem('premium_' + f) === 'true') {
@@ -285,7 +350,7 @@ window.addEventListener('load', () => {
 
 // Close modal if user clicks outside content
 paywallModal.addEventListener('click', e => {
-  if(e.target === paywallModal) closepaywallModal();
+  if(e.target === paywallModal) closePaywallModal();
 });
 
 // ===== NAV DROPDOWN =====
