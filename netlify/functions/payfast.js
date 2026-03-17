@@ -60,20 +60,22 @@ exports.handler = async function(event) {
     // 🐬 DOLLFIN SUBSCRIPTIONS
     // ---------------------------
     if (tier) {
-      let amount = 0;
-      let item_name = "DollFin Plan";
+  let amount = 0;
+  let item_name = "DollFin Plan";
 
-      if (tier === "pro") {
-        amount = 99;
-        item_name = "DollFin Pro";
-      } else if (tier === "premium") {
-        amount = 199;
-        item_name = "DollFin Premium";
-      }
+  // Assign correct tier amounts and names
+  if (tier === "pro") {
+    amount = 99;
+    item_name = "DollFin Pro";
+  } else if (tier === "premium") {
+    amount = 199;
+    item_name = "DollFin Premium";
+  }
 
-      if (!amount) {
-        return { statusCode: 400, body: "Invalid DollFin tier" };
-      }
+  // Validate amount
+  if (!amount) {
+    return { statusCode: 400, body: "Invalid DollFin tier" };
+  }
 
       payfastUrl =
         `${PAYFAST_URL}?merchant_id=${merchant_id}` +
