@@ -272,24 +272,36 @@ ${isCurrent?"Current Plan":"Select"}
 
 }
 
-function selectPlan(plan){
+function selectPlan(plan) {
 
-if(plan==="pro" || plan==="premium"){
+  if (plan === "pro" || plan === "premium") {
+    // Use POST fetch to payfast function
+    fetch('/.netlify/functions/payfast', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier: plan })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.url) {
+          window.location.href = data.url; // redirect to PayFast
+        } else {
+          alert('Payment failed. Try again.');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Payment request failed.');
+      });
 
-window.location.href="/.netlify/functions/payfast?tier="+plan;
+    return;
+  }
 
-return;
-
-}
-
-userData.package=plan;
-
-localStorage.setItem("plan",plan);
-
-updateTop();
-
-renderPlans();
-
+  // Free plan selection
+  userData.package = plan;
+  localStorage.setItem("plan", plan);
+  updateTop();
+  renderPlans();
 }
 
 function animateNumber(element,start,end,duration){
