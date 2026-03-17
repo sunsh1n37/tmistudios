@@ -329,25 +329,73 @@ Built for Financial Dolls
 </div>
 
 <script>
+const calcBtn = document.getElementById("calcBtn");
+const result = document.getElementById("result");
+const paywall = document.getElementById("paywall");
+const paywallClose = document.getElementById("paywallClose");
+const paySingleBtn = document.getElementById("paySingleBtn");
+const payFullBtn = document.getElementById("payFullBtn");
 
-function demoCalc(){
+let firstCalcDone = false;
 
-let salary = Number(document.getElementById("salary").value)
-let rent = Number(document.getElementById("rent").value)
-let savings = Number(document.getElementById("savings").value)
+// Score calculation
+function demoCalc() {
+  const salary = Number(document.getElementById("salary").value);
+  const rent = Number(document.getElementById("rent").value);
+  const savings = Number(document.getElementById("savings").value);
 
-let score = ((savings / salary)*100) + ((salary-rent)/salary)*40
+  if (isNaN(salary) || isNaN(rent) || isNaN(savings)) {
+    alert("Please enter valid numbers for all fields.");
+    return;
+  }
+  if (salary <= 0) {
+    alert("Salary must be greater than 0.");
+    return;
+  }
 
-score = Math.round(score)
+  let score = ((savings / salary) * 100) + ((salary - rent) / salary) * 40;
+  score = Math.round(score);
+  if (score > 100) score = 100;
+  if (score < 0) score = 0;
 
-if(score >100) score=100
-if(score <0) score=0
+  result.innerText = "Your Soft Life Score: " + score + "%";
 
-document.getElementById("result").innerText =
-"Your Soft Life Score: " + score + "%"
-
+  // Show paywall only after first calculation
+  if (!firstCalcDone) {
+    firstCalcDone = true;
+    paywall.style.display = "flex";
+  }
 }
 
+// Close paywall
+paywallClose.onclick = () => { paywall.style.display = "none"; };
+
+// Universal PayFast POST function
+async function pay(product) {
+  try {
+    const res = await fetch('https://tmistudios.xyz/.netlify/functions/payfast', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product })
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Payment failed. Try again.');
+    }
+  } catch (err) {
+    alert('Payment request failed.');
+    console.error(err);
+  }
+}
+
+// Button triggers
+paySingleBtn.onclick = () => pay('dollfin_single');
+payFullBtn.onclick = () => pay('dollfin_full');
+
+// Trigger calculation
+calcBtn.onclick = demoCalc;
 </script>
 
 </body>
