@@ -340,10 +340,7 @@ function unlock() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            item_name: "ClapBackAI High-Value Reply",
-            amount: "29.00",
-            return_url: window.location.href + "?paid=true",
-            cancel_url: window.location.href
+            product: "clapbackai"
         })
     })
     .then(res => res.json())
