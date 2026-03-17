@@ -186,4 +186,4 @@ exports.handler = async function(event) {
   }
 
   return { statusCode: 400, body: "Invalid request method or content-type" };
-}; 
+};
