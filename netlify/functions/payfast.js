@@ -57,45 +57,41 @@ exports.handler = async function(event) {
     let payfastUrl = "";
 
     // ---------------------------
-// 🐬 DOLLFIN SUBSCRIPTIONS
-// ---------------------------
-if (tier) {
-  let amount = 0;
-  let item_name = "DollFin Plan";
+    // 🐬 DOLLFIN SUBSCRIPTIONS
+    // ---------------------------
+    if (tier) {
+      let amount = 0;
+      let item_name = "DollFin Plan";
 
-  // Assign correct tier amounts and names
-  if (tier === "pro") {
-    amount = 99;
-    item_name = "DollFin Pro";
-  } else if (tier === "premium") {
-    amount = 199;
-    item_name = "DollFin Premium";
-  }
+      if (tier === "pro") {
+        amount = 99;
+        item_name = "DollFin Pro";
+      } else if (tier === "premium") {
+        amount = 199;
+        item_name = "DollFin Premium";
+      }
 
-  // Validate amount
-  if (!amount) {
-    return { statusCode: 400, body: "Invalid DollFin tier" };
-  }
+      if (!amount) {
+        return { statusCode: 400, body: "Invalid DollFin tier" };
+      }
 
-  // Build PayFast subscription URL
-  payfastUrl =
-    `${PAYFAST_URL}?merchant_id=${merchant_id}` +
-    `&merchant_key=${merchant_key}` +
-    `&amount=${amount}` +
-    `&item_name=${encodeURIComponent(item_name)}` +
-    `&subscription_type=1` + // recurring subscription
-    `&billing_date=${new Date().toISOString().split("T")[0]}` +
-    `&recurring_amount=${amount}` +
-    `&frequency=1` +  // 1 = monthly subscription
-    `&cycles=0`;       // 0 = indefinite until user cancels
+      payfastUrl =
+        `${PAYFAST_URL}?merchant_id=${merchant_id}` +
+        `&merchant_key=${merchant_key}` +
+        `&amount=${amount}` +
+        `&item_name=${encodeURIComponent(item_name)}` +
+        `&subscription_type=1` +
+        `&billing_date=${new Date().toISOString().split("T")[0]}` +
+        `&recurring_amount=${amount}` +
+        `&frequency=1` +
+        `&cycles=0`;
 
-  // ✅ Immediately return URL for subscriptions so it doesn't get overwritten
-  return {
-    statusCode: 200,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url: payfastUrl })
-  };
-}
+      return {
+        statusCode: 200,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: payfastUrl })
+      };
+    }
 
     // ---------------------------
     // 💰 ONE-TIME PRODUCTS
@@ -141,30 +137,26 @@ if (tier) {
         case "drama_saurus": amount = 49; item_name = "Text-posè Pack: Drama-saurus"; break;
         case "snakeraptor": amount = 49; item_name = "Text-posè Pack: Snakes & Ladders"; break;
         case "tricksterrex": amount = 49; item_name = "Text-posè Pack: TricksterRex"; break;
-        case "clapback_r5": amount = 5; item_name = "Clapback Unlock (R5)"; break;
 
-        // 😈 VILLAIN (MOVED TO END FOR VISIBILITY)
+        // 🔥 CLAPBACK AI
+        case "clapbackai":
+            amount = 29;
+            item_name = "ClapBackAI High-Value Reply";
+            break;
+
+        // 😈 VILLAIN
         case "villain_full_report":
         case "villain_report":
           amount = 29;
           item_name = "Villain Quiz Full Report (R29)";
           break;
 
-// 💖 CUTEQUOTE PREMIUM FEATURES
-case "watermark": amount = 20; item_name = "CuteQuote Premium: Remove Watermark"; break;
-case "fonts": amount = 20; item_name = "CuteQuote Premium: Unlock Fonts"; break;
-case "backgrounds": amount = 20; item_name = "CuteQuote Premium: Unlock Backgrounds"; break;
-case "quotes": amount = 20; item_name = "CuteQuote Premium: Unlock Trending Quotes"; break;
-case "full_cutequote": amount = 200; item_name = "CuteQuote Full Premium Unlock"; break;
-
-
-
-// Clap Back AI //
-    item_name: "ClapBackAI High-Value Reply",
-    amount: "29.00",
-    return_url: "https://yourapp.netlify.app/?paid=true",
-    cancel_url: "https://yourapp.netlify.app"
-}
+        // 💖 CUTEQUOTE PREMIUM FEATURES
+        case "watermark": amount = 20; item_name = "CuteQuote Premium: Remove Watermark"; break;
+        case "fonts": amount = 20; item_name = "CuteQuote Premium: Unlock Fonts"; break;
+        case "backgrounds": amount = 20; item_name = "CuteQuote Premium: Unlock Backgrounds"; break;
+        case "quotes": amount = 20; item_name = "CuteQuote Premium: Unlock Trending Quotes"; break;
+        case "full_cutequote": amount = 200; item_name = "CuteQuote Full Premium Unlock"; break;
 
         default:
           return { statusCode: 400, body: "Invalid product" };
