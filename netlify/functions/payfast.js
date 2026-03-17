@@ -150,6 +150,13 @@ if (tier) {
           item_name = "Villain Quiz Full Report (R29)";
           break;
 
+// 💖 CUTEQUOTE PREMIUM FEATURES
+case "watermark": amount = 20; item_name = "CuteQuote Premium: Remove Watermark"; break;
+case "fonts": amount = 20; item_name = "CuteQuote Premium: Unlock Fonts"; break;
+case "backgrounds": amount = 20; item_name = "CuteQuote Premium: Unlock Backgrounds"; break;
+case "quotes": amount = 20; item_name = "CuteQuote Premium: Unlock Trending Quotes"; break;
+case "full_cutequote": amount = 200; item_name = "CuteQuote Full Premium Unlock"; break;
+
         default:
           return { statusCode: 400, body: "Invalid product" };
       }
