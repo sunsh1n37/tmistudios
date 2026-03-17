@@ -228,7 +228,9 @@ button:active {
     </div>
 </div>
 
-<script>let unlocked = false;
+<script>
+  
+  let unlocked = false;
 
 // Add chat bubble
 function addBubble(text, type="received") {
@@ -336,8 +338,9 @@ function unlock() {
 
     fetch("/.netlify/functions/payfast", {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            item_name: "High Value Reply",
+            item_name: "ClapBackAI High-Value Reply",
             amount: "29.00",
             return_url: window.location.href + "?paid=true",
             cancel_url: window.location.href
@@ -348,10 +351,16 @@ function unlock() {
         if (data.url) {
             window.location.href = data.url; // redirect to PayFast
         } else {
-            alert("Error generating payment link");
+            alert("Error generating payment link. Check Netlify function logs.");
             btn.disabled = false;
             btn.innerText = "Unlock for R29";
         }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Payment request failed. Check console logs.");
+        btn.disabled = false;
+        btn.innerText = "Unlock for R29";
     });
 }
 
@@ -370,7 +379,7 @@ function share() {
 
     html2canvas(screenshotArea, {scale: 2}).then(canvas => {
         const link = document.createElement("a");
-        link.download = "text-him-back.png";
+        link.download = "clapbackai-text.png";
         link.href = canvas.toDataURL();
         link.click();
     });
