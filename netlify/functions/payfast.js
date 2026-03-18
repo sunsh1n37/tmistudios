@@ -95,6 +95,42 @@ if (tier) {
   };  
 }  
 
+
+// ---------------------------
+// 🔥 CLAPBACK AI SUBSCRIPTIONS
+// ---------------------------
+if (product === "clapbackai" || data.tier === 49 || data.tier === 99 || data.tier === 199) {
+  let amount = 0;
+  let item_name = "ClapbackAI Subscription";
+
+  if (data.tier === 49) amount = 49;
+  else if (data.tier === 99) { amount = 99; item_name = "ClapbackAI Advanced Modes"; }
+  else if (data.tier === 199) { amount = 199; item_name = "ClapbackAI Conversation Control Mode"; }
+
+  if (!amount) return { statusCode: 400, body: "Invalid ClapbackAI tier" };
+
+  const return_url = `https://tmistudios.xyz/clapbackai?paid=true&tier=${data.tier}`;
+  const cancel_url = `https://tmistudios.xyz/clapbackai?canceled=true`;
+
+  const payfastUrl =
+    `${PAYFAST_URL}?merchant_id=${merchant_id}` +
+    `&merchant_key=${merchant_key}` +
+    `&amount=${amount}` +
+    `&item_name=${encodeURIComponent(item_name)}` +
+    `&return_url=${encodeURIComponent(return_url)}` +
+    `&cancel_url=${encodeURIComponent(cancel_url)}` +
+    `&subscription_type=1` +
+    `&billing_date=${new Date().toISOString().split("T")[0]}` +
+    `&recurring_amount=${amount}&frequency=1&cycles=0`;
+
+  return {
+    statusCode: 200,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: payfastUrl })
+  };
+}
+
+
 // ---------------------------  
 // 💰 ONE-TIME PRODUCTS  
 // ---------------------------  
