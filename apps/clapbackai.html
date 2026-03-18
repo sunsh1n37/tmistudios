@@ -3,202 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Text Him Back AI</title>
+<title>ClapbackAI — Text Him Back Like a Pro</title>
+
+<!-- Description & Keywords -->
+<meta name="description" content="ClapbackAI lets you reply like a pro. Soft, Savage, Black Cat, or Dark Femme archetypes for texting him back. Free & premium plans available.">
+<meta name="keywords" content="ClapbackAI, text him back, black cat texting, dark femme texting, texting AI, dating AI, reply AI, texting archetypes">
+
+<!-- Favicon -->
+<link rel="icon" href="https://tmistudios.xyz/favicon.png" type="image/png">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ClapbackAI — Text Him Back Like a Pro">
+<meta property="og:description" content="ClapbackAI helps you reply like a pro. Soft, Savage, Black Cat, or Dark Femme archetypes for texting him back. Free & premium plans available.">
+<meta property="og:url" content="https://tmistudios.xyz/clapbackai">
+<meta property="og:image" content="https://tmistudios.xyz/images/clapbackai-preview.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ClapbackAI — Text Him Back Like a Pro">
+<meta name="twitter:description" content="ClapbackAI helps you reply like a pro. Free & premium plans with Soft, Savage, Black Cat, and Dark Femme archetypes.">
+<meta name="twitter:image" content="https://tmistudios.xyz/images/clapbackai-preview.png">
+<meta name="twitter:site" content="@tmistudios">
+
+<!-- Breadcrumbs -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tmistudios.xyz" },
+    { "@type": "ListItem", "position": 2, "name": "ClapbackAI", "item": "https://tmistudios.xyz/clapbackai" }
+  ]
+}
+</script>
+
+<!-- ClapbackAI JSON-LD with Subscription Offers -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ClapbackAI",
+  "url": "https://tmistudios.xyz/clapbackai",
+  "description": "ClapbackAI helps you reply like a pro. Soft, Savage, Black Cat, or Dark Femme archetypes for texting him back. Free & premium features.",
+  "applicationCategory": "DatingApplication",
+  "operatingSystem": "Web",
+  "screenshot": "https://tmistudios.xyz/images/clapbackai-preview.png",
+  "offers": [
+    { "@type": "Offer", "name": "Free Plan", "price": "0", "priceCurrency": "ZAR", "url": "https://tmistudios.xyz/clapbackai", "availability": "https://schema.org/InStock" },
+    { "@type": "Offer", "name": "R49 / month", "price": "49", "priceCurrency": "ZAR", "url": "https://tmistudios.xyz/clapbackai?plan=49", "availability": "https://schema.org/InStock", "description": "All archetypes, unlimited replies" },
+    { "@type": "Offer", "name": "R99 / month", "price": "99", "priceCurrency": "ZAR", "url": "https://tmistudios.xyz/clapbackai?plan=99", "availability": "https://schema.org/InStock", "description": "Advanced modes: 'Make him chase', 'Win the argument', 'End it cleanly'" },
+    { "@type": "Offer", "name": "R199 / month", "price": "199", "priceCurrency": "ZAR", "url": "https://tmistudios.xyz/clapbackai?plan=199", "availability": "https://schema.org/InStock", "description": "Conversation Control Mode: multi-message strategy, what to say next based on his reply" }
+  ],
+  "creator": { "@type": "Organization", "name": "TMI Studios", "url": "https://tmistudios.xyz" }
+}
+</script>
 
 <!-- html2canvas for screenshot -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-:root {
-    --bg: #f5f5f7;
-    --card: rgba(255,255,255,0.75);
-    --accent: #ff4d88;
-    --accent-soft: #ffe4ec;
-    --text: #1c1c1e;
-}
-
-/* BASE */
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-    background: linear-gradient(180deg, #fff, #ffeef3);
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-}
-
-/* PHONE FRAME */
-.phone {
-    max-width: 420px;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: transparent;
-}
-
-/* HEADER */
-.header {
-    padding: 18px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 18px;
-    backdrop-filter: blur(10px);
-}
-
-/* CHAT */
-.chat {
-    flex: 1;
-    padding: 16px;
-    overflow-y: auto;
-}
-
-/* BUBBLES */
-.bubble {
-    max-width: 75%;
-    padding: 12px 16px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    line-height: 1.4;
-    animation: fadeIn 0.3s ease;
-}
-
-.received {
-    background: #e9e9eb;
-    color: black;
-}
-
-.sent {
-    background: linear-gradient(135deg, #ff4d88, #ff7aa8);
-    color: white;
-    margin-left: auto;
-}
-
-/* INPUT */
-.input-area {
-    padding: 12px;
-    backdrop-filter: blur(10px);
-}
-
-textarea {
-    width: 100%;
-    border-radius: 14px;
-    padding: 12px;
-    border: none;
-    background: #f2f2f7;
-    font-size: 14px;
-    outline: none;
-}
-
-button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 14px;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #ff4d88, #ff7aa8);
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:active {
-    transform: scale(0.97);
-}
-
-/* RESULT PANEL */
-.result {
-    padding: 16px;
-    background: white;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
-}
-
-/* SCORE */
-.score {
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--accent);
-}
-
-/* CARDS */
-.card {
-    margin-top: 12px;
-    padding: 14px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(12px);
-    font-size: 14px;
-}
-
-/* LOCKED */
-.locked {
-    filter: blur(8px);
-    position: relative;
-}
-
-/* PAYWALL */
-.paywall {
-    margin-top: 12px;
-    padding: 16px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
-    text-align: center;
-    font-size: 14px;
-}
-
-.paywall button {
-    margin-top: 10px;
-}
-
-/* ACTIONS */
-.actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 12px;
-}
-
-.actions button {
-    flex: 1;
-    background: #1c1c1e;
-    color: white;
-}
-
-/* LOADING ANIMATION */
-.typing {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: white;
-    margin-right: 4px;
-    animation: bounce 1s infinite ease-in-out;
-}
-
-.typing:nth-child(2) { animation-delay: 0.2s; }
-.typing:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); }
-    40% { transform: scale(1); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+:root { --bg:#f5f5f7; --card:rgba(255,255,255,0.75); --accent:#ff4d88; --accent-soft:#ffe4ec; --text:#1c1c1e; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif; background:linear-gradient(180deg,#fff,#ffeef3); color:var(--text); display:flex; justify-content:center; }
+.phone { max-width:420px; width:100%; height:100vh; display:flex; flex-direction:column; background:transparent; }
+.header { padding:18px; text-align:center; font-weight:600; font-size:18px; backdrop-filter:blur(10px); }
+.chat { flex:1; padding:16px; overflow-y:auto; }
+.bubble { max-width:75%; padding:12px 16px; border-radius:20px; margin-bottom:10px; font-size:14px; line-height:1.4; animation:fadeIn 0.3s ease; }
+.received { background:#e9e9eb; color:black; }
+.sent { background:linear-gradient(135deg,#ff4d88,#ff7aa8); color:white; margin-left:auto; }
+.input-area { padding:12px; backdrop-filter:blur(10px); }
+textarea { width:100%; border-radius:14px; padding:12px; border:none; background:#f2f2f7; font-size:14px; outline:none; }
+button { width:100%; margin-top:10px; padding:14px; border:none; border-radius:14px; background:linear-gradient(135deg,#ff4d88,#ff7aa8); color:white; font-size:16px; font-weight:600; cursor:pointer; transition:0.2s; }
+button:active { transform:scale(0.97); }
+.result { padding:16px; background:white; border-top-left-radius:20px; border-top-right-radius:20px; box-shadow:0 -4px 20px rgba(0,0,0,0.05); }
+.score { font-size:26px; font-weight:700; color:var(--accent); }
+.card { margin-top:12px; padding:14px; border-radius:16px; background:rgba(255,255,255,0.75); backdrop-filter:blur(12px); font-size:14px; }
+.locked { filter:blur(8px); position:relative; }
+.paywall { margin-top:12px; padding:16px; border-radius:16px; background:linear-gradient(135deg,#fff0f5,#ffe4ec); text-align:center; font-size:14px; }
+.paywall button { margin-top:10px; }
+.actions { display:flex; gap:10px; margin-top:12px; }
+.actions button { flex:1; background:#1c1c1e; color:white; }
+.typing { display:inline-block; width:12px; height:12px; border-radius:50%; background:white; margin-right:4px; animation:bounce 1s infinite ease-in-out; }
+.typing:nth-child(2) { animation-delay:0.2s; }
+.typing:nth-child(3) { animation-delay:0.4s; }
+@keyframes bounce { 0%,80%,100% {transform:scale(0);} 40%{transform:scale(1);} }
+@keyframes fadeIn { from{opacity:0; transform:translateY(5px);} to{opacity:1; transform:translateY(0);} }
 </style>
 </head>
 
 <body>
 <div class="phone">
-
-    <div class="header">💬 Text Him Back</div>
-
+    <div class="header">💬 ClapbackAI</div>
     <div class="chat" id="chat"></div>
 
     <div class="input-area">
@@ -211,14 +106,14 @@ button:active {
             <div class="score" id="score"></div>
             <div class="card" id="meaningCard"></div>
             <div class="card" id="repliesCard"></div>
-            <div style="text-align:center; font-size:12px; margin-top:8px; color: #aaa;">
-                Made at tmistudios.xyz
-            </div>
+            <div style="text-align:center; font-size:12px; margin-top:8px; color:#aaa;">Made at tmistudios.xyz</div>
         </div>
 
         <div class="paywall" id="paywall">
-            🔒 Unlock your exact high-value reply<br><br>
-            <button onclick="unlock()">Unlock for R29</button>
+            🔒 Unlock premium features<br><br>
+            <button onclick="paySubscription(49)">R49 / month</button>
+            <button onclick="paySubscription(99)">R99 / month</button>
+            <button onclick="paySubscription(199)">R199 / month</button>
         </div>
 
         <div class="actions">
@@ -229,169 +124,85 @@ button:active {
 </div>
 
 <script>
-  
-  let unlocked = false;
+let unlocked=false;
 
-// Add chat bubble
-function addBubble(text, type="received") {
-    const chat = document.getElementById("chat");
-    const div = document.createElement("div");
-    div.className = "bubble " + type;
-    div.innerHTML = text;
-    chat.appendChild(div);
-    chat.scrollTop = chat.scrollHeight;
+// ===== Meaning Pools =====
+const meaningPools = {
+  wyd:["Low effort. He wants access without effort.","Casual energy. Minimal thought.","Just checking in, not serious.","Testing waters without commitment."],
+  "you up":["Late-night convenience energy.","Only texting when easy for him.","Not fully invested, just curious.","Casual, opportunistic vibe."],
+  miss:["Emotional pull. He’s thinking about you.","Sentimental energy. Wants connection.","Feeling nostalgic or affectionate.","Trying to draw you in emotionally."],
+  question:["He wants engagement.","Looking for a response.","Curious about your reaction.","Testing if you’ll chase."],
+  longMsg:["High emotional investment.","Effort shows he cares.","Lots of thought in this one.","Shows deep interest."],
+  shortMsg:["Low effort. You're an option.","Brief text, minimal investment.","Quick message, could be distracted.","Minimal engagement."],
+  neutral:["Neutral energy.","Nothing major.","No strong signals.","Balanced, could go either way."]
+};
+
+const archetypes=["soft","savage","blackCat","darkFemme"];
+function getRandom(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function getMeaning(poolName){return getRandom(meaningPools[poolName]||meaningPools.neutral);}
+
+// ===== Chat bubble =====
+function addBubble(text,type="received"){const chat=document.getElementById("chat");const div=document.createElement("div");div.className="bubble "+type;div.innerHTML=text;chat.appendChild(div);chat.scrollTop=chat.scrollHeight;}
+
+// ===== Start analysis =====
+function startAnalysis(){
+  const input=document.getElementById("inputText").value;
+  if(!input)return;
+  document.getElementById("chat").innerHTML="";
+  document.getElementById("result").style.display="none";
+  addBubble(input,"received");
+  setTimeout(()=>{
+    const typing=document.createElement("div");
+    typing.className="bubble sent"; typing.id="typingBubble";
+    typing.innerHTML=`<span class="typing"></span><span class="typing"></span><span class="typing"></span>`;
+    document.getElementById("chat").appendChild(typing); typing.scrollIntoView();
+  },500);
+  setTimeout(()=>{const typing=document.getElementById("typingBubble");if(typing)typing.remove();analyze(input);},2000);
 }
 
-// Start analysis with typing animation
-function startAnalysis() {
-    const input = document.getElementById("inputText").value;
-    if (!input) return;
+// ===== Analyze text =====
+function analyze(textRaw){
+  const text=textRaw.toLowerCase(); let effortScore=60+Math.random()*30; let meaning=""; let replies={};
+  const isShort=text.length<12; const isLong=text.length>80;
 
-    document.getElementById("chat").innerHTML = "";
-    document.getElementById("result").style.display = "none";
-
-    addBubble(input, "received");
-
-    // Typing animation bubble
-    setTimeout(() => {
-        const typing = document.createElement("div");
-        typing.className = "bubble sent";
-        typing.id = "typingBubble";
-        typing.innerHTML = `<span class="typing"></span><span class="typing"></span><span class="typing"></span>`;
-        document.getElementById("chat").appendChild(typing);
-        typing.scrollIntoView();
-    }, 500);
-
-    setTimeout(() => {
-        const typing = document.getElementById("typingBubble");
-        if (typing) typing.remove();
-        analyze(input);
-    }, 2000);
+  if(text.includes("wyd")){meaning=getMeaning("wyd");replies={soft:"Just relaxing 😊 you?",savage:"Living my life. You?",blackCat:"Hmm, maybe later.",darkFemme:"Could be busy, you?"};effortScore=45;}
+  else if(text.includes("you up")){meaning=getMeaning("you up");replies={soft:"Barely lol",savage:"No ❤️",blackCat:"Not now.",darkFemme:"Sleep time. Catch you later."};effortScore=35;}
+  else if(text.includes("miss")){meaning=getMeaning("miss");replies={soft:"Aww 🥺",savage:"I know",blackCat:"Hmm.",darkFemme:"Interesting."};effortScore=85;}
+  else if(text.includes("?")){meaning=getMeaning("question");replies={soft:"Haha yeah 😊",savage:"Why?",blackCat:"Depends.",darkFemme:"Could be."};effortScore=75;}
+  else if(isLong){meaning=getMeaning("longMsg");replies={soft:"That was sweet 🥺",savage:"You wrote all that?",blackCat:"Noted.",darkFemme:"Thanks for sharing."};effortScore=90;}
+  else if(isShort){meaning=getMeaning("shortMsg");replies={soft:"Hey 😊",savage:"That’s it?",blackCat:"Mm.",darkFemme:"Hmm."};effortScore=45;}
+  else{meaning=getMeaning("neutral");replies={soft:"Nice 😊",savage:"Okay…",blackCat:"K.",darkFemme:"Sure."};effortScore=65;}
+  effortScore=Math.round(effortScore); showResult(effortScore,meaning,replies);
 }
 
-// Simple analysis logic
-function analyze(textRaw) {
-    const text = textRaw.toLowerCase();
-    let effortScore = 60 + Math.random() * 30;
-    let meaning = "";
-    let replies = {};
-    const isShort = text.length < 12;
-    const isLong = text.length > 80;
-
-    if (text.includes("wyd")) {
-        meaning = "Low effort. He wants access without effort.";
-        effortScore = 45;
-        replies = { soft:"Just relaxing 😊 you?", savage:"Living my life. You?", high:"Busy. What’s up?" };
-    } else if (text.includes("you up")) {
-        meaning = "Late-night convenience energy.";
-        effortScore = 35;
-        replies = { soft:"Barely lol", savage:"No ❤️", high:"Talk tomorrow." };
-    } else if (text.includes("miss you")) {
-        meaning = "Emotional pull. He’s thinking about you.";
-        effortScore = 85;
-        replies = { soft:"Aww 🥺", savage:"I know", high:"I like that. Why?" };
-    } else if (text.includes("?")) {
-        meaning = "He wants engagement.";
-        effortScore = 75;
-        replies = { soft:"Haha yeah 😊", savage:"Why?", high:"Depends 👀" };
-    } else if (isLong) {
-        meaning = "High emotional investment.";
-        effortScore = 90;
-        replies = { soft:"That was sweet 🥺", savage:"You wrote all that?", high:"I appreciate this." };
-    } else if (isShort) {
-        meaning = "Low effort. You're an option.";
-        effortScore = 45;
-        replies = { soft:"Hey 😊", savage:"That’s it?", high:"Hey." };
-    } else {
-        meaning = "Neutral energy.";
-        effortScore = 65;
-        replies = { soft:"Nice 😊", savage:"Okay…", high:"Got it." };
-    }
-
-    effortScore = Math.round(effortScore);
-    showResult(effortScore, meaning, replies);
+// ===== Show result =====
+function showResult(score,meaning,replies){
+  const result=document.getElementById("result"); result.style.display="block";
+  document.getElementById("score").innerText=`Effort Score: ${score}/100`;
+  document.getElementById("meaningCard").innerHTML=`<strong>What he means:</strong><br>${meaning}`;
+  document.getElementById("repliesCard").innerHTML=`
+    <strong>Replies:</strong><br><br>
+    💕 ${replies.soft}<br>
+    😈 ${replies.savage}<br><br>
+    <div class="locked" id="lockedReply1">👑 ${replies.blackCat}</div>
+    <div class="locked" id="lockedReply2">🖤 ${replies.darkFemme}</div>
+  `;
 }
 
-// Show result panel with cards and paywall
-function showResult(score, meaning, replies) {
-    const result = document.getElementById("result");
-    result.style.display = "block";
-
-    document.getElementById("score").innerText = `Effort Score: ${score}/100`;
-    document.getElementById("meaningCard").innerHTML = `<strong>What he means:</strong><br>${meaning}`;
-    
-    document.getElementById("repliesCard").innerHTML = `
-        <strong>Replies:</strong><br><br>
-        💕 ${replies.soft}<br>
-        😈 ${replies.savage}<br><br>
-        <div class="locked" id="lockedReply">👑 ${replies.high}</div>
-    `;
-
-    document.getElementById("lockedReply").style.filter = "blur(8px)";
+// ===== Pay subscription (real PayFast redirect placeholder) =====
+function paySubscription(amount){
+  fetch("/.netlify/functions/payfast",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({product:"clapbackai",amount:amount})})
+  .then(res=>res.json()).then(data=>{if(data.url){window.location.href=data.url;}else{alert("Error generating payment link");}}).catch(err=>{console.error(err);alert("Payment request failed");});
 }
 
-// Unlock paywall with PayFast redirect
-function unlock() {
-    const btn = document.querySelector(".paywall button");
-    btn.disabled = true;
-    btn.innerText = "Redirecting to PayFast...";
+// ===== Reset / Screenshot =====
+function resetApp(){document.getElementById("chat").innerHTML="";document.getElementById("result").style.display="none";document.getElementById("inputText").value="";unlocked=false;}
+function share(){const screenshotArea=document.getElementById("screenshotArea");if(!screenshotArea)return;html2canvas(screenshotArea,{scale:2}).then(canvas=>{const link=document.createElement("a");link.download="clapbackai-text.png";link.href=canvas.toDataURL();link.click();});}
 
-    fetch("/.netlify/functions/payfast", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            product: "clapbackai"
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.url) {
-            window.location.href = data.url; // redirect to PayFast
-        } else {
-            alert("Error generating payment link. Check Netlify function logs.");
-            btn.disabled = false;
-            btn.innerText = "Unlock for R29";
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Payment request failed. Check console logs.");
-        btn.disabled = false;
-        btn.innerText = "Unlock for R29";
-    });
-}
-
-// Reset app
-function resetApp() {
-    document.getElementById("chat").innerHTML = "";
-    document.getElementById("result").style.display = "none";
-    document.getElementById("inputText").value = "";
-    unlocked = false;
-}
-
-// Screenshot only the card area (no buttons)
-function share() {
-    const screenshotArea = document.getElementById("screenshotArea");
-    if (!screenshotArea) return;
-
-    html2canvas(screenshotArea, {scale: 2}).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "clapbackai-text.png";
-        link.href = canvas.toDataURL();
-        link.click();
-    });
-}
-
-// Auto-unlock if redirected from PayFast
-window.onload = function() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("paid") === "true") {
-        const locked = document.getElementById("lockedReply");
-        if (locked) locked.style.filter = "none";
-
-        const paywall = document.getElementById("paywall");
-        if (paywall) paywall.innerHTML = "✨ Payment received. Go text him!";
-    }
+// ===== Auto-unlock if paid =====
+window.onload=function(){
+  const params=new URLSearchParams(window.location.search);
+  if(params.get("paid")==="true"){document.querySelectorAll('.locked').forEach(el=>el.style.filter="none");const paywall=document.getElementById("paywall");if(paywall)paywall.innerHTML="✨ Payment received. Go text him!";}
 };
 </script>
 </body>
