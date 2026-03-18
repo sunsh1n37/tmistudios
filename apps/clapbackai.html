@@ -198,8 +198,25 @@ document.getElementById("shareBtn").addEventListener("click", function(){
 
 // Pay subscription placeholder
 function paySubscription(amount){
-    alert("Redirect to payment for R"+amount);
+  fetch("/.netlify/functions/payfast",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({product:"clapbackai", amount:amount})
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    if(data.url){ 
+      window.location.href = data.url; 
+    } else { 
+      alert("Error generating payment link"); 
+    }
+  })
+  .catch(err=>{
+    console.error(err);
+    alert("Payment request failed");
+  });
 }
+
 </script>
 </body>
 </html>
