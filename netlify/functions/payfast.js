@@ -99,17 +99,16 @@ if (tier) {
 // ---------------------------
 // 🔥 CLAPBACK AI SUBSCRIPTIONS
 // ---------------------------
-if (product === "clapbackai" || data.tier === 49 || data.tier === 99 || data.tier === 199) {
-  let amount = 0;
-  let item_name = "ClapbackAI Subscription";
+if (product === "clapbackai") {
+  let amount = data.amount || 0;
+  let item_name = "ClapBackAI Subscription";
 
-  if (data.tier === 49) amount = 49;
-  else if (data.tier === 99) { amount = 99; item_name = "ClapbackAI Advanced Modes"; }
-  else if (data.tier === 199) { amount = 199; item_name = "ClapbackAI Conversation Control Mode"; }
+  if (amount === 49) item_name = "ClapBackAI R49 Plan: All archetypes, unlimited replies";
+  else if (amount === 99) item_name = "ClapBackAI R99 Plan: Advanced Modes";
+  else if (amount === 199) item_name = "ClapBackAI R199 Plan: Conversation Control Mode";
+  else return { statusCode: 400, body: "Invalid ClapbackAI plan" };
 
-  if (!amount) return { statusCode: 400, body: "Invalid ClapbackAI tier" };
-
-  const return_url = `https://tmistudios.xyz/clapbackai?paid=true&tier=${data.tier}`;
+  const return_url = `https://tmistudios.xyz/clapbackai?paid=true&plan=${amount}`;
   const cancel_url = `https://tmistudios.xyz/clapbackai?canceled=true`;
 
   const payfastUrl =
