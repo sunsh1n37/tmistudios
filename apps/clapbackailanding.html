@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClapbackAI — Text Him Back Like a Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --accent:#ff4d88;
+    --bg:#fff5f8;
+    --text:#1c1c1e;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
+body{background:var(--bg);color:var(--text);}
+
+.container{max-width:1100px;margin:auto;padding:20px;position:relative;}
+
+header{text-align:center;padding:70px 20px;position:relative;}
+header h1{font-size:3rem;color:var(--accent);}
+header p{margin-top:10px;font-size:1.2rem;}
+
+/* Home button top-right */
+.home-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:1.5rem;
+    cursor:pointer;
+}
+
+/* CTA */
+.cta-btn{
+    margin-top:20px;
+    padding:14px 28px;
+    font-size:1.1rem;
+    font-weight:700;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#ff4d88,#ff7aa8);
+    color:white;
+    cursor:pointer;
+    animation:pulse 2s infinite;
+}
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
+}
+
+/* STATS stacked */
+.stats{display:flex;flex-direction:column;align-items:center;margin:60px 0;text-align:center;}
+.stat{margin:15px 0;}
+.stat h2{color:var(--accent);}
+
+/* CHAT */
+.images{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:60px 0;}
+
+.chat-card{
+    width:260px;
+    background:white;
+    border-radius:20px;
+    padding:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    position:relative;
+}
+
+.bubble{padding:10px 14px;border-radius:16px;margin:6px 0;font-size:13px;max-width:80%;}
+.received{background:#e9e9eb;}
+.sent{background:linear-gradient(135deg,#ff4d88,#ff7aa8);color:white;margin-left:auto;}
+
+.caption{
+    position:absolute;
+    top:-10px;
+    left:10px;
+    background:black;
+    color:white;
+    font-size:11px;
+    padding:4px 8px;
+    border-radius:8px;
+}
+
+/* typing */
+.typing{display:flex;gap:4px;margin-left:0;}
+.dot{width:6px;height:6px;background:#999;border-radius:50%;animation:blink 1.2s infinite;}
+.dot:nth-child(2){animation-delay:0.2s;}
+.dot:nth-child(3){animation-delay:0.4s;}
+@keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
+
+/* cards */
+.card{
+    background:white;
+    padding:14px;
+    margin:10px auto;
+    max-width:420px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* testimonials */
+.testimonial{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    margin:20px auto;
+    max-width:500px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* leaderboard tile */
+.leaderboard-section{
+    background: linear-gradient(135deg,#ffe4ec,#ff7aa8);
+    padding:30px 20px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    margin:40px 0;
+}
+.leaderboard-section h2{color:#fff;margin-bottom:20px;text-align:center;}
+
+/* popup */
+.popup{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:white;
+    padding:16px;
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    display:none;
+}
+
+footer{text-align:center;padding:40px;color:#888;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h1>💬 ClapbackAI</h1>
+<p>Text him back like a 🐈‍⬛ Black Cat, 👸 Queen, 😈 Savage or 💕 Soft Girl.</p>
+
+<!-- Home button top right -->
+<div class="home-btn" onclick="lab.html">🏠</div>
+
+<button class="cta-btn" onclick="clapbackai.html">Try it free →</button>
+
+<p style="margin-top:10px;font-size:14px;opacity:0.7;">
+✨ Most girls unlock within 30 seconds
+</p>
+
+<div style="margin-top:10px;font-weight:600;">
+🔥 <span id="counter">12,384</span> clapbacks generated today
+</div>
+</header>
+
+<section class="stats">
+<div class="stat"><h2>98%</h2><p>got a reply instantly</p></div>
+<div class="stat"><h2>1M+</h2><p>texts analyzed</p></div>
+<div class="stat"><h2>4.9⭐</h2><p>girls who make him chase</p></div>
+</section>
+
+<!-- CHAT PROOF -->
+<section class="images">
+
+<div class="chat-card">
+<div class="caption">he texted again 😭</div>
+<div class="bubble received">wyd</div>
+<div class="bubble sent">🐈‍⬛ maybe later</div>
+<div class="bubble received">hey?</div>
+<div class="bubble received">you there?</div>
+<div class="bubble received typing">
+<div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+</div>
+
+<div class="chat-card">
+<div class="caption">he folded 💀</div>
+<div class="bubble received">you up?</div>
+<div class="bubble sent">😈 no ❤️</div>
+<div class="bubble received">damn 😭</div>
+<div class="bubble received typing">
+<div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+</div>
+
+</section>
+
+<!-- LEADERBOARD -->
+<section class="leaderboard-section">
+<h2>🔥 Top Clapbacks Today</h2>
+<div id="leaderboard"></div>
+</section>
+
+<!-- LIVE FEED -->
+<section>
+<h2 style="text-align:center;">⚡ Live Activity</h2>
+<div id="activityFeed"></div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section>
+<div id="dynamicTestimonial" class="testimonial"></div>
+</section>
+
+<section style="text-align:center;margin:60px 0;">
+<h2>Stop overthinking texts.</h2>
+<p>Start controlling the conversation.</p>
+<button class="cta-btn" onclick="clapbackai.html">Make him chase 🔥</button>
+</section>
+
+</div>
+
+<footer>Made with ❤️ by TMI Studios · tmistudios.xyz</footer>
+
+<script>
+// redirect
+function goApp(){window.location.href="/app.html";}
+function goHome(){window.location.href="/";}
+
+// counter
+let count=12384;
+setInterval(()=>{
+count+=Math.floor(Math.random()*3)+1;
+document.getElementById("counter").innerText=count.toLocaleString();
+},2000);
+
+// leaderboard
+const clapbacks=[
+"🐈‍⬛ maybe later","😈 no ❤️","👸 I don’t chase, I attract",
+"🖤 interesting…","🐈‍⬛ we’ll see","😈 you thought 😭"
+];
+
+function loadLeaderboard(){
+const el=document.getElementById("leaderboard");
+el.innerHTML="";
+clapbacks.sort(()=>0.5-Math.random()).slice(0,5).forEach((t,i)=>{
+const d=document.createElement("div");
+d.className="card";
+d.innerHTML=`<strong>#${i+1}</strong> — ${t}`;
+el.appendChild(d);
+});
+}
+loadLeaderboard();
+
+// activity feed
+const actions=["just made him double text 😭","sent a savage reply 😈","got a paragraph 💀","left him on read 🐈‍⬛"];
+const names=["Ayanda","Zoe","Kamo","Thando","Lerato"];
+
+function addActivity(){
+const feed=document.getElementById("activityFeed");
+const d=document.createElement("div");
+d.className="card";
+d.innerHTML=`<strong>${names[Math.floor(Math.random()*names.length)]}</strong> ${actions[Math.floor(Math.random()*actions.length)]} <span style="font-size:12px;color:#999;">· now</span>`;
+feed.prepend(d);
+if(feed.children.length>6) feed.removeChild(feed.lastChild);
+}
+setInterval(addActivity,2500);
+for(let i=0;i<3;i++) addActivity();
+
+// testimonial
+const testimonials=[
+"He double texted in 20 seconds 😭🔥",
+"I fear me now 😈",
+"He started explaining himself 💀",
+"My whole friend group uses this 😂"
+];
+
+function loadTestimonial(){
+const t=testimonials[Math.floor(Math.random()*testimonials.length)];
+document.getElementById("dynamicTestimonial").innerHTML=`"${t}"`;
+}
+loadTestimonial();
+</script>
+
+</body>
+</html>
