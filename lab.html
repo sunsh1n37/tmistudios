@@ -84,21 +84,25 @@ nav .dropdown a:hover { background:#222; }
 
 /* SECTION TITLES */
 .section-title { font-size:1.5rem; font-weight:700; margin:1rem 0; color:var(--cyan); }
+.section-desc { max-width:600px; margin:auto; color:#ccc; margin-bottom:1rem; }
 
 /* CARDS */
 .card-container { display:flex; overflow-x:auto; gap:1rem; padding:1rem; scroll-behavior:smooth; }
-.card-container::-webkit-scrollbar { display:none; }
+.card-container::-webkit-scrollbar { height:6px; }
+.card-container::-webkit-scrollbar-track { background:#111; }
+.card-container::-webkit-scrollbar-thumb { background:var(--purple); border-radius:3px; }
 
 .card {
-  flex:0 0 220px;
+  flex:0 0 200px;
   background:var(--dark-card);
   border-radius:12px;
   overflow:hidden;
   text-align:center;
   border:2px solid #000;
+  position:relative;
   opacity:0;
   transform: translateY(30px);
-  transition: all .5s ease;
+  transition: all .5s ease-out;
 }
 .card.visible { opacity:1; transform: translateY(0); }
 
@@ -116,7 +120,7 @@ nav .dropdown a:hover { background:#222; }
   cursor:pointer;
 }
 
-/* TRENDING BADGE */
+/* Trending badge */
 .trending-badge {
   position:absolute;
   top:8px;
@@ -129,6 +133,11 @@ nav .dropdown a:hover { background:#222; }
   border-radius:8px;
   pointer-events:none;
   z-index:5;
+  transition: all .3s ease;
+}
+.card:hover .trending-badge {
+  box-shadow: 0 0 10px #ff3d3d90, 0 0 18px #ff3d3d70;
+  transform: scale(1.1);
 }
 
 /* CTA */
@@ -190,24 +199,24 @@ nav .dropdown a:hover { background:#222; }
 
 <div id="chaos-container"></div>
 
-<!-- TMI Lab -->
+<!-- TMI LAB SECTION -->
 <section>
-  <h2 class="section-title">TMI Lab ⚡</h2>
-  <p style="max-width:600px;margin:auto;color:#ccc;">A chaotic lab of viral apps, AI tools, and chaotic fun. All apps launch here first.</p>
+  <h2 class="section-title">TMI Lab 🧪</h2>
+  <p class="section-desc">Fast, chaotic experiments in viral internet tools, browser games, and interactive mischief. We build many experiments, then scale what people love.</p>
   <div class="card-container" id="tmilab-cards"></div>
 </section>
 
-<!-- Vibe Lab -->
+<!-- VIBE LAB SECTION -->
 <section>
   <h2 class="section-title">Vibe Lab 👯‍♀️</h2>
-  <p style="max-width:600px;margin:auto;color:#ccc;">Step into Vibe Lab, the ultimate playground for personality quizzes and self-discovery.</p>
+  <p class="section-desc">Step into Vibe Lab, the ultimate playground for personality quizzes and self-discovery. Fun, funky, and 100% unfiltered.</p>
   <div class="card-container" id="vibelab-cards"></div>
 </section>
 
-<!-- Toxic Lab -->
+<!-- TOXIC LAB SECTION -->
 <section>
-  <h2 class="section-title">Toxic Lab 🚩</h2>
-  <p style="max-width:600px;margin:auto;color:#ccc;">A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior.</p>
+  <h2 class="section-title">Toxic Relationship Lab 🚩</h2>
+  <p class="section-desc">A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior.</p>
   <div class="card-container" id="toxiclab-cards"></div>
 </section>
 
@@ -225,7 +234,7 @@ nav .dropdown a:hover { background:#222; }
     <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
     <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
   </div>
-  <p>© 2026 TMI Studios</p>
+  <p>© 2025 TMI Studios</p>
   <nav class="footer-links">
     <a href="arcade.html">Arcade</a> ·
     <a href="faq.html">FAQ</a> ·
@@ -234,7 +243,6 @@ nav .dropdown a:hover { background:#222; }
   </nav>
 </footer>
 
-<!-- Lab Apps Fetch & Animations -->
 <script>
 // Floating emojis
 const container = document.getElementById('chaos-container');
@@ -288,7 +296,7 @@ fetch('./apps/apps.json')
       observer.observe(card);
     });
 
-    // Vibe & Toxic Labs - only latest 2
+    // Vibe & Toxic Labs - latest 2 apps
     ["Vibe Lab","Toxic Lab"].forEach(labName=>{
       const container = labName==="Vibe Lab"?vibelab:toxiclab;
       apps.filter(a=>a.lab===labName).slice(-2).reverse().forEach(app=>{
@@ -308,7 +316,6 @@ fetch('./apps/apps.json')
   })
   .catch(err => console.error("Error fetching apps:", err));
 </script>
-
 
 </body>
 </html>
