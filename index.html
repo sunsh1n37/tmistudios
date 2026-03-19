@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>TMI Studios — Internet Product Lab</title>
-<meta name="description" content="TMI Studios is an independent internet product lab building viral apps, chaotic tools and fast browser games.">
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root{
@@ -16,7 +14,6 @@
 --accent:#b388ff;
 --text:#f4f4f4;
 --muted:#c0bcd0;
---footer-link:#bfa3ff;
 --font:'Space Grotesk',sans-serif;
 }
 
@@ -26,51 +23,18 @@ body{
 font-family:var(--font);
 background:var(--bg);
 color:var(--text);
-overflow-x:hidden;
 }
 
 /* NAV */
 nav{
 display:flex;
 justify-content:space-between;
-align-items:center;
-padding:.75rem 1rem;
-position:sticky;
-top:0;
-background:var(--bg);
-z-index:100;
-}
-.arcade-btn{
-background:var(--accent);
-color:var(--bg);
-padding:.45rem 1rem;
-border-radius:999px;
-font-weight:700;
-text-decoration:none;
-}
-.hamburger{
-font-size:1.4rem;
-cursor:pointer;
-}
-.dropdown{
-position:absolute;
-right:0;
-top:140%;
-background:#140022;
-border-radius:14px;
-padding:.75rem 0;
-display:none;
-}
-.dropdown a{
-display:block;
-padding:.6rem 1rem;
-color:#fff;
-text-decoration:none;
+padding:1rem;
 }
 
 /* HERO */
 .hero{
-min-height:100vh;
+min-height:80vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -78,169 +42,97 @@ align-items:center;
 text-align:center;
 padding:1rem;
 }
-.subtitle{
-color:var(--muted);
-max-width:720px;
-margin-top:.75rem;
+
+/* SECTIONS */
+section{
+padding:6rem 10%;
+max-width:1200px;
+margin:0 auto 80px auto;
+text-align:center;
 }
-.cta-group{
-margin-top:2rem;
-display:flex;
-gap:1rem;
-}
-.btn{
-padding:.8rem 1.5rem;
-border-radius:50px;
-font-weight:600;
-text-decoration:none;
-}
-.primary{
-background:var(--accent);
-color:var(--bg);
-}
-.secondary{
-border:2px solid var(--accent);
-color:var(--accent);
+section h2{
+margin-bottom:1rem;
 }
 
-/* PROJECT GRID */
+/* GRID (no scroll) */
 .projects{
-display:flex;
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
 gap:2rem;
-overflow-x:auto;
-scroll-snap-type:x mandatory;
-padding-bottom:1rem;
-position:relative;
+margin-top:2rem;
 }
+
+/* CARD */
 .project{
-flex:0 0 300px;
 background:rgba(255,255,255,.05);
 padding:1.5rem;
 border-radius:14px;
-scroll-snap-align:start;
 position:relative;
-transition: all .3s ease;
+transition: all .4s ease;
+opacity:0;
+transform:translateY(40px);
 }
+
+.project.show{
+opacity:1;
+transform:translateY(0);
+}
+
 .project img{
 width:100%;
 border-radius:12px;
 margin-bottom:1rem;
-transition: transform .3s ease, box-shadow .3s ease;
 }
-.project:hover img{
-transform: scale(1.05);
-box-shadow: 0 8px 20px rgba(179,136,255,.4);
-}
-.project:hover{
-box-shadow: 0 12px 30px rgba(179,136,255,.25);
-transform: translateY(-3px);
-}
+
+/* TRENDING BADGE */
 .trending-badge{
 position:absolute;
-top:8px;
-left:8px;
+top:10px;
+left:10px;
 background:#ff3d3d;
 color:#fff;
 font-size:.7rem;
 font-weight:700;
-padding:2px 6px;
+padding:4px 8px;
 border-radius:8px;
-pointer-events:none;
-z-index:5;
-transition: all .3s ease;
-}
-.project:hover .trending-badge{
-box-shadow: 0 0 10px #ff3d3d90, 0 0 18px #ff3d3d70;
-transform: scale(1.1);
+animation:glow 1.5s infinite alternate;
 }
 
-/* LAB SCROLL */
-.lab-scroll{
-display:flex;
-gap:1.5rem;
-overflow-x:auto;
-padding-bottom:1rem;
+@keyframes glow{
+0%{box-shadow:0 0 5px #ff3d3d;}
+100%{box-shadow:0 0 15px #ff3d3d;}
 }
-.lab-tile{
-flex:0 0 280px;
-background:rgba(255,255,255,.06);
-padding:1.5rem;
-border-radius:16px;
-text-align:left;
-display:flex;
-flex-direction:column;
-transition: all .3s ease;
+
+/* BUTTON */
+.tile-btn{
+display:inline-block;
+margin-top:10px;
+padding:.5rem 1rem;
+border:1px solid var(--accent);
+border-radius:999px;
+color:var(--accent);
+text-decoration:none;
+transition:.3s;
 }
-.lab-tile:hover{
-box-shadow: 0 12px 25px rgba(179,136,255,.25);
-transform: translateY(-3px);
-}
-.lab-tile img{
-width:100%;
-border-radius:12px;
-margin-bottom:1rem;
-transition: transform .3s ease, box-shadow .3s ease;
-}
-.lab-tile:hover img{
-transform: scale(1.05);
-box-shadow: 0 8px 20px rgba(179,136,255,.4);
-}
-.lab-tile p{
-flex-grow:1;
+.tile-btn:hover{
+background:var(--accent);
+color:#000;
 }
 
 /* FOOTER */
-.skinny-footer{
-padding:1.5rem 1rem;
-background:#07000f;
+footer{
 text-align:center;
-font-size:.85rem;
-}
-.footer-socials{
-display:flex;
-justify-content:center;
-gap:1rem;
-margin-bottom:.5rem;
-}
-.footer-socials a{
-color:var(--footer-link);
-font-size:1.2rem;
-}
-.footer-links a{
-color:var(--footer-link);
-text-decoration:none;
-}
-
-canvas{
-position:fixed;
-inset:0;
-z-index:-1;
+padding:2rem;
+color:#888;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="stars"></canvas>
-
-<nav>
-<a href="arcade.html" class="arcade-btn">🎮 Arcade</a>
-<i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
-<div class="dropdown" id="navMenu">
-<a href="lab.html">🧪 Lab</a>
-<a href="news.html">📰 TMI News</a>
-<a href="aboutus.html">🦄 About</a>
-<a href="contactus.html">📧 Contact</a>
-</div>
-</nav>
-
 <header class="hero">
-<img src="images/tmihero.jpeg" width="300" style="mix-blend-mode:lighten">
-<p style="font-size:.9rem;color:var(--accent);margin-top:8px;">Independent Internet Product Lab</p>
-<p class="subtitle">TMI Studios builds viral internet apps, chaotic tools and fast browser games for the modern web.</p>
-<div class="cta-group">
-<a href="lab.html" class="btn secondary">Visit the Lab 🧪</a>
-</div>
+<h1>TMI Studios</h1>
+<p>We build viral internet apps.</p>
 </header>
 
 <!-- TOXIC LAB -->
@@ -261,154 +153,54 @@ z-index:-1;
 <div class="projects" id="tmiLab"></div>
 </section>
 
-<section>
-<h2>🔮 What We’re Working On</h2>
-<div class="projects">
-<div class="project">
-<img src="https://via.placeholder.com/300x150" alt="Prelaunch 1">
-<h3>Prelaunch App 1</h3>
-<p>Secret experimental tool coming soon.</p>
-</div>
-<div class="project">
-<img src="https://via.placeholder.com/300x150" alt="Prelaunch 2">
-<h3>Prelaunch App 2</h3>
-<p>Another viral experiment in progress.</p>
-</div>
-<div class="project">
-<img src="https://via.placeholder.com/300x150" alt="Prelaunch 3">
-<h3>Prelaunch App 3</h3>
-<p>Shhh… this one’s under wraps!</p>
-</div>
-</div>
-</section>
-
-<section>
-<h2>📊 Studio Stats</h2>
-<div class="projects">
-<div class="project">
-<h3>10+</h3>
-<p>Apps launched</p>
-</div>
-<div class="project">
-<h3>Growing</h3>
-<p>Monthly users</p>
-</div>
-<div class="project">
-<h3>∞</h3>
-<p>Ideas in the lab</p>
-</div>
-</div>
-</section>
-
-<section>
-<h2>⚡ How We Build</h2>
-<p style="max-width:700px;margin:1.5rem auto;color:var(--muted)">
-Instead of building one perfect product, we launch many experiments and scale what people love.
-</p>
-<div class="lab-scroll">
-<div class="lab-tile">
-<h3>Build Fast</h3>
-<p>Ideas move quickly from concept to working prototype.</p>
-</div>
-<div class="lab-tile">
-<h3>Launch Early</h3>
-<p>Real users help shape the product.</p>
-</div>
-<div class="lab-tile">
-<h3>Scale What Works</h3>
-<p>The best ideas grow into full products.</p>
-</div>
-</div>
-</section>
-
-<footer class="skinny-footer">
-<div class="footer-socials">
-<a href="#"><i class="fab fa-tiktok"></i></a>
-<a href="#"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-whatsapp"></i></a>
-</div>
-<p>© 2026 TMI Studios</p>
-<nav class="footer-links">
-<a href="arcade.html">Arcade</a> ·
-<a href="privacy.html">Privacy</a> ·
-<a href="terms.html">Terms</a>
-</nav>
-</footer>
+<footer>© 2026 TMI Studios</footer>
 
 <script>
-function toggleMenu(){
-const m=document.getElementById('navMenu');
-m.style.display=m.style.display==='block'?'none':'block';
-}
+// FETCH APPS
+async function loadLabApps(){
+const res = await fetch('apps/apps.json');
+const apps = await res.json();
 
-// STARS CANVAS
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-let stars=[];
-function resizeStars(){
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-stars=[...Array(100)].map(()=>({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-dx:(Math.random()-.5)*.3,
-dy:(Math.random()-.5)*.3
-}));
-}
-addEventListener("resize",resizeStars);
-resizeStars();
-(function animateStars(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-stars.forEach(s=>{
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fillStyle="#b388ff";
-ctx.fill();
-s.x+=s.dx;
-s.y+=s.dy;
+['toxicLab','vibeLab','tmiLab'].forEach(lab=>{
+const container = document.getElementById(lab);
+const filtered = apps.filter(a=>a.section===lab).slice(-3).reverse();
+
+filtered.forEach(app=>{
+const div=document.createElement('div');
+div.className='project';
+
+div.innerHTML=`
+${app.trending ? '<div class="trending-badge">🔥 Trending</div>' : ''}
+<img src="${app.image}">
+<h3>${app.name}</h3>
+<p>${app.description}</p>
+<a href="${app.link}" class="tile-btn">Open</a>
+`;
+
+container.appendChild(div);
 });
-requestAnimationFrame(animateStars);
-})();
+});
 
-// FETCH LAB APPS
-async function loadLabApps() {
-  try {
-    const response = await fetch('apps/apps.json'); // path to your JSON file
-    if (!response.ok) throw new Error('Failed to load apps.json');
-    const apps = await response.json();
-
-    const labs = ['toxicLab','vibeLab','tmiLab'];
-
-    labs.forEach(lab => {
-      const container = document.getElementById(lab);
-      if (!container) return;
-
-      const labApps = apps.filter(a => a.section === lab);
-      const latestApps = labApps.slice(-3).reverse();
-
-      container.innerHTML = '';
-
-      latestApps.forEach(app => {
-        const div = document.createElement('div');
-        div.className = 'project';
-        div.innerHTML = `
-          ${app.trending ? `<div class="trending-badge">Trending</div>` : ''}
-          <img src="${app.image}" alt="${app.name}">
-          <h3>${app.name}</h3>
-          <p>${app.description}</p>
-          <a href="${app.link}" class="tile-btn">Open App</a>
-        `;
-        container.appendChild(div);
-      });
-    });
-
-  } catch (err) {
-    console.error('Error loading lab apps:', err);
-  }
+observeCards();
 }
 
 loadLabApps();
+
+
+// SCROLL ANIMATION
+function observeCards(){
+const cards=document.querySelectorAll('.project');
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+}
+});
+},{threshold:0.2});
+
+cards.forEach(card=>observer.observe(card));
+}
 </script>
 
 </body>
