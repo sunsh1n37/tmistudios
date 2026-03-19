@@ -87,9 +87,7 @@ nav .dropdown a:hover { background:#222; }
 
 /* CARDS */
 .card-container { display:flex; overflow-x:auto; gap:1rem; padding:1rem; scroll-behavior:smooth; }
-.card-container::-webkit-scrollbar { height:6px; }
-.card-container::-webkit-scrollbar-track { background:#111; }
-.card-container::-webkit-scrollbar-thumb { background:var(--purple); border-radius:3px; }
+.card-container::-webkit-scrollbar { display:none; }
 
 .card {
   flex:0 0 200px;
@@ -98,7 +96,12 @@ nav .dropdown a:hover { background:#222; }
   overflow:hidden;
   text-align:center;
   border:2px solid #000;
+  opacity:0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+  position:relative;
 }
+.card.show { opacity:1; transform: translateY(0); }
 .card img { width:100%; height:140px; object-fit:cover; display:block; }
 .card h3 { font-size:1rem; margin:.5rem 0; }
 .card p { font-size:.85rem; color:var(--soft-text); padding:0 .5rem; min-height:40px; }
@@ -112,6 +115,22 @@ nav .dropdown a:hover { background:#222; }
   font-weight:bold;
   cursor:pointer;
 }
+
+/* TRENDING BADGE */
+.trending-badge {
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:#ff3d3d;
+  color:#fff;
+  font-size:.7rem;
+  font-weight:700;
+  padding:2px 6px;
+  border-radius:8px;
+  z-index:5;
+  transition: all .3s ease;
+}
+.card.show .trending-badge { transform: scale(1.1); }
 
 /* CTA */
 #whatsapp-tile {
@@ -172,102 +191,29 @@ nav .dropdown a:hover { background:#222; }
 
 <div id="chaos-container"></div>
 
-<!-- Vibe Lab -->
+<!-- LAB SECTIONS -->
+<section>
+  <h2 class="section-title">TMI Lab 🧪</h2>
+  <p style="max-width:600px;margin:auto;color:#ccc;">
+    Core viral apps from TMI Studios.
+  </p>
+  <div class="card-container" id="tmilab-cards"></div>
+</section>
+
 <section>
   <h2 class="section-title">Vibe Lab 👯‍♀️</h2>
-  <p style="max-width:600px;margin:auto;color:#ccc;"> Step into Vibe Lab, the ultimate playground for personality quizzes and self-discovery. From “Main Character Energy” to “Toxicity Meter,” we’ve got every vibe you could possibly be bringing to life, love, and chaos. Take a quiz, get your results, and see if you’re thriving, surviving, or just vibin’. Fun, funky, and 100% unfiltered—are you ready to find your vibe?</p>
-  <div style="max-width:300px;margin:1.5rem auto;">
-    <img src="images/redflagquiz.png" style="width:100%; border-radius:12px;">
-    <a href="vibelab.html">
-      <button>Enter The Vibe Lab</button>
-    </a>
-  </div>
-
-<!-- Toxic Relationship Lab -->
-  <h2 class="section-title">Toxic Relationship Lab 🚩</h2>
-  <p style="max-width:600px;margin:auto;color:#ccc;">A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior. Take one… or take them all if you're brave.</p>
-  <div style="max-width:300px;margin:1.5rem auto;">
-    <img src="images/redflagquiz.png" style="width:100%; border-radius:12px;">
-    <a href="toxiclab.html">
-      <button>Enter the Lab</button>
-    </a>
-  </div>
+  <p style="max-width:600px;margin:auto;color:#ccc;">
+    Step into Vibe Lab, the ultimate playground for personality quizzes and self-discovery. From “Main Character Energy” to “Are You The Villain,” we’ve got every vibe you could possibly bring to life, love, and chaos.
+  </p>
+  <div class="card-container" id="vibelab-cards"></div>
 </section>
 
-<!-- App Library -->
 <section>
-  <h2 class="section-title">App Library</h2>
-
-  <div class="card-container">
-    <div class="card">
-      <img src="https://i.ibb.co/rK0v4F9Q/file-00000000ca7871fdb938759cf49c4ccb.png" alt="DollFin">
-      <h3>Clapback AI</h3>
-      <p>Instantly turn any text into a high-value, confident reply. Get soft, savage, or viral-ready responses, screenshot-ready for social sharing, and never overthink a message again.</p>
-      <a href="apps/clapbackailanding.html"><button>Open Now</button></a>
-    </div>
-
-
-  <div class="card-container">
-    <div class="card">
-      <img src="https://i.ibb.co/4ZhpjzdM/file-000000000dcc71fb8b63265beba372c9.png" alt="DollFin">
-      <h3>DollFin</h3>
-      <p>Discover your Soft Life Score: spending, lifestyle & investments. Playful financial fun.</p>
-      <a href="apps/dollfin.html"><button>Play Now</button></a>
-    </div>
-
-    <div class="card">
-      <img src="https://i.ibb.co/Nn23mhd9/fortune-cookie.jpeg" alt="Chaos Cookie">
-      <h3>Chaos Cookie</h3>
-      <p>Generates unpredictable fortunes that keep players coming back for laughs and surprises.</p>
-      <a href="apps/fortunecookie.html"><button>Play Now</button></a>
-    </div>
-
-    <div class="card">
-      <img src="https://i.ibb.co/1tfJjmtm/file-00000000870071fbaf4d82f88a6aa1a5.png" alt="Delulu CEO Tarot">
-      <h3>Delulu CEO Tarot</h3>
-      <p>Peek into your CEO energy with daily cards revealing ambition, hustle & chaos vibes.</p>
-      <a href="apps/deluluceotarot.html"><button>Play Now</button></a>
-    </div>
-
-    <div class="card">
-      <img src="https://i.ibb.co/CKnS0FkY/file-00000000678471fdb634bcf7ed41aeb6.png" alt="Cute Quotes">
-      <h3>Cute Quotes</h3>
-      <p>Create your own quotes! Customize fonts, backgrounds, emojis, and download them.</p>
-      <a href="apps/cutequote.html"><button>Create Now</button></a>
-    </div>
-
-    <div class="card">
-      <img src="https://i.ibb.co/dw5kNYfW/file-00000000d16071fda716a8a922684b8b.png" alt="Bible Verses">
-      <h3>Bible Verses</h3>
-      <p>Generate daily bible quotes or birthday cards to share with friends & socials.</p>
-      <a href="apps/bibleverses.html"><button>Open</button></a>
-    </div>
-  </div>
-</section>
-
-<!-- More Apps -->
-<section>
-  <h2 class="section-title">More Apps</h2>
-  <div class="card-container">
-    <div class="card">
-      <img src="https://i.ibb.co/23Tt4Byw/file-00000000be4c71f8bf71dad2bf5df697.png" alt="MemeRize">
-      <h3>MemeRize</h3>
-      <p>Turn any image into a hilarious meme instantly. Customize text, colors, download & share.</p>
-      <button>Coming Soon</button>
-    </div>
-    <div class="card">
-      <img src="images/quiz1.jpeg" alt="TMI Tarot">
-      <h3>TMI Tarot</h3>
-      <p>Discover chaotic tarot insights into your love life, friendships, and vibes.</p>
-      <button>Coming Soon</button>
-    </div>
-    <div class="card">
-      <img src="images/quiz2.jpeg" alt="TMI Dare">
-      <h3>TMI Dare</h3>
-      <p>Play daring quizzes & challenges to expose your friends’ hidden chaos tendencies.</p>
-      <button>Coming Soon</button>
-    </div>
-  </div>
+  <h2 class="section-title">Toxic Lab 🚩</h2>
+  <p style="max-width:600px;margin:auto;color:#ccc;">
+    A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior.
+  </p>
+  <div class="card-container" id="toxiclab-cards"></div>
 </section>
 
 <!-- WhatsApp CTA -->
@@ -284,7 +230,7 @@ nav .dropdown a:hover { background:#222; }
     <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
     <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
   </div>
-  <p>© 2025 TMI Studios</p>
+  <p>© 2026 TMI Studios</p>
   <nav class="footer-links">
     <a href="arcade.html">Arcade</a> ·
     <a href="faq.html">FAQ</a> ·
@@ -314,6 +260,62 @@ const hamburger = document.getElementById('hamburger');
 const menuDropdown = document.getElementById('menuDropdown');
 hamburger.addEventListener('click',()=>{menuDropdown.style.display=(menuDropdown.style.display==='block'?'none':'block');});
 document.addEventListener('click',(e)=>{if(!hamburger.contains(e.target)) menuDropdown.style.display='none';});
+
+// Fetch apps.json and populate labs
+fetch('apps/apps.json')
+.then(res => res.json())
+.then(apps => {
+  const tmilab = document.getElementById('tmilab-cards');
+  const vibelab = document.getElementById('vibelab-cards');
+  const toxiclab = document.getElementById('toxiclab-cards');
+
+  apps.forEach(app => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    let badge = '';
+    if(app.trending) badge = '<div class="trending-badge">Trending</div>';
+
+    card.innerHTML = `
+      ${badge}
+      <img src="${app.image}" alt="${app.name}">
+      <h3>${app.name}</h3>
+      <p>${app.description}</p>
+      <a href="${app.link}"><button>${app.button}</button></a>
+    `;
+
+    if(app.lab==='TMI Lab') tmilab.appendChild(card);
+  });
+
+  // Show latest 2 for Vibe and Toxic labs
+  ['Vibe Lab','Toxic Lab'].forEach(labName=>{
+    const labContainer = labName==='Vibe Lab' ? vibelab : toxiclab;
+    const labApps = apps.filter(a=>a.lab===labName).slice(-2).reverse();
+    labApps.forEach(app=>{
+      const card = document.createElement('div');
+      card.className='card';
+      let badge = '';
+      if(app.trending) badge = '<div class="trending-badge">Trending</div>';
+      card.innerHTML = `
+        ${badge}
+        <img src="${app.image}" alt="${app.name}">
+        <h3>${app.name}</h3>
+        <p>${app.description}</p>
+        <a href="${app.link}"><button>${app.button}</button></a>
+      `;
+      labContainer.appendChild(card);
+    });
+  });
+
+  // Animate cards on scroll
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add('show'); observer.unobserve(entry.target);}
+    });
+  },{threshold:0.2});
+
+  document.querySelectorAll('.card').forEach(card => observer.observe(card));
+});
 </script>
 
 </body>
