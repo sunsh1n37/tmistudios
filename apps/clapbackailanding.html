@@ -23,14 +23,16 @@ header{text-align:center;padding:70px 20px;position:relative;}
 header h1{font-size:3rem;color:var(--accent);}
 header p{margin-top:10px;font-size:1.2rem;}
 
-/* Home button top-right */
+/* Home button top-left */
 .home-btn{
     position:absolute;
     top:20px;
-    right:20px;
+    left:20px;
     font-size:1.5rem;
     cursor:pointer;
+    transition: transform 0.2s;
 }
+.home-btn:hover{transform:scale(1.2);}
 
 /* CTA */
 .cta-btn{
@@ -110,15 +112,27 @@ header p{margin-top:10px;font-size:1.2rem;}
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* leaderboard tile */
+/* leaderboard tile dramatic */
 .leaderboard-section{
-    background: linear-gradient(135deg,#ffe4ec,#ff7aa8);
-    padding:30px 20px;
-    border-radius:20px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.1);
-    margin:40px 0;
+    background: linear-gradient(135deg,#ff4d88,#ff7aa8,#ffe4ec);
+    padding:40px 20px;
+    border-radius:30px;
+    box-shadow:0 12px 40px rgba(255,77,136,0.3),0 20px 60px rgba(255,122,168,0.2);
+    margin:50px 0;
+    position:relative;
+    animation: float 2s ease-in-out infinite alternate;
 }
-.leaderboard-section h2{color:#fff;margin-bottom:20px;text-align:center;}
+.leaderboard-section h2{
+    color:white;
+    margin-bottom:25px;
+    text-align:center;
+    text-shadow:0 2px 8px rgba(0,0,0,0.3);
+    font-size:2rem;
+}
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-5px);}
+}
 
 /* popup */
 .popup{
@@ -145,10 +159,10 @@ footer{text-align:center;padding:40px;color:#888;}
 <h1>💬 ClapbackAI</h1>
 <p>Text him back like a 🐈‍⬛ Black Cat, 👸 Queen, 😈 Savage or 💕 Soft Girl.</p>
 
-<!-- Home button top right -->
-<div class="home-btn" onclick="lab.html">🏠</div>
+<!-- Home button top-left -->
+<div class="home-btn" onclick="goHome()">🏠</div>
 
-<button class="cta-btn" onclick="clapbackai.html">Try it free →</button>
+<button class="cta-btn" onclick="goApp()">Try it free →</button>
 
 <p style="margin-top:10px;font-size:14px;opacity:0.7;">
 ✨ Most girls unlock within 30 seconds
@@ -211,7 +225,7 @@ footer{text-align:center;padding:40px;color:#888;}
 <section style="text-align:center;margin:60px 0;">
 <h2>Stop overthinking texts.</h2>
 <p>Start controlling the conversation.</p>
-<button class="cta-btn" onclick="clapbackai.html">Make him chase 🔥</button>
+<button class="cta-btn" onclick="goApp()">Make him chase 🔥</button>
 </section>
 
 </div>
@@ -219,9 +233,9 @@ footer{text-align:center;padding:40px;color:#888;}
 <footer>Made with ❤️ by TMI Studios · tmistudios.xyz</footer>
 
 <script>
-// redirect
-function goApp(){window.location.href="/app.html";}
-function goHome(){window.location.href="/";}
+// proper redirects
+function goApp(){window.location.href='clapbackai.html';}
+function goHome(){window.location.href='index.html';}
 
 // counter
 let count=12384;
