@@ -1,0 +1,102 @@
+[
+  {
+    "name": "ClapbackAI",
+    "description": "Text him back like a pro.",
+    "image": "images/clapbackai.png",
+    "link": "clapbackai.html",
+    "section": "tmiLab",
+    "trending": true
+  },
+  {
+    "name": "DollFin",
+    "description": "A playful AI-powered look into your money personality.",
+    "image": "images/dollfin.png",
+    "link": "dollfin.html",
+    "section": "tmiLab",
+    "trending": true
+  },
+  {
+    "name": "Chaos Cookie",
+    "description": "Crack open a random chaotic fortune made for screenshots.",
+    "image": "images/chaos-cookie.png",
+    "link": "chaoscookie.html",
+    "section": "tmiLab"
+  },
+  {
+    "name": "Delulu CEO Tarot",
+    "description": "See the universe’s guidance in your CEO energy.",
+    "image": "images/delulu-ceo-tarot.png",
+    "link": "delulu-ceo-tarot.html",
+    "section": "tmiLab"
+  },
+  {
+    "name": "Cute Quote",
+    "description": "Generate cute quotes for your socials.",
+    "image": "images/cutequote.png",
+    "link": "cutequote.html",
+    "section": "tmiLab"
+  },
+  {
+    "name": "Birthday Bible Verse",
+    "description": "Send personalized birthday bible verses.",
+    "image": "images/birthday-bible-verse.png",
+    "link": "birthday-bible-verse.html",
+    "section": "tmiLab"
+  },
+  {
+    "name": "MemeRize",
+    "description": "Turn your texts and moments into memes automatically.",
+    "image": "images/memerize.png",
+    "link": "memerize.html",
+    "section": "tmiLab"
+  },
+  {
+    "name": "Are The Main Character",
+    "description": "Discover if you're living like the main character.",
+    "image": "images/are-the-main-character.png",
+    "link": "are-the-main-character.html",
+    "section": "vibeLab"
+  },
+  {
+    "name": "Are You The Villain",
+    "description": "Find out if you’re the villain in your story.",
+    "image": "images/are-you-the-villain.png",
+    "link": "are-you-the-villain.html",
+    "section": "vibeLab"
+  },
+  {
+    "name": "Am I Dating A Narcissistic?",
+    "description": "Evaluate your relationship for narcissistic signs.",
+    "image": "images/am-i-dating-a-narcissistic.png",
+    "link": "am-i-dating-a-narcissistic.html",
+    "section": "toxicLab"
+  },
+  {
+    "name": "Redflag Bingo",
+    "description": "Spot red flags in your dating life with a fun twist.",
+    "image": "images/redflag-bingo.png",
+    "link": "redflag-bingo.html",
+    "section": "toxicLab"
+  },
+  {
+    "name": "Redflag Radar",
+    "description": "Scan messages and behaviors for hidden red flags.",
+    "image": "images/redflag-radar.png",
+    "link": "redflag-radar.html",
+    "section": "toxicLab"
+  },
+  {
+    "name": "Situationship Scorecard",
+    "description": "Measure how serious or toxic your situationship is.",
+    "image": "images/situationship-scorecard.png",
+    "link": "situationship-scorecard.html",
+    "section": "toxicLab"
+  },
+  {
+    "name": "Textposè",
+    "description": "Check the vibe of your texts before you send them.",
+    "image": "images/textpose.png",
+    "link": "textpose.html",
+    "section": "toxicLab"
+  }
+]
