@@ -277,37 +277,23 @@ z-index:-1;
 </div>
 </header>
 
+<!-- LAB SECTIONS -->
 <section>
-<h2>🚀 Products from the Lab</h2>
-<p style="max-width:750px;margin:1.5rem auto;color:var(--muted)">
-A growing collection of experimental apps designed to spread across the internet.
-</p>
-
-<div class="projects">
-<div class="project">
-<img src="https://via.placeholder.com/300x150" alt="DollFin">
-<div class="trending-badge">Trending</div>
-<h3>DollFin</h3>
-<p>A playful AI-powered look into your money personality.</p>
-<a href="#" class="tile-btn">Play Now</a>
-</div>
-
-<div class="project">
-<img src="https://via.placeholder.com/300x150" alt="Chaos Cookie">
-<h3>Chaos Cookie</h3>
-<p>Crack open a random chaotic fortune made for screenshots.</p>
-<a href="#" class="tile-btn">Open Cookie</a>
-</div>
-
-<div class="project">
-<img src="https://via.placeholder.com/300x150" alt="Voyaĵ">
-<h3>Voyaĵ</h3>
-<p>Discover your virtual travel personality with AI fun.</p>
-<a href="#" class="tile-btn">Explore</a>
-</div>
-</div>
+<h2>🧪 TMI Lab</h2>
+<div class="lab-scroll" id="tmiLab"></div>
 </section>
 
+<section>
+<h2>🎶 Vibe Lab</h2>
+<div class="lab-scroll" id="vibeLab"></div>
+</section>
+
+<section>
+<h2>☠️ Toxic Lab</h2>
+<div class="lab-scroll" id="toxicLab"></div>
+</section>
+
+<!-- WHAT WE’RE WORKING ON -->
 <section>
 <h2>🔮 What We’re Working On</h2>
 <div class="projects">
@@ -329,27 +315,26 @@ A growing collection of experimental apps designed to spread across the internet
 </div>
 </section>
 
+<!-- STUDIO STATS -->
 <section>
 <h2>📊 Studio Stats</h2>
 <div class="projects">
 <div class="project">
-<img src="https://via.placeholder.com/300x150" alt="Apps Launched">
 <h3>10+</h3>
 <p>Apps launched</p>
 </div>
 <div class="project">
-<img src="https://via.placeholder.com/300x150" alt="Monthly Users">
 <h3>Growing</h3>
 <p>Monthly users</p>
 </div>
 <div class="project">
-<img src="https://via.placeholder.com/300x150" alt="Ideas">
 <h3>∞</h3>
 <p>Ideas in the lab</p>
 </div>
 </div>
 </section>
 
+<!-- HOW WE BUILD -->
 <section>
 <h2>⚡ How We Build</h2>
 <p style="max-width:700px;margin:1.5rem auto;color:var(--muted)">
@@ -357,17 +342,14 @@ Instead of building one perfect product, we launch many experiments and scale wh
 </p>
 <div class="lab-scroll">
 <div class="lab-tile">
-<img src="https://via.placeholder.com/280x140" alt="Build Fast">
 <h3>Build Fast</h3>
 <p>Ideas move quickly from concept to working prototype.</p>
 </div>
 <div class="lab-tile">
-<img src="https://via.placeholder.com/280x140" alt="Launch Early">
 <h3>Launch Early</h3>
 <p>Real users help shape the product.</p>
 </div>
 <div class="lab-tile">
-<img src="https://via.placeholder.com/280x140" alt="Scale What Works">
 <h3>Scale What Works</h3>
 <p>The best ideas grow into full products.</p>
 </div>
@@ -423,6 +405,37 @@ s.y+=s.dy;
 });
 requestAnimationFrame(animateStars);
 })();
+
+/* FETCH APPS JSON */
+async function loadApps(){
+  const res = await fetch('apps.json');
+  const apps = await res.json();
+
+  const sections = {
+    tmiLab: document.getElementById('tmiLab'),
+    vibeLab: document.getElementById('vibeLab'),
+    toxicLab: document.getElementById('toxicLab')
+  };
+
+  // Filter apps per section and only keep latest 3
+  ['tmiLab','vibeLab','toxicLab'].forEach(sec=>{
+    const filtered = apps.filter(a=>a.section===sec).slice(-3).reverse();
+    filtered.forEach(app=>{
+      const appDiv = document.createElement('div');
+      appDiv.className = 'lab-tile';
+      appDiv.innerHTML = `
+        ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
+        <img src="${app.image}" alt="${app.name}">
+        <h3>${app.name}</h3>
+        <p>${app.description}</p>
+        <a href="${app.link}" class="tile-btn">Open</a>
+      `;
+      sections[sec].appendChild(appDiv);
+    });
+  });
+}
+
+loadApps();
 </script>
 
 </body>
