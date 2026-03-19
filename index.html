@@ -23,13 +23,7 @@ body{
 font-family:var(--font);
 background:var(--bg);
 color:var(--text);
-}
-
-/* NAV */
-nav{
-display:flex;
-justify-content:space-between;
-padding:1rem;
+overflow-x:hidden;
 }
 
 /* HERO */
@@ -45,32 +39,48 @@ padding:1rem;
 
 /* SECTIONS */
 section{
-padding:6rem 10%;
+padding:6rem 8%;
 max-width:1200px;
 margin:0 auto 80px auto;
 text-align:center;
 }
 section h2{
-margin-bottom:1rem;
+margin-bottom:.5rem;
+}
+.section-desc{
+color:var(--muted);
+max-width:600px;
+margin:0 auto 2rem auto;
+font-size:.95rem;
 }
 
-/* GRID (no scroll) */
+/* HORIZONTAL SCROLL (clean) */
 .projects{
-display:grid;
-grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-gap:2rem;
-margin-top:2rem;
+display:flex;
+gap:1.5rem;
+overflow-x:auto;
+padding-bottom:1rem;
+scroll-snap-type:x mandatory;
+}
+.projects::-webkit-scrollbar{
+height:6px;
+}
+.projects::-webkit-scrollbar-thumb{
+background:rgba(255,255,255,.2);
+border-radius:10px;
 }
 
 /* CARD */
 .project{
+flex:0 0 260px;
 background:rgba(255,255,255,.05);
 padding:1.5rem;
 border-radius:14px;
 position:relative;
-transition: all .4s ease;
+transition:.4s ease;
 opacity:0;
 transform:translateY(40px);
+scroll-snap-align:start;
 }
 
 .project.show{
@@ -84,7 +94,7 @@ border-radius:12px;
 margin-bottom:1rem;
 }
 
-/* TRENDING BADGE */
+/* TRENDING */
 .trending-badge{
 position:absolute;
 top:10px;
@@ -119,6 +129,19 @@ background:var(--accent);
 color:#000;
 }
 
+/* LAB TILE */
+.lab-scroll{
+display:flex;
+gap:1.5rem;
+overflow-x:auto;
+}
+.lab-tile{
+flex:0 0 260px;
+background:rgba(255,255,255,.06);
+padding:1.5rem;
+border-radius:14px;
+}
+
 /* FOOTER */
 footer{
 text-align:center;
@@ -138,19 +161,85 @@ color:#888;
 <!-- TOXIC LAB -->
 <section>
 <h2>☠️ Toxic Lab</h2>
+<p class="section-desc">Savage tools for decoding red flags, situationships, and chaotic dating dynamics.</p>
 <div class="projects" id="toxicLab"></div>
 </section>
 
 <!-- VIBE LAB -->
 <section>
 <h2>💖 Vibe Lab</h2>
+<p class="section-desc">Light, fun identity tools made for self-reflection, personality checks, and shareable moments.</p>
 <div class="projects" id="vibeLab"></div>
 </section>
 
 <!-- TMI LAB -->
 <section>
 <h2>🧪 TMI Lab</h2>
+<p class="section-desc">Our core experimental apps built for virality, screenshots, and internet culture.</p>
 <div class="projects" id="tmiLab"></div>
+</section>
+
+<!-- WORKING ON -->
+<section>
+<h2>🔮 What We’re Working On</h2>
+<p class="section-desc">New chaotic experiments currently cooking inside the lab.</p>
+
+<div class="projects">
+<div class="project show">
+<h3>Secret Tool</h3>
+<p>Something viral is coming...</p>
+</div>
+<div class="project show">
+<h3>New AI Game</h3>
+<p>Fast, addictive, and chaotic.</p>
+</div>
+<div class="project show">
+<h3>???</h3>
+<p>You’ll see soon 👀</p>
+</div>
+</div>
+</section>
+
+<!-- STATS -->
+<section>
+<h2>📊 Studio Stats</h2>
+<p class="section-desc">A snapshot of the lab’s growth.</p>
+
+<div class="projects">
+<div class="project show">
+<h3>10+</h3>
+<p>Apps launched</p>
+</div>
+<div class="project show">
+<h3>Growing</h3>
+<p>Monthly users</p>
+</div>
+<div class="project show">
+<h3>∞</h3>
+<p>Ideas in the lab</p>
+</div>
+</div>
+</section>
+
+<!-- HOW WE BUILD -->
+<section>
+<h2>⚡ How We Build</h2>
+<p class="section-desc">We move fast, test everything, and scale what hits.</p>
+
+<div class="lab-scroll">
+<div class="lab-tile">
+<h3>Build Fast</h3>
+<p>From idea to prototype in days.</p>
+</div>
+<div class="lab-tile">
+<h3>Launch Early</h3>
+<p>Users shape the product.</p>
+</div>
+<div class="lab-tile">
+<h3>Scale What Works</h3>
+<p>Winners get expanded.</p>
+</div>
+</div>
 </section>
 
 <footer>© 2026 TMI Studios</footer>
@@ -185,7 +274,6 @@ observeCards();
 }
 
 loadLabApps();
-
 
 // SCROLL ANIMATION
 function observeCards(){
