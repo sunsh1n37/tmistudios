@@ -56,7 +56,7 @@
     "trending": false
   },
   {
-    "name": "Are The Main Character",
+    "name": "Are You The Main Character?",
     "section": "vibeLab",
     "image": "images/arethemaincharacter.png",
     "description": "Find out if you’re living your best story.",
@@ -64,7 +64,7 @@
     "trending": true
   },
   {
-    "name": "Are You The Villain",
+    "name": "Are You The Villain?",
     "section": "vibeLab",
     "image": "images/areyouthevillain.png",
     "description": "Discover your inner villain vibes with AI fun.",
