@@ -84,7 +84,6 @@ nav .dropdown a:hover { background:#222; }
 
 /* SECTION TITLES */
 .section-title { font-size:1.5rem; font-weight:700; margin:1rem 0; color:var(--cyan); }
-.section-desc { max-width:600px; margin:auto; color:#ccc; margin-bottom:1rem; }
 
 /* CARDS */
 .card-container { display:flex; overflow-x:auto; gap:1rem; padding:1rem; scroll-behavior:smooth; }
@@ -99,13 +98,12 @@ nav .dropdown a:hover { background:#222; }
   overflow:hidden;
   text-align:center;
   border:2px solid #000;
-  position:relative;
   opacity:0;
-  transform: translateY(30px);
-  transition: all .5s ease-out;
+  transform: translateY(20px);
+  transition: all .6s ease-out;
+  position: relative;
 }
-.card.visible { opacity:1; transform: translateY(0); }
-
+.card.visible { opacity:1; transform:translateY(0); }
 .card img { width:100%; height:140px; object-fit:cover; display:block; }
 .card h3 { font-size:1rem; margin:.5rem 0; }
 .card p { font-size:.85rem; color:var(--soft-text); padding:0 .5rem; min-height:40px; }
@@ -135,10 +133,7 @@ nav .dropdown a:hover { background:#222; }
   z-index:5;
   transition: all .3s ease;
 }
-.card:hover .trending-badge {
-  box-shadow: 0 0 10px #ff3d3d90, 0 0 18px #ff3d3d70;
-  transform: scale(1.1);
-}
+.card.visible .trending-badge { transform: scale(1.1); }
 
 /* CTA */
 #whatsapp-tile {
@@ -199,24 +194,22 @@ nav .dropdown a:hover { background:#222; }
 
 <div id="chaos-container"></div>
 
-<!-- TMI LAB SECTION -->
+<!-- Labs Sections -->
 <section>
   <h2 class="section-title">TMI Lab 🧪</h2>
-  <p class="section-desc">Fast, chaotic experiments in viral internet tools, browser games, and interactive mischief. We build many experiments, then scale what people love.</p>
+  <p style="max-width:600px;margin:auto;color:#ccc;">Home of all experimental apps & viral tools. Play, share, and explore everything from finance fun to AI chaos generators.</p>
   <div class="card-container" id="tmilab-cards"></div>
 </section>
 
-<!-- VIBE LAB SECTION -->
 <section>
   <h2 class="section-title">Vibe Lab 👯‍♀️</h2>
-  <p class="section-desc">Step into Vibe Lab, the ultimate playground for personality quizzes and self-discovery. Fun, funky, and 100% unfiltered.</p>
+  <p style="max-width:600px;margin:auto;color:#ccc;">Step into Vibe Lab, the ultimate playground for personality quizzes and self-discovery. Fun, funky, and 100% unfiltered.</p>
   <div class="card-container" id="vibelab-cards"></div>
 </section>
 
-<!-- TOXIC LAB SECTION -->
 <section>
   <h2 class="section-title">Toxic Relationship Lab 🚩</h2>
-  <p class="section-desc">A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior.</p>
+  <p style="max-width:600px;margin:auto;color:#ccc;">A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior.</p>
   <div class="card-container" id="toxiclab-cards"></div>
 </section>
 
@@ -234,7 +227,7 @@ nav .dropdown a:hover { background:#222; }
     <a href="https://facebook.com/tmistudios"><i class="fab fa-facebook"></i></a>
     <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H"><i class="fab fa-whatsapp"></i></a>
   </div>
-  <p>© 2025 TMI Studios</p>
+  <p>© 2026 TMI Studios</p>
   <nav class="footer-links">
     <a href="arcade.html">Arcade</a> ·
     <a href="faq.html">FAQ</a> ·
@@ -266,42 +259,18 @@ hamburger.addEventListener('click',()=>{menuDropdown.style.display=(menuDropdown
 document.addEventListener('click',(e)=>{if(!hamburger.contains(e.target)) menuDropdown.style.display='none';});
 
 // FETCH APPS
-fetch('./apps/apps.json')
-  .then(res => res.json())
-  .then(apps => {
-    const tmilab = document.getElementById('tmilab-cards');
-    const vibelab = document.getElementById('vibelab-cards');
-    const toxiclab = document.getElementById('toxiclab-cards');
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/apps/apps.json')
+    .then(res => res.json())
+    .then(apps => {
+      const tmilab = document.getElementById('tmilab-cards');
+      const vibelab = document.getElementById('vibelab-cards');
+      const toxiclab = document.getElementById('toxiclab-cards');
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {threshold:0.1});
-
-    // TMI Lab - all apps
-    apps.filter(a => a.lab === "TMI Lab").forEach(app => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
-        <img src="${app.image}" alt="${app.name}">
-        <h3>${app.name}</h3>
-        <p>${app.description}</p>
-        <a href="${app.link}"><button>${app.button}</button></a>
-      `;
-      tmilab.appendChild(card);
-      observer.observe(card);
-    });
-
-    // Vibe & Toxic Labs - latest 2 apps
-    ["Vibe Lab","Toxic Lab"].forEach(labName=>{
-      const container = labName==="Vibe Lab"?vibelab:toxiclab;
-      apps.filter(a=>a.lab===labName).slice(-2).reverse().forEach(app=>{
+      // TMI Lab - all apps
+      apps.filter(a => a.lab === "TMI Lab").forEach(app => {
         const card = document.createElement('div');
-        card.className='card';
+        card.className = 'card';
         card.innerHTML = `
           ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
           <img src="${app.image}" alt="${app.name}">
@@ -309,12 +278,39 @@ fetch('./apps/apps.json')
           <p>${app.description}</p>
           <a href="${app.link}"><button>${app.button}</button></a>
         `;
-        container.appendChild(card);
-        observer.observe(card);
+        tmilab.appendChild(card);
       });
-    });
-  })
-  .catch(err => console.error("Error fetching apps:", err));
+
+      // Vibe & Toxic Labs - only latest 2
+      ["Vibe Lab","Toxic Lab"].forEach(labName=>{
+        const container = labName==="Vibe Lab"?vibelab:toxiclab;
+        apps.filter(a=>a.lab===labName).slice(-2).reverse().forEach(app=>{
+          const card = document.createElement('div');
+          card.className='card';
+          card.innerHTML = `
+            ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
+            <img src="${app.image}" alt="${app.name}">
+            <h3>${app.name}</h3>
+            <p>${app.description}</p>
+            <a href="${app.link}"><button>${app.button}</button></a>
+          `;
+          container.appendChild(card);
+        });
+      });
+
+      // Animate cards on scroll
+      const allCards = document.querySelectorAll('.card');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {threshold:0.1});
+      allCards.forEach(c => observer.observe(c));
+    })
+    .catch(err => console.error("Fetch failed:", err));
+});
 </script>
 
 </body>
