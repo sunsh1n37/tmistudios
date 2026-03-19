@@ -103,38 +103,6 @@ border:2px solid var(--accent);
 color:var(--accent);
 }
 
-/* TILE BUTTONS */
-.tile-btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:.45rem .9rem;
-margin-top:.75rem;
-font-size:.85rem;
-font-weight:600;
-border-radius:999px;
-border:1.5px solid var(--accent);
-color:var(--accent);
-text-decoration:none;
-width:auto;
-transition:all .25s ease;
-background:transparent;
-}
-.tile-btn:hover{
-background:var(--accent);
-color:var(--bg);
-transform:translateY(-2px);
-box-shadow:0 6px 20px rgba(179,136,255,.35);
-}
-
-/* SECTIONS */
-section{
-padding:6rem 10%;
-max-width:1200px;
-margin:auto;
-text-align:center;
-}
-
 /* PROJECT GRID */
 .projects{
 display:flex;
@@ -167,8 +135,6 @@ box-shadow: 0 8px 20px rgba(179,136,255,.4);
 box-shadow: 0 12px 30px rgba(179,136,255,.25);
 transform: translateY(-3px);
 }
-
-/* Trending badge */
 .trending-badge{
 position:absolute;
 top:8px;
@@ -188,7 +154,7 @@ box-shadow: 0 0 10px #ff3d3d90, 0 0 18px #ff3d3d70;
 transform: scale(1.1);
 }
 
-/* LAB */
+/* LAB SCROLL */
 .lab-scroll{
 display:flex;
 gap:1.5rem;
@@ -277,23 +243,24 @@ z-index:-1;
 </div>
 </header>
 
-<!-- LAB SECTIONS -->
-<section>
-<h2>🧪 TMI Lab</h2>
-<div class="lab-scroll" id="tmiLab"></div>
-</section>
-
-<section>
-<h2>🎶 Vibe Lab</h2>
-<div class="lab-scroll" id="vibeLab"></div>
-</section>
-
+<!-- TOXIC LAB -->
 <section>
 <h2>☠️ Toxic Lab</h2>
-<div class="lab-scroll" id="toxicLab"></div>
+<div class="projects" id="toxicLab"></div>
 </section>
 
-<!-- WHAT WE’RE WORKING ON -->
+<!-- VIBE LAB -->
+<section>
+<h2>💖 Vibe Lab</h2>
+<div class="projects" id="vibeLab"></div>
+</section>
+
+<!-- TMI LAB -->
+<section>
+<h2>🧪 TMI Lab</h2>
+<div class="projects" id="tmiLab"></div>
+</section>
+
 <section>
 <h2>🔮 What We’re Working On</h2>
 <div class="projects">
@@ -315,7 +282,6 @@ z-index:-1;
 </div>
 </section>
 
-<!-- STUDIO STATS -->
 <section>
 <h2>📊 Studio Stats</h2>
 <div class="projects">
@@ -334,7 +300,6 @@ z-index:-1;
 </div>
 </section>
 
-<!-- HOW WE BUILD -->
 <section>
 <h2>⚡ How We Build</h2>
 <p style="max-width:700px;margin:1.5rem auto;color:var(--muted)">
@@ -376,7 +341,7 @@ const m=document.getElementById('navMenu');
 m.style.display=m.style.display==='block'?'none':'block';
 }
 
-/* STARS */
+// STARS CANVAS
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 let stars=[];
@@ -406,36 +371,44 @@ s.y+=s.dy;
 requestAnimationFrame(animateStars);
 })();
 
-/* FETCH APPS JSON */
-async function loadApps(){
-  const res = await fetch('apps.json');
-  const apps = await res.json();
+// FETCH LAB APPS
+async function loadLabApps() {
+  try {
+    const response = await fetch('apps/apps.json'); // path to your JSON file
+    if (!response.ok) throw new Error('Failed to load apps.json');
+    const apps = await response.json();
 
-  const sections = {
-    tmiLab: document.getElementById('tmiLab'),
-    vibeLab: document.getElementById('vibeLab'),
-    toxicLab: document.getElementById('toxicLab')
-  };
+    const labs = ['toxicLab','vibeLab','tmiLab'];
 
-  // Filter apps per section and only keep latest 3
-  ['tmiLab','vibeLab','toxicLab'].forEach(sec=>{
-    const filtered = apps.filter(a=>a.section===sec).slice(-3).reverse();
-    filtered.forEach(app=>{
-      const appDiv = document.createElement('div');
-      appDiv.className = 'lab-tile';
-      appDiv.innerHTML = `
-        ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
-        <img src="${app.image}" alt="${app.name}">
-        <h3>${app.name}</h3>
-        <p>${app.description}</p>
-        <a href="${app.link}" class="tile-btn">Open</a>
-      `;
-      sections[sec].appendChild(appDiv);
+    labs.forEach(lab => {
+      const container = document.getElementById(lab);
+      if (!container) return;
+
+      const labApps = apps.filter(a => a.section === lab);
+      const latestApps = labApps.slice(-3).reverse();
+
+      container.innerHTML = '';
+
+      latestApps.forEach(app => {
+        const div = document.createElement('div');
+        div.className = 'project';
+        div.innerHTML = `
+          ${app.trending ? `<div class="trending-badge">Trending</div>` : ''}
+          <img src="${app.image}" alt="${app.name}">
+          <h3>${app.name}</h3>
+          <p>${app.description}</p>
+          <a href="${app.link}" class="tile-btn">Open App</a>
+        `;
+        container.appendChild(div);
+      });
     });
-  });
+
+  } catch (err) {
+    console.error('Error loading lab apps:', err);
+  }
 }
 
-loadApps();
+loadLabApps();
 </script>
 
 </body>
