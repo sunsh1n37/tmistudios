@@ -34,7 +34,7 @@
   {
     "name": "Cute Quote",
     "section": "tmiLab",
-    "image": "images/cutequote.png",
+    "image": "https://i.ibb.co/qYfgbzgF/file-000000001e70722f8809130a01508218.png",
     "description": "Share the cutest, sassy AI-generated quotes.",
     "link": "cutequote.html",
     "trending": false
