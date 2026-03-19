@@ -14,6 +14,7 @@
     --text:#1c1c1e;
 }
 
+/* Base */
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
 body{background:var(--bg);color:var(--text);}
 
@@ -28,8 +29,9 @@ header p{margin-top:10px;font-size:1.2rem;}
     position:absolute;
     top:20px;
     left:20px;
-    font-size:1.8rem;
+    font-size:1.5rem;
     cursor:pointer;
+    text-decoration:none;
 }
 
 /* CTA */
@@ -110,15 +112,15 @@ header p{margin-top:10px;font-size:1.2rem;}
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* leaderboard tile */
+/* leaderboard tile with drama */
 .leaderboard-section{
     background: linear-gradient(135deg,#ffe4ec,#ff7aa8);
     padding:30px 20px;
     border-radius:20px;
-    box-shadow:0 12px 30px rgba(0,0,0,0.15);
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
     margin:40px 0;
 }
-.leaderboard-section h2{color:#fff;margin-bottom:20px;text-align:center;}
+.leaderboard-section h2{color:#fff;margin-bottom:20px;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,0.3);}
 
 /* popup */
 .popup{
@@ -145,8 +147,8 @@ footer{text-align:center;padding:40px;color:#888;}
 <h1>💬 ClapbackAI</h1>
 <p>Text him back like a 🐈‍⬛ Black Cat, 👸 Queen, 😈 Savage or 💕 Soft Girl.</p>
 
-<!-- Home button top left -->
-<div class="home-btn" onclick="goHome()">🏠</div>
+<!-- Home button top-left as simple link -->
+<a href="index.html" class="home-btn">🏠</a>
 
 <button class="cta-btn" onclick="goApp()">Try it free →</button>
 
@@ -221,7 +223,6 @@ footer{text-align:center;padding:40px;color:#888;}
 <script>
 // redirect
 function goApp(){window.location.href="clapbackai.html";}
-function goHome(){window.location.href="index.html";}
 
 // counter
 let count=12384;
@@ -248,7 +249,7 @@ el.appendChild(d);
 }
 loadLeaderboard();
 
-// activity feed (limit 3)
+// activity feed - only show 3 lines max
 const actions=["just made him double text 😭","sent a savage reply 😈","got a paragraph 💀","left him on read 🐈‍⬛"];
 const names=["Ayanda","Zoe","Kamo","Thando","Lerato"];
 
