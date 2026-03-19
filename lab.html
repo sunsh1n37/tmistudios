@@ -237,7 +237,7 @@ nav .dropdown a:hover { background:#222; }
 </footer>
 
 <script>
-// Floating emojis
+// FLOATING EMOJIS
 const container = document.getElementById('chaos-container');
 const emojis = ['🔥','💀','🤯','⚡','💌','🎲','🫠','💎','🎮','🤡'];
 function spawnEmoji(){
@@ -252,15 +252,19 @@ function spawnEmoji(){
 }
 setInterval(spawnEmoji,400);
 
-// Hamburger menu
+// HAMBURGER MENU
 const hamburger = document.getElementById('hamburger');
 const menuDropdown = document.getElementById('menuDropdown');
-hamburger.addEventListener('click',()=>{menuDropdown.style.display=(menuDropdown.style.display==='block'?'none':'block');});
-document.addEventListener('click',(e)=>{if(!hamburger.contains(e.target)) menuDropdown.style.display='none';});
+hamburger.addEventListener('click', ()=> {
+  menuDropdown.style.display = (menuDropdown.style.display==='block'?'none':'block');
+});
+document.addEventListener('click', (e) => {
+  if(!hamburger.contains(e.target)) menuDropdown.style.display='none';
+});
 
 // FETCH APPS
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/apps/apps.json')
+  fetch('./apps/apps.json')
     .then(res => res.json())
     .then(apps => {
       const tmilab = document.getElementById('tmilab-cards');
@@ -268,37 +272,38 @@ document.addEventListener('DOMContentLoaded', () => {
       const toxiclab = document.getElementById('toxiclab-cards');
 
       // TMI Lab - all apps
-      apps.filter(a => a.lab === "TMI Lab").forEach(app => {
+      apps.filter(a => a.section === "tmiLab").forEach(app => {
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-          ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
+          ${app.trending ? '<div class="trending-badge">🔥 Trending</div>' : ''}
           <img src="${app.image}" alt="${app.name}">
           <h3>${app.name}</h3>
           <p>${app.description}</p>
-          <a href="${app.link}"><button>${app.button}</button></a>
+          <a href="${app.link}"><button>Open</button></a>
         `;
         tmilab.appendChild(card);
       });
 
-      // Vibe & Toxic Labs - only latest 2
-      ["Vibe Lab","Toxic Lab"].forEach(labName=>{
-        const container = labName==="Vibe Lab"?vibelab:toxiclab;
-        apps.filter(a=>a.lab===labName).slice(-2).reverse().forEach(app=>{
+      // Vibe & Toxic Labs - latest 2 apps
+      const labMapping = { "vibeLab": vibelab, "toxicLab": toxiclab };
+      ["vibeLab","toxicLab"].forEach(secName => {
+        const container = labMapping[secName];
+        apps.filter(a => a.section === secName).slice(-2).reverse().forEach(app => {
           const card = document.createElement('div');
-          card.className='card';
+          card.className = 'card';
           card.innerHTML = `
-            ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
+            ${app.trending ? '<div class="trending-badge">🔥 Trending</div>' : ''}
             <img src="${app.image}" alt="${app.name}">
             <h3>${app.name}</h3>
             <p>${app.description}</p>
-            <a href="${app.link}"><button>${app.button}</button></a>
+            <a href="${app.link}"><button>Open</button></a>
           `;
           container.appendChild(card);
         });
       });
 
-      // Animate cards on scroll
+      // ANIMATE CARDS ON SCROLL
       const allCards = document.querySelectorAll('.card');
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -306,12 +311,11 @@ document.addEventListener('DOMContentLoaded', () => {
             entry.target.classList.add('visible');
           }
         });
-      }, {threshold:0.1});
+      }, { threshold: 0.1 });
       allCards.forEach(c => observer.observe(c));
     })
-    .catch(err => console.error("Fetch failed:", err));
+    .catch(err => console.error("Failed to fetch apps.json:", err));
 });
 </script>
-
 </body>
 </html>
