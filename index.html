@@ -7,6 +7,7 @@
 <title>TMI Studios — Internet Product Lab</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root{
@@ -14,6 +15,7 @@
 --accent:#b388ff;
 --text:#f4f4f4;
 --muted:#c0bcd0;
+--footer-link:#bfa3ff;
 --font:'Space Grotesk',sans-serif;
 }
 
@@ -26,15 +28,92 @@ color:var(--text);
 overflow-x:hidden;
 }
 
+/* ⭐ STARS */
+canvas{
+position:fixed;
+inset:0;
+z-index:-1;
+}
+
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:.75rem 1rem;
+position:sticky;
+top:0;
+background:rgba(11,0,21,0.8);
+backdrop-filter:blur(10px);
+z-index:100;
+}
+
+.arcade-btn{
+background:var(--accent);
+color:var(--bg);
+padding:.45rem 1rem;
+border-radius:999px;
+font-weight:700;
+text-decoration:none;
+}
+
+.hamburger{
+font-size:1.4rem;
+cursor:pointer;
+}
+
+.dropdown{
+position:absolute;
+right:10px;
+top:60px;
+background:#140022;
+border-radius:14px;
+padding:.75rem 0;
+display:none;
+}
+.dropdown a{
+display:block;
+padding:.6rem 1rem;
+color:#fff;
+text-decoration:none;
+}
+
 /* HERO */
 .hero{
-min-height:80vh;
+min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
 padding:1rem;
+}
+
+.subtitle{
+color:var(--muted);
+max-width:720px;
+margin-top:.75rem;
+}
+
+.cta-group{
+margin-top:2rem;
+display:flex;
+gap:1rem;
+}
+
+.btn{
+padding:.8rem 1.5rem;
+border-radius:50px;
+font-weight:600;
+text-decoration:none;
+}
+.primary{
+background:var(--accent);
+color:var(--bg);
+}
+.secondary{
+border:2px solid var(--accent);
+color:var(--accent);
 }
 
 /* SECTIONS */
@@ -44,9 +123,7 @@ max-width:1200px;
 margin:0 auto 80px auto;
 text-align:center;
 }
-section h2{
-margin-bottom:.5rem;
-}
+
 .section-desc{
 color:var(--muted);
 max-width:600px;
@@ -54,7 +131,7 @@ margin:0 auto 2rem auto;
 font-size:.95rem;
 }
 
-/* HORIZONTAL SCROLL (clean) */
+/* SCROLL ROWS */
 .projects{
 display:flex;
 gap:1.5rem;
@@ -62,25 +139,16 @@ overflow-x:auto;
 padding-bottom:1rem;
 scroll-snap-type:x mandatory;
 }
-.projects::-webkit-scrollbar{
-height:6px;
-}
-.projects::-webkit-scrollbar-thumb{
-background:rgba(255,255,255,.2);
-border-radius:10px;
-}
 
-/* CARD */
 .project{
 flex:0 0 260px;
 background:rgba(255,255,255,.05);
 padding:1.5rem;
 border-radius:14px;
 position:relative;
-transition:.4s ease;
+transition:.4s;
 opacity:0;
 transform:translateY(40px);
-scroll-snap-align:start;
 }
 
 .project.show{
@@ -102,12 +170,10 @@ left:10px;
 background:#ff3d3d;
 color:#fff;
 font-size:.7rem;
-font-weight:700;
 padding:4px 8px;
 border-radius:8px;
 animation:glow 1.5s infinite alternate;
 }
-
 @keyframes glow{
 0%{box-shadow:0 0 5px #ff3d3d;}
 100%{box-shadow:0 0 15px #ff3d3d;}
@@ -122,11 +188,6 @@ border:1px solid var(--accent);
 border-radius:999px;
 color:var(--accent);
 text-decoration:none;
-transition:.3s;
-}
-.tile-btn:hover{
-background:var(--accent);
-color:#000;
 }
 
 /* LAB TILE */
@@ -143,109 +204,112 @@ border-radius:14px;
 }
 
 /* FOOTER */
-footer{
+.skinny-footer{
+padding:1.5rem 1rem;
+background:#07000f;
 text-align:center;
-padding:2rem;
-color:#888;
+font-size:.85rem;
+}
+.footer-socials{
+display:flex;
+justify-content:center;
+gap:1rem;
+margin-bottom:.5rem;
+}
+.footer-socials a{
+color:var(--footer-link);
+font-size:1.2rem;
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="stars"></canvas>
+
+<nav>
+<a href="arcade.html" class="arcade-btn">🎮 Arcade</a>
+<i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
+<div class="dropdown" id="navMenu">
+<a href="toxiclab.html">🤒Toxic Lab</a>
+<a href="vbelab.html"> 😎 Vibe Lab</a>
+<a href="aboutus.html">🦄 About</a>
+<a href="contactus.html">📬 Contact</a>
+</div>
+</nav>
+
 <header class="hero">
-<h1>TMI Studios</h1>
-<p>We build viral internet apps.</p>
+<img src="images/tmihero.jpeg" width="280" style="mix-blend-mode:lighten">
+<p style="font-size:.9rem;color:var(--accent);margin-top:8px;">
+Independent Internet Product Lab
+</p>
+
+<p class="subtitle">
+TMI Studios builds viral internet apps, chaotic tools and fast browser games for the modern web.
+</p>
+
+<div class="cta-group">
+<a href="lab.html" class="btn secondary">Visit the Lab 🧪</a>
+</div>
 </header>
 
-<!-- TOXIC LAB -->
+<!-- TOXIC -->
 <section>
 <h2>☠️ Toxic Lab</h2>
-<p class="section-desc">Savage tools for decoding red flags, situationships, and chaotic dating dynamics.</p>
+<p class="section-desc">Savage tools for decoding red flags and chaotic dating dynamics.</p>
 <div class="projects" id="toxicLab"></div>
 </section>
 
-<!-- VIBE LAB -->
+<!-- VIBE -->
 <section>
 <h2>💖 Vibe Lab</h2>
-<p class="section-desc">Light, fun identity tools made for self-reflection, personality checks, and shareable moments.</p>
+<p class="section-desc">Fun identity tools made for sharing and self-discovery.</p>
 <div class="projects" id="vibeLab"></div>
 </section>
 
-<!-- TMI LAB -->
+<!-- TMI -->
 <section>
 <h2>🧪 TMI Lab</h2>
-<p class="section-desc">Our core experimental apps built for virality, screenshots, and internet culture.</p>
+<p class="section-desc">Core viral apps built for screenshots and internet culture.</p>
 <div class="projects" id="tmiLab"></div>
-</section>
-
-<!-- WORKING ON -->
-<section>
-<h2>🔮 What We’re Working On</h2>
-<p class="section-desc">New chaotic experiments currently cooking inside the lab.</p>
-
-<div class="projects">
-<div class="project show">
-<h3>Secret Tool</h3>
-<p>Something viral is coming...</p>
-</div>
-<div class="project show">
-<h3>New AI Game</h3>
-<p>Fast, addictive, and chaotic.</p>
-</div>
-<div class="project show">
-<h3>???</h3>
-<p>You’ll see soon 👀</p>
-</div>
-</div>
 </section>
 
 <!-- STATS -->
 <section>
 <h2>📊 Studio Stats</h2>
-<p class="section-desc">A snapshot of the lab’s growth.</p>
-
 <div class="projects">
-<div class="project show">
-<h3>10+</h3>
-<p>Apps launched</p>
-</div>
-<div class="project show">
-<h3>Growing</h3>
-<p>Monthly users</p>
-</div>
-<div class="project show">
-<h3>∞</h3>
-<p>Ideas in the lab</p>
-</div>
+<div class="project show"><h3>10+</h3><p>Apps launched</p></div>
+<div class="project show"><h3>Growing</h3><p>Monthly users</p></div>
+<div class="project show"><h3>∞</h3><p>Ideas</p></div>
 </div>
 </section>
 
-<!-- HOW WE BUILD -->
+<!-- HOW -->
 <section>
 <h2>⚡ How We Build</h2>
-<p class="section-desc">We move fast, test everything, and scale what hits.</p>
-
 <div class="lab-scroll">
-<div class="lab-tile">
-<h3>Build Fast</h3>
-<p>From idea to prototype in days.</p>
-</div>
-<div class="lab-tile">
-<h3>Launch Early</h3>
-<p>Users shape the product.</p>
-</div>
-<div class="lab-tile">
-<h3>Scale What Works</h3>
-<p>Winners get expanded.</p>
-</div>
+<div class="lab-tile"><h3>Build Fast</h3><p>Prototype in days.</p></div>
+<div class="lab-tile"><h3>Launch Early</h3><p>Users shape product.</p></div>
+<div class="lab-tile"><h3>Scale What Works</h3><p>Winners grow.</p></div>
 </div>
 </section>
 
-<footer>© 2026 TMI Studios</footer>
+<footer class="skinny-footer">
+<div class="footer-socials">
+<a href="#"><i class="fab fa-tiktok"></i></a>
+<a href="#"><i class="fab fa-facebook"></i></a>
+</div>
+<p>© 2026 TMI Studios</p>
+</footer>
 
 <script>
-// FETCH APPS
+// MENU
+function toggleMenu(){
+const m=document.getElementById('navMenu');
+m.style.display=m.style.display==='block'?'none':'block';
+}
+
+// FETCH
 async function loadLabApps(){
 const res = await fetch('apps/apps.json');
 const apps = await res.json();
@@ -272,23 +336,49 @@ container.appendChild(div);
 
 observeCards();
 }
-
 loadLabApps();
 
-// SCROLL ANIMATION
+// ANIMATE
 function observeCards(){
 const cards=document.querySelectorAll('.project');
-
 const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('show');
-}
+entries.forEach(e=>{
+if(e.isIntersecting) e.target.classList.add('show');
 });
-},{threshold:0.2});
-
-cards.forEach(card=>observer.observe(card));
+});
+cards.forEach(c=>observer.observe(c));
 }
+
+// STARS
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+let stars=[];
+function resize(){
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+stars=[...Array(100)].map(()=>({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-.5)*.3,
+dy:(Math.random()-.5)*.3
+}));
+}
+resize();
+addEventListener("resize",resize);
+
+(function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fillStyle="#b388ff";
+ctx.fill();
+s.x+=s.dx;
+s.y+=s.dy;
+});
+requestAnimationFrame(animate);
+})();
 </script>
 
 </body>
