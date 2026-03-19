@@ -28,11 +28,9 @@ header p{margin-top:10px;font-size:1.2rem;}
     position:absolute;
     top:20px;
     left:20px;
-    font-size:1.5rem;
+    font-size:1.8rem;
     cursor:pointer;
-    transition: transform 0.2s;
 }
-.home-btn:hover{transform:scale(1.2);}
 
 /* CTA */
 .cta-btn{
@@ -112,27 +110,15 @@ header p{margin-top:10px;font-size:1.2rem;}
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* leaderboard tile dramatic */
+/* leaderboard tile */
 .leaderboard-section{
-    background: linear-gradient(135deg,#ff4d88,#ff7aa8,#ffe4ec);
-    padding:40px 20px;
-    border-radius:30px;
-    box-shadow:0 12px 40px rgba(255,77,136,0.3),0 20px 60px rgba(255,122,168,0.2);
-    margin:50px 0;
-    position:relative;
-    animation: float 2s ease-in-out infinite alternate;
+    background: linear-gradient(135deg,#ffe4ec,#ff7aa8);
+    padding:30px 20px;
+    border-radius:20px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.15);
+    margin:40px 0;
 }
-.leaderboard-section h2{
-    color:white;
-    margin-bottom:25px;
-    text-align:center;
-    text-shadow:0 2px 8px rgba(0,0,0,0.3);
-    font-size:2rem;
-}
-@keyframes float{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-5px);}
-}
+.leaderboard-section h2{color:#fff;margin-bottom:20px;text-align:center;}
 
 /* popup */
 .popup{
@@ -159,10 +145,9 @@ footer{text-align:center;padding:40px;color:#888;}
 <h1>💬 ClapbackAI</h1>
 <p>Text him back like a 🐈‍⬛ Black Cat, 👸 Queen, 😈 Savage or 💕 Soft Girl.</p>
 
-<!-- Home button top-left -->
+<!-- Home button top left -->
 <div class="home-btn" onclick="goHome()">🏠</div>
 
-<!-- CTA buttons -->
 <button class="cta-btn" onclick="goApp()">Try it free →</button>
 
 <p style="margin-top:10px;font-size:14px;opacity:0.7;">
@@ -234,97 +219,64 @@ footer{text-align:center;padding:40px;color:#888;}
 <footer>Made with ❤️ by TMI Studios · tmistudios.xyz</footer>
 
 <script>
-// Redirect functions
-function goApp() {
-    window.location.href = "clapbackai.html";
-}
-function goHome() {
-    window.location.href = "index.html";
-}
+// redirect
+function goApp(){window.location.href="clapbackai.html";}
+function goHome(){window.location.href="index.html";}
 
-// Counter for clapbacks generated
-let count = 12384;
-setInterval(() => {
-    count += Math.floor(Math.random() * 3) + 1;
-    document.getElementById("counter").innerText = count.toLocaleString();
-}, 2000);
+// counter
+let count=12384;
+setInterval(()=>{
+count+=Math.floor(Math.random()*3)+1;
+document.getElementById("counter").innerText=count.toLocaleString();
+},2000);
 
-// Leaderboard
-const clapbacks = [
-    "🐈‍⬛ maybe later",
-    "😈 no ❤️",
-    "👸 I don’t chase, I attract",
-    "🖤 interesting…",
-    "🐈‍⬛ we’ll see",
-    "😈 you thought 😭"
+// leaderboard
+const clapbacks=[
+"🐈‍⬛ maybe later","😈 no ❤️","👸 I don’t chase, I attract",
+"🖤 interesting…","🐈‍⬛ we’ll see","😈 you thought 😭"
 ];
 
-function loadLeaderboard() {
-    const el = document.getElementById("leaderboard");
-    el.innerHTML = "";
-    clapbacks.sort(() => 0.5 - Math.random())
-             .slice(0, 5)
-             .forEach((t, i) => {
-                 const d = document.createElement("div");
-                 d.className = "card";
-                 d.innerHTML = `<strong>#${i + 1}</strong> — ${t}`;
-                 el.appendChild(d);
-             });
+function loadLeaderboard(){
+const el=document.getElementById("leaderboard");
+el.innerHTML="";
+clapbacks.sort(()=>0.5-Math.random()).slice(0,5).forEach((t,i)=>{
+const d=document.createElement("div");
+d.className="card";
+d.innerHTML=`<strong>#${i+1}</strong> — ${t}`;
+el.appendChild(d);
+});
 }
 loadLeaderboard();
 
-// Activity Feed (max 3 lines, realistic)
-const actions = [
-    "just made him double text 😭",
-    "sent a savage reply 😈",
-    "got a paragraph 💀",
-    "left him on read 🐈‍⬛"
-];
-const names = ["Ayanda", "Zoe", "Kamo", "Thando", "Lerato"];
+// activity feed (limit 3)
+const actions=["just made him double text 😭","sent a savage reply 😈","got a paragraph 💀","left him on read 🐈‍⬛"];
+const names=["Ayanda","Zoe","Kamo","Thando","Lerato"];
 
-function addActivity() {
-    const feed = document.getElementById("activityFeed");
-    const name = names[Math.floor(Math.random() * names.length)];
-    const action = actions[Math.floor(Math.random() * actions.length)];
-
-    const d = document.createElement("div");
-    d.className = "card";
-    d.innerHTML = `<strong>${name}</strong> ${action} <span style="font-size:12px;color:#999;">· now</span>`;
-
-    feed.prepend(d);
-
-    // Keep only 3 lines
-    while (feed.children.length > 3) {
-        feed.removeChild(feed.lastChild);
-    }
+function addActivity(){
+const feed=document.getElementById("activityFeed");
+const d=document.createElement("div");
+d.className="card";
+d.innerHTML=`<strong>${names[Math.floor(Math.random()*names.length)]}</strong> ${actions[Math.floor(Math.random()*actions.length)]} <span style="font-size:12px;color:#999;">· now</span>`;
+feed.prepend(d);
+while(feed.children.length>3) feed.removeChild(feed.lastChild);
 }
+setInterval(addActivity,2500);
+for(let i=0;i<3;i++) addActivity();
 
-// Start feed with 3 initial activities
-for (let i = 0; i < 3; i++) addActivity();
-
-// Randomized timing for realism (3–6 seconds interval)
-function scheduleActivity() {
-    const delay = Math.floor(Math.random() * 3000) + 3000; // 3000–6000 ms
-    setTimeout(() => {
-        addActivity();
-        scheduleActivity();
-    }, delay);
-}
-scheduleActivity();
-
-// Testimonial
-const testimonials = [
-    "He double texted in 20 seconds 😭🔥",
-    "I fear me now 😈",
-    "He started explaining himself 💀",
-    "My whole friend group uses this 😂"
+// testimonial
+const testimonials=[
+"He double texted in 20 seconds 😭🔥",
+"I fear me now 😈",
+"He started explaining himself 💀",
+"My whole friend group uses this 😂"
 ];
 
-function loadTestimonial() {
-    const t = testimonials[Math.floor(Math.random() * testimonials.length)];
-    document.getElementById("dynamicTestimonial").innerHTML = `"${t}"`;
+function loadTestimonial(){
+const t=testimonials[Math.floor(Math.random()*testimonials.length)];
+document.getElementById("dynamicTestimonial").innerHTML=`"${t}"`;
 }
 loadTestimonial();
 </script>
+
 </body>
 </html>
