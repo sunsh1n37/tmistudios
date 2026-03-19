@@ -90,18 +90,18 @@ nav .dropdown a:hover { background:#222; }
 .card-container::-webkit-scrollbar { display:none; }
 
 .card {
-  flex:0 0 200px;
+  flex:0 0 220px;
   background:var(--dark-card);
   border-radius:12px;
   overflow:hidden;
   text-align:center;
   border:2px solid #000;
   opacity:0;
-  transform: translateY(40px);
-  transition: all 0.6s ease-out;
-  position:relative;
+  transform: translateY(30px);
+  transition: all .5s ease;
 }
-.card.show { opacity:1; transform: translateY(0); }
+.card.visible { opacity:1; transform: translateY(0); }
+
 .card img { width:100%; height:140px; object-fit:cover; display:block; }
 .card h3 { font-size:1rem; margin:.5rem 0; }
 .card p { font-size:.85rem; color:var(--soft-text); padding:0 .5rem; min-height:40px; }
@@ -127,10 +127,9 @@ nav .dropdown a:hover { background:#222; }
   font-weight:700;
   padding:2px 6px;
   border-radius:8px;
+  pointer-events:none;
   z-index:5;
-  transition: all .3s ease;
 }
-.card.show .trending-badge { transform: scale(1.1); }
 
 /* CTA */
 #whatsapp-tile {
@@ -191,28 +190,24 @@ nav .dropdown a:hover { background:#222; }
 
 <div id="chaos-container"></div>
 
-<!-- LAB SECTIONS -->
+<!-- TMI Lab -->
 <section>
-  <h2 class="section-title">TMI Lab 🧪</h2>
-  <p style="max-width:600px;margin:auto;color:#ccc;">
-    Core viral apps from TMI Studios.
-  </p>
+  <h2 class="section-title">TMI Lab ⚡</h2>
+  <p style="max-width:600px;margin:auto;color:#ccc;">A chaotic lab of viral apps, AI tools, and chaotic fun. All apps launch here first.</p>
   <div class="card-container" id="tmilab-cards"></div>
 </section>
 
+<!-- Vibe Lab -->
 <section>
   <h2 class="section-title">Vibe Lab 👯‍♀️</h2>
-  <p style="max-width:600px;margin:auto;color:#ccc;">
-    Step into Vibe Lab, the ultimate playground for personality quizzes and self-discovery. From “Main Character Energy” to “Are You The Villain,” we’ve got every vibe you could possibly bring to life, love, and chaos.
-  </p>
+  <p style="max-width:600px;margin:auto;color:#ccc;">Step into Vibe Lab, the ultimate playground for personality quizzes and self-discovery.</p>
   <div class="card-container" id="vibelab-cards"></div>
 </section>
 
+<!-- Toxic Lab -->
 <section>
   <h2 class="section-title">Toxic Lab 🚩</h2>
-  <p style="max-width:600px;margin:auto;color:#ccc;">
-    A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior.
-  </p>
+  <p style="max-width:600px;margin:auto;color:#ccc;">A collection of chaotic relationship quizzes designed to expose red flags, situationships, and delulu behavior.</p>
   <div class="card-container" id="toxiclab-cards"></div>
 </section>
 
@@ -261,61 +256,56 @@ const menuDropdown = document.getElementById('menuDropdown');
 hamburger.addEventListener('click',()=>{menuDropdown.style.display=(menuDropdown.style.display==='block'?'none':'block');});
 document.addEventListener('click',(e)=>{if(!hamburger.contains(e.target)) menuDropdown.style.display='none';});
 
-// Fetch apps.json and populate labs
-fetch('apps/apps.json')
-.then(res => res.json())
-.then(apps => {
-  const tmilab = document.getElementById('tmilab-cards');
-  const vibelab = document.getElementById('vibelab-cards');
-  const toxiclab = document.getElementById('toxiclab-cards');
+// FETCH APPS
+fetch('./apps/apps.json')
+  .then(res => res.json())
+  .then(apps => {
+    const tmilab = document.getElementById('tmilab-cards');
+    const vibelab = document.getElementById('vibelab-cards');
+    const toxiclab = document.getElementById('toxiclab-cards');
 
-  apps.forEach(app => {
-    const card = document.createElement('div');
-    card.className = 'card';
-
-    let badge = '';
-    if(app.trending) badge = '<div class="trending-badge">Trending</div>';
-
-    card.innerHTML = `
-      ${badge}
-      <img src="${app.image}" alt="${app.name}">
-      <h3>${app.name}</h3>
-      <p>${app.description}</p>
-      <a href="${app.link}"><button>${app.button}</button></a>
-    `;
-
-    if(app.lab==='TMI Lab') tmilab.appendChild(card);
-  });
-
-  // Show latest 2 for Vibe and Toxic labs
-  ['Vibe Lab','Toxic Lab'].forEach(labName=>{
-    const labContainer = labName==='Vibe Lab' ? vibelab : toxiclab;
-    const labApps = apps.filter(a=>a.lab===labName).slice(-2).reverse();
-    labApps.forEach(app=>{
+    // TMI Lab - all apps
+    apps.filter(a => a.lab === "TMI Lab").forEach(app => {
       const card = document.createElement('div');
-      card.className='card';
-      let badge = '';
-      if(app.trending) badge = '<div class="trending-badge">Trending</div>';
+      card.className = 'card';
       card.innerHTML = `
-        ${badge}
+        ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
         <img src="${app.image}" alt="${app.name}">
         <h3>${app.name}</h3>
         <p>${app.description}</p>
         <a href="${app.link}"><button>${app.button}</button></a>
       `;
-      labContainer.appendChild(card);
+      tmilab.appendChild(card);
     });
+
+    // Vibe & Toxic Labs - only latest 2
+    ["Vibe Lab","Toxic Lab"].forEach(labName=>{
+      const container = labName==="Vibe Lab"?vibelab:toxiclab;
+      apps.filter(a=>a.lab===labName).slice(-2).reverse().forEach(app=>{
+        const card = document.createElement('div');
+        card.className='card';
+        card.innerHTML = `
+          ${app.trending ? '<div class="trending-badge">Trending</div>' : ''}
+          <img src="${app.image}" alt="${app.name}">
+          <h3>${app.name}</h3>
+          <p>${app.description}</p>
+          <a href="${app.link}"><button>${app.button}</button></a>
+        `;
+        container.appendChild(card);
+      });
+    });
+
+    // Animate cards on scroll
+    const allCards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {threshold:0.1});
+    allCards.forEach(c => observer.observe(c));
   });
-
-  // Animate cards on scroll
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){ entry.target.classList.add('show'); observer.unobserve(entry.target);}
-    });
-  },{threshold:0.2});
-
-  document.querySelectorAll('.card').forEach(card => observer.observe(card));
-});
 </script>
 
 </body>
