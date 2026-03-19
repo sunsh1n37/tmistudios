@@ -305,80 +305,106 @@ TMI Studios builds viral internet apps, chaotic tools and fast browser games for
 <script>
 // MENU
 function toggleMenu(){
-const m=document.getElementById('navMenu');
-m.style.display=m.style.display==='block'?'none':'block';
+  const m = document.getElementById('navMenu');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
 }
 
-// FETCH
+// LOAD APPS (FIXED ORDER)
 async function loadLabApps(){
-const res = await fetch('apps/apps.json');
-const apps = await res.json();
+  try {
+    const res = await fetch('apps/apps.json');
+    const apps = await res.json();
 
-['toxicLab','vibeLab','tmiLab'].forEach(lab=>{
-const container = document.getElementById(lab);
-const filtered = apps.filter(a=>a.section===lab).slice(-3).reverse();
+    ['toxicLab','vibeLab','tmiLab'].forEach(lab=>{
+      const container = document.getElementById(lab);
+      container.innerHTML = ""; // reset (prevents duplicates)
 
-filtered.forEach(app=>{
-const div=document.createElement('div');
-div.className='project';
+      // ✅ KEY FIX: keeps original order, takes first 3
+      const filtered = apps
+        .filter(app => app.section === lab)
+        .slice(0,3);
 
-div.innerHTML=`
-${app.trending ? '<div class="trending-badge">🔥 Trending</div>' : ''}
-<img src="${app.image}">
-<h3>${app.name}</h3>
-<p>${app.description}</p>
-<a href="${app.link}" class="tile-btn">Open</a>
-`;
+      filtered.forEach(app=>{
+        const div = document.createElement('div');
+        div.className = 'project';
 
-container.appendChild(div);
-});
-});
+        div.innerHTML = `
+          ${app.trending ? '<div class="trending-badge">🔥 Trending</div>' : ''}
+          <img src="${app.image}" alt="${app.name}">
+          <h3>${app.name}</h3>
+          <p>${app.description}</p>
+          <a href="${app.link}" class="tile-btn">Open</a>
+        `;
 
-observeCards();
+        container.appendChild(div);
+      });
+    });
+
+    observeCards(); // animate after load
+
+  } catch (err) {
+    console.error("Error loading apps:", err);
+  }
 }
+
 loadLabApps();
 
-// ANIMATE
+
+// SCROLL ANIMATION
 function observeCards(){
-const cards=document.querySelectorAll('.project');
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-if(e.isIntersecting) e.target.classList.add('show');
-});
-});
-cards.forEach(c=>observer.observe(c));
+  const cards = document.querySelectorAll('.project');
+
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cards.forEach(card => observer.observe(card));
 }
 
-// STARS
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-let stars=[];
-function resize(){
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-stars=[...Array(100)].map(()=>({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-dx:(Math.random()-.5)*.3,
-dy:(Math.random()-.5)*.3
-}));
-}
-resize();
-addEventListener("resize",resize);
 
-(function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-stars.forEach(s=>{
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fillStyle="#b388ff";
-ctx.fill();
-s.x+=s.dx;
-s.y+=s.dy;
-});
-requestAnimationFrame(animate);
-})();
+// ⭐ STARS BACKGROUND
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+
+function resizeStars(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  stars = [...Array(100)].map(() => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    dx: (Math.random() - 0.5) * 0.3,
+    dy: (Math.random() - 0.5) * 0.3
+  }));
+}
+
+window.addEventListener("resize", resizeStars);
+resizeStars();
+
+function animateStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  stars.forEach(s=>{
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = "#b388ff";
+    ctx.fill();
+
+    s.x += s.dx;
+    s.y += s.dy;
+  });
+
+  requestAnimationFrame(animateStars);
+}
+
+animateStars();
 </script>
 
 </body>
