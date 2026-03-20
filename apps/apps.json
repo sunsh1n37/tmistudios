@@ -4,7 +4,7 @@
     "section": "tmiLab",
     "image": "https://i.ibb.co/tTmBdpxg/file-00000000066c722f947707f4faafc775.png",
     "description": "Text him back like a pro with AI-powered responses.",
-    "link": "clapbackai.html",
+    "link": "apps/clapbackai.html",
     "trending": true
   },
   {
@@ -12,7 +12,7 @@
     "section": "tmiLab",
     "image": "https://i.ibb.co/gM5wQMW0/file-000000004158722fbd1078a36e914034.png",
     "description": "A playful AI-powered look into your money personality.",
-    "link": "dollfin.html",
+    "link": "apps/dollfin.html",
     "trending": true
   },
   {
@@ -20,7 +20,7 @@
     "section": "tmiLab",
     "image": "https://i.ibb.co/WpGHqZkg/file-000000001098722f8420a98e5faeb655.png",
     "description": "Crack open a random chaotic fortune made for screenshots.",
-    "link": "chaoscookie.html",
+    "link": "apps/chaoscookie.html",
     "trending": true
   },
   {
@@ -28,7 +28,7 @@
     "section": "tmiLab",
     "image": "https://i.ibb.co/pvNDQQpz/Screenshot-20260319-175444-Chat-GPT.jpg",
     "description": "Discover your CEO energy with a tarot twist.",
-    "link": "deluluceotarot.html",
+    "link": "apps/deluluceotarot.html",
     "trending": false
   },
   {
@@ -36,7 +36,7 @@
     "section": "tmiLab",
     "image": "https://i.ibb.co/qYfgbzgF/file-000000001e70722f8809130a01508218.png",
     "description": "Share the cutest, sassy AI-generated quotes.",
-    "link": "cutequote.html",
+    "link": "apps/cutequote.html",
     "trending": false
   },
   {
@@ -44,7 +44,7 @@
     "section": "tmiLab",
     "image": "https://i.ibb.co/dw5kNYfW/file-00000000d16071fda716a8a922684b8b.png",
     "description": "Send personalized birthday bible verses with ease.",
-    "link": "birthdaybibleverse.html",
+    "link": "apps/birthdaybibleverse.html",
     "trending": false
   },
   {
@@ -52,7 +52,7 @@
     "section": "tmiLab",
     "image": "https://i.ibb.co/23Tt4Byw/file-00000000be4c71f8bf71dad2bf5df697.png",
     "description": "Turn anything into a viral meme in seconds.",
-    "link": "memerize.html",
+    "link": "apps/memerize.html",
     "trending": false
   },
   {
@@ -60,7 +60,7 @@
     "section": "vibeLab",
     "image": "images/arethemaincharacter.png",
     "description": "Find out if you’re living your best story.",
-    "link": "arethemaincharacter.html",
+    "link": "vibelab/maincharacter.html",
     "trending": true
   },
   {
@@ -68,7 +68,7 @@
     "section": "vibeLab",
     "image": "images/areyouthevillain.png",
     "description": "Discover your inner villain vibes with AI fun.",
-    "link": "areyouthevillain.html",
+    "link": "vibelab/villain.html",
     "trending": true
   },
   {
@@ -76,7 +76,7 @@
     "section": "toxicLab",
     "image": "images/amidatinganarcissistic.png",
     "description": "Test your relationship for red flags with AI insight.",
-    "link": "amidatinganarcissistic.html",
+    "link": "toxiclab/amidatinganarcissistic.html",
     "trending": true
   },
   {
@@ -84,7 +84,7 @@
     "section": "toxicLab",
     "image": "images/redflagbingo.png",
     "description": "Play bingo with the most common relationship red flags.",
-    "link": "redflagbingo.html",
+    "link": "toxiclab/redflagbingo.html",
     "trending": true
   },
   {
@@ -92,7 +92,7 @@
     "section": "toxicLab",
     "image": "images/redflagradar.png",
     "description": "Scan texts for toxic behavior patterns.",
-    "link": "redflagradar.html",
+    "link": "toxiclab/redflagradar.html",
     "trending": true
   },
   {
@@ -100,7 +100,7 @@
     "section": "toxicLab",
     "image": "images/situationshipscorecard.png",
     "description": "Know where your situationship really stands.",
-    "link": "situationshipscorecard.html",
+    "link": "toxiclab/situationshipscorecard.html",
     "trending": false
   },
   {
@@ -108,7 +108,7 @@
     "section": "toxicLab",
     "image": "images/textpose.png",
     "description": "Analyze text conversations to expose hidden intentions.",
-    "link": "textpose.html",
+    "link": "toxiclab/textpose.html",
     "trending": false
   }
 ]
