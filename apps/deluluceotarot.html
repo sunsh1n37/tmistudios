@@ -15,229 +15,67 @@ body{
   background:radial-gradient(ellipse at bottom,#0d0d1a 0%,#000 100%);
   padding-top:4rem;
 }
-
-h1,h2,h3{
-  font-family:'Cinzel',serif;
-}
-
-nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  background:#111;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:.75rem 1rem;
-  z-index:999;
-}
-
-nav .logo a{
-  color:#fff;
-  font-weight:700;
-  text-decoration:none;
-  font-size:1.25rem;
-}
-
-nav .hamburger{
-  font-size:1.5rem;
-  color:#fff;
-  cursor:pointer;
-}
-
-.mobile-menu{
-  display:none;
-  flex-direction:column;
-  gap:1rem;
-  margin-top:.5rem;
-  position:absolute;
-  top:3.5rem;
-  right:0;
-  width:200px;
-  background:#1a1a2e;
-  padding:1rem;
-}
-
-.mobile-menu a{
-  color:#fff;
-  font-weight:600;
-  text-decoration:none;
-}
-
-.page-title{
-  text-align:center;
-  font-size:2.5rem;
-  font-weight:700;
-  margin-top:1rem;
-}
-
-.page-sub{
-  text-align:center;
-  color:#ccc;
-  max-width:600px;
-  margin:0.5rem auto 2rem;
-}
-
-.tarot-container{
-  perspective:1200px;
-  margin:0 auto;
-  width:300px;
-  height:400px;
-  position:relative;
-}
-
-.tarot-card{
-  width:100%;
-  height:100%;
-  transform-style:preserve-3d;
-  transition:transform .8s;
-  cursor:pointer;
-}
-
-.tarot-card.flipped{
-  transform:rotateY(180deg);
-  border:3px solid #5b21b6;
-}
-
-.card-face{
-  position:absolute;
-  width:100%;
-  height:100%;
-  backface-visibility:hidden;
-  border-radius:20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:1rem;
-  text-align:center;
-}
-
-.card-front{
-  background:linear-gradient(135deg,#8b5cf6,#a855f7);
-  font-weight:bold;
-  font-size:1.2rem;
-}
-
-.card-back{
-  background:#1e1e2a;
-  transform:rotateY(180deg);
-}
-
-#cardName{
-  font-size:1.4rem;
-  font-weight:bold;
-  margin-bottom:.25rem;
-  color:#f3f3f3;
-}
-
-#cardText{
-  font-size:.95rem;
-  line-height:1.4;
-  color:#fffacd;
-  font-weight:bold;
-  margin-top:.5rem;
-}
-
-.btn-purple{
-  background-color:#8b5cf6;
-  color:white;
-  font-weight:bold;
-  padding:.5rem 1rem;
-  border-radius:8px;
-  margin-top:1rem;
-  cursor:pointer;
-}
-
-#paywall {
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.9);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-  padding:2rem;
-  text-align:center;
-}
-
-#paywall h2{
-  font-size:2rem;
-  margin-bottom:1rem;
-  color:#fff;
-}
-
-#paywall .pay-btn{
-  margin:.5rem;
-}
-
-#paywall .close-btn{
-  position:absolute;
-  top:1rem;
-  right:1rem;
-  font-size:1.5rem;
-  color:#fff;
-  cursor:pointer;
-}
-
-footer{
-  background:#111;
-  text-align:center;
-  padding:2rem 1rem;
-  font-size:.875rem;
-  color:#e5e7eb;
-  margin-top:4rem;
-}
-
-footer a{
-  color:#8b5cf6;
-  margin:0 0.5rem;
-  text-decoration:none;
-  font-weight:bold;
-}
+h1,h2,h3{ font-family:'Cinzel',serif; }
+nav{ position:fixed; top:0; left:0; width:100%; background:#111; display:flex; justify-content:space-between; align-items:center; padding:.75rem 1rem; z-index:999; }
+nav .logo a{ color:#fff; font-weight:700; text-decoration:none; font-size:1.25rem; }
+nav .hamburger{ font-size:1.5rem; color:#fff; cursor:pointer; }
+.mobile-menu{ display:none; flex-direction:column; gap:1rem; margin-top:.5rem; position:absolute; top:3.5rem; right:0; width:200px; background:#1a1a2e; padding:1rem; }
+.mobile-menu a{ color:#fff; font-weight:600; text-decoration:none; }
+.page-title{ text-align:center; font-size:2.5rem; font-weight:700; margin-top:1rem; }
+.page-sub{ text-align:center; color:#ccc; max-width:600px; margin:0.5rem auto 2rem; }
+.tarot-container{ perspective:1200px; margin:2rem auto; width:300px; height:400px; position:relative; }
+.tarot-card{ width:100%; height:100%; transform-style:preserve-3d; transition:transform .8s; cursor:pointer; }
+.tarot-card.flipped{ transform:rotateY(180deg); border:3px solid #5b21b6; }
+.card-face{ position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:20px; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:1rem; text-align:center; }
+.card-front{ background:linear-gradient(135deg,#8b5cf6,#a855f7); font-weight:bold; font-size:1.2rem; color:#fff; }
+.card-back{ background:#111; transform:rotateY(180deg); border:3px solid #8b5cf6; color:#fff; font-weight:bold; padding:1rem; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; font-size:.9rem; white-space:pre-wrap; word-break:break-word; }
+.btn-purple{ background-color:#8b5cf6; color:white; font-weight:bold; padding:.5rem 1rem; border-radius:8px; margin-top:1rem; cursor:pointer; }
+#paywall{ display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:1000; padding:2rem; text-align:center; }
+#paywall h2{ font-size:2rem; margin-bottom:1rem; color:#fff; }
+#paywall .pay-btn{ margin:.5rem; }
+#paywall .close-btn{ position:absolute; top:1rem; right:1rem; font-size:1.5rem; color:#fff; cursor:pointer; }
+footer{ background:#111; text-align:center; padding:2rem 1rem; font-size:.875rem; color:#e5e7eb; margin-top:4rem; }
+footer a{ color:#8b5cf6; margin:0 0.5rem; text-decoration:none; font-weight:bold; }
 </style>
 </head>
-
 <body>
 
 <nav>
-<div class="logo"><a href="index.html">TMI Studios</a></div>
-<div class="hamburger" id="hamburger">☰</div>
-
-<div class="mobile-menu" id="mobileMenu">
-<a href="arcade.html">Arcade</a>
-<a href="lab.html">Lab</a>
-<a href="aboutus.html">About Us</a>
-<a href="contact.html">Contact</a>
-<a href="lab.html" class="cta-lab">More unserious chaos →</a>
-</div>
+  <div class="logo"><a href="index.html">TMI Studios</a></div>
+  <div class="hamburger" id="hamburger">☰</div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="arcade.html">Arcade</a>
+    <a href="lab.html">Lab</a>
+    <a href="aboutus.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="lab.html" class="cta-lab">More unserious chaos →</a>
+  </div>
 </nav>
 
 <h1 class="page-title">Delulu CEO Tarot</h1>
-<p class="page-sub">
-Draw a card to see what type of delulu CEO you'd be in an alternate reality.
-</p>
+<p class="page-sub">Draw a card to see what type of delulu CEO you'd be in an alternate reality.</p>
 
 <div class="text-center">
-<button id="drawCardBtn" class="btn-purple">Draw Your Card</button>
+  <button id="drawCardBtn" class="btn-purple">Draw Your Card</button>
 </div>
 
 <div class="tarot-container mt-6">
-<div class="tarot-card" id="tarotCard">
-<div class="card-face card-front">
-Touch or click to reveal your Delulu CEO!
+  <div class="tarot-card" id="tarotCard">
+    <div class="card-face card-front" id="cardFront">
+      Touch or click to reveal your Delulu CEO!
+    </div>
+    <div class="card-face card-back">
+      <div id="cardName"></div>
+      <p id="cardText"></p>
+    </div>
+  </div>
 </div>
-<div class="card-face card-back">
-<div id="cardName"></div>
-<p id="cardText"></p>
-</div>
-</div>
+
+<!-- CTA Buttons -->
+<div class="text-center mt-4" id="ctaButtons" style="display:none;">
+  <button id="downloadCard" class="btn-purple">Download Card 📥</button>
+  <button id="shareWhatsApp" class="btn-purple" style="background:#25D366;">Share to WhatsApp 💬</button>
+  <button onclick="window.location.href='lab.html'" class="btn-purple" style="background:#ff3d3d;">More unseriousness →</button>
 </div>
 
 <!-- Paywall Modal -->
@@ -249,13 +87,14 @@ Touch or click to reveal your Delulu CEO!
 </div>
 
 <footer>
-© 2025 TMI Studios — fully supporting delulu dreams
+© 2026 TMI Studios — fully supporting delulu dreams
 <br>
 <a href="https://instagram.com">Instagram</a>
 <a href="https://twitter.com">Twitter</a>
 <a href="https://facebook.com">Facebook</a>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
 // Hamburger toggle
 const hamburger = document.getElementById('hamburger');
@@ -264,7 +103,24 @@ hamburger.onclick = () => {
   mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// Tarot cards data
+// Elements
+const drawBtn = document.getElementById("drawCardBtn");
+const tarotCard = document.getElementById("tarotCard");
+const cardName = document.getElementById("cardName");
+const cardText = document.getElementById("cardText");
+const paywall = document.getElementById("paywall");
+const paySingleBtn = document.getElementById("paySingleBtn");
+const payFullBtn = document.getElementById("payFullBtn");
+const paywallClose = document.getElementById("paywallClose");
+
+const downloadBtn = document.getElementById("downloadCard");
+const whatsappBtn = document.getElementById("shareWhatsApp");
+const ctaButtons = document.getElementById("ctaButtons");
+
+let firstDrawDone = false;
+let currentCard = null;
+
+// Tarot Cards
 const ceoCards = [
   {name:"The Chaos Brander",leadership:"Rebrand every Tuesday.",weakness:"Nobody recognizes your logo anymore.",forecast:"New brand colors tonight."},
   {name:"The Manifestation Manager",leadership:"Writes quarterly goals on a vision board.",weakness:"Thinks profit margins respond to moon phases.",forecast:"Mercury retrograde blamed for everything."},
@@ -280,85 +136,151 @@ const ceoCards = [
   {name:"The Exit Strategist",leadership:"Plans the acquisition before launch.",weakness:"There is nothing to acquire yet.",forecast:"LinkedIn post about 'building quietly.'"}
 ];
 
-// Elements
-const drawBtn = document.getElementById("drawCardBtn");
-const tarotCard = document.getElementById("tarotCard");
-const cardName = document.getElementById("cardName");
-const cardText = document.getElementById("cardText");
-const paywall = document.getElementById("paywall");
-const paySingleBtn = document.getElementById("paySingleBtn");
-const payFullBtn = document.getElementById("payFullBtn");
-const paywallClose = document.getElementById("paywallClose");
-
-let currentCard = null;
-let firstDrawDone = false;
-
-// ---------------------------
-// Draw a new card
-// ---------------------------
+// Draw card
 drawBtn.onclick = () => {
-  if(firstDrawDone){
-    paywall.style.display = 'flex'; // show paywall after first draw
-    return;
-  }
   const card = ceoCards[Math.floor(Math.random() * ceoCards.length)];
   currentCard = card;
+
   cardName.textContent = card.name;
-  cardText.innerHTML = `
-🔮 Leadership Style:<br>${card.leadership}<br><br>
-⚠️ Weakness:<br>${card.weakness}<br><br>
-📈 Forecast:<br>${card.forecast}
-  `;
+
+  cardText.textContent =
+`🔮 Leadership:
+${card.leadership}
+
+⚠️ Weakness:
+${card.weakness}
+
+📈 Forecast:
+${card.forecast}`;
+
   tarotCard.classList.add("flipped");
-  firstDrawDone = true;
+
+  if(!firstDrawDone){
+    ctaButtons.style.display = 'block';
+    firstDrawDone = true;
+  }
 };
 
-// ---------------------------
-// Flip card on click
-// ---------------------------
+// Flip card
 tarotCard.onclick = () => {
   tarotCard.classList.toggle("flipped");
 };
 
-// ---------------------------
-// Paywall close
-// ---------------------------
-paywallClose.onclick = () => {
-  paywall.style.display = 'none';
+// ✅ PERFECT DOWNLOAD (CANVAS DRAWN)
+downloadBtn.onclick = () => {
+
+  if(!currentCard) return;
+
+  const width = 600;
+  const height = 900;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+
+  // Background
+  const gradient = ctx.createLinearGradient(0, 0, width, height);
+  gradient.addColorStop(0, "#0d0d1a");
+  gradient.addColorStop(1, "#000");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, width, height);
+
+  // Border
+  ctx.strokeStyle = "#8b5cf6";
+  ctx.lineWidth = 6;
+  ctx.strokeRect(20, 20, width - 40, height - 40);
+
+  // Title
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 36px Segoe UI";
+  ctx.textAlign = "center";
+  ctx.fillText(currentCard.name, width / 2, 120);
+
+  // Body
+  ctx.font = "20px Segoe UI";
+  ctx.textAlign = "left";
+
+  const lines = [
+    "🔮 Leadership:",
+    currentCard.leadership,
+    "",
+    "⚠️ Weakness:",
+    currentCard.weakness,
+    "",
+    "📈 Forecast:",
+    currentCard.forecast
+  ];
+
+  let y = 200;
+  const lineHeight = 32;
+
+  lines.forEach(line => {
+    wrapText(ctx, line, 60, y, width - 120, lineHeight);
+    y += lineHeight;
+  });
+
+  // Branding
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#aaa";
+  ctx.textAlign = "center";
+  ctx.fillText("Delulu CEO Tarot • tmistudios.xyz", width / 2, height - 40);
+
+  // Download
+  const link = document.createElement("a");
+  link.download = "delulu-ceo-tarot.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
 };
 
-// ---------------------------
-// Click background to close paywall
-// ---------------------------
-paywall.addEventListener('click', (e) => {
+// Wrap text helper
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+
+  for(let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const testWidth = ctx.measureText(testLine).width;
+
+    if(testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + ' ';
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y);
+}
+
+// WhatsApp
+whatsappBtn.onclick = () => {
+  window.open("https://wa.me/?text=I just got my Delulu CEO Tarot result 😭 try it 👉 tmistudios.xyz", "_blank");
+};
+
+// Paywall
+paywallClose.onclick = () => paywall.style.display = 'none';
+paywall.addEventListener('click', e => {
   if(e.target === paywall) paywall.style.display = 'none';
 });
 
-// ---------------------------
-// Universal PayFast POST function
-// ---------------------------
+// PayFast
 async function pay(product){
   try {
     const res = await fetch('https://tmistudios.xyz/.netlify/functions/payfast', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
       body: JSON.stringify({ product })
     });
     const data = await res.json();
-    if(data.url){
-      window.location.href = data.url;
-    } else {
-      alert('Payment failed. Try again.');
-    }
+    if(data.url) window.location.href = data.url;
+    else alert('Payment failed. Try again.');
   } catch(err){
-    alert('Payment request failed.');
     console.error(err);
+    alert('Payment request failed.');
   }
 }
 
-// ---------------------------
-// Paywall buttons
-// ---------------------------
 paySingleBtn.onclick = () => pay('delulu_single');
 payFullBtn.onclick = () => pay('delulu_full');
 </script>
