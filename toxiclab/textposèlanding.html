@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text-posè | Decode the Vibe</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
+<style>
+:root {
+  --primary: #6a0dad;
+  --secondary: #39ff14;
+  --accent: #12002b;
+  --text-light: #fff;
+  --text-dark: #1a1a1a;
+  --button: #39ff14;
+  --button-hover: #2be60f;
+}
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: var(--accent);
+  color: var(--text-light);
+  text-align: center;
+}
+a { text-decoration: none; color: inherit; }
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: var(--button);
+  color: #000;
+  transition: 0.3s;
+}
+button:hover { background: var(--button-hover); }
+header { padding: 40px 20px; }
+header h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--secondary); }
+header p { font-size: 1.2rem; max-width: 500px; margin: 0 auto 20px; }
+.hero-img { max-width: 300px; margin: 20px auto; border-radius: 20px; box-shadow: 0 0 25px rgba(57,255,20,0.5); }
+
+.section { padding: 60px 20px; }
+.section h2 { font-size: 2rem; margin-bottom: 20px; color: var(--secondary); }
+.section p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 20px; line-height: 1.5; }
+
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 30px; margin-top: 30px; }
+.feature { background: linear-gradient(145deg,#1b001f,#2e0033); border-radius: 20px; padding: 25px; box-shadow: 0 0 15px rgba(57,255,20,0.3); }
+.feature i { font-size: 2.5rem; margin-bottom: 15px; color: var(--secondary); }
+.feature h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.feature p { font-size: 0.95rem; }
+
+.cta-buttons { margin-top: 40px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.cta-buttons button { min-width: 180px; }
+
+footer { padding: 30px 20px; font-size: 14px; color: #aaa; background: #0d0017; }
+footer a { color: #aaa; margin: 0 5px; transition: 0.3s; }
+footer a:hover { color: var(--secondary); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>💬 Text-posè</h1>
+  <p>Decode shady texts, uncover hidden meanings, and clap back like a boss. Stop guessing, start knowing. Perfect for your ex, your crush, or that shady friend.</p>
+  <img src="images/toxicdecoder.jpeg" alt="Text-posè Hero" class="hero-img">
+  <div class="cta-buttons">
+    <button onclick="window.location.href='textposè.html'">Start Decoding 🔥</button>
+  </div>
+</header>
+
+<section class="section">
+  <h2>Why Text-posè?</h2>
+  <div class="features">
+    <div class="feature">
+      <i class="fas fa-comment-dots"></i>
+      <h3>Decode Every Text</h3>
+      <p>Not sure what "K" or "Sure..." really means? Text-posè translates passive-aggressive, shady, or suspicious texts into clear explanations.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-user-secret"></i>
+      <h3>Spot the Shade</h3>
+      <p>Learn the subtle signs your crush or ex is annoyed, lying, or hiding feelings. Stop guessing and know the vibe instantly.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-bolt"></i>
+      <h3>Clap Back Smart</h3>
+      <p>Get instant suggested responses for tricky texts. Upgrade for full clapback packs and reply like a boss every time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="packs">
+  <h2>🔥 Unlock More Packs</h2>
+  <p>Start with free packs or get the full experience with premium packs. Each pack has 10+ texts decoded with explanations and clapbacks.</p>
+  <div class="cta-buttons">
+        <button onclick="window.location.href='textposè.html'">Free packs 🙂‍↕️</button>
+        <button onclick="window.location.href='textposè.html'">Premium Packs 😎</button>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Stats & Fun</h2>
+  <p>Track how many texts you’ve decoded, how many shady vibes you spotted, and see your progress. Text-posè makes reading texts fun, addictive, and educational.</p>
+</section>
+
+<footer>
+  <p>© 2026 TMI Studios</p>
+  <nav>
+    <a href="arcade.html">Arcade</a> ·
+    <a href="faq.html">FAQ</a> ·
+    <a href="privacy.html">Privacy</a> ·
+    <a href="terms.html">Terms</a>
+  </nav>
+</footer>
+
+</body>
+</html>
