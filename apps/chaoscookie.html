@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaos Cookie</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roca+Two:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at bottom, #0d0d1a 0%, #000 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin:0;
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  width:100%;
+  background:#111;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:100;
+}
+nav .logo a{
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  font-size:20px;
+}
+nav .menu{
+  position:relative;
+  font-size:22px;
+  cursor:pointer;
+  user-select:none;
+}
+nav .dropdown{
+  display:none;
+  position:absolute;
+  right:0;
+  top:36px;
+  background:#181820;
+  border-radius:10px;
+  overflow:hidden;
+  min-width:180px;
+  box-shadow:0 6px 20px rgba(0,0,0,.4);
+}
+nav .dropdown a{
+  display:block;
+  padding:12px 16px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+}
+nav .dropdown a:hover{background:#222}
+
+/* MAIN */
+main{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:2rem;
+  flex:1;
+}
+
+h1 {
+  font-family: 'Roca Two', serif;
+  font-size: 3rem;
+  background: linear-gradient(90deg, #a855f7, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom:.5rem;
+}
+
+button {
+  background: linear-gradient(90deg, #a855f7, #ff00ff);
+  color: #fff;
+  font-weight: bold;
+  padding: .8rem 1.2rem;
+  border-radius: 14px;
+  margin: .5rem;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 15px rgba(168,85,247,0.6);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+button:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(255,0,255,0.8); }
+
+.card {
+  max-width: 400px;
+  width: 90%;
+  background: linear-gradient(145deg, #1a1a2e, #111125);
+  border-radius: 18px;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(168,85,247,0.5);
+  margin: 1rem 0;
+  position: relative;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+.card.active-free { border: 3px solid #3b82f6; box-shadow: 0 0 25px #3b82f6; }
+.card.active-love { border: 3px solid #ef4444; box-shadow: 0 0 25px #ef4444; }
+.card.active-money { border: 3px solid #10b981; box-shadow: 0 0 25px #10b981; }
+.card.active-petty { border: 3px solid #f59e0b; box-shadow: 0 0 25px #f59e0b; }
+.card.active-rare { border: 3px solid #8b5cf6; box-shadow: 0 0 25px #8b5cf6; }
+
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: gold;
+  color: #000;
+  font-size: .7rem;
+  padding: .3rem .6rem;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.pack-desc {
+  font-size: .95rem;
+  color: #ddd;
+  margin: .75rem 0 1.2rem;
+}
+
+/* ACTION TILES */
+#actionTiles {
+  display:flex;
+  gap:1rem;
+  margin-top:1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.action-tile {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  background: linear-gradient(135deg, #a855f7, #ff00ff);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(168,85,247,0.6);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.action-tile:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(168,85,247,0.8);
+}
+
+/* COSMIC CARD */
+#cosmicCard {
+  position: relative;
+  width: 300px;
+  max-width: 90%;
+  aspect-ratio: 1/1.2;
+  background: radial-gradient(circle at center, #2b006e, #000);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 0 25px #a855f7;
+}
+#cosmicCard::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent), url('https://i.ibb.co/0rHZv9V/smoke.png') center/cover no-repeat;
+  opacity:0.3;
+  z-index:1;
+}
+#cosmicCard span{
+  position:relative;
+  z-index:2;
+}
+/* Branding */
+#cosmicCard .branding{
+  position:absolute;
+  bottom:10px;
+  width:100%;
+  text-align:center;
+  font-size:0.7rem;
+  color:white;
+  z-index:2;
+}
+
+/* STARS */
+@keyframes twinkle{
+  0%,100%{opacity:1}
+  50%{opacity:0.3}
+}
+.star{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  animation: twinkle 2s infinite;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html">TMI Studios</a></div>
+  <div class="menu" id="hamburger">☰
+    <div class="dropdown" id="menuDropdown">
+      <a href="lab.html">Lab</a>
+      <a href="arcade.html">Arcade</a>
+      <a href="news.html">TMI News</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="about.html">About Us</a>
+      <a href="packages.html">Packages</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<h1>Chaos Cookie</h1>
+<p style="color:#c084fc;font-weight:bold">Click and let the universe embarrass you 🔮</p>
+<button id="generate">Crack the Fortune 💥</button>
+
+<div id="cosmicCard">
+  <span>✨ Your fortune will appear here ✨</span>
+  <div class="branding">Chaos Cookie by TMI Studios</div>
+</div>
+
+<!-- ACTION TILES -->
+<div id="actionTiles">
+  <div class="action-tile" id="downloadTile" title="Download your fortune"><i class="fas fa-download"></i></div>
+  <div class="action-tile" id="shareTile" title="Share your fortune"><i class="fas fa-share-alt"></i></div>
+</div>
+
+<!-- PREMIUM PACKS -->
+<div class="card">
+  <span class="badge">PREMIUM</span>
+  <h3>Love Pack 💔</h3>
+  <p class="pack-desc">Unhinged romantic chaos, delusions & situationships.</p>
+  <button onclick="openPay('love',20)">Unlock R20</button>
+</div>
+
+<div class="card">
+  <span class="badge">PREMIUM</span>
+  <h3>Money Pack 💸</h3>
+  <p class="pack-desc">Financial delusion, broke prophecies & fake abundance.</p>
+  <button onclick="openPay('money',20)">Unlock R20</button>
+</div>
+
+<div class="card">
+  <span class="badge">PREMIUM</span>
+  <h3>Petty Pack 😈</h3>
+  <p class="pack-desc">Spiritual shade, karma & elite-level pettiness.</p>
+  <button onclick="openPay('petty',20)">Unlock R20</button>
+</div>
+
+<div class="card">
+  <span class="badge">PREMIUM</span>
+  <h3>Unhinged Pack 🌌</h3>
+  <p class="pack-desc">Cosmic chaos, rare surprises & extreme fortunes.</p>
+  <button onclick="openPay('unhinged',29)">Unlock R29</button>
+</div>
+</main>
+
+<footer>
+  <div>
+    <a href="https://tinyurl.com/mwfd4d73" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/tmistudios" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029Vb5jDfqB4hdUr7W2Nt1H" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p>© 2026 TMI Studios</p>
+  <p>
+    <a href="/arcade.html">Arcade</a> ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/termsofuse.html">Terms</a>
+  </p>
+</footer>
+
+<!-- PAY MODAL -->
+<div id="payModal" class="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);align-items:center;justify-content:center;z-index:999;">
+  <div class="modal-box" style="background:#1a1a2e;border-radius:20px;padding:2rem;text-align:center;max-width:320px;box-shadow:0 0 30px rgba(168,85,247,.6);">
+    <h2 id="modalTitle" style="color:#a855f7;margin-bottom:.5rem"></h2>
+    <p id="modalText" style="font-size:.95rem;margin-bottom:1.5rem;color:#ddd">Unlock this premium pack for today</p>
+    <div class="price" id="modalPrice" style="font-size:1.2rem;margin-bottom:1.2rem;color:gold"></div>
+    <button id="confirmPay">Pay with PayFast</button>
+    <button onclick="closeModal()" style="background:#333;margin-top:0.5rem;">Cancel</button>
+  </div>
+</div>
+
+<script>
+// NAV
+const hamburger = document.getElementById('hamburger');
+const menuDropdown = document.getElementById('menuDropdown');
+hamburger.addEventListener('click', () => {
+  menuDropdown.style.display = menuDropdown.style.display==='block'?'none':'block';
+});
+window.addEventListener('click', e => { if(!hamburger.contains(e.target)) menuDropdown.style.display='none'; });
+
+// FORTUNES
+const fortunes = {
+  free: [
+    "Someone you blocked still checks your profile.",
+    "You will almost send a risky text tonight.",
+    "Someone heard about your glow-up and is pretending they always supported you.",
+    "You will remember something embarrassing from 2016 tonight.",
+    "You will open TikTok for 5 minutes and reappear an hour later.",
+    "Someone you forgot about remembers you vividly.",
+    "You will check someone's profile 'just to see'.",
+    "Someone in your life is competing with you quietly.",
+    "You will almost expose yourself in a group chat.",
+    "You will hear gossip you were not meant to hear.",
+    "Someone who doubted you is watching now.",
+    "You will reread old messages like ancient scrolls.",
+    "Someone watches your stories but refuses to like anything.",
+    "You will judge someone silently today.",
+    "You will remember why you stopped liking someone.",
+    "You will hear someone lie badly today.",
+    "Someone is copying your vibe.",
+    "You will side-eye something today.",
+    "You will almost start drama then remember you evolved.",
+    "Someone is slightly intimidated by you.",
+    "You will see someone embarrass themselves publicly.",
+    "You will observe chaos and stay quiet.",
+    "Someone will talk nonsense with full confidence.",
+    "You will almost respond to something you should ignore.",
+    "You will remember a red flag you ignored.",
+    "You will watch karma loading slowly.",
+    "Someone underestimated you and is now studying your moves.",
+    "You will hear something confirming your suspicions.",
+    "Someone will act weird around you today.",
+    "You will realize someone isn't as slick as they think.",
+    "You will observe tension in a room.",
+    "Someone will try too hard today.",
+    "You will almost confront someone.",
+    "You will witness something awkward.",
+    "You will see someone regret something immediately.",
+    "You will overhear something juicy.",
+    "Someone will fake laugh today.",
+    "Someone envies your calm.",
+    "You will catch subtle shade.",
+    "Someone will watch you more than usual.",
+    "Someone will pretend to understand something.",
+    "You will hear something suspiciously specific.",
+    "A conversation will suddenly make sense.",
+    "Someone will expose themselves accidentally.",
+    "Someone will try to save face.",
+    "Someone will overshare today.",
+    "You will realize you were right.",
+    "Someone will attempt damage control.",
+    "Someone will act unusually quiet around you.",
+    "Someone will realize they messed up."
+  ],
+  love: [
+    "Someone is stalking your stories.",
+    "Your ex regrets something.",
+    "Someone has a crush on you but won't admit it.",
+    "Someone is thinking about texting you.",
+    "Someone will flirt with you badly.",
+    "Someone is jealous of your love life.",
+    "Someone remembers you more than you think.",
+    "Someone will attempt a comeback.",
+    "Someone will send a confusing message.",
+    "Someone still talks about you.",
+    "Someone you rejected still thinks about it.",
+    "Someone misses your energy.",
+    "Someone will try to reconnect soon.",
+    "Someone regrets fumbling you.",
+    "Someone is curious about your life now.",
+    "Someone will test the waters with you.",
+    "Someone is watching from a distance.",
+    "Someone is still a little obsessed.",
+    "Someone is hoping you text first.",
+    "Someone is pretending they moved on.",
+    "Someone will mention your name today.",
+    "Someone wants closure they don't deserve.",
+    "Someone will attempt small talk soon.",
+    "Someone is trying to understand you.",
+    "Someone wishes they treated you better.",
+    "Someone is wondering what you're doing now.",
+    "Someone regrets ignoring you.",
+    "Someone wants another chance.",
+    "Someone still replays conversations with you.",
+    "Someone hopes you'll forgive them.",
+    "Someone will act weird around you.",
+    "Someone thinks about you late at night.",
+    "Someone will randomly reach out.",
+    "Someone is curious about your glow-up.",
+    "Someone underestimated your value.",
+    "Someone is secretly impressed by you.",
+    "Someone will compliment you unexpectedly.",
+    "Someone is slightly intimidated by you.",
+    "Someone will flirt awkwardly.",
+    "Someone wishes they handled things differently.",
+    "Someone will pretend to be casual.",
+    "Someone is watching quietly.",
+    "Someone still wonders about you.",
+    "Someone will send a random message soon.",
+    "Someone regrets letting you go.",
+    "Someone still remembers your vibe.",
+    "Someone will try again.",
+    "Someone still feels something.",
+    "Someone thinks you were the best option.",
+    "Someone realizes they messed up."
+  ],
+  money: [
+    "Unexpected money is approaching.",
+    "A financial opportunity is nearby.",
+    "Your wallet is nervous.",
+    "You will rethink a purchase soon.",
+    "You will notice a good deal today.",
+    "A small win will happen financially.",
+    "You will become smarter with money.",
+    "A tempting purchase will appear.",
+    "You will reconsider your budget.",
+    "You will receive helpful advice.",
+    "You will think about investing soon.",
+    "A financial opportunity will appear.",
+    "You will discover a better deal.",
+    "You will avoid an unnecessary purchase.",
+    "You will feel motivated to save.",
+    "A financial idea will come to you.",
+    "You will learn something useful about money.",
+    "You will make a smarter decision soon.",
+    "You will find a creative way to earn.",
+    "You will see a chance to improve finances.",
+    "You will think long term today.",
+    "You will feel motivated to grow wealth.",
+    "A small opportunity will appear.",
+    "You will rethink your spending habits.",
+    "You will find inspiration for making money.",
+    "You will avoid wasting money today.",
+    "You will make a wise financial move.",
+    "You will notice an opportunity others miss.",
+    "You will take control of your finances.",
+    "A smart idea will appear soon.",
+    "You will discover a useful resource.",
+    "You will find motivation to save.",
+    "You will recognize a money opportunity.",
+    "You will make a confident financial decision.",
+    "You will plan something financially smart.",
+    "You will become more disciplined.",
+    "You will see the value of patience.",
+    "You will consider new income ideas.",
+    "You will feel more confident about money.",
+    "A useful financial insight will appear.",
+    "You will avoid a bad purchase.",
+    "You will recognize your progress.",
+    "You will make a clever money move.",
+    "You will feel motivated to build wealth.",
+    "You will find a smarter strategy.",
+    "You will improve your habits.",
+    "You will notice a hidden opportunity.",
+    "You will plan a better financial future.",
+    "You will feel empowered about money.",
+    "You will make a wise financial decision."
+  ],
+  petty: [
+    "Someone who doubted you is watching now.",
+    "Karma is warming up.",
+    "Someone regrets underestimating you.",
+    "Someone will notice your glow-up.",
+    "Someone secretly envies you.",
+    "Someone is pretending they always liked you.",
+    "Someone regrets their attitude toward you.",
+    "Someone is realizing you were right.",
+    "Someone is watching your success quietly.",
+    "Someone will act awkward around you.",
+    "Someone will pretend nothing happened.",
+    "Someone regrets being shady.",
+    "Someone is noticing your progress.",
+    "Someone is uncomfortable with your confidence.",
+    "Someone wishes they treated you better.",
+    "Someone regrets gossiping about you.",
+    "Someone will feel slightly embarrassed today.",
+    "Someone underestimated your growth.",
+    "Someone is watching silently.",
+    "Someone regrets not supporting you.",
+    "Someone will hear good news about you.",
+    "Someone is realizing your value.",
+    "Someone is trying to act normal.",
+    "Someone regrets their past behavior.",
+    "Someone feels awkward around you now.",
+    "Someone is remembering how they acted.",
+    "Someone will feel slightly jealous today.",
+    "Someone regrets their decisions.",
+    "Someone wishes they handled things differently.",
+    "Someone will see your success and feel petty.",
+    "Someone regrets ignoring you.",
+    "Someone is quietly impressed.",
+    "Someone will notice your achievements.",
+    "Someone is replaying past mistakes.",
+    "Someone regrets being toxic.",
+    "Someone secretly hopes you fail but won't admit it.",
+    "Someone is slightly intimidated.",
+    "Someone feels left out today.",
+    "Someone envies your calm.",
+    "Someone is trying to outdo you.",
+    "Someone regrets gossiping.",
+    "Someone is struggling with jealousy.",
+    "Someone is watching and learning.",
+    "Someone wishes they were as composed.",
+    "Someone will feel awkward seeing your confidence.",
+    "Someone is realizing your energy is unmatched.",
+    "Someone regrets a petty fight.",
+    "Someone is reassessing past decisions.",
+    "Someone is quietly envious.",
+    "Someone feels exposed around you.",
+    "Someone regrets being dismissive.",
+    "Someone is pretending to be casual.",
+    "Someone envies your peace of mind.",
+    "Someone is noticing your influence.",
+    "Someone regrets underestimating your skills.",
+    "Someone feels out of place.",
+    "Someone envies your progress.",
+    "Someone regrets trying to compete.",
+    "Someone feels insecure next to you."
+  ],
+  rare: [
+    "A cosmic surprise is heading your way.",
+    "Something rare and valuable will appear.",
+    "You will notice a hidden talent in yourself.",
+    "A lucky coincidence will benefit you.",
+    "A rare opportunity will arise today.",
+    "You will see something others miss.",
+    "You will gain insight that changes perspective.",
+    "You will find clarity where there was confusion.",
+    "A small miracle will happen soon.",
+    "You will experience unexpected joy.",
+    "You will meet someone who inspires you.",
+    "An unusual idea will solve a problem.",
+    "You will stumble upon a secret advantage.",
+    "A rare connection will appear today.",
+    "You will feel unusually confident.",
+    "Something extraordinary will happen soon.",
+    "You will recognize an opportunity others ignore.",
+    "A sudden insight will change your path.",
+    "You will discover a hidden skill.",
+    "A unique chance will present itself.",
+    "You will feel fortunate unexpectedly.",
+    "You will receive an unexpected gift.",
+    "A rare message will reach you.",
+    "You will notice beauty in an unlikely place.",
+    "You will unlock a hidden potential.",
+    "Something exceptional will happen today.",
+    "You will witness a rare event.",
+    "You will gain wisdom from an unusual source.",
+    "A fortunate encounter will occur.",
+    "You will find an uncommon solution.",
+    "You will receive unexpected recognition.",
+    "A rare opportunity for growth will appear.",
+    "You will experience luck in a strange form.",
+    "You will notice something overlooked.",
+    "A unique benefit will be yours.",
+    "You will feel inspired suddenly.",
+    "You will gain a rare insight today.",
+    "Something magical will touch your day.",
+    "You will find a hidden treasure.",
+    "You will have an unusual success.",
+    "You will meet someone who changes perspective.",
+    "A lucky discovery is coming.",
+    "You will be in the right place at the right time.",
+    "A rare alignment of events will help you.",
+    "You will gain clarity in an unusual way.",
+    "Something extraordinary will reach you.",
+    "You will find an unexpected ally.",
+    "You will notice a unique chance.",
+    "A rare breakthrough will happen soon.",
+    "You will experience serendipity today.",
+    "You will receive a surprising reward."
+  ]
+};
+
+let unlockedPacks = [];
+let lastCrackDate = localStorage.getItem('lastCrackDate') || null;
+let extraCracks = parseInt(localStorage.getItem('extraCracks'))||0;
+let unlimited = localStorage.getItem('unlimitedCracks')==='true';
+
+const cosmicCard = document.getElementById('cosmicCard');
+const generateBtn = document.getElementById('generate');
+
+function canCrackToday(){
+  if(unlimited) return true;
+  if(extraCracks>0) return true;
+  return lastCrackDate !== new Date().toDateString();
+}
+function markCrackToday(){
+  if(unlimited) return;
+  if(extraCracks>0){
+    extraCracks--; localStorage.setItem('extraCracks', extraCracks);
+  } else {
+    lastCrackDate = new Date().toDateString();
+    localStorage.setItem('lastCrackDate', lastCrackDate);
+  }
+}
+
+generateBtn.onclick = () => {
+  if(!canCrackToday()){
+    alert("You need to buy extra cracks to continue today!");
+    return;
+  }
+  let available = [...fortunes.free];
+  unlockedPacks.forEach(pack=>{ if(fortunes[pack]) available.push(...fortunes[pack]); });
+  const randomFortune = available[Math.floor(Math.random()*available.length)];
+
+  cosmicCard.querySelector('span').textContent = randomFortune;
+
+  // ANIMATION
+  cosmicCard.style.transition="transform 0.6s, box-shadow 0.6s";
+  cosmicCard.style.transform="rotateY(360deg)";
+  cosmicCard.style.boxShadow="0 0 40px #a855f7, 0 0 80px #ff00ff, 0 0 120px #fff";
+  setTimeout(()=>{ cosmicCard.style.transform="rotateY(0deg)"; cosmicCard.style.boxShadow="0 0 25px #a855f7"; }, 600);
+
+  // SOUND
+  const audio = new Audio('https://freesound.org/data/previews/531/531172_3248244-lq.mp3');
+  audio.play();
+
+  markCrackToday();
+};
+// PAYMODAL
+let selectedPack = null;
+let selectedAmount = 0;
+
+function openPay(pack, amount) {
+  selectedPack = pack;
+  selectedAmount = amount;
+
+  // Set modal title and price
+  document.getElementById('modalTitle').textContent = 
+    pack.charAt(0).toUpperCase() + pack.slice(1) + " Pack";
+  document.getElementById('modalPrice').textContent = "R" + amount + " · today only";
+  document.getElementById('payModal').style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById('payModal').style.display = "none";
+}
+
+document.getElementById('confirmPay').onclick = async () => {
+  if (!selectedPack) return;
+
+  try {
+    // Call your Netlify function that contains hidden merchant ID & key
+    const res = await fetch("/.netlify/functions/payfast", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pack: selectedPack, amount: selectedAmount })
+    });
+
+    const data = await res.json();
+
+    if (data.url) {
+      // Open PayFast checkout
+      window.open(data.url, "_blank");
+
+      // Unlock pack locally after purchase
+      if (!unlockedPacks.includes(selectedPack)) unlockedPacks.push(selectedPack);
+
+      closeModal();
+      alert(`"${selectedPack}" unlocked for today!`);
+    } else {
+      console.error(data);
+      alert("Failed to generate payment link. Check console.");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Error initiating payment. Check console.");
+  }
+};
+
+// DOWNLOAD IMAGE WITH BRANDING
+document.getElementById('downloadTile').onclick = ()=>{
+  html2canvas(cosmicCard).then(canvas=>{
+    const link=document.createElement('a');
+    link.href=canvas.toDataURL("image/png");
+    link.download="chaos_cookie_fortune.png";
+    link.click();
+  });
+};
+
+// SHARE
+document.getElementById('shareTile').onclick = ()=>{
+  if(navigator.share) navigator.share({title:'Chaos Cookie Fortune', text:cosmicCard.querySelector('span').textContent});
+  else alert("Share not supported on this device");
+};
+
+// LOAD html2canvas
+const script = document.createElement('script');
+script.src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+document.body.appendChild(script);
+</script>
+</body>
+</html>
