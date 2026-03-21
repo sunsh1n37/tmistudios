@@ -131,7 +131,7 @@ footer a:hover{color:#ff4d4d;}
   <p>Explore fun personality quizzes & tests — find your vibe!</p>
 </header>
 
-<!-- EMPTY GRID (will be filled dynamically) -->
+<!-- GRID (now dynamic) -->
 <section class="quiz-grid" id="quizGrid"></section>
 
 <footer>
@@ -163,13 +163,12 @@ for(let i=0;i<particleCount;i++){
 }
 
 /* FETCH APPS */
-fetch("apps/apps.json")
+fetch("/apps/apps.json")
   .then(res => res.json())
   .then(data => {
     const grid = document.getElementById("quizGrid");
 
-    // Filter Vibe Lab apps (adjust key if needed)
-    const apps = data.filter(app => app.lab === "vibe");
+    const apps = data.filter(app => app.section === "vibeLab");
 
     apps.forEach(app => {
       const card = document.createElement("a");
@@ -177,8 +176,8 @@ fetch("apps/apps.json")
       card.className = "quiz-card";
 
       card.innerHTML = `
-        <i class="${app.icon || 'fas fa-star'}"></i>
-        <h3>${app.title}</h3>
+        <i class="fas fa-star"></i>
+        <h3>${app.name}</h3>
         <p>${app.description}</p>
         <button>Take Quiz</button>
       `;
