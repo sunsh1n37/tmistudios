@@ -57,7 +57,7 @@ button:active { transform:scale(0.97); }
         <!-- Premium replies visible but NOT in screenshot -->
         <div class="card locked" id="premiumRepliesCard">
             <strong>Premium Replies 🔒</strong><br><br>
-            👑 Black Cat<br>
+            🐈‍⬛️ Black Cat<br>
             🖤 Dark Femme
         </div>
 
@@ -77,6 +77,7 @@ button:active { transform:scale(0.97); }
 </div>
 
 <script>
+// ===== Meaning Pools =====
 const meaningPools = {
   wyd:["Low effort. He wants access without effort.","Casual energy. Minimal thought.","Just checking in, not serious.","Testing waters without commitment."],
   "you up":["Late-night convenience energy.","Only texting when easy for him.","Not fully invested, just curious.","Casual, opportunistic vibe."],
@@ -84,116 +85,164 @@ const meaningPools = {
   question:["He wants engagement.","Looking for a response.","Curious about your reaction.","Testing if you’ll chase."],
   longMsg:["High emotional investment.","Effort shows he cares.","Lots of thought in this one.","Shows deep interest."],
   shortMsg:["Low effort. You're an option.","Brief text, minimal investment.","Quick message, could be distracted.","Minimal engagement."],
-  neutral:["Neutral energy.","Nothing major.","No strong signals.","Balanced, could go either way."]
+  neutral:["Neutral energy.","Nothing major.","No strong signals.","Balanced, could go either way."],
+
+  // Realistic scenario use cases
+  coffee:["Inviting you to coffee. Testing vibe.","Casual hangout, playful interest.","Curious about you in person.","Low-key effort but genuine interest."],
+  dinner:["Suggests dinner. Romantic or strategic.","Shows interest and initiative.","Could be a date or casual meet-up.","Testing if you’ll accept."],
+  cook:["Offers to cook for you. Trying to impress.","Effort shows he wants closeness.","Romantic or cozy vibes.","Checking how you respond emotionally."],
+  comeOver:["Asks you to come over. Casual or flirty.","Testing comfort level and trust.","Seeing if you’ll chase.","Intent could be romantic or playful."],
+  hangout:["Wants to hang out. Casual friend or flirty.","Testing chemistry in person.","Low-stakes invitation.","Evaluating emotional pull."],
+  gift:["Mentions a gift. Flirty or thoughtful.","Trying to charm you.","Shows effort but may be manipulative.","Checking your reaction."],
+  plan:["Proposes a plan. Could be fun or romantic.","Testing if you’ll commit.","Low effort vs high effort signal.","Casual or serious interest."],
+  apology:["Says sorry. Genuine or manipulative.","Attempting to reconcile.","Checking emotional pull.","Testing if you forgive easily."],
+  tease:["Playful poke. Flirty or attention-seeking.","Testing boundaries.","Checking your reaction.","Low effort, high engagement."],
+  rant:["Long vent/message. Needs empathy.","Testing emotional availability.","Seeking validation or attention.","Shows deep personal investment."],
+  late:["Texting after hours. Convenience or curiosity.","Casual night vibes.","Checking if you’re awake.","Testing patience or availability."],
+  snap:["Quick DM or snap. Casual flirt.","Minimal effort, wants a reaction.","Low-stakes engagement.","Testing playfulness."],
+  emoji:["Emojis only. Flirty or lazy.","Minimal effort, playful.","Checking how you respond.","Trying to provoke fun."],
+  mixed:["Mixed signals. Hard to read.","Pulls away then engages.","Testing chase and patience.","Low-to-medium investment."],
+  overText:["Floods you with messages. Clingy.","High effort but maybe annoying.","Seeking constant attention.","Testing chase dynamics."]
 };
 
-function getRandom(arr){return arr[Math.floor(Math.random()*arr.length)];}
-function getMeaning(poolName){return getRandom(meaningPools[poolName]||meaningPools.neutral);}
-function addBubble(text,type="received"){const chat=document.getElementById("chat");const div=document.createElement("div");div.className="bubble "+type;div.innerHTML=text;chat.appendChild(div);chat.scrollTop=chat.scrollHeight;}
+// ===== Reply Pools =====
+const replyPools = {
+  // Free vs Premium
+  wyd:{ soft:["Just chilling 😊 you?","Kinda relaxed, you?"], savage:["Living my life. You?","Try harder 😏"] },
+  "you up":{ soft:["Barely lol","Sup?"], savage:["No ❤️","Not at this hour 😈"] },
+  miss:{ soft:["Aww 🥺","I know 😌"], savage:["I know 😈","Miss me? Cute 😏"] },
+  question:{ soft:["Haha yeah 😊","Sure"], savage:["Why? 😈","Do I look like I care 😏"] },
+  longMsg:{ soft:["That was sweet 🥺","Thanks for sharing"], savage:["You wrote all that? 😈","Try again, honey 😏"] },
+  shortMsg:{ soft:["Hey 😊","Hi there"], savage:["That’s it? 😈","Do better 😎"] },
+  neutral:{ soft:["Nice 😊","Okay…"], savage:["Okay… 😈","Move along 😎"] },
+
+  // Real-life scenario replies
+  coffee:{ soft:["Sure, coffee sounds good ☕","I can do coffee 😌"], savage:["Only if you bring your A-game 😈","Cute, but I pick the place 😏"] },
+  dinner:{ soft:["Dinner works 🍝","Sounds tasty 😌"], savage:["I cook better than you 😈","Bring appetite, not attitude 😏"] },
+  cook:{ soft:["Love that 😌","You cook? Cool 😏"], savage:["I hope it’s edible 😈","Better be gourmet 😏"] },
+  comeOver:{ soft:["Might be fun 😌","Could swing by 😏"], savage:["I hope it’s not just Netflix 😈","Don’t waste my couch 😏"] },
+  hangout:{ soft:["Sounds fun 😌","I’m in 😏"], savage:["Only if it’s not boring 😈","Make it interesting 😏"] },
+  gift:{ soft:["Thanks 😌","Cute gesture 😏"], savage:["Bribery won’t work 😈","I don’t need that 😏"] },
+  plan:{ soft:["Sure, I’m free 😌","Sounds good 😏"], savage:["Not today 😈","Pick a better time 😏"] },
+  apology:{ soft:["It’s okay 😌","No worries 😏"], savage:["Do better next time 😈","Words aren’t enough 😏"] },
+  tease:{ soft:["Haha 😏","You’re funny 😌"], savage:["Try harder 😈","I see you 😎"] },
+  rant:{ soft:["Wow 😌","Thanks for sharing"], savage:["Keep it short 😈","I don’t care 😏"] },
+  late:{ soft:["Up late too 😌","Just winding down"], savage:["Night owl? Try again 😈","I’m busy 😎"] },
+  snap:{ soft:["Got your snap 😌","Funny 😏"], savage:["Try harder 😈","Cute attempt 😏"] },
+  emoji:{ soft:["Cute 😌","Fun 😂"], savage:["Is that it? 😈","I see you trying 😎"] },
+  mixed:{ soft:["Confusing 😌","Hmm 😏"], savage:["Stop playing 😈","Pick a lane 😏"] },
+  overText:{ soft:["Whoa 😌","Chill 😏"], savage:["Enough already 😈","I’m not your diary 😎"] }
+};
+
+// ===== Utility =====
+function getRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function getMeaning(poolName){ return getRandom(meaningPools[poolName]||meaningPools.neutral); }
+function addBubble(text,type="received"){
+  const chat=document.getElementById("chat");
+  const div=document.createElement("div");
+  div.className="bubble "+type;
+  div.innerHTML=text;
+  chat.appendChild(div);
+  chat.scrollTop=chat.scrollHeight;
+}
 
 // ===== Start analysis =====
 function startAnalysis(){
-    const input=document.getElementById("inputText").value;
-    if(!input)return;
-    document.getElementById("chat").innerHTML="";
-    document.getElementById("result").style.display="none";
+  const input=document.getElementById("inputText").value;
+  if(!input)return;
+  document.getElementById("chat").innerHTML="";
+  document.getElementById("result").style.display="none";
 
-    addBubble(input,"received");
+  addBubble(input,"received");
 
-    setTimeout(()=>{
-        const typing=document.createElement("div");
-        typing.className="bubble sent"; typing.id="typingBubble";
-        typing.innerHTML=`<span class="typing"></span><span class="typing"></span><span class="typing"></span>`;
-        document.getElementById("chat").appendChild(typing); typing.scrollIntoView();
-    },500);
+  setTimeout(()=>{
+    const typing=document.createElement("div");
+    typing.className="bubble sent"; typing.id="typingBubble";
+    typing.innerHTML=`<span class="typing"></span><span class="typing"></span><span class="typing"></span>`;
+    document.getElementById("chat").appendChild(typing); typing.scrollIntoView();
+  },500);
 
-    setTimeout(()=>{
-        const typing=document.getElementById("typingBubble");
-        if(typing) typing.remove();
-        analyze(input);
-    },2000);
+  setTimeout(()=>{
+    const typing=document.getElementById("typingBubble");
+    if(typing) typing.remove();
+    analyze(input);
+  },2000);
 }
 
 // ===== Analyze text =====
 function analyze(textRaw){
-    const text=textRaw.toLowerCase(); 
-    let effortScore=60+Math.random()*30; 
-    let meaning=""; 
-    let replies={};
+  const text=textRaw.toLowerCase(); 
+  let effortScore=60+Math.random()*30; 
+  let meaning=""; 
+  let replies={};
 
-    const isShort=text.length<12; 
-    const isLong=text.length>80;
+  const isShort=text.length<12; 
+  const isLong=text.length>80;
 
-    if(text.includes("wyd")){
-        meaning=getMeaning("wyd");
-        replies={soft:"Just relaxing 😊 you?",savage:"Living my life. You?"};
-        effortScore=45;
-    } else if(text.includes("you up")){
-        meaning=getMeaning("you up");
-        replies={soft:"Barely lol",savage:"No ❤️"};
-        effortScore=35;
-    } else if(text.includes("miss")){
-        meaning=getMeaning("miss");
-        replies={soft:"Aww 🥺",savage:"I know"};
-        effortScore=85;
-    } else if(text.includes("?")){
-        meaning=getMeaning("question");
-        replies={soft:"Haha yeah 😊",savage:"Why?"};
-        effortScore=75;
-    } else if(isLong){
-        meaning=getMeaning("longMsg");
-        replies={soft:"That was sweet 🥺",savage:"You wrote all that?"};
-        effortScore=90;
-    } else if(isShort){
-        meaning=getMeaning("shortMsg");
-        replies={soft:"Hey 😊",savage:"That’s it?"};
-        effortScore=45;
-    } else{
-        meaning=getMeaning("neutral");
-        replies={soft:"Nice 😊",savage:"Okay…"};
-        effortScore=65;
-    }
-    effortScore=Math.round(effortScore); 
-    showResult(textRaw, effortScore, meaning, replies);
+  if(text.includes("wyd")){ meaning=getMeaning("wyd"); replies=replyPools.wyd; effortScore=45; }
+  else if(text.includes("you up")){ meaning=getMeaning("you up"); replies=replyPools["you up"]; effortScore=35; }
+  else if(text.includes("miss")){ meaning=getMeaning("miss"); replies=replyPools.miss; effortScore=85; }
+  else if(text.includes("?")){ meaning=getMeaning("question"); replies=replyPools.question; effortScore=75; }
+  else if(text.includes("coffee")){ meaning=getMeaning("coffee"); replies=replyPools.coffee; effortScore=60; }
+  else if(text.includes("dinner")){ meaning=getMeaning("dinner"); replies=replyPools.dinner; effortScore=65; }
+  else if(text.includes("cook")){ meaning=getMeaning("cook"); replies=replyPools.cook; effortScore=70; }
+  else if(text.includes("come over")){ meaning=getMeaning("comeOver"); replies=replyPools.comeOver; effortScore=70; }
+  else if(text.includes("hangout")){ meaning=getMeaning("hangout"); replies=replyPools.hangout; effortScore=60; }
+  else if(text.includes("gift")){ meaning=getMeaning("gift"); replies=replyPools.gift; effortScore=60; }
+  else if(text.includes("plan")){ meaning=getMeaning("plan"); replies=replyPools.plan; effortScore=60; }
+  else if(text.includes("apology")){ meaning=getMeaning("apology"); replies=replyPools.apology; effortScore=60; }
+  else if(text.includes("tease")){ meaning=getMeaning("tease"); replies=replyPools.tease; effortScore=50; }
+  else if(text.includes("rant")){ meaning=getMeaning("rant"); replies=replyPools.rant; effortScore=60; }
+  else if(text.includes("late")){ meaning=getMeaning("late"); replies=replyPools.late; effortScore=45; }
+  else if(text.includes("snap")){ meaning=getMeaning("snap"); replies=replyPools.snap; effortScore=50; }
+  else if(text.includes("emoji")){ meaning=getMeaning("emoji"); replies=replyPools.emoji; effortScore=45; }
+  else if(text.includes("mixed")){ meaning=getMeaning("mixed"); replies=replyPools.mixed; effortScore=65; }
+  else if(text.includes("overtext")){ meaning=getMeaning("overText"); replies=replyPools.overText; effortScore=55; }
+  else if(isLong){ meaning=getMeaning("longMsg"); replies=replyPools.longMsg; effortScore=90; }
+  else if(isShort){ meaning=getMeaning("shortMsg"); replies=replyPools.shortMsg; effortScore=45; }
+  else{ meaning=getMeaning("neutral"); replies=replyPools.neutral; effortScore=65; }
+
+  effortScore=Math.round(effortScore); 
+  showResult(textRaw, effortScore, meaning, replies);
 }
 
 // ===== Show result =====
 function showResult(originalText, score, meaning, replies){
-    const result=document.getElementById("result"); 
-    result.style.display="block";
+  const result=document.getElementById("result"); 
+  result.style.display="block";
 
-    document.getElementById("score").innerText=`Effort Score: ${score}/100`;
-    document.getElementById("originalTextCard").innerHTML=`<strong>Message:</strong><br>${originalText}`;
-    document.getElementById("meaningCard").innerHTML=`<strong>What he means:</strong><br>${meaning}`;
+  document.getElementById("score").innerText=`Effort Score: ${score}/100`;
+  document.getElementById("originalTextCard").innerHTML=`<strong>Message:</strong><br>${originalText}`;
+  document.getElementById("meaningCard").innerHTML=`<strong>What he means:</strong><br>${meaning}`;
 
-    document.getElementById("freeRepliesCard").innerHTML=`
-        <strong>Replies:</strong><br><br>
-        💕 ${replies.soft}<br>
-        😈 ${replies.savage}<br>
-    `;
+  document.getElementById("freeRepliesCard").innerHTML=`
+    <strong>Replies:</strong><br><br>
+    💕 ${replies.soft}<br>
+    😈 ${replies.savage}<br>
+  `;
 }
 
 // ===== Reset / Screenshot =====
 function resetApp(){
-    document.getElementById("chat").innerHTML="";
-    document.getElementById("result").style.display="none";
-    document.getElementById("inputText").value="";
+  document.getElementById("chat").innerHTML="";
+  document.getElementById("result").style.display="none";
+  document.getElementById("inputText").value="";
 }
 
 // Screenshot button
 document.getElementById("shareBtn").addEventListener("click", function(){
-    const area=document.getElementById("screenshotArea");
-    if(!area)return;
+  const area=document.getElementById("screenshotArea");
+  if(!area)return;
 
-    html2canvas(area,{scale:2}).then(canvas=>{
-        const link=document.createElement("a");
-        link.download="clapbackai-text.png";
-        link.href=canvas.toDataURL("image/png");
-        link.click();
-    }).catch(err=>{
-        console.error("Screenshot failed:", err);
-        alert("Screenshot failed. Try again.");
-    });
+  html2canvas(area,{scale:2}).then(canvas=>{
+    const link=document.createElement("a");
+    link.download="clapbackai-text.png";
+    link.href=canvas.toDataURL("image/png");
+    link.click();
+  }).catch(err=>{
+    console.error("Screenshot failed:", err);
+    alert("Screenshot failed. Try again.");
+  });
 });
 
 // Pay subscription placeholder
@@ -216,7 +265,6 @@ function paySubscription(amount){
     alert("Payment request failed");
   });
 }
-
 </script>
 </body>
 </html>
