@@ -5,13 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vibe Lab | Quizzes & Tests</title>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* GENERAL */
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'Poppins',sans-serif;
@@ -24,7 +21,6 @@ body{
   position:relative;
 }
 
-/* PARTICLE BACKGROUND */
 .particle{
   position:absolute;
   border-radius:50%;
@@ -38,7 +34,6 @@ body{
   100%{transform:translateY(-200px) translateX(-20px);}
 }
 
-/* HEADER */
 header{
   text-align:center;
   padding:40px 20px 20px;
@@ -57,7 +52,6 @@ header p{
   font-size:16px;
 }
 
-/* QUIZ GRID */
 .quiz-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -111,7 +105,6 @@ header p{
   transform:scale(1.05);
 }
 
-/* FOOTER */
 footer{
   text-align:center;
   padding:15px 10px;
@@ -131,7 +124,6 @@ footer a:hover{color:#ff4d4d;}
 </head>
 <body>
 
-<!-- PARTICLES -->
 <div id="particles"></div>
 
 <header>
@@ -139,23 +131,8 @@ footer a:hover{color:#ff4d4d;}
   <p>Explore fun personality quizzes & tests — find your vibe!</p>
 </header>
 
-<section class="quiz-grid">
-  <a href="vibelab/maincharacter.html" class="quiz-card">
-    <i class="fas fa-film"></i>
-    <h3>Main Character Energy</h3>
-    <p>Are you the star of your own movie… or just background vibes?</p>
-    <button>Take Quiz</button>
-  </a>
-
-  <a href="vibelab/villain.html" class="quiz-card">
-    <i class="fas fa-skull-crossbones"></i>
-    <h3>Are You The Villain!?🧐</h3>
-    <p>Think you’re the hero? Find out if you’re secretly the villain—take the Villain Test and uncover your true chaos level!😭?</p>
-    <button>Take Quiz</button>
-  </a>
-
-
-</section>
+<!-- EMPTY GRID (will be filled dynamically) -->
+<section class="quiz-grid" id="quizGrid"></section>
 
 <footer>
   <p>© 2026 TMI Studios</p>
@@ -168,7 +145,7 @@ footer a:hover{color:#ff4d4d;}
 </footer>
 
 <script>
-/* Generate floating particles */
+/* PARTICLES */
 const particleCount = 30;
 const particlesContainer = document.getElementById("particles");
 
@@ -184,6 +161,34 @@ for(let i=0;i<particleCount;i++){
   p.style.animationDuration = `${6 + Math.random()*8}s`;
   particlesContainer.appendChild(p);
 }
+
+/* FETCH APPS */
+fetch("apps/apps.json")
+  .then(res => res.json())
+  .then(data => {
+    const grid = document.getElementById("quizGrid");
+
+    // Filter Vibe Lab apps (adjust key if needed)
+    const apps = data.filter(app => app.lab === "vibe");
+
+    apps.forEach(app => {
+      const card = document.createElement("a");
+      card.href = app.link;
+      card.className = "quiz-card";
+
+      card.innerHTML = `
+        <i class="${app.icon || 'fas fa-star'}"></i>
+        <h3>${app.title}</h3>
+        <p>${app.description}</p>
+        <button>Take Quiz</button>
+      `;
+
+      grid.appendChild(card);
+    });
+  })
+  .catch(err => {
+    console.error("Error loading apps:", err);
+  });
 </script>
 
 </body>
