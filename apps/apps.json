@@ -90,7 +90,7 @@
   {
     "name": "Redflag Radar",
     "section": "toxicLab",
-    "image": "images/redflagradar.png",
+    "image": "https://i.ibb.co/ynnZ03Gv/file-00000000011871f89529886ba44c7430.png",
     "description": "Scan texts for toxic behavior patterns.",
     "link": "toxiclab/redflagradar.html",
     "trending": true
